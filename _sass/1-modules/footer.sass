@@ -1,0 +1,56 @@
+footer.footer-wrapper
+  width: 100%
+  padding: 40px 20px
+  display: flex
+  flex-direction: column
+  align-items: center
+  .footer-social-links
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    height: 50px
+    width: 100%
+    max-width: 250px
+    margin: 0 0 25px 0
+    .social-icon-wrap
+      transition: all 0.2s ease-in
+      display: inline-block
+      height: 50px
+      width: 50px
+      overflow: hidden
+      &:hover
+        transform: scale(.95)
+    .footer-linkedin-wrapper, .footer-github-wrapper, .footer-twitter-wrapper
+      background:
+        size: contain
+        position: center center
+        repeat: no-repeat
+    .footer-linkedin-wrapper
+      background-image: url('../img/icons/linkedin.svg')
+      background: 
+        size: 30px
+    .footer-github-wrapper
+      background-image: url('../img/icons/github.svg')
+      background: 
+        size: 30px
+    .footer-twitter-wrapper
+      background-image: url('../img/icons/twitter.svg')
+      background: 
+        size: 45px
+  a.footer-email
+    transition: all .2s ease-in
+    font-family: $font-stack
+    font-size: 1em
+    color: $secondary
+    &:hover
+      color: $primary
+  p.footer-copy-right
+    font-family: $font-stack
+    font-size: 0.7em
+    color: $secondary
+.social-icon
+  height: 100%
+  width: auto
+input
+  outline: none
+  border-radius: 0
