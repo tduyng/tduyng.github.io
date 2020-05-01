@@ -18,7 +18,8 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Adev42
+title: Home adev42
+blogTitle: Blog adev42
 author: Tien Duy NGUYEN
 position: Engineer/Developer
 email: tienduy.nguyen.dev@gmail.com
@@ -35,6 +36,7 @@ linkedin_path: https://www.linkedin.com/in/tienduy-nguyen/
 
 
 markdown: kramdown
+pathToBlogImgBin: /assets/img/blog/
 
 # Sass/SCSS
 sass:
