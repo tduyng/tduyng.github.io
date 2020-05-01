@@ -20,7 +20,7 @@
 
 title: Home adev42
 blogTitle: Blog adev42
-author: Tien Duy NGUYEN
+author: Tien Duy N
 position: Engineer/Developer
 email: tienduy.nguyen.dev@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
@@ -38,6 +38,7 @@ linkedin_path: https://www.linkedin.com/in/tienduy-nguyen/
 markdown: kramdown
 pathToBlogImgBin: /assets/img/blog/
 
+
 # Sass/SCSS
 sass:
   sass_dir: _sass
@@ -54,6 +55,15 @@ compress_html: # - http://jch.penibelst.de/
   clippings: all
   ignore:
     envs: development
+
+# default:
+#   -
+#     scope:
+#       path: ""
+#       type: "post"
+#     values:
+#       layout: "post"
+#       permalink: /:categories/:year/:month/:title
 
 # Exclude from processing.
 # The following items will not be processed, by default.
