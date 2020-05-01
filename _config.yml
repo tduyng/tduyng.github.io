@@ -33,14 +33,14 @@ github_path:  https://github.com/tienduy-nguyen
 linkedin_path: https://www.linkedin.com/in/tienduy-nguyen/
 
 
-permalink: pretty
 markdown: kramdown
 
-gems:
-  - jekyll-feed
-  - jekyll-autoprefixer
 sass:
   sass_dir: _sass
+  style: compressed
+
+plugins:
+  - jekyll-feed
 
 # Exclude from processing.
 # The following items will not be processed, by default.
