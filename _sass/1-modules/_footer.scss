@@ -49,10 +49,11 @@ footer.footer-wrapper{
       color: $primary;
     }
   }
-  p.footer-copy-right{
+  p.footer-copyright{
     font-family: $font-stack;
-    font-size: 0.7em;
+    font-size: 0.875em;
     color: $secondary;
+    margin-top:10px;
   }
 }
 .social-icon{
