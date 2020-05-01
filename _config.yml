@@ -35,12 +35,22 @@ linkedin_path: https://www.linkedin.com/in/tienduy-nguyen/
 
 markdown: kramdown
 
+# Sass/SCSS
 sass:
   sass_dir: _sass
-  style: compressed
+  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
 
 plugins:
   - jekyll-feed
+
+# Build settings
+compress-site: yes
+
+encoding: "utf-8"
+compress_html: # - http://jch.penibelst.de/
+  clippings: all
+  ignore:
+    envs: development
 
 # Exclude from processing.
 # The following items will not be processed, by default.
