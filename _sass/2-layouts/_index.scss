@@ -153,24 +153,25 @@ h2.recent-projects{
         line-height: 100px;
       }
       .project-img-one{
-        background-image: url('');
+        background-image: url('https://source.unsplash.com/random/?develop');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
       }
       .project-img-two{
-        background-image: url('../img/urlDencoder.png');
-        background-size: 108%;
+        background-image: url('https://source.unsplash.com/random/?workspace,develop/1600x900');
+        background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
       }
       .project-img-three{
-        background-image: url('../img/safestep-floors-recent-project.jpg');
+        background-image: url('https://source.unsplash.com/random/?develop,workspace/1600x900');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
       }
       .project-img-four{
+        background-image: url('https://source.unsplash.com/random/?develop/1600x900');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
