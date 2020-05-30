@@ -57,10 +57,13 @@ header.header-main {
     margin-left: auto;
     text-align: center;
     font-size: 1em;
-    font-weight: 300;
+    font-weight: 500;
     color: $primary;
     .quote-author {
-      font-weight: 500;
+      font-weight: 300;
+      font-style: italic;
+      color: $secondary;
+      font-size: 0.9rem;
     }
   }
 

@@ -6,6 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .then((response) => response.json())
     .then((data) => {
       elContent.textContent = data.content;
-      elAuthor.textContent = data.author;
+      elAuthor.textContent = '—' + data.author;
     });
 });
