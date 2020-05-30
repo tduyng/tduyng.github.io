@@ -1,5 +1,5 @@
 //Header
-header.header-main{
+header.header-main {
   position: relative;
   z-index: 2;
   display: flex;
@@ -12,7 +12,7 @@ header.header-main{
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  .overlay-light{
+  .overlay-light {
     position: absolute;
     z-index: -999;
     top: 0;
@@ -22,36 +22,50 @@ header.header-main{
     background: $white;
     opacity: 0.7;
   }
-  .home-title{
+  .home-title {
     position: relative;
     z-index: 5;
     text-align: center;
     padding-top: 50px;
-      }
-  h1{
+  }
+  h1 {
     font-size: 4em;
     font-weight: 700;
     line-height: 1.2em;
     padding: 0 20px 5px 20px;
-    @media screen and(max-width: 500px){
+    @media screen and(max-width: 500px) {
       font-size: 2.5em;
     }
-    @media screen and(max-width: 400px){
+    @media screen and(max-width: 400px) {
       font-size: 2.1875em;
     }
-    @media screen and(max-width: 360px){
+    @media screen and(max-width: 360px) {
       font-size: 1.875em;
     }
   }
-  h3{
+  h3 {
     font-size: 1.5em;
     font-weight: 300;
     line-height: 1.2em;
     color: $secondary;
-    opacity: .45;
+    opacity: 0.45;
   }
-  .buttonsWrapper{
-    margin:  40px auto 0 auto;
+  .quote-random {
+    width: 80%;
+    line-height: 1.4em;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+    font-size: 1em;
+    font-weight: 300;
+    color: $primary;
+    .quote-author {
+      font-weight: 500;
+    }
+  }
+
+  .buttonsWrapper {
+    margin: 40px auto 0 auto;
     height: 1em;
     width: 100%;
     max-width: 400px;
@@ -60,13 +74,13 @@ header.header-main{
     justify-content: space-between;
     align-items: center;
     font-size: 0.875em;
-    .buttonSecondary{
+    .buttonSecondary {
       display: block;
       color: $highlight;
       font-size: 1em;
       font-weight: 600;
       text-transform: uppercase;
-      padding: .5em 1em;
+      padding: 0.5em 1em;
       border: 1px solid $highlight;
       border-radius: 28px;
       margin: 0 20px 0 0;
@@ -74,13 +88,13 @@ header.header-main{
       flex: 1 1 0;
       cursor: pointer;
     }
-    .buttonPrimary{
+    .buttonPrimary {
       display: block;
       color: $white;
       font-size: 1em;
       font-weight: 600;
       text-transform: uppercase;
-      padding: .5em 1em;
+      padding: 0.5em 1em;
       border: 1px solid $highlight;
       background: $highlight;
       border-radius: 28px;
@@ -93,54 +107,54 @@ header.header-main{
 }
 
 //Who is he
-.who-is-he{
+.who-is-he {
   max-width: 600px;
   margin: 100px auto 100px auto;
   padding: 0 20px;
-  background: hsl(222,8,99);
+  background: hsl(222, 8, 99);
   text-align: justify;
-  h2{
+  h2 {
     padding-bottom: 17px;
     font-weight: 400;
   }
-  p{
+  p {
     font-weight: 300;
-    a{
+    a {
       font-weight: 600;
       color: $highlight;
       transition: all 0.15s ease-in-out;
-      &:hover{
+      &:hover {
         color: $secondary;
       }
-          }
+    }
   }
 }
 //Recent Project
-h2.recent-projects{
+h2.recent-projects {
   text-align: center;
   padding-top: 100px;
   font-weight: 400;
 }
 
-.recent-projects-content-wrap{
+.recent-projects-content-wrap {
   margin: auto;
   max-width: 600px;
   padding: 60px 20px 0 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  .project-wrap{
+  .project-wrap {
     width: 100%;
     display: flex;
     justify-content: flex-start;
-    .project{
+    .project {
       max-width: 465px;
       min-height: 100px;
       margin: 20px 0;
       display: flex;
       flex-direction: row;
       justify-content: space-around;
-      .project-img{
+      .project-img {
         background: $primary;
         height: 100px;
         width: 100px;
@@ -152,31 +166,31 @@ h2.recent-projects{
         text-align: center;
         line-height: 100px;
       }
-      .project-img-one{
+      .project-img-one {
         background-image: url('https://source.unsplash.com/random/?develop');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
       }
-      .project-img-two{
+      .project-img-two {
         background-image: url('https://source.unsplash.com/random/?workspace,develop/1600x900');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
       }
-      .project-img-three{
+      .project-img-three {
         background-image: url('https://source.unsplash.com/random/?develop,workspace/1600x900');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
       }
-      .project-img-four{
+      .project-img-four {
         background-image: url('https://source.unsplash.com/random/?develop/1600x900');
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
       }
-      .project-text{
+      .project-text {
         min-height: 83px;
         height: 100%;
         width: 100%;
@@ -185,52 +199,49 @@ h2.recent-projects{
         flex-direction: column;
         justify-content: space-around;
         padding: 5px 0;
-        h4{
+        h4 {
           display: block;
           margin: 0;
           padding: 0;
           line-height: 1.2272727273em;
           font-weight: 400;
         }
-        p{
+        p {
           line-height: 1.1875em;
         }
       }
-
     }
   }
-  .project-wrap-reverse{
+  .project-wrap-reverse {
     justify-content: flex-end;
-    .project{
+    .project {
       flex-direction: row-reverse;
-      .project-text{
+      .project-text {
         text-align: right;
         margin-right: 15px;
         margin-left: 0;
       }
     }
   }
-  @media screen and(max-width: 465px){
-    .project-wrap{
-      .project{
+  @media screen and(max-width: 465px) {
+    .project-wrap {
+      .project {
         flex-direction: column;
         min-height: 199px;
-        .project-text{
+        .project-text {
           margin: 6px 0 0 0;
         }
       }
     }
-    .project-wrap-reverse{
-      .project{
+    .project-wrap-reverse {
+      .project {
         align-items: flex-end;
         flex-direction: column;
         min-height: 189px;
-        .project-text{
+        .project-text {
           margin: 6px 0 0 0;
         }
       }
-      
     }
   }
-
 }

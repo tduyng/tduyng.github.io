@@ -1,10 +1,11 @@
-html{
+html {
   font-family: sans-serif;
   line-height: 1.15;
-  -ms-text-size-adjust: 100%; 
+  -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
 }
-body{
+body {
   margin: 0;
 }
 article,
@@ -12,137 +13,137 @@ aside,
 footer,
 header,
 nav,
-section{
+section {
   display: block;
 }
-h1{
+h1 {
   font-size: 2em;
   margin: 0.67em 0;
 }
 figcaption,
 figure,
-main{
+main {
   display: block;
 }
-figure{
+figure {
   margin: 1em 40px;
 }
-hr{
+hr {
   box-sizing: content-box;
   height: 0;
   overflow: visible;
 }
-pre{
+pre {
   font-family: monospace, monospace;
   font-size: 1em;
 }
-a{
+a {
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
 a:active,
-a:hover{
+a:hover {
   outline-width: 0;
 }
-abbr[title]{
+abbr[title] {
   border-bottom: none;
   text-decoration: underline;
   text-decoration: underline dotted;
 }
 b,
-strong{
+strong {
   font-weight: inherit;
 }
 b,
-strong{
+strong {
   font-weight: bolder;
 }
 code,
 kbd,
-samp{
+samp {
   font-family: monospace, monospace;
   font-size: 1em;
 }
-dfn{
+dfn {
   font-style: italic;
 }
-mark{
+mark {
   background-color: #ff0;
   color: #000;
 }
-small{
+small {
   font-size: 80%;
 }
 sub,
-sup{
+sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
   vertical-align: baseline;
 }
-sub{
+sub {
   bottom: -0.25em;
 }
-sup{
+sup {
   top: -0.5em;
 }
 audio,
-video{
+video {
   display: inline-block;
 }
-audio:not([controls]){
+audio:not([controls]) {
   display: none;
   height: 0;
 }
-img{
+img {
   border-style: none;
 }
-svg:not(:root){
+svg:not(:root) {
   overflow: hidden;
 }
 button,
 input,
 optgroup,
 select,
-textarea{
+textarea {
   font-family: sans-serif;
   font-size: 100%;
   line-height: 1.15;
   margin: 0;
 }
 button,
-input{
+input {
   overflow: visible;
 }
 button,
-select{
+select {
   text-transform: none;
 }
 button,
-html [type="button"],
-[type="reset"],
-[type="submit"]{
+html [type='button'],
+[type='reset'],
+[type='submit'] {
   -webkit-appearance: button;
 }
 button::-moz-focus-inner,
-[type="button"]::-moz-focus-inner,
-[type="reset"]::-moz-focus-inner,
-[type="submit"]::-moz-focus-inner{
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
   border-style: none;
-  padding: 0;  
+  padding: 0;
 }
 button:-moz-focusring,
-[type="button"]:-moz-focusring,
-[type="reset"]:-moz-focusring,
-[type="submit"]:-moz-focusring{
+[type='button']:-moz-focusring,
+[type='reset']:-moz-focusring,
+[type='submit']:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
-fieldset{
+fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em;
 }
-legend{
+legend {
   box-sizing: border-box;
   color: inherit;
   display: table;
@@ -150,51 +151,49 @@ legend{
   padding: 0;
   white-space: normal;
 }
-progress{
+progress {
   display: inline-block;
   vertical-align: baseline;
 }
-textarea{
+textarea {
   overflow: auto;
 }
-[type="checkbox"],
-[type="radio"]{
+[type='checkbox'],
+[type='radio'] {
   box-sizing: border-box;
-  padding: 0;  
+  padding: 0;
 }
-[type="number"]::-webkit-inner-spin-button,
-[type="number"]::-webkit-outer-spin-button{
+[type='number']::-webkit-inner-spin-button,
+[type='number']::-webkit-outer-spin-button {
   height: auto;
-  
 }
-[type="search"]{
-  -webkit-appearance: textfield{
+[type='search'] {
+  -webkit-appearance: textfield {
     outline-offset: -2px;
   }
 }
-[type="search"]::-webkit-search-cancel-button,
-[type="search"]::-webkit-search-decoration{
+[type='search']::-webkit-search-cancel-button,
+[type='search']::-webkit-search-decoration {
   -webkit-appearance: none;
-
 }
-::-webkit-file-upload-button{
-  -webkit-appearance: button{
+::-webkit-file-upload-button {
+  -webkit-appearance: button {
     font: inherit;
   }
 }
 details,
-menu{
+menu {
   display: block;
 }
-summary{
+summary {
   display: list-item;
 }
-canvas{
+canvas {
   display: inline-block;
 }
-template{
+template {
   display: none;
 }
-[hidden]{
+[hidden] {
   display: none;
 }

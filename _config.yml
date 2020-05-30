@@ -8,7 +8,7 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 #
-# If you need help with YAML syntax, here are some quick references for you: 
+# If you need help with YAML syntax, here are some quick references for you:
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 #
@@ -25,19 +25,19 @@ position: Engineer/Developer
 email: tienduy.nguyen.dev@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   I am Duy. I am a civil engineering. I love programming. Here are some personal projects I have worked on.
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: '' # the subpath of your site, e.g. /blog
 # url: "https://tienduy-nguyen.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-url: "https://tienduy-nguyen.github.io"
+url: 'https://tienduy-nguyen.github.io'
 
 #Social
 twitter_path: https://twitter.com/tienduy_nguyen
-github_path:  https://github.com/tienduy-nguyen
+github_path: https://github.com/tienduy-nguyen
+gitlab_path: https://gitlab.com/tienduy-nguyen
 linkedin_path: https://www.linkedin.com/in/tienduy-nguyen/
-
+codewars_path: https://www.codewars.com/users/tienduy-nguyen
 
 markdown: kramdown
 pathToBlogImgBin: /assets/img/blog/
-
 
 # Sass/SCSS
 sass:
@@ -50,12 +50,11 @@ plugins:
 # Build settings
 compress-site: yes
 
-encoding: "utf-8"
+encoding: 'utf-8'
 compress_html: # - http://jch.penibelst.de/
   clippings: all
   ignore:
     envs: development
-
 # default:
 #   -
 #     scope:
@@ -84,5 +83,4 @@ compress_html: # - http://jch.penibelst.de/
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
-
 

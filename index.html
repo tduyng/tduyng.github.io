@@ -8,8 +8,13 @@ layout: default
   <div class="home-title">
     <h1>{{ site.author }}</h1>
     <h3>{{ site.position }}</h3>
+    <br>
+    <div class='quote-random'>
+      “<span class='quote-content'></span>”<br>
+      <span class='quote-author'></span>
+    </div>
     <div class="buttonsWrapper">
-      <a href="{{ site.baseurl }}/blog" class="buttonSecondary">Learn More</a>
+      <a href="#blurb" class="buttonSecondary">Learn More</a>
       <a href="mailto:{{ site.email }}" class="buttonPrimary">Contact</a>
     </div>
   </div>
@@ -67,5 +72,5 @@ layout: default
     </div>
   </div>
 </div>
-
+<script type="text/javascript" src="{{ site.baseurl}}/assets/js/quotes.js"></script>
 <hr class="hr-padded-top" />
