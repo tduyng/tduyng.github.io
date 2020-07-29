@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-### adev42.xyz
-[Demo](https://tienduy-nguyen.github.io)
-
-Working in progress ...
-=======
 ## My personal web site
 
 [https://tienduy-nguyen.github.io)](https://tienduy-nguyen.github.io)
@@ -16,4 +10,3 @@ This is my personal static web site created with Jekyll. Jekyll is awesone stati
 
 
 Working in progress ...
->>>>>>> ffa95e30d75312be940592651d6988a5e4ec2afe
