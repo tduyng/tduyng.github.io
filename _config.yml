@@ -20,9 +20,9 @@
 
 title: Home
 blogTitle: Projects
-author: TienDuy N
-position: Engineer/Developer
-email: tienduy.nguyen.dev@gmail.com
+author: TienDuy NGUYEN
+position: Software / Web Developer
+email: tienduy.nguyen.it@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   I am Duy. I am a civil engineering. I love programming. Here are some personal projects I have worked on.
 baseurl: '' # the subpath of your site, e.g. /blog
@@ -71,16 +71,15 @@ compress_html: # - http://jch.penibelst.de/
 #
 # Excluded items can be processed by explicitly listing the directories or
 # their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
 
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

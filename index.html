@@ -2,7 +2,7 @@
 layout: default
 ---
 <!-- Header -->
-<header class="header-main" style="background-image: url('https://source.unsplash.com/random/?workspace');">
+<header class="header-main">
   {% include nav.html %}
   <div class="overlay-light"></div>
   <div class="home-title">
@@ -21,10 +21,11 @@ layout: default
 </header>
 <!-- About -->
 <div class="who-is-he" id="blurb">
-  <h2>Who is he?</h2>
-  <p>Tien Duy is a civil engineer &amp; BIM engineer who has been working professionally since 2018 for Vinci
-    Construction France in France. He loves the programming and new technologies.
-    After two years working on the construction, he decides now to become a full-stack developer to follow his passion.
+  <h2>WHO IS HE?</h2>
+  <p>Tien Duy is a Civil Engineer &amp; BIM Engineer (Building Information Modeling) who has been working professionally
+    since 2018 for VINCI group in France. He loves the programming and new technologies.
+    After two years working on the construction, he decided move on to become a full-stack developer to follow his
+    passion.
     He also enjoys sharing his experiences, the difficulty as self-taught learning and thoughts on his <a
       href="https://blog.adev42.com">blog</a>. Keep up with new projects he is working on and go follow him on <a
       href="{{ site.twitter_path }}" target="_blank">Twitter</a>.</p>
@@ -32,45 +33,122 @@ layout: default
 <hr />
 
 <!-- Recent Projects -->
-<h2 class="recent-projects">Recent Projects</h2>
-<div class="recent-projects-content-wrap">
-  <div class="project-wrap">
-    <div class="project">
-      <div class="project-img project-img-one" data-path="auto">JS</div>
-      <a href="https://adev42-todo.herokuapp.com/" target="_blank" class="project-text">
-        <h4>Task manager</h4>
-        <p>Task manager is a tool for web developers from web developers. It makes using a lightbox in a website
-          extremely easy.</p>
-      </a>
+<section class="projects-section">
+  <h2 class="projects">PROJECTS</h2>
+  <div class="projects-content-wrap">
+    <!-- tabs -->
+    <div class="pcss3t-wrap pcss3t pcss3t-effect-scale pcss3t-theme-1">
+      <input type="radio" name="pcss3t" id="tab1" class="tab-content-first">
+      <label for="tab1">HTML/CSS</label>
+
+      <input type="radio" name="pcss3t" id="tab2" class="tab-content-2" checked>
+      <label for="tab2">Ruby/Rails</label>
+
+      <input type="radio" name="pcss3t" id="tab3" class="tab-content-3">
+      <label for="tab3">Nodejs/Express</label>
+
+      <input type="radio" name="pcss3t" id="tab4" class="tab-content-4">
+      <label for="tab4">ReactJS</label>
+
+      <input type="radio" name="pcss3t" id="tab5" class="tab-content-5">
+      <label for="tab5">VueJS</label>
+
+      <input type="radio" name="pcss3t" id="tab6" class="tab-content-6">
+      <label for="tab6">MERN</label>
+
+      <input type="radio" name="pcss3t" id="tab7" class="tab-content-7">
+      <label for="tab7">Python/Django</label>
+
+      <input type="radio" name="pcss3t" id="tab8" class="tab-content-last">
+      <label for="tab8">C#</label>
+
+      <!-- List of element of tab content-->
+      <ul>
+        <li class="tab-content tab-content-first typography">
+          <h1>Nikola Tesla</h1>
+          <p>Serbian-American inventor, electrical engineer, mechanical engineer, physicist, and futurist best known for
+            his contributions to the design of the modern alternating current (AC) electrical supply system.</p>
+          <p>Tesla started working in the telephony and electrical fields before emigrating to the United States in 1884
+            to work for Thomas Edison. He soon struck out on his own with financial backers, setting up
+            laboratories/companies to develop a range of electrical devices. His patented AC induction motor and
+            transformer were licensed by George Westinghouse, who also hired Tesla as a consultant to help develop an
+            alternating current system. Tesla is also known for his high-voltage, high-frequency power experiments in
+            New
+            York and Colorado Springs which included patented devices and theoretical work used in the invention of
+            radio
+            communication, for his X-ray experiments, and for his ill-fated attempt at intercontinental wireless
+            transmission in his unfinished Wardenclyffe Tower project.</p>
+          <p class="text-right"><em>Find out more about Nikola Tesla from <a
+                href="http://en.wikipedia.org/wiki/Nikola_Tesla" target="_blank">Wikipedia</a>.</em></p>
+        </li>
+
+        <li class="tab-content tab-content-2 typography">
+          <h1>Leonardo da Vinci</h1>
+          <p>Italian Renaissance polymath: painter, sculptor, architect, musician, mathematician, engineer, inventor,
+            anatomist, geologist, cartographer, botanist, and writer. His genius, perhaps more than that of any other
+            figure, epitomized the Renaissance humanist ideal. Leonardo has often been described as the archetype of the
+            Renaissance Man, a man of "unquenchable curiosity" and "feverishly inventive imagination". He is widely
+            considered to be one of the greatest painters of all time and perhaps the most diversely talented person
+            ever
+            to have lived. According to art historian Helen Gardner, the scope and depth of his interests were without
+            precedent and "his mind and personality seem to us superhuman, the man himself mysterious and remote". Marco
+            Rosci states that while there is much speculation about Leonardo, his vision of the world is essentially
+            logical rather than mysterious, and that the empirical methods he employed were unusual for his time.</p>
+          <p class="text-right"><em>Find out more about Leonardo da Vinci from <a
+                href="http://en.wikipedia.org/wiki/Leonardo_da_Vinci" target="_blank">Wikipedia</a>.</em></p>
+        </li>
+
+        <li class="tab-content tab-content-3 typography">
+          <h1>Albert Einstein</h1>
+          <p>German-born theoretical physicist who developed the general theory of relativity, one of the two pillars of
+            modern physics (alongside quantum mechanics). While best known for his mass–energy equivalence formula E =
+            mc2
+            (which has been dubbed "the world's most famous equation"), he received the 1921 Nobel Prize in Physics "for
+            his services to theoretical physics, and especially for his discovery of the law of the photoelectric
+            effect".
+            The latter was pivotal in establishing quantum theory.</p>
+          <p>Near the beginning of his career, Einstein thought that Newtonian mechanics was no longer enough to
+            reconcile
+            the laws of classical mechanics with the laws of the electromagnetic field. This led to the development of
+            his
+            special theory of relativity. He realized, however, that the principle of relativity could also be extended
+            to
+            gravitational fields, and with his subsequent theory of gravitation in 1916, he published a paper on the
+            general theory of relativity.</p>
+          <p class="text-right"><em>Find out more about Albert Einstein from <a
+                href="http://en.wikipedia.org/wiki/Albert_Einstein" target="_blank">Wikipedia</a>.</em></p>
+        </li>
+
+        <li class="tab-content tab-content-last typography">
+          <div class="typography">
+            <h1>Isaac Newton</h1>
+            <p>English physicist and mathematician who is widely regarded as one of the most influential scientists of
+              all
+              time and as a key figure in the scientific revolution. His book Philosophiæ Naturalis Principia
+              Mathematica
+              ("Mathematical Principles of Natural Philosophy"), first published in 1687, laid the foundations for most
+              of
+              classical mechanics. Newton also made seminal contributions to optics and shares credit with Gottfried
+              Leibniz for the invention of the infinitesimal calculus.</p>
+            <p>Newton's Principia formulated the laws of motion and universal gravitation that dominated scientists'
+              view
+              of the physical universe for the next three centuries. It also demonstrated that the motion of objects on
+              the Earth and that of celestial bodies could be described by the same principles. By deriving Kepler's
+              laws
+              of planetary motion from his mathematical description of gravity, Newton removed the last doubts about the
+              validity of the heliocentric model of the cosmos.</p>
+            <p class="text-right"><em>Find out more about Isaac Newton from <a
+                  href="http://en.wikipedia.org/wiki/Isaac_Newton" target="_blank">Wikipedia</a>.</em></p>
+          </div>
+        </li>
+      </ul>
+      <!--/ End of list element tab contents -->
+
     </div>
+    <!--/ tabs -->
+
   </div>
-  <div class="project-wrap project-wrap-reverse">
-    <div class="project project-reverse">
-      <div class="project-img project-img-two lb-js" data-path="auto">ReactJS</div>
-      <a href="https://tienduy-nguyen.github.io" target="_blank" class="project-text">
-        <h4>Project 01</h4>
-        <p>In progress...</p>
-      </a>
-    </div>
-  </div>
-  <div class="project-wrap">
-    <div class="project">
-      <div class="project-img project-img-three lb-js" data-path="auto">NodeJS</div>
-      <a href="https://tienduy-nguyen.github.io" target="_blank" class="project-text">
-        <h4>Project 02</h4>
-        <p>In progress...</p>
-      </a>
-    </div>
-  </div>
-  <div class="project-wrap project-wrap-reverse">
-    <div class="project project-reverse">
-      <div class="project-img project-img-four lb-js" data-path="auto">VueJS</div>
-      <a href="http://tienduy-nguyen.github.io" target="_blank" class="project-text">
-        <h4>Project 03</h4>
-        <p>In progress....</p>
-      </a>
-    </div>
-  </div>
-</div>
+</section>
+<!--/ project section -->
 <script type="text/javascript" src="{{ site.baseurl}}/assets/js/quotes.js"></script>
 <hr class="hr-padded-top" />
