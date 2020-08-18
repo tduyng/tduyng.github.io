@@ -1,0 +1,24 @@
+<div class="container-lg">
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      {% assign myTags = "C#, WPF, RevitAPI, MVVM, Modeless form" | split: "," %}
+      {% include cards/card.html
+        image= "/assets/img/demo/csharp/revitapi.png"
+        title="Revit WPF Template"
+        content="An C# WPF template in visual studio to help the developer create simpler their  add-ins for Revit."
+        tags = myTags
+        code = "https://github.com/tienduy-nguyen/frontend/tree/master/demo/admin-template"
+      %}
+    </div>
+    <div class="col-sm-12 col-md-6">
+      {% assign myTags = "C#, WPF, SQLServer" | split: "," %}
+      {% include cards/card.html
+        title="Inventory App"
+        content="Sample repository how to create a Warehouse Management Tool with C#, WPF and SQL Server."
+        tags = myTags
+        code = "https://github.com/tienduy-nguyen/inventory-app"
+      %}
+    </div>
+
+  </div>
+</div>

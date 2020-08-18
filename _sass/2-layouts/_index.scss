@@ -30,7 +30,7 @@ p {
 }
 a {
   text-decoration: none;
-  color: #1889e6;
+  color: $highlight;
 }
 a:hover {
   text-decoration: underline;
@@ -40,7 +40,7 @@ a:hover {
 .header-main::after {
   content: '';
   background: url('https://source.unsplash.com/random/?workspace');
-  opacity: 0.2;
+  opacity: 0.4;
   top: 0;
   left: 0;
   bottom: 0;
@@ -69,7 +69,6 @@ header.header-main {
     right: 0;
     bottom: 0;
     left: 0;
-    opacity: 0.5;
     background: $white;
   }
   .home-title {
@@ -129,12 +128,13 @@ header.header-main {
     font-size: 0.875em;
     .buttonSecondary {
       display: block;
-      color: $highlight;
+      color: $white;
       font-size: 1em;
       font-weight: 600;
       text-transform: uppercase;
       padding: 0.5em 1em;
-      border: 1px solid $highlight;
+      border: 1px solid $orange;
+      background: $orange;
       border-radius: 28px;
       margin: 0 20px 0 0;
       box-sizing: border-box;

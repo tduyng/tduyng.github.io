@@ -40,7 +40,7 @@
 .nav-tabs-custom .nav-item {
   margin: 0 5px 5px 0;
   border-radius: 5px;
-  background: #4f8a8b;
+  background: #00b894;
   box-shadow: 0 2px rgba(0, 0, 0, 0.5);
   color: #fff;
   opacity: 0.8;
@@ -51,6 +51,7 @@
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
   color: #fff;
+  font-weight: 600;
 }
 .nav-tabs-custom .nav-item:hover,
 .nav-tabs-custom .nav-item:focus {
@@ -107,14 +108,28 @@
       min-height: 120px;
     }
   }
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 1000px) {
     .card-img {
       max-height: 200px;
     }
   }
 }
 .card:hover {
-  background: rgba(0, 0, 0, 0.2);
+  &:hover {
+    border: 1px solid #00b894;
+    z-index: 500;
+    span {
+      color: #00b894;
+    }
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
+  }
+
+  .btn {
+    background: #ffdc23;
+    color: #00b894;
+    border: 1px solid #ffdc23;
+  }
 }
 
 .container-cus {

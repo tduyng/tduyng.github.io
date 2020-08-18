@@ -1,0 +1,27 @@
+<div class="container-lg">
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      {% assign myTags = "Ruby, ROR, PostgreSQL, Devise" | split: "," %}
+      {% include cards/card.html
+        image= "/assets/img/demo/ruby/eventbrite.png"
+        title="Eventbrite clone"
+        content="An eventbrite clone"
+        tags = myTags
+        code = "https://github.com/tienduy-nguyen/eventbrite-clone"
+        demo = "https://eventlove.herokuapp.com/"
+      %}
+    </div>
+    <div class="col-sm-12 col-md-6">
+      {% assign myTags = "Ruby, ROR, PostgreSQL" | split: "," %}
+      {% include cards/card.html
+        image= "/assets/img/demo/ruby/gossip.png"
+        title="Gossip Project"
+        content="A web page to post the gossips between the mousaillons in The Hacking Project."
+        tags = myTags
+        code = "https://github.com/tienduy-nguyen/thp-gossip-project"
+        demo = "https://td-gossip2.herokuapp.com/"
+      %}
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="container-lg">
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      {% assign myTags = "Python, Django, PostgreSQL, AWS" | split: "," %}
+      {% include cards/card.html
+        title="Medium Clone"
+        content="Create an clone of Medium for multi-users. We can write a new post with markdown syntax. Using Django Admin to manage the data. Working in progress for deploying online."
+        tags = myTags
+        code = "https://github.com/tienduy-nguyen/django-web/tree/master/django_blog"
+      %}
+    </div>
+    <div class="col-sm-12 col-md-6">
+      {% assign myTags = "Python, Django, PostgreSQL, Search, Filter" | split: "," %}
+      {% include cards/card.html
+        title="Estate Agency website"
+        content="My first project in Python, Django. Working in progress for deploying online"
+        tags = myTags
+        code = "https://github.com/tienduy-nguyen/django-web/tree/master/real-estate-linux"
+      %}
+    </div>
+
+  </div>
+</div>

@@ -1,7 +1,13 @@
-<div class="card mr-2 mb-2">
+<div class="card mr-3 mb-3">
   <div class="row">
     <div class="col-md-12 col-lg-4">
-      <img src="{{include.image}}" class="card-img">
+      <a href="{{include.demo}}" target="_blank">
+        {% if include.image %}
+        <img src="{{include.image}}" class="card-img">
+        {% else %}
+        <img src="/assets/img/demo/default.jpeg" class="card-img">
+        {% endif %}
+      </a>
     </div>
     <div class="col-md-12 col-lg-8 px-2">
       <div class="card-body px-2 pt-2">
@@ -18,8 +24,10 @@
         {% endif %}
       </div>
       <div class="card-footer d-flex justify-content-between">
-        <a href="#" class="btn btn-light btn-light-primary">Code</a>
-        <a href="#" class="btn btn-light btn-light-primary">Demo</a>
+        <a href="{{include.code}}" class="btn btn-light btn-light-primary" target="_blank">Code</a>
+        {% if include.demo %}
+        <a href="{{include.demo}}" class="btn btn-light btn-light-primary" target="_blank">Demo</a>
+        {% endif %}
       </div>
     </div>
 

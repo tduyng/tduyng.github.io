@@ -1,0 +1,13 @@
+<div class="container-lg">
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      {% assign myTags = "NodeJS, Express" | split: "," %}
+      {% include cards/card.html
+        title="Coming soon"
+        content="Working in progress"
+        tags = myTags
+        code = ""
+      %}
+    </div>
+  </div>
+</div>
