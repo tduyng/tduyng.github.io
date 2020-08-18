@@ -1,31 +1,57 @@
 <div class="container-lg">
   <div class="row">
     <div class="col-sm-12 col-md-6">
+      {% assign myTags = "HTML,CSS,JS,Chart.js" | split: "," %}
       {% include cards/card.html
         image= "https://picsum.photos/500/300/?image=10"
-        title="Card title"
-        content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo modi non numquam dolores neque veritatis velit veniam asperiores expedita labore temporibus, consequuntur ullam quidem at voluptatum esse maiores aspernatur ex."
+        title="Admin template"
+        content="An example of Admin page with dark mode and chartjs"
+        tags = myTags
       %}
     </div>
     <div class="col-sm-12 col-md-6">
+      {% assign myTags = "HTML,CSS,Bootstrap" | split: "," %}
       {% include cards/card.html
         image= "https://picsum.photos/500/300/?image=10"
         title="Card title"
         content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo modi non numquam dolores neque veritatis velit veniam asperiores expedita labore temporibus, consequuntur ullam quidem at voluptatum esse maiores aspernatur ex."
+        tags = myTags
       %}
     </div>
     <div class="col-sm-12 col-md-6">
+      {% assign myTags = "HTML,CSS,Bootstrap" | split: "," %}
       {% include cards/card.html
         image= "https://picsum.photos/500/300/?image=10"
         title="Card title"
         content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo modi non numquam dolores neque veritatis velit veniam asperiores expedita labore temporibus, consequuntur ullam quidem at voluptatum esse maiores aspernatur ex."
+        tags = myTags
       %}
     </div>
     <div class="col-sm-12 col-md-6">
+      {% assign myTags = "HTML,CSS,Bootstrap" | split: "," %}
       {% include cards/card.html
         image= "https://picsum.photos/500/300/?image=10"
         title="Card title"
         content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo modi non numquam dolores neque veritatis velit veniam asperiores expedita labore temporibus, consequuntur ullam quidem at voluptatum esse maiores aspernatur ex."
+        tags = myTags
+      %}
+    </div>
+    <div class="col-sm-12 col-md-6">
+      {% assign myTags = "HTML,CSS,Bootstrap" | split: "," %}
+      {% include cards/card.html
+        image= "https://picsum.photos/500/300/?image=10"
+        title="Card title"
+        content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo modi non numquam dolores neque veritatis velit veniam asperiores expedita labore temporibus, consequuntur ullam quidem at voluptatum esse maiores aspernatur ex."
+        tags = myTags
+      %}
+    </div>
+    <div class="col-sm-12 col-md-6">
+      {% assign myTags = "HTML,CSS" | split: "," %}
+      {% include cards/card.html
+        image= "https://picsum.photos/500/300/?image=10"
+        title="Card title"
+        content="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo modi non numquam dolores neque veritatis velit veniam asperiores expedita labore temporibus, consequuntur ullam quidem at voluptatum esse maiores aspernatur ex."
+        tags = myTags
       %}
     </div>
 

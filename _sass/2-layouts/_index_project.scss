@@ -96,13 +96,16 @@
 }
 
 .card {
-  transition: all 0.2s ease;
-  overflow: hidden;
   .card-img {
     height: 100%;
     width: 100%;
     object-fit: cover;
     border-radius: 2px;
+  }
+  .card-body {
+    .card-text {
+      min-height: 120px;
+    }
   }
   @media all and (max-width: 768px) {
     .card-img {
@@ -127,4 +130,9 @@
   padding-left: auto;
   margin-right: auto;
   margin-left: auto;
+}
+
+.card-footer {
+  padding: 0.75rem auto;
+  margin-bottom: 0.5rem;
 }
