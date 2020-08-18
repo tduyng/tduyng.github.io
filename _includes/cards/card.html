@@ -1,0 +1,18 @@
+<div class="card mr-2 mb-2">
+  <div class="row">
+    <div class="col-md-12 col-lg-4">
+      <img src="{{include.image}}" class="card-img">
+    </div>
+    <div class="col-md-12 col-lg-8 px-2">
+      <div class="card-body px-2 py-2">
+        <h4 class="card-title">{{include.title}}</h4>
+        <span class="card-text text-muted">{{include.content | truncate: 200}}</span>
+      </div>
+      <div class="card-footer d-flex justify-content-between mt-2">
+        <a href="#" class="btn btn-light btn-light-primary">Code</a>
+        <a href="#" class="btn btn-light btn-light-primary">Demo</a>
+      </div>
+    </div>
+
+  </div>
+</div>

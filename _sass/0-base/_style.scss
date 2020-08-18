@@ -1,68 +1,67 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Rubik:300,400,500,700,900');
-$font-stack: "Open Sans", Arial, sans-serif;
-$font-stack-two: "Open Sans", Arial, sans-serif;
+$font-stack: 'Open Sans', Arial, sans-serif;
+$font-stack-two: 'Open Sans', Arial, sans-serif;
 
-$white: #FFFFFF;
+$white: #ffffff;
 $black: #000000;
 
-$primary: #1C1E24;
+$primary: #1c1e24;
 $secondary: #37383f;
-$highlight: #517AF4;
+$highlight: #517af4;
 
-h1{
+h1 {
   color: $primary;
 }
-h2{
+h2 {
   font-size: 1.875em;
   font-weight: 500;
   line-height: 1.2em;
-  opacity: .85;
+  opacity: 0.85;
 }
-h3{
+h3 {
   color: $primary;
-  }
-h4{
+}
+h4 {
   font-size: 1.375em;
   font-weight: 500;
   color: $primary;
-  opacity: .85;
+  opacity: 0.85;
 }
-h5{
+h5 {
   font-size: 1.375em;
   font-weight: 400;
   color: $primary;
 }
-h6{
+h6 {
   font-size: 0.75em;
   text-transform: uppercase;
   font-weight: 600;
   color: $secondary;
 }
-small{
+small {
   font-size: 0.75em;
   font-weight: 300;
   color: $secondary;
   text-transform: uppercase;
 }
-p{
+p {
   font-size: 1em;
   font-weight: 200;
   line-height: 2.5em;
   color: $secondary;
 }
-hr{
+hr {
   border-style: solid;
   color: $secondary;
-  opacity: .1;
-
+  opacity: 0.1;
 }
-.hr-padded{
+.hr-padded {
   margin: 100px 0 100px 0;
 }
-.hr-padded-top{
+.hr-padded-top {
   margin: 100px 0 0 0;
 }
-.overlay-light{
+.overlay-light {
   position: absolute;
   z-index: 2;
   top: 0;
@@ -70,9 +69,9 @@ hr{
   bottom: 0;
   left: 0;
   background: $white;
-  opacity: .9;
+  opacity: 0.9;
 }
-.overlay-dark{
+.overlay-dark {
   position: absolute;
   z-index: 2;
   top: 0;
@@ -80,5 +79,5 @@ hr{
   bottom: 0;
   left: 0;
   background: $primary;
-  opacity: .35;
+  opacity: 0.35;
 }
