@@ -24,11 +24,14 @@
         {% endif %}
       </div>
       <div class="card-footer d-flex justify-content-between">
+        {% if include.code %}
         <a href="{{include.code}}" class="btn btn-light btn-light-primary" target="_blank">
           <img src="/assets/img/icons/github.svg" style="height: 20px;width:20px;margin-right:4px;"> Code
         </a>
+        {% endif %}
+
         {% if include.demo %}
-        <a href="{{include.demo}}" class="btn btn-light btn-light-primary" target="_blank">Demo</a>
+        <a href="{{include.demo}}" class="btn btn-light btn-light-primary ml-auto" target="_blank">Demo</a>
         {% endif %}
       </div>
     </div>

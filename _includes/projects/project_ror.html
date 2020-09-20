@@ -1,11 +1,34 @@
 <div class="container-lg">
   <div class="row">
     <div class="col-sm-12 col-md-6">
+      {% assign myTags = "Ruby, ROR, PostgreSQL, SpotifyAPI, Chart.js" | split: "," %}
+      {% include cards/card.html
+        image= "/assets/img/demo/ruby/feedward.png"
+        title="Eventbrite clone"
+        content="My final project working by team at the coding bootcamp The Hacking Project: plate-form feedward. This project is an idea startup of a member in my team. I can't show the code of repository here."
+        tags = myTags
+        demo = "http://getfeedward.com/"
+      %}
+    </div>
+
+    <div class="col-sm-12 col-md-6">
+      {% assign myTags = "Ruby, ROR, PostgreSQL, Asset storage, AWS, Stripe" | split: "," %}
+      {% include cards/card.html
+        image= "/assets/img/demo/ruby/chatonmaton.png"
+        title="Chaton maton"
+        content="A team project e-commerce for the picture of Kitty."
+        tags = myTags
+        code = "https://github.com/tienduy-nguyen/chatonmaton"
+        demo = "https://dev-chatonmaton.herokuapp.com/"
+      %}
+    </div>
+
+    <div class="col-sm-12 col-md-6">
       {% assign myTags = "Ruby, ROR, PostgreSQL, Devise" | split: "," %}
       {% include cards/card.html
         image= "/assets/img/demo/ruby/eventbrite.png"
         title="Eventbrite clone"
-        content="An eventbrite clone. I am working in progress in this project to complete the search, filter, and upload file features."
+        content="An eventbrite clone. I am working in progress in this project to complete the search, filter, and upload file features. Working in progress ..."
         tags = myTags
         code = "https://github.com/tienduy-nguyen/eventbrite-clone"
         demo = "https://eventlove.herokuapp.com/"
