@@ -1,3 +1,6 @@
+$orange: #e17055;
+$white: #fff;
+
 //Recent Project
 .projects-section {
   width: 100%;
@@ -24,7 +27,7 @@
     padding-top: 60px;
     align-items: center;
     .tab-content {
-      background: #fff;
+      background: $white;
       padding-top: 10px;
     }
   }
@@ -42,7 +45,7 @@
   border-radius: 5px;
   background: #00b894;
   box-shadow: 0 2px rgba(0, 0, 0, 0.5);
-  color: #fff;
+  color: $white;
   opacity: 0.8;
   font-size: 1rem;
 }
@@ -50,13 +53,13 @@
   border: 1px solid transparent;
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
-  color: #fff;
+  color: $white;
   font-weight: 600;
 }
 .nav-tabs-custom .nav-item:hover,
 .nav-tabs-custom .nav-item:focus {
   color: #000;
-  background: #fff;
+  background: $white;
 }
 
 .nav-tabs-custom .nav-link:hover,
@@ -72,8 +75,8 @@
 .nav-tabs-custom .nav-link.active,
 .nav-tabs-custom .nav-item.show .nav-link {
   color: #495057;
-  background-color: #fff;
-  border-color: #dee2e6 #dee2e6 #fff;
+  background-color: $white;
+  border-color: #dee2e6 #dee2e6 $white;
 }
 .nav-tabs-custom .dropdown-menu {
   margin-top: -1px;
@@ -126,9 +129,9 @@
   }
 
   .btn {
-    background: #ffdc23;
-    color: #00b894;
-    border: 1px solid #ffdc23;
+    background: $orange;
+    color: $white;
+    border: 1px solid $orange;
   }
 }
 
