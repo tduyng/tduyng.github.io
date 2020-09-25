@@ -1,12 +1,13 @@
 <div class="container-lg">
   <div class="row">
     <div class="col-sm-12 col-md-6">
-      {% assign myTags = "MongoDB, NodeJS, Express, ReactJS, RESTFull API, JWT Token" | split: "," %}
+      {% assign myTags = "MongoDB, NodeJS, Express, ReactJS, JWT, Bcrypt" | split: "," %}
       {% include cards/card.html
         title="Dev Connector"
-        content="Working in progress for finishing client part with ReactJS, and to deploy page."
+        content="A social plate-forme for uploading profile, posts and discussions between developers."
         tags = myTags
-        code = "https://github.com/tienduy-nguyen/mern-app/tree/master/dev-connector"
+        code = "https://github.com/tienduy-nguyen/mern-app/tree/master/dev-connector",
+        demo = "https://td-devconnector.herokuapp.com/"
       %}
     </div>
   </div>
