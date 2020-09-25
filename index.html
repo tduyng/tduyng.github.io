@@ -82,6 +82,10 @@ layout: default
         <a class="nav-link" id="csharp-tab" data-toggle="tab" href="#csharp" role="tab" aria-controls="csharp"
           aria-selected="false">C#</a>
       </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link" id="golang-tab" data-toggle="tab" href="#golang" role="tab" aria-controls="golang"
+          aria-selected="false">Go</a>
+      </li>
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade" id="htmlcss" role="tabpanel" aria-labelledby="htmlcss-tab">
@@ -107,6 +111,9 @@ layout: default
       </div>
       <div class="tab-pane fade" id="csharp" role="tabpanel" aria-labelledby="csharp-tab">
         {% include projects/project_csharp.html %}
+      </div>
+      <div class="tab-pane fade" id="golang" role="tabpanel" aria-labelledby="golang-tab">
+        {% include projects/project_go.html %}
       </div>
     </div>
     <!--/ tabs -->
