@@ -1,6 +1,17 @@
 <div class="container-lg">
   <div class="row">
     <div class="col-sm-12 col-md-6">
+      {% assign myTags = "TailwindCSS,ViteJS, ReactJS" | split: "," %}
+      {% include cards/card.html
+        image= "/assets/img/demo/htmlcss/tailwindcss.png"
+        title="TailwindCSS zero to production"
+        content="Improve skill TailwindCSS with small projects"
+        tags = myTags
+        code = "https://gitlab.com/tienduy-nguyen/tailwindcss-zero-to-production"
+        demo = "https://tailwindcss-react-vitejs.vercel.app/"
+      %}
+    </div>
+    <div class="col-sm-12 col-md-6">
       {% assign myTags = "HTML,CSS,JS,Chart.js" | split: "," %}
       {% include cards/card.html
         image= "/assets/img/demo/htmlcss/admin.png"

@@ -50,29 +50,13 @@ layout: default
   <div class="projects-content-wrap mx-auto">
     <!-- tabs -->
     <ul class="nav nav-tabs-custom mb-4 justify-content-center" id="myTab" role="tablist">
-      <li class="nav-item" role="presentation">
-        <a class="nav-link" id="htmlcss-tab" data-toggle="tab" href="#htmlcss" role="tab" aria-controls="htmlcss"
-          aria-selected="true">HTML/CSS/JS</a>
-      </li>
       <li class="nav-item active" role="presentation">
-        <a class="nav-link active" id="ror-tab" data-toggle="tab" href="#ror" role="tab" aria-controls="ror"
+        <a class="nav-link active" id="nodejs-react-tab" data-toggle="tab" href="#nodejs-react" role="tab"
+          aria-controls="nodejs-react" aria-selected="false">NodeJS/React</a>
+      </li>
+      <li class="nav-item" role="presentation">
+        <a class="nav-link " id="ror-tab" data-toggle="tab" href="#ror" role="tab" aria-controls="ror"
           aria-selected="false">Ruby/Rails</a>
-      </li>
-      <li class="nav-item" role="presentation">
-        <a class="nav-link" id="nodejs-tab" data-toggle="tab" href="#nodejs" role="tab" aria-controls="nodejs"
-          aria-selected="false">Nodejs/Express</a>
-      </li>
-      <li class="nav-item" role="presentation">
-        <a class="nav-link" id="reactjs-tab" data-toggle="tab" href="#reactjs" role="tab" aria-controls="reactjs"
-          aria-selected="false">ReactJS</a>
-      </li>
-      <li class="nav-item" role="presentation">
-        <a class="nav-link" id="vuejs-tab" data-toggle="tab" href="#vuejs" role="tab" aria-controls="vuejs"
-          aria-selected="false">VueJS</a>
-      </li>
-      <li class="nav-item" role="presentation">
-        <a class="nav-link" id="mern-tab" data-toggle="tab" href="#mern" role="tab" aria-controls="mern"
-          aria-selected="false">MERN</a>
       </li>
       <li class="nav-item" role="presentation">
         <a class="nav-link" id="python-tab" data-toggle="tab" href="#python" role="tab" aria-controls="python"
@@ -83,28 +67,16 @@ layout: default
           aria-selected="false">C#</a>
       </li>
       <li class="nav-item" role="presentation">
-        <a class="nav-link" id="golang-tab" data-toggle="tab" href="#golang" role="tab" aria-controls="golang"
-          aria-selected="false">Go</a>
+        <a class="nav-link" id="htmlcss-tab" data-toggle="tab" href="#htmlcss" role="tab" aria-controls="htmlcss"
+          aria-selected="true">HTML/CSS</a>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade" id="htmlcss" role="tabpanel" aria-labelledby="htmlcss-tab">
-        {% include projects/project_front.html %}
+      <div class="tab-pane fade show active" id="nodejs-react" role="tabpanel" aria-labelledby="nodejs-react-tab">
+        {% include projects/project_nodejs_react.html %}
       </div>
-      <div class="tab-pane fade show active" id="ror" role="tabpanel" aria-labelledby="ror-tab">
+      <div class="tab-pane fade" id="ror" role="tabpanel" aria-labelledby="ror-tab">
         {% include projects/project_ror.html %}
-      </div>
-      <div class="tab-pane fade" id="nodejs" role="tabpanel" aria-labelledby="nodejs-tab">
-        {% include projects/project_nodejs.html %}
-      </div>
-      <div class="tab-pane fade" id="reactjs" role="tabpanel" aria-labelledby="reactjs-tab">
-        {% include projects/project_react.html %}
-      </div>
-      <div class="tab-pane fade" id="vuejs" role="tabpanel" aria-labelledby="vuejs-tab">
-        {% include projects/project_vue.html %}
-      </div>
-      <div class="tab-pane fade" id="mern" role="tabpanel" aria-labelledby="mern-tab">
-        {% include projects/project_mern.html %}
       </div>
       <div class="tab-pane fade" id="python" role="tabpanel" aria-labelledby="python-tab">
         {% include projects/project_python.html %}
@@ -112,8 +84,8 @@ layout: default
       <div class="tab-pane fade" id="csharp" role="tabpanel" aria-labelledby="csharp-tab">
         {% include projects/project_csharp.html %}
       </div>
-      <div class="tab-pane fade" id="golang" role="tabpanel" aria-labelledby="golang-tab">
-        {% include projects/project_go.html %}
+      <div class="tab-pane fade" id="htmlcss" role="tabpanel" aria-labelledby="htmlcss-tab">
+        {% include projects/project_front.html %}
       </div>
     </div>
     <!--/ tabs -->
