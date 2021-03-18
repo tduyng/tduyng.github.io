@@ -1,13 +1,24 @@
 <div class="card mr-3 mb-3">
   <div class="row">
     <div class="col-md-12 col-lg-4">
-      <a href="{{include.demo}}" target="_blank">
+      {% if include.demo %}
+      <a href="{{include.demo || include.code}}" target="_blank">
         {% if include.image %}
         <img src="{{include.image}}" class="card-img">
         {% else %}
         <img src="/assets/img/demo/default.jpeg" class="card-img">
         {% endif %}
       </a>
+      {% else %}
+      <a href="{{include.code}}" target="_blank">
+        {% if include.image %}
+        <img src="{{include.image}}" class="card-img">
+        {% else %}
+        <img src="/assets/img/demo/default.jpeg" class="card-img">
+        {% endif %}
+      </a>
+      {% endif %}
+
     </div>
     <div class="col-md-12 col-lg-8 px-2">
       <div class="card-body px-2 pt-2">
