@@ -1,6 +1,16 @@
 <div class="container-lg">
   <div class="row">
     <div class="col-sm-12 col-md-6">
+      {% assign myTags = "Full-stack, GraphQL, Typescript, NestJS, ReactJS, ViteJS, MongoDB, Python, scrapy, testing, full-text-search, bootstrap" | split: "," %}
+      {% include cards/card.html
+        image= "/assets/img/demo/nodejs-react/ecommerce-home.png"
+        title="Ecommerce GraphQL"
+        content="Modern techno : NestJS + ReactJS + ViteJS + MongoDB for Bookstore web app. Check code for the details."
+        tags = myTags
+        code = "https://github.com/tienduy-nguyen/ecommerce"
+      %}
+    </div>
+    <div class="col-sm-12 col-md-6">
       {% assign myTags = "Full-stack, Typescript, NestJS, ReactJS, ViteJS, MongoDB, Python, scrapy, testing, ci-cd, cloudinary, full-text-search, scss" | split: "," %}
       {% include cards/card.html
         image= "/assets/img/demo/nodejs-react/bookstore.png"
