@@ -7,7 +7,7 @@ template = "section.html"
 [extra]
 header = {title = "Z", img = "/img/logo.svg"}
 section_path = "blog/_index.md"
-max_posts = 4
+max_posts = 5
 social_media_card = "img/logo.png"
 +++
 
