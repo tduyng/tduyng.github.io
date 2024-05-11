@@ -1,7 +1,7 @@
 +++
 title = "Syntax Python vs Javascript"
-date = 2020-09-05
-updated = 2020-09-05
+date = 2020-04-07
+updated = 2020-04-07
 
 [taxonomies]
 tags = ["python", "javascript"]

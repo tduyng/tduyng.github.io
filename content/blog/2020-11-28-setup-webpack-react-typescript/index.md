@@ -1,7 +1,7 @@
 +++
 title = "Setup Webpack React TypeScript"
-date = 2020-11-14
-updated = 2020-11-14
+date = 2020-11-28
+updated = 2020-11-28
 
 [taxonomies]
 tags = ["webpack", "react", "typescript"]

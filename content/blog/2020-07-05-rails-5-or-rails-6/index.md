@@ -1,7 +1,7 @@
 +++
 title = "Rails 5 or Rails 6 ?"
-date = 2020-07-29
-updated = 2020-07-29
+date = 2020-07-05
+updated = 2020-07-05
 
 [taxonomies]
 tags = ["ruby", "rails"]

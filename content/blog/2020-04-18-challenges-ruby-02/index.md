@@ -1,7 +1,7 @@
 +++
 title = "Simple coding challenges with Ruby - 02"
-date = 2020-07-18
-updated = 2020-07-18
+date = 2020-04-18
+updated = 2020-04-18
 
 [taxonomies]
 tags = ["ruby", "algorithms"]

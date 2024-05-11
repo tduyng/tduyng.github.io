@@ -1,7 +1,7 @@
 +++
 title = "How to switch to another Rails version"
-date = 2020-07-28
-updated = 2020-07-28
+date = 2020-06-28
+updated = 2020-06-28
 
 [taxonomies]
 tags = ["ruby", "rails"]

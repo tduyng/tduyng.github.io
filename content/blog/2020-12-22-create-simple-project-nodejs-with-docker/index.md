@@ -1,7 +1,7 @@
 +++
 title = "Create simple web app Nodejs with Docker"
-date = 2020-12-16
-updated = 2020-12-16
+date = 2020-12-22
+updated = 2020-12-22
 
 [taxonomies]
 tags = ["docker", "nodejs", "javascript"]

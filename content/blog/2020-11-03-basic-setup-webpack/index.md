@@ -1,7 +1,7 @@
 +++
 title = "Basic Setup Webpack"
-date = 2020-11-13
-updated = 2020-11-13
+date = 2020-11-03
+updated = 2020-11-03
 
 [taxonomies]
 tags = ["webpack"]

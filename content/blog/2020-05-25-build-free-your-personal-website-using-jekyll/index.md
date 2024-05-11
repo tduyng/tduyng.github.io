@@ -1,7 +1,7 @@
 +++
 title = "Build your personal website without spending any money"
-date = 2020-07-25
-updated = 2020-07-25
+date = 2020-05-25
+updated = 2020-05-25
 
 [taxonomies]
 tags = ["static-site", "free", "web-development"]

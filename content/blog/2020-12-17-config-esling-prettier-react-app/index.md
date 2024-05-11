@@ -1,7 +1,7 @@
 +++
 title = "Config ESLint, Prettier for React App in VSCode"
-date = 2020-11-17
-updated = 2020-11-17
+date = 2020-12-17
+updated = 2020-12-17
 
 [taxonomies]
 tags = ["eslint", "prettier"]
