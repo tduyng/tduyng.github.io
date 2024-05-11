@@ -155,13 +155,14 @@ encode_plaintext_email = true # Setting is ignored if email is already encoded.
 # The icons available can be found in "social_icons" in the "static" folder
 socials = [
     { name = "github", url = "https://github.com/tduyng/", icon = "github" },
+    { name = "linkedin", url = "https://www.linkedin.com/in/tienduy-nguyen/", icon = "linkedin" },
     { name = "x", url = "https://twitter.com/tduyng", icon = "twitter" },
 ]
 
 # Extra menu to show on the footer, below socials section.
-footer_menu = [
-    { url = "sitemap.xml", name = "sitemap", trailing_slash = false },
-]
+# footer_menu = [
+#     { url = "sitemap.xml", name = "sitemap", trailing_slash = false },
+# ]
 
 # Custom security headers. What urls should your website be able to connect to?
 # You need to specify the CSP and the URLs associated with the directive.
