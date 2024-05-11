@@ -3,6 +3,5 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
-.tmp/
-content/
-themes
+public
+.tmp
