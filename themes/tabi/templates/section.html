@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+{%- set show_projects_first = section.extra.show_projects_first | default(value=false) -%}
+{%- if show_projects_first -%}
+    {%- set first_section = "projects" -%}
+{%- else -%}
+    {%- set first_section = "posts" -%}
+{%- endif -%}
+
+<main class={{ first_section }}-first>
+{%- if section.extra.header %}
+    {%- include "partials/home_banner.html" -%}
+{% endif -%}
+
+{% if section.extra.section_path -%}
+    {% set extra_section = get_section(path=section.extra.section_path) %}
+{% endif -%}
+
+{% if section.extra.section_path -%}
+    {% set path = section.extra.section_path | replace(from="/_index.md", to = "") %}
+{% else -%}
+    {% set path = section.path %}
+{% endif -%}
+
+{%- if show_projects_first -%}
+    {%- include "partials/main_page_projects_list.html" -%}
+    {%- include "partials/main_page_posts_list.html" -%}
+{%- else -%}
+    {%- include "partials/main_page_posts_list.html" -%}
+    {%- include "partials/main_page_projects_list.html" -%}
+{%- endif -%}
+</main>
+
+{% endblock main_content %}
