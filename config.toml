@@ -209,21 +209,21 @@ custom_subset = true
 [extra.analytics]
 # Specify which analytics service you want to use.
 # Supported options: ["goatcounter", "umami", "plausible"]
-# service = "goatcounter"
+service = "goatcounter"
 
 # Unique identifier for tracking.
 # For GoatCounter, this is the code you choose during signup.
 # For Umami, this is the website ID.
 # For Plausible, this is the domain name (e.g. "example.com").
 # Note: Leave this field empty if you're self-hosting.
-# id = "yourID"
+id = "tduyng"
 
 # Optional: Specify the URL for self-hosted analytics instances.
 # For GoatCounter: Base URL like "https://stats.example.com"
 # For Umami: Base URL like "https://umami.example.com"
 # For Plausible: Base URL like "https://plausible.example.com"
 # Leave this field empty if you're using the service's default hosting.
-# self_hosted_url = "https://"
+self_hosted_url = "https://tduyng.goatcounter.com/"
 
 # Isso support for comments. https://isso-comments.de/
 # You need to self-host the backend first: https://blog.phusion.nl/2018/08/16/isso-simple-self-hosted-commenting-system/
