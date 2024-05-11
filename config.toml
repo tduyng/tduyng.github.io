@@ -240,3 +240,21 @@ self_hosted_url = "https://tduyng.goatcounter.com/"
 # voting = true
 # page_author_hashes = " 91c8fbce5e09"                # hash (or list of hashes) of the author.
 # lazy_loading = true                                 # Loads when the comments are in the viewport (using the Intersection Observer API).
+
+
+# Giscus support for comments. https://giscus.app/
+[extra.giscus]
+enabled_for_all_posts = true
+automatic_loading = true 
+repo="tduyng/tduyng.github.io"
+repo_id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+category="General"
+category_id="DIC_kwDOD4Stwc4CfSpo"
+mapping="url"
+strict_title_matching="0"
+enable_reactions="1"
+comment_box_above_comments="bottom"
+dark_theme="preferred_color_scheme"
+light_theme=""
+lang="en"
+lazy_loading=true
