@@ -1,7 +1,7 @@
 +++
-title = "Tien Duy NGUYEN"
+title = "About Duy NG"
 date = 2020-04-06
-updated = 2024-05-11
+updated = 2024-05-12
 
 [extra]
 footnote_backlinks = true
@@ -10,17 +10,14 @@ social_media_card = "img/social_cards/default.jpg"
 
 You might know me online as "tduyng" or "tienduy-nguyen". Feel free to call me "Duy", pronounced like "Zwee" in Vietnamese. That's why I like to use "Z" in my development accounts. I'm not big on social media, but I love working on tech projects!
 
-## Current Role
+## Current role
 I'm currently a Backend Engineer at [Ekino France](https://www.ekino.fr) where I specialize in NodeJs/Typescript and AWS since 2021.
 
-## Past Experience
+## Past experience
 Before my current role, I worked as a BIM engineer (Building Information Modeling engineer) at [VINCI Group](https://www.vinci.com/vinci.nsf/fr/index.htm) in France. Alongside my BIM responsibilities, I developed numerous plugins in C# and VBA to automate tasks for my company.
 
-# Open Source - [Github](https://tduyng.github.io)
-
-I'm working on a few projects:
-
-- coming soon
+# Open source
+My Github: [tduyng](https://tduyng.github.io)
 
 ---
 I'm a nice person (I think?) and  easy to work with.
