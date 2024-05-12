@@ -254,10 +254,10 @@ repo_id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
 category="General"
 category_id="DIC_kwDOD4Stwc4CfSpo"
 mapping="url"
-strict_title_matching="0"
-enable_reactions="1"
-comment_box_above_comments="bottom"
-dark_theme="preferred_color_scheme"
-light_theme=""
+strict_title_matching=1
+enable_reactions=1
+comment_box_above_comments = true
+light_theme = "noborder_light"
+dark_theme = "noborder_dark"
 lang="en"
 lazy_loading=true
