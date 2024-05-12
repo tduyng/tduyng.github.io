@@ -1,5 +1,7 @@
 +++
 title = "About Duy NG"
+template = "info-page.html"
+path = "about"
 date = 2020-04-06
 updated = 2024-05-12
 
