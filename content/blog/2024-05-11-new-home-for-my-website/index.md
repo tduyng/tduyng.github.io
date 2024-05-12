@@ -26,6 +26,7 @@ Here's how my two websites looked before the migration:
 
 The main site: 
 <img src="img/old-home.png" alt="old home" loading="lazy">
+<img src="img/old-home2.png" alt="old home" loading="lazy">
 
 my blog:
 <img src="img/old-blog.png" alt="old blog" loading="lazy" width="670">

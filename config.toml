@@ -132,7 +132,7 @@ favicon_emoji = "Z"
 # Read more: https://nikitahl.com/html-meta-tags-for-social-media
 # Using an image representative of each post is recommended. You can do so by setting this variable in the [extra] section of a post's front matter.
 # If a post doesn't have a social media card, the site's default, below, will be used.
-social_media_card = "img/logo.png"
+social_media_card = "img/cover.png"
 
 menu = [
     { name = "blog", url = "blog/" },
