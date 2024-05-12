@@ -2,4 +2,4 @@
 
 [https://tduyng.github.io](https://tduyng.github.io)
 
-This is my personal static web site created with Rust and [Zola](https://www.getzola.org/)
+This is my personal static web site created with [Zola](https://www.getzola.org/) and [Tapi theme](https://github.com/welpo/tabi)
