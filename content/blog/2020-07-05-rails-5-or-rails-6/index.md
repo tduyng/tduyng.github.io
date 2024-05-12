@@ -1,5 +1,6 @@
 +++
 title = "Rails 5 or Rails 6 ?"
+description = "Trying to Decide Between Rails 5 and Rails 6? Let's Compare!"
 date = 2020-07-05
 
 [taxonomies]

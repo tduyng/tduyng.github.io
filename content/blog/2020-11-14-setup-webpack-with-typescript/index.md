@@ -1,5 +1,6 @@
 +++
 title = "Setup Webpack TypeScript"
+description = "Discover how to configure Webpack with TypeScript to enhance your web development workflow with type safety and modern JavaScript features."
 date = 2020-11-14
 
 [taxonomies]

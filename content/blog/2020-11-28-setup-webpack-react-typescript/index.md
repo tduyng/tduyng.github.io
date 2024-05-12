@@ -1,5 +1,6 @@
 +++
 title = "Setup Webpack React TypeScript"
+description = "Learn the essentials of setting up Webpack with React and TypeScript to build powerful and efficient web applications."
 date = 2020-11-28
 
 [taxonomies]

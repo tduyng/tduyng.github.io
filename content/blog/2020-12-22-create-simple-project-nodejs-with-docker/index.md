@@ -1,5 +1,6 @@
 +++
 title = "Create simple web app Nodejs with Docker"
+description = "Learn to build a basic web application using Node.js and Docker, simplifying the deployment process across different environments."
 date = 2020-12-22
 
 [taxonomies]

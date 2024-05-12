@@ -1,5 +1,6 @@
 +++
 title = "Basic Setup Webpack"
+description = "Learn the fundamental steps for setting up Webpack to optimize and bundle your web assets efficiently."
 date = 2020-11-03
 
 [taxonomies]

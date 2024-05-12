@@ -1,5 +1,6 @@
 +++
 title = "Build your personal website without spending any money"
+description = "Learn how to build your own personal website using Jekyll and GitHub Pages without spending a dime. Dive into the step-by-step process and get your website up and running in no time."
 date = 2020-05-25
 
 [taxonomies]

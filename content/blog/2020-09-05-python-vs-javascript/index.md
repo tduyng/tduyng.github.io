@@ -1,5 +1,6 @@
 +++
 title = "Syntax Python vs Javascript"
+description = "Discover the key differences and unique syntax nuances between Python and JavaScript in this engaging comparison."
 date = 2020-09-05
 
 [taxonomies]

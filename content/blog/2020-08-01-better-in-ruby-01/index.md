@@ -1,5 +1,6 @@
 +++
 title = "Better In Ruby - 01"
+description = "Hidden Ruby gems: uncovering little known tips."
 date = 2020-08-01
 
 [taxonomies]

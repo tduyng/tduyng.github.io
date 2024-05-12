@@ -1,5 +1,6 @@
 +++
 title = "Simple coding challenges with Ruby - 01"
+description = "Dive into fun coding challenges in Ruby. Get practical tips and solutions to improve your coding skills."
 date = 2020-04-07
 
 [taxonomies]

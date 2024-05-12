@@ -1,5 +1,6 @@
 +++
 title = "New home for my website"
+description = "Discover why I switched my website and blog from Jekyll to Zola."
 date = 2024-05-11
 
 [taxonomies]

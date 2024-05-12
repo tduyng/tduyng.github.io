@@ -1,5 +1,6 @@
 +++
 title = "Config ESLint, Prettier for React App in VSCode"
+description = "Discover how to configure ESLint and Prettier within your React application in VSCode for enhanced code quality and consistency."
 date = 2020-12-17
 
 [taxonomies]

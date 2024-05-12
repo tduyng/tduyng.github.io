@@ -1,5 +1,6 @@
 +++
 title = "Why use Docker compose"
+description = "Discover the advantages and reasons behind utilizing Docker Compose for managing multi-container Docker applications."
 date = 2021-01-25
 
 [taxonomies]
