@@ -7,6 +7,7 @@ date = 2020-12-22
 tags = ["docker", "nodejs", "javascript"]
 
 [extra]
+copy_button = true
 footnote_backlinks = true
 +++
 

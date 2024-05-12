@@ -7,6 +7,7 @@ date = 2021-01-25
 tags = ["docker", "compose"]
 
 [extra]
+copy_button = true
 footnote_backlinks = true
 +++
 

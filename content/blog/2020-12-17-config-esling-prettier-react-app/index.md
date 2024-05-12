@@ -7,6 +7,7 @@ date = 2020-12-17
 tags = ["eslint", "prettier"]
 
 [extra]
+copy_button = true
 footnote_backlinks = true
 +++
 

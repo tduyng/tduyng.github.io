@@ -7,6 +7,7 @@ date = 2020-11-14
 tags = ["webpack", "typescript"]
 
 [extra]
+copy_button = true
 footnote_backlinks = true
 +++
 

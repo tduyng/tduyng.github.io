@@ -7,6 +7,7 @@ date = 2024-05-11
 tags = []
 
 [extra]
+copy_button = true
 footnote_backlinks = true
 social_media_card = "img/social_cards/blog_new_home_for_my_website.jpg"
 +++

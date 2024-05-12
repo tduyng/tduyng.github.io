@@ -7,6 +7,7 @@ date = 2020-05-25
 tags = ["static-site", "free", "web-development"]
 
 [extra]
+copy_button = true
 footnote_backlinks = true
 +++
 

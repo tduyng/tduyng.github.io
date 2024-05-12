@@ -7,6 +7,7 @@ date = 2020-06-28
 tags = ["ruby", "rails"]
 
 [extra]
+copy_button = true
 footnote_backlinks = true
 +++
 

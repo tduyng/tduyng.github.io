@@ -7,6 +7,7 @@ date = 2020-09-05
 tags = ["python", "javascript"]
 
 [extra]
+copy_button = true
 footnote_backlinks = true
 +++
 

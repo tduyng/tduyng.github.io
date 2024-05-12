@@ -7,6 +7,7 @@ date = 2020-08-30
 tags = ["ruby"]
 
 [extra]
+copy_button = true
 footnote_backlinks = true
 +++
 
