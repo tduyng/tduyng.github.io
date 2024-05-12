@@ -151,6 +151,9 @@ feed_icon = true
 email = "dGR1eW5nLmRldkBnbWFpbC5jb20K"
 # Decoding requires ~400 bytes of JavaScript. If JS is disabled, the email won't be displayed.
 encode_plaintext_email = true # Setting is ignored if email is already encoded.
+# Displays links to the previous and next articles at the bottom of posts.
+show_previous_next_article_links = true
+invert_previous_next_article_links = true
 
 # The icons available can be found in "social_icons" in the "static" folder
 socials = [
