@@ -9,7 +9,7 @@ tags = ["ruby", "rails"]
 [extra]
 copy_button = true
 footnote_backlinks = true
-social_media_card = "img/rails.png"
+social_media_card = "img/social_cards/default.png"
 +++
 
 What version of rails you use in your projects, today?

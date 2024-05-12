@@ -9,7 +9,7 @@ tags = ["docker", "nodejs", "javascript"]
 [extra]
 copy_button = true
 footnote_backlinks = true
-social_media_card = "img/docker-node.png"
+social_media_card = "img/social_cards/default.png"
 +++
 
 How to get a Node.js application into a Docker container?

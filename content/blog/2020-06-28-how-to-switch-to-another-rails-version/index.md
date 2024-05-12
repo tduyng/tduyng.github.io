@@ -9,7 +9,7 @@ tags = ["ruby", "rails"]
 [extra]
 copy_button = true
 footnote_backlinks = true
-social_media_card = "img/multi-hats.png"
+social_media_card = "img/social_cards/default.png"
 +++
 
 When you want to use multiple versions of rails on your computer, how to switch between them?

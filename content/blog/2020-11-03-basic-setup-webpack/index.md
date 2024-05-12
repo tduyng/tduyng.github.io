@@ -9,7 +9,7 @@ tags = ["webpack"]
 [extra]
 copy_button = true
 footnote_backlinks = true
-social_media_card = "img/webpack.png"
+social_media_card = "img/social_cards/default.png"
 +++
 
 Webpack fundamentals for fast learning and step by step to setup a project with webpack.

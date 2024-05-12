@@ -9,7 +9,7 @@ tags = ["webpack", "typescript"]
 [extra]
 copy_button = true
 footnote_backlinks = true
-social_media_card = "img/webpack-ts.png"
+social_media_card = "img/social_cards/default.png"
 +++
 
 How to setup a webpack project with TypeScript?

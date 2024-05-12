@@ -9,7 +9,7 @@ tags = ["webpack", "react", "typescript"]
 [extra]
 copy_button = true
 footnote_backlinks = true
-social_media_card = "img/webpack-react.png"
+social_media_card = "img/social_cards/default.png"
 +++
 
 How to setup a React project with Webpack and TypeScript?

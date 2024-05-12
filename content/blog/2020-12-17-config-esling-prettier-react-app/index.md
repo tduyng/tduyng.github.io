@@ -9,7 +9,7 @@ tags = ["eslint", "prettier"]
 [extra]
 copy_button = true
 footnote_backlinks = true
-social_media_card = "img/eslint-prettier.png"
+social_media_card = "img/social_cards/default.png"
 +++
 
 

@@ -9,7 +9,7 @@ tags = ["ruby"]
 [extra]
 copy_button = true
 footnote_backlinks = true
-social_media_card = "img/ruby.png"
+social_media_card = "img/social_cards/default.png"
 +++
 
 Some tips you probably don't know in Ruby - 02

@@ -9,7 +9,7 @@ tags = ["python", "javascript"]
 [extra]
 copy_button = true
 footnote_backlinks = true
-social_media_card = "img/default.png"
+social_media_card = "img/social_cards/default.png"
 +++
 
 Programming in a new language can feel unfamiliar, intimidating, and tricky to navigate at first. There are new rules, syntax, and nuances to learn.
