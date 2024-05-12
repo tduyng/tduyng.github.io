@@ -8,7 +8,6 @@ template = "section.html"
 header = {title = "Z", img = "/img/logo.svg"}
 section_path = "blog/_index.md"
 max_posts = 5
-social_media_card = "img/logo.png"
 +++
 
 Hey there! I'm Z, a software developer at @Ekino_France, with a passion for TypeScript and Rust. I'm all about coding, learning, and creating cool stuff.

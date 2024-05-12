@@ -5,7 +5,6 @@ weight = 30
 
 [extra]
 local_image = "projects/nestjs-graphql/img/nestjs-prisma.png"
-social_media_card = "img/nestjs-prisma.png"
 +++
 
 Source code Github: [nestjs-graphql-prisma](https://github.com/tduyng/nestjs-graphql-prisma)

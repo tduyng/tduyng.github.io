@@ -5,7 +5,6 @@ weight = 30
 
 [extra]
 local_image = "projects/redis/img/redis.png"
-social_media_card = "img/redis.png"
 +++
 
 Source code: [rdis](https://github.com/tduyng/rdis)

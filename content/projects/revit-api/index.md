@@ -5,7 +5,6 @@ weight = 30
 
 [extra]
 local_image = "projects/revit-api/img/revit-api.png"
-social_media_card = "img/revit-api.png"
 +++
 
 # Revit WPF Template

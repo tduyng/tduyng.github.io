@@ -5,7 +5,6 @@ weight = 30
 
 [extra]
 local_image = "projects/ecommerce-graphql/img/ecommerce.png"
-social_media_card = "img/ecommerce.png"
 +++
 
 E-commerce project using GraphQL with stack: NestJS - ReactJS(NextJS) - MongoDB

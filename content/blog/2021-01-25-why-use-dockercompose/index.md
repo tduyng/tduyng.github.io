@@ -7,7 +7,6 @@ tags = ["docker", "compose"]
 
 [extra]
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.jpg"
 +++
 
 ## What is **Docker compose**?

@@ -7,7 +7,6 @@ tags = ["ruby", "algorithms"]
 
 [extra]
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.jpg"
 +++
 
 Doing coding challenges is an excellent way to imporve your programming language & problem-solvings skills.

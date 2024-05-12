@@ -5,7 +5,6 @@ weight = 30
 
 [extra]
 local_image = "projects/react-boilerplate/img/demo.png"
-social_media_card = "img/demo.png"
 +++
 
 Demo: [https://reactts-boilerplate.netlify.app/](https://reactts-boilerplate.netlify.app/)

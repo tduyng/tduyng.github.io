@@ -7,7 +7,6 @@ tags = ["static-site", "free", "web-development"]
 
 [extra]
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.jpg"
 +++
 
 In this article, we'll walk-through how to setup a Jekyll powered blog using the Minimal mistakes theme.

@@ -5,7 +5,6 @@ weight = 30
 
 [extra]
 local_image = "projects/nestjs-flow/img/nestjs.svg"
-social_media_card = "img/nestjs.svg"
 +++
 
 Source code Github: [nestjs-flow](https://github.com/tduyng/nestjs-flow)

@@ -5,7 +5,6 @@ weight = 30
 
 [extra]
 local_image = "projects/react-antd-demo/img/demo.png"
-social_media_card = "img/demo.png"
 +++
 
 Demo: [https://react-ant-demo.netlify.app](https://react-ant-demo.netlify.app)

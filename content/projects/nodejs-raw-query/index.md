@@ -5,7 +5,6 @@ weight = 30
 
 [extra]
 local_image = "projects/nodejs-raw-query/img/nodejs.svg"
-social_media_card = "img/nodejs.svg"
 +++
 
 Source code Github: [nodejs-raw-query](https://github.com/tduyng/nodejs-raw-query)

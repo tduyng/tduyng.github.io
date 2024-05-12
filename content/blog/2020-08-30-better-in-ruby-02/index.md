@@ -7,7 +7,6 @@ tags = ["ruby"]
 
 [extra]
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.jpg"
 +++
 
 Some tips you probably don't know in Ruby - 02

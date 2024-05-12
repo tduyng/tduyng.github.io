@@ -7,7 +7,6 @@ tags = ["eslint", "prettier"]
 
 [extra]
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.jpg"
 +++
 
 

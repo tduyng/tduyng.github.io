@@ -5,7 +5,6 @@ weight = 30
 
 [extra]
 local_image = "projects/reddit-graphql/img/reddit.png"
-social_media_card = "img/reddit.png"
 +++
 
 Source code: [reddit-graphql](https://gitlab.com/tienduy-nguyen/reddit-graphql)

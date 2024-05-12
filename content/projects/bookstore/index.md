@@ -5,7 +5,6 @@ weight = 30
 
 [extra]
 local_image = "projects/bookstore/img/bookstore.png"
-social_media_card = "img/bookstore.png"
 +++
 
 Create a modern web app with clean architecture using NestJS + MongoDB & ViteJS + React.
