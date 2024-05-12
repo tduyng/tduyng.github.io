@@ -1,15 +1,13 @@
 +++
 title = "Rails 5 or Rails 6 ?"
 date = 2020-07-05
-updated = 2020-07-05
 
 [taxonomies]
 tags = ["ruby", "rails"]
 
 [extra]
-copy_button = true
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.png"
+social_media_card = "img/social_cards/default.jpg"
 +++
 
 What version of rails you use in your projects, today?

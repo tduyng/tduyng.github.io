@@ -1,15 +1,13 @@
 +++
 title = "Setup Webpack React TypeScript"
 date = 2020-11-28
-updated = 2020-11-28
 
 [taxonomies]
 tags = ["webpack", "react", "typescript"]
 
 [extra]
-copy_button = true
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.png"
+social_media_card = "img/social_cards/default.jpg"
 +++
 
 How to setup a React project with Webpack and TypeScript?

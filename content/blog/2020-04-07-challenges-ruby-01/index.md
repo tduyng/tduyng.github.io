@@ -1,15 +1,13 @@
 +++
 title = "Simple coding challenges with Ruby - 01"
 date = 2020-04-07
-updated = 2020-04-07
 
 [taxonomies]
 tags = ["ruby", "algorithms"]
 
 [extra]
-copy_button = true
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.png"
+social_media_card = "img/social_cards/default.jpg"
 +++
 
 Doing coding challenges is an excellent way to imporve your programming language & problem-solvings skills.

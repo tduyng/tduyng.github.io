@@ -1,15 +1,13 @@
 +++
 title = "Syntax Python vs Javascript"
 date = 2020-09-05
-updated = 2020-09-05
 
 [taxonomies]
 tags = ["python", "javascript"]
 
 [extra]
-copy_button = true
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.png"
+social_media_card = "img/social_cards/default.jpg"
 +++
 
 Programming in a new language can feel unfamiliar, intimidating, and tricky to navigate at first. There are new rules, syntax, and nuances to learn.

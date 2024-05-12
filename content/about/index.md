@@ -4,9 +4,8 @@ date = 2020-04-06
 updated = 2024-05-11
 
 [extra]
-copy_button = true
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.png"
+social_media_card = "img/social_cards/default.jpg"
 +++
 
 You might know me online as "tduyng" or "tienduy-nguyen". Feel free to call me "Duy", pronounced like "Zwee" in Vietnamese. That's why I like to use "Z" in my development accounts. I'm not big on social media, but I love working on tech projects!

@@ -1,15 +1,13 @@
 +++
 title = "How to switch to another Rails version"
 date = 2020-06-28
-updated = 2020-06-28
 
 [taxonomies]
 tags = ["ruby", "rails"]
 
 [extra]
-copy_button = true
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.png"
+social_media_card = "img/social_cards/default.jpg"
 +++
 
 When you want to use multiple versions of rails on your computer, how to switch between them?

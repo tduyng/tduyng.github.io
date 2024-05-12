@@ -1,15 +1,13 @@
 +++
 title = "Better In Ruby - 01"
 date = 2020-08-01
-updated = 2020-08-01
 
 [taxonomies]
 tags = ["ruby"]
 
 [extra]
-copy_button = true
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.png"
+social_media_card = "img/social_cards/default.jpg"
 +++
 
 Some tips you probably don't know in Ruby.

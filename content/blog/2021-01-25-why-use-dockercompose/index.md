@@ -1,15 +1,13 @@
 +++
 title = "Why use Docker compose"
 date = 2021-01-25
-updated = 2021-01-25
 
 [taxonomies]
 tags = ["docker", "compose"]
 
 [extra]
-copy_button = true
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.png"
+social_media_card = "img/social_cards/default.jpg"
 +++
 
 ## What is **Docker compose**?

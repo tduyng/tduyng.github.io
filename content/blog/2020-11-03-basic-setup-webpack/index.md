@@ -1,15 +1,13 @@
 +++
 title = "Basic Setup Webpack"
 date = 2020-11-03
-updated = 2020-11-03
 
 [taxonomies]
 tags = ["webpack"]
 
 [extra]
-copy_button = true
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.png"
+social_media_card = "img/social_cards/default.jpg"
 +++
 
 Webpack fundamentals for fast learning and step by step to setup a project with webpack.

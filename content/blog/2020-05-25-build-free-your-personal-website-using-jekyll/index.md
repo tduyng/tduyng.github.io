@@ -1,15 +1,13 @@
 +++
 title = "Build your personal website without spending any money"
 date = 2020-05-25
-updated = 2020-05-25
 
 [taxonomies]
 tags = ["static-site", "free", "web-development"]
 
 [extra]
-copy_button = true
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.png"
+social_media_card = "img/social_cards/default.jpg"
 +++
 
 In this article, we'll walk-through how to setup a Jekyll powered blog using the Minimal mistakes theme.

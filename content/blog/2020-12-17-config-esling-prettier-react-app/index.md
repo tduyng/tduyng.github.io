@@ -1,15 +1,13 @@
 +++
 title = "Config ESLint, Prettier for React App in VSCode"
 date = 2020-12-17
-updated = 2020-12-17
 
 [taxonomies]
 tags = ["eslint", "prettier"]
 
 [extra]
-copy_button = true
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.png"
+social_media_card = "img/social_cards/default.jpg"
 +++
 
 

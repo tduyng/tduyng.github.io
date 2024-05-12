@@ -1,15 +1,13 @@
 +++
 title = "Create simple web app Nodejs with Docker"
 date = 2020-12-22
-updated = 2020-12-22
 
 [taxonomies]
 tags = ["docker", "nodejs", "javascript"]
 
 [extra]
-copy_button = true
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.png"
+social_media_card = "img/social_cards/default.jpg"
 +++
 
 How to get a Node.js application into a Docker container?

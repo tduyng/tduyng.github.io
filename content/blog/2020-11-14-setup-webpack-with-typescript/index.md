@@ -1,15 +1,13 @@
 +++
 title = "Setup Webpack TypeScript"
 date = 2020-11-14
-updated = 2020-11-14
 
 [taxonomies]
 tags = ["webpack", "typescript"]
 
 [extra]
-copy_button = true
 footnote_backlinks = true
-social_media_card = "img/social_cards/default.png"
+social_media_card = "img/social_cards/default.jpg"
 +++
 
 How to setup a webpack project with TypeScript?
