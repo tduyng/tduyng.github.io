@@ -31,10 +31,10 @@
 }
 
 @font-face {
-    src: local('Source Serif'),
-        url('fonts/SourceSerif4Variable-Roman.ttf.woff2') format("woff2");
+    src: local('Inter'),
+        url('fonts/Inter4.woff2') format("woff2");
     /* Copyright 2014 - 2023 Adobe (http://www.adobe.com/), with Reserved Font Name ‘Source’.adobe.com/). Licensed under the SIL Open Font License, Version 1.1. More information available at: http://scripts.sil.org/OFL */
-    font-family: 'Source Serif';
+    font-family: 'Inter';
     font-display: swap;
 }
 
@@ -55,7 +55,7 @@
     --paragraph-spacing: max(2.3vmin, 24px);
 
     --sans-serif-font: 'Inter', Helvetica, Arial, sans-serif;
-    --serif-font: 'Source Serif', 'Georgia', serif;
+    --serif-font: 'Inter', 'Georgia', serif;
     --code-font: 'Cascadia Code';
 
     --background-color: white;
@@ -145,7 +145,7 @@ article {
     }
 
     strong {
-        font-weight: 620;
+        font-weight: 550;
     }
 
     .full-width {
@@ -242,7 +242,8 @@ p {
     margin-top: 0.4rem;
     margin-bottom: var(--paragraph-spacing);
     font-size: 1em;
-    line-height: 2rem;
+    line-height: 1.8rem;
+    font-weight: 280;
 }
 
 strong {
