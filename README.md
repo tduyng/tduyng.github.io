@@ -2,4 +2,4 @@
 
 [https://tduyng.github.io](https://tduyng.github.io)
 
-This is my personal static web site created with [Zola](https://www.getzola.org/) and [Tapi theme](https://github.com/welpo/tabi)
+This is my personal static web site created with [Zola](https://www.getzola.org/) and [Tabi theme](https://github.com/welpo/tabi)
