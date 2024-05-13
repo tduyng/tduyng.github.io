@@ -163,9 +163,11 @@ socials = [
 ]
 
 # Extra menu to show on the footer, below socials section.
-# footer_menu = [
-#     { url = "sitemap.xml", name = "sitemap", trailing_slash = false },
-# ]
+footer_menu = [
+    { url = "about", name = "about", trailing_slash = false },
+    { url = "privacy", name = "privacy", trailing_slash = false },
+    { url = "license", name = "license", trailing_slash = false },
+]
 
 # Custom security headers. What urls should your website be able to connect to?
 # You need to specify the CSP and the URLs associated with the directive.
