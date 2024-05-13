@@ -126,12 +126,28 @@ if __name__ == "__main__":
     print(feeds_md)
 ```
 
-The script fetches data from the **`atom.xml`** feed on my blog and retrieves the five latest posts, which are then inserted between the following sections in my README:
+The script fetches data from the **`atom.xml`** feed on my blog and retrieves the five latest posts.
+
+Here is an example of the result of the python script:
+```markdown
+[How I made my GitHub profile README dynamic](https://tduyng.github.io/blog/dynamic-github-profile-readme/) - 2024-05-13
+
+[New home for my website](https://tduyng.github.io/blog/new-home-for-my-website/) - 2024-05-11
+
+[Start a new journey](https://tduyng.github.io/blog/start-a-new-journey/) - 2021-05-01
+
+[Why use Docker compose](https://tduyng.github.io/blog/why-use-dockercompose/) - 2021-01-25
+
+[Create simple web app Nodejs with Docker](https://tduyng.github.io/blog/create-simple-project-nodejs-with-docker/) - 2020-12-22
+```
+
+Then the result will be inserted between the following sections in my README:
 
 ```markdown
 <!-- blog start -->
 <!-- blog end -->
 ```
+To ensure the script functions properly, we should include that comment in our README.md file (before running the script).
 
 You can find the complete source code for [this script](https://github.com/tduyng/tduyng/blob/master/feed.py) in my profile repository.
 
@@ -170,8 +186,8 @@ jobs:
     - name: Commit and push if changed
       run: |-
         git diff
-        git config --global user.email "${{ secrets.USER_EMAIL }}"
-        git config --global user.name "${{ secrets.USER_NAME }}"
+        git config --global user.email "${{ vars.USER_EMAIL }}"
+        git config --global user.name "${{ vars.USER_NAME }}"
         git add -A
         git commit -m "chore: update blog posts" || exit 0
         git push
