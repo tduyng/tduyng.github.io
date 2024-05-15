@@ -61,7 +61,7 @@ You can find more details in the [Tabi documentation](https://github.com/welpo/t
 
 And the best part about static site generators is that they use markdown, so I won't lose much time migrating the technology.
 
-Take a look at these tools! If you like them, give them a thumbs up. The folks behind them did a great job.
+Take a look at these tools! If you like them, give them a star. The folks behind them did a great job.
 
 By the way, you're already on my new website. Welcome!
 
