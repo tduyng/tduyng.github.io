@@ -165,7 +165,7 @@ author:
   name: *name
   bio: 'Love people who code'
   location: 'Paris, France'
-  email: 'tienduy.nguyen.dev@gmail.com'
+  email: 'z@tduyng.github.io'
   links:
     - label: 'Website'
       url: 'https://tduyng.github.io'
@@ -203,7 +203,7 @@ These are just some of the configurations you can customize in the _config.yml f
 
 #### 2.5.2 Gemfile
 
-Your Gemfile is currently empty, so you need to add some Jekyll plugins that you've declared in your _config.yml file.
+Your Gemfile is currently empty, so you need to add some Jekyll plugins that you've declared in your `_config.yml` file.
 
 ```ruby
 source "https://rubygems.org"
