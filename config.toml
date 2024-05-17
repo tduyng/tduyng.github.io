@@ -214,14 +214,14 @@ custom_subset = true
 [extra.analytics]
 # Specify which analytics service you want to use.
 # Supported options: ["goatcounter", "umami", "plausible"]
-service = "umami"
+service = ""
 
 # Unique identifier for tracking.
 # For GoatCounter, this is the code you choose during signup.
 # For Umami, this is the website ID.
 # For Plausible, this is the domain name (e.g. "example.com").
 # Note: Leave this field empty if you're self-hosting.
-id = "0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+id = ""
 
 # Optional: Specify the URL for self-hosted analytics instances.
 # For GoatCounter: Base URL like "https://stats.example.com"
