@@ -12,7 +12,7 @@ footnote_backlinks = true
 You might know me online as "tduyng" or "tienduy-nguyen". Feel free to call me "Duy", pronounced like "Zwee" in Vietnamese. That's why I like to use "Z" in my development accounts. I'm not big on social media, but I love working on tech projects!
 
 ## Current role
-I'm currently a Backend Engineer at [Ekino France](https://www.ekino.fr) where I specialize in NodeJs/Typescript and AWS since 2021.
+I'm currently a Backend Engineer at [Ekino France](https://www.ekino.fr) where I specialize in NodeJs/Typescript and AWS for [CANAL+ projects](https://www.canalplus.com/) since 2021.
 
 ## Past experience
 Before my current role, I worked as a BIM engineer (Building Information Modeling engineer) at [VINCI Group](https://www.vinci.com/vinci.nsf/fr/index.htm) in France. Alongside my BIM responsibilities, I developed numerous plugins in C# and VBA to automate tasks for my company.
@@ -30,6 +30,7 @@ Here's a bunch of bubbles with technical keywords in them. This is not at all an
 - Scripting
 - AWS
 - CI/CD
+- Gitlab/Github
 - SQL/NoSQL
 - Docker/Kubenetes/ArgoCD/DevOps
 - Technical Writing
