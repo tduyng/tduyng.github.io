@@ -4,7 +4,7 @@ description = "Boilerplate backend NestJS GraphQL project using Prisma & Postgre
 weight = 30
 
 [extra]
-local_image = "projects/nestjs-graphql/img/nestjs-prisma.png"
+local_image = "projects/nestjs-graphql/img/nestjs-prisma.webp"
 +++
 
 Source code Github: [nestjs-graphql-prisma](https://github.com/tduyng/nestjs-graphql-prisma)

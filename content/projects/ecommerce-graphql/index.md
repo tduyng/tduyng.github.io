@@ -4,7 +4,7 @@ description = "Ecommerce GraphQL project with NestJS - NextJS"
 weight = 30
 
 [extra]
-local_image = "projects/ecommerce-graphql/img/ecommerce.png"
+local_image = "projects/ecommerce-graphql/img/ecommerce.webp"
 +++
 
 E-commerce project using GraphQL with stack: NestJS - ReactJS(NextJS) - MongoDB

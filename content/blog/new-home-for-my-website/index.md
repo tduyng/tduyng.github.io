@@ -9,7 +9,7 @@ tags = ["blog", "static-site-generator"]
 [extra]
 copy_button = true
 footnote_backlinks = true
-social_media_card = "img/social_card.jpg"
+social_media_card = "img/social_card.webp"
 +++
 
 Hey there, it's been quite a while since my last article—almost 3 years. I'm not sure if anyone is still reading my posts because I've stopped using analytics for my website. Now, I've moved it to GitHub and use the free domain of GitHub Pages. It might not be great for SEO, but I'm happy with it. After all, the main reason I write is for myself. Each time I write, I learn something new and improve my skills on various topics.
@@ -25,11 +25,11 @@ However, these days, some of the tools I use are outdated. If I want to update t
 Here's how my two websites looked before the migration:
 
 The main site: 
-<img src="img/old_home.png" alt="old home" loading="lazy">
-<img src="img/old_home2.png" alt="old home" loading="lazy">
+<img src="img/old_home.webp" alt="old home" loading="lazy">
+<img src="img/old_home2.webp" alt="old home" loading="lazy">
 
 my blog:
-<img src="img/old_blog.png" alt="old blog" loading="lazy" width="670">
+<img src="img/old_blog.webp" alt="old blog" loading="lazy" width="670">
 
 Nowadays, I mostly work with [Node.js](https://nodejs.org/en), [Deno](https://deno.com/) and [Rust](https://www.rust-lang.org/), and I don't want to clutter my laptop with unnecessary tools.
 

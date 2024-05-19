@@ -10,7 +10,7 @@ tags = ["github-action", "profile", "readme", "dynamic", "python"]
 [extra]
 copy_button = true
 footnote_backlinks = true
-social_media_card = "img/tduyng.png"
+social_media_card = "img/tduyng.webp"
 +++
 
 **Have you heard about GitHub profile READMEs?**
@@ -26,10 +26,10 @@ There are numerous ways to do this. Some people design their profiles using HTML
 Here are a couple of examples of cool profiles: 
 
 [JessicaLim8](https://github.com/JessicaLim8)
-<img src="img/profile1.png" alt="JessicaLim8 profile" loading="lazy">
+<img src="img/profile1.webp" alt="JessicaLim8 profile" loading="lazy">
 
 [WaylonWalker](https://github.com/WaylonWalker)
-<img src="img/profile2.png" alt="WaylonWalker profile" loading="lazy">
+<img src="img/profile2.webp" alt="WaylonWalker profile" loading="lazy">
 
 However, for me, making something dynamic in the README is even cooler. This means displaying information about repositories, stars, languages written, followers, and more. To achieve this, we often use GitHub Actions to fetch the data and rewrite them to the README.
 
@@ -43,7 +43,7 @@ Two popular repositories for this purpose are:
 Both projects are fantastic, but I prefer to use metrics because it offers a wide range of cool features and plugins. You can explore these repositories for more details and examples.
 
 Here's an example of [github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
-<img src="img/github_stats.png" alt="Github stats example" loading="lazy">
+<img src="img/github_stats.webp" alt="Github stats example" loading="lazy">
 
 and example of my profile using [metrics](https://github.com/lowlighter/metrics)
 <img src="img/metrics.svg" alt="My github profile using metrics" loading="lazy">
@@ -51,7 +51,7 @@ and example of my profile using [metrics](https://github.com/lowlighter/metrics)
 Additionally if you write a blog, it would be cool to include your latest post on your GitHub profile. I was inspired by how [simonw](https://github.com/simonw) made the content of [his README profile](https://github.com/simonw/simonw) dynamic. He wrote a [Python script](https://github.com/simonw/simonw/blob/main/build_readme.py) and a [GitHub action](https://github.com/simonw/simonw/blob/main/.github/workflows/build.yml) for this job and explained the process in his article [Building a self-updating profile README for GitHub](https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/).
 
 Here's how his profile looks like:
-<img src="img/simonw.png" alt="Simonw profile" loading="lazy">
+<img src="img/simonw.webp" alt="Simonw profile" loading="lazy">
 
 I attempted to do something similar but simpler. I fetch the posts from my blog with python script:
 
@@ -200,6 +200,6 @@ To ensure your information remains secure, you can set **`USER_EMAIL`** and **`U
 And that's it! With the script and GitHub actions, all the information will update automatically.
 
 Here's how my profile looks now:
-<img src="img/tduyng.png" alt="Simonw profile" loading="lazy">
+<img src="img/tduyng.webp" alt="Simonw profile" loading="lazy">
 
 Thank you for reading this far. I hope this method proves helpful to you.

@@ -47,7 +47,7 @@ So, why use a static generator?
 There are many static site generators available; you can check them out on [staticgen.com](https://www.staticgen.com/)
 
 <div align="center">
-  <img src="img/static-site-generator.png" alt="STG" loading="lazy">
+  <img src="img/static-site-generator.webp" alt="STG" loading="lazy">
 </div>
 In this article, I will present one of them: Jekyll.
 
@@ -106,7 +106,7 @@ You probably won't need to do it the same way, as there are many different ways 
 - Create a repository on GitHub
 
 Instead of using git init via the command line, I create it directly on GitHub.
- ![create new repo](img/create-repo-github.png){:class="lazyload"}
+ ![create new repo](img/create-repo-github.webp){:class="lazyload"}
 
  This way, we can easily define the visibility of the repository: public or private, and we can initialize it with the template of .gitignore and LICENSE.
 I named this repo [demo-jekyll-mmtakes](https://github.com/tduyng/demo-jekyll-mmistakes).
@@ -122,7 +122,7 @@ You can check how to create GitHub Pages in the official GitHub documentation: h
 - Now, we will clone mmistakes repository.
 
 <div align="center">
-  <img src="img/mmistakes-repo.png" alt="" loading="lazy">
+  <img src="img/mmistakes-repo.webp" alt="" loading="lazy">
 </div>
 
 - Enter the mmistakes directory, remove .git, LICENSE, and README files
@@ -145,7 +145,7 @@ Use bundle install to install all gem dependencies, and jekyll serve or bundle e
 The result in your browser:
 
 <div align="center">
-  <img src="img/first-page.png" alt="first page" loading="lazy">
+  <img src="img/first-page.webp" alt="first page" loading="lazy">
 </div>
 We have nothing to show on the page now because we need to customize the Minimal Mistakes theme and create a new post.
 
@@ -154,7 +154,7 @@ We have nothing to show on the page now because we need to customize the Minimal
 Before customizing, let's take a look at the folder structure of our project:
 
 <div align="center">
-  <img src="img/tree-folder.png" alt="tree folder" loading="lazy">
+  <img src="img/tree-folder.webp" alt="tree folder" loading="lazy">
 </div>
 To customize your website, you'll need to modify the _config.yml file to set up the initial settings.
 
@@ -240,7 +240,7 @@ bundle exec jekyll serve
 Open your browser at localhost:4000 to view the result.
 
 <div align="center">
-  <img src="img/second-page.png" alt="second page" loading="lazy">
+  <img src="img/second-page.webp" alt="second page" loading="lazy">
 </div>
 
 Looks better, right?
@@ -268,7 +268,7 @@ Here's an example of the first part of a post in Markdown:
 ---
 title: "Markup: HTML Tags and Formatting"
 header:
-  teaser: "assets/images/markup-syntax-highlighting-teaser.jpg"
+  teaser: "assets/images/markup-syntax-highlighting-teaser.webp"
 categories:
   - Markup
 tags:
@@ -348,12 +348,12 @@ The resulting navigation will appear as follows:
 
 <div align="center">
   Posts page
-  <img src="img/posts-nav.png" alt="third page" loading="lazy">
+  <img src="img/posts-nav.webp" alt="third page" loading="lazy">
 Categories page
-<img src="img/categories-nav.png" alt="post detail" loading="lazy">
+<img src="img/categories-nav.webp" alt="post detail" loading="lazy">
 
 Tag pages
-<img src="img/tags-nav.png" alt="post detail" loading="lazy">
+<img src="img/tags-nav.webp" alt="post detail" loading="lazy">
 
 </div>
 If you're curious about Jekyll, you can learn more at [Jekyll quickstart](https://jekyllrb.com/docs/).

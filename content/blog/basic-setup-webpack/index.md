@@ -184,7 +184,7 @@ To understand better how webpack works, we will create some simple demo code
 
   ```js
   // src/loadImage.js
-  import logo from './logo.png'
+  import logo from './logo.webp'
 
   const component = () =>{
     const element = document.createElement('div');
@@ -223,7 +223,7 @@ To understand better how webpack works, we will create some simple demo code
   │   ├── index.js
   │   ├── index.scss
   │   ├── loadImage.js
-  │   ├── logo.png
+  │   ├── logo.webp
   │   └── substract.js
   ├── webpack.config.js
   └── yarn.lock
@@ -272,13 +272,13 @@ To understand better how webpack works, we will create some simple demo code
 - `use`: Retrieve an object or an array containing loader information.
   - Notice for `babel-loader`: using presets `@babel/preset` by default. It will compile to ES5 syntax.
   - Notice for `style-loader`: using **sourMap** to easier debug when dev.
-  - Notice for `file-loader`: using `[path][name].[ext]` means after build, the files will be created with the similar names in similar folder. For example: if you have `src/logo.png` file, when you build it, you will have `dist/src/logo.png`.
+  - Notice for `file-loader`: using `[path][name].[ext]` means after build, the files will be created with the similar names in similar folder. For example: if you have `src/logo.webp` file, when you build it, you will have `dist/src/logo.webp`.
 - `resolve: { extensions: [‘.js’, ‘.jsx’] }`: The priority order when import files. For example, there are 2 files name.js and name.jsx in the same folder. In another file you import * from 'name', it will prioritize .js file
 - `output`: configuration of build file webpack
   - `output.path`: the absolute path to the directory after build. For the absolute path, we usually use `path.resolve()` or `path.join()` in combination with the global variable `__dirname`.
   - `output.publicPath`: the relative path from the `index.html` file pointing to the files in the **dist** directory after build. 
   
-  For example: in the file `loadImage.js`, we import logo, the logo variable will be become: `output.publicPath + 'src/logo.png`. If after the build, we run the `index.html` file in a different location not in **the public directory**, we will accidentally make the logo variable wrong.
+  For example: in the file `loadImage.js`, we import logo, the logo variable will be become: `output.publicPath + 'src/logo.webp`. If after the build, we run the `index.html` file in a different location not in **the public directory**, we will accidentally make the logo variable wrong.
   - `output.filename`: filename of js bundle after build
   - `output.environment`: By default, webpack will generate code using the ES6 syntax. If you don't want this, you can modify the target build by yourself in the `output.environment`
     - **arrowFunction**: support arrow function.

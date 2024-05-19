@@ -4,7 +4,7 @@ description = "Build your own Redis in Rust"
 weight = 30
 
 [extra]
-local_image = "projects/redis/img/redis.png"
+local_image = "projects/redis/img/redis.webp"
 +++
 
 Source code: [rdis](https://github.com/tduyng/rdis)

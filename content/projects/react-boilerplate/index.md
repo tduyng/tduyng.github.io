@@ -4,7 +4,7 @@ description = "Template React Project using create-react-app & TypeScript"
 weight = 30
 
 [extra]
-local_image = "projects/react-boilerplate/img/demo.png"
+local_image = "projects/react-boilerplate/img/demo.webp"
 +++
 
 Demo: [https://reactts-boilerplate.netlify.app/](https://reactts-boilerplate.netlify.app/)

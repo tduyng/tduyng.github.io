@@ -4,7 +4,7 @@ description = "Project demo using React, TypeScript, Ant Design"
 weight = 30
 
 [extra]
-local_image = "projects/react-antd-demo/img/demo.png"
+local_image = "projects/react-antd-demo/img/demo.webp"
 +++
 
 Demo: [https://react-ant-demo.netlify.app](https://react-ant-demo.netlify.app)

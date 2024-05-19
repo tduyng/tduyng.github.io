@@ -4,7 +4,7 @@ description = "Modern techno : NestJS + ReactJS + ViteJS + MongoDB for Bookstore
 weight = 30
 
 [extra]
-local_image = "projects/bookstore/img/bookstore.png"
+local_image = "projects/bookstore/img/bookstore.webp"
 +++
 
 Create a modern web app with clean architecture using NestJS + MongoDB & ViteJS + React.

@@ -4,7 +4,7 @@ description = "Revit-WPF template 2018-2020+ for Revit API (C#)"
 weight = 30
 
 [extra]
-local_image = "projects/revit-api/img/revit-api.png"
+local_image = "projects/revit-api/img/revit-api.webp"
 +++
 
 # Revit WPF Template

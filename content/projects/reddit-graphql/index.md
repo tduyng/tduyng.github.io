@@ -4,7 +4,7 @@ description = "Project fullstack graphql - NodeJS TypeScript for Reddit clone"
 weight = 30
 
 [extra]
-local_image = "projects/reddit-graphql/img/reddit.png"
+local_image = "projects/reddit-graphql/img/reddit.webp"
 +++
 
 Source code: [reddit-graphql](https://gitlab.com/tienduy-nguyen/reddit-graphql)
