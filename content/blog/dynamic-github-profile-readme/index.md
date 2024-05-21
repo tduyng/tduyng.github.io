@@ -2,7 +2,7 @@
 title = "How I made my GitHub profile README dynamic"
 description = "Explore the process of making your GitHub profile README dynamic with automated updates of your latest blog posts using GitHub Actions and Python scripting"
 date = 2024-05-13
-updated = 2024-05-14
+updated = 2024-05-21
 
 [taxonomies]
 tags = ["github-action", "profile", "readme", "dynamic", "python"]
@@ -48,12 +48,20 @@ Here's an example of [github-readme-stats](https://github.com/anuraghazra/github
 and example of my profile using [metrics](https://github.com/lowlighter/metrics)
 <img src="img/metrics.svg" alt="My github profile using metrics" loading="lazy">
 
-Additionally if you write a blog, it would be cool to include your latest post on your GitHub profile. I was inspired by how [simonw](https://github.com/simonw) made the content of [his README profile](https://github.com/simonw/simonw) dynamic. He wrote a [Python script](https://github.com/simonw/simonw/blob/main/build_readme.py) and a [GitHub action](https://github.com/simonw/simonw/blob/main/.github/workflows/build.yml) for this job and explained the process in his article [Building a self-updating profile README for GitHub](https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/).
+Additionally if you write a blog, it would be cool to include your latest post on your GitHub profile. I was inspired by how [Simon Willison](https://github.com/simonw) made the content of [his README profile](https://github.com/simonw/simonw) dynamic. He wrote a [Python script](https://github.com/simonw/simonw/blob/main/build_readme.py) and a [GitHub action](https://github.com/simonw/simonw/blob/main/.github/workflows/build.yml) for this job and explained the process in his article [Building a self-updating profile README for GitHub](https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/).
 
 Here's how his profile looks like:
 <img src="img/simonw.webp" alt="Simonw profile" loading="lazy">
 
-I attempted to do something similar but simpler. I fetch the posts from my blog with python script:
+Additionally, [Óscar](https://osc.garden/) - the creator of [Tabi theme](https://github.com/welpo/tabi), that [I use on this website](https://tduyng.dev/blog/new-home-for-my-website/), also created a tool called [dōteki](https://github.com/welpo/doteki). [dōteki builds on Simon’s idea](https://osc.garden/blog/doteki-building-a-dynamic-github-profile/) but is more complete and flexible, supporting various plugins: [Feed, current date, FIGlet, Last.fm and Random choice plugin](https://doteki.org/docs/category/plugins).
+
+dōteki supports these features via a GitHub action, making it easier to implement. For anyone looking for a quick and easy solution, I think dōteki is a great choice. Check out the tool and give it a star if you find it useful.
+
+Thanks so much to Simon and Óscar for your contributions and for sharing your knowledge with the community.
+
+Personally, I prefer to follow Simon’s original idea and write something from scratch. It helps me understand the different tools better and is more fun. Plus, it allows for more customization.
+
+Now, it’s time for some coding. Here is the Python script I use to fetch posts from my blog:
 
 ```python
 import logging
