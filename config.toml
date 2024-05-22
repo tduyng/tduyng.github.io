@@ -255,7 +255,7 @@ repo="tduyng/tduyng.github.io"
 repo_id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
 category="General"
 category_id="DIC_kwDOD4Stwc4CfSpo"
-mapping="url"
+mapping="slug"
 strict_title_matching=1
 enable_reactions=1
 comment_box_above_comments = true
