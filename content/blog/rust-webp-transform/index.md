@@ -2,6 +2,7 @@
 title = "Transforming website images into WebP with Rust for faster loading times"
 description = "Explore the process of enhancing website speed through image conversion to WebP using Rust"
 date = 2024-05-23
+updated = 2024-05-23
 
 [taxonomies]
 tags = ["performance", "rust", "webp", "image-conversion", "cli"]
@@ -18,7 +19,7 @@ Recently, I attended [Ekinoday](https://www.ekino.fr/), our company’s annual c
 
 I had a chance to talk with my colleague [Raphaël Tho Vo](https://github.com/thovo), who gave a presentation on optimising web performance. [Raphaël](https://github.com/thovo) mentioned that many people don’t realise how much image size and format can effect the web performance. Large image files can slow down a website significantly, affecting user experience.
 
-Raphaël explained that we can improve performance by using better image formats. He mentioned several modern formats like [AVIF, WebP, MozJPEG, OxiPNG, and JPEG 2000](https://www.smashingmagazine.com/2021/09/modern-image-formats-avif-webp/). Among these, AVIF and WebP are the most supported by web browsers today.
+Raphaël explained that we can improve performance by using better image formats. He mentioned several modern formats like [AVIF, WebP, JPEG 2000](https://www.smashingmagazine.com/2021/09/modern-image-formats-avif-webp/). Among these, AVIF and WebP are the most supported by web browsers today.
 
 Inspired by Raphaël’s advice,  I decided to take a closer look at my website's performance. I host my site on GitHub, using [Zola](https://www.getzola.org/), a static site engine, along with the [Tabi](https://github.com/welpo/tabi) theme. This theme is beautifully designed and well-coded.
 
@@ -211,7 +212,7 @@ I realized that this happened because the image crate in this moment is only sup
 
 To address this issue, I explored other options and came across the [webp](https://github.com/jaredforth/webp) crate.
 
-This crate, built on the same foundation as the `image` crate, allows us to encode images to WebP format with `quality` control.
+This crate, built on the `libwebp-sys` and `image` crate, allows us to better encode images to WebP format with `quality` control.
 
 I found that by setting the `quality` parameter to the maximum value of `100`, we could consistently generate WebP images with smaller sizes than the originals. In fact, I could reduce the image size by up to 45%.
 
