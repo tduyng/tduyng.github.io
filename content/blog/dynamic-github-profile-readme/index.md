@@ -53,7 +53,7 @@ Additionally if you write a blog, it would be cool to include your latest post o
 Here's how his profile looks like:
 <img src="img/simonw.webp" alt="Simonw profile" loading="lazy">
 
-Additionally, [Óscar](https://osc.garden/) - the creator of [Tabi theme](https://github.com/welpo/tabi), that [I use on this website](https://tduyng.dev/blog/new-home-for-my-website/), also created a tool called [dōteki](https://github.com/welpo/doteki). [dōteki builds on Simon’s idea](https://osc.garden/blog/doteki-building-a-dynamic-github-profile/) but is more complete and flexible, supporting various plugins: [Feed, current date, FIGlet, Last.fm and Random choice plugin](https://doteki.org/docs/category/plugins).
+Additionally, [Óscar](https://osc.garden/) - the creator of [Tabi theme](https://github.com/welpo/tabi), that [I use on this website](https://tduyng.github.io/blog/new-home-for-my-website/), also created a tool called [dōteki](https://github.com/welpo/doteki). [dōteki builds on Simon’s idea](https://osc.garden/blog/doteki-building-a-dynamic-github-profile/) but is more complete and flexible, supporting various plugins: [Feed, current date, FIGlet, Last.fm and Random choice plugin](https://doteki.org/docs/category/plugins).
 
 dōteki supports these features via a GitHub action, making it easier to implement. For anyone looking for a quick and easy solution, I think dōteki is a great choice. Check out the tool and give it a star if you find it useful.
 
