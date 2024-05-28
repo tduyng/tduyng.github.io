@@ -164,6 +164,7 @@ socials = [
 
 # Extra menu to show on the footer, below socials section.
 footer_menu = [
+    { url = "subscribe", name = "subscribe", trailing_slash = false },
     { url = "about", name = "about", trailing_slash = false },
     { url = "privacy", name = "privacy", trailing_slash = false },
     { url = "license", name = "license", trailing_slash = false },
@@ -214,14 +215,14 @@ custom_subset = true
 [extra.analytics]
 # Specify which analytics service you want to use.
 # Supported options: ["goatcounter", "umami", "plausible"]
-service = ""
+service = "umami"
 
 # Unique identifier for tracking.
 # For GoatCounter, this is the code you choose during signup.
 # For Umami, this is the website ID.
 # For Plausible, this is the domain name (e.g. "example.com").
 # Note: Leave this field empty if you're self-hosting.
-id = ""
+id = "0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
 
 # Optional: Specify the URL for self-hosted analytics instances.
 # For GoatCounter: Base URL like "https://stats.example.com"
@@ -250,16 +251,16 @@ self_hosted_url = ""
 # Giscus support for comments. https://giscus.app/
 [extra.giscus]
 enabled_for_all_posts = true
-automatic_loading = true 
-repo="tduyng/tduyng.github.io"
-repo_id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
-category="General"
-category_id="DIC_kwDOD4Stwc4CfSpo"
-mapping="slug"
-strict_title_matching=1
-enable_reactions=1
+automatic_loading = true
+repo = "tduyng/tduyng.github.io"
+repo_id = "MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+category = "General"
+category_id = "DIC_kwDOD4Stwc4CfSpo"
+mapping = "slug"
+strict_title_matching = 1
+enable_reactions = 1
 comment_box_above_comments = true
 light_theme = "noborder_light"
 dark_theme = "noborder_dark"
-lang="en"
-lazy_loading=true
+lang = "en"
+lazy_loading = true
