@@ -14,11 +14,25 @@ This privacy policy outlines how we collect and process your data on this websit
 
 ### General browsing {#what-general}
 
-While browsing the site, no personal information is collected.
+While browsing the site, no personal information is collected. IP addresses are not stored in any way in the server logs.
 
 ### Comments {#what-comments}
 
 We do not collect any data when you send a comment or reaction, but GitHub does in order to provide the service.
+
+### Analytics {#what-analytics}
+
+For website improvement, the following non-personal data is collected:
+
+- **Referrer**: the source that led you to this site.
+- **Requested URL**: the specific page you visited.
+- **User-Agent**: identifies the browser and operating system you use (e.g. "Safari 17.0, Mac OS X").
+- **Country name**: the country you are visiting from, determined by your IP address.
+- **Screen type**: the type of your device.
+- **Time**: when you accessed the site.
+- **Browsing session**: a temporary identification code generated from your IP address, browser information, and a random number. This is used to recognise a browsing session for 8 hours. After that time, the code is deleted from memory and is not stored anywhere.
+
+I do not track unique visitors across sessions, and I do not track how long you stay on the site or where you go after you leave.
 
 ## How do we collect this data?
 
@@ -26,11 +40,15 @@ We do not collect any data when you send a comment or reaction, but GitHub does 
 
 The data associated with comments is collected using [giscus](https://giscus.app/), a platform that enables GitHub-based comments.
 
+### Analytics {#how-analytics}
+
+The non-personal data is collected using a self-hosted instance of [Umami](https://umami.is/), an open-source privacy-friendly, no cookies, GDPR & CCPA compliant  web analytics platform.
+
 ## How will we use the data?
 
 The data sent to GitHub is used to display your comment on the site.
 
-All data collected is publicly available, either in the form of comments.
+All data collected is publicly available, either in the form of comments or statistics.
 
 We do not use the data for any other purpose.
 

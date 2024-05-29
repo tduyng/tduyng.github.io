@@ -229,7 +229,7 @@ id = "0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
 # For Umami: Base URL like "https://umami.example.com"
 # For Plausible: Base URL like "https://plausible.example.com"
 # Leave this field empty if you're using the service's default hosting.
-self_hosted_url = ""
+# self_hosted_url = ""
 
 # Isso support for comments. https://isso-comments.de/
 # You need to self-host the backend first: https://blog.phusion.nl/2018/08/16/isso-simple-self-hosted-commenting-system/

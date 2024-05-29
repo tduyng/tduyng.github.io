@@ -25,9 +25,10 @@
         data-website-id="{{ analytics_id }}"
         src="https://analytics.eu.umami.is/script.js"
     {% endif %}
-    ></script>
+    data-do-not-track="true">
+    </script>
 
-{% elif analytics_service == "plausible" %}
+    {% elif analytics_service == "plausible" %}
     <script
         defer
         data-domain="{{ analytics_id }}"
