@@ -2,7 +2,7 @@ code {
     border-radius: 5px;
     background-color: var(--bg-1);
     padding: 0.1em 0.2em;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-family: var(--code-font);
 
     mark {
@@ -59,7 +59,7 @@ pre {
         padding: 0rem;
         overflow-x: auto;
         color: inherit;
-        font-size: 0.8rem;  // Fits ~77 characters.
+        font-size: 0.8rem; // Fits ~77 characters.
         white-space: pre;
 
         &::before {
