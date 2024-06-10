@@ -8,7 +8,6 @@ author = "Z"
 generate_feed = true
 compile_sass = true
 minify_html = false
-
 taxonomies = [{ name = "tags", feed = true }]
 
 build_search_index = true
@@ -143,6 +142,7 @@ menu = [
 
 # The RSS icon will be shown if (1) it's enabled and (2) the following variable is set to true.
 feed_icon = true
+full_content_in_feed = true
 
 # Email address for footer's social section.
 # Protect against spambots:
