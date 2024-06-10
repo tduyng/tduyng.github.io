@@ -18,11 +18,25 @@ img {
     margin: 0 auto;
     max-width: 100%;
     height: auto;
+    cursor: pointer;
 }
 
 img.inline {
     display: inline;
     vertical-align: middle;
+}
+
+img:hover {
+    color: #424242;
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -ms-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+    opacity: 1;
+    transform: scale(1.15);
+    -ms-transform: scale(1.15); /* IE 9 */
+    -webkit-transform: scale(1.15); /* Safari and Chrome */
 }
 
 figure h4 {
@@ -32,12 +46,12 @@ figure h4 {
 }
 
 figure h4::before {
-    content: "↳ ";
+    content: '↳ ';
 }
 
 .img-dark {
     display: none;
-    &.inline{
+    &.inline {
         display: none;
     }
 }
@@ -46,7 +60,7 @@ figure h4::before {
     display: inline;
 }
 
-[data-theme="dark"] {
+[data-theme='dark'] {
     .img-dark {
         display: block;
         &.inline {
