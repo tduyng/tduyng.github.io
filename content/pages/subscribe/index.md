@@ -14,14 +14,17 @@ Stay connected with my blog updates by subscribing to [my RSS feed](https://tduy
 
 **To get started, follow these simple steps:**
 
-- Choose a reader app: You need an RSS reader app to subscribe to feeds. You can find a great list of hosted RSS readers and apps [here](https://aboutfeeds.com/) or [here](https://zapier.com/blog/best-rss-feed-reader-apps/). For MacOS, I personally recommend [NetNewsWire](https://github.com/Ranchero-Software/NetNewsWire) – it's open-source and completely free.
+- Choose a reader app: You need an RSS reader app to subscribe to feeds. You can find a great list of hosted RSS readers and apps [here](https://aboutfeeds.com/) or [here](https://zapier.com/blog/best-rss-feed-reader-apps/). 
+
+    For MacOS or IOS, I personally recommend [NetNewsWire](https://github.com/Ranchero-Software/NetNewsWire) – it's open-source and completely free.
 
 - Subscribe to my feed: Once you have your reader app installed, add [my blog's RSS link](https://tduyng.github.io/atom.xml) to your feed sources.
 
 That's it! You'll now receive all my latest posts and updates directly in your reader.
 
-Check out how the [NetNewsWire app](https://netnewswire.com/screenshots.htm) looks like:
+My blog provides [full text RSS feeds](/blog/full-text-rss-feeds), so once you subscribe, you can read all pages, all content, and all news from my website on your reader app. If you find the content interesting and helpful, please consider sharing it or giving feedback. Your support is greatly appreciated and helps me improve the blog for everyone.
 
-<img src="/img/net_news_wire.webp" alt="NetNewsWire" loading="lazy"><br/>
+Here's how my blog looks on NetNewsWire will full text RSS feed:
+<img src="/img/feed.webp" alt="My feeds on reader app" loading="lazy"><br/>
 
 Happy reading and stay informed! 👋👋

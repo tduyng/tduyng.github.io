@@ -35,4 +35,4 @@ If you don't have a reader app yet, you can find more information on [my subscri
 I use [NetNewsWire](https://github.com/Ranchero-Software/NetNewsWire) on MacOS and iOS because it’s open source, free, and the UI suits my needs. Other people recommend [Feedly](https://feedly.com/i/discover) or [lire](https://www.lireapp.com/) too.
 
 Here's how my blog looks on NetNewsWire will full text RSS feed:
-<img src="img/feed.webp" alt="My blog on NetNewswire" loading="lazy">
+<img src="/img/feed.webp" alt="My blog on NetNewswire" loading="lazy">
