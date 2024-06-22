@@ -4,7 +4,7 @@ description = "Discover the pitfalls of using Enums in TypeScript and explore a 
 date = 2024-06-21
 
 [taxonomies]
-tags = ["typescript", "enum"]
+tags = ["typescript", "enum", "best-practices"]
 
 [extra]
 copy_button = true
@@ -285,10 +285,10 @@ export type TypeFrom<T> = T[keyof T];
 export type HttpStatusCode = TypeFrom<typeof HttpStatusCodes>;
 ```
 
-"This way, you can easily import and export constants and types without naming conflicts. Additionally, this approach has the advantage of clearly separating TypeScript `type` definitions from TypeScript constants/functions"
+This way, you can easily import and export constants and types without naming conflicts. Additionally, this approach has the advantage of clearly separating TypeScript `type` definitions from TypeScript constants/functions
 
-I hope this article reaches many people, helps you optimize your use of TypeScript in your project.
+I hope this article reaches many people, helps you optimize your use of TypeScript in your project. Feel free to read the comments or provide feedback on [my medium post](https://tduyng.medium.com/why-you-might-be-using-enums-in-typescript-wrong-6d9c5742db5a).
 Happy coding!
 
 ---
-Enjoyed this article? For more technical content on Typescript or backend web development, stay updated by following my blog through [RSS feeds](https://tduyng.com/subscribe/) 
+Enjoyed this article? For more technical content on Typescript or backend development, stay updated by following my blog through [RSS feeds](https://tduyng.com/subscribe/) 
