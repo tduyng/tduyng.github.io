@@ -10,6 +10,7 @@ tags = ["typescript", "javascript", "npm", "esm"]
 copy_button = true
 footnote_backlinks = true
 social_media_card = "img/dual-package.webp"
+add_subscribe = true
 +++
 
 Hi there!

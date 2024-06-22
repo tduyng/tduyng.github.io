@@ -10,6 +10,7 @@ tags = ["typescript", "enum", "best-practices"]
 copy_button = true
 footnote_backlinks = true
 social_media_card = "img/enum.webp"
+add_subscribe = true
 +++
 
 The topic of using enums in TypeScript has been discussed a lot, but many developers still remain unaware of their drawbacks. Even though enums are popular and commonly used, they might not always be the best choice. In this article, I'll share my thoughts on why enums can be a problem and show you a better way to do things.
@@ -289,6 +290,3 @@ This way, you can easily import and export constants and types without naming co
 
 I hope this article reaches many people, helps you optimize your use of TypeScript in your project. Feel free to read the comments or provide feedback on [my medium post](https://tduyng.medium.com/why-you-might-be-using-enums-in-typescript-wrong-6d9c5742db5a).
 Happy coding!
-
----
-Enjoyed this article? For more technical content on Typescript or backend development, stay updated by following my blog through [RSS feeds](https://tduyng.com/subscribe/) 

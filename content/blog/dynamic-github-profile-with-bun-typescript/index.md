@@ -10,6 +10,7 @@ tags = ["github", "readme", "typescript"]
 copy_button = true
 footnote_backlinks = true
 social_media_card = "img/tduyng.webp"
+add_subscribe = true
 +++
 
 [In a recent article](https://tduyng.github.io/blog/dynamic-github-profile-readme/), I discussed transforming a GitHub profile into an interactive space with icons, badges, and dynamically updated blog posts using Python scripts and GitHub actions.

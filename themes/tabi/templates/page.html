@@ -146,6 +146,13 @@
             {# The replace pattern is used to enable arbitrary locations for the Table of Contents #}
             {# This is Philipp Oppermann's workaround: https://github.com/getzola/zola/issues/584#issuecomment-474329637 #}
             {{ page.content | replace(from="<!-- toc -->", to=macros_toc::toc(page=page, header=false, language_strings=language_strings)) | safe }}
+            
+            {# Add subscribe line #}
+            {% if page.extra.add_subscribe %}
+                <hr />
+                <p>Enjoyed this article? For more technical content on Typescript or backend development, stay updated by following my blog through <a href="https://tduyng.com/subscribe/">RSS feeds</a> </p>
+            {% endif %}
+            
         </section>
 
         {# Check if comments are enabled, checking that they are not disabled on the specific page #}

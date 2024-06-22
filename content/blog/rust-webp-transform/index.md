@@ -11,6 +11,7 @@ tags = ["performance", "rust", "webp", "image-conversion", "cli"]
 copy_button = true
 footnote_backlinks = true
 social_media_card = "img/page_speed.webp"
+add_subscribe = true
 +++
 
 Hi everyone 👋,

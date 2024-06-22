@@ -10,6 +10,7 @@ tags = ["deno", "nodejs", "production"]
 copy_button = true
 footnote_backlinks = true
 social_media_card = "img/switch-deno.webp"
+add_subscribe = true
 +++
 
 Hi there!

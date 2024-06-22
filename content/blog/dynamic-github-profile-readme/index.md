@@ -11,6 +11,7 @@ tags = ["github-action", "profile", "readme", "dynamic", "python"]
 copy_button = true
 footnote_backlinks = true
 social_media_card = "img/tduyng.webp"
+add_subscribe = true
 +++
 
 **Have you heard about GitHub profile READMEs?**
