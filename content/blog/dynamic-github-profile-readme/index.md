@@ -211,4 +211,6 @@ And that's it! With the script and GitHub actions, all the information will upda
 Here's how my profile looks now:
 <img src="img/tduyng.webp" alt="Simonw profile" loading="lazy">
 
-Thank you for reading this far. I hope this method proves helpful to you.
+Thank you for reading this far. I hope this method proves helpful to you. Feel free to read the comments or provide feedback on [my medium post](https://tduyng.medium.com/how-i-made-my-github-profile-readme-dynamic-933967d268ea).
+
+Happy coding!

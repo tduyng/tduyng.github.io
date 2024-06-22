@@ -309,3 +309,7 @@ The GitHub Action will execute the command `bun run readme` to update the README
 In summary, I've demonstrated how to enhance your GitHub profile using Bun and TypeScript. This straightforward [alternative to Python](https://tduyng.github.io/blog/dynamic-github-profile-readme/) provides a simple method for adding dynamism to your profile. You can find all the code from this article in [this branch](https://github.com/tduyng/tduyng/tree/bun)
 
 For now, I've decided to keep the Python version on my main branch because it's easier to set up.
+
+I hope it helps. Feel free to read the comments or provide feedback on [my medium post](https://tduyng.medium.com/dynamic-github-profile-with-bun-and-typescript-fe61127acabb).
+
+Happy coding!
