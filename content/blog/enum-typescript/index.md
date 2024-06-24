@@ -2,6 +2,7 @@
 title = "Why you might be using Enums in TypeScript wrong"
 description = "Discover the pitfalls of using Enums in TypeScript and explore a more type-safe alternative with `as const`"
 date = 2024-06-21
+updated = 2024-06-24
 
 [taxonomies]
 tags = ["typescript", "enum", "best-practices"]
@@ -132,14 +133,18 @@ console.log(Color.Purple); // ???
 // we might not be sure about the result 
 // without understanding the underlying enum value assignments.
 ```
-
-2. **Performance impact**
-
-	The `enum` object is compiled to a function in JavaScript, which needs to be created and initialised at runtime each time the `enum` is called. This can affect performance, especially in large applications.
-	
-3. **Compatibility issues with type declarations**
+2. **Compatibility issues with type declarations**
 
 	When building projects or libraries that consume types with `.d.ts` files, using `enum` types can cause issues. Specifically, if a project uses [isolatedModules](https://www.typescriptlang.org/tsconfig/#references-to-const-enum-members), it may not be able to use `enum` types effectively. This problem has been encountered in our projects as well.
+
+3. ~~Performance impact~~
+    
+	~~The `enum` object is compiled to a function in JavaScript, which needs to be created and initialised at runtime each time the `enum` is called. This can affect performance, especially in large applications.~~
+
+    When compiled to JavaScript, enums use an Immediately Invoked Function Expression (IIFE). This IIFE runs once to initialise an object representing the enum. After initialisation, accessing enum values is efficient as it involves simple property lookups, with no additional function calls. Therefore, there is not a significant performance difference between using enums and const objects.
+
+    >Thanks to [David Dios](https://github.com/dios-david) for [the correction](https://github.com/tduyng/tduyng.github.io/discussions/15)
+	
 
 For more detailed discussions on the drawbacks to using `enum` in TypeScript, you can refer to these resources:
 - [The official TypeScript documentation](https://www.typescriptlang.org/docs/handbook/enums.html)
