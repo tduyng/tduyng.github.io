@@ -65,4 +65,7 @@ Take a look at these tools! If you like them, give them a star. The folks behind
 
 By the way, you're already on my new website. Welcome!
 
-I'm really happy with it. It's super fast.
+I'm really happy with it. It's super fast when build locally.
+
+Here is my blog now:
+<img src="img/new_blog.webp" alt="old home" loading="lazy">
