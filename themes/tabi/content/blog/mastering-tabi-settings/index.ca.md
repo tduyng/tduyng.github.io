@@ -1,7 +1,7 @@
 +++
 title = "Domina la configuració de tabi: guia completa"
 date = 2023-09-18
-updated = 2024-05-25
+updated = 2024-06-28
 description = "Descobreix les múltiples maneres en què pots personalitzar tabi."
 
 [taxonomies]
@@ -185,6 +185,18 @@ Les skins («pells») de tabi canvien el color principal del lloc web. Pots conf
 
 Explora les skins disponibles i aprèn com crear la teva pròpia consultant [la documentació](/ca/blog/customise-tabi/#skins).
 
+### Font sans serif (pal sec)
+
+| Pàgina | Secció | `config.toml` | Segueix la jerarquia | Requereix JavaScript |
+|:------:|:------:|:-------------:|:---------------:|:-------------------:|
+|   ❌   |   ❌    |      ✅       |        ❌        |         ❌          |
+
+tabi utilitza una font serif per als paràgrafs dels articles (la que estàs veient ara). Pots canviar a una font sans-serif (la que veus als encapçalaments/menú) a tot el teu lloc configurant `override_serif_with_sans = true` a `config.toml`.
+
+Fes clic a la imatge a continuació per comparar les fonts:
+
+{{ image_toggler(default_src="blog/mastering-tabi-settings/img/serif.webp", toggled_src="blog/mastering-tabi-settings/img/sans-serif.webp", default_alt="Font serif", toggled_alt="Font sans-serif", full_width=true) }}
+
 ### Estils CSS personalitzats
 
 | Pàgina | Secció | `config.toml` | Segueix la jerarquia | Requereix JavaScript |
@@ -217,13 +229,22 @@ Aquesta variable accepta qualsevol color CSS vàlid, així que pots utilitzar pa
 |:------:|:------:|:-------------:|:-----------------:|:--------------------:|
 |   ❌   |   ❌   |      ✅       |         ❌        |          ❌          |
 
-Per defecte, la [pàgina d'etiquetes](/tags) mostra les etiquetes com:
+Per defecte, la [pàgina d'etiquetes](/ca/tags) mostra les etiquetes com:
 
 [NomEtiqueta](#) — n entrada[es]
 
 Establir `compact_tags = true` les mostrarà com:
 
 [NomEtiqueta](#) <sup>n</sup>
+
+### Ordre de les etiquetes
+
+| Pàgina | Secció | `config.toml` | Segueix la jerarquia | Requereix JavaScript |
+|:------:|:------:|:-------------:|:-----------------:|:--------------------:|
+|   ❌   |   ❌   |      ✅       |         ❌        |          ❌          |
+
+Per defecte, la [pàgina d'etiquetes](/ca/tags) ordena les etiquetes alfabèticament, donada la configuració predeterminada de `tag_sorting = "name"`.
+Si configures `tag_sorting = "frequency"`, s'ordenaran segons el nombre de publicacions (de més a menys).
 
 ---
 
@@ -325,7 +346,10 @@ Per defecte, l'arxiu llistarà les publicacions situades a `blog/`. Per personal
   section_path = ["blog/", "notes/", "camí-tres/"]
   ```
 
-**Nota**: la pàgina d'arxiu només llistarà publicacions que tinguin una data al seu encapçalament.
+**Nota**:
+
+- La pàgina d'arxiu només llistarà publicacions amb data.
+- L'ordre de les publicacions ve determinada per la variable `sort_by` de les seccions arxivades. Aquesta demo utilitza `sort_by = "date"` en `blog/_index.md`.
 
 ### Etiquetes
 
@@ -636,7 +660,15 @@ socials = [
 ]
 ```
 
-Le icones provenen de Font Awesome. Per veure una llista de tots els icones disponibles, fes una ullada al [directori `static/social_icons`](https://github.com/welpo/tabi/tree/main/static/social_icons).
+Per veure una llista de totes les icones integrades, fes un cop d'ull al directori [`static/social_icons` a GitHub](https://github.com/welpo/tabi/tree/main/static/social_icons).
+
+Trobes a faltar algun icona? Si creus que seria una bona addició a tabi, no dubtis en [obrir un issue](https://github.com/welpo/tabi/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.md&title=) o enviar una pull request ([exemple](https://github.com/welpo/tabi/pull/333)).
+
+Per utilitzar una icona personalitzada, pots afegir-la al directori `static/social_icons` del teu lloc web. Per exemple, si afegeixes `custom.svg`, la pots referenciar així:
+
+```
+{ name = "custom", url = "https://example.com", icon = "custom" }
+```
 
 ### Icona de feed
 
@@ -645,6 +677,8 @@ Le icones provenen de Font Awesome. Per veure una llista de tots els icones disp
 |   ❌   |   ❌    |      ✅       |          ❌           |         ❌          |
 
 Pots afegir un enllaç al teu feed RSS/Atom al peu de pàgina amb `feed_icon = true`.
+
+Nota pels usuaris de Zola 0.19.X: quan hi ha dos noms de fitxer a `feed_filenames`, només s'enllaçarà el primer al peu de pàgina.
 
 #### Menú de peu de pàgina
 

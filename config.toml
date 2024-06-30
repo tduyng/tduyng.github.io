@@ -5,7 +5,7 @@ title = "~/Z"
 description = "Z is software developer. Typescript and Rust enthusiast"
 author = "Z"
 
-generate_feed = true
+generate_feeds = true
 compile_sass = true
 minify_html = false
 taxonomies = [{ name = "tags", feed = true }]
@@ -115,6 +115,7 @@ separator = "•"
 # Default: tag_name – n post[s]
 # Compact: tag_name^n (superscript number)
 compact_tags = false
+tag_sorting = "name"
 
 # Invert the order of the site title and page title in the browser tab.
 # Example: true => "Blog • ~/tabi", false => "~/tabi • Blog"

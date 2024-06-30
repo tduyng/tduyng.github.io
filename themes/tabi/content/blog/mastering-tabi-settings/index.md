@@ -1,7 +1,7 @@
 +++
 title = "Mastering tabi Settings: A Comprehensive Guide"
 date = 2023-09-18
-updated = 2024-05-27
+updated = 2024-06-28
 description = "Discover the many ways you can customise your tabi site."
 
 [taxonomies]
@@ -185,6 +185,18 @@ tabi's skins change the main colour of the site. You can set the skin in `config
 
 Explore the available skins and learn how to create your own reading [the documentation](/blog/customise-tabi/#skins).
 
+### Sans-serif Font
+
+| Page | Section | `config.toml` | Follows Hierarchy | Requires JavaScript |
+|:----:|:-------:|:-------------:|:-----------------:|:-------------------:|
+|  ❌  |   ❌    |      ✅       |         ❌        |         ❌          |
+
+tabi uses a serif font for article paragraphs (the one you're seeing now). You can switch to using a sans-serif font (the one on the headers/menu) throughout your entire site by setting `override_serif_with_sans = true` in your `config.toml`.
+
+Click on the image below to compare the two looks:
+
+{{ image_toggler(default_src="blog/mastering-tabi-settings/img/serif.webp", toggled_src="blog/mastering-tabi-settings/img/sans-serif.webp", default_alt="Serif font", toggled_alt="Sans-serif font", full_width=true) }}
+
 ### Custom CSS
 
 | Page | Section | `config.toml` | Follows Hierarchy | Requires JavaScript |
@@ -224,6 +236,16 @@ By default, the [tags page](/tags) displays tags as:
 Setting `compact_tags = true` will display them as:
 
 [TagName](#) <sup>n</sup>
+
+### Tags Sorting
+
+| Page | Section | `config.toml` | Follows Hierarchy | Requires JavaScript |
+|:----:|:-------:|:-------------:|:-----------------:|:-------------------:|
+|  ❌  |   ❌    |      ✅       |         ❌        |         ❌          |
+
+By default, the [tags page](/tags) sorts tags alphabetically, given the default setting of `tag_sorting = "name"`.
+
+Setting `tag_sorting = "frequency"` will sort them by number-of-posts (descending).
 
 ---
 
@@ -325,7 +347,10 @@ By default, the archive will list posts located in `blog/`. To customise this, y
   section_path = ["blog/", "notes/", "path-three/"]
   ```
 
-**Note**: the Archive page will only list posts that have a date in their front matter.
+**Notes**:
+
+- the Archive page will only list posts that have a date in their front matter.
+- Post sorting is determined by the `sort_by` variable of the sections you are archiving. This demo uses `sort_by = "date"` set in the `blog/_index.md`.
 
 ### Tags
 
@@ -641,7 +666,15 @@ socials = [
 ]
 ```
 
-The icons are from Font Awesome. To see a list of all the available icons, take a look at the [`static/social_icons` directory](https://github.com/welpo/tabi/tree/main/static/social_icons).
+To see a list of all the built-in icons, take a look at the [`static/social_icons` directory on GitHub](https://github.com/welpo/tabi/tree/main/static/social_icons).
+
+Missing an icon? If you think it would be a good addition to tabi, feel free to [open an issue](https://github.com/welpo/tabi/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.md&title=) or submit a pull request ([example](https://github.com/welpo/tabi/pull/333)).
+
+To use a custom icon, you can add it to your site's `static/social_icons` directory. For example, if you add `custom.svg`, you can reference it like this:
+
+```
+{ name = "custom", url = "https://example.com", icon = "custom" }
+```
 
 ### Feed Icon
 
@@ -650,6 +683,8 @@ The icons are from Font Awesome. To see a list of all the available icons, take 
 |  ❌  |   ❌    |      ✅       |         ❌        |         ❌          |
 
 You can add a link to your RSS/Atom feed to the footer with `feed_icon = true`.
+
+Note for Zola 0.19.X users: when there are two filenames in `feed_filenames`, only the first one will be linked in the footer.
 
 ### Footer Menu
 

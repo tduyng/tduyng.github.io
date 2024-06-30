@@ -1,7 +1,7 @@
 +++
 title = "Domina la configuración de tabi: guía completa"
 date = 2023-09-18
-updated = 2024-05-25
+updated = 2024-06-28
 description = "Descubre las múltiples maneras en que puedes personalizar tabi."
 
 [taxonomies]
@@ -185,6 +185,18 @@ Las pieles de tabi cambian el color principal del sitio. Puedes configurar la pi
 
 Explora las pieles disponibles y aprende cómo crear la tuya propia consultando [la documentación](/es/blog/customise-tabi/#skins).
 
+### Fuente sans serif (paloseco)
+
+| Página | Sección | `config.toml` | Sigue la jerarquía | Requiere JavaScript |
+|:------:|:-------:|:-------------:|:---------------:|:-------------------:|
+|   ❌   |   ❌    |      ✅       |        ❌        |         ❌          |
+
+tabi utiliza una fuente serif para los párrafos de los artículos (la que estás viendo ahora). Puedes cambiar a una fuente sans serif (la que ves en los encabezados/menú) en todo tu sitio configurando `override_serif_with_sans = true` en `config.toml`.
+
+Haz clic en la imagen para comparar las fuentes:
+
+{{ image_toggler(default_src="blog/mastering-tabi-settings/img/serif.webp", toggled_src="blog/mastering-tabi-settings/img/sans-serif.webp", default_alt="Fuente serif", toggled_alt="Fuente sans-serif", full_width=true) }}
+
 ### Estilos CSS personalizados
 
 | Página | Sección | `config.toml` | Sigue la jerarquía | Requiere JavaScript |
@@ -224,6 +236,15 @@ Por defecto, la [página de etiquetas](/es/tags) muestra las etiquetas así:
 Establecer `compact_tags = true` mostrará las mismas de este modo:
 
 [NombreEtiqueta](#) <sup>n</sup>
+
+### Orden de las etiquetas
+
+| Página | Sección | `config.toml` | Sigue la jerarquía | Requiere JavaScript |
+|:------:|:-------:|:-------------:|:---------------:|:-------------------:|
+|   ❌   |   ❌    |      ✅       |        ❌        |         ❌          |
+
+Por defecto, la [página de etiquetas](/es/tags) ordena las etiquetas alfabéticamente, dada la configuración predeterminada de `tag_sorting = "name"`.
+Si configuras `tag_sorting = "frequency"`, se ordenarán según el número de publicaciones (de mayor a menor).
 
 ---
 
@@ -325,7 +346,10 @@ Por defecto, el archivo mostrará las publicaciones ubicadas en `blog/`. Para pe
   section_path = ["blog/", "notas/", "ruta-tres/"]
   ```
 
-**Nota**: la página de Archivo sólo listará publicaciones con fecha.
+**Nota**:
+
+- La página de Archivo sólo listará publicaciones con fecha.
+- El orden las publicaciones viene determinada por la variable `sort_by` de las secciones archivadas. Esta demo utiliza `sort_by = "date"` en `blog/_index.md`.
 
 ### Etiquetas
 
@@ -638,7 +662,15 @@ socials = [
 ]
 ```
 
-Los iconos provienen de Font Awesome. Para ver una lista de todos los iconos disponibles, echa un vistazo al [directorio `static/social_icons`](https://github.com/welpo/tabi/tree/main/static/social_icons).
+Para ver una lista de todos los iconos integrados, echa un vistazo al directorio [`static/social_icons` en GitHub](https://github.com/welpo/tabi/tree/main/static/social_icons).
+
+¿Echas en falta algún icono? Si crees que sería una buena adición a tabi, no dudes en [abrir un issue](https://github.com/welpo/tabi/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.md&title=) o enviar un pull request ([ejemplo](https://github.com/welpo/tabi/pull/333)).
+
+Para usar un icono personalizado, puedes añadirlo al directorio `static/social_icons` de tu sitio. Por ejemplo, si añades `custom.svg`, puedes referenciarlo así:
+
+```
+{ name = "custom", url = "https://example.com", icon = "custom" }
+```
 
 ### Icono de feed
 
@@ -647,6 +679,8 @@ Los iconos provienen de Font Awesome. Para ver una lista de todos los iconos dis
 |   ❌   |   ❌    |      ✅       |         ❌        |         ❌          |
 
 Puedes añadir un enlace a tu feed RSS/Atom en el pie de página con `feed_icon = true`.
+
+Nota para usuarios de Zola 0.19.X: cuando hay dos nombres de archivo en `feed_filenames`, solo se enlazará el primero en el pie de página.
 
 ### Menú de pie de página
 
