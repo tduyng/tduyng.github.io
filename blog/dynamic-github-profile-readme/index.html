@@ -1,0 +1,595 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https://tduyng.com/">
+
+    
+    <title>How I made my GitHub profile README dynamic • ~/Z</title>
+
+    
+    
+        <link rel="icon" type="image/png" href="https://tduyng.com/img/logo.webp"/>
+    
+    
+        <link rel=icon href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105 55"><text y=".7em" font-size="82">Z</text></svg>'>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="~/Z" href="https://tduyng.com/atom.xml">
+
+    
+    
+    
+        <link rel="stylesheet" href="https://tduyng.com/custom_subset.css?h=753f2b519893883e57d5">
+    
+
+    
+        <link rel="stylesheet" href="https://tduyng.com/main.css?h=571d6d2a51c7448bc60a" />
+
+    <meta name="color-scheme" content="light dark" />
+        <meta name="theme-color" content="#087e96" />
+        <meta name="description" content="Explore the process of making your GitHub profile README dynamic with automated updates of your latest blog posts using GitHub Actions and Python scripting" />
+        <meta property="og:description" content="Explore the process of making your GitHub profile README dynamic with automated updates of your latest blog posts using GitHub Actions and Python scripting" />
+
+    
+        <meta name="robots" content="index, nofollow" />
+    
+
+    <meta property="og:title" content="How I made my GitHub profile README dynamic" />
+    <meta property="og:type" content="article" />
+
+    
+        
+        
+        
+
+        
+        
+            
+        
+
+        
+        <meta property="og:image" content="https://tduyng.com/blog/dynamic-github-profile-readme/img/tduyng.webp?h=c1c32f9cdba5cf3eff50" />
+        <meta property="og:image:width" content="1246" />
+        <meta property="og:image:height" content="697" />
+        <meta name="twitter:image" content="https://tduyng.com/blog/dynamic-github-profile-readme/img/tduyng.webp?h=c1c32f9cdba5cf3eff50" />
+        <meta name="twitter:card" content="summary_large_image" />
+    
+
+    <meta property="og:locale" content="en_GB" />
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;tduyng.com&#x2F;blog&#x2F;dynamic-github-profile-readme&#x2F;" /><meta property="og:site_name" content="~&#x2F;Z"><meta http-equiv="Content-Security-Policy"
+content="default-src 'self';font-src &#x27;self&#x27; data:;img-src &#x27;self&#x27; https:&#x2F;&#x2F;* data:;media-src &#x27;self&#x27; https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;;style-src &#x27;self&#x27;;frame-src player.vimeo.com https:&#x2F;&#x2F;www.youtube-nocookie.com giscus.app;connect-src 'self' *.umami.dev analytics.eu.umami.is;script-src 'self' analytics.eu.umami.is  giscus.app 'self'">
+
+        <noscript><link rel="stylesheet" href="https://tduyng.com/no_js.css"/></noscript>
+        <script type="text/javascript" src="https://tduyng.com/js/initializeTheme.min.js"></script>
+        <script defer src="https://tduyng.com/js/themeSwitcher.min.js"></script>
+
+
+
+
+    <script async defer
+    
+        data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+        src="https://analytics.eu.umami.is/script.js"
+    
+    data-do-not-track="true">
+    </script>
+
+    
+
+        <script defer src="https://tduyng.com/js/searchElasticlunr.min.js?h=2950d57f80c9fa78f37e"></script>
+
+        </head>
+
+
+<body>
+    <header>
+    <nav class="navbar">
+        <div class="nav-title">
+            <a class="home-title" href=https://tduyng.com>~&#x2F;Z</a>
+        </div>
+            <div class="nav-navs">
+                <ul>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/blog/">
+                                blog
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/archive/">
+                                archive
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/projects/">
+                                projects
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/about/">
+                                about
+                                </a>
+                            </li>
+                        <li class="js">
+                        <div role="button" tabindex="0" id="search-button" class="search-icon interactive-icon" title="Click or press $SHORTCUT to open search" aria-label="Click or press $SHORTCUT to open search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                            </svg>
+                        </div>
+                    </li>
+
+                    
+                    
+
+                    <li class="theme-switcher-wrapper js"><div
+        title="Toggle dark&#x2F;light mode"
+        class="theme-switcher"
+        tabindex="0"
+        role="button"
+        aria-label="Toggle dark mode"
+        aria-pressed="false">
+    </div><div
+        title="Reset mode to default"
+        class="theme-resetter"
+        tabindex="0"
+        role="button"
+        aria-hidden="true"
+        aria-label="Reset mode to default">
+    </div>
+
+</li>
+</ul>
+            </div>
+        
+    </nav>
+</header>
+
+    <div class="content">
+
+        
+        
+
+
+
+
+<main>
+    <article>
+        <h1 class="article-title">
+            How I made my GitHub profile README dynamic
+        </h1>
+
+        <ul class="meta"><li>13th May 2024</li>&nbsp;•&nbsp;<li title="1287 words">7 min read</li>&nbsp;•&nbsp;<li>Tags:&nbsp;</li><li><a href=https://tduyng.com/tags/github-action/>github-action</a>,&nbsp;</li><li><a href=https://tduyng.com/tags/profile/>profile</a>,&nbsp;</li><li><a href=https://tduyng.com/tags/readme/>readme</a>,&nbsp;</li><li><a href=https://tduyng.com/tags/dynamic/>dynamic</a>,&nbsp;</li><li><a href=https://tduyng.com/tags/python/>python</a></li></ul><ul class="meta last-updated"><li>Updated on 21st May 2024</li>
+                
+                •&nbsp;<li><a href="https://github.com/tduyng/tduyng.github.io/commits/main/content/blog&#x2F;dynamic-github-profile-readme&#x2F;index.md"  rel="">See changes<small>&nbsp;<span class="arrow-corner">↗</span></small></a></li>
+                
+            
+        </ul>
+
+        
+
+        
+        
+
+        <section class="body">
+            
+            
+            <p><strong>Have you heard about GitHub profile READMEs?</strong></p>
+<p><strong>Did you know you can add a README to your GitHub profile to tell others about yourself and create a really cool profile?</strong></p>
+<p>To do that, you simply create a repository with the same name as your GitHub username. For more details on how to do this and how it works, check out <a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme">GitHub’s guide on managing your profile README</a>.</p>
+<p><strong>Now, how can you customize it to make a cool GitHub profile?</strong></p>
+<p>There are numerous ways to do this. Some people design their profiles using HTML and CSS because README.md files are written in markdown, which supports them. Many individuals add more <a href="https://github.com/tandpfun/skill-icons">icons</a> and <a href="https://github.com/alexandresanlim/Badges4-README.md-Profile">badges</a> to enhance the appearance. You can find various ideas and tools in the repository <a href="https://github.com/abhisheknaiidu/awesome-github-profile-readme">awesome-github-profile-readme</a>.</p>
+<p>Here are a couple of examples of cool profiles:</p>
+<p><a href="https://github.com/JessicaLim8">JessicaLim8</a>
+<img src="img/profile1.webp" alt="JessicaLim8 profile" loading="lazy"></p>
+<p><a href="https://github.com/WaylonWalker">WaylonWalker</a>
+<img src="img/profile2.webp" alt="WaylonWalker profile" loading="lazy"></p>
+<p>However, for me, making something dynamic in the README is even cooler. This means displaying information about repositories, stars, languages written, followers, and more. To achieve this, we often use GitHub Actions to fetch the data and rewrite them to the README.</p>
+<p>Luckily, some folks have already done this for us. Open source is awesome!</p>
+<p>Two popular repositories for this purpose are:</p>
+<ul>
+<li><a href="https://github.com/anuraghazra/github-readme-stats">github-readme-stats</a>: Dynamically generated stats for your GitHub READMEs.</li>
+<li><a href="https://github.com/lowlighter/metrics">metrics</a>: An infographics generator with 30+ plugins and 300+ options to display stats about your GitHub account and render them as SVG, Markdown, PDF, or JSON.</li>
+</ul>
+<p>Both projects are fantastic, but I prefer to use metrics because it offers a wide range of cool features and plugins. You can explore these repositories for more details and examples.</p>
+<p>Here’s an example of <a href="https://github.com/anuraghazra/github-readme-stats">github-readme-stats</a>
+<img src="img/github_stats.webp" alt="Github stats example" loading="lazy"></p>
+<p>and example of my profile using <a href="https://github.com/lowlighter/metrics">metrics</a>
+<img src="img/metrics.svg" alt="My github profile using metrics" loading="lazy"></p>
+<p>Additionally if you write a blog, it would be cool to include your latest post on your GitHub profile. I was inspired by how <a href="https://github.com/simonw">Simon Willison</a> made the content of <a href="https://github.com/simonw/simonw">his README profile</a> dynamic. He wrote a <a href="https://github.com/simonw/simonw/blob/main/build_readme.py">Python script</a> and a <a href="https://github.com/simonw/simonw/blob/main/.github/workflows/build.yml">GitHub action</a> for this job and explained the process in his article <a href="https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/">Building a self-updating profile README for GitHub</a>.</p>
+<p>Here’s how his profile looks like:
+<img src="img/simonw.webp" alt="Simonw profile" loading="lazy"></p>
+<p>Additionally, <a href="https://osc.garden/">Óscar</a> - the creator of <a href="https://github.com/welpo/tabi">Tabi theme</a>, that <a href="https://tduyng.github.io/blog/new-home-for-my-website/">I use on this website</a>, also created a tool called <a href="https://github.com/welpo/doteki">dōteki</a>. <a href="https://osc.garden/blog/doteki-building-a-dynamic-github-profile/">dōteki builds on Simon’s idea</a> but is more complete and flexible, supporting various plugins: <a href="https://doteki.org/docs/category/plugins">Feed, current date, FIGlet, Last.fm and Random choice plugin</a>.</p>
+<p>dōteki supports these features via a GitHub action, making it easier to implement. For anyone looking for a quick and easy solution, I think dōteki is a great choice. Check out the tool and give it a star if you find it useful.</p>
+<p>Thanks so much to Simon and Óscar for your contributions and for sharing your knowledge with the community.</p>
+<p>Personally, I prefer to follow Simon’s original idea and write something from scratch. It helps me understand the different tools better and is more fun. Plus, it allows for more customization.</p>
+<p>Now, it’s time for some coding. Here is the Python script I use to fetch posts from my blog:</p>
+<pre data-lang="python" class="language-python z-code"><code class="language-python" data-lang="python"><span class="z-source z-python"><span class="z-meta z-statement z-import z-python"><span class="z-keyword z-control z-import z-python">import</span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">logging</span></span></span>
+</span><span class="z-source z-python"><span class="z-meta z-statement z-import z-python"><span class="z-keyword z-control z-import z-from z-python">from</span></span><span class="z-meta z-statement z-import z-python"><span class="z-meta z-import-source z-python"> <span class="z-meta z-import-path z-python"><span class="z-meta z-import-name z-python">typing</span></span> <span class="z-meta z-statement z-import z-python"><span class="z-keyword z-control z-import z-python">import</span></span></span></span><span class="z-meta z-statement z-import z-python"></span><span class="z-meta z-statement z-import z-python"> <span class="z-meta z-generic-name z-python">Any</span></span>
+</span><span class="z-source z-python"><span class="z-meta z-statement z-import z-python"><span class="z-keyword z-control z-import z-python">import</span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">pathlib</span></span></span>
+</span><span class="z-source z-python"><span class="z-meta z-statement z-import z-python"><span class="z-keyword z-control z-import z-python">import</span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">feedparser</span></span></span>
+</span><span class="z-source z-python"><span class="z-meta z-statement z-import z-python"><span class="z-keyword z-control z-import z-python">import</span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">requests</span></span></span>
+</span><span class="z-source z-python"><span class="z-meta z-statement z-import z-python"><span class="z-keyword z-control z-import z-python">import</span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">re</span></span></span>
+</span><span class="z-source z-python"><span class="z-meta z-statement z-import z-python"><span class="z-keyword z-control z-import z-from z-python">from</span></span><span class="z-meta z-statement z-import z-python"><span class="z-meta z-import-source z-python"> <span class="z-meta z-import-path z-python"><span class="z-meta z-import-name z-python">datetime</span></span> <span class="z-meta z-statement z-import z-python"><span class="z-keyword z-control z-import z-python">import</span></span></span></span><span class="z-meta z-statement z-import z-python"></span><span class="z-meta z-statement z-import z-python"> <span class="z-meta z-generic-name z-python">datetime</span></span>
+</span><span class="z-source z-python">
+</span><span class="z-source z-python"><span class="z-meta z-qualified-name z-python"><span class="z-variable z-other z-constant z-python">DEFAULT_N</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-constant z-numeric z-integer z-decimal z-python">5</span>
+</span><span class="z-source z-python"><span class="z-meta z-qualified-name z-python"><span class="z-variable z-other z-constant z-python">DEFAULT_DATE_FORMAT</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-constant z-other z-placeholder z-python">%Y</span>-<span class="z-constant z-other z-placeholder z-python">%m</span>-<span class="z-constant z-other z-placeholder z-python">%d</span><span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span>
+</span><span class="z-source z-python">
+</span><span class="z-source z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">root</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">pathlib</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">Path</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-qualified-name z-python"><span class="z-support z-variable z-magic z-python">__file__</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span><span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span><span class="z-meta z-generic-name z-python">parent</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">resolve</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">
+</span><span class="z-source z-python"><span class="z-meta z-function z-python"><span class="z-storage z-type z-function z-python"><span class="z-keyword z-declaration z-function z-python">def</span></span> <span class="z-entity z-name z-function z-python"><span class="z-meta z-generic-name z-python">fetch_feed</span></span></span><span class="z-meta z-function z-parameters z-python"><span class="z-punctuation z-section z-parameters z-begin z-python">(</span></span><span class="z-meta z-function z-parameters z-python"><span class="z-variable z-parameter z-python">url</span></span><span class="z-meta z-function z-parameters z-annotation z-python"><span class="z-punctuation z-separator z-annotation z-parameter z-python">:</span> <span class="z-meta z-qualified-name z-python"><span class="z-support z-type z-python">str</span></span></span><span class="z-meta z-function z-parameters z-python"><span class="z-punctuation z-section z-parameters z-end z-python">)</span></span><span class="z-meta z-function z-python"> </span><span class="z-meta z-function z-annotation z-return z-python"><span class="z-punctuation z-separator z-annotation z-return z-python">-&gt;</span> <span class="z-meta z-item-access z-python"><span class="z-meta z-qualified-name z-python"><span class="z-support z-type z-python">list</span></span></span><span class="z-meta z-item-access z-python"><span class="z-punctuation z-section z-brackets z-begin z-python">[</span></span><span class="z-meta z-item-access z-arguments z-python"><span class="z-meta z-item-access z-python"><span class="z-meta z-qualified-name z-python"><span class="z-support z-type z-python">dict</span></span></span><span class="z-meta z-item-access z-python"><span class="z-punctuation z-section z-brackets z-begin z-python">[</span></span><span class="z-meta z-item-access z-arguments z-python"><span class="z-meta z-qualified-name z-python"><span class="z-support z-type z-python">str</span></span>, <span class="z-meta z-qualified-name z-python"><span class="z-support z-type z-python">str</span></span></span><span class="z-meta z-item-access z-python"><span class="z-punctuation z-section z-brackets z-end z-python">]</span></span></span><span class="z-meta z-item-access z-python"><span class="z-punctuation z-section z-brackets z-end z-python">]</span></span></span><span class="z-meta z-function z-python"><span class="z-punctuation z-section z-function z-begin z-python">:</span></span>
+</span><span class="z-source z-python">    <span class="z-meta z-statement z-exception z-try z-python"><span class="z-keyword z-control z-exception z-try z-python">try</span><span class="z-punctuation z-section z-block z-exception z-try z-python">:</span></span>
+</span><span class="z-source z-python">        <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">response</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">requests</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">get</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">url</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">        <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">response</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">raise_for_status</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">        <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">feed</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">feedparser</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">parse</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">response</span><span class="z-punctuation z-accessor z-dot z-python">.</span><span class="z-meta z-generic-name z-python">content</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">        <span class="z-meta z-statement z-conditional z-if z-python"><span class="z-keyword z-control z-conditional z-if z-python">if</span> <span class="z-keyword z-operator z-logical z-python">not</span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">feed</span><span class="z-punctuation z-accessor z-dot z-python">.</span><span class="z-meta z-generic-name z-python">entries</span></span><span class="z-punctuation z-section z-block z-conditional z-if z-python">:</span></span>
+</span><span class="z-source z-python">            <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">logging</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">error</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python">Malformed feed: no entries found<span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">            <span class="z-keyword z-control z-flow z-return z-python">return</span> <span class="z-meta z-sequence z-list z-empty z-python"><span class="z-punctuation z-section z-sequence z-begin z-python">[</span><span class="z-punctuation z-section z-sequence z-end z-python">]</span></span>
+</span><span class="z-source z-python">    <span class="z-meta z-statement z-exception z-catch z-python"><span class="z-keyword z-control z-exception z-catch z-python">except</span> <span class="z-meta z-generic-name z-python">requests</span>.<span class="z-meta z-generic-name z-python">exceptions</span>.<span class="z-meta z-generic-name z-python">RequestException</span> <span class="z-keyword z-control z-exception z-catch z-as z-python">as</span></span><span class="z-meta z-statement z-exception z-catch z-python"> <span class="z-meta z-generic-name z-python">e</span></span><span class="z-meta z-statement z-exception z-catch z-python"><span class="z-punctuation z-section z-block z-exception z-catch z-python">:</span></span>
+</span><span class="z-source z-python">        <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">logging</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">error</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-storage z-type z-string z-python">f</span><span class="z-meta z-string z-interpolated z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-interpolated z-python"><span class="z-string z-quoted z-double z-python">Error fetching the feed: </span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-begin z-python">{</span><span class="z-source z-python z-embedded"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">e</span></span></span></span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-end z-python">}</span></span><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">        <span class="z-keyword z-control z-flow z-return z-python">return</span> <span class="z-meta z-sequence z-list z-empty z-python"><span class="z-punctuation z-section z-sequence z-begin z-python">[</span><span class="z-punctuation z-section z-sequence z-end z-python">]</span></span>
+</span><span class="z-source z-python">    <span class="z-meta z-statement z-exception z-catch z-python"><span class="z-keyword z-control z-exception z-catch z-python">except</span> <span class="z-support z-type z-exception z-python">Exception</span> <span class="z-keyword z-control z-exception z-catch z-as z-python">as</span></span><span class="z-meta z-statement z-exception z-catch z-python"> <span class="z-meta z-generic-name z-python">e</span></span><span class="z-meta z-statement z-exception z-catch z-python"><span class="z-punctuation z-section z-block z-exception z-catch z-python">:</span></span>
+</span><span class="z-source z-python">        <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">logging</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">error</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-storage z-type z-string z-python">f</span><span class="z-meta z-string z-interpolated z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-interpolated z-python"><span class="z-string z-quoted z-double z-python">Error processing the feed: </span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-begin z-python">{</span><span class="z-source z-python z-embedded"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">e</span></span></span></span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-end z-python">}</span></span><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">        <span class="z-keyword z-control z-flow z-return z-python">return</span> <span class="z-meta z-sequence z-list z-empty z-python"><span class="z-punctuation z-section z-sequence z-begin z-python">[</span><span class="z-punctuation z-section z-sequence z-end z-python">]</span></span>
+</span><span class="z-source z-python">
+</span><span class="z-source z-python">    <span class="z-keyword z-control z-flow z-return z-python">return</span> <span class="z-meta z-sequence z-list z-python"><span class="z-punctuation z-section z-sequence z-begin z-python">[</span>
+</span></span><span class="z-source z-python"><span class="z-meta z-sequence z-list z-python">        <span class="z-meta z-mapping-or-set z-python"><span class="z-punctuation z-section z-mapping-or-set z-begin z-python">{</span>
+</span></span></span><span class="z-source z-python"><span class="z-meta z-sequence z-list z-python"><span class="z-meta z-mapping-or-set z-python"></span><span class="z-meta z-mapping z-python">            </span><span class="z-meta z-mapping z-key z-python"><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python">title<span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span></span><span class="z-meta z-mapping z-python"><span class="z-punctuation z-separator z-mapping z-key-value z-python">:</span></span><span class="z-meta z-mapping z-python"> </span><span class="z-meta z-mapping z-value z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">entry</span><span class="z-punctuation z-accessor z-dot z-python">.</span><span class="z-meta z-generic-name z-python">title</span></span></span><span class="z-meta z-mapping z-python"><span class="z-punctuation z-separator z-mapping z-python">,</span>
+</span></span></span><span class="z-source z-python"><span class="z-meta z-sequence z-list z-python"><span class="z-meta z-mapping z-python">            </span><span class="z-meta z-mapping z-key z-python"><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python">url<span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span></span><span class="z-meta z-mapping z-python"><span class="z-punctuation z-separator z-mapping z-key-value z-python">:</span></span><span class="z-meta z-mapping z-python"> </span><span class="z-meta z-mapping z-value z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">entry</span><span class="z-punctuation z-accessor z-dot z-python">.</span><span class="z-meta z-generic-name z-python">link</span></span></span><span class="z-meta z-mapping z-python"><span class="z-punctuation z-separator z-mapping z-python">,</span>
+</span></span></span><span class="z-source z-python"><span class="z-meta z-sequence z-list z-python"><span class="z-meta z-mapping z-python">            </span><span class="z-meta z-mapping z-key z-python"><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python">date<span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span></span><span class="z-meta z-mapping z-python"><span class="z-punctuation z-separator z-mapping z-key-value z-python">:</span></span><span class="z-meta z-mapping z-python"> </span><span class="z-meta z-mapping z-value z-python"><span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">format_entry_date</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">entry</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span></span><span class="z-meta z-mapping z-python"><span class="z-punctuation z-separator z-mapping z-python">,</span>
+</span></span></span><span class="z-source z-python"><span class="z-meta z-sequence z-list z-python"><span class="z-meta z-mapping z-python">        <span class="z-punctuation z-section z-mapping z-end z-python">}</span></span>
+</span></span><span class="z-source z-python"><span class="z-meta z-sequence z-list z-python">        <span class="z-meta z-expression z-generator z-python"><span class="z-keyword z-control z-loop z-for z-generator z-python">for</span> <span class="z-meta z-generic-name z-python">entry</span> <span class="z-keyword z-control z-loop z-for z-in z-python">in</span></span> <span class="z-meta z-item-access z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">feed</span><span class="z-punctuation z-accessor z-dot z-python">.</span><span class="z-meta z-generic-name z-python">entries</span></span></span><span class="z-meta z-item-access z-python"><span class="z-punctuation z-section z-brackets z-begin z-python">[</span></span><span class="z-meta z-item-access z-arguments z-python"><span class="z-punctuation z-separator z-slice z-python">:</span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-other z-constant z-python">DEFAULT_N</span></span></span><span class="z-meta z-item-access z-python"><span class="z-punctuation z-section z-brackets z-end z-python">]</span></span>
+</span></span><span class="z-source z-python"><span class="z-meta z-sequence z-list z-python">    <span class="z-punctuation z-section z-sequence z-end z-python">]</span></span>
+</span><span class="z-source z-python">
+</span><span class="z-source z-python"><span class="z-meta z-function z-python"><span class="z-storage z-type z-function z-python"><span class="z-keyword z-declaration z-function z-python">def</span></span> <span class="z-entity z-name z-function z-python"><span class="z-meta z-generic-name z-python">format_feed_entry</span></span></span><span class="z-meta z-function z-parameters z-python"><span class="z-punctuation z-section z-parameters z-begin z-python">(</span></span><span class="z-meta z-function z-parameters z-python"><span class="z-variable z-parameter z-python">entry</span></span><span class="z-meta z-function z-parameters z-annotation z-python"><span class="z-punctuation z-separator z-annotation z-parameter z-python">:</span> <span class="z-meta z-item-access z-python"><span class="z-meta z-qualified-name z-python"><span class="z-support z-type z-python">dict</span></span></span><span class="z-meta z-item-access z-python"><span class="z-punctuation z-section z-brackets z-begin z-python">[</span></span><span class="z-meta z-item-access z-arguments z-python"><span class="z-meta z-qualified-name z-python"><span class="z-support z-type z-python">str</span></span>, <span class="z-meta z-qualified-name z-python"><span class="z-support z-type z-python">str</span></span></span><span class="z-meta z-item-access z-python"><span class="z-punctuation z-section z-brackets z-end z-python">]</span></span></span><span class="z-meta z-function z-parameters z-python"><span class="z-punctuation z-section z-parameters z-end z-python">)</span></span><span class="z-meta z-function z-python"> </span><span class="z-meta z-function z-annotation z-return z-python"><span class="z-punctuation z-separator z-annotation z-return z-python">-&gt;</span> <span class="z-meta z-qualified-name z-python"><span class="z-support z-type z-python">str</span></span></span><span class="z-meta z-function z-python"><span class="z-punctuation z-section z-function z-begin z-python">:</span></span>
+</span><span class="z-source z-python">    <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">title</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">entry</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">get</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python">title<span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span><span class="z-punctuation z-separator z-arguments z-python">,</span> <span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python">No Title<span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">    <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">link</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">entry</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">get</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python">url<span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span><span class="z-punctuation z-separator z-arguments z-python">,</span> <span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">    <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">date</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">entry</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">get</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python">date<span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span><span class="z-punctuation z-separator z-arguments z-python">,</span> <span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">
+</span><span class="z-source z-python">    <span class="z-keyword z-control z-flow z-return z-python">return</span> <span class="z-storage z-type z-string z-python">f</span><span class="z-meta z-string z-interpolated z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-interpolated z-python"><span class="z-string z-quoted z-double z-python">[</span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-begin z-python">{</span><span class="z-source z-python z-embedded"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">title</span></span></span></span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-end z-python">}</span></span><span class="z-string z-quoted z-double z-python">](</span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-begin z-python">{</span><span class="z-source z-python z-embedded"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">link</span></span></span></span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-end z-python">}</span></span><span class="z-string z-quoted z-double z-python">) - </span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-begin z-python">{</span><span class="z-source z-python z-embedded"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">date</span></span></span></span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-end z-python">}</span></span><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span>
+</span><span class="z-source z-python">
+</span><span class="z-source z-python"><span class="z-meta z-function z-python"><span class="z-storage z-type z-function z-python"><span class="z-keyword z-declaration z-function z-python">def</span></span> <span class="z-entity z-name z-function z-python"><span class="z-meta z-generic-name z-python">format_entry_date</span></span></span><span class="z-meta z-function z-parameters z-python"><span class="z-punctuation z-section z-parameters z-begin z-python">(</span></span><span class="z-meta z-function z-parameters z-python"><span class="z-variable z-parameter z-python">entry</span></span><span class="z-meta z-function z-parameters z-annotation z-python"><span class="z-punctuation z-separator z-annotation z-parameter z-python">:</span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">Any</span></span></span><span class="z-meta z-function z-parameters z-python"><span class="z-punctuation z-separator z-parameters z-python">,</span> <span class="z-variable z-parameter z-python">date_format</span></span><span class="z-meta z-function z-parameters z-annotation z-python"><span class="z-punctuation z-separator z-annotation z-parameter z-python">:</span> <span class="z-meta z-qualified-name z-python"><span class="z-support z-type z-python">str</span></span> </span><span class="z-meta z-function z-parameters z-default-value z-python"><span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-qualified-name z-python"><span class="z-variable z-other z-constant z-python">DEFAULT_DATE_FORMAT</span></span></span><span class="z-meta z-function z-parameters z-python"><span class="z-punctuation z-section z-parameters z-end z-python">)</span></span><span class="z-meta z-function z-python"> </span><span class="z-meta z-function z-annotation z-return z-python"><span class="z-punctuation z-separator z-annotation z-return z-python">-&gt;</span> <span class="z-meta z-qualified-name z-python"><span class="z-support z-type z-python">str</span></span></span><span class="z-meta z-function z-python"><span class="z-punctuation z-section z-function z-begin z-python">:</span></span>
+</span><span class="z-source z-python">    <span class="z-meta z-statement z-conditional z-if z-python"><span class="z-keyword z-control z-conditional z-if z-python">if</span> <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-support z-function z-builtin z-python">hasattr</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">entry</span></span><span class="z-punctuation z-separator z-arguments z-python">,</span> <span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python">published_parsed<span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span><span class="z-punctuation z-section z-block z-conditional z-if z-python">:</span></span>
+</span><span class="z-source z-python">        <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">published_time</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">datetime</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-keyword z-operator z-arithmetic z-python">*</span><span class="z-meta z-item-access z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">entry</span><span class="z-punctuation z-accessor z-dot z-python">.</span><span class="z-meta z-generic-name z-python">published_parsed</span></span></span><span class="z-meta z-item-access z-python"><span class="z-punctuation z-section z-brackets z-begin z-python">[</span></span><span class="z-meta z-item-access z-arguments z-python"><span class="z-punctuation z-separator z-slice z-python">:</span><span class="z-constant z-numeric z-integer z-decimal z-python">6</span></span><span class="z-meta z-item-access z-python"><span class="z-punctuation z-section z-brackets z-end z-python">]</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">        <span class="z-keyword z-control z-flow z-return z-python">return</span> <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">published_time</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">strftime</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">date_format</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">    <span class="z-keyword z-control z-flow z-return z-python">return</span> <span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span>
+</span><span class="z-source z-python">
+</span><span class="z-source z-python"><span class="z-meta z-function z-python"><span class="z-storage z-type z-function z-python"><span class="z-keyword z-declaration z-function z-python">def</span></span> <span class="z-entity z-name z-function z-python"><span class="z-meta z-generic-name z-python">replace_chunk</span></span></span><span class="z-meta z-function z-parameters z-python"><span class="z-punctuation z-section z-parameters z-begin z-python">(</span></span><span class="z-meta z-function z-parameters z-python"><span class="z-variable z-parameter z-python">content</span><span class="z-punctuation z-separator z-parameters z-python">,</span> <span class="z-variable z-parameter z-python">marker</span><span class="z-punctuation z-separator z-parameters z-python">,</span> <span class="z-variable z-parameter z-python">chunk</span><span class="z-punctuation z-separator z-parameters z-python">,</span> <span class="z-variable z-parameter z-python">inline</span></span><span class="z-meta z-function z-parameters z-default-value z-python"><span class="z-keyword z-operator z-assignment z-python">=</span><span class="z-constant z-language z-python">False</span></span><span class="z-meta z-function z-parameters z-python"><span class="z-punctuation z-section z-parameters z-end z-python">)</span></span><span class="z-meta z-function z-python"><span class="z-punctuation z-section z-function z-begin z-python">:</span></span>
+</span><span class="z-source z-python">    <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">pattern</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-storage z-type z-string z-python">f</span><span class="z-meta z-string z-interpolated z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-interpolated z-python"><span class="z-string z-quoted z-double z-python">&lt;!-- </span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-begin z-python">{</span><span class="z-source z-python z-embedded"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">marker</span></span></span></span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-end z-python">}</span></span><span class="z-string z-quoted z-double z-python"> start --&gt;.*&lt;!-- </span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-begin z-python">{</span><span class="z-source z-python z-embedded"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">marker</span></span></span></span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-end z-python">}</span></span><span class="z-string z-quoted z-double z-python"> end --&gt;<span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span>
+</span><span class="z-source z-python">    <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">r</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">re</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">compile</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">pattern</span></span><span class="z-punctuation z-separator z-arguments z-python">,</span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">re</span><span class="z-punctuation z-accessor z-dot z-python">.</span><span class="z-variable z-other z-constant z-python">DOTALL</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">    
+</span><span class="z-source z-python">    <span class="z-meta z-statement z-conditional z-if z-python"><span class="z-keyword z-control z-conditional z-if z-python">if</span> <span class="z-keyword z-operator z-logical z-python">not</span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">inline</span></span><span class="z-punctuation z-section z-block z-conditional z-if z-python">:</span></span>
+</span><span class="z-source z-python">        <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">chunk</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-storage z-type z-string z-python">f</span><span class="z-meta z-string z-interpolated z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-interpolated z-python"><span class="z-string z-quoted z-double z-python"><span class="z-constant z-character z-escape z-python">\n</span></span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-begin z-python">{</span><span class="z-source z-python z-embedded"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">chunk</span></span></span></span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-end z-python">}</span></span><span class="z-string z-quoted z-double z-python"><span class="z-constant z-character z-escape z-python">\n</span><span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span>
+</span><span class="z-source z-python">        
+</span><span class="z-source z-python">    <span class="z-keyword z-control z-flow z-return z-python">return</span> <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">r</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">sub</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-storage z-type z-string z-python">f</span><span class="z-meta z-string z-interpolated z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-interpolated z-python"><span class="z-string z-quoted z-double z-python">&lt;!-- </span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-begin z-python">{</span><span class="z-source z-python z-embedded"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">marker</span></span></span></span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-end z-python">}</span></span><span class="z-string z-quoted z-double z-python"> start --&gt;</span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-begin z-python">{</span><span class="z-source z-python z-embedded"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">chunk</span></span></span></span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-end z-python">}</span></span><span class="z-string z-quoted z-double z-python">&lt;!-- </span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-begin z-python">{</span><span class="z-source z-python z-embedded"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">marker</span></span></span></span><span class="z-meta z-interpolation z-python"><span class="z-punctuation z-section z-interpolation z-end z-python">}</span></span><span class="z-string z-quoted z-double z-python"> end --&gt;<span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span><span class="z-punctuation z-separator z-arguments z-python">,</span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">content</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">
+</span><span class="z-source z-python">
+</span><span class="z-source z-python"><span class="z-meta z-statement z-conditional z-if z-python"><span class="z-keyword z-control z-conditional z-if z-python">if</span> <span class="z-meta z-qualified-name z-python"><span class="z-support z-variable z-magic z-python">__name__</span></span> <span class="z-keyword z-operator z-comparison z-python">==</span> <span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python">__main__<span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span><span class="z-punctuation z-section z-block z-conditional z-if z-python">:</span></span>
+</span><span class="z-source z-python">    <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">readme</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">root</span></span> <span class="z-keyword z-operator z-arithmetic z-python">/</span> <span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python">README.md<span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span>
+</span><span class="z-source z-python">    <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">url</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python">https://tduyng.github.io/atom.xml<span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span>
+</span><span class="z-source z-python">    <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">feeds</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">fetch_feed</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">url</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">    <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">feeds_md</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-constant z-character z-escape z-python">\n</span><span class="z-constant z-character z-escape z-python">\n</span><span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span><span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">join</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-sequence z-list z-python"><span class="z-punctuation z-section z-sequence z-begin z-python">[</span><span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">format_feed_entry</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">feed</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span> <span class="z-meta z-expression z-generator z-python"><span class="z-keyword z-control z-loop z-for z-generator z-python">for</span> <span class="z-meta z-generic-name z-python">feed</span> <span class="z-keyword z-control z-loop z-for z-in z-python">in</span></span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">feeds</span></span><span class="z-punctuation z-section z-sequence z-end z-python">]</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">    <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">readme_contents</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">readme</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">read_text</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">    <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">rewritten</span></span> <span class="z-keyword z-operator z-assignment z-python">=</span> <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">replace_chunk</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">readme_contents</span></span><span class="z-punctuation z-separator z-arguments z-python">,</span> <span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python"><span class="z-punctuation z-definition z-string z-begin z-python">&quot;</span></span></span><span class="z-meta z-string z-python"><span class="z-string z-quoted z-double z-python">blog<span class="z-punctuation z-definition z-string z-end z-python">&quot;</span></span></span><span class="z-punctuation z-separator z-arguments z-python">,</span> <span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">feeds_md</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">    <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">readme</span></span><span class="z-meta z-qualified-name z-python"><span class="z-punctuation z-accessor z-dot z-python">.</span></span><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-meta z-generic-name z-python">write_text</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">rewritten</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span><span class="z-source z-python">    <span class="z-meta z-function-call z-python"><span class="z-meta z-qualified-name z-python"><span class="z-variable z-function z-python"><span class="z-support z-function z-builtin z-python">print</span></span></span></span><span class="z-meta z-function-call z-arguments z-python"><span class="z-punctuation z-section z-arguments z-begin z-python">(</span><span class="z-meta z-qualified-name z-python"><span class="z-meta z-generic-name z-python">feeds_md</span></span><span class="z-punctuation z-section z-arguments z-end z-python">)</span></span>
+</span></code></pre>
+<p>The script fetches data from the <strong><code>atom.xml</code></strong> feed on my blog and retrieves the five latest posts.</p>
+<p>Here is an example of the result of the python script:</p>
+<pre data-lang="markdown" class="language-markdown z-code"><code class="language-markdown" data-lang="markdown"><span class="z-text z-html z-markdown"><span class="z-meta z-paragraph z-markdown"><span class="z-meta z-link z-inline z-markdown"><span class="z-punctuation z-definition z-link z-begin z-markdown">[</span></span><span class="z-meta z-link z-inline z-description z-markdown">How I made my GitHub profile README dynamic</span><span class="z-meta z-link z-inline z-markdown"><span class="z-punctuation z-definition z-link z-end z-markdown">]</span></span><span class="z-meta z-link z-inline z-markdown"><span class="z-punctuation z-definition z-metadata z-begin z-markdown">(</span></span><span class="z-meta z-link z-inline z-markdown"><span class="z-markup z-underline z-link z-markdown">https://tduyng.github.io/blog/dynamic-github-profile-readme/</span><span class="z-punctuation z-definition z-metadata z-end z-markdown">)</span></span> - 2024-05-13
+</span></span><span class="z-text z-html z-markdown"><span class="z-meta z-paragraph z-markdown">
+</span></span><span class="z-text z-html z-markdown"><span class="z-meta z-paragraph z-markdown"><span class="z-meta z-link z-inline z-markdown"><span class="z-punctuation z-definition z-link z-begin z-markdown">[</span></span><span class="z-meta z-link z-inline z-description z-markdown">New home for my website</span><span class="z-meta z-link z-inline z-markdown"><span class="z-punctuation z-definition z-link z-end z-markdown">]</span></span><span class="z-meta z-link z-inline z-markdown"><span class="z-punctuation z-definition z-metadata z-begin z-markdown">(</span></span><span class="z-meta z-link z-inline z-markdown"><span class="z-markup z-underline z-link z-markdown">https://tduyng.github.io/blog/new-home-for-my-website/</span><span class="z-punctuation z-definition z-metadata z-end z-markdown">)</span></span> - 2024-05-11
+</span></span><span class="z-text z-html z-markdown"><span class="z-meta z-paragraph z-markdown">
+</span></span><span class="z-text z-html z-markdown"><span class="z-meta z-paragraph z-markdown"><span class="z-meta z-link z-inline z-markdown"><span class="z-punctuation z-definition z-link z-begin z-markdown">[</span></span><span class="z-meta z-link z-inline z-description z-markdown">Start a new journey</span><span class="z-meta z-link z-inline z-markdown"><span class="z-punctuation z-definition z-link z-end z-markdown">]</span></span><span class="z-meta z-link z-inline z-markdown"><span class="z-punctuation z-definition z-metadata z-begin z-markdown">(</span></span><span class="z-meta z-link z-inline z-markdown"><span class="z-markup z-underline z-link z-markdown">https://tduyng.github.io/blog/start-a-new-journey/</span><span class="z-punctuation z-definition z-metadata z-end z-markdown">)</span></span> - 2021-05-01
+</span></span><span class="z-text z-html z-markdown"><span class="z-meta z-paragraph z-markdown">
+</span></span><span class="z-text z-html z-markdown"><span class="z-meta z-paragraph z-markdown"><span class="z-meta z-link z-inline z-markdown"><span class="z-punctuation z-definition z-link z-begin z-markdown">[</span></span><span class="z-meta z-link z-inline z-description z-markdown">Why use Docker compose</span><span class="z-meta z-link z-inline z-markdown"><span class="z-punctuation z-definition z-link z-end z-markdown">]</span></span><span class="z-meta z-link z-inline z-markdown"><span class="z-punctuation z-definition z-metadata z-begin z-markdown">(</span></span><span class="z-meta z-link z-inline z-markdown"><span class="z-markup z-underline z-link z-markdown">https://tduyng.github.io/blog/why-use-dockercompose/</span><span class="z-punctuation z-definition z-metadata z-end z-markdown">)</span></span> - 2021-01-25
+</span></span><span class="z-text z-html z-markdown"><span class="z-meta z-paragraph z-markdown">
+</span></span><span class="z-text z-html z-markdown"><span class="z-meta z-paragraph z-markdown"><span class="z-meta z-link z-inline z-markdown"><span class="z-punctuation z-definition z-link z-begin z-markdown">[</span></span><span class="z-meta z-link z-inline z-description z-markdown">Create simple web app Nodejs with Docker</span><span class="z-meta z-link z-inline z-markdown"><span class="z-punctuation z-definition z-link z-end z-markdown">]</span></span><span class="z-meta z-link z-inline z-markdown"><span class="z-punctuation z-definition z-metadata z-begin z-markdown">(</span></span><span class="z-meta z-link z-inline z-markdown"><span class="z-markup z-underline z-link z-markdown">https://tduyng.github.io/blog/create-simple-project-nodejs-with-docker/</span><span class="z-punctuation z-definition z-metadata z-end z-markdown">)</span></span> - 2020-12-22
+</span></span></code></pre>
+<p>Then the result will be inserted between the following sections in my README:</p>
+<pre data-lang="markdown" class="language-markdown z-code"><code class="language-markdown" data-lang="markdown"><span class="z-text z-html z-markdown"><span class="z-meta z-disable-markdown"><span class="z-comment z-block z-html"><span class="z-punctuation z-definition z-comment z-begin z-html">&lt;!--</span> blog start <span class="z-punctuation z-definition z-comment z-end z-html">--&gt;</span></span></span><span class="z-meta z-disable-markdown">
+</span></span><span class="z-text z-html z-markdown"><span class="z-meta z-disable-markdown"><span class="z-comment z-block z-html"><span class="z-punctuation z-definition z-comment z-begin z-html">&lt;!--</span> blog end <span class="z-punctuation z-definition z-comment z-end z-html">--&gt;</span></span></span><span class="z-meta z-disable-markdown">
+</span></span></code></pre>
+<p>To ensure the script functions properly, we should include that comment in our README.md file (before running the script).</p>
+<p>You can find the complete source code for <a href="https://github.com/tduyng/tduyng/blob/master/feed.py">this script</a> in my profile repository.</p>
+<p>Integrating it with GitHub Actions is quite simple:</p>
+<pre data-lang="yaml" class="language-yaml z-code"><code class="language-yaml" data-lang="yaml"><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">name</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">Fetch latest posts from blog for README</span>
+</span><span class="z-source z-yaml">
+</span><span class="z-source z-yaml"><span class="z-constant z-language z-boolean z-yaml">on</span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">push</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">workflow_dispatch</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">schedule</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">    <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">cron</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-quoted z-double z-yaml"><span class="z-punctuation z-definition z-string z-begin z-yaml">&quot;</span>0 0 * * *<span class="z-punctuation z-definition z-string z-end z-yaml">&quot;</span></span> <span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span> 00:00 AM every day
+</span></span><span class="z-source z-yaml">
+</span><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">jobs</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">build</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">    <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">runs-on</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">ubuntu-latest</span>
+</span><span class="z-source z-yaml">    <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">steps</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">    <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">uses</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">actions/checkout@v4</span>
+</span><span class="z-source z-yaml">    <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">uses</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">actions/setup-python@v5</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">with</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">        <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">python-version</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-quoted z-single z-yaml"><span class="z-punctuation z-definition z-string z-begin z-yaml">&#39;</span>3.12<span class="z-punctuation z-definition z-string z-end z-yaml">&#39;</span></span>
+</span><span class="z-source z-yaml">    <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">uses</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">actions/cache@v4</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">name</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">Configure pip caching</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">with</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">        <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">path</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">~/.cache/pip</span>
+</span><span class="z-source z-yaml">        <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">key</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">${{ runner.os }}-pip-${{ hashFiles(&#39;**/requirements.txt&#39;) }}</span>
+</span><span class="z-source z-yaml">        <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">restore-keys</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-keyword z-control z-flow z-block-scalar z-literal z-yaml">|</span>
+</span><span class="z-source z-yaml"><span class="z-string z-unquoted z-block z-yaml">          ${{ runner.os }}-pip-
+</span></span><span class="z-source z-yaml"><span class="z-string z-unquoted z-block z-yaml"></span>    <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">name</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">Install Python dependencies</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">run</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-keyword z-control z-flow z-block-scalar z-literal z-yaml">|</span>
+</span><span class="z-source z-yaml"><span class="z-string z-unquoted z-block z-yaml">        python -m pip install -r requirements.txt
+</span></span><span class="z-source z-yaml"><span class="z-string z-unquoted z-block z-yaml"></span>    <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">name</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">Update README</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">run</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-keyword z-control z-flow z-block-scalar z-literal z-yaml">|</span><span class="z-storage z-modifier z-chomping-indicator z-yaml">-</span>
+</span><span class="z-source z-yaml"><span class="z-string z-unquoted z-block z-yaml">        python feed.py
+</span></span><span class="z-source z-yaml"><span class="z-string z-unquoted z-block z-yaml"></span>    <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">name</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">Commit and push if changed</span>
+</span><span class="z-source z-yaml">      <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">run</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-keyword z-control z-flow z-block-scalar z-literal z-yaml">|</span><span class="z-storage z-modifier z-chomping-indicator z-yaml">-</span>
+</span><span class="z-source z-yaml"><span class="z-string z-unquoted z-block z-yaml">        git diff
+</span></span><span class="z-source z-yaml"><span class="z-string z-unquoted z-block z-yaml">        git config --global user.email &quot;${{ vars.USER_EMAIL }}&quot;
+</span></span><span class="z-source z-yaml"><span class="z-string z-unquoted z-block z-yaml">        git config --global user.name &quot;${{ vars.USER_NAME }}&quot;
+</span></span><span class="z-source z-yaml"><span class="z-string z-unquoted z-block z-yaml">        git add -A
+</span></span><span class="z-source z-yaml"><span class="z-string z-unquoted z-block z-yaml">        git commit -m &quot;chore: update blog posts&quot; || exit 0
+</span></span><span class="z-source z-yaml"><span class="z-string z-unquoted z-block z-yaml">        git push
+</span></span><span class="z-source z-yaml"><span class="z-string z-unquoted z-block z-yaml">
+</span></span></code></pre>
+<p>To ensure your information remains secure, you can set <strong><code>USER_EMAIL</code></strong> and <strong><code>USER_NAME</code></strong> in the repository environment. After checking the differences for the latest posts, if there are any, GitHub Actions will then create a new commit and update your GitHub account’s main/master branch.</p>
+<p>And that’s it! With the script and GitHub actions, all the information will update automatically.</p>
+<p>Here’s how my profile looks now:
+<img src="img/tduyng.webp" alt="Simonw profile" loading="lazy"></p>
+<p>Thank you for reading this far. I hope this method proves helpful to you. Feel free to read the comments or provide feedback on <a href="https://tduyng.medium.com/how-i-made-my-github-profile-readme-dynamic-933967d268ea">my medium post</a>.</p>
+<p>Happy coding!</p>
+
+        </section>
+
+        
+        
+        
+        
+
+        
+            
+            
+            
+
+            
+                
+                
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+
+        
+        
+
+        
+                
+                
+                    
+                        
+                        
+                        
+                    
+                    
+                        
+                        
+                        
+                    
+                
+                
+            <nav class="full-width article-navigation">
+                <div><a href="https://tduyng.com/blog/new-home-for-my-website/" aria-label="Prev" aria-describedby="left_title"><span class="arrow">←</span>&nbsp;Prev</a>
+                <p aria-hidden="true" id="left_title">New home for my website</p></div>
+                <div><a href="https://tduyng.com/blog/dynamic-github-profile-with-bun-typescript/" aria-label="Next" aria-describedby="right_title">Next&nbsp;<span class="arrow">→</span></a>
+                <p aria-hidden="true" id="right_title">Dynamic Github profile with Bun and Typescript</p></div>
+            </nav>
+        
+            
+
+<div id="comments" class="comments"
+
+
+    data-repo="tduyng&#x2F;tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    
+        data-mapping="specific"
+        data-term="dynamic-github-profile-readme"
+    
+    data-strict="1"
+    data-reactions-enabled="1"
+    
+        data-input-position="top"
+    
+    data-light-theme="noborder_light"
+    data-dark-theme="noborder_dark"
+    
+        data-lang="en"
+    
+    data-lazy-loading="true"
+    >
+
+
+
+
+    <script src="https://tduyng.com/js/giscus.min.js" async></script>
+
+
+<noscript>You need JavaScript to view the comments.</noscript>
+</div>
+
+        
+
+    </article>
+</main>
+
+    <div id="button-container">
+        
+        
+
+        
+        
+            <a href="#comments" id="comments-button" class="no-hover-padding" title="Go to the comments section">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" fill-rule="evenodd"/></svg>
+            </a>
+        
+
+        
+        <a href="#" id="top-button" class="no-hover-padding" title="Go to the top of the page">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"/></svg>
+        </a>
+    </div>
+
+
+<span id="copy-success" class="hidden">
+        Copied!
+    </span>
+    <span id="copy-init" class="hidden">
+        Copy code to clipboard
+    </span>
+    <script defer src="https://tduyng.com/js/copyCodeToClipboard.min.js"></script><script defer src="https://tduyng.com/js/footnoteBacklinks.min.js"></script>
+    </div>
+    <footer>
+    <section>
+        <nav class="socials nav-navs">
+                <ul>
+                    
+                    
+                    
+                    <li>
+                        <a class="nav-links no-hover-padding social" rel=""  href=https://tduyng.com/atom.xml>
+                        <img alt="feed" title="feed" src="https://tduyng.com/social_icons/rss.svg">
+                        </a>
+                    </li><li class="js"><a class="nav-links no-hover-padding social" href="#" data-encoded-email="aGlAdGR1eW5nLmNvbQo="><img alt="email" title="email" src="https://tduyng.com/social_icons/email.svg">
+                            </a>
+                        </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://github.com/tduyng/>
+                                    <img alt=github title=github src="https://tduyng.com/social_icons/github.svg">
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://www.linkedin.com/in/tienduy-nguyen/>
+                                    <img alt=linkedin title=linkedin src="https://tduyng.com/social_icons/linkedin.svg">
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://twitter.com/tduyng>
+                                    <img alt=x title=x src="https://tduyng.com/social_icons/twitter.svg">
+                                </a>
+                            </li>
+                        
+                    
+                </ul>
+            
+        </nav>
+
+        
+        <nav class="nav-navs">
+                <small>
+                    <ul>
+                        
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;subscribe">
+                                subscribe
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;about">
+                                about
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;privacy">
+                                privacy policy
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;license">
+                                license
+                            </a>
+                        </li>
+                    
+                    </ul>
+                </small>
+        
+        </nav>
+
+        <div class="credits">
+            <small>
+                
+
+                
+                Powered by
+                <a rel=""  href="https://www.getzola.org">Zola</a>
+                &amp;
+                <a rel=""  href="https://github.com/welpo/tabi">tabi</a>
+
+                </small>
+        </div>
+    </section>
+
+    <script src="https://tduyng.com/js/decodeMail.min.js" async></script><div id="searchModal" class="search-modal js" role="dialog" aria-labelledby="modalTitle">
+    <h1 id="modalTitle" class="visually-hidden">Search</h1>
+    <div id="modal-content">
+        <div id="searchBar">
+            <div class="search-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                    <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                </svg>
+            </div>
+            <input id="searchInput" role="combobox" autocomplete="off" spellcheck="false" aria-expanded="false" aria-controls="results-container" placeholder="Search…"/>
+            <div id="clear-search" class="close-icon interactive-icon" tabindex="0" role="button" title="Clear search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                </svg>
+            </div>
+        </div>
+        <div id="results-container">
+            <div id="results-info"><span id="zero_results"> No results</span>
+                <span id="one_results"> $NUMBER result</span>
+                <span id="many_results"> $NUMBER results</span><span id="two_results"> $NUMBER results</span>
+                <span id="few_results"> $NUMBER results</span>
+            </div>
+            <div id="results" role="listbox"></div>
+        </div>
+    </div>
+</div>
+</footer>
+
+</body>
+
+</html>

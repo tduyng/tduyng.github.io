@@ -1,0 +1,853 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https://tduyng.com/">
+
+    
+    <title>Basic Setup Webpack • ~/Z</title>
+
+    
+    
+        <link rel="icon" type="image/png" href="https://tduyng.com/img/logo.webp"/>
+    
+    
+        <link rel=icon href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105 55"><text y=".7em" font-size="82">Z</text></svg>'>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="~/Z" href="https://tduyng.com/atom.xml">
+
+    
+    
+    
+        <link rel="stylesheet" href="https://tduyng.com/custom_subset.css?h=753f2b519893883e57d5">
+    
+
+    
+        <link rel="stylesheet" href="https://tduyng.com/main.css?h=571d6d2a51c7448bc60a" />
+
+    <meta name="color-scheme" content="light dark" />
+        <meta name="theme-color" content="#087e96" />
+        <meta name="description" content="Learn the fundamental steps for setting up Webpack to optimize and bundle your web assets efficiently." />
+        <meta property="og:description" content="Learn the fundamental steps for setting up Webpack to optimize and bundle your web assets efficiently." />
+
+    
+        <meta name="robots" content="index, nofollow" />
+    
+
+    <meta property="og:title" content="Basic Setup Webpack" />
+    <meta property="og:type" content="article" />
+
+    
+        
+        
+        
+
+        
+        
+            
+            
+            
+                
+            
+        
+
+        
+        <meta property="og:image" content="https://tduyng.com/img/social_card.webp?h=cf7fe2771b2b1f5c004f" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="675" />
+        <meta name="twitter:image" content="https://tduyng.com/img/social_card.webp?h=cf7fe2771b2b1f5c004f" />
+        <meta name="twitter:card" content="summary_large_image" />
+    
+
+    <meta property="og:locale" content="en_GB" />
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;tduyng.com&#x2F;blog&#x2F;basic-setup-webpack&#x2F;" /><meta property="og:site_name" content="~&#x2F;Z"><meta http-equiv="Content-Security-Policy"
+content="default-src 'self';font-src &#x27;self&#x27; data:;img-src &#x27;self&#x27; https:&#x2F;&#x2F;* data:;media-src &#x27;self&#x27; https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;;style-src &#x27;self&#x27;;frame-src player.vimeo.com https:&#x2F;&#x2F;www.youtube-nocookie.com giscus.app;connect-src 'self' *.umami.dev analytics.eu.umami.is;script-src 'self' analytics.eu.umami.is  giscus.app 'self'">
+
+        <noscript><link rel="stylesheet" href="https://tduyng.com/no_js.css"/></noscript>
+        <script type="text/javascript" src="https://tduyng.com/js/initializeTheme.min.js"></script>
+        <script defer src="https://tduyng.com/js/themeSwitcher.min.js"></script>
+
+
+
+
+    <script async defer
+    
+        data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+        src="https://analytics.eu.umami.is/script.js"
+    
+    data-do-not-track="true">
+    </script>
+
+    
+
+        <script defer src="https://tduyng.com/js/searchElasticlunr.min.js?h=2950d57f80c9fa78f37e"></script>
+
+        </head>
+
+
+<body>
+    <header>
+    <nav class="navbar">
+        <div class="nav-title">
+            <a class="home-title" href=https://tduyng.com>~&#x2F;Z</a>
+        </div>
+            <div class="nav-navs">
+                <ul>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/blog/">
+                                blog
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/archive/">
+                                archive
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/projects/">
+                                projects
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/about/">
+                                about
+                                </a>
+                            </li>
+                        <li class="js">
+                        <div role="button" tabindex="0" id="search-button" class="search-icon interactive-icon" title="Click or press $SHORTCUT to open search" aria-label="Click or press $SHORTCUT to open search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                            </svg>
+                        </div>
+                    </li>
+
+                    
+                    
+
+                    <li class="theme-switcher-wrapper js"><div
+        title="Toggle dark&#x2F;light mode"
+        class="theme-switcher"
+        tabindex="0"
+        role="button"
+        aria-label="Toggle dark mode"
+        aria-pressed="false">
+    </div><div
+        title="Reset mode to default"
+        class="theme-resetter"
+        tabindex="0"
+        role="button"
+        aria-hidden="true"
+        aria-label="Reset mode to default">
+    </div>
+
+</li>
+</ul>
+            </div>
+        
+    </nav>
+</header>
+
+    <div class="content">
+
+        
+        
+
+
+
+
+<main>
+    <article>
+        <h1 class="article-title">
+            Basic Setup Webpack
+        </h1>
+
+        <ul class="meta"><li>3rd Nov 2020</li>&nbsp;•&nbsp;<li title="1593 words">8 min read</li>&nbsp;•&nbsp;<li>Tags:&nbsp;</li><li><a href=https://tduyng.com/tags/webpack/>webpack</a></li>
+        </ul>
+
+        
+
+        
+        
+
+        <section class="body">
+            
+            
+            <p>Webpack fundamentals for fast learning and step by step to setup a project with webpack.</p>
+<h2 id="webpack-basics"><a class="header-anchor no-hover-padding" href="#webpack-basics" aria-label="Anchor link for: webpack-basics"><span class="link-icon" aria-hidden="true"></span></a>
+Webpack basics</h2>
+<p><code>Webpack</code> is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging …</p>
+<p>Check more information on <a href="https://webpack.js.org/">Webpack website</a></p>
+<h3 id="setup-a-webpack-project"><a class="header-anchor no-hover-padding" href="#setup-a-webpack-project" aria-label="Anchor link for: setup-a-webpack-project"><span class="link-icon" aria-hidden="true"></span></a>
+Setup a webpack project</h3>
+<ul>
+<li>Create project and init <code>package.json</code> file<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> mkdir webpack-basic</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> cd webpack-basic</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> npm init<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>y</span></span>
+</span></code></pre>
+</li>
+<li>In the root project create <code>public</code> folder and <code>index.html file</code><pre data-lang="html" class="language-html z-code"><code class="language-html" data-lang="html"><span class="z-text z-html z-basic"><span class="z-meta z-tag z-sgml z-doctype z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;!</span><span class="z-keyword z-declaration z-doctype z-html">DOCTYPE</span> <span class="z-constant z-language z-doctype z-html">html</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">  <span class="z-meta z-tag z-structure z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-structure z-any z-html">html</span> <span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">lang</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span>en<span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic">  <span class="z-meta z-tag z-structure z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-structure z-any z-html">head</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">    <span class="z-meta z-tag z-inline z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-inline z-any z-html">meta</span> <span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">charset</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span>UTF-8<span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">    <span class="z-meta z-tag z-inline z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-inline z-any z-html">meta</span> <span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">name</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span>viewport<span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span> <span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">content</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span>width=device-width, initial-scale=1.0<span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">    <span class="z-meta z-tag z-inline z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-inline z-any z-html">title</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>Document<span class="z-meta z-tag z-inline z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-inline z-any z-html">title</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">  <span class="z-meta z-tag z-structure z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-structure z-any z-html">head</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic">  <span class="z-meta z-tag z-structure z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-structure z-any z-html">body</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">    <span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-block z-any z-html">div</span> <span class="z-meta z-attribute-with-value z-id z-html"><span class="z-entity z-other z-attribute-name z-id z-html">id</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span></span><span class="z-string z-quoted z-double z-html"><span class="z-meta z-toc-list z-id z-html">root</span><span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">      <span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-block z-any z-html">h1</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>Webpack basic<span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-block z-any z-html">h1</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">    <span class="z-meta z-tag z-block z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-block z-any z-html">div</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">    <span class="z-meta z-tag z-script z-begin z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;</span><span class="z-entity z-name z-tag z-script z-html">script</span></span><span class="z-meta z-tag z-script z-begin z-html"> <span class="z-meta z-attribute-with-value z-html"><span class="z-entity z-other z-attribute-name z-html">src</span><span class="z-punctuation z-separator z-key-value z-html">=</span><span class="z-string z-quoted z-double z-html"><span class="z-punctuation z-definition z-string z-begin z-html">&quot;</span>../dist/bundle.js<span class="z-punctuation z-definition z-string z-end z-html">&quot;</span></span></span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span><span class="z-meta z-tag z-script z-end z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-script z-html">script</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">  <span class="z-meta z-tag z-structure z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-structure z-any z-html">body</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span><span class="z-text z-html z-basic">
+</span><span class="z-text z-html z-basic"><span class="z-meta z-tag z-structure z-any z-html"><span class="z-punctuation z-definition z-tag z-begin z-html">&lt;/</span><span class="z-entity z-name z-tag z-structure z-any z-html">html</span><span class="z-punctuation z-definition z-tag z-end z-html">&gt;</span></span>
+</span></code></pre>
+</li>
+</ul>
+<h3 id="setup-babel"><a class="header-anchor no-hover-padding" href="#setup-babel" aria-label="Anchor link for: setup-babel"><span class="link-icon" aria-hidden="true"></span></a>
+Setup Babel</h3>
+<p>Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments.</p>
+<p>See the website <a href="https://babeljs.io/">babeljs.io</a> for more information.</p>
+<ul>
+<li>
+<p>Installation</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> yarn add @babel/core @babel/preset-env babel-loader</span>
+</span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> Or using npm</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> npm i<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>D</span> @babel/core @babel/preset-env babel-loader</span>
+</span></code></pre>
+<ul>
+<li><code>@babel/core</code>: Core of babel contains algorithms of its</li>
+<li><code>@babel/preset-env</code>: is a smart preset that allows you to use the latest JavaScript without needing to micromanage which syntax transforms (and optionally, browser polyfills) are needed by your target environment(s). This both makes your life easier and JavaScript bundles smaller!. Check official website of <a href="https://babeljs.io/docs/en/babel-preset-env#:~:text=%40babel%2Fpreset%2Denv%20is,Install">@babel/preset-env</a> for more details.</li>
+<li><code>babel-loader</code>: This package allows transpiling JavaScript files using Babel and webpack. Check <a href="https://github.com/babel/babel-loader">babel-loader github</a>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="install-style-loader-file-loader"><a class="header-anchor no-hover-padding" href="#install-style-loader-file-loader" aria-label="Anchor link for: install-style-loader-file-loader"><span class="link-icon" aria-hidden="true"></span></a>
+Install Style-loader &amp; File loader</h3>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> yarn add css-loader file-loader sass sass-loader style-loader<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>D</span></span>
+</span></code></pre>
+<ul>
+<li><code>style-loader</code>, <code>css-loader</code>: help you to import <code>css</code> into <code>js</code> file</li>
+<li><code>sass</code>, <code>sass-loader</code> help you compile <code>scss</code> to <code>css</code></li>
+<li><code>file-loader</code>: help you import file as <code>image</code>, <code>video</code> to <code>js</code> file</li>
+</ul>
+<h2 id="setup-webpack"><a class="header-anchor no-hover-padding" href="#setup-webpack" aria-label="Anchor link for: setup-webpack"><span class="link-icon" aria-hidden="true"></span></a>
+Setup Webpack</h2>
+<ul>
+<li>
+<p>Installation</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> npm install webpack webpack-cli webpack-dev-server<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>D</span></span>
+</span></code></pre>
+<ul>
+<li><code>webpack</code>: core of webpack</li>
+<li><code>webpack-cli</code>: allow us to use command of webpack on the terminal</li>
+<li><code>webpack-dev-server</code>: can be use to create a <code>local server</code> for dev environment</li>
+</ul>
+</li>
+<li>
+<p>Configuration</p>
+<p>Create <code>webpack.config.js</code> file in the root project and paste the following code.</p>
+<pre data-lang="js" class="language-js z-code"><code class="language-js" data-lang="js"><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">path</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-meta z-function-call z-ts"><span class="z-support z-function z-ts">require</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>path<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-meta z-brace z-round z-ts">)</span></span>
+</span><span class="z-source z-ts"><span class="z-support z-type z-object z-module z-ts">module</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-type z-object z-module z-ts">exports</span> <span class="z-keyword z-operator z-assignment z-ts">=</span><span class="z-meta z-arrow z-ts"> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">env</span><span class="z-punctuation z-separator z-parameter z-ts">,</span> <span class="z-variable z-parameter z-ts">agrv</span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span> </span><span class="z-meta z-arrow z-ts"><span class="z-storage z-type z-function z-arrow z-ts">=&gt;</span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">isDev</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-variable z-other z-object z-ts">agrv</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-variable z-other z-property z-ts">mode</span> <span class="z-keyword z-operator z-comparison z-ts">===</span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>development<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span></span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-keyword z-control z-flow z-ts">return</span><span class="z-meta z-objectliteral z-ts"> <span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts">    <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">entry</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>./src/index.js<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts">    <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">module</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">      <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">rules</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span><span class="z-meta z-array z-literal z-ts"> <span class="z-meta z-brace z-square z-ts">[</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts">        <span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts">          <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">test</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span><span class="z-string z-regexp z-ts"> <span class="z-punctuation z-definition z-string z-begin z-ts">/</span><span class="z-constant z-character z-escape z-backslash z-regexp">\.</span><span class="z-meta z-group z-regexp"><span class="z-punctuation z-definition z-group z-regexp">(</span>js<span class="z-keyword z-operator z-or z-regexp">|</span>jsx<span class="z-punctuation z-definition z-group z-regexp">)</span></span><span class="z-keyword z-control z-anchor z-regexp">$</span><span class="z-punctuation z-definition z-string z-end z-ts">/</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts">          <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">exclude</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span><span class="z-string z-regexp z-ts"> <span class="z-punctuation z-definition z-string z-begin z-ts">/</span><span class="z-meta z-group z-regexp"><span class="z-punctuation z-definition z-group z-regexp">(</span>node_modules<span class="z-keyword z-operator z-or z-regexp">|</span>bower_components<span class="z-punctuation z-definition z-group z-regexp">)</span></span><span class="z-punctuation z-definition z-string z-end z-ts">/</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts">          <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">use</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">            <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">loader</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>babel-loader<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">            <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">options</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">              <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">presets</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span><span class="z-meta z-array z-literal z-ts"> <span class="z-meta z-brace z-square z-ts">[</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>@babel/preset-env<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-meta z-brace z-square z-ts">]</span></span>
+</span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts">            </span><span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span></span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts">          </span><span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts">        </span><span class="z-punctuation z-definition z-block z-ts">}</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts">        <span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts">          <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">test</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span><span class="z-string z-regexp z-ts"> <span class="z-punctuation z-definition z-string z-begin z-ts">/</span><span class="z-constant z-character z-escape z-backslash z-regexp">\.</span><span class="z-meta z-group z-regexp"><span class="z-punctuation z-definition z-group z-regexp">(</span>s<span class="z-constant z-other z-character-class z-set z-regexp"><span class="z-punctuation z-definition z-character-class z-regexp">[</span>ac<span class="z-punctuation z-definition z-character-class z-regexp">]</span></span>ss<span class="z-keyword z-operator z-or z-regexp">|</span>css<span class="z-punctuation z-definition z-group z-regexp">)</span></span><span class="z-keyword z-control z-anchor z-regexp">$</span><span class="z-punctuation z-definition z-string z-end z-ts">/</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts">          <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">use</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span><span class="z-meta z-array z-literal z-ts"> <span class="z-meta z-brace z-square z-ts">[</span>
+</span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts">            <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>style-loader<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts">            <span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts">              <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">loader</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>css-loader<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts">              <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">options</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span> <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">sourceMap</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-variable z-other z-readwrite z-ts">isDev</span> <span class="z-keyword z-operator z-ternary z-ts">?</span> <span class="z-constant z-language z-boolean z-true z-ts">true</span> <span class="z-keyword z-operator z-ternary z-ts">:</span> <span class="z-constant z-language z-boolean z-false z-ts">false</span> </span><span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts">            </span><span class="z-punctuation z-definition z-block z-ts">}</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts">            <span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts">              <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">loader</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>sass-loader<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts">              <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">options</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span> <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">sourceMap</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-variable z-other z-readwrite z-ts">isDev</span> <span class="z-keyword z-operator z-ternary z-ts">?</span> <span class="z-constant z-language z-boolean z-true z-ts">true</span> <span class="z-keyword z-operator z-ternary z-ts">:</span> <span class="z-constant z-language z-boolean z-false z-ts">false</span> </span><span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts">            </span><span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts">          <span class="z-meta z-brace z-square z-ts">]</span></span>
+</span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts">        </span><span class="z-punctuation z-definition z-block z-ts">}</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts">        <span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts">          <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">test</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span><span class="z-string z-regexp z-ts"> <span class="z-punctuation z-definition z-string z-begin z-ts">/</span><span class="z-constant z-character z-escape z-backslash z-regexp">\.</span><span class="z-meta z-group z-regexp"><span class="z-punctuation z-definition z-group z-regexp">(</span>png<span class="z-keyword z-operator z-or z-regexp">|</span>svg<span class="z-keyword z-operator z-or z-regexp">|</span>jpg<span class="z-keyword z-operator z-or z-regexp">|</span>gif<span class="z-punctuation z-definition z-group z-regexp">)</span></span><span class="z-keyword z-control z-anchor z-regexp">$</span><span class="z-punctuation z-definition z-string z-end z-ts">/</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts">          <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">use</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span><span class="z-meta z-array z-literal z-ts"> <span class="z-meta z-brace z-square z-ts">[</span>
+</span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts">            <span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts">              <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">loader</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>file-loader<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts">              <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">options</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">                <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">name</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>[path][name].[ext]<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span>
+</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts">              </span><span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span></span></span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts">            </span><span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span></span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts">          <span class="z-meta z-brace z-square z-ts">]</span></span>
+</span></span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts">        </span><span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-array z-literal z-ts">      <span class="z-meta z-brace z-square z-ts">]</span></span>
+</span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts">    </span><span class="z-punctuation z-definition z-block z-ts">}</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts">    <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">resolve</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span> <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">extensions</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span><span class="z-meta z-array z-literal z-ts"> <span class="z-meta z-brace z-square z-ts">[</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>.js<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>.jsx<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-meta z-brace z-square z-ts">]</span></span> </span><span class="z-punctuation z-definition z-block z-ts">}</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts">    <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">output</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">      <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">path</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">path</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-promise z-ts">resolve</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>dist<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">      <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">publicPath</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>../dist/<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">      <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">filename</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>bundle.js<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">      <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">environment</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">        <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">arrowFunction</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-constant z-language z-boolean z-false z-ts">false</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">        <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">bigIntLiteral</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-constant z-language z-boolean z-false z-ts">false</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">        <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">const</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-constant z-language z-boolean z-false z-ts">false</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">        <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">destructuring</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-constant z-language z-boolean z-false z-ts">false</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">        <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">dynamicImport</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-constant z-language z-boolean z-false z-ts">false</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">        <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">forOf</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-constant z-language z-boolean z-false z-ts">false</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">        <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">module</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-constant z-language z-boolean z-false z-ts">false</span>
+</span></span></span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts">      </span><span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts">    </span><span class="z-punctuation z-definition z-block z-ts">}</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts">    <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">devtool</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-variable z-other z-readwrite z-ts">isDev</span> <span class="z-keyword z-operator z-ternary z-ts">?</span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>source-map<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span> <span class="z-keyword z-operator z-ternary z-ts">:</span> <span class="z-constant z-language z-boolean z-false z-ts">false</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts">    <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">devServer</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">      <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">contentBase</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>public<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">      <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">port</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-constant z-numeric z-decimal z-ts">3000</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">      <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">hot</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-constant z-language z-boolean z-true z-ts">true</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">      <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">publicPath</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>/dist/<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts">      <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">watchContentBase</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-constant z-language z-boolean z-true z-ts">true</span>
+</span></span></span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts">    </span><span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-meta z-object z-member z-ts">  </span><span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">}</span></span></span>
+</span></code></pre>
+</li>
+<li>
+<p>Script to run server
+Edit script in <code>package.json</code> file to run and build server.</p>
+<pre data-lang="json" class="language-json z-code"><code class="language-json" data-lang="json"><span class="z-source z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>scripts<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span>: <span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-json">    </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>start<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>webpack serve --mode development<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json">    </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>build<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>webpack --mode production<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json">  <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span>
+</span></code></pre>
+</li>
+</ul>
+<h3 id="demo-code"><a class="header-anchor no-hover-padding" href="#demo-code" aria-label="Anchor link for: demo-code"><span class="link-icon" aria-hidden="true"></span></a>
+Demo code</h3>
+<p>To understand better how webpack works, we will create some simple demo code</p>
+<ul>
+<li>
+<p>Create <code>src</code> folder in the root of project and a <code>src/add.js</code> file</p>
+<pre data-lang="js" class="language-js z-code"><code class="language-js" data-lang="js"><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts">src/add.js</span>
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-keyword z-control z-export z-ts">export</span> <span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts"><span class="z-entity z-name z-function z-ts">add</span></span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span><span class="z-meta z-arrow z-ts"> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">a</span> <span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-constant z-numeric z-decimal z-ts">1</span><span class="z-punctuation z-separator z-parameter z-ts">,</span> <span class="z-variable z-parameter z-ts">b</span><span class="z-keyword z-operator z-assignment z-ts">=</span><span class="z-constant z-numeric z-decimal z-ts">2</span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span> </span><span class="z-meta z-arrow z-ts"><span class="z-storage z-type z-function z-arrow z-ts">=&gt;</span> </span><span class="z-variable z-other z-readwrite z-ts">a</span><span class="z-keyword z-operator z-arithmetic z-ts">+</span> <span class="z-variable z-other z-readwrite z-ts">b</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-keyword z-control z-export z-ts">export</span> <span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts"><span class="z-entity z-name z-function z-ts">treeShaking</span></span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span><span class="z-meta z-arrow z-ts"> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span> </span><span class="z-meta z-arrow z-ts"><span class="z-storage z-type z-function z-arrow z-ts">=&gt;</span><span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-meta z-function-call z-ts"><span class="z-support z-class z-console z-ts">console</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-console z-ts">log</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>This phrase will be not in the build file<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-meta z-brace z-round z-ts">)</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">}</span></span></span></span>
+</span></code></pre>
+</li>
+<li>
+<p>Create more functions</p>
+<pre data-lang="js" class="language-js z-code"><code class="language-js" data-lang="js"><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> src/substract.js</span>
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-keyword z-control z-export z-ts">export</span> <span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts"><span class="z-entity z-name z-function z-ts">substract</span></span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span><span class="z-meta z-arrow z-ts"> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">a</span><span class="z-punctuation z-separator z-parameter z-ts">,</span> <span class="z-variable z-parameter z-ts">b</span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span></span><span class="z-meta z-arrow z-ts"><span class="z-storage z-type z-function z-arrow z-ts">=&gt;</span> </span><span class="z-variable z-other z-readwrite z-ts">a</span><span class="z-keyword z-operator z-arithmetic z-ts">-</span><span class="z-variable z-other z-readwrite z-ts">b</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts">
+</span></code></pre>
+<pre data-lang="js" class="language-js z-code"><code class="language-js" data-lang="js"><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> src/loadImage.js</span>
+</span><span class="z-source z-ts"><span class="z-meta z-import z-ts"><span class="z-keyword z-control z-import z-ts">import</span> <span class="z-variable z-other z-readwrite z-alias z-ts">logo</span> <span class="z-keyword z-control z-from z-ts">from</span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>./logo.webp<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span></span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts"><span class="z-entity z-name z-function z-ts">component</span></span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span><span class="z-meta z-arrow z-ts"> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span> </span><span class="z-meta z-arrow z-ts"><span class="z-storage z-type z-function z-arrow z-ts">=&gt;</span><span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">element</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-meta z-function-call z-ts"><span class="z-support z-variable z-dom z-ts">document</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-dom z-ts">createElement</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>div<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">webpackLogo</span></span>  </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-new z-expr z-ts"><span class="z-keyword z-operator z-new z-ts">new</span> <span class="z-entity z-name z-type z-ts">Image</span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-brace z-round z-ts">)</span></span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-variable z-other z-object z-ts">webpackLogo</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-variable z-other z-property z-ts">src</span> <span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-variable z-other z-readwrite z-ts">logo</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-variable z-other z-object z-ts">webpackLogo</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-variable z-property z-dom z-ts">width</span> <span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-constant z-numeric z-decimal z-ts">200</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">element</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-dom z-ts">appendChild</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">webpackLogo</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-keyword z-control z-flow z-ts">return</span> <span class="z-variable z-other z-readwrite z-ts">element</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">}</span></span></span></span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-meta z-function-call z-ts"><span class="z-support z-variable z-dom z-ts">document</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-dom z-ts">getElementById</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>root<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-meta z-function-call z-ts"><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-dom z-ts">appendChild</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-function-call z-ts"><span class="z-entity z-name z-function z-ts">component</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-meta z-brace z-round z-ts">)</span>
+</span></code></pre>
+<pre data-lang="js" class="language-js z-code"><code class="language-js" data-lang="js"><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> src/index.js</span>
+</span><span class="z-source z-ts"><span class="z-meta z-import z-ts"><span class="z-keyword z-control z-import z-ts">import</span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span><span class="z-variable z-other z-readwrite z-alias z-ts">substract</span><span class="z-punctuation z-definition z-block z-ts">}</span></span> <span class="z-keyword z-control z-from z-ts">from</span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>./substract<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-meta z-import z-ts"><span class="z-keyword z-control z-import z-ts">import</span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span><span class="z-variable z-other z-readwrite z-alias z-ts">add</span><span class="z-punctuation z-definition z-block z-ts">}</span></span> <span class="z-keyword z-control z-from z-ts">from</span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>./add<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-meta z-import z-ts"><span class="z-keyword z-control z-import z-ts">import</span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>./loadImage<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-meta z-import z-ts"><span class="z-keyword z-control z-import z-ts">import</span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>.index.scss<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-meta z-function-call z-ts"><span class="z-support z-class z-console z-ts">console</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-console z-ts">log</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-template z-ts"><span class="z-punctuation z-definition z-string z-template z-begin z-ts">`</span>1 + 2 = <span class="z-meta z-template z-expression z-ts"><span class="z-punctuation z-definition z-template-expression z-begin z-ts">${</span></span><span class="z-meta z-template z-expression z-ts"><span class="z-meta z-embedded z-line z-ts"><span class="z-meta z-function-call z-ts"><span class="z-entity z-name z-function z-ts">add</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-constant z-numeric z-decimal z-ts">1</span><span class="z-punctuation z-separator z-comma z-ts">,</span><span class="z-constant z-numeric z-decimal z-ts">2</span>}<span class="z-string z-template z-ts"><span class="z-punctuation z-definition z-string z-template z-begin z-ts">`</span>)
+</span></span></span></span></span><span class="z-source z-ts"><span class="z-string z-template z-ts"><span class="z-meta z-template z-expression z-ts"><span class="z-meta z-embedded z-line z-ts"><span class="z-string z-template z-ts">console.log(<span class="z-punctuation z-definition z-string z-template z-end z-ts">`</span></span><span class="z-constant z-numeric z-decimal z-ts">8</span> <span class="z-keyword z-operator z-arithmetic z-ts">-</span> <span class="z-constant z-numeric z-decimal z-ts">2</span> <span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-variable z-other z-readwrite z-ts">$</span><span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span><span class="z-meta z-method z-declaration z-ts"><span class="z-meta z-definition z-method z-ts"><span class="z-entity z-name z-function z-ts">substract</span></span><span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span>8<span class="z-punctuation z-separator z-parameter z-ts">,</span>2<span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span>`)
+</span></span></span></span></span></span></code></pre>
+<p>And we have a tree folder:</p>
+<pre class="z-code"><code><span class="z-text z-plain"># webpack-basic project
+</span><span class="z-text z-plain">.
+</span><span class="z-text z-plain">├── node_modules
+</span><span class="z-text z-plain">├── package.json
+</span><span class="z-text z-plain">├── package-lock.json
+</span><span class="z-text z-plain">├── public
+</span><span class="z-text z-plain">│   └── index.html
+</span><span class="z-text z-plain">├── src
+</span><span class="z-text z-plain">│   ├── add.js
+</span><span class="z-text z-plain">│   ├── index.js
+</span><span class="z-text z-plain">│   ├── index.scss
+</span><span class="z-text z-plain">│   ├── loadImage.js
+</span><span class="z-text z-plain">│   ├── logo.webp
+</span><span class="z-text z-plain">│   └── substract.js
+</span><span class="z-text z-plain">├── webpack.config.js
+</span><span class="z-text z-plain">└── yarn.lock
+</span></code></pre>
+</li>
+<li>
+<p>Run server to see the result at <a href="http://localhost:3000">http://localhost:3000</a></p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> npm run start</span>
+</span><span class="z-source z-shell z-bash"><span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> or</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> yarn start</span>
+</span></code></pre>
+<p>If you want to build webpack:</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> yarn build</span>
+</span></code></pre>
+</li>
+</ul>
+<h3 id="explanation"><a class="header-anchor no-hover-padding" href="#explanation" aria-label="Anchor link for: explanation"><span class="link-icon" aria-hidden="true"></span></a>
+Explanation</h3>
+<h4 id="configuration-in-webpack-config-js-file"><a class="header-anchor no-hover-padding" href="#configuration-in-webpack-config-js-file" aria-label="Anchor link for: configuration-in-webpack-config-js-file"><span class="link-icon" aria-hidden="true"></span></a>
+Configuration in <code>webpack.config.js</code> file</h4>
+<ul>
+<li>
+<p><code>Definition</code>: This is the main configuration webpack file. Webpack configs allow you to configure and extend Webpack’s basic functionality. A Webpack config is a JavaScript object that configures one of Webpack’s options.</p>
+<p>When we run <code>webpack</code> command in the <code>package.json</code> file, webpack will be take automatically the configuration in this file.</p>
+<p>For more information of configuration of webpack <a href="https://webpack.js.org/configuration/">webpack configuration</a></p>
+</li>
+<li>
+<p><code>Exporting</code>: In the <code>config</code> file, we can export an <strong>object</strong>, a <strong>function</strong>, an <strong>array</strong> or a <strong>promise</strong>. In this article, we will see how to export a function, because it allows us to use the arguments passed from outside. Check <a href="https://webpack.js.org/configuration/configuration-types/">Webpack configuration type</a>.</p>
+</li>
+<li>
+<p><code>Mode</code>: We need to provide a <strong>mode</strong> configuration option when configure webpack. Each mode has its own a config settings. Check <a href="https://webpack.js.org/configuration/mode/">Webpack mode</a></p>
+<p>If you remember, we have used this mode to run 2 different cases for server in the <code>package.json</code> file, for the <strong>development</strong> and <strong>production</strong> mode.</p>
+<pre data-lang="json" class="language-json z-code"><code class="language-json" data-lang="json"><span class="z-source z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>start<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span>: <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>webpack serve --mode development<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span>,
+</span><span class="z-source z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>build<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span>: <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>webpack --mode production<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span>
+</span></code></pre>
+<p>And in the <code>webpack.config.js</code> we can define the mode by using <code>argv.mode</code></p>
+</li>
+<li>
+<p><code>Entry</code>: Entry points of your project where you put the main code to run your server. Check <a href="https://webpack.js.org/concepts/entry-points/">Webpack entry point</a></p>
+</li>
+<li>
+<p><code>module.rules</code>: Array contains the <code>loaders</code></p>
+</li>
+<li>
+<p><code>test</code>: Using <strong>regex</strong> to determine the file type. If it is <code>true</code> then it will run the loader.</p>
+<p>The <code>babel-loader</code> will run the <code>js</code> or <code>jsx</code> file. <code>style-loader</code> will run <code>sass</code>, <code>scss</code> and <code>css</code> file.</p>
+<p><code>file-loader</code> will run png, svg, jpg, gif… (image and video) file.</p>
+</li>
+<li>
+<p><code>exclude</code>: Enter a <strong>regex</strong>, the <code>loader</code> will ignore these file and folder.</p>
+</li>
+<li>
+<p><code>use</code>: Retrieve an object or an array containing loader information.</p>
+<ul>
+<li>Notice for <code>babel-loader</code>: using presets <code>@babel/preset</code> by default. It will compile to ES5 syntax.</li>
+<li>Notice for <code>style-loader</code>: using <strong>sourMap</strong> to easier debug when dev.</li>
+<li>Notice for <code>file-loader</code>: using <code>[path][name].[ext]</code> means after build, the files will be created with the similar names in similar folder. For example: if you have <code>src/logo.webp</code> file, when you build it, you will have <code>dist/src/logo.webp</code>.</li>
+</ul>
+</li>
+<li>
+<p><code>resolve: { extensions: [‘.js’, ‘.jsx’] }</code>: The priority order when import files. For example, there are 2 files name.js and name.jsx in the same folder. In another file you import * from ‘name’, it will prioritize .js file</p>
+</li>
+<li>
+<p><code>output</code>: configuration of build file webpack</p>
+<ul>
+<li><code>output.path</code>: the absolute path to the directory after build. For the absolute path, we usually use <code>path.resolve()</code> or <code>path.join()</code> in combination with the global variable <code>__dirname</code>.</li>
+<li><code>output.publicPath</code>: the relative path from the <code>index.html</code> file pointing to the files in the <strong>dist</strong> directory after build.</li>
+</ul>
+<p>For example: in the file <code>loadImage.js</code>, we import logo, the logo variable will be become: <code>output.publicPath + 'src/logo.webp</code>. If after the build, we run the <code>index.html</code> file in a different location not in <strong>the public directory</strong>, we will accidentally make the logo variable wrong.</p>
+<ul>
+<li><code>output.filename</code>: filename of js bundle after build</li>
+<li><code>output.environment</code>: By default, webpack will generate code using the ES6 syntax. If you don’t want this, you can modify the target build by yourself in the <code>output.environment</code>
+<ul>
+<li><strong>arrowFunction</strong>: support arrow function.</li>
+<li><strong>bigIntLiteral</strong>: support BigInt</li>
+<li><strong>const</strong>: support declaration <code>const</code> và <code>let</code></li>
+<li><strong>destructuring</strong>: support destructuring</li>
+<li><strong>dynamicImport</strong>: support async import</li>
+<li><strong>forOf</strong>: support <code>forOf</code> for array</li>
+<li><strong>module</strong>: support moudle ES6 (import … from ‘…’)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><code>devtool</code>: contains the configuration file after dev or after build. When you in the dev step, you can use <code>source-map</code> to debug more simply. But we don’t use it in the production to reduce the volume of file when build.</p>
+<p>Check <a href="https://webpack.js.org/configuration/devtool/">Devtool Webpack</a></p>
+</li>
+<li>
+<p><code>devServer</code>: You can imagine, it will create a server <strong>localhost</strong> at the root folder</p>
+<ul>
+<li><strong>devServer.contentBase</strong>: the path directory where contains <code>index.html</code> file. Here is <code>public</code></li>
+<li><strong>devServer.port</strong>: port of localhost</li>
+<li><strong>devServer.hot</strong>: The mode <code>hot reload</code>. By default, on the dev server, webpack will refresh the page every time when there is a slight change in the code. The <code>hot reload</code> helps use to see the change but don’t need reload page.</li>
+<li><strong>devServer.publicPath</strong>: the relative path from root directory pointing to the build directory. Here is <code>/dist/</code> –&gt; / is root folder</li>
+<li><strong>devServer.watchContentBase</strong>: If you have the change in the <code>index.html</code>, browser will reload automatically.</li>
+</ul>
+</li>
+</ul>
+<h4 id="tree-shaking-in-webpack"><a class="header-anchor no-hover-padding" href="#tree-shaking-in-webpack" aria-label="Anchor link for: tree-shaking-in-webpack"><span class="link-icon" aria-hidden="true"></span></a>
+Tree Shaking in Webpack</h4>
+<p>If you pay attention, in the <code>src/add.js</code> file, we added a function <code>treeShaking</code>. This function is exported but we did not use it anywhere in project. So webpack will not use this function and you cant find it in the build file.</p>
+<p>This is a called the <a href="https://webpack.js.org/guides/tree-shaking/">tree shaking</a> feature to help us to reduce unused module export.</p>
+<p>But this feature only works with code using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">ES Module syntax </a> (<strong>import export …</strong>)</p>
+<p>A typical example is the <a href="https://lodash.com/">lodash</a> library. If you <code>import {get} from 'lodash'</code>, webpack won’t tree shake. It will still import a huge lodash library to your bundle file. There are no different from : <code>import _ from 'lodash'</code></p>
+<p>To fix this problem, we can use the syntax <code>import get from 'lodash/get</code>. Or simply use the <a href="https://www.npmjs.com/package/lodash-es">lodash es</a> library.</p>
+<p>For more detail <a href="https://webpack.js.org/guides/tree-shaking/">Tree Shaking Webpack</a></p>
+<hr />
+<p>Yeezze! That’s it.</p>
+<p>Practice yourselves to understand better the configuration of webpack.</p>
+<h1 id="reference"><a class="header-anchor no-hover-padding" href="#reference" aria-label="Anchor link for: reference"><span class="link-icon" aria-hidden="true"></span></a>
+Reference</h1>
+<p><a href="https://github.com/tduyng/webpack/tree/master/webpack-basic">Source code GitHub</a></p>
+
+        </section>
+
+        
+        
+        
+        
+
+        
+            
+            
+            
+
+            
+                
+                
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+
+        
+        
+
+        
+                
+                
+                    
+                        
+                        
+                        
+                    
+                    
+                        
+                        
+                        
+                    
+                
+                
+            <nav class="full-width article-navigation">
+                <div><a href="https://tduyng.com/blog/python-vs-javascript/" aria-label="Prev" aria-describedby="left_title"><span class="arrow">←</span>&nbsp;Prev</a>
+                <p aria-hidden="true" id="left_title">Syntax Python vs Javascript</p></div>
+                <div><a href="https://tduyng.com/blog/setup-webpack-with-typescript/" aria-label="Next" aria-describedby="right_title">Next&nbsp;<span class="arrow">→</span></a>
+                <p aria-hidden="true" id="right_title">Setup Webpack TypeScript</p></div>
+            </nav>
+        
+            
+
+<div id="comments" class="comments"
+
+
+    data-repo="tduyng&#x2F;tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    
+        data-mapping="specific"
+        data-term="basic-setup-webpack"
+    
+    data-strict="1"
+    data-reactions-enabled="1"
+    
+        data-input-position="top"
+    
+    data-light-theme="noborder_light"
+    data-dark-theme="noborder_dark"
+    
+        data-lang="en"
+    
+    data-lazy-loading="true"
+    >
+
+
+
+
+    <script src="https://tduyng.com/js/giscus.min.js" async></script>
+
+
+<noscript>You need JavaScript to view the comments.</noscript>
+</div>
+
+        
+
+    </article>
+</main>
+
+    <div id="button-container">
+        
+        
+            <div id="toc-floating-container">
+                <input type="checkbox" id="toc-toggle" class="toggle"/>
+                <label for="toc-toggle" class="overlay"></label>
+                <label for="toc-toggle" id="toc-button" class="button" title="Toggle Table of Contents">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M414.82-193.094q-18.044 0-30.497-12.32-12.453-12.319-12.453-30.036t12.453-30.086q12.453-12.37 30.497-12.37h392.767q17.237 0 29.927 12.487 12.69 12.486 12.69 30.203 0 17.716-12.69 29.919t-29.927 12.203H414.82Zm0-244.833q-18.044 0-30.497-12.487Q371.87-462.9 371.87-480.45t12.453-29.92q12.453-12.369 30.497-12.369h392.767q17.237 0 29.927 12.511 12.69 12.512 12.69 29.845 0 17.716-12.69 30.086-12.69 12.37-29.927 12.37H414.82Zm0-245.167q-18.044 0-30.497-12.32t-12.453-30.037q0-17.716 12.453-30.086 12.453-12.369 30.497-12.369h392.767q17.237 0 29.927 12.486 12.69 12.487 12.69 30.203 0 17.717-12.69 29.92-12.69 12.203-29.927 12.203H414.82ZM189.379-156.681q-32.652 0-55.878-22.829t-23.226-55.731q0-32.549 23.15-55.647 23.151-23.097 55.95-23.097 32.799 0 55.313 23.484 22.515 23.484 22.515 56.246 0 32.212-22.861 54.893-22.861 22.681-54.963 22.681Zm0-245.167q-32.652 0-55.878-23.134-23.226-23.135-23.226-55.623 0-32.487 23.467-55.517t56.12-23.03q32.102 0 54.721 23.288 22.62 23.288 22.62 55.775 0 32.488-22.861 55.364-22.861 22.877-54.963 22.877Zm-.82-244.833q-32.224 0-55.254-23.288-23.03-23.289-23.03-55.623 0-32.333 23.271-55.364 23.272-23.03 55.495-23.03 32.224 0 55.193 23.288 22.969 23.289 22.969 55.622 0 32.334-23.21 55.364-23.21 23.031-55.434 23.031Z"/></svg>
+                </label>
+                <div class="toc-content">
+                    
+
+<div class="toc-container">
+    
+
+    <ul>
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/basic-setup-webpack/#webpack-basics">Webpack basics</a>
+                    
+                        <ul>
+                            
+                                
+                                    <li><a href="https://tduyng.com/blog/basic-setup-webpack/#setup-a-webpack-project">Setup a webpack project</a>
+                                        
+                                    </li>
+                                
+                            
+                                
+                                    <li><a href="https://tduyng.com/blog/basic-setup-webpack/#setup-babel">Setup Babel</a>
+                                        
+                                    </li>
+                                
+                            
+                                
+                                    <li><a href="https://tduyng.com/blog/basic-setup-webpack/#install-style-loader-file-loader">Install Style-loader &amp; File loader</a>
+                                        
+                                    </li>
+                                
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/basic-setup-webpack/#setup-webpack">Setup Webpack</a>
+                    
+                        <ul>
+                            
+                                
+                                    <li><a href="https://tduyng.com/blog/basic-setup-webpack/#demo-code">Demo code</a>
+                                        
+                                    </li>
+                                
+                            
+                                
+                                    <li><a href="https://tduyng.com/blog/basic-setup-webpack/#explanation">Explanation</a>
+                                        
+                                            <ul>
+                                                
+                                                    
+                                                        <li><a href="https://tduyng.com/blog/basic-setup-webpack/#configuration-in-webpack-config-js-file">Configuration in webpack.config.js file</a>
+                                                            
+                                                        </li>
+                                                    
+                                                
+                                                    
+                                                        <li><a href="https://tduyng.com/blog/basic-setup-webpack/#tree-shaking-in-webpack">Tree Shaking in Webpack</a>
+                                                            
+                                                        </li>
+                                                    
+                                                
+                                            </ul>
+                                        
+                                    </li>
+                                
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/basic-setup-webpack/#reference">Reference</a>
+                    
+                </li>
+            
+        
+    </ul>
+</div>
+
+
+                </div>
+            </div>
+        
+
+        
+        
+            <a href="#comments" id="comments-button" class="no-hover-padding" title="Go to the comments section">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" fill-rule="evenodd"/></svg>
+            </a>
+        
+
+        
+        <a href="#" id="top-button" class="no-hover-padding" title="Go to the top of the page">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"/></svg>
+        </a>
+    </div>
+
+
+<span id="copy-success" class="hidden">
+        Copied!
+    </span>
+    <span id="copy-init" class="hidden">
+        Copy code to clipboard
+    </span>
+    <script defer src="https://tduyng.com/js/copyCodeToClipboard.min.js"></script><script defer src="https://tduyng.com/js/footnoteBacklinks.min.js"></script>
+    </div>
+    <footer>
+    <section>
+        <nav class="socials nav-navs">
+                <ul>
+                    
+                    
+                    
+                    <li>
+                        <a class="nav-links no-hover-padding social" rel=""  href=https://tduyng.com/atom.xml>
+                        <img alt="feed" title="feed" src="https://tduyng.com/social_icons/rss.svg">
+                        </a>
+                    </li><li class="js"><a class="nav-links no-hover-padding social" href="#" data-encoded-email="aGlAdGR1eW5nLmNvbQo="><img alt="email" title="email" src="https://tduyng.com/social_icons/email.svg">
+                            </a>
+                        </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://github.com/tduyng/>
+                                    <img alt=github title=github src="https://tduyng.com/social_icons/github.svg">
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://www.linkedin.com/in/tienduy-nguyen/>
+                                    <img alt=linkedin title=linkedin src="https://tduyng.com/social_icons/linkedin.svg">
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://twitter.com/tduyng>
+                                    <img alt=x title=x src="https://tduyng.com/social_icons/twitter.svg">
+                                </a>
+                            </li>
+                        
+                    
+                </ul>
+            
+        </nav>
+
+        
+        <nav class="nav-navs">
+                <small>
+                    <ul>
+                        
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;subscribe">
+                                subscribe
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;about">
+                                about
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;privacy">
+                                privacy policy
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;license">
+                                license
+                            </a>
+                        </li>
+                    
+                    </ul>
+                </small>
+        
+        </nav>
+
+        <div class="credits">
+            <small>
+                
+
+                
+                Powered by
+                <a rel=""  href="https://www.getzola.org">Zola</a>
+                &amp;
+                <a rel=""  href="https://github.com/welpo/tabi">tabi</a>
+
+                </small>
+        </div>
+    </section>
+
+    <script src="https://tduyng.com/js/decodeMail.min.js" async></script><div id="searchModal" class="search-modal js" role="dialog" aria-labelledby="modalTitle">
+    <h1 id="modalTitle" class="visually-hidden">Search</h1>
+    <div id="modal-content">
+        <div id="searchBar">
+            <div class="search-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                    <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                </svg>
+            </div>
+            <input id="searchInput" role="combobox" autocomplete="off" spellcheck="false" aria-expanded="false" aria-controls="results-container" placeholder="Search…"/>
+            <div id="clear-search" class="close-icon interactive-icon" tabindex="0" role="button" title="Clear search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                </svg>
+            </div>
+        </div>
+        <div id="results-container">
+            <div id="results-info"><span id="zero_results"> No results</span>
+                <span id="one_results"> $NUMBER result</span>
+                <span id="many_results"> $NUMBER results</span><span id="two_results"> $NUMBER results</span>
+                <span id="few_results"> $NUMBER results</span>
+            </div>
+            <div id="results" role="listbox"></div>
+        </div>
+    </div>
+</div>
+</footer>
+
+</body>
+
+</html>

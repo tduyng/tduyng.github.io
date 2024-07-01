@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://tduyng.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:base="http://purl.org/atompub/base/1.0/" xml:lang="en" xml:base="https:&#x2F;&#x2F;tduyng.com&#x2F;">
+    <str:translations xmlns:str="https://github.com/welpo/tabi">
+        <str:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</str:about_feeds>
+        <str:visit_the_site>Visit website</str:visit_the_site>
+        <str:recent_posts>Recent posts</str:recent_posts>
+    </str:translations><title>~/Z - rails</title>
+        <subtitle>Z is software developer. Typescript and Rust enthusiast</subtitle>
+    <link href="https://tduyng.com/tags/rails/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://tduyng.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2020-07-05T00:00:00+00:00</updated>
+    <id>https://tduyng.com/tags/rails/atom.xml</id><entry xml:lang="en">
+        <title>Rails 5 or Rails 6 ?</title>
+        <published>2020-07-05T00:00:00+00:00</published>
+        <updated>2020-07-05T00:00:00+00:00</updated>
+        <author>
+            <name>Z</name>
+        </author>
+        <link rel="alternate" href="https://tduyng.com/blog/rails-5-or-rails-6/" type="text/html"/>
+        <id>https://tduyng.com/blog/rails-5-or-rails-6/</id>
+        
+            <content type="html">&lt;p&gt;What version of rails you use in your projects, today?&lt;&#x2F;p&gt;
+&lt;p&gt;At &lt;a href=&quot;https:&#x2F;&#x2F;www.thehackingproject.org&#x2F;&quot;&gt;THP&lt;&#x2F;a&gt;, when we start learning rails, we are required to install rails version 5.2.3. But I when I see that the new version of rails has been released is already 6.0. So we have posed a question for our technical manager of &lt;a href=&quot;https:&#x2F;&#x2F;www.thehackingproject.org&#x2F;&quot;&gt;THP&lt;&#x2F;a&gt;:&lt;&#x2F;p&gt;
+&lt;p&gt;Why we don’t install directly the version rails 6.0?&lt;&#x2F;p&gt;
+&lt;p&gt;And he said: “One word: &lt;code&gt;webpack&lt;&#x2F;code&gt;. I always don’t understand so much for the “webpack”, and I need to search more on the internet. And with this article (this is not mine), we will know some advantages and new features of rails 6 .&lt;&#x2F;p&gt;
+&lt;p&gt;I hear that: Rails 5 is still just fine
+Rails 5.0.Z is still on the severe patches list, and Rails 5.2.Z is still receiving regular security updates; so you’re still OK on Rails 5 (especially 5.2 or higher)&lt;&#x2F;p&gt;
+&lt;p&gt;Now We will see 4 amazing features of rails 6.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;parralled-testing&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#parralled-testing&quot; aria-label=&quot;Anchor link for: parralled-testing&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Parralled Testing&lt;&#x2F;h2&gt;
+&lt;p&gt;Test’s performance is finally going to be improved (a lot!). Now you can use cores to your advantage of running big tests much faster. Each testing worker runs in its own thread - it should be reflected in the CPU monitor. Thanks to Eileen Uchitelle and Aaron Patterson, parallel-testing will land in the upcoming, final version of Rails framework.&lt;&#x2F;p&gt;
+&lt;p&gt;As you probably already know, the way of implementing tests is very important. We try to implement as many suitable tests as we can. It’s great news for us as more tests will no longer have that much of an impact on the execution time. (Stay tuned for our guide on how to write great tests in Rails!)&lt;&#x2F;p&gt;
+&lt;p&gt;“The default number [of workers running in parallel] is the actual core count on the machine you are on, but can be changed by the number passed to the parallelize method.” To enable executing tests parallel just set the number of workers in &lt;code&gt;rails_helper.rb&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;native-webpacker-support&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#native-webpacker-support&quot; aria-label=&quot;Anchor link for: native-webpacker-support&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Native Webpacker Support&lt;&#x2F;h2&gt;
+&lt;p&gt;Webpacker was introduced a while back with the 5.1 version of Ruby on Rails. It makes using JavaScript pre-processor easier.&lt;&#x2F;p&gt;
+&lt;p&gt;We usually use it for JavaScript code, it works really well but it can also be used for CSS, images, fonts and assets as well. From now on, Sprockets is being replaced and Webpacker is the default JavaScript bundler for Rails through the new app&#x2F;javascript directory.&lt;&#x2F;p&gt;
+&lt;p&gt;Currently, in modern applications, using traditional rails views is not so often anymore. User Interfaces are very interactive, there is a lot of dynamic elements which have to respond really fast. Now, the application setup with Rails on the backend and React&#x2F;Vue on the frontend will be an easy-peasy pleasure :)&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;multi-database-support&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#multi-database-support&quot; aria-label=&quot;Anchor link for: multi-database-support&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Multi Database Support&lt;&#x2F;h2&gt;
+&lt;p&gt;Another great feature of upcoming Rails 6.0 is the support for multiple simultaneous database connections. It’s a new, simple API for making that happen without the need to reach deeply into Active Record.&lt;&#x2F;p&gt;
+&lt;p&gt;Official RoR blog suggests using two databases to for example split the workflow between two replica databases for a performance boost or records segmentation into databases for scaling. We can definitely see multiple database support as an improvement in building microservices architecture.&lt;&#x2F;p&gt;
+&lt;p&gt;One of the real life examples where this feature could be really useful is our in-house project - Artinfo. In this project, there are two database connections, one for old users and one for those who just signed up. Now with Rails 6, this implementation would be much easier.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;zeitwerk&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#zeitwerk&quot; aria-label=&quot;Anchor link for: zeitwerk&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Zeitwerk&lt;&#x2F;h2&gt;
+&lt;p&gt;With this version of Rails a new code loader was introduced - Zeitwerk. It promises to load your project’s classes and modules on demand, no need to write &lt;code&gt;require&lt;&#x2F;code&gt; calls. Zeitwerk uses absolute file names making the loader more efficient. Your classes and modules are available everywhere. The team behind the loader claims that it is thread-safe and matches Ruby’s semantics for constants.&lt;&#x2F;p&gt;
+&lt;p&gt;Still curious for more? You can find more new stuff over at &lt;a href=&quot;https:&#x2F;&#x2F;weblog.rubyonrails.org&#x2F;2019&#x2F;8&#x2F;15&#x2F;Rails-6-0-final-release&#x2F;&quot;&gt;rubyonrails.org&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;so-to-reponse-the-question-of-article&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#so-to-reponse-the-question-of-article&quot; aria-label=&quot;Anchor link for: so-to-reponse-the-question-of-article&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+So to reponse the question of article?&lt;&#x2F;h3&gt;
+&lt;p&gt;I don’t know yet. All the new features of rails 6 is still so much compliated for me. At this moment, I will use the rails 5 for the project training and I will discover more about how to use the features of rails 6 and apply it in the new projects.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;But other developer said:&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;If you are starting a new Rails project today - I would definitely start with Rails 6. It’s officially supported now - and if you look at some of the CHANGELOGS above, you’ll see that many of the subsystems have been stable for many months.&lt;&#x2F;p&gt;
+&lt;p&gt;If you have a project on Rails 5.2 or higher - then you have some time before you have to do anything. If you’re not interested in any of the major announced updates then you’ll still be getting security updates for awhile.&lt;&#x2F;p&gt;
+&lt;p&gt;You could still try running rails app:update though, just to see how much has changed for you particular app - which will give you an idea of how much work it will be when you do decide to upgrade.&lt;&#x2F;p&gt;
+&lt;p&gt;If you have a project on Rails 5.0 or lower - then I would definitely consider upgrading sooner rather than later. It will take more work to upgrade these older projects (especially Rails 4 and below) - but security updates are already stopped for Rails &amp;lt; 4.2 - so now (right after a major release) is a good time to update (so that you don’t have to do it again for awhile).&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Trying to Decide Between Rails 5 and Rails 6? Let&#x27;s Compare!</summary>
+        </entry><entry xml:lang="en">
+        <title>How to switch to another Rails version</title>
+        <published>2020-06-28T00:00:00+00:00</published>
+        <updated>2020-06-28T00:00:00+00:00</updated>
+        <author>
+            <name>Z</name>
+        </author>
+        <link rel="alternate" href="https://tduyng.com/blog/how-to-switch-to-another-rails-version/" type="text/html"/>
+        <id>https://tduyng.com/blog/how-to-switch-to-another-rails-version/</id>
+        
+            <content type="html">&lt;p&gt;When you need to use multiple versions of Rails on your computer, how do you switch between them?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;installation-rails&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#installation-rails&quot; aria-label=&quot;Anchor link for: installation-rails&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Installation rails&lt;&#x2F;h2&gt;
+&lt;p&gt;Before I talk about how to switch a version of rails, I will go quickly how to install the different versions of rails. The ruby package manager that I’am using is &lt;code&gt;rbenv&lt;&#x2F;code&gt; and I will use it for this tuto.&lt;&#x2F;p&gt;
+&lt;p&gt;If you are using another ruby package manager like &lt;code&gt;rvm&lt;&#x2F;code&gt;, you should look at &lt;code&gt;rbenv&lt;&#x2F;code&gt; and its advantage. &lt;code&gt;rbenv&lt;&#x2F;code&gt; is more lighter and faster than the &lt;code&gt;rvm&lt;&#x2F;code&gt; and &lt;code&gt;rbenv&lt;&#x2F;code&gt; is very recommended by a a lot of developers.&lt;&#x2F;p&gt;
+&lt;p&gt;There is an article on &lt;a href=&quot;https:&#x2F;&#x2F;dev.to&#x2F;&quot;&gt;dev.to&lt;&#x2F;a&gt; help you understand more clearly: &lt;a href=&quot;https:&#x2F;&#x2F;dev.to&#x2F;krtb&#x2F;why-and-how-i-replaced-rvm-with-rbenv-23ad&quot;&gt;Why and How I Replaced RVM with RBENV&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Ok, now go on our article.&lt;&#x2F;p&gt;
+&lt;p&gt;To install whatever version(s) of rails you want:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;gem install rails -v 6.0.3.2&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;To know all rails versions released, you check out on &lt;a href=&quot;https:&#x2F;&#x2F;rubygems.org&#x2F;gems&#x2F;rails&#x2F;versions&quot;&gt;all rails versions&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;You can also do it with your terminal with the command line &lt;code&gt;gem list rails --remote --all | grep &quot;^rails &quot;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I you want to install rails on another version of ruby, you need to switch version of ruby and re-install version of rails.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;rbenv install 2.5.1&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;rbenv global 2.5.1&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;You can check list gems to see if you installed succesfullly:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;gem list --local&lt;&#x2F;code&gt; # result: rails(5.2.4.2,5.2.3)&lt;&#x2F;p&gt;
+&lt;p&gt;now you tap &lt;code&gt;rails version&lt;&#x2F;code&gt; to see the current version of rails using, but it shows only&lt;&#x2F;p&gt;
+&lt;p&gt;When you install multi version of rails on your machine, it will always take the lastest version of rails. So the question is how can create a new project rails with the version wanted?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;create-a-project-ruby-on-rails-with-a-specific-version-of-rails&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#create-a-project-ruby-on-rails-with-a-specific-version-of-rails&quot; aria-label=&quot;Anchor link for: create-a-project-ruby-on-rails-with-a-specific-version-of-rails&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Create a project Ruby on Rails with a specific version of rails&lt;&#x2F;h2&gt;
+&lt;p&gt;I founded two ways to solve it:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Using ruby package manager(rbenv)&lt;&#x2F;li&gt;
+&lt;li&gt;Using &lt;code&gt;gem bundler&lt;&#x2F;code&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;using-ruby-package-manager-rbenv&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#using-ruby-package-manager-rbenv&quot; aria-label=&quot;Anchor link for: using-ruby-package-manager-rbenv&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Using ruby package manager (rbenv)&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash z-code&quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;z-source z-shell z-bash&quot;&gt;&lt;span class=&quot;z-meta z-function-call z-shell&quot;&gt;&lt;span class=&quot;z-variable z-function z-shell&quot;&gt;rbenv&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-meta z-function-call z-arguments z-shell&quot;&gt; exec rails _&lt;span class=&quot;z-keyword z-operator z-assignment z-redirection z-shell&quot;&gt;&amp;lt;&lt;&#x2F;span&gt;version_rails&lt;span class=&quot;z-keyword z-operator z-assignment z-redirection z-shell&quot;&gt;&amp;gt;&lt;&#x2F;span&gt;_ new my_project&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;for example:&lt;&#x2F;p&gt;
+&lt;p&gt;if i want to create a project with rails 5.2.4.2&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;rbenv exec rails _5.2.4.2_ new my_project&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;You can check the version of rails in the &lt;code&gt;Gemfile&lt;&#x2F;code&gt; when the new app has been created:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;ruby&quot; class=&quot;language-ruby z-code&quot;&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;z-source z-ruby&quot;&gt;ruby &lt;span class=&quot;z-meta z-string z-ruby&quot;&gt;&lt;span class=&quot;z-string z-quoted z-single z-ruby&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-ruby&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;2.7.1&lt;span class=&quot;z-punctuation z-definition z-string z-end z-ruby&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-ruby&quot;&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-ruby&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-ruby&quot;&gt;#&lt;&#x2F;span&gt; Bundle edge Rails instead: gem &amp;#39;rails&amp;#39;, github: &amp;#39;rails&#x2F;rails&amp;#39;
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-ruby&quot;&gt;&lt;span class=&quot;z-meta z-require z-ruby&quot;&gt;&lt;span class=&quot;z-keyword z-other z-special-method z-ruby&quot;&gt;gem&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-string z-ruby&quot;&gt;&lt;span class=&quot;z-string z-quoted z-single z-ruby&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-ruby&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;rails&lt;span class=&quot;z-punctuation z-definition z-string z-end z-ruby&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-sequence z-ruby&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-string z-ruby&quot;&gt;&lt;span class=&quot;z-string z-quoted z-single z-ruby&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-ruby&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;~&amp;gt; 5.2.4&lt;span class=&quot;z-punctuation z-definition z-string z-end z-ruby&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-sequence z-ruby&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-string z-ruby&quot;&gt;&lt;span class=&quot;z-string z-quoted z-single z-ruby&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-ruby&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&amp;gt;= 5.2.4.2&lt;span class=&quot;z-punctuation z-definition z-string z-end z-ruby&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt; &lt;&#x2F;span&gt;&lt;span class=&quot;z-comment z-line z-number-sign z-ruby&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-comment z-ruby&quot;&gt;#&lt;&#x2F;span&gt;version of rails using to create the project
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h3 id=&quot;using-bundler&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#using-bundler&quot; aria-label=&quot;Anchor link for: using-bundler&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Using bundler&lt;&#x2F;h3&gt;
+&lt;p&gt;The second way is using &lt;code&gt;bundler&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;You just do like another gem dependencies. That means you will specify version of rails in your &lt;code&gt;Gemfile&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;for example:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;ruby&quot; class=&quot;language-ruby z-code&quot;&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;z-source z-ruby&quot;&gt;source &lt;span class=&quot;z-meta z-string z-ruby&quot;&gt;&lt;span class=&quot;z-string z-quoted z-single z-ruby&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-ruby&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;https:&#x2F;&#x2F;rubygems.org&lt;span class=&quot;z-punctuation z-definition z-string z-end z-ruby&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;span class=&quot;z-source z-ruby&quot;&gt;&lt;span class=&quot;z-meta z-require z-ruby&quot;&gt;&lt;span class=&quot;z-keyword z-other z-special-method z-ruby&quot;&gt;gem&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-string z-ruby&quot;&gt;&lt;span class=&quot;z-string z-quoted z-single z-ruby&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-ruby&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;rails&lt;span class=&quot;z-punctuation z-definition z-string z-end z-ruby&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-punctuation z-separator z-sequence z-ruby&quot;&gt;,&lt;&#x2F;span&gt; &lt;span class=&quot;z-meta z-string z-ruby&quot;&gt;&lt;span class=&quot;z-string z-quoted z-single z-ruby&quot;&gt;&lt;span class=&quot;z-punctuation z-definition z-string z-begin z-ruby&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;6.0.3&lt;span class=&quot;z-punctuation z-definition z-string z-end z-ruby&quot;&gt;&amp;#39;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Very simple, isn’t it?&lt;&#x2F;p&gt;
+&lt;p&gt;Make sure you don’t forget &lt;code&gt;bundle install&lt;&#x2F;code&gt; to install all the dependencies from your Gemfile.&lt;&#x2F;p&gt;
+&lt;p&gt;And then, what we need to do, just finish with:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;rails new new_app&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;So that is two ways I used. I hope it will be helpful for you.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">When you need to use multiple versions of Rails on your computer, how do you switch between them?</summary>
+        </entry>
+</feed>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://tduyng.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:base="http://purl.org/atompub/base/1.0/" xml:lang="en" xml:base="https:&#x2F;&#x2F;tduyng.com&#x2F;">
+    <str:translations xmlns:str="https://github.com/welpo/tabi">
+        <str:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</str:about_feeds>
+        <str:visit_the_site>Visit website</str:visit_the_site>
+        <str:recent_posts>Recent posts</str:recent_posts>
+    </str:translations><title>~/Z - deno</title>
+        <subtitle>Z is software developer. Typescript and Rust enthusiast</subtitle>
+    <link href="https://tduyng.com/tags/deno/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://tduyng.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-06-15T00:00:00+00:00</updated>
+    <id>https://tduyng.com/tags/deno/atom.xml</id><entry xml:lang="en">
+        <title>Should you switch to Deno?</title>
+        <published>2024-06-15T00:00:00+00:00</published>
+        <updated>2024-06-15T00:00:00+00:00</updated>
+        <author>
+            <name>Z</name>
+        </author>
+        <link rel="alternate" href="https://tduyng.com/blog/switch-to-deno/" type="text/html"/>
+        <id>https://tduyng.com/blog/switch-to-deno/</id>
+        
+            <content type="html">&lt;p&gt;Hi there!&lt;&#x2F;p&gt;
+&lt;p&gt;Deno, created by Ryan Dahl, the original mind behind Node.js, is a modern runtime for JavaScript and TypeScript. It addresses various limitations and issues found in Node.js.&lt;&#x2F;p&gt;
+&lt;p&gt;Since its initial stable release with version 1.0, Deno has continued to evolve, with the latest version currently at 1.44. Are you ever curious about Deno’s suitability for production projects today? Wondering if developers are actively using it in production?&lt;&#x2F;p&gt;
+&lt;p&gt;You can read my full article for a detailed analysis here: &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;ekino-france&#x2F;should-you-switch-to-deno-c0e7c9ca6e41&quot;&gt;Should You Switch to Deno?&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I hope this helps you make an informed decision. Happy coding!&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: Why didn’t I write this article on my personal blog? Because I originally published it on my company’s Medium page, I chose not to duplicate it here to avoid issues with content ownership. Additionally, hosting the original article on Medium makes it easier to gather feedback and comments compared to my personal blog.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+</content>
+        <summary type="html">This article highlights key reasons for the change, explores Deno’s features, and helps you decide if it’s the right choice for your projects</summary>
+        </entry>
+</feed>

@@ -1,0 +1,745 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https://tduyng.com/">
+
+    
+    <title>Why use Docker compose • ~/Z</title>
+
+    
+    
+        <link rel="icon" type="image/png" href="https://tduyng.com/img/logo.webp"/>
+    
+    
+        <link rel=icon href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105 55"><text y=".7em" font-size="82">Z</text></svg>'>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="~/Z" href="https://tduyng.com/atom.xml">
+
+    
+    
+    
+        <link rel="stylesheet" href="https://tduyng.com/custom_subset.css?h=753f2b519893883e57d5">
+    
+
+    
+        <link rel="stylesheet" href="https://tduyng.com/main.css?h=571d6d2a51c7448bc60a" />
+
+    <meta name="color-scheme" content="light dark" />
+        <meta name="theme-color" content="#087e96" />
+        <meta name="description" content="Discover the advantages and reasons behind utilizing Docker Compose for managing multi-container Docker applications." />
+        <meta property="og:description" content="Discover the advantages and reasons behind utilizing Docker Compose for managing multi-container Docker applications." />
+
+    
+        <meta name="robots" content="index, nofollow" />
+    
+
+    <meta property="og:title" content="Why use Docker compose" />
+    <meta property="og:type" content="article" />
+
+    
+        
+        
+        
+
+        
+        
+            
+            
+            
+                
+            
+        
+
+        
+        <meta property="og:image" content="https://tduyng.com/img/social_card.webp?h=cf7fe2771b2b1f5c004f" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="675" />
+        <meta name="twitter:image" content="https://tduyng.com/img/social_card.webp?h=cf7fe2771b2b1f5c004f" />
+        <meta name="twitter:card" content="summary_large_image" />
+    
+
+    <meta property="og:locale" content="en_GB" />
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;tduyng.com&#x2F;blog&#x2F;why-use-dockercompose&#x2F;" /><meta property="og:site_name" content="~&#x2F;Z"><meta http-equiv="Content-Security-Policy"
+content="default-src 'self';font-src &#x27;self&#x27; data:;img-src &#x27;self&#x27; https:&#x2F;&#x2F;* data:;media-src &#x27;self&#x27; https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;;style-src &#x27;self&#x27;;frame-src player.vimeo.com https:&#x2F;&#x2F;www.youtube-nocookie.com giscus.app;connect-src 'self' *.umami.dev analytics.eu.umami.is;script-src 'self' analytics.eu.umami.is  giscus.app 'self'">
+
+        <noscript><link rel="stylesheet" href="https://tduyng.com/no_js.css"/></noscript>
+        <script type="text/javascript" src="https://tduyng.com/js/initializeTheme.min.js"></script>
+        <script defer src="https://tduyng.com/js/themeSwitcher.min.js"></script>
+
+
+
+
+    <script async defer
+    
+        data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+        src="https://analytics.eu.umami.is/script.js"
+    
+    data-do-not-track="true">
+    </script>
+
+    
+
+        <script defer src="https://tduyng.com/js/searchElasticlunr.min.js?h=2950d57f80c9fa78f37e"></script>
+
+        </head>
+
+
+<body>
+    <header>
+    <nav class="navbar">
+        <div class="nav-title">
+            <a class="home-title" href=https://tduyng.com>~&#x2F;Z</a>
+        </div>
+            <div class="nav-navs">
+                <ul>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/blog/">
+                                blog
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/archive/">
+                                archive
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/projects/">
+                                projects
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/about/">
+                                about
+                                </a>
+                            </li>
+                        <li class="js">
+                        <div role="button" tabindex="0" id="search-button" class="search-icon interactive-icon" title="Click or press $SHORTCUT to open search" aria-label="Click or press $SHORTCUT to open search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                            </svg>
+                        </div>
+                    </li>
+
+                    
+                    
+
+                    <li class="theme-switcher-wrapper js"><div
+        title="Toggle dark&#x2F;light mode"
+        class="theme-switcher"
+        tabindex="0"
+        role="button"
+        aria-label="Toggle dark mode"
+        aria-pressed="false">
+    </div><div
+        title="Reset mode to default"
+        class="theme-resetter"
+        tabindex="0"
+        role="button"
+        aria-hidden="true"
+        aria-label="Reset mode to default">
+    </div>
+
+</li>
+</ul>
+            </div>
+        
+    </nav>
+</header>
+
+    <div class="content">
+
+        
+        
+
+
+
+
+<main>
+    <article>
+        <h1 class="article-title">
+            Why use Docker compose
+        </h1>
+
+        <ul class="meta"><li>25th Jan 2021</li>&nbsp;•&nbsp;<li title="1230 words">7 min read</li>&nbsp;•&nbsp;<li>Tags:&nbsp;</li><li><a href=https://tduyng.com/tags/docker/>docker</a>,&nbsp;</li><li><a href=https://tduyng.com/tags/compose/>compose</a></li>
+        </ul>
+
+        
+
+        
+        
+
+        <section class="body">
+            
+            
+            <h2 id="what-is-docker-compose"><a class="header-anchor no-hover-padding" href="#what-is-docker-compose" aria-label="Anchor link for: what-is-docker-compose"><span class="link-icon" aria-hidden="true"></span></a>
+What is <strong>Docker compose</strong>?</h2>
+<p>If you read this article, I think you maybe already understand what is <a href="https://www.docker.com/why-docker">Docker</a>.</p>
+<p>Docker is a tool which helps to create, deploy, and run applications by using containers. Docker provides developers and operators with a friendly interface to build, ship, and run containers on any environment.</p>
+<p>With the docker-cli, we can run and execute the Docker container via <a href="https://docs.docker.com/engine/reference/builder/#:~:text=A%20Dockerfile%20is%20a%20text,can%20use%20in%20a%20Dockerfile%20.">Dockerfile</a>. But with Dockerfile, we can work only with a container, but in the project, we normally work with multiple containers. In that case, we need to use <strong>Docker compose</strong>.</p>
+<p><strong>Docker Compose</strong> define the services that make up your app in <code>docker-compose.yml</code> so they can be run together in an isolated environment. It get an app running in one command by just running <code>docker-compose up</code>.</p>
+<p><strong>Docker compose</strong> uses the <code>Dockerfile</code> if one add the build command to your project’s <code>docker-compose.yml</code>. Your Docker workflow should be to build a suitable <code>Dockerfile</code> for each image you wish to create, then use compose to assemble the images using the build command.</p>
+<p>We will create a demo: simple app nodejs using Redis. You will see the problem with only <strong>Dockerfile</strong> and why use <strong>Docker compose</strong>.</p>
+<h2 id="project-demo"><a class="header-anchor no-hover-padding" href="#project-demo" aria-label="Anchor link for: project-demo"><span class="link-icon" aria-hidden="true"></span></a>
+Project demo</h2>
+<h3 id="installation"><a class="header-anchor no-hover-padding" href="#installation" aria-label="Anchor link for: installation"><span class="link-icon" aria-hidden="true"></span></a>
+Installation</h3>
+<p>Make sure you have docker &amp; docker-compose installed in your machine:</p>
+<ul>
+<li><a href="https://docs.docker.com/get-docker/">How to install docker</a></li>
+<li><a href="https://docs.docker.com/compose/install/">How to install docker-compose</a></li>
+</ul>
+<h3 id="create-docker-images-without-docker-compose"><a class="header-anchor no-hover-padding" href="#create-docker-images-without-docker-compose" aria-label="Anchor link for: create-docker-images-without-docker-compose"><span class="link-icon" aria-hidden="true"></span></a>
+Create Docker Images without Docker compose</h3>
+<ul>
+<li>
+<p>Create project folder</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> mkdir node-redis-demo</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> cd node-redis-demo</span>
+</span></code></pre>
+</li>
+<li>
+<p>Create <code>package.json</code> file</p>
+<p>In this file, we will declare the dependencies we use for our application. This step is similar as you create the Nodejs application (without <strong>npm install</strong> or <strong>yarn add</strong> dependencies).</p>
+<p>We consider our computer don’t have <strong>npm</strong> or <strong>yarn</strong> installed. We just use Docker to create the develop environment.</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> touch package.json <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> or yarn init -y</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span></span></code></pre>
+<p>Paste the following code:</p>
+<pre data-lang="javascript" class="language-javascript z-code"><code class="language-javascript" data-lang="javascript"><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts">package.json</span>
+</span><span class="z-source z-ts">  <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span><span class="z-source z-ts"><span class="z-meta z-block z-ts">  <span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>name<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span>: <span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>node-redis-app<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span><span class="z-source z-ts"><span class="z-meta z-block z-ts">  <span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>version<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span>: <span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>1.0.0<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span><span class="z-source z-ts"><span class="z-meta z-block z-ts">  <span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>main<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span>: <span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>index.js<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span><span class="z-source z-ts"><span class="z-meta z-block z-ts">  <span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>license<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span>: <span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>MIT<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span><span class="z-source z-ts"><span class="z-meta z-block z-ts">  <span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>scripts<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span>:<span class="z-meta z-objectliteral z-ts"> <span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts">    <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>start<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span></span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>node index.js<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts">  <span class="z-punctuation z-definition z-block z-ts">}</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span><span class="z-source z-ts"><span class="z-meta z-block z-ts">  <span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>dependencies<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span>:<span class="z-meta z-objectliteral z-ts"> <span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts">    <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>redis<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span></span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>*<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts">We don&#39;t care about the version of dependencies</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts">    <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>express<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span></span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-string z-quoted z-double z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&quot;</span>*<span class="z-punctuation z-definition z-string z-end z-ts">&quot;</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts">Docker will fetch the latest version of them</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-objectliteral z-ts">  <span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span></span><span class="z-source z-ts"><span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">}</span></span>
+</span></code></pre>
+</li>
+<li>
+<p>Create <code>index.js</code> file to config <code>express</code> and run server</p>
+<pre data-lang="javascript" class="language-javascript z-code"><code class="language-javascript" data-lang="javascript"><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts">index.js</span>
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">express</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-meta z-function-call z-ts"><span class="z-support z-function z-ts">require</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>express<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">redis</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-meta z-function-call z-ts"><span class="z-support z-function z-ts">require</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>redis<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">app</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-meta z-function-call z-ts"><span class="z-entity z-name z-function z-ts">express</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">client</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">redis</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">createClient</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">client</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">on</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>error<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-meta z-function z-expression z-ts"><span class="z-storage z-type z-function z-ts">function</span> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">error</span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-function z-expression z-ts"><span class="z-meta z-block z-ts">  <span class="z-meta z-function-call z-ts"><span class="z-support z-class z-console z-ts">console</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-console z-ts">error</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">error</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-function z-expression z-ts"><span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">}</span></span></span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">client</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-dom z-ts">set</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>visits<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-constant z-numeric z-decimal z-ts">0</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">app</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-dom z-ts">get</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>/<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span><span class="z-meta z-arrow z-ts"> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">req</span><span class="z-punctuation z-separator z-parameter z-ts">,</span> <span class="z-variable z-parameter z-ts">res</span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span> </span><span class="z-meta z-arrow z-ts"><span class="z-storage z-type z-function z-arrow z-ts">=&gt;</span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">client</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-dom z-ts">get</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>visits<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span><span class="z-meta z-arrow z-ts"> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">err</span><span class="z-punctuation z-separator z-parameter z-ts">,</span> <span class="z-variable z-parameter z-ts">visits</span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span> </span><span class="z-meta z-arrow z-ts"><span class="z-storage z-type z-function z-arrow z-ts">=&gt;</span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">    <span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">res</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-ts">send</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>Number of visits is <span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span> <span class="z-keyword z-operator z-arithmetic z-ts">+</span> <span class="z-variable z-other z-readwrite z-ts">visits</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">    <span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">client</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-dom z-ts">set</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>visits<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-meta z-function-call z-ts"><span class="z-support z-function z-ts">parseInt</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">visits</span><span class="z-meta z-brace z-round z-ts">)</span> <span class="z-keyword z-operator z-arithmetic z-ts">+</span> <span class="z-constant z-numeric z-decimal z-ts">1</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-punctuation z-definition z-block z-ts">}</span></span></span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">}</span></span></span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">port</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-constant z-numeric z-decimal z-ts">8080</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">app</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">listen</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">port</span><span class="z-punctuation z-separator z-comma z-ts">,</span><span class="z-meta z-arrow z-ts"> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span> </span><span class="z-meta z-arrow z-ts"><span class="z-storage z-type z-function z-arrow z-ts">=&gt;</span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-meta z-function-call z-ts"><span class="z-support z-class z-console z-ts">console</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-console z-ts">log</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>App Redis is running on port 8080<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">}</span></span></span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> 
+</span></span></code></pre>
+</li>
+<li>
+<p>Create <strong>Dockerfile</strong></p>
+<pre data-lang="yml" class="language-yml z-code"><code class="language-yml" data-lang="yml"><span class="z-source z-yaml"><span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span> Dockerfile
+</span></span><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml">FROM node:12.18-alpine</span> <span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span>Version nodejs we want to use
+</span></span><span class="z-source z-yaml">
+</span><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml">WORKDIR /app</span> <span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span>Define the work directory of project in Docker container
+</span></span><span class="z-source z-yaml">
+</span><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml">COPY package*.json ./</span> <span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span>Make sure always copy package.json and package-lock.json to build folder
+</span></span><span class="z-source z-yaml"><span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span> Copy package.json to avoid reinstall all the dependencies for each build
+</span></span><span class="z-source z-yaml">
+</span><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml">RUN yarn install</span> <span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span>Run install and update dependencies from package.json
+</span></span><span class="z-source z-yaml">
+</span><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml">COPY . .</span> <span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span>Copy all other files to the build folder
+</span></span><span class="z-source z-yaml">
+</span><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml">EXPOSE 8080</span> <span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span>Optional: Port running on Docker container
+</span></span><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml">CMD [&quot;node&quot;, &quot;index.js&quot;]</span> <span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span>Command line to run project
+</span></span><span class="z-source z-yaml">
+</span></code></pre>
+<p>You can also check an article on my blog for more information of Dockerfile: <a href="https://tduyng.github.io/blog/create-simple-project-nodejs-with-docker">Create simple project Nodejs with Docker</a></p>
+</li>
+<li>
+<p>Create <code>.dockerignore</code></p>
+<pre data-lang="yml" class="language-yml z-code"><code class="language-yml" data-lang="yml"><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml">node_modules</span>
+</span><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml">npm-debug.log</span>
+</span><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml">yarn-debug.log</span>
+</span></code></pre>
+</li>
+<li>
+<p>Build Docker Image
+OK, everything is done. Now, we will build this image:</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> docker build<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>t</span> node-redis-app .</span>
+</span></code></pre>
+<p>Don’t forget the point <strong>.</strong> in the end.</p>
+<p>You can check all images available in your computer:</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> docker images</span>
+</span></code></pre>
+</li>
+<li>
+<p>Run Docker container from Docker image
+We have already an Docker image node-redis-app. The thing to do now is run container from this image to start project.</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> docker run<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>p</span> 8080:8080<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>it</span> node-redis-app</span>
+</span></code></pre>
+<p><strong>-p 8080:8080</strong> flag: declare port using (port on Docker container and port on your machine)
+<strong>-it</strong> flag: allow access inside the terminal of Docker container
+<strong>node-redis-app</strong>: name image of your app</p>
+</li>
+<li>
+<p>Problem
+When you run with the command above, you will see an error failed connection with Redis-server:</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> docker run<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>p</span> 8080:8080<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>it</span> node-redis-app</span>
+</span><span class="z-source z-shell z-bash">
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">App</span></span><span class="z-meta z-function-call z-arguments z-shell"> Redis is running on port 8080</span>
+</span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">Error:</span></span><span class="z-meta z-function-call z-arguments z-shell"> Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379</span>
+</span><span class="z-source z-shell z-bash">    <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">at</span></span><span class="z-meta z-function-call z-arguments z-shell"> TCPConnectWrap.afterConnect <span class="z-keyword z-control z-regexp z-set z-begin z-shell">[</span>as oncomplete<span class="z-keyword z-control z-regexp z-set z-end z-shell">]</span> (net.js:1141:16</span><span class="z-meta z-function-call z-shell"></span>) <span class="z-punctuation z-definition z-compound z-braces z-begin z-shell">{</span>
+</span><span class="z-source z-shell z-bash">  <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">errno:</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>ECONNREFUSED<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span>,</span>
+</span><span class="z-source z-shell z-bash">  <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">code:</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>ECONNREFUSED<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span>,</span>
+</span><span class="z-source z-shell z-bash">  <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">syscall:</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>connect<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span>,</span>
+</span><span class="z-source z-shell z-bash">  <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">address:</span></span><span class="z-meta z-function-call z-arguments z-shell"> <span class="z-string z-quoted z-single z-shell"><span class="z-punctuation z-definition z-string z-begin z-shell">&#39;</span>127.0.0.1<span class="z-punctuation z-definition z-string z-end z-shell">&#39;</span></span>,</span>
+</span><span class="z-source z-shell z-bash">  <span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">port:</span></span><span class="z-meta z-function-call z-arguments z-shell"> 6379</span>
+</span><span class="z-source z-shell z-bash"><span class="z-punctuation z-definition z-compound z-braces z-end z-shell">}</span>
+</span><span class="z-source z-shell z-bash">
+</span></code></pre>
+<p><strong>What is the problem ?</strong>
+The problem is: You want to run 2 containers in same times.
+==&gt; <strong>redis-server</strong> &amp;&amp; <strong>nodejs</strong>
+But when you run your Dockerfile, you run only Nodejs app container, not to redis container.
+You can also create other redis-server container from <a href="https://hub.docker.com/_/redis">redis</a> image</p>
+<p>There are no any link between 2 this containers. Your Nodejs application can’t connect to <strong>redis-server</strong>(from <strong>redis</strong> Docker image).</p>
+<p><strong>How to resolve this error?</strong>
+The answer is <strong>Docker compose</strong>. In this case, we need to use Docker compose to run and connect multiple Docker container.</p>
+</li>
+</ul>
+<h3 id="create-docker-image-using-docker-compose"><a class="header-anchor no-hover-padding" href="#create-docker-image-using-docker-compose" aria-label="Anchor link for: create-docker-image-using-docker-compose"><span class="link-icon" aria-hidden="true"></span></a>
+Create Docker image using Docker compose</h3>
+<ul>
+<li>
+<p>To make sure the project above running, we need simply create a <code>docker-compose.yml</code> file.
+It is a config file for docker-compose. It allows us to define the services (container) using in our app.</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> touch docker-compose.yml</span>
+</span></code></pre>
+</li>
+<li>
+<p>Add the following code:</p>
+<pre data-lang="yml" class="language-yml z-code"><code class="language-yml" data-lang="yml"><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">version</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-quoted z-single z-yaml"><span class="z-punctuation z-definition z-string z-begin z-yaml">&#39;</span>3.8<span class="z-punctuation z-definition z-string z-end z-yaml">&#39;</span></span> <span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span>version of docker-compose
+</span></span><span class="z-source z-yaml"><span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">services</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span> declare containers used
+</span></span><span class="z-source z-yaml">  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">redis-server</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span>image of redis
+</span></span><span class="z-source z-yaml">    <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">image</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-quoted z-single z-yaml"><span class="z-punctuation z-definition z-string z-begin z-yaml">&#39;</span>redis<span class="z-punctuation z-definition z-string z-end z-yaml">&#39;</span></span>
+</span><span class="z-source z-yaml">  <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">node-app</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span>images of your node app (using Dockerfile, package.json ...)
+</span></span><span class="z-source z-yaml">    <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">restart</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-string z-unquoted z-plain z-out z-yaml">always</span> <span class="z-comment z-line z-number-sign z-yaml"><span class="z-punctuation z-definition z-comment z-line z-number-sign z-yaml">#</span>If this container stops for any reason, always attempt to restart it
+</span></span><span class="z-source z-yaml">    <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">build</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span> <span class="z-constant z-numeric z-float z-decimal z-yaml"><span class="z-punctuation z-separator z-decimal z-yaml">.</span></span>
+</span><span class="z-source z-yaml">    <span class="z-string z-unquoted z-plain z-out z-yaml"><span class="z-entity z-name z-tag z-yaml">ports</span></span><span class="z-punctuation z-separator z-key-value z-mapping z-yaml">:</span>
+</span><span class="z-source z-yaml">      <span class="z-punctuation z-definition z-block z-sequence z-item z-yaml">-</span> <span class="z-string z-quoted z-single z-yaml"><span class="z-punctuation z-definition z-string z-begin z-yaml">&#39;</span>8080:8080<span class="z-punctuation z-definition z-string z-end z-yaml">&#39;</span></span>
+</span><span class="z-source z-yaml">
+</span></code></pre>
+<p>Check <a href="https://docs.docker.com/compose/gettingstarted/">docker compose</a> for more details about configuration.</p>
+</li>
+<li>
+<p>Update redis services to <code>index.js</code> file</p>
+<pre data-lang="javascript" class="language-javascript z-code"><code class="language-javascript" data-lang="javascript"><span class="z-source z-ts"><span class="z-comment z-line z-double-slash z-ts"><span class="z-punctuation z-definition z-comment z-ts">//</span></span><span class="z-comment z-line z-double-slash z-ts"> index.js</span>
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">express</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-meta z-function-call z-ts"><span class="z-support z-function z-ts">require</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>express<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">redis</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-meta z-function-call z-ts"><span class="z-support z-function z-ts">require</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>redis<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">app</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-meta z-function-call z-ts"><span class="z-entity z-name z-function z-ts">express</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">process</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-meta z-function-call z-ts"><span class="z-support z-function z-ts">require</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>process<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">client</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">redis</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">createClient</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-objectliteral z-ts">  <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">host</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>redis-server<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-objectliteral z-ts">  <span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts">port</span></span><span class="z-meta z-object z-member z-ts"><span class="z-meta z-object-literal z-key z-ts"><span class="z-punctuation z-separator z-key-value z-ts">:</span></span> <span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>6379<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span></span><span class="z-punctuation z-separator z-comma z-ts">,</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-meta z-objectliteral z-ts"><span class="z-punctuation z-definition z-block z-ts">}</span></span><span class="z-meta z-brace z-round z-ts">)</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">client</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">on</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>error<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-meta z-function z-expression z-ts"><span class="z-storage z-type z-function z-ts">function</span> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">error</span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-function z-expression z-ts"><span class="z-meta z-block z-ts">  <span class="z-meta z-function-call z-ts"><span class="z-support z-class z-console z-ts">console</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-console z-ts">error</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">error</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-function z-expression z-ts"><span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">}</span></span></span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">client</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-dom z-ts">set</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>visits<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-constant z-numeric z-decimal z-ts">0</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">app</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-dom z-ts">get</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>/<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span><span class="z-meta z-arrow z-ts"> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">req</span><span class="z-punctuation z-separator z-parameter z-ts">,</span> <span class="z-variable z-parameter z-ts">res</span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span> </span><span class="z-meta z-arrow z-ts"><span class="z-storage z-type z-function z-arrow z-ts">=&gt;</span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-meta z-function-call z-ts"><span class="z-support z-variable z-object z-process z-ts">process</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-process z-ts">exit</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-constant z-numeric z-decimal z-ts">0</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">client</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-dom z-ts">get</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>visits<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span><span class="z-meta z-arrow z-ts"> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-variable z-parameter z-ts">err</span><span class="z-punctuation z-separator z-parameter z-ts">,</span> <span class="z-variable z-parameter z-ts">visits</span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span> </span><span class="z-meta z-arrow z-ts"><span class="z-storage z-type z-function z-arrow z-ts">=&gt;</span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">    <span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">res</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-ts">send</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>Number of visits is <span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span> <span class="z-keyword z-operator z-arithmetic z-ts">+</span> <span class="z-variable z-other z-readwrite z-ts">visits</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">    <span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">client</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-dom z-ts">set</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>visits<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-punctuation z-separator z-comma z-ts">,</span> <span class="z-meta z-function-call z-ts"><span class="z-support z-function z-ts">parseInt</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">visits</span><span class="z-meta z-brace z-round z-ts">)</span> <span class="z-keyword z-operator z-arithmetic z-ts">+</span> <span class="z-constant z-numeric z-decimal z-ts">1</span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-punctuation z-definition z-block z-ts">}</span></span></span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">}</span></span></span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts">
+</span><span class="z-source z-ts"><span class="z-meta z-var z-expr z-ts"><span class="z-storage z-type z-ts">const</span> <span class="z-meta z-var-single-variable z-expr z-ts"><span class="z-meta z-definition z-variable z-ts"><span class="z-variable z-other z-constant z-ts">port</span></span> </span><span class="z-keyword z-operator z-assignment z-ts">=</span> <span class="z-constant z-numeric z-decimal z-ts">8080</span></span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts"><span class="z-meta z-function-call z-ts"><span class="z-variable z-other z-object z-ts">app</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-entity z-name z-function z-ts">listen</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-variable z-other z-readwrite z-ts">port</span><span class="z-punctuation z-separator z-comma z-ts">,</span><span class="z-meta z-arrow z-ts"> <span class="z-meta z-parameters z-ts"><span class="z-punctuation z-definition z-parameters z-begin z-ts">(</span><span class="z-punctuation z-definition z-parameters z-end z-ts">)</span></span> </span><span class="z-meta z-arrow z-ts"><span class="z-storage z-type z-function z-arrow z-ts">=&gt;</span> <span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">{</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts">  <span class="z-meta z-function-call z-ts"><span class="z-support z-class z-console z-ts">console</span><span class="z-punctuation z-accessor z-ts">.</span><span class="z-support z-function z-console z-ts">log</span></span><span class="z-meta z-brace z-round z-ts">(</span><span class="z-string z-quoted z-single z-ts"><span class="z-punctuation z-definition z-string z-begin z-ts">&#39;</span>App Redis is running on port 8080<span class="z-punctuation z-definition z-string z-end z-ts">&#39;</span></span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span></span></span><span class="z-source z-ts"><span class="z-meta z-arrow z-ts"><span class="z-meta z-block z-ts"><span class="z-punctuation z-definition z-block z-ts">}</span></span></span><span class="z-meta z-brace z-round z-ts">)</span><span class="z-punctuation z-terminator z-statement z-ts">;</span>
+</span><span class="z-source z-ts">
+</span></code></pre>
+</li>
+<li>
+<p>Build and run your app with docker-compose</p>
+<p>In the root project:</p>
+<ul>
+<li>Build images:<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> docker-compose build</span>
+</span></code></pre>
+When you use docker-compose to build the image, the image name is always going to be <strong><project>_<service></strong>, where <strong><service></strong> in this example is <strong>node-redis-app_node-app</strong>.</li>
+<li>Run containers with docker-compose</li>
+</ul>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> docker-compose up <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> all services declared in docker-compose.yml will be started</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span></span><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> docker-compose up<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>d <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell">detach mode</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span></span></span></code></pre>
+<ul>
+<li>Stop containers with docker-compose</li>
+</ul>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> docker-compose down <span class="z-comment z-line z-number-sign z-shell"><span class="z-punctuation z-definition z-comment z-begin z-shell">#</span></span><span class="z-comment z-line z-number-sign z-shell"> Stop all containers declared in docker-compose.yml file</span><span class="z-comment z-line z-number-sign z-shell">
+</span></span></span></code></pre>
+</li>
+</ul>
+<p>That’s it. Test the code on your machine and check it in then <a href="http://localhost:8080">localhost8080</a> to see the result.</p>
+<h2 id="resume"><a class="header-anchor no-hover-padding" href="#resume" aria-label="Anchor link for: resume"><span class="link-icon" aria-hidden="true"></span></a>
+Resume</h2>
+<p>Docker compose:</p>
+<ul>
+<li>Separate CLI that gets installed along with Docker</li>
+<li>Used to startup multiple Docker containers at the same time</li>
+<li>Automate some of the long-winded arguments we were passing to <code>docker run</code></li>
+<li><strong>Docker compose</strong> will start and connect all the containers Docker that you declare in the <code>docker-compose.yml</code> file. We will use it usually when we work with Docker.</li>
+</ul>
+<h2 id="reference"><a class="header-anchor no-hover-padding" href="#reference" aria-label="Anchor link for: reference"><span class="link-icon" aria-hidden="true"></span></a>
+Reference</h2>
+<ul>
+<li><a href="https://github.com/tduyng/try-docker/tree/master/01.dive-into-docker/simple-with-redis">Code demo GitHub</a></li>
+<li><a href="https://tduyng.github.io/blog/create-simple-project-nodejs-with-docker">Previous post: create simple Nodejs app with Docker</a></li>
+<li><a href="https://docs.docker.com/">Docker official</a></li>
+<li><a href="https://docs.docker.com/compose/">Learn about <strong>Docker compose</strong></a></li>
+<li><a href="https://jstobigdata.com/docker-compose-cheatsheet/">Docker compose cheatsheet</a></li>
+</ul>
+
+        </section>
+
+        
+        
+        
+        
+
+        
+            
+            
+            
+
+            
+                
+                
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+
+        
+        
+
+        
+                
+                
+                    
+                        
+                        
+                        
+                    
+                    
+                        
+                        
+                        
+                    
+                
+                
+            <nav class="full-width article-navigation">
+                <div><a href="https://tduyng.com/blog/create-simple-project-nodejs-with-docker/" aria-label="Prev" aria-describedby="left_title"><span class="arrow">←</span>&nbsp;Prev</a>
+                <p aria-hidden="true" id="left_title">Create simple web app Nodejs with Docker</p></div>
+                <div><a href="https://tduyng.com/blog/start-a-new-journey/" aria-label="Next" aria-describedby="right_title">Next&nbsp;<span class="arrow">→</span></a>
+                <p aria-hidden="true" id="right_title">Start a new journey</p></div>
+            </nav>
+        
+            
+
+<div id="comments" class="comments"
+
+
+    data-repo="tduyng&#x2F;tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    
+        data-mapping="specific"
+        data-term="why-use-dockercompose"
+    
+    data-strict="1"
+    data-reactions-enabled="1"
+    
+        data-input-position="top"
+    
+    data-light-theme="noborder_light"
+    data-dark-theme="noborder_dark"
+    
+        data-lang="en"
+    
+    data-lazy-loading="true"
+    >
+
+
+
+
+    <script src="https://tduyng.com/js/giscus.min.js" async></script>
+
+
+<noscript>You need JavaScript to view the comments.</noscript>
+</div>
+
+        
+
+    </article>
+</main>
+
+    <div id="button-container">
+        
+        
+            <div id="toc-floating-container">
+                <input type="checkbox" id="toc-toggle" class="toggle"/>
+                <label for="toc-toggle" class="overlay"></label>
+                <label for="toc-toggle" id="toc-button" class="button" title="Toggle Table of Contents">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M414.82-193.094q-18.044 0-30.497-12.32-12.453-12.319-12.453-30.036t12.453-30.086q12.453-12.37 30.497-12.37h392.767q17.237 0 29.927 12.487 12.69 12.486 12.69 30.203 0 17.716-12.69 29.919t-29.927 12.203H414.82Zm0-244.833q-18.044 0-30.497-12.487Q371.87-462.9 371.87-480.45t12.453-29.92q12.453-12.369 30.497-12.369h392.767q17.237 0 29.927 12.511 12.69 12.512 12.69 29.845 0 17.716-12.69 30.086-12.69 12.37-29.927 12.37H414.82Zm0-245.167q-18.044 0-30.497-12.32t-12.453-30.037q0-17.716 12.453-30.086 12.453-12.369 30.497-12.369h392.767q17.237 0 29.927 12.486 12.69 12.487 12.69 30.203 0 17.717-12.69 29.92-12.69 12.203-29.927 12.203H414.82ZM189.379-156.681q-32.652 0-55.878-22.829t-23.226-55.731q0-32.549 23.15-55.647 23.151-23.097 55.95-23.097 32.799 0 55.313 23.484 22.515 23.484 22.515 56.246 0 32.212-22.861 54.893-22.861 22.681-54.963 22.681Zm0-245.167q-32.652 0-55.878-23.134-23.226-23.135-23.226-55.623 0-32.487 23.467-55.517t56.12-23.03q32.102 0 54.721 23.288 22.62 23.288 22.62 55.775 0 32.488-22.861 55.364-22.861 22.877-54.963 22.877Zm-.82-244.833q-32.224 0-55.254-23.288-23.03-23.289-23.03-55.623 0-32.333 23.271-55.364 23.272-23.03 55.495-23.03 32.224 0 55.193 23.288 22.969 23.289 22.969 55.622 0 32.334-23.21 55.364-23.21 23.031-55.434 23.031Z"/></svg>
+                </label>
+                <div class="toc-content">
+                    
+
+<div class="toc-container">
+    
+
+    <ul>
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/why-use-dockercompose/#what-is-docker-compose">What is Docker compose?</a>
+                    
+                </li>
+            
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/why-use-dockercompose/#project-demo">Project demo</a>
+                    
+                        <ul>
+                            
+                                
+                                    <li><a href="https://tduyng.com/blog/why-use-dockercompose/#installation">Installation</a>
+                                        
+                                    </li>
+                                
+                            
+                                
+                                    <li><a href="https://tduyng.com/blog/why-use-dockercompose/#create-docker-images-without-docker-compose">Create Docker Images without Docker compose</a>
+                                        
+                                    </li>
+                                
+                            
+                                
+                                    <li><a href="https://tduyng.com/blog/why-use-dockercompose/#create-docker-image-using-docker-compose">Create Docker image using Docker compose</a>
+                                        
+                                    </li>
+                                
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/why-use-dockercompose/#resume">Resume</a>
+                    
+                </li>
+            
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/why-use-dockercompose/#reference">Reference</a>
+                    
+                </li>
+            
+        
+    </ul>
+</div>
+
+
+                </div>
+            </div>
+        
+
+        
+        
+            <a href="#comments" id="comments-button" class="no-hover-padding" title="Go to the comments section">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" fill-rule="evenodd"/></svg>
+            </a>
+        
+
+        
+        <a href="#" id="top-button" class="no-hover-padding" title="Go to the top of the page">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"/></svg>
+        </a>
+    </div>
+
+
+<span id="copy-success" class="hidden">
+        Copied!
+    </span>
+    <span id="copy-init" class="hidden">
+        Copy code to clipboard
+    </span>
+    <script defer src="https://tduyng.com/js/copyCodeToClipboard.min.js"></script><script defer src="https://tduyng.com/js/footnoteBacklinks.min.js"></script>
+    </div>
+    <footer>
+    <section>
+        <nav class="socials nav-navs">
+                <ul>
+                    
+                    
+                    
+                    <li>
+                        <a class="nav-links no-hover-padding social" rel=""  href=https://tduyng.com/atom.xml>
+                        <img alt="feed" title="feed" src="https://tduyng.com/social_icons/rss.svg">
+                        </a>
+                    </li><li class="js"><a class="nav-links no-hover-padding social" href="#" data-encoded-email="aGlAdGR1eW5nLmNvbQo="><img alt="email" title="email" src="https://tduyng.com/social_icons/email.svg">
+                            </a>
+                        </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://github.com/tduyng/>
+                                    <img alt=github title=github src="https://tduyng.com/social_icons/github.svg">
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://www.linkedin.com/in/tienduy-nguyen/>
+                                    <img alt=linkedin title=linkedin src="https://tduyng.com/social_icons/linkedin.svg">
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://twitter.com/tduyng>
+                                    <img alt=x title=x src="https://tduyng.com/social_icons/twitter.svg">
+                                </a>
+                            </li>
+                        
+                    
+                </ul>
+            
+        </nav>
+
+        
+        <nav class="nav-navs">
+                <small>
+                    <ul>
+                        
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;subscribe">
+                                subscribe
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;about">
+                                about
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;privacy">
+                                privacy policy
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;license">
+                                license
+                            </a>
+                        </li>
+                    
+                    </ul>
+                </small>
+        
+        </nav>
+
+        <div class="credits">
+            <small>
+                
+
+                
+                Powered by
+                <a rel=""  href="https://www.getzola.org">Zola</a>
+                &amp;
+                <a rel=""  href="https://github.com/welpo/tabi">tabi</a>
+
+                </small>
+        </div>
+    </section>
+
+    <script src="https://tduyng.com/js/decodeMail.min.js" async></script><div id="searchModal" class="search-modal js" role="dialog" aria-labelledby="modalTitle">
+    <h1 id="modalTitle" class="visually-hidden">Search</h1>
+    <div id="modal-content">
+        <div id="searchBar">
+            <div class="search-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                    <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                </svg>
+            </div>
+            <input id="searchInput" role="combobox" autocomplete="off" spellcheck="false" aria-expanded="false" aria-controls="results-container" placeholder="Search…"/>
+            <div id="clear-search" class="close-icon interactive-icon" tabindex="0" role="button" title="Clear search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                </svg>
+            </div>
+        </div>
+        <div id="results-container">
+            <div id="results-info"><span id="zero_results"> No results</span>
+                <span id="one_results"> $NUMBER result</span>
+                <span id="many_results"> $NUMBER results</span><span id="two_results"> $NUMBER results</span>
+                <span id="few_results"> $NUMBER results</span>
+            </div>
+            <div id="results" role="listbox"></div>
+        </div>
+    </div>
+</div>
+</footer>
+
+</body>
+
+</html>

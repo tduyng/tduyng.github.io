@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://tduyng.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:base="http://purl.org/atompub/base/1.0/" xml:lang="en" xml:base="https:&#x2F;&#x2F;tduyng.com&#x2F;">
+    <str:translations xmlns:str="https://github.com/welpo/tabi">
+        <str:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</str:about_feeds>
+        <str:visit_the_site>Visit website</str:visit_the_site>
+        <str:recent_posts>Recent posts</str:recent_posts>
+    </str:translations><title>~/Z - rss</title>
+        <subtitle>Z is software developer. Typescript and Rust enthusiast</subtitle>
+    <link href="https://tduyng.com/tags/rss/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://tduyng.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-06-10T00:00:00+00:00</updated>
+    <id>https://tduyng.com/tags/rss/atom.xml</id><entry xml:lang="en">
+        <title>My blog now offers full-text RSS feeds</title>
+        <published>2024-06-10T00:00:00+00:00</published>
+        <updated>2024-06-10T00:00:00+00:00</updated>
+        <author>
+            <name>Z</name>
+        </author>
+        <link rel="alternate" href="https://tduyng.com/blog/full-text-rss-feeds/" type="text/html"/>
+        <id>https://tduyng.com/blog/full-text-rss-feeds/</id>
+        
+            <content type="html">&lt;p&gt;Guess what? My blog now offers full-text RSS feeds!&lt;&#x2F;p&gt;
+&lt;p&gt;Not long ago, I discovered a new way to get updates &lt;a href=&quot;https:&#x2F;&#x2F;aboutfeeds.com&#x2F;&quot;&gt;RSS feeds&lt;&#x2F;a&gt; from websites using a reader app. It might seem strange, right? Most people probably already know about this method since it has existed for a long time, but I had no idea about it before. I only knew how to subscribe to newsletters via email.&lt;&#x2F;p&gt;
+&lt;p&gt;For the past two years, I’ve been reading a lot more, especially on &lt;a href=&quot;https:&#x2F;&#x2F;daily.dev&quot;&gt;daily.dev&lt;&#x2F;a&gt;, a platform where people share interesting articles. I’ve found many new blogs that I want to follow and subscribe to. I don’t remember exactly where I learned about subscribing to RSS feeds, but it was probably from a “subscribe” or “newsletter” tab on a blog, maybe &lt;a href=&quot;https:&#x2F;&#x2F;tonsky.me&quot;&gt;tonsky.me&lt;&#x2F;a&gt;. They explained how to use a reader app to subscribe to RSS feeds. It’s totally free and really cool! So, I started using that method to subscribe to other blogs. It’s much easier than using email. My blog also supports RSS feeds via &lt;a href=&quot;https:&#x2F;&#x2F;tduyng.github.io&#x2F;atom.xml&quot;&gt;atom.xml&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;However, there’s one important thing to mention about sharing RSS feeds. Recently, I came across an article called &lt;a href=&quot;https:&#x2F;&#x2F;hamatti.org&#x2F;posts&#x2F;full-text-rss-feed-is-offline-friendly-act&#x2F;&quot;&gt;Full-text RSS feed is an offline-friendly act&lt;&#x2F;a&gt; by Juhis. He explained the benefits of full-text RSS feeds, especially for offline reading. I agree with him. While we mostly have internet access, there are times when we travel or are in places with poor connectivity. With full-text RSS feeds, we can read anywhere, anytime, without needing internet.&lt;&#x2F;p&gt;
+&lt;p&gt;In his article, Juhis mentioned:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;There are two schools of thought in RSS world: one to offer the full post in the feed so it can be directly read in the feed reader and another to only offer an excerpt (or even just title) so the reader needs to navigate to your blog and read it there.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Please, make your posts fully available through RSS ❤️&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;He is right. If we write a blog for profit, advertisement, or SEO…etc, it might be necessary to show just a short preview and have readers visit the original website for the full content.. But if we write for free, to share thoughts, knowledge, and experiences, why not provide full-text RSS feeds? It can help people in many situations.&lt;&#x2F;p&gt;
+&lt;p&gt;I checked my website and saw it didn’t show full text by default. So, I changed it. I hope this helps people. If you find my blog interesting, feel free to subscribe using your reader app.&lt;&#x2F;p&gt;
+&lt;p&gt;If you don’t have a reader app yet, you can find more information on &lt;a href=&quot;https:&#x2F;&#x2F;tduyng.github.io&#x2F;subscribe&quot;&gt;my subscribe page&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I use &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;Ranchero-Software&#x2F;NetNewsWire&quot;&gt;NetNewsWire&lt;&#x2F;a&gt; on MacOS and iOS because it’s open source, free, and the UI suits my needs. Other people recommend &lt;a href=&quot;https:&#x2F;&#x2F;feedly.com&#x2F;i&#x2F;discover&quot;&gt;Feedly&lt;&#x2F;a&gt; or &lt;a href=&quot;https:&#x2F;&#x2F;www.lireapp.com&#x2F;&quot;&gt;lire&lt;&#x2F;a&gt; too.&lt;&#x2F;p&gt;
+&lt;p&gt;Here’s how my blog looks on NetNewsWire will full text RSS feed:
+&lt;img src=&quot;&#x2F;img&#x2F;feed.webp&quot; alt=&quot;My blog on NetNewswire&quot; loading=&quot;lazy&quot;&gt;&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Explore the reasons behind this decision</summary>
+        </entry>
+</feed>
