@@ -16,7 +16,7 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
       - name: build
-        uses: shalzz/zola-deploy-action@v0.18.0
+        uses: shalzz/zola-deploy-action@v0.19.1
         env:
           PAGES_BRANCH: gh-pages
           TOKEN: ${{ secrets.TOKEN }}
