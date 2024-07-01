@@ -34,7 +34,7 @@ I'm a nice person (I think?) and  easy to work with. Here's an exhaustive list o
 - CI/CD
 - Gitlab/Github
 - SQL/NoSQL
-- Docker/Kubenetes/ArgoCD/DevOps
+- Docker/Kubernetes/ArgoCD
 - Technical Writing
 - C#/Python/Ruby/VBA
-- React/Svelte/HTML/CSS
+- React/HTML/CSS
