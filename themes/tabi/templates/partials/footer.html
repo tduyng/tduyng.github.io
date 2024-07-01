@@ -15,7 +15,7 @@
                 <ul>
                     {# Feed icon #}
                     {# Zola 0.19.0 uses `generate_feeds`. Prior versions use `generate_feed` #}
-                    {% set generate_feed = config.generate_feeds | default(value=config.generate_feed) %}
+                    {% set generate_feed = config.generate_feeds | default(value=config.generate_feeds) %}
                     {% set feed_url = config.feed_filenames[0] | default(value=(config.feed_filename)) %}
 
                     {%- if generate_feed and config.extra.feed_icon and feed_url -%}
