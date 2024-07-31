@@ -13,9 +13,11 @@ footnote_backlinks = true
 
 Hey everyone! I'm excited to share my journey from being a BIM engineer to becoming a full-time developer.
 
-As a BIM engineer, my main job was making sure our 3D construction models had lots of detail. This helped different construction teams like architects, structural engineers, and planners work together smoothly. We mainly used a software called Revit for this.
+In modern construction, digital technologies are being used more and more. A big development is Building Information Modeling (BIM), which involves putting a lot of information about things like materials, planning, costs and more into 3D models.
 
-While working with 3D software and Excel, I realized how important it was to make tasks automatic. So, I spent time writing scripts and plugins in VBA, C# and Python to make things easier for my company. Although I found this work interesting, I discovered I loved coding even more.
+As a BIM engineer, my main job was to make sure this process worked well, fast, and effectively for different construction teams, like architects, engineers, and planners. My aim was to keep high-quality models that each team could use again, reducing the need to do things over. We mainly used a software named Revit for this.
+
+To do high-quality work, I used my skills in programming to make processes automatic. So, I spent time writing scripts and plugins in languages like VBA, C#, and Python to make things easier for my company.
 
 Balancing two different roles at the same time was complicated. Since learning programming is a big challenge, it made me rethink what I wanted to do.
 
