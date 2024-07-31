@@ -1,0 +1,659 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https://tduyng.com/">
+
+    
+    <title>Transforming website images into WebP with Rust for faster loading times • ~/Z</title>
+
+    
+    
+        <link rel="icon" type="image/png" href="https://tduyng.com/img/logo.webp"/>
+    
+    
+        <link rel=icon href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105 55"><text y=".7em" font-size="82">Z</text></svg>'>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="~/Z" href="https://tduyng.com/atom.xml">
+
+    
+    
+    
+        <link rel="stylesheet" href="https://tduyng.com/custom_subset.css?h=753f2b519893883e57d5">
+    
+
+    
+        <link rel="stylesheet" href="https://tduyng.com/main.css?h=571d6d2a51c7448bc60a" />
+
+    <meta name="color-scheme" content="light dark" />
+        <meta name="theme-color" content="#087e96" />
+        <meta name="description" content="Explore the process of enhancing website speed through image conversion to WebP using Rust" />
+        <meta property="og:description" content="Explore the process of enhancing website speed through image conversion to WebP using Rust" />
+
+    
+        <meta name="robots" content="index, nofollow" />
+    
+
+    <meta property="og:title" content="Transforming website images into WebP with Rust for faster loading times" />
+    <meta property="og:type" content="article" />
+
+    
+        
+        
+        
+
+        
+        
+            
+        
+
+        
+        <meta property="og:image" content="https://tduyng.com/blog/rust-webp-transform/img/page_speed.webp?h=16e47f8eaa4c84f958f0" />
+        <meta property="og:image:width" content="904" />
+        <meta property="og:image:height" content="483" />
+        <meta name="twitter:image" content="https://tduyng.com/blog/rust-webp-transform/img/page_speed.webp?h=16e47f8eaa4c84f958f0" />
+        <meta name="twitter:card" content="summary_large_image" />
+    
+
+    <meta property="og:locale" content="en_GB" />
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;tduyng.com&#x2F;blog&#x2F;rust-webp-transform&#x2F;" /><meta property="og:site_name" content="~&#x2F;Z"><meta http-equiv="Content-Security-Policy"
+content="default-src 'self';font-src &#x27;self&#x27; data:;img-src &#x27;self&#x27; https:&#x2F;&#x2F;* data:;media-src &#x27;self&#x27; https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;;style-src &#x27;self&#x27;;frame-src player.vimeo.com https:&#x2F;&#x2F;www.youtube-nocookie.com giscus.app;connect-src 'self' *.umami.dev analytics.eu.umami.is;script-src 'self' analytics.eu.umami.is  giscus.app 'self'">
+
+        <noscript><link rel="stylesheet" href="https://tduyng.com/no_js.css"/></noscript>
+        <script type="text/javascript" src="https://tduyng.com/js/initializeTheme.min.js"></script>
+        <script defer src="https://tduyng.com/js/themeSwitcher.min.js"></script>
+
+
+
+
+    <script async defer
+    
+        data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+        src="https://analytics.eu.umami.is/script.js"
+    
+    data-do-not-track="true">
+    </script>
+
+    
+
+        <script defer src="https://tduyng.com/js/searchElasticlunr.min.js?h=2950d57f80c9fa78f37e"></script>
+
+        </head>
+
+
+<body>
+    <header>
+    <nav class="navbar">
+        <div class="nav-title">
+            <a class="home-title" href=https://tduyng.com>~&#x2F;Z</a>
+        </div>
+            <div class="nav-navs">
+                <ul>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/blog/">
+                                blog
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/archive/">
+                                archive
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/projects/">
+                                projects
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/about/">
+                                about
+                                </a>
+                            </li>
+                        <li class="js">
+                        <div role="button" tabindex="0" id="search-button" class="search-icon interactive-icon" title="Click or press $SHORTCUT to open search" aria-label="Click or press $SHORTCUT to open search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                            </svg>
+                        </div>
+                    </li>
+
+                    
+                    
+
+                    <li class="theme-switcher-wrapper js"><div
+        title="Toggle dark&#x2F;light mode"
+        class="theme-switcher"
+        tabindex="0"
+        role="button"
+        aria-label="Toggle dark mode"
+        aria-pressed="false">
+    </div><div
+        title="Reset mode to default"
+        class="theme-resetter"
+        tabindex="0"
+        role="button"
+        aria-hidden="true"
+        aria-label="Reset mode to default">
+    </div>
+
+</li>
+</ul>
+            </div>
+        
+    </nav>
+</header>
+
+    <div class="content">
+
+        
+        
+
+
+
+
+<main>
+    <article>
+        <h1 class="article-title">
+            Transforming website images into WebP with Rust for faster loading times
+        </h1>
+
+        <ul class="meta"><li>23rd May 2024</li>&nbsp;•&nbsp;<li title="1314 words">7 min read</li>&nbsp;•&nbsp;<li>Tags:&nbsp;</li><li><a href=https://tduyng.com/tags/performance/>performance</a>,&nbsp;</li><li><a href=https://tduyng.com/tags/rust/>rust</a>,&nbsp;</li><li><a href=https://tduyng.com/tags/webp/>webp</a>,&nbsp;</li><li><a href=https://tduyng.com/tags/image-conversion/>image-conversion</a>,&nbsp;</li><li><a href=https://tduyng.com/tags/cli/>cli</a></li></ul><ul class="meta last-updated"><li>Updated on 23rd May 2024</li>
+                
+                •&nbsp;<li><a href="https://github.com/tduyng/tduyng.github.io/commits/main/content/blog&#x2F;rust-webp-transform&#x2F;index.md"  rel="">See changes<small>&nbsp;<span class="arrow-corner">↗</span></small></a></li>
+                
+            
+        </ul>
+
+        
+
+        
+        
+
+        <section class="body">
+            
+            
+            <p>Hi everyone 👋,</p>
+<p>Recently, I attended <a href="https://www.ekino.fr/">Ekinoday</a>, our company’s annual conference, where my colleagues share knowledge on various topics, from technology to life tips. This event is always very interesting for me.</p>
+<p>I had a chance to talk with my colleague <a href="https://github.com/thovo">Raphaël Tho Vo</a>, who gave a presentation on optimising web performance. <a href="https://github.com/thovo">Raphaël</a> mentioned that many people don’t realise how much image size and format can effect the web performance. Large image files can slow down a website significantly, affecting user experience.</p>
+<p>Raphaël explained that we can improve performance by using better image formats. He mentioned several modern formats like <a href="https://www.smashingmagazine.com/2021/09/modern-image-formats-avif-webp/">AVIF, WebP, JPEG 2000</a>. Among these, AVIF and WebP are the most supported by web browsers today.</p>
+<p>Inspired by Raphaël’s advice,  I decided to take a closer look at my website’s performance. I host my site on GitHub, using <a href="https://www.getzola.org/">Zola</a>, a static site engine, along with the <a href="https://github.com/welpo/tabi">Tabi</a> theme. This theme is beautifully designed and well-coded.</p>
+<p>I tested my website with <a href="https://pagespeed.web.dev/">PageSpeed Insights</a> and got a perfect score of 100/100 in everything: Performance, Accessibility, Best Practices, and SEO.</p>
+<p><img src="img/page_speed.webp" alt="page speed" loading="lazy"><br/></p>
+<p>However, I noticed that I still use a lot of PNG and JPEG images. Switching to WebP could significantly decrease image sizes and improve more load times.</p>
+<h3 id="converting-images-to-webp-with-rust"><a class="header-anchor no-hover-padding" href="#converting-images-to-webp-with-rust" aria-label="Anchor link for: converting-images-to-webp-with-rust"><span class="link-icon" aria-hidden="true"></span></a>
+Converting images to WebP with Rust</h3>
+<p>How can we accomplish this?</p>
+<p>To optimise images, I had to convert them to WebP format. I chose this format because it’s effective and widely supported across different web browsers. But I needed a quick way to convert multiple images to WebP and reuse it multiple times.</p>
+<p>There are online tools available to help, but that’s not the solution I’m looking for at the moment. Instead, I’ve chosen to create my own solution using Rust. Rust is great for this because it’s fast and easy to use for simple programs. Making this program will help me learn more about Rust.</p>
+<p>The objectif is to convert all kinds of images into WebP with just one command, making it fast and easy.</p>
+<p>Now, let’s coding!</p>
+<p>For this program, I used the <a href="https://github.com/image-rs/image">image</a> crate for decoding and encoding images. This crate supports many different image formats:</p>
+<table><thead><tr><th>Format</th><th>Decoding</th><th>Encoding</th></tr></thead><tbody>
+<tr><td>AVIF</td><td>Yes (8-bit only) *</td><td>Yes (lossy only)</td></tr>
+<tr><td>BMP</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Farbfeld</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>GIF</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>HDR</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>ICO</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>JPEG</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>EXR</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>PNG</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>PNM</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>QOI</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>TGA</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>TIFF</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>WebP</td><td>Yes</td><td>Yes (lossless only)</td></tr>
+</tbody></table>
+<p><strong>To encode an image to WebP, I created a function <code>encode_webp</code></strong>:</p>
+<pre data-lang="rust" class="language-rust z-code"><code class="language-rust" data-lang="rust"><span class="z-source z-rust"><span class="z-keyword z-other z-rust">use</span> <span class="z-meta z-path z-rust">image<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>DynamicImage<span class="z-punctuation z-separator z-rust">,</span> WebPEncoder<span class="z-punctuation z-separator z-rust">,</span> ExtendedColorType</span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span><span class="z-source z-rust">
+</span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-function z-rust"><span class="z-storage z-modifier z-rust">pub</span> <span class="z-storage z-type z-function z-rust">fn</span> </span><span class="z-entity z-name z-function z-rust">encode_webp</span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">(</span><span class="z-variable z-parameter z-rust">image</span><span class="z-punctuation z-separator z-rust">:</span> <span class="z-keyword z-operator z-rust">&amp;</span>DynamicImage</span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-end z-rust">)</span></span></span></span><span class="z-meta z-function z-rust"> <span class="z-meta z-function z-return-type z-rust"><span class="z-punctuation z-separator z-rust">-&gt;</span> <span class="z-meta z-generic z-rust"><span class="z-support z-type z-rust">Result</span><span class="z-punctuation z-definition z-generic z-begin z-rust">&lt;</span><span class="z-meta z-generic z-rust"><span class="z-support z-type z-rust">Vec</span><span class="z-punctuation z-definition z-generic z-begin z-rust">&lt;</span><span class="z-storage z-type z-rust">u8</span><span class="z-punctuation z-definition z-generic z-end z-rust">&gt;</span></span>, <span class="z-support z-type z-rust">String</span><span class="z-punctuation z-definition z-generic z-end z-rust">&gt;</span></span></span> </span><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-comment z-line z-double-slash z-rust"><span class="z-punctuation z-definition z-comment z-rust">//</span> Convert the image to RGBA format
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-storage z-type z-rust">let</span> rgba_image <span class="z-keyword z-operator z-assignment z-rust">=</span> image<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">to_rgba8</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-storage z-type z-rust">let</span> <span class="z-storage z-modifier z-rust">mut</span> webp_data <span class="z-keyword z-operator z-assignment z-rust">=</span> <span class="z-support z-type z-rust">Vec</span><span class="z-meta z-path z-rust"><span class="z-punctuation z-accessor z-rust">::</span></span>new<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-comment z-line z-double-slash z-rust"><span class="z-punctuation z-definition z-comment z-rust">//</span> Create a WebP encoder (support only lossless feature for now)
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-storage z-type z-rust">let</span> encoder <span class="z-keyword z-operator z-assignment z-rust">=</span> <span class="z-meta z-path z-rust">WebPEncoder<span class="z-punctuation z-accessor z-rust">::</span></span>new_lossless<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-keyword z-operator z-bitwise z-rust">&amp;</span><span class="z-storage z-modifier z-rust">mut</span> webp_data</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    encoder
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">        <span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">encode</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust">            rgba_image<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">as_raw</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-separator z-rust">,</span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust">            rgba_image<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">width</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-separator z-rust">,</span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust">            rgba_image<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">height</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-separator z-rust">,</span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust">            <span class="z-meta z-path z-rust">ExtendedColorType<span class="z-punctuation z-accessor z-rust">::</span></span>Rgba8<span class="z-punctuation z-separator z-rust">,</span> <span class="z-comment z-line z-double-slash z-rust"><span class="z-punctuation z-definition z-comment z-rust">//</span> Image crate support only Rgb8 or Rgba8 data
+</span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust">        </span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">        <span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">map_err</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">|</span></span></span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-variable z-parameter z-rust">e</span><span class="z-punctuation z-section z-parameters z-end z-rust">|</span></span> </span><span class="z-meta z-function z-closure z-rust"><span class="z-support z-macro z-rust">format!</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span><span class="z-constant z-other z-placeholder z-rust">{e}</span><span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-keyword z-operator z-rust">?</span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-support z-type z-rust">Ok</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>webp_data</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span></span>
+</span></code></pre>
+<p>The <code>DynamicImage</code> type from <a href="https://github.com/image-rs/image">image</a> crate allows us to handle different image formats. I convert the image to RGBA format and use the WebPEncoder to encode it.</p>
+<p><strong>Next, I wrote a function to convert a single image</strong>:</p>
+<pre data-lang="rust" class="language-rust z-code"><code class="language-rust" data-lang="rust"><span class="z-source z-rust"><span class="z-keyword z-other z-rust">use</span> <span class="z-meta z-path z-rust">image<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-path z-rust">io<span class="z-punctuation z-accessor z-rust">::</span></span>Reader<span class="z-punctuation z-terminator z-rust">;</span>
+</span><span class="z-source z-rust"><span class="z-keyword z-other z-rust">use</span> <span class="z-meta z-path z-rust">std<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>fs<span class="z-punctuation z-separator z-rust">,</span> <span class="z-meta z-path z-rust">path<span class="z-punctuation z-accessor z-rust">::</span></span>Path</span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span><span class="z-source z-rust">
+</span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-function z-rust"><span class="z-storage z-type z-function z-rust">fn</span> </span><span class="z-entity z-name z-function z-rust">convert_image</span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">(</span><span class="z-variable z-parameter z-rust">input_path</span><span class="z-punctuation z-separator z-rust">:</span> <span class="z-keyword z-operator z-rust">&amp;</span>Path, <span class="z-variable z-parameter z-rust">output_dir</span><span class="z-punctuation z-separator z-rust">:</span> <span class="z-keyword z-operator z-rust">&amp;</span><span class="z-meta z-generic z-rust"><span class="z-support z-type z-rust">Option</span><span class="z-punctuation z-definition z-generic z-begin z-rust">&lt;</span><span class="z-support z-type z-rust">String</span><span class="z-punctuation z-definition z-generic z-end z-rust">&gt;</span></span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-end z-rust">)</span></span></span></span><span class="z-meta z-function z-rust"> <span class="z-meta z-function z-return-type z-rust"><span class="z-punctuation z-separator z-rust">-&gt;</span> <span class="z-meta z-generic z-rust"><span class="z-support z-type z-rust">Result</span><span class="z-punctuation z-definition z-generic z-begin z-rust">&lt;</span><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-punctuation z-section z-group z-end z-rust">)</span>, <span class="z-support z-type z-rust">String</span><span class="z-punctuation z-definition z-generic z-end z-rust">&gt;</span></span></span> </span><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-comment z-line z-double-slash z-rust"><span class="z-punctuation z-definition z-comment z-rust">//</span> Open and decode the image
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-storage z-type z-rust">let</span> image_render <span class="z-keyword z-operator z-assignment z-rust">=</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">        <span class="z-meta z-path z-rust">Reader<span class="z-punctuation z-accessor z-rust">::</span></span>open<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>input_path</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">map_err</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">|</span></span></span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-variable z-parameter z-rust">e</span><span class="z-punctuation z-section z-parameters z-end z-rust">|</span></span> </span><span class="z-meta z-function z-closure z-rust"><span class="z-support z-macro z-rust">format!</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>Failed to open image: <span class="z-constant z-other z-placeholder z-rust">{}</span><span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-separator z-rust">,</span> e<span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-keyword z-operator z-rust">?</span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-storage z-type z-rust">let</span> image <span class="z-keyword z-operator z-assignment z-rust">=</span> image_render
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">        <span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">decode</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">        <span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">map_err</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">|</span></span></span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-variable z-parameter z-rust">e</span><span class="z-punctuation z-section z-parameters z-end z-rust">|</span></span> </span><span class="z-meta z-function z-closure z-rust"><span class="z-support z-macro z-rust">format!</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>Failed to decode image: <span class="z-constant z-other z-placeholder z-rust">{}</span><span class="z-constant z-character z-escape z-rust">\n</span><span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-separator z-rust">,</span> e<span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-keyword z-operator z-rust">?</span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-comment z-line z-double-slash z-rust"><span class="z-punctuation z-definition z-comment z-rust">//</span> Encode the image to WebP
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-storage z-type z-rust">let</span> webp_data <span class="z-keyword z-operator z-assignment z-rust">=</span> <span class="z-support z-function z-rust">encode_webp</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-keyword z-operator z-bitwise z-rust">&amp;</span>image</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-keyword z-operator z-rust">?</span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-comment z-line z-double-slash z-rust"><span class="z-punctuation z-definition z-comment z-rust">//</span> Determine the output path
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-storage z-type z-rust">let</span> output_path <span class="z-keyword z-operator z-assignment z-rust">=</span> <span class="z-keyword z-control z-rust">if</span> <span class="z-storage z-type z-rust">let</span> <span class="z-support z-type z-rust">Some</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>output_dir</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span> <span class="z-keyword z-operator z-assignment z-rust">=</span> output_dir <span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">        <span class="z-meta z-path z-rust">Path<span class="z-punctuation z-accessor z-rust">::</span></span>new<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>output_dir</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">            <span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">join</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>input_path<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">file_stem</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">unwrap</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">            <span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">with_extension</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>webp<span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">    </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span> <span class="z-keyword z-control z-rust">else</span> <span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">        input_path<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">with_extension</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>webp<span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">    </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-comment z-line z-double-slash z-rust"><span class="z-punctuation z-definition z-comment z-rust">//</span> Write the WebP image to the output path
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-meta z-path z-rust">fs<span class="z-punctuation z-accessor z-rust">::</span></span>write<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>output_path<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">clone</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-separator z-rust">,</span> webp_data<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">to_vec</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">        <span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">map_err</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">|</span></span></span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-variable z-parameter z-rust">e</span><span class="z-punctuation z-section z-parameters z-end z-rust">|</span></span> </span><span class="z-meta z-function z-closure z-rust"><span class="z-support z-macro z-rust">format!</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>Failed to write WebP file: <span class="z-constant z-other z-placeholder z-rust">{}</span><span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-separator z-rust">,</span> e<span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-keyword z-operator z-rust">?</span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-support z-macro z-rust">println!</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>Generated: <span class="z-constant z-other z-placeholder z-rust">{}</span><span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-separator z-rust">,</span> output_path<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">display</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-support z-type z-rust">Ok</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span></span>
+</span><span class="z-source z-rust">
+</span></code></pre>
+<p>This function first opens and decodes the image, then encodes it to WebP format using the previously defined <code>encode_webp</code> function. Finally, it writes the resulting WebP image to either the specified output directory or the same location as the original image.</p>
+<p><strong>To convert all images in a directory, I created a function <code>convert_images</code>:</strong></p>
+<pre data-lang="rust" class="language-rust z-code"><code class="language-rust" data-lang="rust"><span class="z-source z-rust"><span class="z-keyword z-other z-rust">use</span> <span class="z-meta z-path z-rust">image<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span><span class="z-meta z-path z-rust">io<span class="z-punctuation z-accessor z-rust">::</span></span>Reader<span class="z-punctuation z-separator z-rust">,</span> DynamicImage</span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span><span class="z-source z-rust"><span class="z-keyword z-other z-rust">use</span> <span class="z-meta z-path z-rust">rayon<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-path z-rust">prelude<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-keyword z-operator z-arithmetic z-rust">*</span><span class="z-punctuation z-terminator z-rust">;</span>
+</span><span class="z-source z-rust"><span class="z-keyword z-other z-rust">use</span> <span class="z-meta z-path z-rust">std<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span><span class="z-source z-rust"><span class="z-meta z-block z-rust">    fs<span class="z-punctuation z-separator z-rust">,</span>
+</span></span><span class="z-source z-rust"><span class="z-meta z-block z-rust">    <span class="z-meta z-path z-rust">path<span class="z-punctuation z-accessor z-rust">::</span></span>Path<span class="z-punctuation z-separator z-rust">,</span>
+</span></span><span class="z-source z-rust"><span class="z-meta z-block z-rust"></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span><span class="z-source z-rust">
+</span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-function z-rust"><span class="z-storage z-type z-function z-rust">fn</span> </span><span class="z-entity z-name z-function z-rust">convert_images</span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">(</span><span class="z-variable z-parameter z-rust">path</span><span class="z-punctuation z-separator z-rust">:</span> <span class="z-keyword z-operator z-rust">&amp;</span>Path, <span class="z-variable z-parameter z-rust">output_dir</span><span class="z-punctuation z-separator z-rust">:</span> <span class="z-keyword z-operator z-rust">&amp;</span><span class="z-meta z-generic z-rust"><span class="z-support z-type z-rust">Option</span><span class="z-punctuation z-definition z-generic z-begin z-rust">&lt;</span><span class="z-support z-type z-rust">String</span><span class="z-punctuation z-definition z-generic z-end z-rust">&gt;</span></span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-end z-rust">)</span></span></span></span><span class="z-meta z-function z-rust"> <span class="z-meta z-function z-return-type z-rust"><span class="z-punctuation z-separator z-rust">-&gt;</span> <span class="z-meta z-generic z-rust"><span class="z-support z-type z-rust">Result</span><span class="z-punctuation z-definition z-generic z-begin z-rust">&lt;</span><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-punctuation z-section z-group z-end z-rust">)</span>, <span class="z-support z-type z-rust">String</span><span class="z-punctuation z-definition z-generic z-end z-rust">&gt;</span></span></span> </span><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-keyword z-control z-rust">if</span> path<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">is_dir</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span> <span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">        <span class="z-storage z-type z-rust">let</span> entries<span class="z-punctuation z-separator z-rust">:</span> <span class="z-meta z-generic z-rust"><span class="z-support z-type z-rust">Vec</span><span class="z-punctuation z-definition z-generic z-begin z-rust">&lt;</span>PathBuf<span class="z-punctuation z-definition z-generic z-end z-rust">&gt;</span></span> <span class="z-keyword z-operator z-assignment z-rust">=</span> <span class="z-meta z-path z-rust">fs<span class="z-punctuation z-accessor z-rust">::</span></span>read_dir<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>path</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">            <span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">map_err</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">|</span></span></span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-variable z-parameter z-rust">e</span><span class="z-punctuation z-section z-parameters z-end z-rust">|</span></span> </span><span class="z-meta z-function z-closure z-rust"><span class="z-support z-macro z-rust">format!</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>Read directory failed: <span class="z-constant z-other z-placeholder z-rust">{e}</span><span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-keyword z-operator z-rust">?</span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">            <span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">filter_map</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">|</span></span></span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-variable z-parameter z-rust">entry</span><span class="z-punctuation z-section z-parameters z-end z-rust">|</span></span> </span><span class="z-meta z-function z-closure z-rust">entry<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">ok</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">map</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">|</span></span></span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-variable z-parameter z-rust">e</span><span class="z-punctuation z-section z-parameters z-end z-rust">|</span></span> </span><span class="z-meta z-function z-closure z-rust">e<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">path</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">            <span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">collect</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">        entries<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">par_iter</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">try_for_each</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">|</span></span></span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-variable z-parameter z-rust">path</span><span class="z-punctuation z-section z-parameters z-end z-rust">|</span></span> </span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust">            <span class="z-keyword z-control z-rust">if</span> path<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">is_dir</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span> <span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">                <span class="z-support z-function z-rust">convert_images</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>path<span class="z-punctuation z-separator z-rust">,</span> output_dir</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">            </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span> <span class="z-keyword z-control z-rust">else</span> <span class="z-keyword z-control z-rust">if</span> <span class="z-support z-function z-rust">is_supported</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>path</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span> <span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">                <span class="z-support z-function z-rust">convert_image</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>path<span class="z-punctuation z-separator z-rust">,</span> output_dir</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">            </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span> <span class="z-keyword z-control z-rust">else</span> <span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">                <span class="z-support z-type z-rust">Ok</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">            </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span>
+</span></span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-group z-rust"><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-block z-rust">        </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-keyword z-operator z-rust">?</span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">    </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-support z-type z-rust">Ok</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span></span>
+</span><span class="z-source z-rust">
+</span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-function z-rust"><span class="z-storage z-type z-function z-rust">fn</span> </span><span class="z-entity z-name z-function z-rust">is_supported</span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">(</span><span class="z-variable z-parameter z-rust">path</span><span class="z-punctuation z-separator z-rust">:</span> <span class="z-keyword z-operator z-rust">&amp;</span>Path</span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-end z-rust">)</span></span></span></span><span class="z-meta z-function z-rust"> <span class="z-meta z-function z-return-type z-rust"><span class="z-punctuation z-separator z-rust">-&gt;</span> <span class="z-storage z-type z-rust">bool</span></span> </span><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-keyword z-control z-rust">match</span> <span class="z-meta z-path z-rust">fs<span class="z-punctuation z-accessor z-rust">::</span></span>read<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>path</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span> <span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">        <span class="z-support z-type z-rust">Ok</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>data</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span> <span class="z-keyword z-operator z-rust">=&gt;</span> <span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">            <span class="z-keyword z-control z-rust">if</span> path<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">extension</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">unwrap_or_default</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span> <span class="z-keyword z-operator z-comparison z-rust">==</span> <span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>webp<span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span> <span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">                <span class="z-keyword z-control z-rust">return</span> <span class="z-constant z-language z-rust">false</span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">            </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span>
+</span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">            <span class="z-meta z-path z-rust">image<span class="z-punctuation z-accessor z-rust">::</span></span>guess_format<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-keyword z-operator z-bitwise z-rust">&amp;</span>data</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">is_ok</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">        </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">        <span class="z-support z-type z-rust">Err</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-keyword z-operator z-rust">_</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span> <span class="z-keyword z-operator z-rust">=&gt;</span> <span class="z-constant z-language z-rust">false</span><span class="z-punctuation z-separator z-rust">,</span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">    </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span></span>
+</span><span class="z-source z-rust">
+</span></code></pre>
+<p>This function checks if the path is a directory. If it is, it reads all entries and recursively processes each one. If the path is an image, it converts it to WebP. The <code>par_iter()</code> method from the <a href="https://github.com/rayon-rs/rayon">rayon</a> crate enables parallel processing for better performance.</p>
+<p>Finally, the <code>main</code> function serves as the entry point of the application:</p>
+<pre data-lang="rust" class="language-rust z-code"><code class="language-rust" data-lang="rust"><span class="z-source z-rust"><span class="z-keyword z-other z-rust">use</span> <span class="z-meta z-path z-rust">clap<span class="z-punctuation z-accessor z-rust">::</span></span>Parser<span class="z-punctuation z-terminator z-rust">;</span>
+</span><span class="z-source z-rust"><span class="z-keyword z-other z-rust">use</span> <span class="z-meta z-path z-rust">image<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span><span class="z-meta z-path z-rust">io<span class="z-punctuation z-accessor z-rust">::</span></span>Reader<span class="z-punctuation z-separator z-rust">,</span> DynamicImage</span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span><span class="z-source z-rust"><span class="z-keyword z-other z-rust">use</span> <span class="z-meta z-path z-rust">rayon<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-path z-rust">prelude<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-keyword z-operator z-arithmetic z-rust">*</span><span class="z-punctuation z-terminator z-rust">;</span>
+</span><span class="z-source z-rust"><span class="z-keyword z-other z-rust">use</span> <span class="z-meta z-path z-rust">std<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span><span class="z-source z-rust"><span class="z-meta z-block z-rust">    fs<span class="z-punctuation z-separator z-rust">,</span>
+</span></span><span class="z-source z-rust"><span class="z-meta z-block z-rust">    <span class="z-meta z-path z-rust">path<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>Path<span class="z-punctuation z-separator z-rust">,</span> PathBuf</span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span><span class="z-punctuation z-separator z-rust">,</span>
+</span></span><span class="z-source z-rust"><span class="z-meta z-block z-rust"></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span><span class="z-source z-rust">
+</span><span class="z-source z-rust"><span class="z-meta z-annotation z-rust"><span class="z-punctuation z-definition z-annotation z-rust">#</span><span class="z-punctuation z-section z-group z-begin z-rust">[</span><span class="z-variable z-annotation z-rust">derive</span><span class="z-meta z-annotation z-parameters z-rust"><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span></span><span class="z-meta z-annotation z-parameters z-rust"><span class="z-meta z-group z-rust">Parser<span class="z-punctuation z-separator z-rust">,</span> Debug</span></span><span class="z-meta z-annotation z-parameters z-rust"><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span><span class="z-punctuation z-section z-group z-end z-rust">]</span></span>
+</span><span class="z-source z-rust"><span class="z-meta z-struct z-rust"><span class="z-storage z-type z-struct z-rust">struct</span> </span><span class="z-meta z-struct z-rust"><span class="z-entity z-name z-struct z-rust">CliArgs</span> </span><span class="z-meta z-struct z-rust"><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-struct z-rust"><span class="z-meta z-block z-rust">    <span class="z-meta z-annotation z-rust"><span class="z-punctuation z-definition z-annotation z-rust">#</span><span class="z-punctuation z-section z-group z-begin z-rust">[</span><span class="z-variable z-annotation z-rust">clap</span><span class="z-meta z-annotation z-parameters z-rust"><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span></span><span class="z-meta z-annotation z-parameters z-rust"><span class="z-meta z-group z-rust">short<span class="z-punctuation z-separator z-rust">,</span> long</span></span><span class="z-meta z-annotation z-parameters z-rust"><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span><span class="z-punctuation z-section z-group z-end z-rust">]</span></span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-struct z-rust"><span class="z-meta z-block z-rust">    <span class="z-variable z-other z-member z-rust">dir</span><span class="z-punctuation z-separator z-type z-rust">:</span> <span class="z-meta z-generic z-rust"><span class="z-support z-type z-rust">Option</span><span class="z-punctuation z-definition z-generic z-begin z-rust">&lt;</span><span class="z-support z-type z-rust">String</span><span class="z-punctuation z-definition z-generic z-end z-rust">&gt;</span></span>,
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-struct z-rust"><span class="z-meta z-block z-rust">
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-struct z-rust"><span class="z-meta z-block z-rust">    <span class="z-meta z-annotation z-rust"><span class="z-punctuation z-definition z-annotation z-rust">#</span><span class="z-punctuation z-section z-group z-begin z-rust">[</span><span class="z-variable z-annotation z-rust">clap</span><span class="z-meta z-annotation z-parameters z-rust"><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span></span><span class="z-meta z-annotation z-parameters z-rust"><span class="z-meta z-group z-rust">short<span class="z-punctuation z-separator z-rust">,</span> long</span></span><span class="z-meta z-annotation z-parameters z-rust"><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span><span class="z-punctuation z-section z-group z-end z-rust">]</span></span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-struct z-rust"><span class="z-meta z-block z-rust">    <span class="z-variable z-other z-member z-rust">output</span><span class="z-punctuation z-separator z-type z-rust">:</span> <span class="z-meta z-generic z-rust"><span class="z-support z-type z-rust">Option</span><span class="z-punctuation z-definition z-generic z-begin z-rust">&lt;</span><span class="z-support z-type z-rust">String</span><span class="z-punctuation z-definition z-generic z-end z-rust">&gt;</span></span>,
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-struct z-rust"><span class="z-meta z-block z-rust"></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span></span>
+</span><span class="z-source z-rust">
+</span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-function z-rust"><span class="z-storage z-type z-function z-rust">fn</span> </span><span class="z-entity z-name z-function z-rust">main</span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">(</span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-end z-rust">)</span></span></span></span><span class="z-meta z-function z-rust"> </span><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-storage z-type z-rust">let</span> args <span class="z-keyword z-operator z-assignment z-rust">=</span> <span class="z-meta z-path z-rust">CliArgs<span class="z-punctuation z-accessor z-rust">::</span></span>parse<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-storage z-type z-rust">let</span> dir <span class="z-keyword z-operator z-assignment z-rust">=</span> args<span class="z-punctuation z-accessor z-dot z-rust">.</span>dir<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">unwrap_or_else</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">|</span></span></span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-end z-rust">|</span></span> </span><span class="z-meta z-function z-closure z-rust"><span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>.<span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span><span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">to_string</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-storage z-type z-rust">let</span> output_dir <span class="z-keyword z-operator z-assignment z-rust">=</span> args<span class="z-punctuation z-accessor z-dot z-rust">.</span>output<span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-storage z-type z-rust">let</span> path <span class="z-keyword z-operator z-assignment z-rust">=</span> <span class="z-meta z-path z-rust">Path<span class="z-punctuation z-accessor z-rust">::</span></span>new<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-keyword z-operator z-bitwise z-rust">&amp;</span>dir</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-keyword z-control z-rust">if</span> <span class="z-storage z-type z-rust">let</span> <span class="z-support z-type z-rust">Err</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>e</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span> <span class="z-keyword z-operator z-assignment z-rust">=</span> <span class="z-support z-function z-rust">convert_images</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>path<span class="z-punctuation z-separator z-rust">,</span> <span class="z-keyword z-operator z-bitwise z-rust">&amp;</span>output_dir</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span> <span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">        <span class="z-support z-macro z-rust">eprint!</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>Error <span class="z-constant z-other z-placeholder z-rust">{}</span><span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-separator z-rust">,</span> e<span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-meta z-block z-rust">    </span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span></span>
+</span></code></pre>
+<p>I use the <a href="https://github.com/clap-rs/clap">clap</a> crate to create the CLI. The program accepts a directory containing images to convert and an optional output directory (see more at convert_image function)</p>
+<h3 id="addressing-generated-image-size-issues"><a class="header-anchor no-hover-padding" href="#addressing-generated-image-size-issues" aria-label="Anchor link for: addressing-generated-image-size-issues"><span class="link-icon" aria-hidden="true"></span></a>
+Addressing generated image size issues</h3>
+<p>While working on converting images to WebP format, I encountered a problem: some of the converted images turned out to be larger in size than the originals. This was concerning because my goal was to reduce image size to improve website performance.</p>
+<p>I realized that this happened because the image crate in this moment is only supported a <code>new_lossless</code> feature for WebP conversion. This feature maintains the same quality as the original image, sometimes resulting in larger file sizes.</p>
+<p>To address this issue, I explored other options and came across the <a href="https://github.com/jaredforth/webp">webp</a> crate.</p>
+<p>This crate, built on the <code>libwebp-sys</code> and <code>image</code> crate, allows us to better encode images to WebP format with <code>quality</code> control.</p>
+<p>I found that by setting the <code>quality</code> parameter to the maximum value of <code>100</code>, we could consistently generate WebP images with smaller sizes than the originals. In fact, I could reduce the image size by up to 45%.</p>
+<p>To apply the <code>webp</code> crate into my code, I only needed to make a slight modification to the <code>encode_webp</code> function. Here’s the updated code snippet:</p>
+<pre data-lang="rust" class="language-rust z-code"><code class="language-rust" data-lang="rust"><span class="z-source z-rust"><span class="z-keyword z-other z-rust">use</span> <span class="z-meta z-path z-rust">image<span class="z-punctuation z-accessor z-rust">::</span></span>DynamicImage<span class="z-punctuation z-terminator z-rust">;</span>
+</span><span class="z-source z-rust"><span class="z-keyword z-other z-rust">use</span> <span class="z-meta z-path z-rust">webp<span class="z-punctuation z-accessor z-rust">::</span></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>Encoder<span class="z-punctuation z-separator z-rust">,</span>WebPMemory</span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span><span class="z-source z-rust">
+</span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-function z-rust"><span class="z-storage z-modifier z-rust">pub</span> <span class="z-storage z-type z-function z-rust">fn</span> </span><span class="z-entity z-name z-function z-rust">encode_webp</span></span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">(</span><span class="z-variable z-parameter z-rust">image</span><span class="z-punctuation z-separator z-rust">:</span> <span class="z-keyword z-operator z-rust">&amp;</span>DynamicImage</span><span class="z-meta z-function z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-end z-rust">)</span></span></span></span><span class="z-meta z-function z-rust"> <span class="z-meta z-function z-return-type z-rust"><span class="z-punctuation z-separator z-rust">-&gt;</span> <span class="z-meta z-generic z-rust"><span class="z-support z-type z-rust">Result</span><span class="z-punctuation z-definition z-generic z-begin z-rust">&lt;</span>WebPMemory, <span class="z-support z-type z-rust">String</span><span class="z-punctuation z-definition z-generic z-end z-rust">&gt;</span></span></span> </span><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-begin z-rust">{</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-storage z-type z-rust">let</span> encoder <span class="z-keyword z-operator z-assignment z-rust">=</span> <span class="z-meta z-path z-rust">Encoder<span class="z-punctuation z-accessor z-rust">::</span></span>from_image<span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>image</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">        <span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">map_err</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-punctuation z-section z-parameters z-begin z-rust">|</span></span></span><span class="z-meta z-function z-closure z-rust"><span class="z-meta z-function z-parameters z-rust"><span class="z-variable z-parameter z-rust">e</span><span class="z-punctuation z-section z-parameters z-end z-rust">|</span></span> </span><span class="z-meta z-function z-closure z-rust"><span class="z-support z-macro z-rust">format!</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span></span><span class="z-meta z-group z-rust"><span class="z-string z-quoted z-double z-rust"><span class="z-punctuation z-definition z-string z-begin z-rust">&quot;</span>Failed to create a webp encoder: <span class="z-constant z-other z-placeholder z-rust">{}</span><span class="z-punctuation z-definition z-string z-end z-rust">&quot;</span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-separator z-rust">,</span> e<span class="z-punctuation z-section z-group z-end z-rust">)</span></span></span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-keyword z-operator z-rust">?</span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-storage z-type z-rust">let</span> webp_data <span class="z-keyword z-operator z-assignment z-rust">=</span> encoder<span class="z-punctuation z-accessor z-dot z-rust">.</span><span class="z-support z-function z-rust">encode</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span><span class="z-constant z-numeric z-float z-rust">100.</span><span class="z-constant z-numeric z-float z-rust">0</span></span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span><span class="z-punctuation z-terminator z-rust">;</span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust">    <span class="z-support z-type z-rust">Ok</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-begin z-rust">(</span>webp_data</span><span class="z-meta z-group z-rust"><span class="z-punctuation z-section z-group z-end z-rust">)</span></span>
+</span></span></span><span class="z-source z-rust"><span class="z-meta z-function z-rust"><span class="z-meta z-block z-rust"></span><span class="z-meta z-block z-rust"><span class="z-punctuation z-section z-block z-end z-rust">}</span></span></span>
+</span></code></pre>
+<p>Now, with this program, I can quickly convert all images from my website to WebP format.</p>
+<p>Here’s an example of a command-line <code>webp</code> in this tool:
+<img src="img/webp_cmd.webp" alt="webp cmd" loading="lazy"></p>
+<p>You can check out the full code on my GitHub repo: <a href="https://github.com/tduyng/imgc-rs">imgc-rs</a>.</p>
+<p>I think this project has a lot of potential. We can add a lot more features like batch processing, additional image format conversions, and more. All suggestions and contributions are welcome to make it even better.</p>
+<p>Thank you for reading so far! I hope you found this article helpful and gained some new ideas. If you have any questions or suggestions, feel free to reach out.</p>
+
+            
+            
+            
+                <hr />
+                <p>Enjoyed this article? For more technical content on Typescript or backend development, stay updated by following my blog through <a href="https://tduyng.com/subscribe/">RSS feeds</a> </p>
+                <p>You can also read my other articles on <a href="https://tduyng.medium.com/">tduyng.medium.com</a></p>
+            
+        
+        </section>
+
+        
+        
+        
+        
+
+        
+            
+            
+            
+
+            
+                
+                
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+
+        
+        
+
+        
+                
+                
+                    
+                        
+                        
+                        
+                    
+                    
+                        
+                        
+                        
+                    
+                
+                
+            <nav class="full-width article-navigation">
+                <div><a href="https://tduyng.com/blog/dynamic-github-profile-with-bun-typescript/" aria-label="Prev" aria-describedby="left_title"><span class="arrow">←</span>&nbsp;Prev</a>
+                <p aria-hidden="true" id="left_title">Dynamic Github profile with Bun and Typescript</p></div>
+                <div><a href="https://tduyng.com/blog/full-text-rss-feeds/" aria-label="Next" aria-describedby="right_title">Next&nbsp;<span class="arrow">→</span></a>
+                <p aria-hidden="true" id="right_title">My blog now offers full-text RSS feeds</p></div>
+            </nav>
+        
+            
+
+<div id="comments" class="comments"
+
+
+    data-repo="tduyng&#x2F;tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    
+        data-mapping="specific"
+        data-term="rust-webp-transform"
+    
+    data-strict="1"
+    data-reactions-enabled="1"
+    
+        data-input-position="top"
+    
+    data-light-theme="noborder_light"
+    data-dark-theme="noborder_dark"
+    
+        data-lang="en"
+    
+    data-lazy-loading="true"
+    >
+
+
+
+
+    <script src="https://tduyng.com/js/giscus.min.js" async></script>
+
+
+<noscript>You need JavaScript to view the comments.</noscript>
+</div>
+
+        
+
+    </article>
+</main>
+
+    <div id="button-container">
+        
+        
+            <div id="toc-floating-container">
+                <input type="checkbox" id="toc-toggle" class="toggle"/>
+                <label for="toc-toggle" class="overlay"></label>
+                <label for="toc-toggle" id="toc-button" class="button" title="Toggle Table of Contents">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M414.82-193.094q-18.044 0-30.497-12.32-12.453-12.319-12.453-30.036t12.453-30.086q12.453-12.37 30.497-12.37h392.767q17.237 0 29.927 12.487 12.69 12.486 12.69 30.203 0 17.716-12.69 29.919t-29.927 12.203H414.82Zm0-244.833q-18.044 0-30.497-12.487Q371.87-462.9 371.87-480.45t12.453-29.92q12.453-12.369 30.497-12.369h392.767q17.237 0 29.927 12.511 12.69 12.512 12.69 29.845 0 17.716-12.69 30.086-12.69 12.37-29.927 12.37H414.82Zm0-245.167q-18.044 0-30.497-12.32t-12.453-30.037q0-17.716 12.453-30.086 12.453-12.369 30.497-12.369h392.767q17.237 0 29.927 12.486 12.69 12.487 12.69 30.203 0 17.717-12.69 29.92-12.69 12.203-29.927 12.203H414.82ZM189.379-156.681q-32.652 0-55.878-22.829t-23.226-55.731q0-32.549 23.15-55.647 23.151-23.097 55.95-23.097 32.799 0 55.313 23.484 22.515 23.484 22.515 56.246 0 32.212-22.861 54.893-22.861 22.681-54.963 22.681Zm0-245.167q-32.652 0-55.878-23.134-23.226-23.135-23.226-55.623 0-32.487 23.467-55.517t56.12-23.03q32.102 0 54.721 23.288 22.62 23.288 22.62 55.775 0 32.488-22.861 55.364-22.861 22.877-54.963 22.877Zm-.82-244.833q-32.224 0-55.254-23.288-23.03-23.289-23.03-55.623 0-32.333 23.271-55.364 23.272-23.03 55.495-23.03 32.224 0 55.193 23.288 22.969 23.289 22.969 55.622 0 32.334-23.21 55.364-23.21 23.031-55.434 23.031Z"/></svg>
+                </label>
+                <div class="toc-content">
+                    
+
+<div class="toc-container">
+    
+
+    <ul>
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/rust-webp-transform/#converting-images-to-webp-with-rust">Converting images to WebP with Rust</a>
+                    
+                </li>
+            
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/rust-webp-transform/#addressing-generated-image-size-issues">Addressing generated image size issues</a>
+                    
+                </li>
+            
+        
+    </ul>
+</div>
+
+
+                </div>
+            </div>
+        
+
+        
+        
+            <a href="#comments" id="comments-button" class="no-hover-padding" title="Go to the comments section">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" fill-rule="evenodd"/></svg>
+            </a>
+        
+
+        
+        <a href="#" id="top-button" class="no-hover-padding" title="Go to the top of the page">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"/></svg>
+        </a>
+    </div>
+
+
+<span id="copy-success" class="hidden">
+        Copied!
+    </span>
+    <span id="copy-init" class="hidden">
+        Copy code to clipboard
+    </span>
+    <script defer src="https://tduyng.com/js/copyCodeToClipboard.min.js"></script><script defer src="https://tduyng.com/js/footnoteBacklinks.min.js"></script>
+    </div>
+    <footer>
+    <section>
+        <nav class="socials nav-navs">
+                <ul>
+                    
+                    
+                    
+                    <li>
+                        <a class="nav-links no-hover-padding social" rel=""  href=https://tduyng.com/atom.xml>
+                        <img alt="feed" title="feed" src="https://tduyng.com/social_icons/rss.svg">
+                        </a>
+                    </li><li class="js"><a class="nav-links no-hover-padding social" href="#" data-encoded-email="aGlAdGR1eW5nLmNvbQo="><img alt="email" title="email" src="https://tduyng.com/social_icons/email.svg">
+                            </a>
+                        </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://github.com/tduyng/>
+                                    <img alt=github title=github src="https://tduyng.com/social_icons/github.svg">
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://www.linkedin.com/in/tienduy-nguyen/>
+                                    <img alt=linkedin title=linkedin src="https://tduyng.com/social_icons/linkedin.svg">
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://twitter.com/tduyng>
+                                    <img alt=x title=x src="https://tduyng.com/social_icons/twitter.svg">
+                                </a>
+                            </li>
+                        
+                    
+                </ul>
+            
+        </nav>
+
+        
+        <nav class="nav-navs">
+                <small>
+                    <ul>
+                        
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;subscribe">
+                                subscribe
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;about">
+                                about
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;privacy">
+                                privacy policy
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;license">
+                                license
+                            </a>
+                        </li>
+                    
+                    </ul>
+                </small>
+        
+        </nav>
+
+        <div class="credits">
+            <small>
+                
+
+                
+                Powered by
+                <a rel=""  href="https://www.getzola.org">Zola</a>
+                &amp;
+                <a rel=""  href="https://github.com/welpo/tabi">tabi</a>
+
+                </small>
+        </div>
+    </section>
+
+    <script src="https://tduyng.com/js/decodeMail.min.js" async></script><div id="searchModal" class="search-modal js" role="dialog" aria-labelledby="modalTitle">
+    <h1 id="modalTitle" class="visually-hidden">Search</h1>
+    <div id="modal-content">
+        <div id="searchBar">
+            <div class="search-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                    <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                </svg>
+            </div>
+            <input id="searchInput" role="combobox" autocomplete="off" spellcheck="false" aria-expanded="false" aria-controls="results-container" placeholder="Search…"/>
+            <div id="clear-search" class="close-icon interactive-icon" tabindex="0" role="button" title="Clear search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                </svg>
+            </div>
+        </div>
+        <div id="results-container">
+            <div id="results-info"><span id="zero_results"> No results</span>
+                <span id="one_results"> $NUMBER result</span>
+                <span id="many_results"> $NUMBER results</span><span id="two_results"> $NUMBER results</span>
+                <span id="few_results"> $NUMBER results</span>
+            </div>
+            <div id="results" role="listbox"></div>
+        </div>
+    </div>
+</div>
+</footer>
+
+</body>
+
+</html>

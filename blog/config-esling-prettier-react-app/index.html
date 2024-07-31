@@ -1,0 +1,748 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https://tduyng.com/">
+
+    
+    <title>Config ESLint, Prettier for React App in VSCode • ~/Z</title>
+
+    
+    
+        <link rel="icon" type="image/png" href="https://tduyng.com/img/logo.webp"/>
+    
+    
+        <link rel=icon href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105 55"><text y=".7em" font-size="82">Z</text></svg>'>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="~/Z" href="https://tduyng.com/atom.xml">
+
+    
+    
+    
+        <link rel="stylesheet" href="https://tduyng.com/custom_subset.css?h=753f2b519893883e57d5">
+    
+
+    
+        <link rel="stylesheet" href="https://tduyng.com/main.css?h=571d6d2a51c7448bc60a" />
+
+    <meta name="color-scheme" content="light dark" />
+        <meta name="theme-color" content="#087e96" />
+        <meta name="description" content="Discover how to configure ESLint and Prettier within your React application in VSCode for enhanced code quality and consistency." />
+        <meta property="og:description" content="Discover how to configure ESLint and Prettier within your React application in VSCode for enhanced code quality and consistency." />
+
+    
+        <meta name="robots" content="index, nofollow" />
+    
+
+    <meta property="og:title" content="Config ESLint, Prettier for React App in VSCode" />
+    <meta property="og:type" content="article" />
+
+    
+        
+        
+        
+
+        
+        
+            
+            
+            
+                
+            
+        
+
+        
+        <meta property="og:image" content="https://tduyng.com/img/social_card.webp?h=cf7fe2771b2b1f5c004f" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="675" />
+        <meta name="twitter:image" content="https://tduyng.com/img/social_card.webp?h=cf7fe2771b2b1f5c004f" />
+        <meta name="twitter:card" content="summary_large_image" />
+    
+
+    <meta property="og:locale" content="en_GB" />
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;tduyng.com&#x2F;blog&#x2F;config-esling-prettier-react-app&#x2F;" /><meta property="og:site_name" content="~&#x2F;Z"><meta http-equiv="Content-Security-Policy"
+content="default-src 'self';font-src &#x27;self&#x27; data:;img-src &#x27;self&#x27; https:&#x2F;&#x2F;* data:;media-src &#x27;self&#x27; https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;;style-src &#x27;self&#x27;;frame-src player.vimeo.com https:&#x2F;&#x2F;www.youtube-nocookie.com giscus.app;connect-src 'self' *.umami.dev analytics.eu.umami.is;script-src 'self' analytics.eu.umami.is  giscus.app 'self'">
+
+        <noscript><link rel="stylesheet" href="https://tduyng.com/no_js.css"/></noscript>
+        <script type="text/javascript" src="https://tduyng.com/js/initializeTheme.min.js"></script>
+        <script defer src="https://tduyng.com/js/themeSwitcher.min.js"></script>
+
+
+
+
+    <script async defer
+    
+        data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+        src="https://analytics.eu.umami.is/script.js"
+    
+    data-do-not-track="true">
+    </script>
+
+    
+
+        <script defer src="https://tduyng.com/js/searchElasticlunr.min.js?h=2950d57f80c9fa78f37e"></script>
+
+        </head>
+
+
+<body>
+    <header>
+    <nav class="navbar">
+        <div class="nav-title">
+            <a class="home-title" href=https://tduyng.com>~&#x2F;Z</a>
+        </div>
+            <div class="nav-navs">
+                <ul>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/blog/">
+                                blog
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/archive/">
+                                archive
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/projects/">
+                                projects
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/about/">
+                                about
+                                </a>
+                            </li>
+                        <li class="js">
+                        <div role="button" tabindex="0" id="search-button" class="search-icon interactive-icon" title="Click or press $SHORTCUT to open search" aria-label="Click or press $SHORTCUT to open search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                            </svg>
+                        </div>
+                    </li>
+
+                    
+                    
+
+                    <li class="theme-switcher-wrapper js"><div
+        title="Toggle dark&#x2F;light mode"
+        class="theme-switcher"
+        tabindex="0"
+        role="button"
+        aria-label="Toggle dark mode"
+        aria-pressed="false">
+    </div><div
+        title="Reset mode to default"
+        class="theme-resetter"
+        tabindex="0"
+        role="button"
+        aria-hidden="true"
+        aria-label="Reset mode to default">
+    </div>
+
+</li>
+</ul>
+            </div>
+        
+    </nav>
+</header>
+
+    <div class="content">
+
+        
+        
+
+
+
+
+<main>
+    <article>
+        <h1 class="article-title">
+            Config ESLint, Prettier for React App in VSCode
+        </h1>
+
+        <ul class="meta"><li>17th Dec 2020</li>&nbsp;•&nbsp;<li title="1211 words">7 min read</li>&nbsp;•&nbsp;<li>Tags:&nbsp;</li><li><a href=https://tduyng.com/tags/eslint/>eslint</a>,&nbsp;</li><li><a href=https://tduyng.com/tags/prettier/>prettier</a></li>
+        </ul>
+
+        
+
+        
+        
+
+        <section class="body">
+            
+            
+            <p>As a developer, you will understand how important of quality of code in your project. ESlint and Prettier are great tools helps you for formatting and style of code.</p>
+<p>In this article, you will understand how to setup ESLint &amp; Prettier in your React project and on text-editor VSCode.</p>
+<h2 id="what-are-eslint-and-prettier"><a class="header-anchor no-hover-padding" href="#what-are-eslint-and-prettier" aria-label="Anchor link for: what-are-eslint-and-prettier"><span class="link-icon" aria-hidden="true"></span></a>
+What are ESLint and Prettier?</h2>
+<h3 id="eslint"><a class="header-anchor no-hover-padding" href="#eslint" aria-label="Anchor link for: eslint"><span class="link-icon" aria-hidden="true"></span></a>
+ESlint</h3>
+<p>It is a static code analyzer, that means it tells you errors and mistakes that you may make while you are developing.</p>
+<p>These errors can be stuff like -</p>
+<p>Simple syntax errors eg. not closing a function declaration with }.
+Dead code detection eg. unused variables, code written after a return statement.
+Violating code guidelines, these are rules defined by yourself or a combination of predefined standards like the Airbnb styled guide or Google’s style guide etc.</p>
+<h3 id="prettier"><a class="header-anchor no-hover-padding" href="#prettier" aria-label="Anchor link for: prettier"><span class="link-icon" aria-hidden="true"></span></a>
+Prettier</h3>
+<p>Prettier is a code formatter, it’s only concerned with how your code looks, do you want ensure consistent indentation in the entire project?
+Do you want to ensure there’re no semicolons in the project? Make your promise chains look perfectly consistent and readable? Prettier can be enabled for the entire project and instead of your team disagreeing about formatting styles, you can just leave it all to Prettier to figure out.</p>
+<h2 id="why-vscode"><a class="header-anchor no-hover-padding" href="#why-vscode" aria-label="Anchor link for: why-vscode"><span class="link-icon" aria-hidden="true"></span></a>
+Why VSCode?</h2>
+<ul>
+<li>Visual Studio Code (VSCode) is a very popular coding editor used by millions of developers around the world.</li>
+<li>VSCode is a source code editor while Visual Studio is a complete IDE.</li>
+<li>Visual Studio Code is a cross-platform which works on Windows, Linux and macOS whereas Visual Studio only works on Windows and macOS.</li>
+<li>VSCode is fast and lightweight, and Visual Studio 2015 is not as fast but consists of a multitude of features. It is very easy to use.</li>
+<li>It support  myriads of programming languages. It supports Python, JavaScript, HTML, CSS, TypeScript, C++, Java, PHP, Go, C#, PHP, SQL, Ruby, Objective-C and much more.</li>
+<li>Built-in Git integration</li>
+<li>IntelliSense: It is a feature which is used by programmers for smart code completion, parameter info, content assist, quick info and the code hinting. VSC provides IntelliSense for JavaScript, CSS, HTML, TypeScript, JSON, Sass and Less programming languages. For other languages, we can use IntelliSense by adding its extensions.</li>
+</ul>
+<p>VSCode has much more other advantages. If you don’t use this text-editor yet. I think you should take a look, I’m pretty sure that you will fall in love quickly with it.</p>
+<h2 id="setup-vscode"><a class="header-anchor no-hover-padding" href="#setup-vscode" aria-label="Anchor link for: setup-vscode"><span class="link-icon" aria-hidden="true"></span></a>
+Setup VSCode</h2>
+<h3 id="install-extensions"><a class="header-anchor no-hover-padding" href="#install-extensions" aria-label="Anchor link for: install-extensions"><span class="link-icon" aria-hidden="true"></span></a>
+Install extensions</h3>
+<p>To use ESLint &amp; Prettier tool, first of all, you need to install these extensions:</p>
+<ul>
+<li><strong>ESLint</strong>: ESLint for editor</li>
+<li><strong>Prettier</strong>: Format code</li>
+<li><strong>vscode-styled-components</strong>: Highlight &amp; auto-complete for styled-component</li>
+<li><strong>Auto Rename Tag</strong>: Auto rename tag when code HTML, JSX</li>
+<li><strong>Auto Close Tag</strong>: As its name, it allows auto close tag when code HTML, JSX, TSX… Auto Close Tag and Auto Rename Tag are a great duo.</li>
+<li><strong>Editor Config for VSCode</strong>: Allow to run <code>.editorconfig</code> file.</li>
+</ul>
+<h3 id="setup-workspace-setting-in-vscode"><a class="header-anchor no-hover-padding" href="#setup-workspace-setting-in-vscode" aria-label="Anchor link for: setup-workspace-setting-in-vscode"><span class="link-icon" aria-hidden="true"></span></a>
+Setup Workspace Setting in VSCode</h3>
+<p>So  when all extensions already, we will take some configurations for settings in VScode.</p>
+<p>For anyone who don’t know, VSCode has 2 settings, one is for <strong>user</strong>, the orther for <strong>workspace</strong>. If you don’t setup for <strong>workspace</strong>, by default VSCode will get settings directly at the <strong>user settings</strong></p>
+<ul>
+<li><strong>user settings</strong>: <code>settings.json</code> file of VSCode</li>
+<li><strong>workspace settings</strong>: Create a folder and file <code>.vscode/settings.json</code> in the root of your project.</li>
+</ul>
+<p>In this article, I just explain how to setup for the <strong>workspace</strong>. You do the same for settings of user.</p>
+<p>Now, start setting up.</p>
+<ul>
+<li>
+<p>Create file <code>.vscode/settings.json</code> in the root of your project</p>
+<pre data-lang="json" class="language-json z-code"><code class="language-json" data-lang="json"><span class="z-source z-json"><span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-json">  </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>editor.defaultFormatter<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>esbenp.prettier-vscode<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json">  </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>editor.formatOnSave<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-constant z-language z-json">true</span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json">  </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>editor.codeActionsOnSave<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-json">    </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>source.fixAll.eslint<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-constant z-language z-json">true</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-mapping z-value z-json">  <span class="z-punctuation z-section z-mapping z-end z-json">}</span></span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-section z-mapping z-end z-json">}</span></span>
+</span></code></pre>
+<p>It means:</p>
+<ul>
+<li><code>editor.defaultFormatter</code>: take <strong>Prettier</strong> as default formater</li>
+<li><code>editor.formatOnSave: true</code>: format automatically the code when saving files</li>
+<li><code>eslint.format.enable: true</code>: enable formatting code of ESlint</li>
+<li><code>source.fixAll.eslint: true</code>: fix auto code with ESLint. Sometime we need to fix manually.</li>
+</ul>
+</li>
+<li>
+<p>Add <code>.vscode/extensions.json</code> file and paste the following code. It will recommend use install the following extension when open this project on their VScode.</p>
+<pre data-lang="json" class="language-json z-code"><code class="language-json" data-lang="json"><span class="z-source z-json"><span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-json">  </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>recommendations<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json"><span class="z-punctuation z-section z-sequence z-begin z-json">[</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>mikael.angular-beastcode<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>angular.ng-template<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>coenraads.bracket-pair-colorizer<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>mikestead.dotenv<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>dsznajder.es7-react-js-snippets<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>dbaeumer.vscode-eslint<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>mkxml.vscode-filesize<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>ritwickdey.liveserver<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>davidanson.vscode-markdownlint<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>pkief.material-icon-theme<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>zhuangtongfa.material-theme<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>esbenp.prettier-vscode<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>syler.sass-indented<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>octref.vetur<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>ms-vscode.vscode-typescript-tslint-plugin<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>visualstudioexptteam.vscodeintellicode<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-sequence z-json">,</span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">    <span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>formulahendry.code-runner<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span>
+</span></span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-meta z-sequence z-json">  <span class="z-punctuation z-section z-sequence z-end z-json">]</span></span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-section z-mapping z-end z-json">}</span></span>
+</span></code></pre>
+<p>It’s very helpful when we work in  team. We just share the folder <code>.vscode</code> and <code>json</code> file each other. But in that case, don’t add <strong>.vscode</strong> in <strong>.gitignore</strong> file.</p>
+</li>
+<li>
+<p>Add file <code>.editorconfig</code> in the root project</p>
+<p>If you don’t know, <strong>.editorconfig</strong> was created to unify standards between different editors.</p>
+<p>For example: user would use <strong>indent</strong> as <strong>space</strong>, some peoples would use <strong>tag</strong>. Some users want to <strong>2</strong> for indent, the others want to <strong>4</strong>. So <strong>.editorconfig</strong> helps our code to be consistent, easy to read and maintain.</p>
+<p>Because we already have the <strong>Editor Config</strong> extension, installed above, when we created this file, the VSCode will automatically take these settings.</p>
+<pre class="z-code"><code><span class="z-text z-plain">[*]
+</span><span class="z-text z-plain">end_of_line = lf
+</span><span class="z-text z-plain">indent_style = space
+</span><span class="z-text z-plain">indent_size = 2
+</span></code></pre>
+</li>
+</ul>
+<h2 id="setup-eslint-and-prettier-for-react"><a class="header-anchor no-hover-padding" href="#setup-eslint-and-prettier-for-react" aria-label="Anchor link for: setup-eslint-and-prettier-for-react"><span class="link-icon" aria-hidden="true"></span></a>
+Setup ESLint and Prettier for React</h2>
+<h3 id="why-configuration-for-react-app"><a class="header-anchor no-hover-padding" href="#why-configuration-for-react-app" aria-label="Anchor link for: why-configuration-for-react-app"><span class="link-icon" aria-hidden="true"></span></a>
+Why configuration for React App ?</h3>
+<p>The setup in this article isn’t only for React app, but also we can setup similarly for other framework as Angular, Vue or any front-end project. React is just a framework that I have familiar with for this moment.</p>
+<h3 id="setup"><a class="header-anchor no-hover-padding" href="#setup" aria-label="Anchor link for: setup"><span class="link-icon" aria-hidden="true"></span></a>
+Setup</h3>
+<p>Here, I use <a href="https://github.com/facebook/create-react-app">create-react-app</a>, so by default they have the basic ESLint installed, I just need to install a few more dependencies.</p>
+<ul>
+<li>
+<p>Create <code>.env</code> in the root folder of project and add  the value <code>EXTEND_ESLINT=true</code>. It allows us to add more others linter to <strong>React</strong>.</p>
+</li>
+<li>
+<p>Install more packages</p>
+<pre data-lang="bash" class="language-bash z-code"><code class="language-bash" data-lang="bash"><span class="z-source z-shell z-bash"><span class="z-meta z-function-call z-shell"><span class="z-variable z-function z-shell">$</span></span><span class="z-meta z-function-call z-arguments z-shell"> yarn add<span class="z-variable z-parameter z-option z-shell"><span class="z-punctuation z-definition z-parameter z-shell"> -</span>D</span> prettier eslint-config-prettier eslint-plugin-prettier</span>
+</span></code></pre>
+</li>
+<li>
+<p>Add <strong>script</strong> to run them in <code>package.json</code> file</p>
+<pre data-lang="json" class="language-json z-code"><code class="language-json" data-lang="json"><span class="z-source z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>scripts<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span>: <span class="z-meta z-mapping z-json"><span class="z-punctuation z-section z-mapping z-begin z-json">{</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-json">  </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>start<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>react-scripts start<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json">  </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>build<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>react-scripts build<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json">  </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>test<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>react-scripts test<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json">  </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>eject<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>react-scripts eject<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json">  </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>lint<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>eslint --ext js,jsx,ts,tsx src/<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json">  </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>lint:fix<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>eslint --fix --ext js,jsx,ts,tsx src/<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json">  </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>prettier<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>prettier --check <span class="z-constant z-character z-escape z-json">\&quot;</span>src/**/(*.tsx|*.ts|*.jsx|*.js|*.scss|*.css)<span class="z-constant z-character z-escape z-json">\&quot;</span><span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span><span class="z-punctuation z-separator z-mapping z-pair z-json">,</span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json">  </span><span class="z-meta z-mapping z-key z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>prettier:fix<span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span></span><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-separator z-mapping z-key-value z-json">:</span> </span><span class="z-meta z-mapping z-value z-json"><span class="z-string z-quoted z-double z-json"><span class="z-punctuation z-definition z-string z-begin z-json">&quot;</span>prettier --write <span class="z-constant z-character z-escape z-json">\&quot;</span>src/**/(*.tsx|*.ts|*.jsx|*.js|*.scss|*.css)<span class="z-constant z-character z-escape z-json">\&quot;</span><span class="z-punctuation z-definition z-string z-end z-json">&quot;</span></span>
+</span></span><span class="z-source z-json"><span class="z-meta z-mapping z-value z-json"><span class="z-punctuation z-section z-mapping z-end z-json">}</span></span>
+</span></code></pre>
+<p>So we can use <code>yarn lint</code>, <code>yarn lint:fix</code> … to check or fix code style with these tools.</p>
+</li>
+<li>
+<p>Create <code>.prettierrc</code></p>
+<p>It contains the rules for <strong>Prettier</strong></p>
+<pre class="z-code"><code><span class="z-text z-plain">{
+</span><span class="z-text z-plain">  &quot;arrowParens&quot;: &quot;avoid&quot;,
+</span><span class="z-text z-plain">  &quot;semi&quot;: false,
+</span><span class="z-text z-plain">  &quot;trailingComma&quot;: &quot;none&quot;,
+</span><span class="z-text z-plain">  &quot;endOfLine&quot;: &quot;lf&quot;,
+</span><span class="z-text z-plain">  &quot;tabWidth&quot;: 2,
+</span><span class="z-text z-plain">  &quot;printWidth&quot;: 80,
+</span><span class="z-text z-plain">  &quot;useTabs&quot;: false
+</span><span class="z-text z-plain">}
+</span></code></pre>
+</li>
+<li>
+<p>Create <code>.prettierignore</code>
+<strong>Prettier</strong> will ignore and will not check these files.</p>
+<pre class="z-code"><code><span class="z-text z-plain">.cache
+</span><span class="z-text z-plain">package-lock.json
+</span></code></pre>
+</li>
+<li>
+<p>Create <code>.eslintrc</code></p>
+<p>This file intend to expand the ESLint React configuration. It helps to catch erros on the terminal. If you have installed the ESLint extension ESlint, it will rely on this file to catch errors directly on the editor.</p>
+<pre class="z-code"><code><span class="z-text z-plain">{
+</span><span class="z-text z-plain">  &quot;extends&quot;: [&quot;react-app&quot;, &quot;prettier&quot;],
+</span><span class="z-text z-plain">  &quot;plugins&quot;: [&quot;react&quot;, &quot;prettier&quot;],
+</span><span class="z-text z-plain">  &quot;rules&quot;: {
+</span><span class="z-text z-plain">    &quot;prettier/prettier&quot;: [
+</span><span class="z-text z-plain">      &quot;warn&quot;,
+</span><span class="z-text z-plain">      {
+</span><span class="z-text z-plain">        &quot;arrowParens&quot;: &quot;avoid&quot;,
+</span><span class="z-text z-plain">        &quot;semi&quot;: false,
+</span><span class="z-text z-plain">        &quot;trailingComma&quot;: &quot;none&quot;,
+</span><span class="z-text z-plain">        &quot;endOfLine&quot;: &quot;lf&quot;,
+</span><span class="z-text z-plain">        &quot;tabWidth&quot;: 2,
+</span><span class="z-text z-plain">        &quot;printWidth&quot;: 80,
+</span><span class="z-text z-plain">        &quot;useTabs&quot;: false
+</span><span class="z-text z-plain">      }
+</span><span class="z-text z-plain">    ],
+</span><span class="z-text z-plain">    &quot;no-console&quot;: &quot;warn&quot;
+</span><span class="z-text z-plain">  }
+</span><span class="z-text z-plain">}
+</span></code></pre>
+<p>We have added some <strong>prettier</strong> rules like we added in <code>.prettierrc</code> to ESlint. So that ESlint will catch errors in case we format to format code.</p>
+</li>
+<li>
+<p>Create <code>.eslintignore</code>
+Ignore files that we don’t want to catch errors.</p>
+<pre class="z-code"><code><span class="z-text z-plain">/src/serviceWorker.js
+</span><span class="z-text z-plain">/src/setupTests.js/js
+</span></code></pre>
+</li>
+</ul>
+<h2 id="conclusion"><a class="header-anchor no-hover-padding" href="#conclusion" aria-label="Anchor link for: conclusion"><span class="link-icon" aria-hidden="true"></span></a>
+Conclusion</h2>
+<p>So that’s it. Hope you learned something new. Eslint is endlessly customizable and you should explore more to find some plugins and configs that best benefit your project.</p>
+<p>All the code snippets can be found here on <a href="https://github.com/tduyng/webpack-react-typescript-template">my GitHub</a></p>
+<h2 id="reference"><a class="header-anchor no-hover-padding" href="#reference" aria-label="Anchor link for: reference"><span class="link-icon" aria-hidden="true"></span></a>
+Reference</h2>
+<ul>
+<li><a href="https://github.com/tduyng/webpack-react-typescript-template">Code GitHub</a></li>
+</ul>
+
+            
+            
+            
+        
+        </section>
+
+        
+        
+        
+        
+
+        
+            
+            
+            
+
+            
+                
+                
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+
+        
+        
+
+        
+                
+                
+                    
+                        
+                        
+                        
+                    
+                    
+                        
+                        
+                        
+                    
+                
+                
+            <nav class="full-width article-navigation">
+                <div><a href="https://tduyng.com/blog/setup-webpack-react-typescript/" aria-label="Prev" aria-describedby="left_title"><span class="arrow">←</span>&nbsp;Prev</a>
+                <p aria-hidden="true" id="left_title">Setup Webpack React TypeScript</p></div>
+                <div><a href="https://tduyng.com/blog/create-simple-project-nodejs-with-docker/" aria-label="Next" aria-describedby="right_title">Next&nbsp;<span class="arrow">→</span></a>
+                <p aria-hidden="true" id="right_title">Create simple web app Nodejs with Docker</p></div>
+            </nav>
+        
+            
+
+<div id="comments" class="comments"
+
+
+    data-repo="tduyng&#x2F;tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    
+        data-mapping="specific"
+        data-term="config-esling-prettier-react-app"
+    
+    data-strict="1"
+    data-reactions-enabled="1"
+    
+        data-input-position="top"
+    
+    data-light-theme="noborder_light"
+    data-dark-theme="noborder_dark"
+    
+        data-lang="en"
+    
+    data-lazy-loading="true"
+    >
+
+
+
+
+    <script src="https://tduyng.com/js/giscus.min.js" async></script>
+
+
+<noscript>You need JavaScript to view the comments.</noscript>
+</div>
+
+        
+
+    </article>
+</main>
+
+    <div id="button-container">
+        
+        
+            <div id="toc-floating-container">
+                <input type="checkbox" id="toc-toggle" class="toggle"/>
+                <label for="toc-toggle" class="overlay"></label>
+                <label for="toc-toggle" id="toc-button" class="button" title="Toggle Table of Contents">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M414.82-193.094q-18.044 0-30.497-12.32-12.453-12.319-12.453-30.036t12.453-30.086q12.453-12.37 30.497-12.37h392.767q17.237 0 29.927 12.487 12.69 12.486 12.69 30.203 0 17.716-12.69 29.919t-29.927 12.203H414.82Zm0-244.833q-18.044 0-30.497-12.487Q371.87-462.9 371.87-480.45t12.453-29.92q12.453-12.369 30.497-12.369h392.767q17.237 0 29.927 12.511 12.69 12.512 12.69 29.845 0 17.716-12.69 30.086-12.69 12.37-29.927 12.37H414.82Zm0-245.167q-18.044 0-30.497-12.32t-12.453-30.037q0-17.716 12.453-30.086 12.453-12.369 30.497-12.369h392.767q17.237 0 29.927 12.486 12.69 12.487 12.69 30.203 0 17.717-12.69 29.92-12.69 12.203-29.927 12.203H414.82ZM189.379-156.681q-32.652 0-55.878-22.829t-23.226-55.731q0-32.549 23.15-55.647 23.151-23.097 55.95-23.097 32.799 0 55.313 23.484 22.515 23.484 22.515 56.246 0 32.212-22.861 54.893-22.861 22.681-54.963 22.681Zm0-245.167q-32.652 0-55.878-23.134-23.226-23.135-23.226-55.623 0-32.487 23.467-55.517t56.12-23.03q32.102 0 54.721 23.288 22.62 23.288 22.62 55.775 0 32.488-22.861 55.364-22.861 22.877-54.963 22.877Zm-.82-244.833q-32.224 0-55.254-23.288-23.03-23.289-23.03-55.623 0-32.333 23.271-55.364 23.272-23.03 55.495-23.03 32.224 0 55.193 23.288 22.969 23.289 22.969 55.622 0 32.334-23.21 55.364-23.21 23.031-55.434 23.031Z"/></svg>
+                </label>
+                <div class="toc-content">
+                    
+
+<div class="toc-container">
+    
+
+    <ul>
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/config-esling-prettier-react-app/#what-are-eslint-and-prettier">What are ESLint and Prettier?</a>
+                    
+                        <ul>
+                            
+                                
+                                    <li><a href="https://tduyng.com/blog/config-esling-prettier-react-app/#eslint">ESlint</a>
+                                        
+                                    </li>
+                                
+                            
+                                
+                                    <li><a href="https://tduyng.com/blog/config-esling-prettier-react-app/#prettier">Prettier</a>
+                                        
+                                    </li>
+                                
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/config-esling-prettier-react-app/#why-vscode">Why VSCode?</a>
+                    
+                </li>
+            
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/config-esling-prettier-react-app/#setup-vscode">Setup VSCode</a>
+                    
+                        <ul>
+                            
+                                
+                                    <li><a href="https://tduyng.com/blog/config-esling-prettier-react-app/#install-extensions">Install extensions</a>
+                                        
+                                    </li>
+                                
+                            
+                                
+                                    <li><a href="https://tduyng.com/blog/config-esling-prettier-react-app/#setup-workspace-setting-in-vscode">Setup Workspace Setting in VSCode</a>
+                                        
+                                    </li>
+                                
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/config-esling-prettier-react-app/#setup-eslint-and-prettier-for-react">Setup ESLint and Prettier for React</a>
+                    
+                        <ul>
+                            
+                                
+                                    <li><a href="https://tduyng.com/blog/config-esling-prettier-react-app/#why-configuration-for-react-app">Why configuration for React App ?</a>
+                                        
+                                    </li>
+                                
+                            
+                                
+                                    <li><a href="https://tduyng.com/blog/config-esling-prettier-react-app/#setup">Setup</a>
+                                        
+                                    </li>
+                                
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/config-esling-prettier-react-app/#conclusion">Conclusion</a>
+                    
+                </li>
+            
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/config-esling-prettier-react-app/#reference">Reference</a>
+                    
+                </li>
+            
+        
+    </ul>
+</div>
+
+
+                </div>
+            </div>
+        
+
+        
+        
+            <a href="#comments" id="comments-button" class="no-hover-padding" title="Go to the comments section">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" fill-rule="evenodd"/></svg>
+            </a>
+        
+
+        
+        <a href="#" id="top-button" class="no-hover-padding" title="Go to the top of the page">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"/></svg>
+        </a>
+    </div>
+
+
+<span id="copy-success" class="hidden">
+        Copied!
+    </span>
+    <span id="copy-init" class="hidden">
+        Copy code to clipboard
+    </span>
+    <script defer src="https://tduyng.com/js/copyCodeToClipboard.min.js"></script><script defer src="https://tduyng.com/js/footnoteBacklinks.min.js"></script>
+    </div>
+    <footer>
+    <section>
+        <nav class="socials nav-navs">
+                <ul>
+                    
+                    
+                    
+                    <li>
+                        <a class="nav-links no-hover-padding social" rel=""  href=https://tduyng.com/atom.xml>
+                        <img alt="feed" title="feed" src="https://tduyng.com/social_icons/rss.svg">
+                        </a>
+                    </li><li class="js"><a class="nav-links no-hover-padding social" href="#" data-encoded-email="aGlAdGR1eW5nLmNvbQo="><img alt="email" title="email" src="https://tduyng.com/social_icons/email.svg">
+                            </a>
+                        </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://github.com/tduyng/>
+                                    <img alt=github title=github src="https://tduyng.com/social_icons/github.svg">
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://www.linkedin.com/in/tienduy-nguyen/>
+                                    <img alt=linkedin title=linkedin src="https://tduyng.com/social_icons/linkedin.svg">
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://twitter.com/tduyng>
+                                    <img alt=x title=x src="https://tduyng.com/social_icons/twitter.svg">
+                                </a>
+                            </li>
+                        
+                    
+                </ul>
+            
+        </nav>
+
+        
+        <nav class="nav-navs">
+                <small>
+                    <ul>
+                        
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;subscribe">
+                                subscribe
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;about">
+                                about
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;privacy">
+                                privacy policy
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;license">
+                                license
+                            </a>
+                        </li>
+                    
+                    </ul>
+                </small>
+        
+        </nav>
+
+        <div class="credits">
+            <small>
+                
+
+                
+                Powered by
+                <a rel=""  href="https://www.getzola.org">Zola</a>
+                &amp;
+                <a rel=""  href="https://github.com/welpo/tabi">tabi</a>
+
+                </small>
+        </div>
+    </section>
+
+    <script src="https://tduyng.com/js/decodeMail.min.js" async></script><div id="searchModal" class="search-modal js" role="dialog" aria-labelledby="modalTitle">
+    <h1 id="modalTitle" class="visually-hidden">Search</h1>
+    <div id="modal-content">
+        <div id="searchBar">
+            <div class="search-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                    <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                </svg>
+            </div>
+            <input id="searchInput" role="combobox" autocomplete="off" spellcheck="false" aria-expanded="false" aria-controls="results-container" placeholder="Search…"/>
+            <div id="clear-search" class="close-icon interactive-icon" tabindex="0" role="button" title="Clear search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                </svg>
+            </div>
+        </div>
+        <div id="results-container">
+            <div id="results-info"><span id="zero_results"> No results</span>
+                <span id="one_results"> $NUMBER result</span>
+                <span id="many_results"> $NUMBER results</span><span id="two_results"> $NUMBER results</span>
+                <span id="few_results"> $NUMBER results</span>
+            </div>
+            <div id="results" role="listbox"></div>
+        </div>
+    </div>
+</div>
+</footer>
+
+</body>
+
+</html>

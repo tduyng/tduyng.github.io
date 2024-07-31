@@ -1,0 +1,528 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="base" content="https://tduyng.com/">
+
+    
+    <title>Rails 5 or Rails 6 ? • ~/Z</title>
+
+    
+    
+        <link rel="icon" type="image/png" href="https://tduyng.com/img/logo.webp"/>
+    
+    
+        <link rel=icon href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105 55"><text y=".7em" font-size="82">Z</text></svg>'>
+    
+
+    
+    <link rel="alternate" type="application/atom+xml" title="~/Z" href="https://tduyng.com/atom.xml">
+
+    
+    
+    
+        <link rel="stylesheet" href="https://tduyng.com/custom_subset.css?h=753f2b519893883e57d5">
+    
+
+    
+        <link rel="stylesheet" href="https://tduyng.com/main.css?h=571d6d2a51c7448bc60a" />
+
+    <meta name="color-scheme" content="light dark" />
+        <meta name="theme-color" content="#087e96" />
+        <meta name="description" content="Trying to Decide Between Rails 5 and Rails 6? Let&#x27;s Compare!" />
+        <meta property="og:description" content="Trying to Decide Between Rails 5 and Rails 6? Let&#x27;s Compare!" />
+
+    
+        <meta name="robots" content="index, nofollow" />
+    
+
+    <meta property="og:title" content="Rails 5 or Rails 6 ?" />
+    <meta property="og:type" content="article" />
+
+    
+        
+        
+        
+
+        
+        
+            
+            
+            
+                
+            
+        
+
+        
+        <meta property="og:image" content="https://tduyng.com/img/social_card.webp?h=cf7fe2771b2b1f5c004f" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="675" />
+        <meta name="twitter:image" content="https://tduyng.com/img/social_card.webp?h=cf7fe2771b2b1f5c004f" />
+        <meta name="twitter:card" content="summary_large_image" />
+    
+
+    <meta property="og:locale" content="en_GB" />
+
+    <meta property="og:url" content="https:&#x2F;&#x2F;tduyng.com&#x2F;blog&#x2F;rails-5-or-rails-6&#x2F;" /><meta property="og:site_name" content="~&#x2F;Z"><meta http-equiv="Content-Security-Policy"
+content="default-src 'self';font-src &#x27;self&#x27; data:;img-src &#x27;self&#x27; https:&#x2F;&#x2F;* data:;media-src &#x27;self&#x27; https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;;style-src &#x27;self&#x27;;frame-src player.vimeo.com https:&#x2F;&#x2F;www.youtube-nocookie.com giscus.app;connect-src 'self' *.umami.dev analytics.eu.umami.is;script-src 'self' analytics.eu.umami.is  giscus.app 'self'">
+
+        <noscript><link rel="stylesheet" href="https://tduyng.com/no_js.css"/></noscript>
+        <script type="text/javascript" src="https://tduyng.com/js/initializeTheme.min.js"></script>
+        <script defer src="https://tduyng.com/js/themeSwitcher.min.js"></script>
+
+
+
+
+    <script async defer
+    
+        data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+        src="https://analytics.eu.umami.is/script.js"
+    
+    data-do-not-track="true">
+    </script>
+
+    
+
+        <script defer src="https://tduyng.com/js/searchElasticlunr.min.js?h=2950d57f80c9fa78f37e"></script>
+
+        </head>
+
+
+<body>
+    <header>
+    <nav class="navbar">
+        <div class="nav-title">
+            <a class="home-title" href=https://tduyng.com>~&#x2F;Z</a>
+        </div>
+            <div class="nav-navs">
+                <ul>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/blog/">
+                                blog
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/archive/">
+                                archive
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/projects/">
+                                projects
+                                </a>
+                            </li>
+                        
+                            <li>
+                                
+                                <a class="nav-links no-hover-padding" href="https://tduyng.com/about/">
+                                about
+                                </a>
+                            </li>
+                        <li class="js">
+                        <div role="button" tabindex="0" id="search-button" class="search-icon interactive-icon" title="Click or press $SHORTCUT to open search" aria-label="Click or press $SHORTCUT to open search">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                                <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                            </svg>
+                        </div>
+                    </li>
+
+                    
+                    
+
+                    <li class="theme-switcher-wrapper js"><div
+        title="Toggle dark&#x2F;light mode"
+        class="theme-switcher"
+        tabindex="0"
+        role="button"
+        aria-label="Toggle dark mode"
+        aria-pressed="false">
+    </div><div
+        title="Reset mode to default"
+        class="theme-resetter"
+        tabindex="0"
+        role="button"
+        aria-hidden="true"
+        aria-label="Reset mode to default">
+    </div>
+
+</li>
+</ul>
+            </div>
+        
+    </nav>
+</header>
+
+    <div class="content">
+
+        
+        
+
+
+
+
+<main>
+    <article>
+        <h1 class="article-title">
+            Rails 5 or Rails 6 ?
+        </h1>
+
+        <ul class="meta"><li>5th Jul 2020</li>&nbsp;•&nbsp;<li title="913 words">5 min read</li>&nbsp;•&nbsp;<li>Tags:&nbsp;</li><li><a href=https://tduyng.com/tags/ruby/>ruby</a>,&nbsp;</li><li><a href=https://tduyng.com/tags/rails/>rails</a></li>
+        </ul>
+
+        
+
+        
+        
+
+        <section class="body">
+            
+            
+            <p>What version of rails you use in your projects, today?</p>
+<p>At <a href="https://www.thehackingproject.org/">THP</a>, when we start learning rails, we are required to install rails version 5.2.3. But I when I see that the new version of rails has been released is already 6.0. So we have posed a question for our technical manager of <a href="https://www.thehackingproject.org/">THP</a>:</p>
+<p>Why we don’t install directly the version rails 6.0?</p>
+<p>And he said: “One word: <code>webpack</code>. I always don’t understand so much for the “webpack”, and I need to search more on the internet. And with this article (this is not mine), we will know some advantages and new features of rails 6 .</p>
+<p>I hear that: Rails 5 is still just fine
+Rails 5.0.Z is still on the severe patches list, and Rails 5.2.Z is still receiving regular security updates; so you’re still OK on Rails 5 (especially 5.2 or higher)</p>
+<p>Now We will see 4 amazing features of rails 6.</p>
+<h2 id="parralled-testing"><a class="header-anchor no-hover-padding" href="#parralled-testing" aria-label="Anchor link for: parralled-testing"><span class="link-icon" aria-hidden="true"></span></a>
+Parralled Testing</h2>
+<p>Test’s performance is finally going to be improved (a lot!). Now you can use cores to your advantage of running big tests much faster. Each testing worker runs in its own thread - it should be reflected in the CPU monitor. Thanks to Eileen Uchitelle and Aaron Patterson, parallel-testing will land in the upcoming, final version of Rails framework.</p>
+<p>As you probably already know, the way of implementing tests is very important. We try to implement as many suitable tests as we can. It’s great news for us as more tests will no longer have that much of an impact on the execution time. (Stay tuned for our guide on how to write great tests in Rails!)</p>
+<p>“The default number [of workers running in parallel] is the actual core count on the machine you are on, but can be changed by the number passed to the parallelize method.” To enable executing tests parallel just set the number of workers in <code>rails_helper.rb</code>.</p>
+<h2 id="native-webpacker-support"><a class="header-anchor no-hover-padding" href="#native-webpacker-support" aria-label="Anchor link for: native-webpacker-support"><span class="link-icon" aria-hidden="true"></span></a>
+Native Webpacker Support</h2>
+<p>Webpacker was introduced a while back with the 5.1 version of Ruby on Rails. It makes using JavaScript pre-processor easier.</p>
+<p>We usually use it for JavaScript code, it works really well but it can also be used for CSS, images, fonts and assets as well. From now on, Sprockets is being replaced and Webpacker is the default JavaScript bundler for Rails through the new app/javascript directory.</p>
+<p>Currently, in modern applications, using traditional rails views is not so often anymore. User Interfaces are very interactive, there is a lot of dynamic elements which have to respond really fast. Now, the application setup with Rails on the backend and React/Vue on the frontend will be an easy-peasy pleasure :)</p>
+<h2 id="multi-database-support"><a class="header-anchor no-hover-padding" href="#multi-database-support" aria-label="Anchor link for: multi-database-support"><span class="link-icon" aria-hidden="true"></span></a>
+Multi Database Support</h2>
+<p>Another great feature of upcoming Rails 6.0 is the support for multiple simultaneous database connections. It’s a new, simple API for making that happen without the need to reach deeply into Active Record.</p>
+<p>Official RoR blog suggests using two databases to for example split the workflow between two replica databases for a performance boost or records segmentation into databases for scaling. We can definitely see multiple database support as an improvement in building microservices architecture.</p>
+<p>One of the real life examples where this feature could be really useful is our in-house project - Artinfo. In this project, there are two database connections, one for old users and one for those who just signed up. Now with Rails 6, this implementation would be much easier.</p>
+<h2 id="zeitwerk"><a class="header-anchor no-hover-padding" href="#zeitwerk" aria-label="Anchor link for: zeitwerk"><span class="link-icon" aria-hidden="true"></span></a>
+Zeitwerk</h2>
+<p>With this version of Rails a new code loader was introduced - Zeitwerk. It promises to load your project’s classes and modules on demand, no need to write <code>require</code> calls. Zeitwerk uses absolute file names making the loader more efficient. Your classes and modules are available everywhere. The team behind the loader claims that it is thread-safe and matches Ruby’s semantics for constants.</p>
+<p>Still curious for more? You can find more new stuff over at <a href="https://weblog.rubyonrails.org/2019/8/15/Rails-6-0-final-release/">rubyonrails.org</a>.</p>
+<h3 id="so-to-reponse-the-question-of-article"><a class="header-anchor no-hover-padding" href="#so-to-reponse-the-question-of-article" aria-label="Anchor link for: so-to-reponse-the-question-of-article"><span class="link-icon" aria-hidden="true"></span></a>
+So to reponse the question of article?</h3>
+<p>I don’t know yet. All the new features of rails 6 is still so much compliated for me. At this moment, I will use the rails 5 for the project training and I will discover more about how to use the features of rails 6 and apply it in the new projects.</p>
+<p><strong>But other developer said:</strong></p>
+<p>If you are starting a new Rails project today - I would definitely start with Rails 6. It’s officially supported now - and if you look at some of the CHANGELOGS above, you’ll see that many of the subsystems have been stable for many months.</p>
+<p>If you have a project on Rails 5.2 or higher - then you have some time before you have to do anything. If you’re not interested in any of the major announced updates then you’ll still be getting security updates for awhile.</p>
+<p>You could still try running rails app:update though, just to see how much has changed for you particular app - which will give you an idea of how much work it will be when you do decide to upgrade.</p>
+<p>If you have a project on Rails 5.0 or lower - then I would definitely consider upgrading sooner rather than later. It will take more work to upgrade these older projects (especially Rails 4 and below) - but security updates are already stopped for Rails &lt; 4.2 - so now (right after a major release) is a good time to update (so that you don’t have to do it again for awhile).</p>
+
+            
+            
+            
+        
+        </section>
+
+        
+        
+        
+        
+
+        
+            
+            
+            
+
+            
+                
+                
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+            
+            
+            
+
+            
+        
+
+        
+        
+
+        
+                
+                
+                    
+                        
+                        
+                        
+                    
+                    
+                        
+                        
+                        
+                    
+                
+                
+            <nav class="full-width article-navigation">
+                <div><a href="https://tduyng.com/blog/how-to-switch-to-another-rails-version/" aria-label="Prev" aria-describedby="left_title"><span class="arrow">←</span>&nbsp;Prev</a>
+                <p aria-hidden="true" id="left_title">How to switch to another Rails version</p></div>
+                <div><a href="https://tduyng.com/blog/better-in-ruby-01/" aria-label="Next" aria-describedby="right_title">Next&nbsp;<span class="arrow">→</span></a>
+                <p aria-hidden="true" id="right_title">Better In Ruby - 01</p></div>
+            </nav>
+        
+            
+
+<div id="comments" class="comments"
+
+
+    data-repo="tduyng&#x2F;tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    
+        data-mapping="specific"
+        data-term="rails-5-or-rails-6"
+    
+    data-strict="1"
+    data-reactions-enabled="1"
+    
+        data-input-position="top"
+    
+    data-light-theme="noborder_light"
+    data-dark-theme="noborder_dark"
+    
+        data-lang="en"
+    
+    data-lazy-loading="true"
+    >
+
+
+
+
+    <script src="https://tduyng.com/js/giscus.min.js" async></script>
+
+
+<noscript>You need JavaScript to view the comments.</noscript>
+</div>
+
+        
+
+    </article>
+</main>
+
+    <div id="button-container">
+        
+        
+            <div id="toc-floating-container">
+                <input type="checkbox" id="toc-toggle" class="toggle"/>
+                <label for="toc-toggle" class="overlay"></label>
+                <label for="toc-toggle" id="toc-button" class="button" title="Toggle Table of Contents">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M414.82-193.094q-18.044 0-30.497-12.32-12.453-12.319-12.453-30.036t12.453-30.086q12.453-12.37 30.497-12.37h392.767q17.237 0 29.927 12.487 12.69 12.486 12.69 30.203 0 17.716-12.69 29.919t-29.927 12.203H414.82Zm0-244.833q-18.044 0-30.497-12.487Q371.87-462.9 371.87-480.45t12.453-29.92q12.453-12.369 30.497-12.369h392.767q17.237 0 29.927 12.511 12.69 12.512 12.69 29.845 0 17.716-12.69 30.086-12.69 12.37-29.927 12.37H414.82Zm0-245.167q-18.044 0-30.497-12.32t-12.453-30.037q0-17.716 12.453-30.086 12.453-12.369 30.497-12.369h392.767q17.237 0 29.927 12.486 12.69 12.487 12.69 30.203 0 17.717-12.69 29.92-12.69 12.203-29.927 12.203H414.82ZM189.379-156.681q-32.652 0-55.878-22.829t-23.226-55.731q0-32.549 23.15-55.647 23.151-23.097 55.95-23.097 32.799 0 55.313 23.484 22.515 23.484 22.515 56.246 0 32.212-22.861 54.893-22.861 22.681-54.963 22.681Zm0-245.167q-32.652 0-55.878-23.134-23.226-23.135-23.226-55.623 0-32.487 23.467-55.517t56.12-23.03q32.102 0 54.721 23.288 22.62 23.288 22.62 55.775 0 32.488-22.861 55.364-22.861 22.877-54.963 22.877Zm-.82-244.833q-32.224 0-55.254-23.288-23.03-23.289-23.03-55.623 0-32.333 23.271-55.364 23.272-23.03 55.495-23.03 32.224 0 55.193 23.288 22.969 23.289 22.969 55.622 0 32.334-23.21 55.364-23.21 23.031-55.434 23.031Z"/></svg>
+                </label>
+                <div class="toc-content">
+                    
+
+<div class="toc-container">
+    
+
+    <ul>
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/rails-5-or-rails-6/#parralled-testing">Parralled Testing</a>
+                    
+                </li>
+            
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/rails-5-or-rails-6/#native-webpacker-support">Native Webpacker Support</a>
+                    
+                </li>
+            
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/rails-5-or-rails-6/#multi-database-support">Multi Database Support</a>
+                    
+                </li>
+            
+        
+            
+            
+                <li><a href="https://tduyng.com/blog/rails-5-or-rails-6/#zeitwerk">Zeitwerk</a>
+                    
+                        <ul>
+                            
+                                
+                                    <li><a href="https://tduyng.com/blog/rails-5-or-rails-6/#so-to-reponse-the-question-of-article">So to reponse the question of article?</a>
+                                        
+                                    </li>
+                                
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    </ul>
+</div>
+
+
+                </div>
+            </div>
+        
+
+        
+        
+            <a href="#comments" id="comments-button" class="no-hover-padding" title="Go to the comments section">
+                <svg viewBox="0 0 20 20" fill="currentColor"><path d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" fill-rule="evenodd"/></svg>
+            </a>
+        
+
+        
+        <a href="#" id="top-button" class="no-hover-padding" title="Go to the top of the page">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M3.293 9.707a1 1 0 010-1.414l6-6a1 1 0 011.414 0l6 6a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L4.707 9.707a1 1 0 01-1.414 0z"/></svg>
+        </a>
+    </div>
+
+
+<span id="copy-success" class="hidden">
+        Copied!
+    </span>
+    <span id="copy-init" class="hidden">
+        Copy code to clipboard
+    </span>
+    <script defer src="https://tduyng.com/js/copyCodeToClipboard.min.js"></script><script defer src="https://tduyng.com/js/footnoteBacklinks.min.js"></script>
+    </div>
+    <footer>
+    <section>
+        <nav class="socials nav-navs">
+                <ul>
+                    
+                    
+                    
+                    <li>
+                        <a class="nav-links no-hover-padding social" rel=""  href=https://tduyng.com/atom.xml>
+                        <img alt="feed" title="feed" src="https://tduyng.com/social_icons/rss.svg">
+                        </a>
+                    </li><li class="js"><a class="nav-links no-hover-padding social" href="#" data-encoded-email="aGlAdGR1eW5nLmNvbQo="><img alt="email" title="email" src="https://tduyng.com/social_icons/email.svg">
+                            </a>
+                        </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://github.com/tduyng/>
+                                    <img alt=github title=github src="https://tduyng.com/social_icons/github.svg">
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://www.linkedin.com/in/tienduy-nguyen/>
+                                    <img alt=linkedin title=linkedin src="https://tduyng.com/social_icons/linkedin.svg">
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a class="nav-links no-hover-padding social" rel=" me"  href=https://twitter.com/tduyng>
+                                    <img alt=x title=x src="https://tduyng.com/social_icons/twitter.svg">
+                                </a>
+                            </li>
+                        
+                    
+                </ul>
+            
+        </nav>
+
+        
+        <nav class="nav-navs">
+                <small>
+                    <ul>
+                        
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;subscribe">
+                                subscribe
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;about">
+                                about
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;privacy">
+                                privacy policy
+                            </a>
+                        </li>
+                    
+                        <li><a class="nav-links no-hover-padding" href="https:&#x2F;&#x2F;tduyng.com&#x2F;license">
+                                license
+                            </a>
+                        </li>
+                    
+                    </ul>
+                </small>
+        
+        </nav>
+
+        <div class="credits">
+            <small>
+                
+
+                
+                Powered by
+                <a rel=""  href="https://www.getzola.org">Zola</a>
+                &amp;
+                <a rel=""  href="https://github.com/welpo/tabi">tabi</a>
+
+                </small>
+        </div>
+    </section>
+
+    <script src="https://tduyng.com/js/decodeMail.min.js" async></script><div id="searchModal" class="search-modal js" role="dialog" aria-labelledby="modalTitle">
+    <h1 id="modalTitle" class="visually-hidden">Search</h1>
+    <div id="modal-content">
+        <div id="searchBar">
+            <div class="search-icon" aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                    <path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/>
+                </svg>
+            </div>
+            <input id="searchInput" role="combobox" autocomplete="off" spellcheck="false" aria-expanded="false" aria-controls="results-container" placeholder="Search…"/>
+            <div id="clear-search" class="close-icon interactive-icon" tabindex="0" role="button" title="Clear search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+                </svg>
+            </div>
+        </div>
+        <div id="results-container">
+            <div id="results-info"><span id="zero_results"> No results</span>
+                <span id="one_results"> $NUMBER result</span>
+                <span id="many_results"> $NUMBER results</span><span id="two_results"> $NUMBER results</span>
+                <span id="few_results"> $NUMBER results</span>
+            </div>
+            <div id="results" role="listbox"></div>
+        </div>
+    </div>
+</div>
+</footer>
+
+</body>
+
+</html>

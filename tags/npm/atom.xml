@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://tduyng.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:base="http://purl.org/atompub/base/1.0/" xml:lang="en" xml:base="https:&#x2F;&#x2F;tduyng.com&#x2F;">
+    <str:translations xmlns:str="https://github.com/welpo/tabi">
+        <str:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</str:about_feeds>
+        <str:visit_the_site>Visit website</str:visit_the_site>
+        <str:recent_posts>Recent posts</str:recent_posts>
+    </str:translations><title>~/Z - npm</title>
+        <subtitle>Z is software developer. Typescript and Rust enthusiast</subtitle>
+    <link href="https://tduyng.com/tags/npm/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://tduyng.com"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-06-14T00:00:00+00:00</updated>
+    <id>https://tduyng.com/tags/npm/atom.xml</id><entry xml:lang="en">
+        <title>Support Dual Package for CJS and ESM in Typescript Library</title>
+        <published>2024-06-14T00:00:00+00:00</published>
+        <updated>2024-06-14T00:00:00+00:00</updated>
+        <author>
+            <name>Z</name>
+        </author>
+        <link rel="alternate" href="https://tduyng.com/blog/dual-package-typescript/" type="text/html"/>
+        <id>https://tduyng.com/blog/dual-package-typescript/</id>
+        
+            <content type="html">&lt;p&gt;Hi there!&lt;&#x2F;p&gt;
+&lt;p&gt;Today, ECMAScript Modules (ESM) have become the standard for writing JavaScript on both the front end and back end. However, many projects still use CommonJS (CJS), particularly those that have been around for a while.&lt;&#x2F;p&gt;
+&lt;p&gt;If your project is written in TypeScript, you’re in luck. TypeScript already uses ESM syntax with &lt;code&gt;import&lt;&#x2F;code&gt; and &lt;code&gt;export&lt;&#x2F;code&gt;. However, one thing to keep in mind is that if your TypeScript project does not specify &lt;code&gt;&quot;type&quot;: &quot;module&quot;&lt;&#x2F;code&gt;, it will still output CommonJS.&lt;&#x2F;p&gt;
+&lt;p&gt;With Deno, JSR, or Bun, the question of using CJS or ESM doesn’t really matter. Deno and JSR enforce the use of ESM exclusively, while Bun supports both CommonJS and ESM. However, in Node.js, this question still requires careful consideration.&lt;&#x2F;p&gt;
+&lt;p&gt;When building a library for npm, it’s advisable to support both ESM and CommonJS (dual package). This is the approach taken by most popular packages today, as it allows any type of project to use the library. But how can we achieve this? It can be complex and challenging to maintain?&lt;&#x2F;p&gt;
+&lt;p&gt;Here, I share an opinionated and straightforward way to handle this. You can read the solution in detail here: &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;ekino-france&#x2F;supporting-dual-package-for-cjs-and-esm-in-typescript-library-b5feabac1357&quot;&gt;Supporting Dual Packages for CJS and ESM in a TypeScript Library&lt;&#x2F;a&gt;. I wrote this article on &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;ekino-france&quot;&gt;my company’s page&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I hope this helps. Happy coding!&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Note: Why didn’t I write this article on my personal blog? Because I originally published it on my company’s Medium page, I chose not to duplicate it here to avoid issues with content ownership. Additionally, hosting the original article on Medium makes it easier to gather feedback and comments compared to my personal blog.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+</content>
+        <summary type="html">Explore an easy way to support dual package TypeScript NPM libraries for both CommonJS and ESM</summary>
+        </entry>
+</feed>
