@@ -9,6 +9,7 @@ tags = ["blog", "static-site-generator", "free", "web-development"]
 
 [extra]
 comment = true
+featured = true
 outdate_alert = true
 outdate_alert_days = 365
 +++
