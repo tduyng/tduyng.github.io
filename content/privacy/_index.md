@@ -13,8 +13,6 @@ comment = false
 toc = true
 +++
 
-This privacy policy outlines how we collect and process your data on this website.
-
 ## What data do we collect?
 
 ### General browsing {#what-general}

@@ -1,13 +1,17 @@
 <footer>
-  <div class="copyright">
-    {{ config.extra.footer_copyright | trim | markdown | safe }}
-  </div>
-  {% if config.extra.footer_credits %}
-  <div class="credits">
-    powered by
-    <a href="https://www.getzola.org" target="_blank" rel='noreferrer noopener'>zola</a>
-    and
-    <a href="https://github.com/isunjn/serene" target="_blank" rel='noreferrer noopener'>serene</a>
-  </div>
-  {% endif %}
+    <div class="copyright">
+        {{ config.extra.footer_copyright | trim | markdown | safe }}
+    </div>
+    {% if config.extra.footer_menu %}
+        {% set site_sections = config.extra.footer_menu | filter(attribute="is_external", value=false) %}
+        {% for section in site_sections %}
+          {% set should_fold = false %}
+          {% if is_taxonomies_path and section.path == config.extra.blog_section_path %}
+            {% set should_fold = false %}
+          {% elif not current_path is starting_with(section.path) %}
+            {% set should_fold = true %}
+          {% endif %}
+          <a class="instant {% if should_fold %}fold{% endif %}" href="{{ section.path }}">{{ section.name }}</a>
+        {% endfor %}
+    {% endif %}
 </footer>

@@ -12,6 +12,7 @@ tags = ["github-action", "profile", "readme", "dynamic", "python"]
 featured = true
 outdate_alert = true
 outdate_alert_days = 1000
+enjoy = true
 +++
 
 **Have you heard about GitHub profile READMEs?**

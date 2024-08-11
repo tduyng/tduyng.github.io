@@ -11,7 +11,7 @@ tags = ["github", "readme", "typescript"]
 featured = true
 outdate_alert = true
 outdate_alert_days = 1000
-
+enjoy = true
 +++
 
 [In a recent article](https://tduyng.github.io/blog/dynamic-github-profile-readme/), I discussed transforming a GitHub profile into an interactive space with icons, badges, and dynamically updated blog posts using Python scripts and GitHub actions.

@@ -10,6 +10,7 @@ tags = ["typescript", "javascript", "npm", "esm"]
 [extra]
 outdate_alert = true
 outdate_alert_days = 700
+enjoy = true
 +++
 
 Hi there!

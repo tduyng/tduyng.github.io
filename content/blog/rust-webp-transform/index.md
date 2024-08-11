@@ -12,6 +12,7 @@ tags = ["performance", "rust", "webp", "image-conversion", "cli"]
 featured = true
 outdate_alert = true
 outdate_alert_days = 1000
+enjoy = true
 +++
 
 Hi everyone 👋,

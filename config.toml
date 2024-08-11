@@ -7,7 +7,7 @@ compile_sass = true
 minify_html = true
 build_search_index = false
 generate_feeds = false
-feed_filenames = ["atom.xml"]
+feed_filenames = ["atom.xml", "feed.xml", "rss.xml"]
 taxonomies = [{ name = "tags" }, { name = "categories" }]
 
 [markdown]
@@ -55,15 +55,18 @@ sections = [
     { name = "blog", path = "/blog", is_external = false },
     { name = "projects", path = "/projects", is_external = false },
     { name = "about", path = "/about", is_external = false },
-    { name = "contact", path = "/contact", is_external = false },
 ]
 blog_section_path = "/blog"
 about_section_path = "/about"
-
 nav_separator = "::"
-nav_wrapper_left = "{"
-nav_wrapper_right = "} ;"
-nav_wrapper_separator = ","
+footer_menu = [
+    { name = "subscribe", path = "/subscribe", is_external = false },
+    { name = "contact", path = "/contact", is_external = false },
+    { name = "privacy", path = "/privacy", is_external = false },
+    { name = "atom.xml", path = "/blog/atom.xml", is_external = false },
+]
+enjoy_text = "Enjoyed this article? For more technical content on Typescript or backend development, stay updated by subcribe my blog through RSS feeds."
+
 
 display_id = true       # Whether to display your id on homepage
 blog_categorized = true # Whether to categorize blog posts
