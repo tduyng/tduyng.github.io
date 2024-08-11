@@ -1,8 +1,15 @@
 +++
-template = "home.html"
+title = "LICENSE"
+description = "Duy NG blog's website license"
+template = "prose.html"
+insert_anchor_links = "none"
 
 [extra]
 lang = 'en'
+math = false
+mermaid = false
+copy = false
+comment = false
 +++
 
 **Hey there! I'm Duy NG.**

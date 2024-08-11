@@ -49,8 +49,11 @@
       </div>
     </section>
     {% if config.extra.homepage_layout == 'about' %}
+        {% set about_section_path = config.extra.about_section_path | trim_start_matches(pat="/") %}
+        {% set section_md_path = about_section_path ~ "/_index.md" %}
+        {% set about_section = get_section(path=section_md_path) %}
       <section id="brief" class="prose">
-        {{ section.content | trim | safe }}
+        {{ about_section.content | trim | safe }}
       </section>
     {% elif config.extra.homepage_layout == 'list' %}
       {% set blog_section_path = config.extra.blog_section_path | trim_start_matches(pat="/") %}

@@ -42,20 +42,22 @@ links = [
     { name = "Email", icon = "email", url = "mailto:hi@tduyng.com" },
 ]
 
+# about: displays markdown content of your myblog/content/_index.md
+# list: the whole post list, can be categorized
+# recent: only a few recent posts
 homepage_layout = "about"
 
-recent_max = 1
+recent_max = 10
 recent_more = true
 recent_more_text = "more »"
 
 sections = [
     { name = "blog", path = "/blog", is_external = false },
     { name = "projects", path = "/projects", is_external = false },
-    { name = "subscribe", path = "/subscribe", is_external = false },
-    { name = "privacy", path = "/privacy", is_external = false },
-    { name = "license", path = "/license", is_external = false },
+    { name = "about", path = "/about", is_external = false }
 ]
 blog_section_path = "/blog"
+about_section_path = "/about"
 
 nav_separator = "::"
 nav_wrapper_left = "{"
