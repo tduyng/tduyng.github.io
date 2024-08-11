@@ -1462,6 +1462,42 @@ body.not-found {
     }
 }
 
+/* Pagination
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.pagination {
+    margin-top: 50px;
+
+    &__title {
+        text-align: center;
+        margin: 100px 0 20px;
+
+        &-h {
+            margin: 0 auto;
+            padding: 5px 10px;
+            background: var(--background);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        hr {
+            margin-top: 15px;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2em;
+
+        @media (max-width: var(--homepage-max-width)) {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}
+
 /* normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 

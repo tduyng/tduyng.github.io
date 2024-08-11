@@ -1,4 +1,5 @@
 {% import 'macros/math.html' as macro_math -%}
+{% import 'macros/post.html' as post_macros -%}
 {% extends "_base.html" %}
 
 {% block page %}post{% endblock page %}
@@ -116,10 +117,8 @@
           {{ page.content | safe }}
         {% endif %}
 
-        {% if page.extra.enjoy is defined %}
-            <hr/>
-            {{ config.extra.enjoy_text | safe }}
-        {% endif %}
+        
+        {{ post_macros::earlier_later(page=page) }}
 
       </article>
 

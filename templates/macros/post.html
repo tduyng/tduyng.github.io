@@ -1,0 +1,28 @@
+{% macro earlier_later(page) %}
+    {%- if page.lower or page.higher %}
+        <div class="pagination">
+            {% if page.extra.enjoy is defined %}
+            <hr/>
+            {{ config.extra.enjoy_text | safe }}
+            {% endif %}
+            <div class="pagination__buttons">
+                {%- if page.higher %}
+                    <span class="button previous">
+                        <a href="{{ page.higher.permalink | safe }}">
+                            <span class="button__icon">←</span>&nbsp;
+                            <span class="button__text">{{ page.higher.title }}</span>
+                        </a>
+                    </span>
+                {% endif %}
+                {% if page.lower %}
+                    <span class="button next">
+                        <a href="{{ page.lower.permalink | safe }}">
+                            <span class="button__text">{{ page.lower.title }}</span>&nbsp;
+                            <span class="button__icon">→</span>
+                        </a>
+                    </span>
+                {% endif -%}
+            </div>
+        </div>
+    {% endif -%}
+{% endmacro earlier_later %}
