@@ -4,7 +4,7 @@ description = "This article highlights key reasons for the change, explores Deno
 date = 2024-06-15
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["deno", "nodejs", "production"]
 
 [extra]

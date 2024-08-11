@@ -4,7 +4,7 @@ description = "Learn how to build your own personal website using Jekyll and Git
 date = 2020-05-25
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["blog", "static-site-generator", "free", "web-development"]
 
 [extra]

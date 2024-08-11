@@ -4,7 +4,7 @@ description = "Discover how to configure ESLint and Prettier within your React a
 date = 2020-12-17
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["eslint", "prettier"]
 
 [extra]

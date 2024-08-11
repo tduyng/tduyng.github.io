@@ -4,7 +4,7 @@ description = "Learn how to make your GitHub profile dynamic using Bun and TypeS
 date = 2024-05-15
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["github", "readme", "typescript"]
 
 [extra]

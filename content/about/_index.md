@@ -17,7 +17,7 @@ comment = false
 You might know me online as "tduyng" or "tienduy-nguyen". Feel free to call me "Duy", pronounced like "Zwee" in Vietnamese. While I'm not big on social media, I have a deep passion for tech projects and contributing to open-source communities.
 
 ## Current role
-I'm currently a Backend Engineer at [Ekino France](https://www.ekino.fr), specializing in NodeJs/Typescript and AWS for [CANAL+ projects](https://www.canalplus.com/) since 2021.
+I'm currently a Backend Engineer at [Ekino](https://www.ekino.fr) in France, specializing in NodeJs/Typescript and AWS for [CANAL+ projects](https://www.canalplus.com/) since 2021.
 
 ## Past experiences
 Before diving into backend engineering, I worked as a BIM Engineer (Building Information Modeling Engineer) at [VINCI Group](https://www.vinci.com/vinci.nsf/fr/index.htm) in France. Alongside my BIM responsibilities, I developed numerous plugins in C#, [Dynamo](https://dynamobim.org/) and VBA (Excel) to automate tasks for my company.

@@ -4,7 +4,7 @@ description = "Discover why I switched my website and blog from Jekyll to Zola."
 date = 2024-05-11
 
 [taxonomies]
-categories = ["Website"]
+categories = ["WEBSITE"]
 tags = ["blog", "static-site-generator"]
 
 [extra]

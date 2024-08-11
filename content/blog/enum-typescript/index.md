@@ -5,7 +5,7 @@ date = 2024-06-21
 updated = 2024-06-24
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["typescript", "enum", "best-practices"]
 
 [extra]

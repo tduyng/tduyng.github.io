@@ -4,7 +4,7 @@ description = "Discover the key differences and unique syntax nuances between Py
 date = 2020-09-05
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["python", "javascript"]
 
 [extra]

@@ -4,7 +4,7 @@ description = "Discover the advantages and reasons behind utilizing Docker Compo
 date = 2021-01-25
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["docker", "compose"]
 
 [extra]

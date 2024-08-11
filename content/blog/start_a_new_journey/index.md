@@ -4,7 +4,7 @@ description = "I share my journey from being a BIM engineer to becoming a full-t
 date = 2021-05-01
 
 [taxonomies]
-categories = ["Life"]
+categories = ["LIFE"]
 tags = ["career", "journey"]
 
 +++

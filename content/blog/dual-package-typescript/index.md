@@ -4,7 +4,7 @@ description = "Explore an easy way to support dual package TypeScript NPM librar
 date = 2024-06-14
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["typescript", "javascript", "npm", "esm"]
 
 [extra]

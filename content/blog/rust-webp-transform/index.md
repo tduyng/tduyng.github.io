@@ -5,7 +5,7 @@ date = 2024-05-23
 updated = 2024-05-23
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["performance", "rust", "webp", "image-conversion", "cli"]
 
 [extra]

@@ -4,7 +4,7 @@ description = "Learn to build a basic web application using Node.js and Docker, 
 date = 2020-12-22
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["docker", "nodejs", "javascript"]
 
 [extra]

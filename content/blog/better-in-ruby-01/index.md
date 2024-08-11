@@ -4,7 +4,7 @@ description = "Hidden Ruby gems: uncovering little known tips."
 date = 2020-08-01
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["ruby"]
 
 [extra]

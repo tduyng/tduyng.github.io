@@ -4,7 +4,7 @@ description = "In this article, I share some experiences of migrating to ESLint 
 date = 2024-07-16
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["eslint", "typescript", "migration", "nodejs"]
 
 [extra]

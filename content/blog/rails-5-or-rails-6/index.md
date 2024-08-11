@@ -4,7 +4,7 @@ description = "Trying to Decide Between Rails 5 and Rails 6? Let's Compare!"
 date = 2020-07-05
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["ruby", "rails"]
 
 [extra]

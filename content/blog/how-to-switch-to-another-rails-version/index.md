@@ -4,7 +4,7 @@ description = "When you need to use multiple versions of Rails on your computer,
 date = 2020-06-28
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["ruby", "rails"]
 
 [extra]

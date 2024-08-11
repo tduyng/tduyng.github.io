@@ -4,7 +4,7 @@ description = "Learn the essentials of setting up Webpack with React and TypeScr
 date = 2020-11-28
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["webpack", "react", "typescript"]
 
 [extra]

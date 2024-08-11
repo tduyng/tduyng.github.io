@@ -4,7 +4,7 @@ description = "Discover how to configure Webpack with TypeScript to enhance your
 date = 2020-11-14
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["webpack", "typescript"]
 
 [extra]

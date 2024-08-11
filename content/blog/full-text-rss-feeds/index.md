@@ -4,7 +4,7 @@ description = "Explore the reasons behind this decision"
 date = 2024-06-10
 
 [taxonomies]
-categories = ["Website"]
+categories = ["WEBSITE"]
 tags = ["blog", "full-text", "rss"]
 
 [extra]

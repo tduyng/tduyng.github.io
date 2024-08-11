@@ -4,7 +4,7 @@ description = "Dive into fun coding challenges in Ruby. Get practical tips and s
 date = 2020-04-07
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["ruby", "algorithms"]
 
 [extra]

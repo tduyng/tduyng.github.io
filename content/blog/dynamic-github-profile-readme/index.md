@@ -5,7 +5,7 @@ date = 2024-05-13
 updated = 2024-05-21
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["github-action", "profile", "readme", "dynamic", "python"]
 
 [extra]

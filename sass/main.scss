@@ -684,6 +684,108 @@ body.homepage {
     }
 }
 
+.home-layout-list {
+    .category {
+        font-size: 1.1em;
+        margin: 2em 15px 1em;
+    }
+
+    .post-list {
+        padding: 0 15px;
+        margin-top: 2em;
+
+        &.categorized {
+            margin-top: 1em;
+        }
+    }
+
+    .post {
+        display: flex;
+        flex-direction: column;
+        padding: 12px 0;
+        margin: 18px 0;
+        font-size: 1em;
+        color: var(--primary-color);
+        -webkit-tap-highlight-color: transparent;
+
+        border-bottom: 1.5px solid transparent;
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5em;
+
+            .title {
+                font-size: 1em;
+                font-weight: bold;
+            }
+
+            .date {
+                font-size: 0.9em;
+            }
+        }
+
+        .description {
+            margin-bottom: 0.5em;
+            font-size: 0.8em;
+            color: var(--text-color);
+            line-height: 1.4;
+        }
+
+        position: relative;
+        &.featured::before {
+            content: '*';
+            position: absolute;
+            top: 0.8em;
+            bottom: 0;
+            left: 0;
+            transform: translateX(-200%);
+            line-height: 30px;
+            height: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .post-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .read-more {
+                margin-top: 0.5em;
+            }
+
+            &.featured::before {
+                transform: translateX(-150%);
+            }
+        }
+    }
+
+    .read-more {
+        display: flex;
+        justify-content: end;
+        margin: 1.5em 15px 0px;
+
+        a {
+            color: var(--primary-color);
+            border-bottom: 1.5px solid var(--primary-color);
+            padding-bottom: 2px;
+            position: relative;
+            transition: color 0.3s ease, border-color 0.3s ease;
+
+            &:hover {
+                color: var(--primary-color-dark);
+                border-color: var(--primary-color-dark);
+            }
+
+            &::after {
+                margin-left: 0.5em;
+                font-size: 1.2em;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
 /* header
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 

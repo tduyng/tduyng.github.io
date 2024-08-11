@@ -4,7 +4,7 @@ description = "Learn the fundamental steps for setting up Webpack to optimize an
 date = 2020-11-03
 
 [taxonomies]
-categories = ["Development"]
+categories = ["DEVELOPMENT"]
 tags = ["webpack"]
 
 [extra]
