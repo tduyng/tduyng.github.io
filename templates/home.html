@@ -101,7 +101,7 @@ lang %}
             <hr />
             <!-- Latest posts list -->
             <section class="home-layout-list">
-                <h3>Here are my latest posts:</h3>
+                <h2>Here are my latest posts:</h2>
                 <div class="post-list">
                     {% for post in blog_section.pages | slice(end=config.extra.recent_max) %}
                     <div class="post instant {% if post.extra.featured %}featured{% endif %}">

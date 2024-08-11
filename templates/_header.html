@@ -8,6 +8,7 @@
         <span class="separator">{{ config.extra.nav_separator }}</span>
       {% endif %}
       {% if config.extra.sections | length > 1 %}
+        <span class="wrap left fold">{{ config.extra.nav_wrapper_left }}</span>
         {% set_global is_taxonomies_path = false %}
         {% for taxonomy in config.taxonomies %}
           {% if current_path is starting_with("/" ~ taxonomy.name)%}
@@ -23,7 +24,9 @@
             {% set should_fold = true %}
           {% endif %}
           <a class="instant {% if should_fold %}fold{% endif %}" href="{{ section.path }}">{{ section.name }}</a>
+          {% if not loop.last %}<span class="wrap-separator fold">{{ config.extra.nav_wrapper_separator }}</span>{% endif %}
         {% endfor %}
+        <span class="wrap right fold">{{ config.extra.nav_wrapper_right }}</span>
       {% else %}
         {% set section = config.extra.sections | first %}
         <a class="instant" href="{{ section.path }}">{{ section.name }}</a>

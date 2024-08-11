@@ -5,9 +5,9 @@ template = "home.html"
 lang = 'en'
 +++
 
-Hey there! I'm [Duy NG](/about), a Backend Engineer at @Ekino in France, with a strong passion for TypeScript and Rust, I love coding, learning, and building innovative solutions. Whether it's crafting elegant code or diving into the latest tech trends, I'm all about pushing boundaries and exploring new possibilities.
+Hey there! I'm [Duy NG](/about), a Backend Engineer at @Ekino in France, with a strong passion for TypeScript and Rust, I love coding, learning new things. I focus on building practical solutions and staying up-to-date with the latest in tech.
 
-Welcome to my digital space! Here, you'll find my latest projects, thoughts on technology, and a glimpse into what drives me. Let's explore and learn together.
+Welcome to my site! Here, you can check out [my projects](/projects), read [my thoughts](/blog) on technology, and learn a bit about what I do.
 
-Take a look at [my projects](/projects), read through [my blog posts](/blog), or learn more [about me](/about). I'm excited to share my journey with you!
+Feel free to explore my work, read my blog, or get to know me better. I'm glad to share my journey with you!
 

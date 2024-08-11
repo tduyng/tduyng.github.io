@@ -59,7 +59,11 @@ sections = [
 blog_section_path = "/blog"
 about_section_path = "/about"
 nav_separator = "::"
+nav_wrapper_left = "{"
+nav_wrapper_right = "} ;"
+nav_wrapper_separator = ","
 footer_menu = [
+    { name = "tags", path = "/tags", is_external = false },
     { name = "subscribe", path = "/subscribe", is_external = false },
     { name = "contact", path = "/contact", is_external = false },
     { name = "privacy", path = "/privacy", is_external = false },
