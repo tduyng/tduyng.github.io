@@ -4,13 +4,14 @@ description = "Learn how to make your GitHub profile dynamic using Bun and TypeS
 date = 2024-05-15
 
 [taxonomies]
+categories = ["Development"]
 tags = ["github", "readme", "typescript"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
-social_media_card = "img/tduyng.webp"
-add_subscribe = true
+featured = true
+outdate_alert = true
+outdate_alert_days = 1000
+
 +++
 
 [In a recent article](https://tduyng.github.io/blog/dynamic-github-profile-readme/), I discussed transforming a GitHub profile into an interactive space with icons, badges, and dynamically updated blog posts using Python scripts and GitHub actions.
@@ -25,9 +26,9 @@ Choosing a runtime was the next consideration. With options like [Node.js](https
 
 Firstly, ensure that Bun is installed on your machine. There are several ways to install it, all of which are outlined on the Bun website's [Installation](https://bun.sh/docs/installation) page.
 
-Bun undergoes improvements regularly and changes rapidly. You can ensure you're using the latest version of Bun by executing the command: **`bun upgrade`**.
+Bun undergoes improvements regularly and changes rapidly. You can ensure you're using the latest version of Bun by executing the command: `bun upgrade`.
 
-In the project, you can initialize Bun by using the command: **`bun init`**, which will generate some files for you. Here is an example of the folder structure after running **`bun init`**:
+In the project, you can initialize Bun by using the command: `bun init`, which will generate some files for you. Here is an example of the folder structure after running `bun init`:
 
 ```json
 ❯ tree
@@ -42,13 +43,13 @@ In the project, you can initialize Bun by using the command: **`bun init`**, whi
 
 In my case, I prefer to add it manually for more control.
 
-As I'm using TypeScript, I need to add **`@types/bun`** to work with TypeScript typings. Run the command:
+As I'm using TypeScript, I need to add `@types/bun` to work with TypeScript typings. Run the command:
 
 ```bash
 bun add -d @types/bun
 ```
 
-The **`tsconfig.json`** file is also necessary for TypeScript. You can either use the recommended **`tsconfig.json`** provided by Bun or generate one. It's minimal enough and follows best practices. Here is my **`tsconfig.json`**:
+The `tsconfig.json` file is also necessary for TypeScript. You can either use the recommended `tsconfig.json` provided by Bun or generate one. It's minimal enough and follows best practices. Here is my `tsconfig.json`:
 
 ```json
 {
@@ -73,7 +74,7 @@ The **`tsconfig.json`** file is also necessary for TypeScript. You can either us
 }
 ```
 
-I specify **`"include": ["src/**/*.ts"]`** to tell TypeScript to compile all **`.ts`** files within the **`src`** folder, simplifying TypeScript's server checking and compilation processes.
+I specify `"include": ["src/**/*.ts"]` to tell TypeScript to compile all `.ts` files within the `src` folder, simplifying TypeScript's server checking and compilation processes.
 
 Next, I'll use the **[rss-parser](https://www.npmjs.com/package/rss-parser)** library from npm to parse the feed `atom.xml` from my blog. The principle of this library is similar to the one I used in Python, called [feedparser](https://pypi.org/project/feedparser/).
 
@@ -81,7 +82,7 @@ Next, I'll use the **[rss-parser](https://www.npmjs.com/package/rss-parser)** li
 bun add rss-parser
 ```
 
-Here's how my **`package.json`** looks:
+Here's how my `package.json` looks:
 
 ```json
 {
@@ -98,11 +99,11 @@ Here's how my **`package.json`** looks:
 }
 ```
 
-I use **`"type": "module"`** to write the code in [ESM](https://developer.mozilla.org/en-US/docs/Glossary/ECMAScript).
+I use `"type": "module"` to write the code in [ESM](https://developer.mozilla.org/en-US/docs/Glossary/ECMAScript).
 
-The script **`"readme": "bun src/feed.ts"`** runs the TypeScript script I will write later.
+The script `"readme": "bun src/feed.ts"` runs the TypeScript script I will write later.
 
-Don’t forget to add **`node_modules`** to **`.gitignore`**."
+Don’t forget to add `node_modules` to `.gitignore`."
 
 **Now it's time to write the script `feed.ts`.**
 

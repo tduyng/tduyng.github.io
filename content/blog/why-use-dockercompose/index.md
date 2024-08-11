@@ -4,11 +4,12 @@ description = "Discover the advantages and reasons behind utilizing Docker Compo
 date = 2021-01-25
 
 [taxonomies]
+categories = ["Development"]
 tags = ["docker", "compose"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
+outdate_alert = true
+outdate_alert_days = 365
 +++
 
 ## What is **Docker compose**?

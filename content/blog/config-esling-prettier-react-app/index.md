@@ -4,11 +4,12 @@ description = "Discover how to configure ESLint and Prettier within your React a
 date = 2020-12-17
 
 [taxonomies]
+categories = ["Development"]
 tags = ["eslint", "prettier"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
+outdate_alert = true
+outdate_alert_days = 365
 +++
 
 

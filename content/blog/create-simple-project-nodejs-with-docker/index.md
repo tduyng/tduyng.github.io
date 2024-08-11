@@ -4,11 +4,12 @@ description = "Learn to build a basic web application using Node.js and Docker, 
 date = 2020-12-22
 
 [taxonomies]
+categories = ["Development"]
 tags = ["docker", "nodejs", "javascript"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
+outdate_alert = true
+outdate_alert_days = 365
 +++
 
 How to get a Node.js application into a Docker container?

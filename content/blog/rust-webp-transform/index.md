@@ -5,13 +5,13 @@ date = 2024-05-23
 updated = 2024-05-23
 
 [taxonomies]
+categories = ["Development"]
 tags = ["performance", "rust", "webp", "image-conversion", "cli"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
-social_media_card = "img/page_speed.webp"
-add_subscribe = true
+featured = true
+outdate_alert = true
+outdate_alert_days = 1000
 +++
 
 Hi everyone 👋,
@@ -60,7 +60,7 @@ For this program, I used the [image](https://github.com/image-rs/image) crate fo
 | TIFF     | Yes                 | Yes                                     |
 | WebP     | Yes                 | Yes (lossless only)                     |
 
-**To encode an image to WebP, I created a function `encode_webp`**:
+**To encode an image to WebP, I created a function `encode_webp`:
 
 ```rust
 use image::{DynamicImage, WebPEncoder, ExtendedColorType};

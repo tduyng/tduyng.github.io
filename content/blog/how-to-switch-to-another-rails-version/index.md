@@ -4,11 +4,12 @@ description = "When you need to use multiple versions of Rails on your computer,
 date = 2020-06-28
 
 [taxonomies]
+categories = ["Development"]
 tags = ["ruby", "rails"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
+outdate_alert = true
+outdate_alert_days = 365
 +++
 
 When you need to use multiple versions of Rails on your computer, how do you switch between them?

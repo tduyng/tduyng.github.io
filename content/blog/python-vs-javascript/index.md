@@ -4,11 +4,12 @@ description = "Discover the key differences and unique syntax nuances between Py
 date = 2020-09-05
 
 [taxonomies]
+categories = ["Development"]
 tags = ["python", "javascript"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
+outdate_alert = true
+outdate_alert_days = 365
 +++
 
 Programming in a new language can feel unfamiliar, intimidating, and tricky to navigate at first. There are new rules, syntax, and nuances to learn.

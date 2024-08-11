@@ -4,13 +4,13 @@ description = "In this article, I share some experiences of migrating to ESLint 
 date = 2024-07-16
 
 [taxonomies]
-tags = ["ESLint", "typescript", "migration", "NodeJs"]
+categories = ["Development"]
+tags = ["eslint", "typescript", "migration", "nodejs"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
-social_media_card = "img/eslint9x.webp"
-add_subscribe = true
+featured = true
+outdate_alert = true
+outdate_alert_days = 365
 +++
 
 Have you updated your ESLint setup to version 9.x? This version includes [many breaking changes](https://eslint.org/blog/2024/04/eslint-v9.0.0-released/). Two major changes you need to consider are:

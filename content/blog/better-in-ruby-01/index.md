@@ -4,11 +4,12 @@ description = "Hidden Ruby gems: uncovering little known tips."
 date = 2020-08-01
 
 [taxonomies]
+categories = ["Development"]
 tags = ["ruby"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
+outdate_alert = true
+outdate_alert_days = 365
 +++
 
 Some tips you probably don't know in Ruby.

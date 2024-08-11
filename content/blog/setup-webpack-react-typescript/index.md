@@ -4,11 +4,12 @@ description = "Learn the essentials of setting up Webpack with React and TypeScr
 date = 2020-11-28
 
 [taxonomies]
+categories = ["Development"]
 tags = ["webpack", "react", "typescript"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
+outdate_alert = true
+outdate_alert_days = 365
 +++
 
 How to setup a React project with Webpack and TypeScript?

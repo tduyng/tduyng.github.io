@@ -4,12 +4,11 @@ description = "Discover why I switched my website and blog from Jekyll to Zola."
 date = 2024-05-11
 
 [taxonomies]
+categories = ["Website"]
 tags = ["blog", "static-site-generator"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
-social_media_card = "img/social_card.webp"
+
 +++
 
 Hey there, it's been quite a while since my last article—almost 3 years. I'm not sure if anyone is still reading my posts because I've stopped using analytics for my website. Now, I've moved it to GitHub and use the free domain of GitHub Pages. It might not be great for SEO, but I'm happy with it. After all, the main reason I write is for myself. Each time I write, I learn something new and improve my skills on various topics.

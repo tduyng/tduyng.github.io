@@ -4,11 +4,12 @@ description = "Dive into fun coding challenges in Ruby. Get practical tips and s
 date = 2020-04-24
 
 [taxonomies]
+categories = ["Development"]
 tags = ["ruby", "algorithms"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
+outdate_alert = true
+outdate_alert_days = 365
 +++
 
 Doing coding challenges is an excellent way to imporve your programming language & problem-solvings skills.

@@ -4,11 +4,12 @@ description = "Hidden Ruby gems: uncovering little known tips."
 date = 2020-08-30
 
 [taxonomies]
+categories = ["Development"]
 tags = ["ruby"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
+outdate_alert = true
+outdate_alert_days = 365
 +++
 
 Some tips you probably don't know in Ruby - 02
@@ -52,7 +53,7 @@ def my_method(a, *b, **c)
 end
 ```
 
-`a` is a regular parameter. `*b` will take all the parameters passed after the first one and put them in an array. `**c` will take any parameter given in the format key: value at the end of the method call.
+`a` is a regular parameter. `*b` will take all the parameters passed after the first one and put them in an array. `c` will take any parameter given in the format key: value at the end of the method call.
 
 See the following examples:
 

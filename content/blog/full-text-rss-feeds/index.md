@@ -4,12 +4,11 @@ description = "Explore the reasons behind this decision"
 date = 2024-06-10
 
 [taxonomies]
+categories = ["Website"]
 tags = ["blog", "full-text", "rss"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
-social_media_card = "img/feed.webp"
+
 +++
 
 Guess what? My blog now offers full-text RSS feeds!

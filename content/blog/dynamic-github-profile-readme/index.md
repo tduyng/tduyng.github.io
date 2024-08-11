@@ -5,13 +5,13 @@ date = 2024-05-13
 updated = 2024-05-21
 
 [taxonomies]
+categories = ["Development"]
 tags = ["github-action", "profile", "readme", "dynamic", "python"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
-social_media_card = "img/tduyng.webp"
-add_subscribe = true
+featured = true
+outdate_alert = true
+outdate_alert_days = 1000
 +++
 
 **Have you heard about GitHub profile READMEs?**
@@ -136,7 +136,7 @@ if __name__ == "__main__":
     print(feeds_md)
 ```
 
-The script fetches data from the **`atom.xml`** feed on my blog and retrieves the five latest posts.
+The script fetches data from the `atom.xml` feed on my blog and retrieves the five latest posts.
 
 Here is an example of the result of the python script:
 ```markdown
@@ -204,7 +204,7 @@ jobs:
 
 ```
 
-To ensure your information remains secure, you can set **`USER_EMAIL`** and **`USER_NAME`** in the repository environment. After checking the differences for the latest posts, if there are any, GitHub Actions will then create a new commit and update your GitHub account's main/master branch.
+To ensure your information remains secure, you can set `USER_EMAIL` and `USER_NAME` in the repository environment. After checking the differences for the latest posts, if there are any, GitHub Actions will then create a new commit and update your GitHub account's main/master branch.
 
 And that's it! With the script and GitHub actions, all the information will update automatically.
 

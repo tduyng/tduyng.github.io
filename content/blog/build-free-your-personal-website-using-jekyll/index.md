@@ -4,16 +4,15 @@ description = "Learn how to build your own personal website using Jekyll and Git
 date = 2020-05-25
 
 [taxonomies]
+categories = ["Development"]
 tags = ["blog", "static-site-generator", "free", "web-development"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
+outdate_alert = true
+outdate_alert_days = 365
 +++
 
 In this article, we'll walk through how to set up a Jekyll-powered blog using the Minimal Mistakes theme.
-
-{{ toc() }}
 
 It’s not always clear why we need a personal website, but here’s the truth, especially for developers: a website is an effective medium to let the world know who we are, what we are capable of, and what our values are.
 

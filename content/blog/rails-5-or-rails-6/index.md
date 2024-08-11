@@ -4,11 +4,12 @@ description = "Trying to Decide Between Rails 5 and Rails 6? Let's Compare!"
 date = 2020-07-05
 
 [taxonomies]
+categories = ["Development"]
 tags = ["ruby", "rails"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
+outdate_alert = true
+outdate_alert_days = 365
 +++
 
 What version of rails you use in your projects, today?

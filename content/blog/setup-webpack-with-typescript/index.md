@@ -4,11 +4,12 @@ description = "Discover how to configure Webpack with TypeScript to enhance your
 date = 2020-11-14
 
 [taxonomies]
+categories = ["Development"]
 tags = ["webpack", "typescript"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
+outdate_alert = true
+outdate_alert_days = 365
 +++
 
 How to setup a webpack project with TypeScript?

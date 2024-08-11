@@ -4,13 +4,12 @@ description = "This article highlights key reasons for the change, explores Deno
 date = 2024-06-15
 
 [taxonomies]
+categories = ["Development"]
 tags = ["deno", "nodejs", "production"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
-social_media_card = "img/switch-deno.webp"
-add_subscribe = true
+outdate_alert = true
+outdate_alert_days = 365
 +++
 
 Hi there!

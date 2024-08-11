@@ -4,11 +4,12 @@ description = "Learn the fundamental steps for setting up Webpack to optimize an
 date = 2020-11-03
 
 [taxonomies]
+categories = ["Development"]
 tags = ["webpack"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
+outdate_alert = true
+outdate_alert_days = 365
 +++
 
 Webpack fundamentals for fast learning and step by step to setup a project with webpack.

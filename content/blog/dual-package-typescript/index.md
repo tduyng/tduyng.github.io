@@ -4,13 +4,12 @@ description = "Explore an easy way to support dual package TypeScript NPM librar
 date = 2024-06-14
 
 [taxonomies]
+categories = ["Development"]
 tags = ["typescript", "javascript", "npm", "esm"]
 
 [extra]
-copy_button = true
-footnote_backlinks = true
-social_media_card = "img/dual-package.webp"
-add_subscribe = true
+outdate_alert = true
+outdate_alert_days = 700
 +++
 
 Hi there!

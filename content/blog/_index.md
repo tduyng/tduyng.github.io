@@ -1,7 +1,20 @@
 +++
-paginate_by = 8
 title = "Blog"
+description = "Z blog site."
 sort_by = "date"
-template = "section.html"
-insert_anchor_links = "left"
+template = "blog.html"
+page_template = "post.html"
+insert_anchor_links = "right"
+generate_feeds = true
+
+[extra]
+comment = true
+copy = true
+display_tags = true
+featured = false
+lang = "en"
+math = true
+mermaid = true
+toc = true
+truncate_summary = false
 +++
