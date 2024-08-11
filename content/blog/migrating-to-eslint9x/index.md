@@ -8,10 +8,11 @@ categories = ["DEVELOPMENT"]
 tags = ["eslint", "typescript", "migration", "nodejs"]
 
 [extra]
+comment = true
+enjoy = true
 featured = true
 outdate_alert = true
 outdate_alert_days = 365
-enjoy = true
 +++
 
 Have you updated your ESLint setup to version 9.x? This version includes [many breaking changes](https://eslint.org/blog/2024/04/eslint-v9.0.0-released/). Two major changes you need to consider are:

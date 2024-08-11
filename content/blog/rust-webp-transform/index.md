@@ -9,10 +9,11 @@ categories = ["DEVELOPMENT"]
 tags = ["performance", "rust", "webp", "image-conversion", "cli"]
 
 [extra]
+comment = true
+enjoy = true
 featured = true
 outdate_alert = true
 outdate_alert_days = 1000
-enjoy = true
 +++
 
 Hi everyone 👋,

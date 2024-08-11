@@ -8,7 +8,7 @@ categories = ["WEBSITE"]
 tags = ["blog", "full-text", "rss"]
 
 [extra]
-
+comment = true
 +++
 
 Guess what? My blog now offers full-text RSS feeds!

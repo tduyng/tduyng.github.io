@@ -9,9 +9,10 @@ categories = ["DEVELOPMENT"]
 tags = ["typescript", "enum", "best-practices"]
 
 [extra]
+comment = true
+enjoy = true
 outdate_alert = true
 outdate_alert_days = 1000
-enjoy = true
 +++
 
 The topic of using enums in TypeScript has been discussed a lot, but many developers still remain unaware of their drawbacks. Even though enums are popular and commonly used, they might not always be the best choice. In this article, I'll share my thoughts on why enums can be a problem and show you a better way to do things.

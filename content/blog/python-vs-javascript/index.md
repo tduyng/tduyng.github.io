@@ -8,6 +8,7 @@ categories = ["DEVELOPMENT"]
 tags = ["python", "javascript"]
 
 [extra]
+comment = true
 outdate_alert = true
 outdate_alert_days = 365
 +++

@@ -8,7 +8,7 @@ categories = ["WEBSITE"]
 tags = ["blog", "static-site-generator"]
 
 [extra]
-
+comment = true
 +++
 
 Hey there, it's been quite a while since my last article—almost 3 years. I'm not sure if anyone is still reading my posts because I've stopped using analytics for my website. Now, I've moved it to GitHub and use the free domain of GitHub Pages. It might not be great for SEO, but I'm happy with it. After all, the main reason I write is for myself. Each time I write, I learn something new and improve my skills on various topics.

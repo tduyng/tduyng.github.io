@@ -7,6 +7,9 @@ date = 2021-05-01
 categories = ["LIFE"]
 tags = ["career", "journey"]
 
+[extra]
+comment = true
+
 +++
 
 Hey everyone! I'm excited to share my journey from being a BIM engineer to becoming a full-time developer.

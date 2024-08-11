@@ -8,7 +8,6 @@ insert_anchor_links = "right"
 generate_feeds = true
 
 [extra]
-comment = true
 copy = true
 display_tags = true
 featured = false
