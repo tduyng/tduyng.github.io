@@ -1,6 +1,6 @@
 base_url = "https://tduyng.com"
 title = "Duy NG"
-description = "Duy NG is software engineer. Typescript and Rust enthusiast"
+description = "Duy NG is Software Engineer, Typescript and Rust enthusiast"
 author = "Duy NG"
 default_language = "en"
 output_dir = "public"
@@ -8,7 +8,7 @@ compile_sass = true
 minify_html = true
 build_search_index = false
 generate_feeds = true
-feed_filenames = ["atom.xml"]
+feed_filenames = ["atom.xml", "rss.xml"]
 taxonomies = [{ name = "tags" }, { name = "categories" }]
 
 [markdown]
@@ -67,7 +67,7 @@ footer_menu = [
     { name = "sitemap", path = "/sitemap.xml", is_external = false },
     { name = "rss", path = "/atom.xml", is_external = false },
 ]
-enjoy_text = "Enjoyed this article? For more technical content on Typescript or backend development, stay updated by subcribe my blog through RSS feeds."
+enjoy_text = "Enjoyed this article? For more technical content on Typescript or backend development, stay updated by subcribing to my blog via "
 
 
 display_id = true       # Whether to display your id on homepage

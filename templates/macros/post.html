@@ -3,7 +3,7 @@
         <div class="pagination">
             {% if page.extra.enjoy is defined %}
             <hr/>
-            {{ config.extra.enjoy_text | safe }}
+            {{ config.extra.enjoy_text | safe }}<a href="/subcribe">RSS feed.</a>
             {% endif %}
             <div class="pagination__buttons">
                 {%- if page.higher %}
