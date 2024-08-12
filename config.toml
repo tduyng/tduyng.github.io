@@ -1,22 +1,19 @@
 base_url = "https://tduyng.com"
 title = "Duy NG"
 description = "Duy NG is software engineer. Typescript and Rust enthusiast"
+author = "Duy NG"
 default_language = "en"
 output_dir = "public"
 compile_sass = true
 minify_html = true
 build_search_index = false
-generate_feeds = false
-feed_filenames = ["atom.xml", "feed.xml", "rss.xml"]
+generate_feeds = true
+feed_filenames = ["atom.xml"]
 taxonomies = [{ name = "tags" }, { name = "categories" }]
 
 [markdown]
 highlight_code = true
 highlight_theme = "dracula"
-# extra_syntaxes_and_themes = ["highlight_themes"]
-# highlight_themes_css = [
-#     { theme = "serene-dark", filename = "hl-dark.css"},
-# ]
 render_emoji = false
 external_links_target_blank = false
 external_links_no_follow = true
@@ -67,7 +64,8 @@ footer_menu = [
     { name = "subscribe", path = "/subscribe", is_external = false },
     { name = "contact", path = "/contact", is_external = false },
     { name = "privacy", path = "/privacy", is_external = false },
-    { name = "atom.xml", path = "/blog/atom.xml", is_external = false },
+    { name = "sitemap", path = "/sitemap.xml", is_external = false },
+    { name = "rss", path = "/atom.xml", is_external = false },
 ]
 enjoy_text = "Enjoyed this article? For more technical content on Typescript or backend development, stay updated by subcribe my blog through RSS feeds."
 

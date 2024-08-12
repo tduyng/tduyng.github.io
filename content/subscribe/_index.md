@@ -3,6 +3,7 @@ title = "Subscribe"
 description = "How to subscribe to my RSS feed?"
 template = "prose.html"
 insert_anchor_links = "none"
+generate_feeds = false
 
 [extra]
 lang = 'en'
@@ -12,7 +13,7 @@ copy = false
 comment = false
 +++
 
-Stay connected with my blog updates by subscribing to [my RSS feed](https://tduyng.github.io/atom.xml).
+# Stay connected with my blog by subscribing to [my RSS feed](/atom.xml).
 
 **RSS** (Really Simple Syndication) is a convenient way to receive the latest content from your favorite websites directly to your reader app.
 
@@ -22,7 +23,7 @@ Stay connected with my blog updates by subscribing to [my RSS feed](https://tduy
 
     For MacOS or IOS, I personally recommend [NetNewsWire](https://github.com/Ranchero-Software/NetNewsWire) – it's open-source and completely free.
 
-- Subscribe to my feed: Once you have your reader app installed, add [my blog's RSS link](https://tduyng.github.io/atom.xml) to your feed sources.
+- Subscribe to my feed: Once you have your reader app installed, add [my blog's RSS link](/atom.xml) to your feed sources.
 
 That's it! You'll now receive all my latest posts and updates directly in your reader.
 

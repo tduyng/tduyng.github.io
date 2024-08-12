@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="{{ get_url(path='/atom_style.xsl', trailing_slash=false) | safe }}" type="text/xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ lang }}">
 	<title>{% if section.title %}{{ section.title }}{% else %}{{ config.title }}{% endif %}</title>
 	{%- if section.description %}
@@ -21,6 +22,17 @@
 		<title>{{ page.title }}</title>
 		<published>{{ page.date | date(format="%+") }}</published>
 		<updated>{{ page.updated | default(value=page.date) | date(format="%+") }}</updated>
+         <author>
+            <name>
+            {%- if page.authors -%}
+                {{ page.authors[0] }}
+            {%- elif config.author -%}
+                {{ config.author }}
+            {%- else -%}
+                Unknown
+            {%- endif -%}
+            </name>
+        </author>
         {%- if page.summary %}
         <summary>{{ page.summary }}</summary>
         {%- endif %}
