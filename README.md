@@ -2,4 +2,4 @@
 
 [https://tduyng.github.io](https://tduyng.github.io)
 
-This is my personal static web site created with [Zola](https://www.getzola.org/)
+This is my personal static web site build with [Zola](https://www.getzola.org/)
