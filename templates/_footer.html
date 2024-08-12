@@ -2,7 +2,8 @@
     <div class="copyright">
         {{ config.extra.footer_copyright | trim | markdown | safe }}
     </div>
-    {% if config.extra.footer_menu %}
+    <div class="footer-menu">
+        {% if config.extra.footer_menu %}
         {% set site_sections = config.extra.footer_menu | filter(attribute="is_external", value=false) %}
         {% for section in site_sections %}
           {% set should_fold = false %}
@@ -14,4 +15,5 @@
           <a class="instant {% if should_fold %}fold{% endif %}" href="{{ section.path }}">{{ section.name }}</a>
         {% endfor %}
     {% endif %}
+    </div>
 </footer>
