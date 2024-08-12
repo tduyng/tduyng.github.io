@@ -22,7 +22,7 @@ lang %}
 <div id="wrapper">
     <main>
         <section id="info">
-            <img src="{{ config.extra.avatar }}" alt="avatar">
+            <img src="{{ config.extra.avatar }}" loading="lazy" alt="avatar">
             <div id="text">
                 <div>
                     <span id="name">{{ config.extra.name }}</span>
@@ -136,7 +136,7 @@ lang %}
 {% endblock content %}
 
 {% block script %}
-<script src="/js/lightense.min.js"></script>
+<script src="/js/lightense.min.js" defer></script>
 {% if section.extra.mermaid %}
 <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';

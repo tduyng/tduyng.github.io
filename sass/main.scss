@@ -451,7 +451,7 @@ body::-webkit-scrollbar {
     }
 }
 
-body.dark .prose {
+body .prose {
     img {
         filter: brightness(var(--dark-mode-img-brightness));
     }
@@ -773,8 +773,8 @@ body.homepage {
             transition: color 0.3s ease, border-color 0.3s ease;
 
             &:hover {
-                color: var(--primary-color-dark);
-                border-color: var(--primary-color-dark);
+                color: var(--primary-color);
+                border-color: var(--primary-color);
             }
 
             &::after {
