@@ -11,6 +11,7 @@ tags = ["typescript", "enum", "best-practices"]
 [extra]
 comment = true
 enjoy = true
+img = "img/enum.webp"
 outdate_alert = true
 outdate_alert_days = 1000
 +++

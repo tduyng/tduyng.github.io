@@ -12,6 +12,7 @@ tags = ["performance", "rust", "webp", "image-conversion", "cli"]
 comment = true
 enjoy = true
 featured = true
+img = "img/page_speed.webp"
 outdate_alert = true
 outdate_alert_days = 1000
 +++

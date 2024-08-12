@@ -9,6 +9,7 @@ tags = ["deno", "nodejs", "production"]
 
 [extra]
 comment = true
+img = "img/switch-deno.webp"
 outdate_alert = true
 outdate_alert_days = 365
 +++

@@ -9,6 +9,7 @@ tags = ["blog", "full-text", "rss"]
 
 [extra]
 comment = true
+img = "/img/avatar.webp"
 +++
 
 Guess what? My blog now offers full-text RSS feeds!

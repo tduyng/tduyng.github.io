@@ -12,6 +12,7 @@ tags = ["github-action", "profile", "readme", "dynamic", "python"]
 comment = true
 enjoy = true
 featured = true
+img = "img/tduyng.webp"
 outdate_alert = true
 outdate_alert_days = 1000
 +++

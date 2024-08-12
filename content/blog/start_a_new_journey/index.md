@@ -9,7 +9,7 @@ tags = ["career", "journey"]
 
 [extra]
 comment = true
-
+img = "/img/avatar.webp"
 +++
 
 Hey everyone! I'm excited to share my journey from being a BIM engineer to becoming a full-time developer.

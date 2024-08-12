@@ -10,6 +10,7 @@ tags = ["typescript", "javascript", "npm", "esm"]
 [extra]
 comment = true
 enjoy = true
+img = "img/dual-package.webp"
 outdate_alert = true
 outdate_alert_days = 700
 +++

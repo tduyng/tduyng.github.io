@@ -11,6 +11,7 @@ tags = ["eslint", "typescript", "migration", "nodejs"]
 comment = true
 enjoy = true
 featured = true
+img = "img/eslint9x.webp"
 outdate_alert = true
 outdate_alert_days = 365
 +++

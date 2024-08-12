@@ -9,6 +9,7 @@ tags = ["ruby", "rails"]
 
 [extra]
 comment = true
+img = "/img/avatar.webp"
 outdate_alert = true
 outdate_alert_days = 365
 +++
