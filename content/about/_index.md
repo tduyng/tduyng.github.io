@@ -1,6 +1,6 @@
 +++
-title = "LICENSE"
-description = "Duy NG blog's website license"
+title = "About DUY NG"
+description = "Duy NG blog's website about"
 template = "prose.html"
 insert_anchor_links = "none"
 generate_feeds = false

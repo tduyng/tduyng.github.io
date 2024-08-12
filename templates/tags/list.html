@@ -16,7 +16,8 @@
     <div class="title">Tags</div>
     <div class="tags">
       {% for tag in terms -%}
-      <a class="instant" href="{{ tag.permalink }}"># {{ tag.name | lower }}</a>
+      {%- set count = tag.page_count | as_str %}
+      <a class="instant" href="{{ tag.permalink }}" data-count="{{ count }}" ># {{ tag.name | lower }}</a>
       {% endfor %}
     </div>
   </main>

@@ -1,6 +1,6 @@
 +++
 title = "Projects"
-description = "My projects page."
+description = "Duy NG's projects page"
 template = "projects.html"
 generate_feeds = false
 
