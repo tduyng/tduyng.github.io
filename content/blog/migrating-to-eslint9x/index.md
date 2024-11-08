@@ -9,6 +9,7 @@ tags = ["eslint", "typescript", "migration", "nodejs"]
 
 [extra]
 comment = true
+reaction = false
 enjoy = true
 featured = true
 img = "img/eslint9x.webp"

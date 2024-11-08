@@ -9,7 +9,8 @@ categories = ["DEVELOPMENT"]
 tags = ["typescript", "enum", "best-practices"]
 
 [extra]
-comment = true
+comment = false
+reaction = false
 enjoy = true
 img = "img/enum.webp"
 outdate_alert = true
