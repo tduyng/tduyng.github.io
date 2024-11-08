@@ -8,7 +8,8 @@ categories = ["WEBSITE"]
 tags = ["blog", "static-site-generator"]
 
 [extra]
-comment = true
+comment = false
+reaction = true
 img = "img/social_card.webp"
 +++
 

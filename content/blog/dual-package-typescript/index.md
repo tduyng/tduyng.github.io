@@ -8,7 +8,8 @@ categories = ["DEVELOPMENT"]
 tags = ["typescript", "javascript", "npm", "esm"]
 
 [extra]
-comment = true
+comment = false
+reaction = true
 enjoy = true
 img = "img/dual-package.webp"
 outdate_alert = true

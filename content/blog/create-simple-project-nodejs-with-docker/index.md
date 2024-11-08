@@ -8,7 +8,8 @@ categories = ["DEVELOPMENT"]
 tags = ["docker", "nodejs", "javascript"]
 
 [extra]
-comment = true
+comment = false
+reaction = true
 img = "/img/avatar.webp"
 outdate_alert = true
 outdate_alert_days = 365

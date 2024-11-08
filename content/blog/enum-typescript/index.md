@@ -10,7 +10,7 @@ tags = ["typescript", "enum", "best-practices"]
 
 [extra]
 comment = false
-reaction = false
+reaction = true
 enjoy = true
 img = "img/enum.webp"
 outdate_alert = true

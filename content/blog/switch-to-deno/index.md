@@ -8,7 +8,8 @@ categories = ["DEVELOPMENT"]
 tags = ["deno", "nodejs", "production"]
 
 [extra]
-comment = true
+comment = false
+reaction = true
 img = "img/switch-deno.webp"
 outdate_alert = true
 outdate_alert_days = 365

@@ -8,8 +8,8 @@ categories = ["DEVELOPMENT"]
 tags = ["eslint", "typescript", "migration", "nodejs"]
 
 [extra]
-comment = true
-reaction = false
+comment = false
+reaction = true
 enjoy = true
 featured = true
 img = "img/eslint9x.webp"

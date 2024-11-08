@@ -8,7 +8,8 @@ categories = ["DEVELOPMENT"]
 tags = ["github", "readme", "typescript"]
 
 [extra]
-comment = true
+comment = false
+reaction = true
 enjoy = true
 featured = true
 img = "img/tduyng.webp"

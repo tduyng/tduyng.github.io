@@ -8,7 +8,8 @@ categories = ["DEVELOPMENT"]
 tags = ["blog", "static-site-generator", "free", "web-development"]
 
 [extra]
-comment = true
+comment = false
+reaction = true
 featured = true
 img = "/img/avatar.webp"
 outdate_alert = true

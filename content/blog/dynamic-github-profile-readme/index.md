@@ -9,7 +9,8 @@ categories = ["DEVELOPMENT"]
 tags = ["github-action", "profile", "readme", "dynamic", "python"]
 
 [extra]
-comment = true
+comment = false
+reaction = true
 enjoy = true
 featured = true
 img = "img/tduyng.webp"

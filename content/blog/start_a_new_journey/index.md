@@ -8,7 +8,8 @@ categories = ["LIFE"]
 tags = ["career", "journey"]
 
 [extra]
-comment = true
+comment = false
+reaction = true
 img = "/img/avatar.webp"
 +++
 

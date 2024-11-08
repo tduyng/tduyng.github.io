@@ -11,6 +11,7 @@ math = false
 mermaid = false
 copy = false
 comment = false
+reaction = true
 +++
 
 **Hey there! I'm Duy NG.**
