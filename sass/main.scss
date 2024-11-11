@@ -1112,6 +1112,10 @@ body.post {
         #outdate_alert.hidden {
             display: none;
         }
+
+        h3 {
+            color: #2f81f2;
+        }
     }
 
     .mermaid {
@@ -1639,13 +1643,14 @@ abbr[title] {
 b,
 strong {
     font-weight: bolder;
+    color: #ff79c6;
 }
 
 code,
 kbd,
 samp {
     font-family: monospace, monospace;
-    font-size: 1em;
+    font-size: 0.9em;
 }
 
 small {
