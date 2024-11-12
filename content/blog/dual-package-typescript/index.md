@@ -19,6 +19,16 @@ JavaScript is evolving rapidly. [Now, it’s really important for libraries to 
 
 In this article, we’ll guide you through an easy and practical approach to handle dual-package support. That means more people can use your library, and it’s easier for them to do so.
 
+
+## TL;DR
+**Create a dual-package TypeScript library supporting both ESM and CommonJS**:
+- Write source code in ESM.
+- Use only the `.js` extension.
+- Avoid external build tools.
+- Compile source files into `lib/esm` and `lib/cjs` directories.
+- Implement the `exports` field in `package.json`.
+- Create `package.json` file with `{"type": "module"}` in `lib/esm` and `{"type": "commonjs"}` in `lib/cjs`.
+
 ## Understanding Javascript file extensions
 
 Firstly, we need clarify the different extensions in JavaScript:
@@ -40,14 +50,14 @@ Here’s how Javascript extensions work:
 
 Based on my experiences, developers often choose to use `.js` for writing both ESM and CJS, picking `.cjs` for CJS and `.mjs` for ESM. In other words, if they use `.js` for ESM, they use `.cjs` for CJS, and vice versa.
 
-Here are some examples of libraries demonstrating how developers handle this:
+Here are some examples of how different libraries handle this:
 
 - [axios](https://github.com/axios/axios): A tool for making HTTP requests in Node.js and the browser. They use `.js` for ESM and `.cjs` for CJS. They don’t have a build step because they write code in JS with the `.d.ts_** files included.
 - [helmet](https://github.com/helmetjs/helmet): A tool for securing HTTP headers in Node.js. They use [rollup](https://github.com/rollup/rollup) to manage the build process, picking `.cjs` for CJS and `.mjs` for ESM.
 - [zod](https://github.com/colinhacks/zod): A validation library for TypeScript. They write code in TypeScript CJS, also using `rollup` to build ESM with `.mjs` extension. They use TSC to build CJS with `.js` extension.
 - [cucumber](https://github.com/cucumber/cucumber-js): A tool for writing tests with Gherkin syntax, we used it a lot for integration tests in our projects. They write code in TypeScript in CJS and use `.mjs` for ESM. They use TSC and have their own rules for building both CJS and ESM.
 
-Okay, let’s check out the following example to understand everything better.
+Let’s look at the following example to understand this better:
 
 ```typescript
 // example.ts   
@@ -154,7 +164,7 @@ This configuration is well-suited for managing TypeScript code within your proje
 
 ### Build scripts
 
-Various methods or tools exist for scripting compilation tasks. Below is an example using JavaScript and the [zx](https://github.com/google/zx) tool, a powerful Node shell scripting tool developed by Google. It has recently released significant improvements in version 8.x. (You can also other tool like [bun $shell](https://bun.sh/docs/runtime/shell), [execa](https://github.com/sindresorhus/execa))
+There are various methods and tools available for scripting compilation tasks. Below are some examples using JavaScript with the zx tool, native Node.js, or Bash scripts. You can also consider other tools like bun $shell or execa...
 
 - **zx solution**
 
@@ -177,7 +187,7 @@ try {
 }
 ```
 
-- **Alternatively, native Node.js solution**
+- **Native Node.js solution**
 
 ```javascript
 // build.mjs
@@ -211,19 +221,40 @@ await run()
 
 ```
 
+- **Bash script**
+
+```bash
+# build.sh
+#!/bin/bash
+set -e # exit immediately if error
+rm -rf lib
+
+npx tsc -p tsconfig.lib.json --module NodeNext --outDir lib/esm
+echo '{"type": "module"}' > lib/esm/package.json
+
+npx tsc -p tsconfig.lib.json --module CommonJS --moduleResolution Node --outDir lib/cjs
+echo '{"type": "commonjs"}' > lib/cjs/package.json
+
+echo 'Compilation successful'
+```
+
 This script efficiently handles compilation tasks. It use TypeScript’s compiler (`tsc`) with the appropriate configuration options to ensure compatibility with different module types.
 
 ### Key points in this script
 
 - Ensure to specify output folders for both ESM and CJS builds:
 
+```md
 Use - module nodenext - outDir lib/esm for ESM.  
 Use - module commonjs - outDir lib/cjs for CommonJS.
+```
 
 - Create nested package.json files for each build type:
 
+```md
 Use $echo '{"type": "module"}' > lib/esm/package.json for ESM.  
 Use $echo '{"type": "commonjs"}' > lib/cjs/package.json for CommonJS.
+```
 
 These nested files allow the use of `.js` extensions for both CJS and ESM, preventing errors like `“ReferenceError: require is not defined”`.
 

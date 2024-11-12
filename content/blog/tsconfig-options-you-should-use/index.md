@@ -10,6 +10,7 @@ tags = ["typescript", "best-practice"]
 [extra]
 comment = false
 reaction = true
+featured = true
 enjoy = true
 outdate_alert = true
 outdate_alert_days = 365
