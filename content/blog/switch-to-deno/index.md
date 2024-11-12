@@ -25,5 +25,3 @@ You can read my full article for a detailed analysis here: [Should You Switch to
 
 I hope this helps you make an informed decision. Happy coding!
 
->Note: Why didn’t I write this article on my personal blog? Because I originally published it on my company’s Medium page, I chose not to duplicate it here to avoid issues with content ownership. Additionally, hosting the original article on Medium makes it easier to gather feedback and comments compared to my personal blog.
-
