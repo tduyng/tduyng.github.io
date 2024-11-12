@@ -4,4 +4,6 @@ _site
 .jekyll-metadata
 vendor
 public
-.tmp
+.tmp/*
+.tmp*/
+.draft/
