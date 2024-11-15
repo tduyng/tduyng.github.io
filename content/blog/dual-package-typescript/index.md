@@ -1,5 +1,5 @@
 +++
-title = "Support dual package for CJS and ESM in Typescript library"
+title = "Support dual package in npm - the easy way"
 description = "Explore an easy way to support dual package TypeScript NPM libraries for both CommonJS and ESM"
 date = 2024-11-13
 
