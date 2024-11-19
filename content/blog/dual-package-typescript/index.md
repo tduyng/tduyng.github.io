@@ -2,6 +2,7 @@
 title = "Support dual package in npm - the easy way"
 description = "Explore an easy way to support dual package TypeScript NPM libraries for both CommonJS and ESM"
 date = 2024-11-13
+updated = 2024-11-19
 
 [taxonomies]
 categories = ["DEVELOPMENT"]
@@ -22,12 +23,15 @@ In this article, we’ll guide you through an easy and practical approach to han
 
 ## TL;DR
 **Create a dual-package TypeScript library supporting both ESM and CommonJS**:
-- Write source code in ESM.
-- Use only the `.js` extension.
-- Avoid external build tools.
-- Compile source files into `lib/esm` and `lib/cjs` directories.
-- Implement the `exports` field in `package.json`.
-- Create `package.json` file with `{"type": "module"}` in `lib/esm` and `{"type": "commonjs"}` in `lib/cjs`.
+- [Understand the different of Javascript file extensions: `.js`, `.mjs`, `.cjs`](#understanding-javascript-file-extensions)
+- [Use only the `.js` extension for both esm and cjs outputs after compilation](#selected-solution-using-js-for-simplifying)
+- Write source code Typescript in ESM
+- Avoid external build tools
+- [Define the `exports` field in `package.json`](#practical-part)
+- [Compile source files into `lib/esm` and `lib/cjs` directories.](#compiling-with-typescript)
+- [Add `package.json` files with the correct type field in `lib/esm` and `lib/cjs`](#build-scripts)
+    - Place a `package.json` file in `lib/esm` with `{"type": "module"}`
+    - Place another in `lib/cjs` with `{"type": "commonjs"}`
 
 ## Understanding Javascript file extensions
 
@@ -37,7 +41,7 @@ Firstly, we need clarify the different extensions in JavaScript:
 - `.mjs` files are for ESM modules, used with import statements.
 - `.js` files can be used for both CJS and ESM modules if you specify `“type: “module”` in `package.json`.
 
-## Challenges and solutions
+**Challenges and solutions**
 
 Understanding which file extension corresponds to which type of module is essential but can be confusing.
 
@@ -50,7 +54,7 @@ Here’s how Javascript extensions work:
 
 Based on my experiences, developers often choose to use `.js` for writing both ESM and CJS, picking `.cjs` for CJS and `.mjs` for ESM. In other words, if they use `.js` for ESM, they use `.cjs` for CJS, and vice versa.
 
-Here are some examples of how different libraries handle this:
+**Here are some examples of how different libraries handle this:**
 
 - [axios](https://github.com/axios/axios): A tool for making HTTP requests in Node.js and the browser. They use `.js` for ESM and `.cjs` for CJS. They don’t have a build step because they write code in JS with the `.d.ts_** files included.
 - [helmet](https://github.com/helmetjs/helmet): A tool for securing HTTP headers in Node.js. They use [rollup](https://github.com/rollup/rollup) to manage the build process, picking `.cjs` for CJS and `.mjs` for ESM.
@@ -87,7 +91,7 @@ We decided to keep it simple by using `.js` for both importing and compiling. 
 - It doesn’t require additional compilation tools, except for a quick build tool like `esbuild`, if needed. For simpler projects, you can stick directly with TypeScript’s built-in `TSC`.
 - By using `.js` for everything, we make our code easier to handle and avoid any issues with file extensions.
 
-## So how this solution works?
+**So how this solution works?**
 
 As mentioned earlier, the important part of making this method work is the `“type”` field in your `package.json` file.
 
