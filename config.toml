@@ -13,7 +13,7 @@ taxonomies = [{ name = "tags" }, { name = "categories" }]
 
 [markdown]
 highlight_code = true
-highlight_theme = "dracula"
+highlight_theme = "one-dark"
 render_emoji = false
 external_links_target_blank = false
 external_links_no_follow = true
