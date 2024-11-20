@@ -5,7 +5,7 @@ date = 2024-11-11
 
 [taxonomies]
 categories = ["DEVELOPMENT"]
-tags = ["typescript", "best-practice"]
+tags = ["typescript", "tsconfig", "best-practices"]
 
 [extra]
 comment = false
