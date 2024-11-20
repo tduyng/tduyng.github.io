@@ -490,6 +490,15 @@ body.prose-page {
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .layout-list {
+    h2 {
+        margin: 2em 15px 1em;
+    }
+
+    hr {
+        border: 1px solid var(--primary-pale-color);
+        margin: 2em 0;
+    }
+
     .category {
         font-size: 1.1em;
         margin: 2em 15px 1em;
