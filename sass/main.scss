@@ -1652,7 +1652,10 @@ abbr[title] {
 b,
 strong {
     font-weight: bolder;
-    color: #ff79c6;
+    color: var(--text-bold-color);
+}
+em {
+    color: var(--text-bold-color);
 }
 
 code,
