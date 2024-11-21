@@ -13,9 +13,9 @@ else
 fi
 
 # Merge configurations
-cat "$BASE_CONFIG" > "$OUTPUT_CONFIG"
-echo "" >> "$OUTPUT_CONFIG"
-cat "$ENV_CONFIG" >> "$OUTPUT_CONFIG"
+cat "$BASE_CONFIG" > "$OUTPUT_CONFIG" # Copy base config to output config
+echo "" >> "$OUTPUT_CONFIG"           # Add a newline to output config
+cat "$ENV_CONFIG" >> "$OUTPUT_CONFIG" # Append environment config to output config
 
 # Build the site
 zola build
