@@ -174,3 +174,6 @@ This option prevents unexpected behavior in `switch` statements by enforcing an 
 ## Conclusion
 
 Understanding the options in `tsconfig.json` can greatly enhance your TypeScript development by speeding up builds, organizing output, improving code quality, and making debugging easier. Master these settings to customize your TypeScript projects effectively, producing code that is efficient, easy to maintain, and secure.
+
+---
+Article also published at [medium.com/tduyng](https://medium.com/p/3187af924221).
