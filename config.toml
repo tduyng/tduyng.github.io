@@ -62,9 +62,7 @@ footer_menu = [
     { name = "tags", path = "/tags", is_external = false },
     { name = "subscribe", path = "/subscribe", is_external = false },
     { name = "contact", path = "/contact", is_external = false },
-    { name = "privacy", path = "/privacy", is_external = false },
-    { name = "sitemap", path = "/sitemap.xml", is_external = false },
-    { name = "rss", path = "/atom.xml", is_external = false },
+    { name = "privacy", path = "/privacy", is_external = false }
 ]
 enjoy_text = "Enjoyed this article? For more technical content on Typescript or backend development, stay updated by subcribing to my blog via "
 
