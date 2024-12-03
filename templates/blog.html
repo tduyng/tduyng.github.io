@@ -31,7 +31,6 @@
     {% endfor %}
     {% else %}
     <div class="post-list">
-      <h2>{{ year }}</h2>
       {% for post in all_posts %}
       <a class="post instant {% if post.extra.featured %}featured{% endif %}" href="{{ post.permalink }}">
         <span>{{ post.title }}</span>

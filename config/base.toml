@@ -70,7 +70,7 @@ enjoy_text = "Enjoyed this article? For more technical content on Typescript or 
 
 
 display_id = true       # Whether to display your id on homepage
-blog_categorized = true # Whether to categorize blog posts
+blog_categorized = false # Whether to categorize blog posts
 blur_effect = true      # Whether to turn on blur effect on navigation bar
 back_to_top = true      # Whether to show back-to-top button on post pages
 
