@@ -122,6 +122,8 @@
 
       </article>
 
+	  {% include "_sharing.html" %}
+	  
       {% if page.extra.reaction is defined %}{% set show_reaction = page.extra.reaction %}{% else %}{% set show_reaction = config.extra.reaction %}{% endif %}
       {% if show_reaction %}
       <div class="reaction {{ config.extra.reaction_align }}" data-endpoint="{{ config.extra.reaction_endpoint }}"></div>
@@ -132,6 +134,7 @@
       <div class="giscus"></div>
       {% include "_giscus_script.html" %}
       {% endif %}
+	  
     </div>
 
     {% include "_footer.html" %}

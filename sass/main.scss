@@ -1813,3 +1813,27 @@ template {
 [hidden] {
     display: none;
 }
+
+/* sharing buttons
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.sharing-buttons {
+    margin-left: 1em;
+    margin-top: 1em;
+}
+.sharing-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 0.5em;
+}
+.sharing-list li {
+    display: flex;
+    align-items: center;
+}
+.sharing-icon {
+    margin-right: 0.5em;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    background-color: var(--text-pale-color);
+    border-radius: 4px;
+}
