@@ -1547,9 +1547,27 @@ body.not-found {
         justify-content: space-between;
         margin-top: 2em;
 
+        .previous {
+            margin-right: 3em;
+        }
+
+        .next {
+            margin-left: auto;
+            text-align: right;
+        }
+
         @media (max-width: var(--homepage-max-width)) {
             flex-direction: column;
             align-items: center;
+
+            .previous {
+                margin-right: 1em;
+            }
+
+            .next {
+                margin-left: auto;
+                text-align: right;
+            }
         }
     }
 }
