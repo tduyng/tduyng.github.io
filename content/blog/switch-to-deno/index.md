@@ -13,6 +13,7 @@ reaction = true
 img = "img/switch-deno.webp"
 outdate_alert = true
 outdate_alert_days = 365
+enable_word_count = false
 +++
 
 Hi there!

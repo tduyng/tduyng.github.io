@@ -41,7 +41,7 @@ links = [
 #=========================================================================================
 # Sharing buttons
 enable_sharing = true
-
+enable_word_count = true
 
 # about: displays markdown content of your myblog/content/_index.md
 # list: the whole post list, can be categorized

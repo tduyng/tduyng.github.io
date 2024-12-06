@@ -7,18 +7,19 @@
 {%- set blog_section_path = config.extra.blog_section_path | trim_start_matches(pat="/") -%}
 {%- set section_md_path = blog_section_path ~ "/_index.md" -%}
 {%- set section = get_section(path=section_md_path, metadata_only=true) -%}
-{%- if page.extra.lang %}{{page.extra.lang}}{% elif section.extra.lang %}{{section.extra.lang}}{% else %}{{page.lang}}{% endif -%}
+{%- if page.extra.lang %}{{page.extra.lang}}{% elif section.extra.lang %}{{section.extra.lang}}{% else %}{{page.lang}}{%
+endif -%}
 {%- endblock lang %}
 {% block title %}{{ page.title }}{% endblock title %}
 {% block desc %}
-  {% if page.summary %}
-    {% set desc = page.summary %}
-  {% elif page.description %}
-    {% set desc = page.description %}
-  {% endif %}
-  {% if desc %}
-  <meta name="description" content="{{ desc }}">
-  {% endif %}
+{% if page.summary %}
+{% set desc = page.summary %}
+{% elif page.description %}
+{% set desc = page.description %}
+{% endif %}
+{% if desc %}
+<meta name="description" content="{{ desc }}">
+{% endif %}
 {% endblock desc %}
 
 {% block head %}
@@ -26,7 +27,7 @@
 <link id="hl" rel="stylesheet" type="text/css" href="/hl-light.css" />
 {% endif %}
 {% if page.extra.math %}
-  {{ macro_math::math_render(style = page.extra.math) }}
+{{ macro_math::math_render(style = page.extra.math) }}
 {% endif %}
 {% endblock head %}
 
@@ -35,7 +36,8 @@
 <div id="wrapper">
   <div id="blank"></div>
   <aside>
-    {% if page.extra.toc is defined %}{% set show_toc = page.extra.toc %}{% else %}{% set show_toc = config.extra.toc %}{% endif %}
+    {% if page.extra.toc is defined %}{% set show_toc = page.extra.toc %}{% else %}{% set show_toc = config.extra.toc
+    %}{% endif %}
     {% if show_toc and page.toc %}
     <nav>
       <ul>
@@ -65,11 +67,13 @@
   </aside>
   <main>
     <div>
-      {% if page.extra.copy is defined %}{% set allow_copy = page.extra.copy %}{% else %}{% set allow_copy = config.extra.copy %}{% endif %}
+      {% if page.extra.copy is defined %}{% set allow_copy = page.extra.copy %}{% else %}{% set allow_copy =
+      config.extra.copy %}{% endif %}
       {% if allow_copy %}
       {% set copy_icon = load_data(path="static/icon/copy.svg") %}
       {% set check_icon = load_data(path="static/icon/check.svg") %}
-      <div id="copy-cfg" style="display: none;" data-copy-icon="{{ copy_icon }}" data-check-icon="{{ check_icon }}"></div>
+      <div id="copy-cfg" style="display: none;" data-copy-icon="{{ copy_icon }}" data-check-icon="{{ check_icon }}">
+      </div>
       {% endif %}
       {% set backlink_icon = load_data(path="static/icon/backlink.svg") %}
       <article class="prose" data-backlink-icon="{{ backlink_icon }}">
@@ -82,20 +86,31 @@
             {% endif -%}
           </div>
 
-          {% if page.extra.display_tags is defined %}{% set display_tags = page.extra.display_tags %}{% elif config.extra.display_tags is defined %}{% set display_tags = config.extra.display_tags %}{% else %}{% set display_tags = true %}{% endif %}
-
-          {% if page.taxonomies.tags is defined and display_tags == true %}
-          <div id="tags">
-            {% for tag in page.taxonomies.tags -%}
-            {% set tag_slugify = tag | slugify -%}
-            <a class="instant" href="{{ config.base_url ~ '/tags/' ~ tag_slugify }}"><span>#</span>{{ tag }}</a>
-            {%- endfor %}
-          </div>
-          {% endif %}
+          {% include "_word_count.html" %}
         </div>
 
-        {% if page.extra.outdate_alert is defined %}{% set show_outdate_alert = page.extra.outdate_alert %}{% else %}{% set show_outdate_alert = config.extra.outdate_alert %}{% endif %}
-        {% if page.extra.outdate_alert_days is defined %}{% set outdate_alert_days = page.extra.outdate_alert_days %}{% else %}{% set outdate_alert_days = config.extra.outdate_alert_days %}{% endif %}
+        {% if page.extra.display_tags is defined %}
+        {% set display_tags = page.extra.display_tags %}
+        {% elif config.extra.display_tags is defined %}
+        {% set display_tags = config.extra.display_tags %}
+        {% else %}
+        {% set display_tags = true %}
+        {% endif %}
+
+        {% if page.taxonomies.tags is defined and display_tags == true %}
+        <div id="tags">
+          {% for tag in page.taxonomies.tags -%}
+          {% set tag_slugify = tag | slugify -%}
+          <a class="instant" href="{{ config.base_url ~ '/tags/' ~ tag_slugify }}"><span>#</span>{{ tag }}</a>
+          {%- endfor %}
+        </div>
+        {% endif %}
+
+
+        {% if page.extra.outdate_alert is defined %}{% set show_outdate_alert = page.extra.outdate_alert %}{% else %}{%
+        set show_outdate_alert = config.extra.outdate_alert %}{% endif %}
+        {% if page.extra.outdate_alert_days is defined %}{% set outdate_alert_days = page.extra.outdate_alert_days %}{%
+        else %}{% set outdate_alert_days = config.extra.outdate_alert_days %}{% endif %}
 
         {% if show_outdate_alert -%}
         <blockquote id="outdate_alert" class="callout alert hidden" data-days="{{ outdate_alert_days }}"
@@ -109,32 +124,37 @@
         </blockquote>
         {% endif %}
 
-        {% if page.extra.truncate_summary is defined %}{% set truncate_summary = page.extra.truncate_summary %}{% elif config.extra.truncate_summary is defined %}{% set truncate_summary = config.extra.truncate_summary %}{% else %}{% set truncate_summary = false %}{% endif %}
+        {% if page.extra.truncate_summary is defined %}{% set truncate_summary = page.extra.truncate_summary %}{% elif
+        config.extra.truncate_summary is defined %}{% set truncate_summary = config.extra.truncate_summary %}{% else
+        %}{% set truncate_summary = false %}{% endif %}
 
         {% if truncate_summary == true and page.summary %}
-          {{ page.content | trim_start_matches(pat=page.summary) | safe }}
+        {{ page.content | trim_start_matches(pat=page.summary) | safe }}
         {% else %}
-          {{ page.content | safe }}
+        {{ page.content | safe }}
         {% endif %}
 
-        
+
         {{ post_macros::earlier_later(page=page) }}
 
       </article>
 
-	  {% include "_sharing.html" %}
-	  
-      {% if page.extra.reaction is defined %}{% set show_reaction = page.extra.reaction %}{% else %}{% set show_reaction = config.extra.reaction %}{% endif %}
+      {% include "_sharing.html" %}
+
+      {% if page.extra.reaction is defined %}{% set show_reaction = page.extra.reaction %}{% else %}{% set show_reaction
+      = config.extra.reaction %}{% endif %}
       {% if show_reaction %}
-      <div class="reaction {{ config.extra.reaction_align }}" data-endpoint="{{ config.extra.reaction_endpoint }}"></div>
+      <div class="reaction {{ config.extra.reaction_align }}" data-endpoint="{{ config.extra.reaction_endpoint }}">
+      </div>
       {% endif %}
 
-      {% if page.extra.comment is defined %}{% set show_comment = page.extra.comment %}{% else %}{% set show_comment = config.extra.comment %}{% endif %}
+      {% if page.extra.comment is defined %}{% set show_comment = page.extra.comment %}{% else %}{% set show_comment =
+      config.extra.comment %}{% endif %}
       {% if show_comment %}
       <div class="giscus"></div>
       {% include "_giscus_script.html" %}
       {% endif %}
-	  
+
     </div>
 
     {% include "_footer.html" %}
@@ -147,7 +167,7 @@
 {% if page.extra.mermaid %}
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({ startOnLoad: true });
+  mermaid.initialize({startOnLoad: true});
 </script>
 {% endif %}
 {% endblock script %}
