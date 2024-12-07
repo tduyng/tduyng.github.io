@@ -1110,6 +1110,7 @@ body.post {
 
         #date {
             color: var(--text-pale-color);
+            font-size: 0.9em;
 
             #publish,
             #updated {
@@ -1121,6 +1122,18 @@ body.post {
             color: var(--text-pale-color);
             margin-left: auto;
             font-size: 0.8em;
+        }
+
+        /* Media query for mobile devices */
+        @media (max-width: 600px) {
+            #post-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #wordcount {
+                margin-left: 0;
+            }
         }
 
         #tags {
