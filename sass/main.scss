@@ -1160,26 +1160,41 @@ body.post {
         #tags {
             margin-bottom: 1em;
             display: flex;
-            gap: 1em;
+            gap: 0.5em; /* Reduced gap for better spacing */
             flex-wrap: wrap;
             font-size: 0.9em;
+        }
 
-            a {
-                color: var(--primary-color);
-                text-decoration: none;
-                line-height: 1.25;
+        #tags a {
+            color: var(--primary-color);
+            text-decoration: none;
+            line-height: 1.25;
+            padding: 0.2em 0.5em;
+            border-radius: 4px;
+            border-bottom: 1.5px solid transparent;
+            transition: border-bottom-color 0.3s ease, background-color 0.3s ease;
+        }
 
-                span {
-                    font-size: 0.95em;
-                    margin-right: 2px;
-                }
+        #tags a span {
+            font-size: 0.95em;
+            margin-right: 2px;
+        }
 
-                border-bottom: 1.5px solid transparent;
+        #tags a:hover {
+            opacity: 1;
+            border-bottom-color: var(--primary-color);
+            background-color: var(--primary-pale-color);
+        }
 
-                &:hover {
-                    opacity: 1;
-                    border-bottom-color: var(--primary-color);
-                }
+        /* Media query for small screens */
+        @media (max-width: 600px) {
+            #tags {
+                gap: 0.3em;
+            }
+
+            #tags a {
+                padding: 0.2em 0.4em;
+                font-size: 0.85em;
             }
         }
 
