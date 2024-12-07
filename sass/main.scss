@@ -660,39 +660,59 @@ body.homepage {
             }
         }
 
+        /* Left menu */
         #left {
             display: flex;
             flex-wrap: wrap;
             gap: 1em;
-
-            a {
-                border-bottom: 1.5px solid var(--primary-color);
-                line-height: 1.5;
-            }
         }
 
+        #left a {
+            border-bottom: 1.5px solid var(--primary-color);
+            line-height: 1.5;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: border-bottom-color 0.3s ease, color 0.3s ease;
+        }
+
+        #left a:hover {
+            border-bottom-color: var(--primary-pale-color);
+            color: var(--primary-color);
+        }
+
+        /* Right menu */
         #right {
             display: flex;
             gap: 0.5em;
             margin-left: auto;
+        }
 
-            a,
-            button {
-                width: var(--icon-size);
-                height: var(--icon-size);
-            }
+        #right a,
+        #right button {
+            width: var(--icon-size);
+            height: var(--icon-size);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
 
-            button {
-                padding: 0;
-                border: none;
-                background-color: transparent;
-                cursor: pointer;
-            }
+        #right a:hover,
+        #right button:hover {
+            background-color: var(--primary-pale-color);
+            transform: scale(1.1);
         }
 
         @media (max-width: 425px) {
             #left {
                 gap: 0.75em;
+            }
+
+            #right {
+                gap: 0.3em;
             }
         }
     }
