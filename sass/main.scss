@@ -991,61 +991,82 @@ dialog#rss-mask {
 
 /* footer
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-
 footer {
     font-size: 0.95em;
     padding: 15px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    gap: 15px;
     color: var(--text-pale-color);
     margin-top: 2em;
+}
+
+.copyright {
+    padding-left: 8px;
+}
+
+.footer-menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.footer-menu a {
+    color: var(--text-pale-color);
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer-menu a:hover {
+    background-color: var(--primary-pale-color);
+    color: var(--primary-color);
+}
+
+/* Media query for screens smaller than 600px */
+@media (max-width: 768) {
+    footer {
+        flex-direction: column;
+        align-items: center;
+    }
 
     .copyright {
-        margin-right: auto;
-        padding-left: 8px;
+        margin: 0;
+        text-align: center;
+        padding-left: 0;
     }
 
     .footer-menu {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0;
+        justify-content: center;
+        width: 100%;
+    }
+}
 
-        a {
-            color: var(--text-pale-color);
-            text-decoration: none;
-            padding: 5px 10px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease, color 0.3s ease;
-
-            &:hover {
-                background-color: var(--primary-pale-color);
-                color: var(--primary-color);
-            }
-        }
+/* Media query for screens smaller than 300px */
+@media (max-width: 425px) {
+    footer {
+        flex-direction: column;
+        align-items: center;
     }
 
-    @media (max-width: 374px) {
+    .copyright {
+        margin: 0;
+        text-align: center;
+        padding-left: 0;
+        width: 100%;
+    }
+
+    .footer-menu {
         flex-direction: column;
-        align-items: stretch;
+        align-items: center;
+        width: 100%;
+    }
 
-        .copyright {
-            margin: 0;
-            text-align: center;
-        }
-
-        .footer-menu {
-            flex-direction: column;
-            gap: 0;
-
-            a {
-                display: block;
-                padding: 10px;
-                text-align: center;
-            }
-        }
+    .footer-menu a {
+        width: 100%;
+        text-align: center;
     }
 }
 
@@ -1125,7 +1146,7 @@ body.post {
         }
 
         /* Media query for mobile devices */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             #post-info {
                 flex-direction: column;
                 align-items: flex-start;
