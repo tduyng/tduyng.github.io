@@ -37,6 +37,7 @@ links = [
 	{ name = "Twitter", icon = "twitter", url = "https://x.com/tduyng" },
 	{ name = "Email", icon = "email", url = "mailto:hi@tduyng.com" },
 ]
+theme_color = "halcyon" #  arctic_glow | aurora_frost | bluloco | cosmic_sunset | dracula | electric_tear | halcyon | nebula_bloom | neon_azure | one_dark | sapphire | tokyo_night | velvet_night
 
 #=========================================================================================
 # Sharing buttons

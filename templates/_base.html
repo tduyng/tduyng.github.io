@@ -1,3 +1,5 @@
+{% import "macros/theme.html" as macros %}
+
 <!DOCTYPE html>
 
 <html lang="{% block lang %}{% endblock lang %}">
@@ -66,6 +68,8 @@
     {% endif %}
 
     {% include "_custom_font.html" %}
+	{% set theme_color = config.extra.theme_color %}
+	{{ macros::include_theme_color(theme_color=theme_color, type="text") }}
     {% include "_custom_css.html" %}
     <link rel="stylesheet" href="/main.css">
     {% block head %}{% endblock head %}
