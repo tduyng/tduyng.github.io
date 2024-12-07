@@ -6,7 +6,7 @@
 
 {% if show_word_count %}
 {% set word_count = page.content | wordcount %}
-{% set read_time = word_count / 280 | round | default(value=1) %}
+{% set read_time = word_count / 260 | round | default(value=1) %}
 {% if read_time == 0 %}
 {% set read_time = 1 %}
 {% endif %}
