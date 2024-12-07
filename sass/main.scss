@@ -1015,14 +1015,17 @@ footer {
 .footer-menu a {
     color: var(--text-pale-color);
     text-decoration: none;
-    padding: 5px 10px;
+    padding: 0.2em 0.5em;
     border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    border-bottom: 1.5px solid transparent;
+    transition: border-bottom-color 0.3s ease, background-color 0.3s ease;
 }
 
 .footer-menu a:hover {
-    background-color: var(--primary-pale-color);
     color: var(--primary-color);
+    opacity: 1;
+    border-bottom-color: var(--primary-color);
+    background-color: var(--primary-pale-color);
 }
 
 /* Media query for screens smaller than 600px */
