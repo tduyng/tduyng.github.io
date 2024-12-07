@@ -244,7 +244,7 @@ It is a config file for docker-compose. It allows us to define the services (con
     ```bash
     $ docker-compose build
     ```
-    When you use docker-compose to build the image, the image name is always going to be **<project>_<service>**, where **<service>** in this example is **node-redis-app_node-app**. 
+    When you use docker-compose to build the image, the image name is always going to be `<project>_<service>`, where `<service>` in this example is node-redis-app_node-app. 
   - Run containers with docker-compose
   ```bash
   $ docker-compose up # all services declared in docker-compose.yml will be started
@@ -256,17 +256,18 @@ It is a config file for docker-compose. It allows us to define the services (con
   ```
 
 That's it. Test the code on your machine and check it in then [localhost8080](http://localhost:8080) to see the result.
+
 ## Resume
 
 Docker compose: 
 - Separate CLI that gets installed along with Docker
 - Used to startup multiple Docker containers at the same time
 - Automate some of the long-winded arguments we were passing to `docker run`
-- **Docker compose** will start and connect all the containers Docker that you declare in the `docker-compose.yml` file. We will use it usually when we work with Docker.
+- Docker compose will start and connect all the containers Docker that you declare in the `docker-compose.yml` file. We will use it usually when we work with Docker.
 
 ## Reference
 - [Code demo GitHub](https://github.com/tduyng/try-docker/tree/master/01.dive-into-docker/simple-with-redis)
 - [Previous post: create simple Nodejs app with Docker](https://tduyng.github.io/blog/create-simple-project-nodejs-with-docker)
 - [Docker official](https://docs.docker.com/)
-- [Learn about **Docker compose**](https://docs.docker.com/compose/)
+- [Learn about Docker compose](https://docs.docker.com/compose/)
 - [Docker compose cheatsheet](https://jstobigdata.com/docker-compose-cheatsheet/)
