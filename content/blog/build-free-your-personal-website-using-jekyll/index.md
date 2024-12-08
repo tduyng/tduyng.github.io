@@ -11,7 +11,7 @@ tags = ["blog", "static-site-generator", "free", "web-development"]
 comment = false
 reaction = true
 featured = true
-img = "/img/avatar.webp"
+img = "/img/post-cover.webp"
 outdate_alert = true
 outdate_alert_days = 365
 +++

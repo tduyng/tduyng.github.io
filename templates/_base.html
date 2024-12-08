@@ -44,7 +44,7 @@
         <meta property="og:description" content="{{ config.description }}" />
     {%- endif %}
     {# Image sharing preview#}
-    {%- set sharing_img_preview = page.extra.img | default(value="") -%}
+    {%- set sharing_img_preview = page.extra.img | default(value="/img/post-cover.webp") -%}
     {% if sharing_img_preview %}
         {% set colocated_path = page.colocated_path | default(value="") %}
         {% set file_path = colocated_path ~ sharing_img_preview %}

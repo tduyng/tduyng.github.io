@@ -10,7 +10,7 @@ tags = ["blog", "full-text", "rss"]
 [extra]
 comment = false
 reaction = true
-img = "/img/avatar.webp"
+img = "/img/post-cover.webp"
 +++
 
 Guess what? My blog now offers full-text RSS feeds!

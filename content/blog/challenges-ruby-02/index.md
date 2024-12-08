@@ -10,7 +10,7 @@ tags = ["ruby", "algorithms"]
 [extra]
 comment = false
 reaction = true
-img = "/img/avatar.webp"
+img = "/img/post-cover.webp"
 outdate_alert = true
 outdate_alert_days = 365
 +++
