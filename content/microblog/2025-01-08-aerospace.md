@@ -1,5 +1,5 @@
 +++
-title = "[Microblog] Tilting window management on macOS with `aerospace`"
+title = "[Microblog] Tilting window management on macOS with aerospace"
 date = 2025-01-08T22:00:00
 +++
 

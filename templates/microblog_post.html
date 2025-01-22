@@ -1,0 +1,44 @@
+
+{% import 'macros/math.html' as macro_math -%}
+{% import 'macros/post.html' as post_macros -%}
+{% extends "_base.html" %}
+
+<!--Microblog post-->
+{% block page %}micropost{% endblock page %}
+{% block lang -%}
+{%- set blog_section_path = config.extra.blog_section_path | trim_start_matches(pat="/") -%}
+{%- set section_md_path = blog_section_path ~ "/_index.md" -%}
+{%- set section = get_section(path=section_md_path, metadata_only=true) -%}
+{%- if page.extra.lang %}{{page.extra.lang}}{% elif section.extra.lang %}{{section.extra.lang}}{% else %}{{page.lang}}{%
+endif -%}
+{%- endblock lang %}
+{% block title %}{{ page.title }}{% endblock title %}
+{% block desc %}
+{% if page.summary %}
+{% set desc = page.summary %}
+{% elif page.description %}
+{% set desc = page.description %}
+{% endif %}
+{% if desc %}
+<meta name="description" content="{{ desc }}">
+{% endif %}
+{% endblock desc %}
+
+{% block head %}
+{% if page.extra.math %}
+{{ macro_math::math_render(style = page.extra.math) }}
+{% endif %}
+{% endblock head %}
+
+
+<!--Content block-->
+{% block content %} 
+{% include "_header.html" %}
+<div id="wrapper-microblog">
+    <main class="prose microblog">
+        <h1>{{ page.title }}</h1>
+        <p class="timestamp">{{ page.date | date(format="%Y/%m/%d %I:%M %p") }}</p>
+        <div class="thought-content">{{ page.content | safe }}</div>
+    </main>
+</div>
+{% endblock content %}

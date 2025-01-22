@@ -1,8 +1,15 @@
-{% extends "_base.html" %} {% block page %}microblog-page{% endblock page %} {% block title %}{{
-section.title }}{% endblock title %} {% block desc %}
-<meta name="description" content="{{ section.description }}" />
+{% extends "_base.html" %}
+{% block page %}blog{% endblock page%}
+{% block lang %}{% if section.extra.lang %}{{ section.extra.lang }}{% else %}{{ section.lang }}{% endif %}{% endblock lang %}
+{% block title %}{{ section.title }}{% endblock title %}
+{% block desc %}
+  <meta name="description" content="{{ section.description }}">
+{% endblock desc %}
 
-{% endblock desc %} {% block content %} {% include "_header.html" %}
+<!--Start blog content-->
+{% block content %}
+{% include "_header.html" %}
+
 <div id="wrapper-microblog">
     <main class="prose microblog">
         <p>{{ section.description }}</p>
@@ -11,14 +18,14 @@ section.title }}{% endblock title %} {% block desc %}
             <div class="microblog-entry lazy-entry">
                 <div class="thought-content">
                     {{ page.content | safe }}
-                    <p class="timestamp">→ {{ page.date | date(format="%Y/%m/%d %I:%M %p") }}</p>
+                    <p class="timestamp">
+                        <a href="{{ page.permalink }}">→ {{ page.date | date(format="%Y/%m/%d %I:%M %p") }}</a>
+                    </p>
                 </div>
             </div>
             {% endfor %}
         </div>
     </main>
-
-    {% include "_footer.html" %}
 </div>
 {% endblock content %} {% block script %}
 <script>
