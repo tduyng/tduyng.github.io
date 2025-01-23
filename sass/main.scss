@@ -2082,22 +2082,22 @@ template {
                 background: var(--bg-color-alt-hover); /* Slight hover effect for clarity */
                 box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35); /* Stronger shadow on hover */
             }
+        }
+    }
 
-            .thought-content {
-                color: var(--text-color);
+    .thought-content {
+        color: var(--text-color);
 
-                p {
-                    margin-bottom: 10px;
-                }
+        p {
+            margin-bottom: 10px;
+        }
 
-                .timestamp {
-                    font-size: 0.8em;
-                    color: var(--text-muted-color);
-                    margin-top: 10px;
-                    text-align: left;
-                    font-style: italic;
-                }
-            }
+        .timestamp {
+            font-size: 0.8em;
+            color: var(--text-muted-color);
+            margin-top: 10px;
+            text-align: left;
+            font-style: italic;
         }
     }
 }

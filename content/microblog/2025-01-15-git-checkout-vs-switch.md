@@ -47,7 +47,7 @@ date = 2025-01-15T20:00:00
 | `git switch <branch>`             | Switch branches                   | Modern, focused alternative.         |
 | `git switch -c <branch>`          | Create and switch to a new branch | Simpler and more intuitive.          |
 
-## When to Use?
+## When to use?
 
 - `git checkout`:
 
