@@ -3,7 +3,7 @@ title = "[Microblog] Manage better for my dotfiles."
 date = 2025-01-05T12:01:00
 +++
 
-**Manage better for my dotfiles.**
+# Manage better for my dotfiles
 
 Up until now, I’ve been handling my dotfiles manually with a Makefile and shell scripts.
 I used commands like `rsync` to mirror files from my `~/.config` directory to my `~/dotfiles` folder,

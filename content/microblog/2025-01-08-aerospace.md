@@ -3,7 +3,7 @@ title = "[Microblog] Tilting window management on macOS with aerospace"
 date = 2025-01-08T22:00:00
 +++
 
-**Tiling window management on macOS with `aerospace`**
+# Tiling window management on macOS with `aerospace`
 
 In the past, I was a `rectangle` user. I used it to move windows into corners or split the screen, basic functionality. Honestly, it never felt transformative. It was fine, but quite basic. I only used it during screen-sharing sessions on Teams calls. I always wanted something more controllable and better organized, with groupings of applications.
 

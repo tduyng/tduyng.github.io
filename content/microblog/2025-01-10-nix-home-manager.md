@@ -3,7 +3,7 @@ title = "[Microblog] First attempt at migrating from Homebrew to Nix with Nix Ho
 date = 2025-01-10T20:09:30
 +++
 
-**First attempt at migrating from Homebrew to Nix with Nix Home Manager.**
+# First attempt at migrating from Homebrew to Nix with Nix Home Manager
 
 It didn’t go exactly as planned. I dived into Nix scripts, flakes, and started installing packages with nixpkgs while keeping Homebrew on the side.
 But... nothing seemed to work correctly. 😵

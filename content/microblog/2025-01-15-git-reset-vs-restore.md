@@ -11,14 +11,14 @@ date = 2025-01-14
 
     ```bash
     git reset --soft HEAD~        # Move HEAD but keep changes staged
-    git reset --soft <commit> # Move to specific commit, keep changes staged
+    git reset --soft <commit>     # Move to specific commit, keep changes staged
     ```
 
 - Unstage changes (keep changes in working directory):
 
     ```bash
     git reset HEAD~              # Reset --mixed (default), move HEAD and unstage changes
-    git reset <commit>      # Reset --mixed, move to specific commit and unstage changes
+    git reset <commit>           # Reset --mixed, move to specific commit and unstage changes
     git reset HEAD <file>        # Unstage a specific file
     ```
 

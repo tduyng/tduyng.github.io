@@ -3,7 +3,7 @@ title = "[Microblog] Returning to Neovim for Coding"
 date = 2025-01-03T15:00:00
 +++
 
-**Returning to Neovim for Coding**
+# Returning to Neovim for coding
 
 I’ve started using Neovim for coding again.
 
