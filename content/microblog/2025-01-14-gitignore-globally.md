@@ -26,5 +26,6 @@ This command adds the following to your `~/.gitconfig`:
     excludesFile = ~/.gitignore
 ```
 
-Now, `.DS_Store` files will be ignored across all your projects—no more accidental commits!
+Now, `.DS_Store` files will be ignored across all your projects, no more accidental commits!
+
 You can directly edit the `~/.gitignore` file to globally ignore many other files.
