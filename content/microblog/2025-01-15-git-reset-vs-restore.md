@@ -1,6 +1,6 @@
 +++
 title = "[Microblog] Git Reset vs. Git Restore"
-date = 2025-01-14
+date = 2025-01-15
 +++
 
 # Git Reset vs. Git Restore
@@ -46,7 +46,7 @@ date = 2025-01-14
     git restore --source=<commit> <file> # Restore file from a specific commit
     ```
 
-## Key Differences
+## Key differences
 
 | Command                       | Branch pointer | Staging area      | Working directory |
 | ----------------------------- | -------------- | ----------------- | ----------------- |
@@ -55,7 +55,7 @@ date = 2025-01-14
 | `git restore <file>`          | Unchanged      | Unchanged         | Resets file       |
 | `git restore --staged <file>` | Unchanged      | Resets (unstages) | Unchanged         |
 
-## When to Use?
+## When to use?
 
 - `git reset`:
 
@@ -66,11 +66,10 @@ date = 2025-01-14
     - Discard changes in the working directory.
     - Unstage changes (modern alternative to `git reset HEAD <file>`).
 
-## Pro Tips
+## Pro tips
 
 - Recover from a hard reset:
-
-Use `git reflog` to find the lost commit and reset back:
+  Use `git reflog` to find the lost commit and reset back:
 
 ```bash
 git reflog
@@ -78,8 +77,7 @@ git reset --hard <hash>
 ```
 
 - Combine `git reset` and `git restore`:
-
-Reset to a specific commit but keep changes in the working directory:
+  Reset to a specific commit but keep changes in the working directory:
 
 ```bash
 git reset <commit>
