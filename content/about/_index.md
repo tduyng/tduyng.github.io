@@ -7,37 +7,37 @@ generate_feeds = false
 
 [extra]
 lang = 'en'
-math = false
-mermaid = false
-copy = false
 comment = false
 reaction = true
 +++
 
-**Hey there! I'm Duy NG.**
+# Duy NG
 
-You might know me online as "tduyng" or "tienduy-nguyen". Feel free to call me "Duy", pronounced like "Zwee" in Vietnamese. While I'm not big on social media, I have a deep passion for tech projects and contributing to open-source communities.
+Duy (pronounced "Zwee") is a Software Engineer in France. You'll find him online as "tduyng", where he codes, learns, and occasionally contributes to open source.
 
 ## Current role
 
-I'm currently a Backend Engineer at [Ekino](https://www.ekino.fr) in France, specializing in NodeJs/Typescript and AWS since 2021.
+At [Ekino](https://www.ekino.fr), Duy builds and maintains backend projects using Node.js, TypeScript and AWS. Since 2021, he's been working on making applications that can handle heavy workloads reliably.
 
-## Past experiences
+## Previous work
 
-Before diving into backend engineering, I worked as a BIM Engineer (Building Information Modeling Engineer) at [VINCI Group](https://www.vinci.com/vinci.nsf/fr/index.htm) in France. Alongside my BIM responsibilities, I developed numerous plugins in C#, [Dynamo](https://dynamobim.org/) and VBA (Excel) to automate tasks for my company.
+Before backend development, Duy worked as a BIM Engineer at [VINCI Group](https://www.vinci.com/vinci.nsf/fr/index.htm), France's leading construction company. He built software and scripting tools with C#, [Dynamo](https://dynamobim.org/), and Excel/VBA that helped teams work faster and better.
 
-## Professional engagements
+## Tech stack
 
-I'm a nice person (I think?) and easy to work with. Here's a comprehensive list of the technologies and tools I've worked with in a professional context:
+Here's what Duy works with:
 
-- **Languages**: JavaScript/TypeScript, Rust, C#, Python, Ruby, VBA
-- **Frameworks**s: Node.js/Deno/Bun/Nest.js, React/HTML/CSS
-- **Infrastructure & DevOps/GitOps**: AWS, CI/CD, Docker, Kubernetes, ArgoCD
-- **Databases**: SQL/NoSQL (Postgresql, MySql, MongoDB, Redis, Elastic search)
-- **Version control**: Git/GitLab/GitHub
-- **Scripting & automation**: Bash scripts, makefile, justfile, JS scripting
-- **Technical writing**
+-   **Languages**: JavaScript/TypeScript, Rust, C#, Python, Ruby, VBA
+-   **Frameworks**: Node.js/Deno/Bun/Nest.js, React/HTML/CSS
+-   **DevOps**: AWS, CI/CD, Docker, Kubernetes, ArgoCD
+-   **Databases**: SQL/NoSQL (Postgresql, MySql, MongoDB, Redis, Elastic search)
+-   **Version control**: Git/GitLab/GitHub
+-   **Scripting & automation**: Bash scripts, makefile, justfile, JS scripting
 
-## Other resources
+## Writing
 
-- Writing plateform: I occasionally write on [tduyng.medium.com](https://tduyng.medium.com)
+Read more of Duy's tech stories on his:
+
+-   [blog](/blog)
+-   [microblog](/microblog)
+-   [tduyng.medium.com](https://tduyng.medium.com)

@@ -13,11 +13,12 @@ copy = false
 comment = false
 +++
 
-Feel free to reach out! Whether you have a question, collaboration idea, or just want to say hi, I'm always happy to connect.
+For professional inquiries, technical discussions, or networking opportunities, Duy can be reached through various platforms. He maintains an active presence on both professional and social networks.
 
-You can contact me via:
+Connect with Duy on:
 
-- **Email:** [hi@tduyng.com](mailto:hi@tduyng.com)
-- **GitHub:** [tduyng](https://github.com/tduyng)
-- **Linkedin:** [tienduy-nguyen](https://www.linkedin.com/in/tienduy-nguyen/)
-- **X (formerly Twitter):** [tduyng](https://x.com/tduyng)
+-   **Email:** [hi@tduyng.com](mailto:hi@tduyng.com)
+-   **GitHub:** [tduyng](https://github.com/tduyng)
+-   **Linkedin:** [tduyng](https://www.linkedin.com/in/tienduy-nguyen/)
+-   **X (formerly Twitter):** [tduyng](https://x.com/tduyng)
+-   **BlueSky:** [tduyng](https://bsky.app/profile/tduyng.bsky.social)
