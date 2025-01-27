@@ -1,0 +1,320 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta content=dark name=color-scheme><meta content="ie=edge" http-equiv=x-ua-compatible><meta content="width=device-width,initial-scale=1" name=viewport><meta content=https://tduyng.com name=base><meta content=True name=HandheldFriendly><meta content=yes name=mobile-web-app-capable><meta content=yes name=apple-mobile-web-app-capable><meta content=default name=apple-mobile-web-app-status-bar-style><meta content="index, nofollow" name=robots><meta content="Learn the essentials of setting up Webpack with React and TypeScript to build powerful and efficient web applications." name=description><title>Setup Webpack React TypeScript</title><link href=/img/favicon-32x32.png rel=icon sizes=32x32 type=image/png><link href=/img/favicon-16x16.png rel=icon sizes=16x16 type=image/png><link href=/img/apple-touch-icon.png rel=apple-touch-icon sizes=180x180><meta content="Setup Webpack React TypeScript" property=og:title><meta content=article property=og:type><meta content="Duy NG" property=og:site_name><meta content="Learn the essentials of setting up Webpack with React and TypeScript to build powerful and efficient web applications." name=description><meta content="Learn the essentials of setting up Webpack with React and TypeScript to build powerful and efficient web applications." property=og:description><meta content="https://tduyng.com/img/post-cover.webp?h=f5ef109d5d6587b15dc0" property=og:image><meta content=3456 property=og:image:width><meta content=3456 property=og:image:height><meta content="https://tduyng.com/img/post-cover.webp?h=f5ef109d5d6587b15dc0" name=twitter:image><meta content=summary_large_image name=twitter:card><style>body{--primary-color:#00d7e8;--primary-pale-color:#81a1c120;--text-color:#e5e9f0;--text-bold-color:#f6c965;--text-pale-color:#e5e9f0;--bg-color:#25283c;--highlight-mark-color:#434c5e;--callout-note-color:#5e81ac;--callout-important-color:#8fbcbb;--callout-warning-color:#ebcb8b;--callout-alert-color:#bf616a;--callout-question-color:#81a1c1;--callout-tip-color:#a3be8c}</style><style>body{--main-font:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--code-font:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--homepage-max-width:800px;--main-max-width:800px;--tablet-max-width:600px;--small-screen-max-width:400px;--avatar-size:60px;--icon-size:20px;--homepage-font-size:16px;--homepage-line-height:1.75;--paragraph-font-size:16px;--paragraph-line-height:1.75;--aside-font-size:15px;--img-border-radius:0px;--callout-border-radius:0px;--detail-border-radius:0px;--dark-mode-img-brightness:.75;--dark-mode-chart-brightness:.75;--inline-code-border-radius:2px;--inline-code-bg-color:var(--primary-pale-color);--block-code-border-radius:0px;--block-code-border-color:var(--primary-color);--detail-border-color:var(--primary-color)}</style><link href=/main.css rel=stylesheet><script async data-do-not-track=true data-website-id=0403ec1f-fbf8-4e6c-b24b-0c585ca25873 defer src=https://cloud.umami.is/script.js></script><body class=post><header class=blur><div id=header-wrapper><nav><a class=instant href=/>tduyng</a><button aria-label="toggle expand" class=separator id=toggler>::</button><span class="wrap left fold">{</span><a class=instant href=/blog>blog</a><span class="wrap-separator fold">,</span><a class="instant fold" href=/microblog>microblog</a><span class="wrap-separator fold">,</span><a class="instant fold" href=/about>about</a><span class="wrap right fold">} ;</span></nav><div id=btns><a aria-label="rss feed" href=/atom.xml id=rss-btn><svg viewbox="0 0 24 24" height=20 width=20 xmlns=http://www.w3.org/2000/svg><path d="M3 17C5.20914 17 7 18.7909 7 21H3V17ZM3 10C9.07513 10 14 14.9249 14 21H12C12 16.0294 7.97056 12 3 12V10ZM3 3C12.9411 3 21 11.0589 21 21H19C19 12.1634 11.8366 5 3 5V3Z" fill=currentColor></path></svg></a><button aria-label="table of content" id=toc-toggle><svg viewbox="0 0 24 24" height=20 width=20 xmlns=http://www.w3.org/2000/svg><path d="M3 4H21V6H3V4ZM3 11H15V13H3V11ZM3 18H21V20H3V18Z" fill=currentColor></path></svg></button></div></div></header><dialog id=rss-mask><div><a href=https://tduyng.com/atom.xml>https://tduyng.com/atom.xml</a><button data-check-icon='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z" fill="currentColor"></path></svg>' data-copy-icon='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z" fill="currentColor"></path></svg>' aria-label=copy autofocus data-link=https://tduyng.com/atom.xml><svg viewbox="0 0 24 24" height=20 width=20 xmlns=http://www.w3.org/2000/svg><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z" fill=currentColor></path></svg></button></div></dialog><div id=wrapper><div id=blank></div><aside><nav><ul><li><a class=h2 href=#init-project>Init project</a><li><a class=h2 href=#configuration>Configuration</a> <ul><li><a class=h3 href=#config-tsconfig-json>Config tsconfig.json</a><li><a class=h3 href=#config-webpack-config-js>Config webpack.config.js</a></ul><li><a class=h2 href=#demo-code>Demo code</a><li><a class=h2 href=#structure-folder>Structure folder</a><li><a class=h2 href=#reference>Reference</a></ul></nav><button aria-label="back to top" id=back-to-top><svg viewbox="0 0 24 24" height=24 width=24 xmlns=http://www.w3.org/2000/svg><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill=currentColor></path></svg> <span>Top</span></button></aside><main><div><div data-check-icon='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z" fill="currentColor"></path></svg>' data-copy-icon='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z" fill="currentColor"></path></svg>' id=copy-cfg style=display:none></div><article data-backlink-icon='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M9.41421 8L18.0208 16.6066L16.6066 18.0208L8 9.41421V17H6V6H17V8H9.41421Z" fill="currentColor"></path></svg>' class=prose><h1>Setup Webpack React TypeScript</h1><div id=post-info><div id=date><span id=publish>Published: 2020-11-28</span></div><div id=wordcount><span>2727 words - 10 min read</span></div></div><div id=tags><a class=instant href=https://tduyng.com/tags/webpack><span>#</span>webpack</a><a class=instant href=https://tduyng.com/tags/react><span>#</span>react</a><a class=instant href=https://tduyng.com/tags/typescript><span>#</span>typescript</a></div><blockquote class="callout alert hidden" data-alert-text-after=" days ago and may be out of date." data-alert-text-before="This article was last updated " data-days=365 id=outdate_alert><div class=icon><svg viewbox="0 0 24 24" height=20 width=20 xmlns=http://www.w3.org/2000/svg><path d="M4.00098 20V14C4.00098 9.58172 7.5827 6 12.001 6C16.4193 6 20.001 9.58172 20.001 14V20H21.001V22H3.00098V20H4.00098ZM6.00098 20H18.001V14C18.001 10.6863 15.3147 8 12.001 8C8.68727 8 6.00098 10.6863 6.00098 14V20ZM11.001 2H13.001V5H11.001V2ZM19.7792 4.80761L21.1934 6.22183L19.0721 8.34315L17.6578 6.92893L19.7792 4.80761ZM2.80859 6.22183L4.22281 4.80761L6.34413 6.92893L4.92991 8.34315L2.80859 6.22183ZM7.00098 14C7.00098 11.2386 9.23956 9 12.001 9V11C10.3441 11 9.00098 12.3431 9.00098 14H7.00098Z" fill=currentColor></path></svg></div><div class=content></div></blockquote><p>How to setup a React project with Webpack and TypeScript?<hr><p>With <a rel="nofollow noreferrer" href=https://github.com/facebook/create-react-app>create-react-app</a>, it only takes a few clicks to create a complete React project, requires not in-depth knowledge of webpack or babel. But if you are still not satisfied with the features that <code>create-react-app</code> brings. For example, CSS does not show source-map when dev, or may be you simply configure more deeply. If in this case, It's the time to configure manually <code>webpack</code>.<p>If you do not have any knowledge about webpack, you can refer my two previous articles:<ul><li><a href=/blog/basic-setup-webpack>Setup basic webpack</a><li><a href=/blog/setup-webpack-with-typescript>Webpack & TypeScript</a></ul><h2 id=init-project>Init project<a aria-label="Anchor link for: init-project" class=zola-anchor href=#init-project style=visibility:hidden>#</a></h2><ul><li><p>Install dependencies packages</p> <pre class=language-bash data-lang=bash style=color:#6c7079;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#eb6772>$</span><span style=color:#abb2bf> yarn init</span><span style=color:#eb6772> -y
+</span><span style=color:#eb6772>$</span><span style=color:#abb2bf> yarn add</span><span style=color:#eb6772> -D</span><span style=color:#abb2bf> react react-dom redux react-redux react-router-dom typescript
+</span><span style=color:#eb6772>$</span><span style=color:#abb2bf> yarn add</span><span style=color:#eb6772> -D</span><span style=color:#abb2bf> webpack webpack-cli webpack-dev-server style-loader css-loader sass sass-loader typescript ts-loader
+</span></code></pre><li><p>Install plugin for webpack</p> <pre class=language-bash data-lang=bash style=color:#6c7079;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#eb6772>$</span><span style=color:#abb2bf> yarn add</span><span style=color:#eb6772> -D</span><span style=color:#abb2bf> clean-webpack-plugin compression-webpack-plugin copy-webpack-plugin dotenv-webpack html-webpack-plugin mini-css-extract-plugin webpack-bundle-analyzer
+</span></code></pre> <ul><li><strong>clean-webpack-plugin</strong>: A webpack plugin to remove/clean your build folder(s). Check <a rel="nofollow noreferrer" href=https://github.com/johnagan/clean-webpack-plugin>clean-webpack-plugin</a><li><strong>compression-webpack-plugin</strong>: Compress asset file (css, js, html ...) to <strong>gzip</strong> Check more <a rel="nofollow noreferrer" href=https://webpack.js.org/plugins/compression-webpack-plugin/>compression-webpack-plugin</a><li><strong>copy-webpack-plugin</strong>: Copies individual files or entire directories, which already exist, to the build directory. For example: you have files such as favicon.ico, robots.txt at the same level as index.html, when the build is complete, these files will also be present in the build. If you do not have this plugin, you have to copy them manually. Check <a rel="nofollow noreferrer" href=https://webpack.js.org/plugins/copy-webpack-plugin/>copy-webpack-plugin</a>.<li><strong>dotenv-webpack</strong>: Using <code>.env</code> file in your app. Check <a rel="nofollow noreferrer" href=https://github.com/mrsteele/dotenv-webpack>dotenv-webpack</a><li><strong>html-webpack-plugin</strong>: Clone <code>public/index.html</code> file to build folder. Check how it works in my previous post <a href=/blog/setup-webpack-with-typescript>Webpack & Typescript</a><li><strong>mini-css-extract-plugin</strong>: Normally, the <code>css</code> will be in the js file after build. When running the app, <code>js</code> will add that <code>css</code> to <style></style> tag. Now, if we want the <code>css</code> to be in a separate file with <code>js</code> and when app running, <code>js</code> will automatically import it with the <link> tag. That is the function of this plugin.<br> Check more information for <a rel="nofollow noreferrer" href=https://webpack.js.org/plugins/mini-css-extract-plugin/>mini-css-extract-plugin</a><li><strong>webpack-bundle-analyzer</strong>: It will create an interactive treemap visualization of the contents of all your bundles. Check <a rel="nofollow noreferrer" href=https://github.com/webpack-contrib/webpack-bundle-analyzer>webpack-bundle-analyzer</a></ul><li><p>Install <code>ESLint</code> & <code>Prettier</code></p> <pre class=language-bash data-lang=bash style=color:#6c7079;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#eb6772>$</span><span style=color:#abb2bf> yarn add</span><span style=color:#eb6772> -D</span><span style=color:#abb2bf> eslint eslint-config-react-app eslint-loader eslint-plugin-flowtype eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks @typescript-eslint/eslint-plugin @typescript-eslint/parser prettier eslint-plugin-prettier eslint-config-prettier
+</span></code></pre> <p>Except <code>prettier</code>, <code>eslint-config-prettier</code> and <code>eslint-plugin-prettier</code> the rest are plugins used by <code>create-react-app</code>.</p> <p><strong>Create file configuration:</strong>:</p> <ul><li><code>.eslintrc</code></ul> <pre class=language-json data-lang=json style=color:#6c7079;background-color:#2b303b><code class=language-json data-lang=json><span style=color:#abb2bf>{
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"extends"</span><span style=color:#abb2bf>: [</span><span style=color:#9acc76>"react-app"</span><span style=color:#abb2bf>, </span><span style=color:#9acc76>"prettier"</span><span style=color:#abb2bf>],
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"plugins"</span><span style=color:#abb2bf>: [</span><span style=color:#9acc76>"react"</span><span style=color:#abb2bf>, </span><span style=color:#9acc76>"prettier"</span><span style=color:#abb2bf>],
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"rules"</span><span style=color:#abb2bf>: {
+</span><span style=color:#abb2bf>    </span><span style=color:#9acc76>"prettier/prettier"</span><span style=color:#abb2bf>: [
+</span><span style=color:#abb2bf>      </span><span style=color:#9acc76>"warn"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>      {
+</span><span style=color:#abb2bf>        </span><span style=color:#9acc76>"arrowParens"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"avoid"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>        </span><span style=color:#9acc76>"semi"</span><span style=color:#abb2bf>: </span><span style=color:#db9d63>false</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>        </span><span style=color:#9acc76>"trailingComma"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"none"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>        </span><span style=color:#9acc76>"endOfLine"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"lf"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>        </span><span style=color:#9acc76>"tabWidth"</span><span style=color:#abb2bf>: </span><span style=color:#db9d63>2</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>        </span><span style=color:#9acc76>"printWidth"</span><span style=color:#abb2bf>: </span><span style=color:#db9d63>80</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>        </span><span style=color:#9acc76>"useTabs"</span><span style=color:#abb2bf>: </span><span style=color:#db9d63>false
+</span><span style=color:#abb2bf>      }
+</span><span style=color:#abb2bf>    ],
+</span><span style=color:#abb2bf>    </span><span style=color:#9acc76>"no-console"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"warn"
+</span><span style=color:#abb2bf>  }
+</span><span style=color:#abb2bf>}
+</span></code></pre> <ul><li><code>.eslintignore</code></ul> <pre style=color:#6c7079;background-color:#2b303b><code><span style=color:#abb2bf>/src/serviceWorker.ts
+</span><span style=color:#abb2bf>/src/setupTests.ts
+</span></code></pre> <ul><li><code>.prettierrc</code></ul> <pre class=language-json data-lang=json style=color:#6c7079;background-color:#2b303b><code class=language-json data-lang=json><span style=color:#abb2bf>{
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"arrowParens"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"avoid"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"semi"</span><span style=color:#abb2bf>: </span><span style=color:#db9d63>false</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"trailingComma"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"none"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"endOfLine"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"lf"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"tabWidth"</span><span style=color:#abb2bf>: </span><span style=color:#db9d63>2</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"printWidth"</span><span style=color:#abb2bf>: </span><span style=color:#db9d63>80</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"useTabs"</span><span style=color:#abb2bf>: </span><span style=color:#db9d63>false
+</span><span style=color:#abb2bf>}
+</span></code></pre> <ul><li><code>prettierignore</code></ul> <pre style=color:#6c7079;background-color:#2b303b><code><span style=color:#abb2bf>.cache
+</span><span style=color:#abb2bf>package-lock.json
+</span></code></pre><li><p>Add scripts to <code>package.json</code></p> <pre class=language-json data-lang=json style=color:#6c7079;background-color:#2b303b><code class=language-json data-lang=json><span style=color:#9acc76>"scripts"</span><span style=color:#abb2bf>: {
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"start"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"webpack serve --mode development"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"build"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"webpack --mode production"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"build:analyze"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"webpack --mode production --env analyze"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"lint"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"eslint --ext js,jsx,ts,tsx src/"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"lint:fix"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"eslint --fix --ext js,jsx,ts,tsx src/"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"prettier"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"prettier --check </span><span style=color:#5ebfcc>\"</span><span style=color:#9acc76>src/**/(*.tsx|*.ts|*.jsx|*.js|*.scss|*.css)</span><span style=color:#5ebfcc>\"</span><span style=color:#9acc76>"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"prettier:fix"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"prettier --write </span><span style=color:#5ebfcc>\"</span><span style=color:#9acc76>src/**/(*.tsx|*.ts|*.jsx|*.js|*.scss|*.css)</span><span style=color:#5ebfcc>\"</span><span style=color:#9acc76>"
+</span><span style=color:#abb2bf>},
+</span></code></pre></ul><h2 id=configuration>Configuration<a aria-label="Anchor link for: configuration" class=zola-anchor href=#configuration style=visibility:hidden>#</a></h2><h3 id=config-tsconfig-json>Config <code>tsconfig.json</code><a aria-label="Anchor link for: config-tsconfig-json" class=zola-anchor href=#config-tsconfig-json style=visibility:hidden>#</a></h3><ul><li><p>Code I will use TypeScript for this template, so I need a config file for TypeScript to compile JavaScript. If you want to use JavaScript, that will be very similar, you just need install <code>babel</code> and these loader. Check my <a href=/blog/basic-setup-webpack>previous article</a> for the details.</p> <pre class=language-json data-lang=json style=color:#6c7079;background-color:#2b303b><code class=language-json data-lang=json><span style=color:#abb2bf>{
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"compilerOptions"</span><span style=color:#abb2bf>: {
+</span><span style=color:#abb2bf>    </span><span style=color:#9acc76>"target"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"ES5"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>    </span><span style=color:#9acc76>"allowJs"</span><span style=color:#abb2bf>: </span><span style=color:#db9d63>true</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>    </span><span style=color:#9acc76>"strict"</span><span style=color:#abb2bf>: </span><span style=color:#db9d63>true</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>    </span><span style=color:#9acc76>"module"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"ESNext"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>    </span><span style=color:#9acc76>"moduleResolution"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"node"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>    </span><span style=color:#9acc76>"noImplicitAny"</span><span style=color:#abb2bf>: </span><span style=color:#db9d63>false</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>    </span><span style=color:#9acc76>"sourceMap"</span><span style=color:#abb2bf>: </span><span style=color:#db9d63>true</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>    </span><span style=color:#9acc76>"jsx"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"react"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>    </span><span style=color:#9acc76>"allowSyntheticDefaultImports"</span><span style=color:#abb2bf>: </span><span style=color:#db9d63>true</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>    </span><span style=color:#9acc76>"baseUrl"</span><span style=color:#abb2bf>: </span><span style=color:#9acc76>"."</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>    </span><span style=color:#9acc76>"paths"</span><span style=color:#abb2bf>: {
+</span><span style=color:#abb2bf>      </span><span style=color:#9acc76>"@/*"</span><span style=color:#abb2bf>: [</span><span style=color:#9acc76>"src/*"</span><span style=color:#abb2bf>],
+</span><span style=color:#abb2bf>      </span><span style=color:#9acc76>"@@/*"</span><span style=color:#abb2bf>: [</span><span style=color:#9acc76>"./*"</span><span style=color:#abb2bf>]
+</span><span style=color:#abb2bf>    }
+</span><span style=color:#abb2bf>  },
+</span><span style=color:#abb2bf>  </span><span style=color:#9acc76>"include"</span><span style=color:#abb2bf>: [</span><span style=color:#9acc76>"src/**/*"</span><span style=color:#abb2bf>]
+</span><span style=color:#abb2bf>}
+</span></code></pre></ul><h3 id=config-webpack-config-js>Config <code>webpack.config.js</code><a aria-label="Anchor link for: config-webpack-config-js" class=zola-anchor href=#config-webpack-config-js style=visibility:hidden>#</a></h3><ul><li><p>Code</p> <pre class=language-js data-lang=js style=color:#6c7079;background-color:#2b303b><code class=language-js data-lang=js><span style=color:#cd74e8>const </span><span style=color:#eb6772>path </span><span style=color:#adb7c9>= </span><span style=color:#5ebfcc>require</span><span style=color:#abb2bf>(</span><span style=color:#9acc76>"path"</span><span style=color:#abb2bf>)
+</span><span style=color:#cd74e8>const </span><span style=color:#eb6772>webpack </span><span style=color:#adb7c9>= </span><span style=color:#5ebfcc>require</span><span style=color:#abb2bf>(</span><span style=color:#9acc76>"webpack"</span><span style=color:#abb2bf>)
+</span><span style=color:#cd74e8>const </span><span style=color:#eb6772>HtmlWebpackPlugin </span><span style=color:#adb7c9>= </span><span style=color:#5ebfcc>require</span><span style=color:#abb2bf>(</span><span style=color:#9acc76>"html-webpack-plugin"</span><span style=color:#abb2bf>)
+</span><span style=color:#cd74e8>const </span><span style=color:#eb6772>CopyPlugin </span><span style=color:#adb7c9>= </span><span style=color:#5ebfcc>require</span><span style=color:#abb2bf>(</span><span style=color:#9acc76>"copy-webpack-plugin"</span><span style=color:#abb2bf>)
+</span><span style=color:#cd74e8>const </span><span style=color:#eb6772>Dotenv </span><span style=color:#adb7c9>= </span><span style=color:#5ebfcc>require</span><span style=color:#abb2bf>(</span><span style=color:#9acc76>"dotenv-webpack"</span><span style=color:#abb2bf>)
+</span><span style=color:#cd74e8>const </span><span style=color:#eb6772>MiniCssExtractPlugin </span><span style=color:#adb7c9>= </span><span style=color:#5ebfcc>require</span><span style=color:#abb2bf>(</span><span style=color:#9acc76>"mini-css-extract-plugin"</span><span style=color:#abb2bf>)
+</span><span style=color:#cd74e8>const </span><span style=color:#abb2bf>{ </span><span style=color:#eb6772>CleanWebpackPlugin </span><span style=color:#abb2bf>} </span><span style=color:#adb7c9>= </span><span style=color:#5ebfcc>require</span><span style=color:#abb2bf>(</span><span style=color:#9acc76>"clean-webpack-plugin"</span><span style=color:#abb2bf>)
+</span><span style=color:#cd74e8>const </span><span style=color:#eb6772>CompressionPlugin </span><span style=color:#adb7c9>= </span><span style=color:#5ebfcc>require</span><span style=color:#abb2bf>(</span><span style=color:#9acc76>"compression-webpack-plugin"</span><span style=color:#abb2bf>)
+</span><span style=color:#cd74e8>const </span><span style=color:#eb6772>BundleAnalyzerPlugin </span><span style=color:#adb7c9>= </span><span style=color:#5ebfcc>require</span><span style=color:#abb2bf>(</span><span style=color:#9acc76>"webpack-bundle-analyzer"</span><span style=color:#abb2bf>)
+</span><span style=color:#abb2bf>  .</span><span style=color:#eb6772>BundleAnalyzerPlugin
+</span><span style=color:#abb2bf>module.exports </span><span style=color:#adb7c9>= </span><span style=color:#abb2bf>(</span><span style=color:#eb6772>env</span><span style=color:#abb2bf>, </span><span style=color:#eb6772>agrv</span><span style=color:#abb2bf>) </span><span style=color:#cd74e8>=> </span><span style=color:#abb2bf>{
+</span><span style=color:#abb2bf>  </span><span style=color:#cd74e8>const </span><span style=color:#eb6772>isDev </span><span style=color:#adb7c9>= </span><span style=color:#eb6772>agrv</span><span style=color:#abb2bf>.</span><span style=color:#eb6772>mode </span><span style=color:#adb7c9>=== </span><span style=color:#9acc76>"development"
+</span><span style=color:#abb2bf>  </span><span style=color:#cd74e8>const </span><span style=color:#eb6772>isAnalyze </span><span style=color:#adb7c9>= </span><span style=color:#eb6772>env </span><span style=color:#adb7c9>&& </span><span style=color:#eb6772>env</span><span style=color:#abb2bf>.</span><span style=color:#eb6772>analyze
+</span><span style=color:#abb2bf>  </span><span style=color:#cd74e8>const </span><span style=color:#eb6772>basePlugins </span><span style=color:#adb7c9>= </span><span style=color:#abb2bf>[
+</span><span style=color:#abb2bf>    </span><span style=color:#adb7c9>new </span><span style=color:#abb2bf>Dotenv(),
+</span><span style=color:#abb2bf>    </span><span style=color:#adb7c9>new </span><span style=color:#abb2bf>HtmlWebpackPlugin({
+</span><span style=color:#abb2bf>      template: </span><span style=color:#9acc76>"public/index.html"
+</span><span style=color:#abb2bf>    }),
+</span><span style=color:#abb2bf>    </span><span style=color:#adb7c9>new </span><span style=color:#abb2bf>CopyPlugin({
+</span><span style=color:#abb2bf>      patterns: [
+</span><span style=color:#abb2bf>        {
+</span><span style=color:#abb2bf>          from: </span><span style=color:#9acc76>"**/*"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>          globOptions: {
+</span><span style=color:#abb2bf>            ignore: [</span><span style=color:#9acc76>"index.html"</span><span style=color:#abb2bf>]
+</span><span style=color:#abb2bf>          },
+</span><span style=color:#abb2bf>          to: </span><span style=color:#9acc76>""</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>          context: </span><span style=color:#eb6772>path</span><span style=color:#abb2bf>.</span><span style=color:#5ebfcc>resolve</span><span style=color:#abb2bf>(</span><span style=color:#9acc76>"public"</span><span style=color:#abb2bf>)
+</span><span style=color:#abb2bf>        }
+</span><span style=color:#abb2bf>      ]
+</span><span style=color:#abb2bf>    }),
+</span><span style=color:#abb2bf>    </span><span style=color:#adb7c9>new </span><span style=color:#abb2bf>MiniCssExtractPlugin({
+</span><span style=color:#abb2bf>      filename: </span><span style=color:#eb6772>isDev </span><span style=color:#adb7c9>? </span><span style=color:#9acc76>"[name].css" </span><span style=color:#adb7c9>: </span><span style=color:#9acc76>"static/css/[name].[contenthash:6].css"
+</span><span style=color:#abb2bf>    }),
+</span><span style=color:#abb2bf>    </span><span style=color:#adb7c9>new </span><span style=color:#abb2bf>webpack.ProgressPlugin()
+</span><span style=color:#abb2bf>  ]
+</span><span style=color:#abb2bf>  </span><span style=color:#cd74e8>let </span><span style=color:#eb6772>prodPlugins </span><span style=color:#adb7c9>= </span><span style=color:#abb2bf>[
+</span><span style=color:#abb2bf>    </span><span style=color:#adb7c9>...</span><span style=color:#eb6772>basePlugins</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>    </span><span style=color:#adb7c9>new </span><span style=color:#abb2bf>CleanWebpackPlugin(),
+</span><span style=color:#abb2bf>    </span><span style=color:#adb7c9>new </span><span style=color:#abb2bf>CompressionPlugin({
+</span><span style=color:#abb2bf>      test: </span><span style=color:#5ebfcc>/\.(css</span><span style=color:#adb7c9>|</span><span style=color:#5ebfcc>js</span><span style=color:#adb7c9>|</span><span style=color:#5ebfcc>html</span><span style=color:#adb7c9>|</span><span style=color:#5ebfcc>svg)</span><span style=color:#cd74e8>$</span><span style=color:#5ebfcc>/
+</span><span style=color:#abb2bf>    })
+</span><span style=color:#abb2bf>  ]
+</span><span style=color:#abb2bf>  </span><span style=color:#cd74e8>if </span><span style=color:#abb2bf>(</span><span style=color:#eb6772>isAnalyze</span><span style=color:#abb2bf>) {
+</span><span style=color:#abb2bf>    </span><span style=color:#eb6772>prodPlugins </span><span style=color:#adb7c9>= </span><span style=color:#abb2bf>[</span><span style=color:#adb7c9>...</span><span style=color:#eb6772>prodPlugins</span><span style=color:#abb2bf>, </span><span style=color:#adb7c9>new </span><span style=color:#abb2bf>BundleAnalyzerPlugin()]
+</span><span style=color:#abb2bf>  }
+</span><span style=color:#abb2bf>  </span><span style=color:#cd74e8>return </span><span style=color:#abb2bf>{
+</span><span style=color:#abb2bf>    entry: </span><span style=color:#9acc76>"./src/index.tsx"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>    module: {
+</span><span style=color:#abb2bf>      rules: [
+</span><span style=color:#abb2bf>        {
+</span><span style=color:#abb2bf>          test: </span><span style=color:#5ebfcc>/\.(ts</span><span style=color:#adb7c9>|</span><span style=color:#5ebfcc>tsx)</span><span style=color:#cd74e8>$</span><span style=color:#5ebfcc>/</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>          use: [</span><span style=color:#9acc76>"ts-loader"</span><span style=color:#abb2bf>, </span><span style=color:#9acc76>"eslint-loader"</span><span style=color:#abb2bf>],
+</span><span style=color:#abb2bf>          exclude: </span><span style=color:#5ebfcc>/node_modules/
+</span><span style=color:#abb2bf>        },
+</span><span style=color:#abb2bf>        {
+</span><span style=color:#abb2bf>          test: </span><span style=color:#5ebfcc>/\.(s</span><span style=color:#db9d63>[ac]</span><span style=color:#5ebfcc>ss</span><span style=color:#adb7c9>|</span><span style=color:#5ebfcc>css)</span><span style=color:#cd74e8>$</span><span style=color:#5ebfcc>/</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>          use: [
+</span><span style=color:#abb2bf>            </span><span style=color:#eb6772>MiniCssExtractPlugin</span><span style=color:#abb2bf>.</span><span style=color:#eb6772>loader</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>            {
+</span><span style=color:#abb2bf>              loader: </span><span style=color:#9acc76>"css-loader"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>              options: { sourceMap: </span><span style=color:#eb6772>isDev </span><span style=color:#adb7c9>? </span><span style=color:#db9d63>true </span><span style=color:#adb7c9>: </span><span style=color:#db9d63>false </span><span style=color:#abb2bf>}
+</span><span style=color:#abb2bf>            },
+</span><span style=color:#abb2bf>            {
+</span><span style=color:#abb2bf>              loader: </span><span style=color:#9acc76>"sass-loader"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>              options: { sourceMap: </span><span style=color:#eb6772>isDev </span><span style=color:#adb7c9>? </span><span style=color:#db9d63>true </span><span style=color:#adb7c9>: </span><span style=color:#db9d63>false </span><span style=color:#abb2bf>}
+</span><span style=color:#abb2bf>            }
+</span><span style=color:#abb2bf>          ]
+</span><span style=color:#abb2bf>        },
+</span><span style=color:#abb2bf>        {
+</span><span style=color:#abb2bf>          test: </span><span style=color:#5ebfcc>/\.(eot</span><span style=color:#adb7c9>|</span><span style=color:#5ebfcc>ttf</span><span style=color:#adb7c9>|</span><span style=color:#5ebfcc>woff</span><span style=color:#adb7c9>|</span><span style=color:#5ebfcc>woff2)</span><span style=color:#cd74e8>$</span><span style=color:#5ebfcc>/</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>          use: [
+</span><span style=color:#abb2bf>            {
+</span><span style=color:#abb2bf>              loader: </span><span style=color:#9acc76>"file-loader"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>              options: {
+</span><span style=color:#abb2bf>                name: </span><span style=color:#eb6772>isDev </span><span style=color:#adb7c9>? </span><span style=color:#9acc76>"[path][name].[ext]" </span><span style=color:#adb7c9>: </span><span style=color:#9acc76>"static/fonts/[name].[ext]"
+</span><span style=color:#abb2bf>              }
+</span><span style=color:#abb2bf>            }
+</span><span style=color:#abb2bf>          ]
+</span><span style=color:#abb2bf>        },
+</span><span style=color:#abb2bf>        {
+</span><span style=color:#abb2bf>          test: </span><span style=color:#5ebfcc>/\.(png</span><span style=color:#adb7c9>|</span><span style=color:#5ebfcc>svg</span><span style=color:#adb7c9>|</span><span style=color:#5ebfcc>jpg</span><span style=color:#adb7c9>|</span><span style=color:#5ebfcc>gif)</span><span style=color:#cd74e8>$</span><span style=color:#5ebfcc>/</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>          use: [
+</span><span style=color:#abb2bf>            {
+</span><span style=color:#abb2bf>              loader: </span><span style=color:#9acc76>"file-loader"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>              options: {
+</span><span style=color:#abb2bf>                name: </span><span style=color:#eb6772>isDev
+</span><span style=color:#abb2bf>                  </span><span style=color:#adb7c9>? </span><span style=color:#9acc76>"[path][name].[ext]"
+</span><span style=color:#abb2bf>                  </span><span style=color:#adb7c9>: </span><span style=color:#9acc76>"static/media/[name].[contenthash:6].[ext]"
+</span><span style=color:#abb2bf>              }
+</span><span style=color:#abb2bf>            }
+</span><span style=color:#abb2bf>          ]
+</span><span style=color:#abb2bf>        }
+</span><span style=color:#abb2bf>      ]
+</span><span style=color:#abb2bf>    },
+</span><span style=color:#abb2bf>    resolve: {
+</span><span style=color:#abb2bf>      extensions: [</span><span style=color:#9acc76>".tsx"</span><span style=color:#abb2bf>, </span><span style=color:#9acc76>".ts"</span><span style=color:#abb2bf>, </span><span style=color:#9acc76>".jsx"</span><span style=color:#abb2bf>, </span><span style=color:#9acc76>".js"</span><span style=color:#abb2bf>],
+</span><span style=color:#abb2bf>      alias: {
+</span><span style=color:#abb2bf>        </span><span style=color:#9acc76>"@"</span><span style=color:#abb2bf>: </span><span style=color:#eb6772>path</span><span style=color:#abb2bf>.</span><span style=color:#5ebfcc>resolve</span><span style=color:#abb2bf>(</span><span style=color:#9acc76>"src"</span><span style=color:#abb2bf>),
+</span><span style=color:#abb2bf>        </span><span style=color:#9acc76>"@@"</span><span style=color:#abb2bf>: </span><span style=color:#eb6772>path</span><span style=color:#abb2bf>.</span><span style=color:#5ebfcc>resolve</span><span style=color:#abb2bf>()
+</span><span style=color:#abb2bf>      }
+</span><span style=color:#abb2bf>    },
+</span><span style=color:#abb2bf>    output: {
+</span><span style=color:#abb2bf>      path: </span><span style=color:#eb6772>path</span><span style=color:#abb2bf>.</span><span style=color:#5ebfcc>resolve</span><span style=color:#abb2bf>(</span><span style=color:#9acc76>"build"</span><span style=color:#abb2bf>),
+</span><span style=color:#abb2bf>      publicPath: </span><span style=color:#9acc76>"/"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>      filename: </span><span style=color:#9acc76>"static/js/main.[contenthash:6].js"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>      environment: {
+</span><span style=color:#abb2bf>        arrowFunction: </span><span style=color:#db9d63>false</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>        bigIntLiteral: </span><span style=color:#db9d63>false</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>        const: </span><span style=color:#db9d63>false</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>        destructuring: </span><span style=color:#db9d63>false</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>        dynamicImport: </span><span style=color:#db9d63>false</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>        forOf: </span><span style=color:#db9d63>false</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>        module: </span><span style=color:#db9d63>false
+</span><span style=color:#abb2bf>      }
+</span><span style=color:#abb2bf>    },
+</span><span style=color:#abb2bf>    devtool: </span><span style=color:#eb6772>isDev </span><span style=color:#adb7c9>? </span><span style=color:#9acc76>"source-map" </span><span style=color:#adb7c9>: </span><span style=color:#db9d63>false</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>    devServer: {
+</span><span style=color:#abb2bf>      contentBase: </span><span style=color:#9acc76>"public"</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>      port: </span><span style=color:#db9d63>3000</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>      hot: </span><span style=color:#db9d63>true</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>      watchContentBase: </span><span style=color:#db9d63>true</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>      historyApiFallback: </span><span style=color:#db9d63>true
+</span><span style=color:#abb2bf>    },
+</span><span style=color:#abb2bf>    plugins: </span><span style=color:#eb6772>isDev </span><span style=color:#adb7c9>? </span><span style=color:#eb6772>basePlugins </span><span style=color:#adb7c9>: </span><span style=color:#eb6772>prodPlugins</span><span style=color:#abb2bf>,
+</span><span style=color:#abb2bf>    performance: {
+</span><span style=color:#abb2bf>      maxEntrypointSize: </span><span style=color:#db9d63>800000
+</span><span style=color:#abb2bf>    }
+</span><span style=color:#abb2bf>  }
+</span><span style=color:#abb2bf>}
+</span></code></pre><li><p>Explanation</p> <p>I have explain the details of many definition in the <code>webpack.config.js</code> file in my two previous article <a href=/blog/basic-setup-webpack>setup webpack basic</a> & <a href=/blog/setup-webpack-with-typescript>setup webpack typescript</a>. In this article, I just explain the new definitions..</p> <ul><li><code>isDev</code>: We have 2 modes: <strong>development</strong> and <strong>production</strong> equivalent to dev and build. These two modes are passed through the <code>--mode</code> in the script in <code>package.json</code>.<li><code>isAnalyze</code>: To define use <code>BundleAnalyzerPlugin</code> or not<li><code>basePlugins</code>: plugins use in dev mode<li><code>CopyPlugin</code>: copy all files in <strong>public</strong> folder to <strong>build</strong> folder, except <code>index.html</code>. Because we have already plugin <code>HtmlWebpackPlugin</code> do it.<li><code>webpack.ProgressPlugin()</code> show by percentage of progress when run webpack<li><code>CompressionPlugin()</code>: compress build files to <strong>gzip</strong><li><code>prodPlugins</code>: plugins used in mode production.<li><code>plugins</code>: Contains plugins of webpack<li><code>performance.maxEntrypointSize</code>: When a build file exceeds this limit (in bytes), it will be warned on the terminal.</ul></ul><h2 id=demo-code>Demo code<a aria-label="Anchor link for: demo-code" class=zola-anchor href=#demo-code style=visibility:hidden>#</a></h2><ul><li><p>Create <code>public/index.html</code></p> <pre class=language-html data-lang=html style=color:#6c7079;background-color:#2b303b><code class=language-html data-lang=html><span style=color:#abb2bf>&LT!</span><span style=color:#cd74e8>DOCTYPE </span><span style=color:#db9d63>html</span><span style=color:#abb2bf>>
+</span><span style=color:#abb2bf><</span><span style=color:#eb6772>html </span><span style=color:#db9d63>lang</span><span style=color:#abb2bf>=</span><span style=color:#9acc76>"en"</span><span style=color:#abb2bf>>
+</span><span style=color:#abb2bf>
+</span><span style=color:#abb2bf><</span><span style=color:#eb6772>head</span><span style=color:#abb2bf>>
+</span><span style=color:#abb2bf>  <</span><span style=color:#eb6772>meta </span><span style=color:#db9d63>charset</span><span style=color:#abb2bf>=</span><span style=color:#9acc76>"UTF-8"</span><span style=color:#abb2bf>>
+</span><span style=color:#abb2bf>  <</span><span style=color:#eb6772>meta </span><span style=color:#db9d63>name</span><span style=color:#abb2bf>=</span><span style=color:#9acc76>"viewport" </span><span style=color:#db9d63>content</span><span style=color:#abb2bf>=</span><span style=color:#9acc76>"width=device-width, initial-scale=1.0"</span><span style=color:#abb2bf>>
+</span><span style=color:#abb2bf>  <</span><span style=color:#eb6772>title</span><span style=color:#abb2bf>>Webpack&LT/</span><span style=color:#eb6772>title</span><span style=color:#abb2bf>>
+</span><span style=color:#abb2bf>&LT/</span><span style=color:#eb6772>head</span><span style=color:#abb2bf>>
+</span><span style=color:#abb2bf>
+</span><span style=color:#abb2bf><</span><span style=color:#eb6772>body</span><span style=color:#abb2bf>>
+</span><span style=color:#abb2bf>  <</span><span style=color:#eb6772>div </span><span style=color:#db9d63>id</span><span style=color:#abb2bf>=</span><span style=color:#9acc76>'root'</span><span style=color:#abb2bf>>
+</span><span style=color:#abb2bf>    <</span><span style=color:#eb6772>h1</span><span style=color:#abb2bf>>Webpack React TypeScript&LT/</span><span style=color:#eb6772>h1</span><span style=color:#abb2bf>>
+</span><span style=color:#abb2bf>  &LT/</span><span style=color:#eb6772>div</span><span style=color:#abb2bf>>
+</span><span style=color:#abb2bf>&LT/</span><span style=color:#eb6772>body</span><span style=color:#abb2bf>>
+</span><span style=color:#abb2bf>
+</span><span style=color:#abb2bf>&LT/</span><span style=color:#eb6772>html</span><span style=color:#abb2bf>>
+</span></code></pre> <p>All others codes are created as a template of Webpack React TS project. Check <a rel="nofollow noreferrer" href=https://github.com/tduyng/webpack/tree/master/webpack-react-typescript>code GitHub</a> for more details.</p><li><p>Run and build project</p> <pre class=language-bash data-lang=bash style=color:#6c7079;background-color:#2b303b><code class=language-bash data-lang=bash><span style=color:#eb6772>$</span><span style=color:#abb2bf> yarn start </span><span style=color:#5f697a;font-style:italic># Run dev enviroment
+</span><span style=color:#eb6772>$</span><span style=color:#abb2bf> yarn build </span><span style=color:#5f697a;font-style:italic># Build
+</span><span style=color:#eb6772>$</span><span style=color:#abb2bf> yarn build:analyze </span><span style=color:#5f697a;font-style:italic># Build and analyze project
+</span><span style=color:#abb2bf>
+</span></code></pre> <p>We can use <code>yarn lint</code>, <code>yarn lint:fix</code>, <code>yarn prettier</code> and <code>yarn prettier:fix</code> to run the command check and fix syntax code with eslint or prettier.</p></ul><h2 id=structure-folder>Structure folder<a aria-label="Anchor link for: structure-folder" class=zola-anchor href=#structure-folder style=visibility:hidden>#</a></h2><pre style=color:#6c7079;background-color:#2b303b><code><span style=color:#abb2bf>.
+</span><span style=color:#abb2bf>├── package.json
+</span><span style=color:#abb2bf>├── public
+</span><span style=color:#abb2bf>│   ├── favicon.ico
+</span><span style=color:#abb2bf>│   ├── index.html
+</span><span style=color:#abb2bf>│   ├── logo192.png
+</span><span style=color:#abb2bf>│   ├── logo512.png
+</span><span style=color:#abb2bf>│   ├── manifest.json
+</span><span style=color:#abb2bf>│   └── robots.txt
+</span><span style=color:#abb2bf>├── README.md
+</span><span style=color:#abb2bf>├── src
+</span><span style=color:#abb2bf>│   ├── apis
+</span><span style=color:#abb2bf>│   │   ├── product.api.ts
+</span><span style=color:#abb2bf>│   │   └── user.api.ts
+</span><span style=color:#abb2bf>│   ├── App
+</span><span style=color:#abb2bf>│   │   ├── App.actions.ts
+</span><span style=color:#abb2bf>│   │   ├── App.constants.ts
+</span><span style=color:#abb2bf>│   │   ├── App.reducer.ts
+</span><span style=color:#abb2bf>│   │   └── App.tsx
+</span><span style=color:#abb2bf>│   ├── assets
+</span><span style=color:#abb2bf>│   │   ├── fonts
+</span><span style=color:#abb2bf>│   │   │   ├── OpenSans-BoldItalic.ttf
+</span><span style=color:#abb2bf>│   │   │   ├── OpenSans-Bold.ttf
+</span><span style=color:#abb2bf>│   │   │   ├── OpenSans-ExtraBoldItalic.ttf
+</span><span style=color:#abb2bf>│   │   │   ├── OpenSans-ExtraBold.ttf
+</span><span style=color:#abb2bf>│   │   │   ├── OpenSans-Italic.ttf
+</span><span style=color:#abb2bf>│   │   │   ├── OpenSans-LightItalic.ttf
+</span><span style=color:#abb2bf>│   │   │   ├── OpenSans-Light.ttf
+</span><span style=color:#abb2bf>│   │   │   ├── OpenSans-Regular.ttf
+</span><span style=color:#abb2bf>│   │   │   ├── OpenSans-SemiBoldItalic.ttf
+</span><span style=color:#abb2bf>│   │   │   └── OpenSans-SemiBold.ttf
+</span><span style=color:#abb2bf>│   │   ├── images
+</span><span style=color:#abb2bf>│   │   │   ├── home.svg
+</span><span style=color:#abb2bf>│   │   │   ├── list.svg
+</span><span style=color:#abb2bf>│   │   │   └── open-menu.svg
+</span><span style=color:#abb2bf>│   │   └── scss
+</span><span style=color:#abb2bf>│   │       └── index.scss
+</span><span style=color:#abb2bf>│   ├── components
+</span><span style=color:#abb2bf>│   │   ├── Header
+</span><span style=color:#abb2bf>│   │   │   ├── Header.styles.ts
+</span><span style=color:#abb2bf>│   │   │   └── Header.tsx
+</span><span style=color:#abb2bf>│   │   ├── Loading
+</span><span style=color:#abb2bf>│   │   │   └── Loading.tsx
+</span><span style=color:#abb2bf>│   │   └── SideNav
+</span><span style=color:#abb2bf>│   │       ├── SideNav.styles.ts
+</span><span style=color:#abb2bf>│   │       └── SideNav.tsx
+</span><span style=color:#abb2bf>│   ├── constants
+</span><span style=color:#abb2bf>│   │   ├── paths.ts
+</span><span style=color:#abb2bf>│   │   └── styles.ts
+</span><span style=color:#abb2bf>│   ├── guards
+</span><span style=color:#abb2bf>│   │   └── AuthenticatedGuard.tsx
+</span><span style=color:#abb2bf>│   ├── helpers
+</span><span style=color:#abb2bf>│   │   └── string.ts
+</span><span style=color:#abb2bf>│   ├── hooks
+</span><span style=color:#abb2bf>│   │   └── usePrevious.tsx
+</span><span style=color:#abb2bf>│   ├── index.tsx
+</span><span style=color:#abb2bf>│   ├── layouts
+</span><span style=color:#abb2bf>│   │   └── MainLayout.tsx
+</span><span style=color:#abb2bf>│   ├── logo.svg
+</span><span style=color:#abb2bf>│   ├── pages
+</span><span style=color:#abb2bf>│   │   ├── Home
+</span><span style=color:#abb2bf>│   │   │   └── Home.tsx
+</span><span style=color:#abb2bf>│   │   ├── Login
+</span><span style=color:#abb2bf>│   │   │   ├── Login.actions.ts
+</span><span style=color:#abb2bf>│   │   │   ├── Login.constants.ts
+</span><span style=color:#abb2bf>│   │   │   ├── Login.reducer.ts
+</span><span style=color:#abb2bf>│   │   │   ├── Login.styles.ts
+</span><span style=color:#abb2bf>│   │   │   ├── Login.thunks.ts
+</span><span style=color:#abb2bf>│   │   │   └── Login.tsx
+</span><span style=color:#abb2bf>│   │   └── Product
+</span><span style=color:#abb2bf>│   │       ├── ProductItem
+</span><span style=color:#abb2bf>│   │       │   ├── ProductItem.actions.ts
+</span><span style=color:#abb2bf>│   │       │   ├── ProductItem.constants.ts
+</span><span style=color:#abb2bf>│   │       │   ├── ProductItem.reducer.ts
+</span><span style=color:#abb2bf>│   │       │   ├── ProductItem.thunks.ts
+</span><span style=color:#abb2bf>│   │       │   └── ProductItem.tsx
+</span><span style=color:#abb2bf>│   │       └── ProductList
+</span><span style=color:#abb2bf>│   │           ├── ProductList.actions.ts
+</span><span style=color:#abb2bf>│   │           ├── ProductList.constants.ts
+</span><span style=color:#abb2bf>│   │           ├── ProductList.reducer.ts
+</span><span style=color:#abb2bf>│   │           ├── ProductList.styles.ts
+</span><span style=color:#abb2bf>│   │           ├── ProductList.thunks.ts
+</span><span style=color:#abb2bf>│   │           └── ProductList.tsx
+</span><span style=color:#abb2bf>│   ├── react-app-env.d.ts
+</span><span style=color:#abb2bf>│   ├── reducer
+</span><span style=color:#abb2bf>│   │   └── reducer.ts
+</span><span style=color:#abb2bf>│   ├── routes
+</span><span style=color:#abb2bf>│   │   ├── HomeRoutes.tsx
+</span><span style=color:#abb2bf>│   │   ├── LoginRoutes.tsx
+</span><span style=color:#abb2bf>│   │   ├── ProductRoutes.tsx
+</span><span style=color:#abb2bf>│   │   └── routes.tsx
+</span><span style=color:#abb2bf>│   ├── serviceWorker.ts
+</span><span style=color:#abb2bf>│   ├── setupTests.ts
+</span><span style=color:#abb2bf>│   ├── store
+</span><span style=color:#abb2bf>│   │   └── store.ts
+</span><span style=color:#abb2bf>│   └── @types
+</span><span style=color:#abb2bf>│       ├── action.d.ts
+</span><span style=color:#abb2bf>│       ├── api.d.ts
+</span><span style=color:#abb2bf>│       ├── files.d.ts
+</span><span style=color:#abb2bf>│       ├── product.d.ts
+</span><span style=color:#abb2bf>│       ├── reducer.d.ts
+</span><span style=color:#abb2bf>│       └── user.d.ts
+</span><span style=color:#abb2bf>├── tsconfig.json
+</span><span style=color:#abb2bf>├── webpack.config.js
+</span><span style=color:#abb2bf>└── yarn.lock
+</span></code></pre><hr><p>Stay tunned to keep update my next articles and understand how I use the structures project like that.<h2 id=reference>Reference<a aria-label="Anchor link for: reference" class=zola-anchor href=#reference style=visibility:hidden>#</a></h2><ul><li><a rel="nofollow noreferrer" href=https://github.com/tduyng/webpack/tree/master/webpack-react-typescript>Gihub code demo</a></ul><div class=pagination><div class=pagination__buttons><span class="button previous"> <a href=https://tduyng.com/blog/setup-webpack-with-typescript/> <span class=button__icon>←</span>  <span class=button__text>Setup Webpack TypeScript</span> </a> </span><span class="button next"> <a href=https://tduyng.com/blog/config-esling-prettier-react-app/> <span class=button__text>Config ESLint, Prettier for React App in VSCode</span>  <span class=button__icon>→</span> </a> </span></div></div></article><div class=sharing-buttons><h3>Share this post:</h3><ul class=sharing-list id=right><li><a href="https://news.ycombinator.com/submitlink?u=https://tduyng.com/blog/setup-webpack-react-typescript/&t=Setup%20Webpack%20React%20TypeScript" rel="noopener noreferrer" target=_blank> <img alt="Share on Hacker News" class=sharing-icon src=/icon/hacker-news.svg> </a><li><a href="https://www.reddit.com/submit?url=https://tduyng.com/blog/setup-webpack-react-typescript/&title=Setup%20Webpack%20React%20TypeScript" rel="noopener noreferrer" target=_blank> <img alt="Share on Reddit" class=sharing-icon src=/icon/reddit.svg> </a><li><a href="https://mastodon.social/share?url=https://tduyng.com/blog/setup-webpack-react-typescript/&text=Setup%20Webpack%20React%20TypeScript" rel="noopener noreferrer" target=_blank> <img alt="Share on Mastodon" class=sharing-icon src=/icon/mastodon.svg> </a><li><a href="https://x.com/intent/tweet?url=https://tduyng.com/blog/setup-webpack-react-typescript/&text=Setup%20Webpack%20React%20TypeScript" rel="noopener noreferrer" target=_blank> <img alt="Share on Twitter" class=sharing-icon src=/icon/x.svg> </a><li><a href="https://www.facebook.com/sharer/sharer.php?u=https://tduyng.com/blog/setup-webpack-react-typescript/" rel="noopener noreferrer" target=_blank> <img alt="Share on Facebook" class=sharing-icon src=/icon/facebook.svg> </a><li><a href="https://www.linkedin.com/shareArticle?mini=true&url=https://tduyng.com/blog/setup-webpack-react-typescript/&title=Setup%20Webpack%20React%20TypeScript" rel="noopener noreferrer" target=_blank> <img alt="Share on LinkedIn" class=sharing-icon src=/icon/linkedin.svg> </a><li><a href="mailto:?subject=Setup%20Webpack%20React%20TypeScript&body=https://tduyng.com/blog/setup-webpack-react-typescript/"> <img alt="Share via Email" class=sharing-icon src=/icon/email.svg> </a></ul></div><div class="reaction right" data-endpoint=https://reaction.tienduy-nguyen-dev.workers.dev></div></div><footer><div class=footer-menu><a class="instant fold" href=/tags>tags</a><a class="instant fold" href=/subscribe>subscribe</a><a class="instant fold" href=/contact>contact</a><a class="instant fold" href=/privacy>privacy</a></div><div class=copyright><p>©2020-2025 Duy NG</div></footer></main></div><script defer src=/js/lightense.min.js></script><script defer src=/js/main.js></script>
