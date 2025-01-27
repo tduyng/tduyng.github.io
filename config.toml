@@ -30,7 +30,7 @@ anchors = "on"
 
 name = "Duy NG"
 id = "tduyng"
-bio = "Software Engineer at Ekino, France"
+bio = "Software Engineer"
 avatar = "/img/avatar.webp"
 links = [
   { name = "GitHub", icon = "github", url = "https://github.com/tduyng" },
