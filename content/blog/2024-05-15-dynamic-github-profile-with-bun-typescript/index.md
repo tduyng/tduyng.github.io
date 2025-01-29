@@ -8,7 +8,7 @@ categories = ["DEVELOPMENT"]
 tags = ["github", "readme", "typescript"]
 
 [extra]
-comment = false
+comment = true
 reaction = true
 enjoy = true
 featured = true
@@ -56,24 +56,24 @@ The `tsconfig.json` file is also necessary for TypeScript. You can either use th
 
 ```json
 {
-  "compilerOptions": {
-    "lib": ["ESNext"],
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleDetection": "force",
-    "allowJs": true,
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "verbatimModuleSyntax": true,
-    "noEmit": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noPropertyAccessFromIndexSignature": true
-  },
-  "include": ["src/**/*.ts"]
+    "compilerOptions": {
+        "lib": ["ESNext"],
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleDetection": "force",
+        "allowJs": true,
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
+        "verbatimModuleSyntax": true,
+        "noEmit": true,
+        "strict": true,
+        "skipLibCheck": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noPropertyAccessFromIndexSignature": true
+    },
+    "include": ["src/**/*.ts"]
 }
 ```
 
@@ -89,16 +89,16 @@ Here's how my `package.json` looks:
 
 ```json
 {
-  "type": "module",
-  "scripts": {
-    "readme": "bun src/feed.ts"
-  },
-  "dependencies": {
-    "rss-parser": "^3.13.0"
-  },
-  "devDependencies": {
-    "@types/bun": "^1.1.2"
-  }
+    "type": "module",
+    "scripts": {
+        "readme": "bun src/feed.ts"
+    },
+    "dependencies": {
+        "rss-parser": "^3.13.0"
+    },
+    "devDependencies": {
+        "@types/bun": "^1.1.2"
+    }
 }
 ```
 
@@ -113,16 +113,16 @@ Don’t forget to add `node_modules` to `.gitignore`."
 I'll use `rss-parser` to fetch the feeds from `atom.xml.`
 
 ```tsx
-import { promises as fs } from "fs";
-import rssParser from "rss-parser";
+import { promises as fs } from 'fs'
+import rssParser from 'rss-parser'
 
-const DEFAULT_N = 5;
+const DEFAULT_N = 5
 
 type Entry = {
-  title?: string;
-  link?: string;
-  isoDate?: string;
-};
+    title?: string
+    link?: string
+    isoDate?: string
+}
 
 /**
  * Fetches and parses the feed from the provided URL.
@@ -130,22 +130,22 @@ type Entry = {
  * @returns {Promise<string[]>} An array of formatted feed entries.
  */
 const fetchFeed = async (url: string): Promise<string[]> => {
-  try {
-    const parser = new rssParser();
-    const response = await parser.parseURL(url);
-    let feeds = [];
+    try {
+        const parser = new rssParser()
+        const response = await parser.parseURL(url)
+        let feeds = []
 
-    for (const item of response.items) {
-      if (item.title && item.link) feeds.push(formatFeedEntry(item));
-      if (feeds.length === DEFAULT_N) break;
+        for (const item of response.items) {
+            if (item.title && item.link) feeds.push(formatFeedEntry(item))
+            if (feeds.length === DEFAULT_N) break
+        }
+
+        return feeds
+    } catch (error) {
+        console.error('Error fetching or parsing the feed:', error)
+        return []
     }
-
-    return feeds;
-  } catch (error) {
-    console.error("Error fetching or parsing the feed:", error);
-    return [];
-  }
-};
+}
 
 /**
  * Formats a feed entry into a string.
@@ -153,55 +153,55 @@ const fetchFeed = async (url: string): Promise<string[]> => {
  * @returns {string} The formatted feed entry.
  */
 const formatFeedEntry = ({ title, link, isoDate }: Entry): string => {
-  const date = isoDate ? new Date(isoDate).toISOString().slice(0, 10) : "";
-  return date ? `[${title}](${link}) - ${date}` : `[${title}](${link})`;
-};
+    const date = isoDate ? new Date(isoDate).toISOString().slice(0, 10) : ''
+    return date ? `[${title}](${link}) - ${date}` : `[${title}](${link})`
+}
 ```
 
 Parsing the URL with `rss-parser` is quite simple:
 
 ```tsx
-const parser = new rssParser();
-const response = await parser.parseURL(url);
+const parser = new rssParser()
+const response = await parser.parseURL(url)
 ```
 
 It returns a response in JSON format. Here's an example of the response:
 
 ```json
 {
-  "items": [
-    {
-      "title": "How I made my GitHub profile README dynamic",
-      "link": "https://tduyng.github.io/blog/dynamic-github-profile-readme/",
-      "pubDate": "2024-05-13T00:00:00.000Z",
-      "author": "Z",
-      "summary": "Explore the process of making your GitHub profile README dynamic with automated updates of your latest blog posts using GitHub Actions and Python scripting",
-      "id": "https://tduyng.github.io/blog/dynamic-github-profile-readme/",
-      "isoDate": "2024-05-13T00:00:00.000Z"
-    },
-    {
-      "title": "New home for my website",
-      "link": "https://tduyng.github.io/blog/new-home-for-my-website/",
-      "pubDate": "2024-05-11T00:00:00.000Z",
-      "author": "Z",
-      "summary": "Discover why I switched my website and blog from Jekyll to Zola.",
-      "id": "https://tduyng.github.io/blog/new-home-for-my-website/",
-      "isoDate": "2024-05-11T00:00:00.000Z"
-    },
-    {
-      "title": "Start a new journey",
-      "link": "https://tduyng.github.io/blog/start-a-new-journey/",
-      "pubDate": "2021-05-01T00:00:00.000Z",
-      "author": "Z",
-      "summary": "I share my journey from being a BIM engineer to becoming a full-time backend developer",
-      "id": "https://tduyng.github.io/blog/start-a-new-journey/",
-      "isoDate": "2021-05-01T00:00:00.000Z"
-    }
-  ],
-  "link": "https://tduyng.github.io/atom.xml",
-  "feedUrl": "https://tduyng.github.io/atom.xml",
-  "title": "~/Z",
-  "lastBuildDate": "2024-05-14T00:00:00+00:00"
+    "items": [
+        {
+            "title": "How I made my GitHub profile README dynamic",
+            "link": "https://tduyng.github.io/blog/dynamic-github-profile-readme/",
+            "pubDate": "2024-05-13T00:00:00.000Z",
+            "author": "Z",
+            "summary": "Explore the process of making your GitHub profile README dynamic with automated updates of your latest blog posts using GitHub Actions and Python scripting",
+            "id": "https://tduyng.github.io/blog/dynamic-github-profile-readme/",
+            "isoDate": "2024-05-13T00:00:00.000Z"
+        },
+        {
+            "title": "New home for my website",
+            "link": "https://tduyng.github.io/blog/new-home-for-my-website/",
+            "pubDate": "2024-05-11T00:00:00.000Z",
+            "author": "Z",
+            "summary": "Discover why I switched my website and blog from Jekyll to Zola.",
+            "id": "https://tduyng.github.io/blog/new-home-for-my-website/",
+            "isoDate": "2024-05-11T00:00:00.000Z"
+        },
+        {
+            "title": "Start a new journey",
+            "link": "https://tduyng.github.io/blog/start-a-new-journey/",
+            "pubDate": "2021-05-01T00:00:00.000Z",
+            "author": "Z",
+            "summary": "I share my journey from being a BIM engineer to becoming a full-time backend developer",
+            "id": "https://tduyng.github.io/blog/start-a-new-journey/",
+            "isoDate": "2021-05-01T00:00:00.000Z"
+        }
+    ],
+    "link": "https://tduyng.github.io/atom.xml",
+    "feedUrl": "https://tduyng.github.io/atom.xml",
+    "title": "~/Z",
+    "lastBuildDate": "2024-05-14T00:00:00+00:00"
 }
 ```
 
@@ -218,40 +218,40 @@ Here is the code:
 
 ```tsx
 const replaceChunk = (
-  content: string,
-  marker: string,
-  chunk: string,
-  inline: boolean = false
+    content: string,
+    marker: string,
+    chunk: string,
+    inline: boolean = false,
 ): string => {
-  const startMarker = `<!-- ${marker} start -->`;
-  const endMarker = `<!-- ${marker} end -->`;
+    const startMarker = `<!-- ${marker} start -->`
+    const endMarker = `<!-- ${marker} end -->`
 
-  const pattern = new RegExp(`${startMarker}[\\s\\S]*${endMarker}`, "g");
+    const pattern = new RegExp(`${startMarker}[\\s\\S]*${endMarker}`, 'g')
 
-  if (!inline) {
-    chunk = `\n${chunk}\n`;
-  }
+    if (!inline) {
+        chunk = `\n${chunk}\n`
+    }
 
-  return content.replace(pattern, `${startMarker}${chunk}${endMarker}`);
-};
+    return content.replace(pattern, `${startMarker}${chunk}${endMarker}`)
+}
 
 const updateReadme = async (): Promise<void> => {
-  const url = "https://tduyng.github.io/atom.xml";
-  const feeds = await fetchFeed(url);
+    const url = 'https://tduyng.github.io/atom.xml'
+    const feeds = await fetchFeed(url)
 
-  try {
-    const readmePath = `${process.cwd()}/README.md`;
-    let readmeContent = await fs.readFile(readmePath, "utf-8");
-    readmeContent = replaceChunk(readmeContent, "blog", feeds.join("\n\n"));
-    await fs.writeFile(readmePath, readmeContent, "utf-8");
-    console.log("README.md updated successfully!");
-  } catch (error) {
-    console.error("Error updating README.md:", error);
-  }
-};
+    try {
+        const readmePath = `${process.cwd()}/README.md`
+        let readmeContent = await fs.readFile(readmePath, 'utf-8')
+        readmeContent = replaceChunk(readmeContent, 'blog', feeds.join('\n\n'))
+        await fs.writeFile(readmePath, readmeContent, 'utf-8')
+        console.log('README.md updated successfully!')
+    } catch (error) {
+        console.error('Error updating README.md:', error)
+    }
+}
 
 // Since I'm using ESM syntax, I can use the top-level "await" here.
-await updateReadme();
+await updateReadme()
 ```
 
 Alright, the script is complete. You can find the full code [here](https://github.com/tduyng/tduyng/blob/bun/src/feed.ts).
@@ -264,34 +264,34 @@ It's essentially the same process as I did in [the previous article with Python]
 name: Fetch latest posts from blog for README
 
 on:
-  push:
-  workflow_dispatch:
-  schedule:
-    - cron: "0 0 * * *"
+    push:
+    workflow_dispatch:
+    schedule:
+        - cron: '0 0 * * *'
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - uses: oven-sh/setup-bun@v1
-    - uses: actions/cache@v4
-      name: Configure bun caching
-      with:
-          path: ~/.bun/install/cache
-          key: ${{ runner.os }}-${{ matrix.bun }}-bun-${{ hashFiles('**/bun.lockb') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ matrix.bun }}-bun-
-    - run: bun install
-    - run: bun run readme
-    - name: Commit and push if changed
-      run: |-
-        git diff
-        git config --global user.email "${{ vars.USER_EMAIL }}"
-        git config --global user.name "${{ vars.USER_NAME }}"
-        git add -A
-        git commit -m "chore: update blog posts" || exit 0
-        git push
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: oven-sh/setup-bun@v1
+            - uses: actions/cache@v4
+              name: Configure bun caching
+              with:
+                  path: ~/.bun/install/cache
+                  key: ${{ runner.os }}-${{ matrix.bun }}-bun-${{ hashFiles('**/bun.lockb') }}
+                  restore-keys: |
+                      ${{ runner.os }}-${{ matrix.bun }}-bun-
+            - run: bun install
+            - run: bun run readme
+            - name: Commit and push if changed
+              run: |-
+                  git diff
+                  git config --global user.email "${{ vars.USER_EMAIL }}"
+                  git config --global user.name "${{ vars.USER_NAME }}"
+                  git add -A
+                  git commit -m "chore: update blog posts" || exit 0
+                  git push
 ```
 
 In this scenario, I might not require the caching step for Bun.

@@ -80,7 +80,6 @@ back_to_top = true       # Whether to show back-to-top button on post pages
 toc = true  # Whether to show Table-Of-Contents by default
 copy = true # Whether to add a copy button on code blocks by default
 
-comment = false                                                       # Whether to show giscus comment section by default, see https://giscus.app for more info
 reaction = false                                                      # Whether to show reaction (Note: You need to set up a working api endpoint to enable reaction)
 reaction_align = "right"                                              # "left" | "center" | "right"
 reaction_endpoint = "https://reaction.tienduy-nguyen-dev.workers.dev"
@@ -101,3 +100,4 @@ not_found_error_text = "Not Found"
 not_found_recover_text = "« back to home »"
 
 enable_analytics = false
+comment = false

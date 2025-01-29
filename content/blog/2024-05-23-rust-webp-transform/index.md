@@ -9,7 +9,7 @@ categories = ["DEVELOPMENT"]
 tags = ["performance", "rust", "webp", "image-conversion", "cli"]
 
 [extra]
-comment = false
+comment = true
 reaction = true
 enjoy = true
 featured = true
@@ -26,15 +26,16 @@ I had a chance to talk with my colleague [Raphaël Tho Vo](https://github.com/th
 
 Raphaël explained that we can improve performance by using better image formats. He mentioned several modern formats like [AVIF, WebP, JPEG 2000](https://www.smashingmagazine.com/2021/09/modern-image-formats-avif-webp/). Among these, AVIF and WebP are the most supported by web browsers today.
 
-Inspired by Raphaël’s advice,  I decided to take a closer look at my website's performance. I host my site on GitHub, using [Zola](https://www.getzola.org/), a static site engine, along with the [Tabi](https://github.com/welpo/tabi) theme. This theme is beautifully designed and well-coded.
+Inspired by Raphaël’s advice, I decided to take a closer look at my website's performance. I host my site on GitHub, using [Zola](https://www.getzola.org/), a static site engine, along with the [Tabi](https://github.com/welpo/tabi) theme. This theme is beautifully designed and well-coded.
 
 I tested my website with [PageSpeed Insights](https://pagespeed.web.dev/) and got a perfect score of 100/100 in everything: Performance, Accessibility, Best Practices, and SEO.
 
 <img src="img/page_speed.webp" alt="page speed" loading="lazy"><br/>
 
-However, I noticed that I still use a lot of PNG and JPEG images. Switching to WebP could significantly decrease image sizes and improve more load times. 
+However, I noticed that I still use a lot of PNG and JPEG images. Switching to WebP could significantly decrease image sizes and improve more load times.
 
 ### Converting images to WebP with Rust
+
 How can we accomplish this?
 
 To optimise images, I had to convert them to WebP format. I chose this format because it's effective and widely supported across different web browsers. But I needed a quick way to convert multiple images to WebP and reuse it multiple times.
@@ -47,24 +48,24 @@ Now, let's coding!
 
 For this program, I used the [image](https://github.com/image-rs/image) crate for decoding and encoding images. This crate supports many different image formats:
 
-| Format   | Decoding            | Encoding                                |
-| -------- | --------------------| --------------------------------------- |
-| AVIF     | Yes (8-bit only) \* | Yes (lossy only)                        |
-| BMP      | Yes                 | Yes                                     |
-| Farbfeld | Yes                 | Yes                                     |
-| GIF      | Yes                 | Yes                                     |
-| HDR      | Yes                 | Yes                                     |
-| ICO      | Yes                 | Yes                                     |
-| JPEG     | Yes                 | Yes                                     |
-| EXR      | Yes                 | Yes                                     |
-| PNG      | Yes                 | Yes                                     |
-| PNM      | Yes                 | Yes                                     |
-| QOI      | Yes                 | Yes                                     |
-| TGA      | Yes                 | Yes                                     |
-| TIFF     | Yes                 | Yes                                     |
-| WebP     | Yes                 | Yes (lossless only)                     |
+| Format   | Decoding            | Encoding            |
+| -------- | ------------------- | ------------------- |
+| AVIF     | Yes (8-bit only) \* | Yes (lossy only)    |
+| BMP      | Yes                 | Yes                 |
+| Farbfeld | Yes                 | Yes                 |
+| GIF      | Yes                 | Yes                 |
+| HDR      | Yes                 | Yes                 |
+| ICO      | Yes                 | Yes                 |
+| JPEG     | Yes                 | Yes                 |
+| EXR      | Yes                 | Yes                 |
+| PNG      | Yes                 | Yes                 |
+| PNM      | Yes                 | Yes                 |
+| QOI      | Yes                 | Yes                 |
+| TGA      | Yes                 | Yes                 |
+| TIFF     | Yes                 | Yes                 |
+| WebP     | Yes                 | Yes (lossless only) |
 
-**To encode an image to WebP, I created a function `encode_webp`:
+\*\*To encode an image to WebP, I created a function `encode_webp`:
 
 ```rust
 use image::{DynamicImage, WebPEncoder, ExtendedColorType};
@@ -103,7 +104,7 @@ fn convert_image(input_path: &Path, output_dir: &Option<String>) -> Result<(), S
     let image = image_render
         .decode()
         .map_err(|e| format!("Failed to decode image: {}\n", e))?;
-    
+
     // Encode the image to WebP
     let webp_data = encode_webp(&image)?;
 
@@ -240,9 +241,8 @@ Now, with this program, I can quickly convert all images from my website to WebP
 Here's an example of a command-line `webp` in this tool:
 <img src="img/webp_cmd.webp" alt="webp cmd" loading="lazy">
 
-
 You can check out the full code on my GitHub repo: [imgc-rs](https://github.com/tduyng/imgc-rs).
 
-I think this project has a lot of potential. We can add a lot more features like batch processing, additional image format conversions, and more. All suggestions and contributions are welcome to make it even better. 
+I think this project has a lot of potential. We can add a lot more features like batch processing, additional image format conversions, and more. All suggestions and contributions are welcome to make it even better.
 
 Thank you for reading so far! I hope you found this article helpful and gained some new ideas. If you have any questions or suggestions, feel free to reach out.

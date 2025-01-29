@@ -9,7 +9,7 @@ categories = ["DEVELOPMENT"]
 tags = ["github-action", "profile", "readme", "dynamic", "python"]
 
 [extra]
-comment = false
+comment = true
 reaction = true
 enjoy = true
 featured = true
@@ -28,7 +28,7 @@ To do that, you simply create a repository with the same name as your GitHub use
 
 There are numerous ways to do this. Some people design their profiles using HTML and CSS because README.md files are written in markdown, which supports them. Many individuals add more [icons](https://github.com/tandpfun/skill-icons) and [badges](https://github.com/alexandresanlim/Badges4-README.md-Profile) to enhance the appearance. You can find various ideas and tools in the repository [awesome-github-profile-readme](https://github.com/abhisheknaiidu/awesome-github-profile-readme).
 
-Here are a couple of examples of cool profiles: 
+Here are a couple of examples of cool profiles:
 
 [JessicaLim8](https://github.com/JessicaLim8)
 <img src="img/profile1.webp" alt="JessicaLim8 profile" loading="lazy">
@@ -122,10 +122,10 @@ def format_entry_date(entry: Any, date_format: str = DEFAULT_DATE_FORMAT) -> str
 def replace_chunk(content, marker, chunk, inline=False):
     pattern = f"<!-- {marker} start -->.*<!-- {marker} end -->"
     r = re.compile(pattern, re.DOTALL)
-    
+
     if not inline:
         chunk = f"\n{chunk}\n"
-        
+
     return r.sub(f"<!-- {marker} start -->{chunk}<!-- {marker} end -->", content)
 
 
@@ -143,6 +143,7 @@ if __name__ == "__main__":
 The script fetches data from the `atom.xml` feed on my blog and retrieves the five latest posts.
 
 Here is an example of the result of the python script:
+
 ```markdown
 [How I made my GitHub profile README dynamic](https://tduyng.github.io/blog/dynamic-github-profile-readme/) - 2024-05-13
 
@@ -161,6 +162,7 @@ Then the result will be inserted between the following sections in my README:
 <!-- blog start -->
 <!-- blog end -->
 ```
+
 To ensure the script functions properly, we should include that comment in our README.md file (before running the script).
 
 You can find the complete source code for [this script](https://github.com/tduyng/tduyng/blob/master/feed.py) in my profile repository.
@@ -171,41 +173,40 @@ Integrating it with GitHub Actions is quite simple:
 name: Fetch latest posts from blog for README
 
 on:
-  push:
-  workflow_dispatch:
-  schedule:
-    - cron: "0 0 * * *" # 00:00 AM every day
+    push:
+    workflow_dispatch:
+    schedule:
+        - cron: '0 0 * * *' # 00:00 AM every day
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-python@v5
-      with:
-        python-version: '3.12'
-    - uses: actions/cache@v4
-      name: Configure pip caching
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
-    - name: Install Python dependencies
-      run: |
-        python -m pip install -r requirements.txt
-    - name: Update README
-      run: |-
-        python feed.py
-    - name: Commit and push if changed
-      run: |-
-        git diff
-        git config --global user.email "${{ vars.USER_EMAIL }}"
-        git config --global user.name "${{ vars.USER_NAME }}"
-        git add -A
-        git commit -m "chore: update blog posts" || exit 0
-        git push
-
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-python@v5
+              with:
+                  python-version: '3.12'
+            - uses: actions/cache@v4
+              name: Configure pip caching
+              with:
+                  path: ~/.cache/pip
+                  key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+                  restore-keys: |
+                      ${{ runner.os }}-pip-
+            - name: Install Python dependencies
+              run: |
+                  python -m pip install -r requirements.txt
+            - name: Update README
+              run: |-
+                  python feed.py
+            - name: Commit and push if changed
+              run: |-
+                  git diff
+                  git config --global user.email "${{ vars.USER_EMAIL }}"
+                  git config --global user.name "${{ vars.USER_NAME }}"
+                  git add -A
+                  git commit -m "chore: update blog posts" || exit 0
+                  git push
 ```
 
 To ensure your information remains secure, you can set `USER_EMAIL` and `USER_NAME` in the repository environment. After checking the differences for the latest posts, if there are any, GitHub Actions will then create a new commit and update your GitHub account's main/master branch.

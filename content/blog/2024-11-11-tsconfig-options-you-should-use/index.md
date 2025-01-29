@@ -8,7 +8,7 @@ categories = ["DEVELOPMENT"]
 tags = ["typescript", "tsconfig", "best-practices"]
 
 [extra]
-comment = false
+comment = true
 reaction = true
 featured = true
 enjoy = true
@@ -20,7 +20,9 @@ img = "img/tsconfig.webp"
 The `tsconfig.json` file in TypeScript is more than just a list of settings. It's a tool to manage how your code behaves, how secure it is, and how well it works with other systems. Whether you're an experienced TypeScript user or new to the language, understanding these configuration options will help you build a strong, efficient, and easy-to-maintain codebase.
 
 ## TL;DR
+
 Here’s a quick look at recommended best-practice settings for your `tsconfig.json`. These options will help improve build speed, enforce code safety, enhance debugging, and ensure compatibility:
+
 ```json
 {
     "compilerOptions": {
@@ -57,9 +59,10 @@ Here’s a quick look at recommended best-practice settings for your `tsconfig.
 The `tsconfig.json` file is a key part of any TypeScript project. It tells the compiler how to turn your TypeScript code into JavaScript. By setting up this file, you can control things like how strict the error checks are and what format the output should be in. This is important for managing real-world production issues effectively.
 
 ### 1. Performance boosters: options for faster compilation
+
 **`incremental: true`**
 
-> *“Only recompile what has changed.”*
+> _“Only recompile what has changed.”_
 
 The `incremental` option is ideal for large codebases or iterative projects where only a portion of code changes between builds. When enabled, TypeScript caches the previous build, allowing it to skip recompilation for unchanged files, saving time.
 
@@ -69,7 +72,7 @@ The `incremental` option is ideal for large codebases or iterative projects wher
 
 **`strict: true`**
 
-> *“Enable all strict type-checking options for enhanced code reliability. A TypeScript best practice.”*
+> _“Enable all strict type-checking options for enhanced code reliability. A TypeScript best practice.”_
 
 Setting `"strict": true` enables TypeScript’s full range of type-checking features, designed to catch potential bugs and edge cases early. This comprehensive flag is essentially a shortcut that enables several other critical options:
 
@@ -84,19 +87,21 @@ Setting `"strict": true` enables TypeScript’s full range of type-checking fe
 
 **`noUncheckedIndexedAccess: true`**
 
-> *“Protect against undefined values in object lookups.”*
+> _“Protect against undefined values in object lookups.”_
 
 This option is great for when you want an extra layer of safety when accessing object properties dynamically. When enabled, it checks that any indexed access types are not undefined, helping avoid runtime errors.
 
 ### 3. Output management: options for organizing build files
 
-**`rootDir: "src"`**  
-> *“Specifies the directory of input files.”*
+**`rootDir: "src"`**
+
+> _“Specifies the directory of input files.”_
 
 This option points to the source files directory, which can help keep your project clean by organizing files logically. By setting `rootDir`, you ensure that the compiler knows where to find the source files it needs to build.
 
 **`outDir: "./build"`**
-> *“Defines the output directory for compiled JavaScript files.”*
+
+> _“Defines the output directory for compiled JavaScript files.”_
 
 This is where TypeScript will output compiled files. Specifying an `outDir` is crucial for keeping your source files (`src/`) separate from generated JavaScript, making it easier to manage and clean up builds.
 
@@ -104,70 +109,79 @@ This is where TypeScript will output compiled files. Specifying an `outDir` is c
 
 ### 4. Compatibility controls: options for cross-platform and module compatibility
 
-**`target: "es6"`**  
-> *“Sets the ECMAScript version for the output.”*
+**`target: "es6"`**
+
+> _“Sets the ECMAScript version for the output.”_
 
 TypeScript compiles code to various JavaScript versions, but which version depends on your environment. Setting `target` to `es6` is typically ideal for modern applications since it supports async/await and many new JavaScript features while still being compatible with most browsers and Node.js environments.
 
 **`module: "NodeNext"`**
-> *“Defines the module system, such as CommonJS, ESNext, or NodeNext.”*
+
+> _“Defines the module system, such as CommonJS, ESNext, or NodeNext.”_
 
 With NodeNext, you can use ES modules alongside TypeScript. This is especially useful if you’re working with libraries or Node.js modules in the latest format. For projects targeting other environments, consider `commonjs` or `esnext` depending on the requirements.
 
 ### 5. Debugging and testing: options for a better development experience
 
 **`sourceMap: true`**
-> *“Generates source maps to assist with debugging.”*
+
+> _“Generates source maps to assist with debugging.”_
 
 Source maps map your TypeScript to the output JavaScript, making debugging in tools like Vscode debug, Chrome DevTools much easier. Without source maps, debugging is cumbersome since errors trace back to the generated JavaScript, not the original TypeScript code.
 
 **`skipLibCheck: true`**
-> *“Skip type-checking for third-party libraries.”*
+
+> _“Skip type-checking for third-party libraries.”_
 
 If you use many third-party libraries, setting `skipLibCheck` to true can reduce the type-checking workload. This can speed up your build process without compromising your code’s safety since it’s assumed libraries are already well-tested.
 
 ### 6. Code quality enforcements: options for cleaner, more predictable code
 
 **`noUnusedParameters` and `noUnusedLocals: false`**
-> *“Checks for unused parameters and variables.”*
+
+> _“Checks for unused parameters and variables.”_
 
 These options raise warnings for unused variables and parameters. It’s good practice to enable these for cleaner code, though occasionally setting them to false is helpful during refactoring or experimentation phases.
 
 **`noImplicitOverride: true`**
-> *“Ensures that methods overriding superclass methods explicitly use the `override` keyword.”*
+
+> _“Ensures that methods overriding superclass methods explicitly use the `override` keyword.”_
 
 With `noImplicitOverride`, any overridden method must use the `override` keyword, making your code more readable and easier to debug, especially in large projects.
 
 ### 7. Module and JSON compatibility: options for better Interoperability
 
 **`esModuleInterop: true`**
-> *“Allows default imports from CommonJS modules.”*
+
+> _“Allows default imports from CommonJS modules.”_
 
 In TypeScript, some modules need interop handling between ES modules and CommonJS. With `esModuleInterop`, you can cleanly import default exports from CommonJS modules, making it easier to integrate libraries.
 
 **`resolveJsonModule: true`**
-> *“Enables importing JSON files as modules.”*
+
+> _“Enables importing JSON files as modules.”_
 
 Importing JSON files is often needed for configuration, localization, or mock data. By enabling `resolveJsonModule`, you can import JSON directly, with TypeScript automatically typing it as `any`.
-
 
 ### 8. Case sensitivity and cross-platform stability
 
 **`forceConsistentCasingInFileNames: true`**
-> *“Prevents issues from inconsistent file naming, which can break cross-platform compatibility.”*
+
+> _“Prevents issues from inconsistent file naming, which can break cross-platform compatibility.”_
 
 This option ensures case-sensitive file paths across platforms, preventing subtle bugs and cross-platform issues, especially between Unix and Windows.
-
 
 ### 9. Preventing common mistakes: safety checks and fallthrough cases
 
 **`allowUnreachableCode: false`**
-> *“Raises errors for unreachable code.”*
+
+> _“Raises errors for unreachable code.”_
 
 Set `allowUnreachableCode` to false to prevent unreachable code from sneaking into production, ensuring cleaner and more intentional code paths.
 
 **`noFallthroughCasesInSwitch: true`**
-> *“Raises errors for fall-through cases in switch statements.”*
+
+> _“Raises errors for fall-through cases in switch statements.”_
 
 This option prevents unexpected behavior in `switch` statements by enforcing an error if a `case` falls through without an explicit `break`, `return`, or `throw`.
 
@@ -176,4 +190,5 @@ This option prevents unexpected behavior in `switch` statements by enforcing an 
 Understanding the options in `tsconfig.json` can greatly enhance your TypeScript development by speeding up builds, organizing output, improving code quality, and making debugging easier. Master these settings to customize your TypeScript projects effectively, producing code that is efficient, easy to maintain, and secure.
 
 ---
+
 Article also published at [medium.com/tduyng](https://medium.com/p/3187af924221).

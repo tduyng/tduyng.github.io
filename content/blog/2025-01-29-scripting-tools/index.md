@@ -8,7 +8,7 @@ categories = ["DEVELOPMENT"]
 tags = ["scripting", "makefile", "nodejs", "typescript", "shell"]
 
 [extra]
-comment = false
+comment = true
 reaction = true
 enjoy = true
 outdate_alert = true

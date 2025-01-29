@@ -9,7 +9,7 @@ categories = ["DEVELOPMENT"]
 tags = ["esm", "dual-package", "typescript", "commonjs"]
 
 [extra]
-comment = false
+comment = true
 reaction = true
 img = "img/dual-package.webp"
 outdate_alert = true
@@ -20,9 +20,10 @@ JavaScript is evolving rapidly. [Now, it’s really important for libraries to 
 
 In this article, we’ll guide you through an easy and practical approach to handle dual-package support. That means more people can use your library, and it’s easier for them to do so.
 
-
 ## TL;DR
+
 **Create a dual-package TypeScript library supporting both ESM and CommonJS**:
+
 - [Understand the different of Javascript file extensions: `.js`, `.mjs`, `.cjs`](#understanding-javascript-file-extensions)
 - [Use only the `.js` extension for both esm and cjs outputs after compilation](#selected-solution-using-js-for-simplifying)
 - Write source code Typescript in ESM
@@ -56,7 +57,7 @@ Based on my experiences, developers often choose to use `.js` for writing both
 
 **Here are some examples of how different libraries handle this:**
 
-- [axios](https://github.com/axios/axios): A tool for making HTTP requests in Node.js and the browser. They use `.js` for ESM and `.cjs` for CJS. They don’t have a build step because they write code in JS with the `.d.ts_** files included.
+- [axios](https://github.com/axios/axios): A tool for making HTTP requests in Node.js and the browser. They use `.js` for ESM and `.cjs` for CJS. They don’t have a build step because they write code in JS with the `.d.ts\_\*\* files included.
 - [helmet](https://github.com/helmetjs/helmet): A tool for securing HTTP headers in Node.js. They use [rollup](https://github.com/rollup/rollup) to manage the build process, picking `.cjs` for CJS and `.mjs` for ESM.
 - [zod](https://github.com/colinhacks/zod): A validation library for TypeScript. They write code in TypeScript CJS, also using `rollup` to build ESM with `.mjs` extension. They use TSC to build CJS with `.js` extension.
 - [cucumber](https://github.com/cucumber/cucumber-js): A tool for writing tests with Gherkin syntax, we used it a lot for integration tests in our projects. They write code in TypeScript in CJS and use `.mjs` for ESM. They use TSC and have their own rules for building both CJS and ESM.
@@ -64,17 +65,17 @@ Based on my experiences, developers often choose to use `.js` for writing both
 Let’s look at the following example to understand this better:
 
 ```typescript
-// example.ts   
-// Importing with .cjs extension   
-import { stringify } from './output_utils.cjs'   
-import { LogColor, Log, LogLevel, Output } from './index.cjs'   
-  
-// Importing with .mjs extension   
-import {stringify} from './output_utils.mjs'   
-import { LogColor, Log, LogLevel, Output } from './index.mjs'   
-    
-// Importing with .js extension   
-import {stringify} from './output_utils.js'   
+// example.ts
+// Importing with .cjs extension
+import { stringify } from './output_utils.cjs'
+import { LogColor, Log, LogLevel, Output } from './index.cjs'
+
+// Importing with .mjs extension
+import { stringify } from './output_utils.mjs'
+import { LogColor, Log, LogLevel, Output } from './index.mjs'
+
+// Importing with .js extension
+import { stringify } from './output_utils.js'
 import { LogColor, Log, LogLevel, Output } from './index.js'
 ```
 
@@ -106,19 +107,19 @@ Now, let’s explore a practical example of how to configure your project for du
 ### Modifying package.json
 
 ```json
-"type": "module",   
-"files": ["/lib"],   
-"exports": {   
-    ".": {   
-        "require": {   
-            "default": "./lib/cjs/index.js",   
-            "types": "./lib/cjs/index.d.ts"   
-        },   
-        "import": {   
-            "default": "./lib/esm/index.js",   
-            "types": "./lib/esm/index.d.ts"   
-        }   
-    }   
+"type": "module",
+"files": ["/lib"],
+"exports": {
+    ".": {
+        "require": {
+            "default": "./lib/cjs/index.js",
+            "types": "./lib/cjs/index.d.ts"
+        },
+        "import": {
+            "default": "./lib/esm/index.js",
+            "types": "./lib/esm/index.d.ts"
+        }
+    }
 }
 ```
 
@@ -130,39 +131,39 @@ To set up this configuration, ensure that both the ESM and CJS folders (`lib/esm
 First, adjust your `tsconfig.json` file by setting the `module` option to `“nodenext”`:
 
 ```json
-{   
-    "compilerOptions": {   
-        "incremental": true,   
-        "noImplicitAny": true,   
-        "allowJs": true,   
-        "target": "esnext",   
-        "lib": ["esnext","dom"],   
-        "module": "nodenext",   
-        "alwaysStrict": true,   
-        "skipLibCheck": true,   
-        "noUnusedParameters": false,   
-        "noUnusedLocals": false,   
-        "strictNullChecks": true,   
-        "noUncheckedIndexedAccess": true,   
-        "esModuleInterop": true,   
-        "allowSyntheticDefaultImports": true,   
-        "forceConsistentCasingInFileNames": true,   
-        "typeRoots": ["./node_modules/@types", "./@types"],   
-    },   
-    "include": ["src/**/*", "test/**/*.ts"]   
+{
+    "compilerOptions": {
+        "incremental": true,
+        "noImplicitAny": true,
+        "allowJs": true,
+        "target": "esnext",
+        "lib": ["esnext", "dom"],
+        "module": "nodenext",
+        "alwaysStrict": true,
+        "skipLibCheck": true,
+        "noUnusedParameters": false,
+        "noUnusedLocals": false,
+        "strictNullChecks": true,
+        "noUncheckedIndexedAccess": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
+        "typeRoots": ["./node_modules/@types", "./@types"]
+    },
+    "include": ["src/**/*", "test/**/*.ts"]
 }
 ```
 
 This configuration is well-suited for managing TypeScript code within your project, including test files. To handle compilation specifically for npm packages, create a separate `tsconfig.lib.json` file that extends the original configuration:
 
 ```json
-{   
-    "extends": "./tsconfig.json",   
-    "include": ["src/**/*.ts"],   
-    "compilerOptions": {   
-        "sourceMap": true,   
-        "declaration": true   
-    }   
+{
+    "extends": "./tsconfig.json",
+    "include": ["src/**/*.ts"],
+    "compilerOptions": {
+        "sourceMap": true,
+        "declaration": true
+    }
 }
 ```
 
@@ -174,20 +175,20 @@ There are various methods and tools available for scripting compilation tasks. B
 
 ```javascript
 // build.mjs
-#!/usr/bin/env zx   
-import { $, chalk } from 'zx'   
-   
-try {   
-    await `rm -rf lib`   
-    await $`npx tsc -p tsconfig.lib.json --module NodeNext --outDir lib/esm`   
-    await $`echo '{"type": "module"}' > lib/esm/package.json`   
-   
-    await $`npx tsc -p tsconfig.lib.json --module CommonJS --moduleResolution Node --outDir lib/cjs`   
-    await $`echo '{"type": "commonjs"}' > lib/cjs/package.json`   
-   
-    console.log(chalk.green('Compilation successful'))   
-} catch (error) {   
-    console.error(chalk.red('Compilation failed:'), chalk.red(error.message))   
+#!/usr/bin/env zx
+import { $, chalk } from 'zx'
+
+try {
+    await `rm -rf lib`
+    await $`npx tsc -p tsconfig.lib.json --module NodeNext --outDir lib/esm`
+    await $`echo '{"type": "module"}' > lib/esm/package.json`
+
+    await $`npx tsc -p tsconfig.lib.json --module CommonJS --moduleResolution Node --outDir lib/cjs`
+    await $`echo '{"type": "commonjs"}' > lib/cjs/package.json`
+
+    console.log(chalk.green('Compilation successful'))
+} catch (error) {
+    console.error(chalk.red('Compilation failed:'), chalk.red(error.message))
 }
 ```
 
@@ -273,61 +274,61 @@ If you like using a quick build tool like `esbuild` (I really do!).
 For now, `esbuild` doesn’t support glob pattern, so we need to use the library like [fast-glob](https://github.com/mrmlnc/fast-glob) to handle that part. This makes the code a bit more complex compared to using `TSC`, but the speed boost you get from esbuild is totally worth it. Here are the scripts.
 
 ```javascript
-#!/usr/bin/env zx   
-import { $, chalk } from 'zx'   
-import esbuild from 'esbuild'   
-import fg from 'fast-glob'   
-  
-const entryPoints = fg.sync(['src/**/*.[tj]s'])   
-  
-const buildESM = async () => {   
-    try {   
-        await esbuild.build({   
-            entryPoints,   
-            outdir: 'lib/esm',   
-            platform: 'node',   
-            sourcemap: true,   
-            target: 'esnext',   
-            format: 'esm',   
-        })   
-  
-        await $`echo '{"type": "module"}' > lib/esm/package.json`   
-        console.log(chalk.green('ESM compilation successful'))   
-    } catch (error) {   
-        console.error(chalk.red('ESM compilation failed:'), chalk.red(error.message))   
-    }   
-}   
-  
-const buildCJS = async () => {   
-    try {   
-        await esbuild.build({   
-            entryPoints,   
-            outdir: 'lib/cjs',   
-            platform: 'node',   
-            sourcemap: true,   
-            target: 'esnext',   
-            format: 'cjs',   
-        })   
-  
-        await $`echo '{"type": "commonjs"}' > lib/cjs/package.json`   
-        console.log(chalk.green('CJS compilation successful'))   
-    } catch (error) {   
-        console.error(chalk.red('CJS compilation failed:'), chalk.red(error.message))   
-    }   
-}   
-  
-  
-try {   
-    await $`rm -rf lib`   
-    await $`npx tsc --declaration --emitDeclarationOnly --outDir lib/esm`   
-    await buildESM()   
-    await $`npx tsc --declaration --emitDeclarationOnly --outDir lib/cjs`   
-    await buildCJS()   
-    console.log(chalk.green('Overall compilation successful'))   
-} catch (error) {   
-    console.error(chalk.red('Overall compilation failed:'), chalk.red(error.message))   
+#!/usr/bin/env zx
+import { $, chalk } from 'zx'
+import esbuild from 'esbuild'
+import fg from 'fast-glob'
+
+const entryPoints = fg.sync(['src/**/*.[tj]s'])
+
+const buildESM = async () => {
+    try {
+        await esbuild.build({
+            entryPoints,
+            outdir: 'lib/esm',
+            platform: 'node',
+            sourcemap: true,
+            target: 'esnext',
+            format: 'esm',
+        })
+
+        await $`echo '{"type": "module"}' > lib/esm/package.json`
+        console.log(chalk.green('ESM compilation successful'))
+    } catch (error) {
+        console.error(chalk.red('ESM compilation failed:'), chalk.red(error.message))
+    }
+}
+
+const buildCJS = async () => {
+    try {
+        await esbuild.build({
+            entryPoints,
+            outdir: 'lib/cjs',
+            platform: 'node',
+            sourcemap: true,
+            target: 'esnext',
+            format: 'cjs',
+        })
+
+        await $`echo '{"type": "commonjs"}' > lib/cjs/package.json`
+        console.log(chalk.green('CJS compilation successful'))
+    } catch (error) {
+        console.error(chalk.red('CJS compilation failed:'), chalk.red(error.message))
+    }
+}
+
+try {
+    await $`rm -rf lib`
+    await $`npx tsc --declaration --emitDeclarationOnly --outDir lib/esm`
+    await buildESM()
+    await $`npx tsc --declaration --emitDeclarationOnly --outDir lib/cjs`
+    await buildCJS()
+    console.log(chalk.green('Overall compilation successful'))
+} catch (error) {
+    console.error(chalk.red('Overall compilation failed:'), chalk.red(error.message))
 }
 ```
 
 ---
+
 Article originally published at [medium.com/tduyng](https://medium.com/p/b5feabac1357) on 14 June, 2024
