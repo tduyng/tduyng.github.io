@@ -1,6 +1,9 @@
 +++
 title = "[Microblog] Git Checkout vs. Git Switch"
 date = 2025-01-15T20:00:00
+
+[extra]
+comment = true
 +++
 
 # Git Checkout vs. Git Switch

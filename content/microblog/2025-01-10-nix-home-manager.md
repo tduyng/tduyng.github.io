@@ -1,6 +1,9 @@
 +++
 title = "[Microblog] First attempt at migrating from Homebrew to Nix with Nix Home Manager"
 date = 2025-01-10T20:09:30
+
+[extra]
+comment = true
 +++
 
 # First attempt at migrating from Homebrew to Nix with Nix Home Manager

@@ -1,6 +1,9 @@
 +++
 title = "[Microblog] Run Github actions locally"
 date = 2025-01-12
+
+[extra]
+comment = true
 +++
 
 # Run Github actions locally

@@ -1,6 +1,9 @@
 +++
 title = "[Microblog] Update all Git submodules to latest commit"
 date = 2025-01-13
+
+[extra]
+comment = true
 +++
 
 # Update all Git submodules to the latest commit

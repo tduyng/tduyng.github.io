@@ -1,3 +1,5 @@
+{% import 'macros/math.html' as macro_math -%}
+
 {% extends "_base.html" %}
 {% block page %}blog{% endblock page%}
 {% block lang %}{% if section.extra.lang %}{{ section.extra.lang }}{% else %}{{ section.lang }}{% endif %}{% endblock lang %}
@@ -5,6 +7,13 @@
 {% block desc %}
   <meta name="description" content="{{ section.description }}">
 {% endblock desc %}
+
+
+{% block head %}
+{% if section.extra.math %}
+  {{ macro_math::math_render(style = section.extra.math) }}
+{% endif %}
+{% endblock head %}
 
 <!--Start blog content-->
 {% block content %}
@@ -45,4 +54,11 @@
         entries.forEach((entry) => observer.observe(entry))
     })
 </script>
+<script src="/js/lightense.min.js" defer></script>
+{% if section.extra.mermaid %}
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
+{% endif %}
 {% endblock script %}

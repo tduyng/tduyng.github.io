@@ -1,6 +1,9 @@
 +++
 title = "[Microblog] Run a command if there are unstaged changes"
 date = 2025-01-17
+
+[extra]
+comment = true
 +++
 
 # Run a command if there are unstaged changes

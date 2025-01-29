@@ -1,6 +1,9 @@
 +++
 title = "[Microblog] Display all Makefile commands" 
 date = 2025-01-22
+
+[extra]
+comment = true
 +++
 
 # Display all Makefiles commands

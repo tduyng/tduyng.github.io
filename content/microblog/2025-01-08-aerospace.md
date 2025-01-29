@@ -1,6 +1,9 @@
 +++
 title = "[Microblog] Tilting window management on macOS with aerospace"
 date = 2025-01-08T22:00:00
+
+[extra]
+comment = true
 +++
 
 # Tiling window management on macOS with `aerospace`

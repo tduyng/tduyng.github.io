@@ -1,6 +1,9 @@
 +++
 title = "[Microblog] Git Reset vs. Git Restore"
 date = 2025-01-15
+
+[extra]
+comment = true
 +++
 
 # Git Reset vs. Git Restore

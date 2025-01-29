@@ -1,6 +1,6 @@
 +++
 title = "Scripting tools - A Node.js friendly alternative to makefile"
-description = "Scripting tools - A Node.js friendly solution to replace makefile"
+description = "Using execa and commander is an alternative that can be considered for replacing makefile in a Node.js project"
 date = 2025-01-29
 
 [taxonomies]

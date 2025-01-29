@@ -1,6 +1,9 @@
 +++
 title = "[Microblog] Ingore all .DS_store files globally"
 date = 2025-01-14
+
+[extra]
+comment = true
 +++
 
 # Ignore all `.DS_Store` files globally

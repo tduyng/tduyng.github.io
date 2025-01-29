@@ -1,6 +1,9 @@
 +++
 title = "[Microblog] Display colors in Makefile"
 date = 2025-01-23
+
+[extra]
+comment = true
 +++
 
 # Display colors in Makefile

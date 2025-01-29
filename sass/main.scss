@@ -539,7 +539,10 @@ body.prose-page {
 
         border-bottom: 1.5px solid transparent;
 
-        transition: border-bottom-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+        transition:
+            border-bottom-color 0.3s ease,
+            background-color 0.3s ease,
+            transform 0.3s ease;
 
         &:hover {
             background-color: var(--primary-pale-color);
@@ -676,7 +679,9 @@ body.homepage {
             line-height: 1.5;
             text-decoration: none;
             color: var(--text-color);
-            transition: border-bottom-color 0.3s ease, color 0.3s ease;
+            transition:
+                border-bottom-color 0.3s ease,
+                color 0.3s ease;
         }
 
         #left a:hover {
@@ -701,7 +706,9 @@ body.homepage {
             background-color: transparent;
             border: none;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition:
+                background-color 0.3s ease,
+                transform 0.3s ease;
         }
 
         #right a:hover,
@@ -772,7 +779,9 @@ body.homepage {
                 a {
                     color: var(--primary-color);
                     text-decoration: none;
-                    transition: border-bottom-color 0.3s ease, background-color 0.3s ease,
+                    transition:
+                        border-bottom-color 0.3s ease,
+                        background-color 0.3s ease,
                         color 0.3s ease;
                     border-bottom: 1.5px solid transparent;
                 }
@@ -835,7 +844,9 @@ body.homepage {
             border-bottom: 1.5px solid var(--primary-color);
             padding-bottom: 2px;
             position: relative;
-            transition: color 0.3s ease, border-color 0.3s ease;
+            transition:
+                color 0.3s ease,
+                border-color 0.3s ease;
 
             &:hover {
                 color: var(--primary-color);
@@ -1057,7 +1068,9 @@ footer {
     padding: 0.2em 0.5em;
     border-radius: 4px;
     border-bottom: 1.5px solid transparent;
-    transition: border-bottom-color 0.3s ease, background-color 0.3s ease;
+    transition:
+        border-bottom-color 0.3s ease,
+        background-color 0.3s ease;
 }
 
 .footer-menu a:hover {
@@ -1211,7 +1224,9 @@ body.post {
             padding: 0.2em 0.5em;
             border-radius: 4px;
             border-bottom: 1.5px solid transparent;
-            transition: border-bottom-color 0.3s ease, background-color 0.3s ease;
+            transition:
+                border-bottom-color 0.3s ease,
+                background-color 0.3s ease;
         }
 
         #tags a span {
@@ -1333,7 +1348,9 @@ body.post {
             flex-direction: column;
             align-items: center;
             color: var(--text-pale-color);
-            transition: transform 0.2s, color 0.2s;
+            transition:
+                transform 0.2s,
+                color 0.2s;
             transform: translateY(10px) scale(0);
         }
 
@@ -1974,7 +1991,9 @@ template {
     height: var(--icon-size);
     background-color: var(--text-pale-color);
     border-radius: 4px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        transform 0.3s ease;
 }
 
 .sharing-list a {
@@ -1983,7 +2002,9 @@ template {
     padding: 0.2em 0.5em;
     border-radius: 4px;
     border-bottom: 1.5px solid transparent;
-    transition: border-bottom-color 0.3s ease, background-color 0.3s ease;
+    transition:
+        border-bottom-color 0.3s ease,
+        background-color 0.3s ease;
     text-decoration: none;
     color: var(--text-pale-color);
 }
@@ -2019,10 +2040,6 @@ template {
     main {
         margin: 0;
     }
-
-    main.micropost {
-        margin: 30px 0;
-    }
 }
 
 .microblog {
@@ -2050,7 +2067,10 @@ template {
         .microblog-entry {
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+            transition:
+                opacity 0.6s ease,
+                transform 0.6s ease,
+                box-shadow 0.3s ease;
 
             &.visible {
                 opacity: 1;

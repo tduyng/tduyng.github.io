@@ -1,6 +1,9 @@
 +++
 title = "[Microblog] List all files tracked by Git"
 date = 2025-01-16
+
+[extra]
+comment = true
 +++
 
 # List all files tracked by Git
