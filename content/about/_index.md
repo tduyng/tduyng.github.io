@@ -39,5 +39,5 @@ Here's what he works with:
 Read more of his tech stories on his:
 
 - [blog](/blog)
-- [microblog](/microblog)
+- [notes](/notes)
 - [tduyng.medium.com](https://tduyng.medium.com)

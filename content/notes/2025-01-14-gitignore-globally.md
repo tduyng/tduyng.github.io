@@ -1,5 +1,5 @@
 +++
-title = "[Microblog] Ingore all .DS_store files globally"
+title = "[Note] Ingore all .DS_store files globally"
 date = 2025-01-14
 
 [extra]

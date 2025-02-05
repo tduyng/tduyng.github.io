@@ -2028,7 +2028,7 @@ template {
 
 /* Microblog
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-#wrapper-microblog {
+#wrapper-notes {
     margin: 0 auto;
     font-size: 1em;
     line-height: 1.6;
@@ -2042,7 +2042,7 @@ template {
     }
 }
 
-.microblog {
+.notes {
     margin: 0 auto;
     padding: 10px;
 
@@ -2059,12 +2059,12 @@ template {
         text-align: left;
     }
 
-    .microblog-entries {
+    .notes-entries {
         display: flex;
         flex-direction: column;
         gap: 40px;
 
-        .microblog-entry {
+        .notes-entry {
             opacity: 0;
             transform: translateY(20px);
             transition:

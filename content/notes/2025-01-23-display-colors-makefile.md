@@ -1,5 +1,5 @@
 +++
-title = "[Microblog] Display colors in Makefile"
+title = "[Note] Display colors in Makefile"
 date = 2025-01-23
 
 [extra]
@@ -8,7 +8,7 @@ comment = true
 
 # Display colors in Makefile
 
-In a previous [micropost](/microblog/make-display-helper), I shared how to create a `help` command in a Makefile.
+In a previous [micropost](/notes/make-display-helper), I shared how to create a `help` command in a Makefile.
 
 This time, let’s make it visually appealing by adding colors to the output.
 

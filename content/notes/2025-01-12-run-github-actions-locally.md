@@ -1,5 +1,5 @@
 +++
-title = "[Microblog] Run Github actions locally"
+title = "[Note] Run Github actions locally"
 date = 2025-01-12
 
 [extra]

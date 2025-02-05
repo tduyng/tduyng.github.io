@@ -1,5 +1,5 @@
 +++
-title = "[Microblog] Returning to Neovim for Coding"
+title = "[Note] Returning to Neovim for Coding"
 date = 2025-01-03T15:00:00
 
 [extra]

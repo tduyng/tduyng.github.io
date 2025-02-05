@@ -19,12 +19,12 @@
 {% block content %}
 {% include "_header.html" %}
 
-<div id="wrapper-microblog">
-    <main class="prose microblog">
+<div id="wrapper-notes">
+    <main class="prose notes">
         <p>{{ section.description }}</p>
-        <div class="microblog-entries">
+        <div class="notes-entries">
             {% for page in section.pages %}
-            <div class="microblog-entry lazy-entry">
+            <div class="notes-entry lazy-entry">
                 <div class="thought-content">
                     {{ page.content | safe }}
                     <p class="timestamp">

@@ -1,5 +1,5 @@
 +++
-title = "[Microblog] Managing multiple Git accounts"
+title = "[Note] Managing multiple Git accounts"
 date = 2025-01-19
 
 [extra]

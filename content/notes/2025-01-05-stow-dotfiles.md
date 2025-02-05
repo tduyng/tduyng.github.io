@@ -1,5 +1,5 @@
 +++
-title = "[Microblog] Manage better for my dotfiles."
+title = "[Note] Manage better for my dotfiles."
 date = 2025-01-05T12:01:00
 
 [extra]

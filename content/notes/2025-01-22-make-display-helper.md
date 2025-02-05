@@ -1,5 +1,5 @@
 +++
-title = "[Microblog] Display all Makefile commands" 
+title = "[Note] Display all Makefile commands" 
 date = 2025-01-22
 
 [extra]

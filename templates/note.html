@@ -15,9 +15,9 @@ macro_math::math_render(style = page.extra.math) }} {% endif %} {% endblock head
 
 <!--Content block-->
 {% block content %} {% include "_header.html" %}
-<div id="wrapper-microblog">
-    <main class="prose microblog">
-        <div class="microblog-entry lazy-entry">
+<div id="wrapper-notes">
+    <main class="prose notes">
+        <div class="notes-entry lazy-entry">
             <div class="thought-content">
                 {{ page.content | safe }}
                 <p class="timestamp">

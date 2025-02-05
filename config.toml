@@ -55,7 +55,7 @@ recent_more_text = "All posts »"
 
 sections = [
   { name = "blog", path = "/blog", is_external = false },
-  { name = "microblog", path = "/microblog", is_external = false },
+  { name = "notes", path = "/notes", is_external = false },
   { name = "about", path = "/about", is_external = false },
 ]
 blog_section_path = "/blog"

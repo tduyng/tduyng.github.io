@@ -1,5 +1,5 @@
 +++
-title = "[Microblog] List all files tracked by Git"
+title = "[Note] List all files tracked by Git"
 date = 2025-01-16
 
 [extra]

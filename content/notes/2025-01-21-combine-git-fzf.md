@@ -1,5 +1,5 @@
 +++
-title = "[Microblog] Supercharge Git with fzf"
+title = "[Note] Supercharge Git with fzf"
 date = 2025-01-21
 
 [extra]

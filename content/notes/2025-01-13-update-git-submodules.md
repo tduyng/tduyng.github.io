@@ -1,5 +1,5 @@
 +++
-title = "[Microblog] Update all Git submodules to latest commit"
+title = "[Note] Update all Git submodules to latest commit"
 date = 2025-01-13
 
 [extra]
