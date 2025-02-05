@@ -1,7 +1,7 @@
 {% import 'macros/math.html' as macro_math -%} {% import 'macros/post.html' as post_macros -%} {%
 extends "_base.html" %}
 
-<!--Microblog post-->
+<!--Note post-->
 {% block page %}prose-page{% endblock page %} {% block lang -%} {%- set blog_section_path =
 config.extra.blog_section_path | trim_start_matches(pat="/") -%} {%- set section_md_path =
 blog_section_path ~ "/_index.md" -%} {%- set section = get_section(path=section_md_path,

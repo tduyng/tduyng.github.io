@@ -17,8 +17,6 @@ img = "img/makefile.webp"
 
 +++
 
-Article originally published at [medium.com](https://medium.com/ekino-france/scripting-tools-a-node-js-friendly-alternative-to-makefile-45efb7fe23ee)
-
 ## TL;DR
 
 Using `execa` and `commander` is an alternative that can be considered for replacing makefile in a Node.js project.
@@ -74,7 +72,7 @@ In addition to Node.js-based tools, there are 2 good alternatives to makefile:
 - **[Taskfile](https://github.com/go-task/task)** (Go-based with YAML syntax)
 
 **Justfile** is written in Rust, which makes it very fast. Its syntax is simpler and more user-friendly than makefile, supporting environment variables from `.env` files and offering cross-platform compatibility.
-It also integrates well with various languages, including JavaScript (using ` #!/usr/bin/env node`) and a lot of other cool features. It's a very promising tool.
+It also integrates well with various languages, including JavaScript (using `#!/usr/bin/env node`) and a lot of other cool features. It's a very promising tool.
 
 **Taskfile**, built with Go, provides a YAML-based configuration that is fast and structured. It is designed to simplify task definitions and improve maintainability compared to makefile.
 
@@ -106,19 +104,19 @@ Here's an overview of some tools we've explored:
 
     These libraries allow developers to write scripts that combine JavaScript's flexibility with shell-like commands, making automation tasks intuitive and efficient:
 
-    - **[zx](https://github.com/google/zx)**: A Google-developed library that simplifies scripting by combining JavaScript with shell syntax.
-    - **[execa](https://github.com/sindresorhus/execa)**: Built on top of the [`child_process`](https://nodejs.org/api/child_process.html) core module. This tool makes it easy to execute commands, handle errors, and integrate them directly into JavaScript code.
-    - **[dax](https://github.com/dsherret/dax)**: Similar to `zx`, optimized for shell scripting within JavaScript, developed for Deno and Node.js.
-    - **[shelljs](https://github.com/shelljs/shelljs)**: A Portable Unix shell commands for Node.js
+  - **[zx](https://github.com/google/zx)**: A Google-developed library that simplifies scripting by combining JavaScript with shell syntax.
+  - **[execa](https://github.com/sindresorhus/execa)**: Built on top of the [`child_process`](https://nodejs.org/api/child_process.html) core module. This tool makes it easy to execute commands, handle errors, and integrate them directly into JavaScript code.
+  - **[dax](https://github.com/dsherret/dax)**: Similar to `zx`, optimized for shell scripting within JavaScript, developed for Deno and Node.js.
+  - **[shelljs](https://github.com/shelljs/shelljs)**: A Portable Unix shell commands for Node.js
 
 - **JavaScript CLI libraries**
 
     For building command-line interfaces (CLIs) in JavaScript, these libraries offer varying levels of complexity and features:
 
-    - **[commander](https://github.com/tj/commander.js)**: Simple CLI building with argument parsing, command support, and `--help` generation.
-    - **[yargs](https://github.com/yargs/yargs)**: Yargs helps to build interactive command line tools, by parsing arguments and generating an elegant user interface.
-    - **[minimist](https://github.com/minimistjs/minimist)**: Lightweight option parser for CLI arguments, ideal for simpler CLI tools.
-    - **[oclif](https://github.com/oclif/oclif)**: CLI for generating, building, and releasing oclif CLIs. Built by Salesforce.
+  - **[commander](https://github.com/tj/commander.js)**: Simple CLI building with argument parsing, command support, and `--help` generation.
+  - **[yargs](https://github.com/yargs/yargs)**: Yargs helps to build interactive command line tools, by parsing arguments and generating an elegant user interface.
+  - **[minimist](https://github.com/minimistjs/minimist)**: Lightweight option parser for CLI arguments, ideal for simpler CLI tools.
+  - **[oclif](https://github.com/oclif/oclif)**: CLI for generating, building, and releasing oclif CLIs. Built by Salesforce.
 
 ## Compared and select tools
 
@@ -219,11 +217,11 @@ shell.exec('node project_d/index.js')
 
 ```makefile
 run_js:
-	rm -rf project_e
-	mkdir project_e
-	touch project_e/index.run_js
-	echo "console.log('Hello makefile');" > project_e/index.js
-	node project_e/index.js
+ rm -rf project_e
+ mkdir project_e
+ touch project_e/index.run_js
+ echo "console.log('Hello makefile');" > project_e/index.js
+ node project_e/index.js
 
 .PHONY: run_js
 
@@ -385,7 +383,7 @@ eslint: ##@lint Run eslint
     else
         @npx eslint "{app,tests,scripts}/**/*.{ts,js,cjs,mjs}" --quiet --cache --fix
     endif
-	@echo "${GREEN}✔ Well done!${RESET}"
+ @echo "${GREEN}✔ Well done!${RESET}"
 
 prettier: ##@lint Run prettier on json and yaml files
     @echo "${YELLOW}Running prettier${RESET}"
@@ -483,17 +481,17 @@ As you can see, the JavaScript solution is much longer than the makefile version
 
 ```bash
 test-unit: ##@test Run unit tests
-	@echo "${YELLOW}Running unit tests${RESET}"
-	@yarn mocha 'tests/unit/**/*.[tj]s'
+ @echo "${YELLOW}Running unit tests${RESET}"
+ @yarn mocha 'tests/unit/**/*.[tj]s'
 
 test-func: ##@test Run functional test. To add args to veggies, use args env var. 'args="--tags @tag1 --tags @tag2" make test-func'
-	@echo "${YELLOW}Loading stack into test mode${RESET}"
-	@make sync-docker-stack CONF_FILES=local,test
-	@make make-in-app MAKE_RULE=wait-app-up
-	@make make-in-app MAKE_RULE=veggies-cmd
+ @echo "${YELLOW}Loading stack into test mode${RESET}"
+ @make sync-docker-stack CONF_FILES=local,test
+ @make make-in-app MAKE_RULE=wait-app-up
+ @make make-in-app MAKE_RULE=veggies-cmd
 
 veggies-cmd: ##@test Run veggies command
-	@yarn veggies --format-options '{"colorsEnabled": true}' --require tests/functional/support tests/functional/features ${args}
+ @yarn veggies --format-options '{"colorsEnabled": true}' --require tests/functional/support tests/functional/features ${args}
 ```
 
 In the `makefile`, we define 3 commands to execute unit tests (with Mocha) and functional tests (using [@ekino/veggies](https://github.com/ekino/veggies), a Cucumber helper). For the functional tests, we run the tests inside a Node.js container. The following methods are used to achieve this:
@@ -611,9 +609,9 @@ For example, `child_process` is already wrapped by the libraries like `zx`, `exe
 
     For example, you can run a script in the following ways:
 
-    - `node scripts/lint.js lint` (using any JS runtime like `bun`, `deno`, etc.)
-    - `./scripts/lint.js lint` (if you’ve added the appropriate shebang at the top of the JS file: `#!/usr/bin/env node`)
-    - Or, if you add the script to `package.json`, you can use your package manager: `npm run lint`, `pnpm run lint`, etc.
+  - `node scripts/lint.js lint` (using any JS runtime like `bun`, `deno`, etc.)
+  - `./scripts/lint.js lint` (if you’ve added the appropriate shebang at the top of the JS file: `#!/usr/bin/env node`)
+  - Or, if you add the script to `package.json`, you can use your package manager: `npm run lint`, `pnpm run lint`, etc.
 
     While this works, it’s not as flexible as using `make lint`, and adding many commands to `package.json` can make it longer and more verbose.
 
@@ -664,3 +662,7 @@ When should you use makefile?
 If these conditions don't apply, you might want to consider using the JavaScript approach we discussed.
 
 In short, `make` is great for simple tasks, but for more complex scripts requiring helpers, conditionals, async operations, or detailed error handling, JavaScript can be a better fit.
+
+---
+
+Article originally published at [medium.com](https://medium.com/ekino-france/scripting-tools-a-node-js-friendly-alternative-to-makefile-45efb7fe23ee)
