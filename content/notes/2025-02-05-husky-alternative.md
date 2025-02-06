@@ -14,7 +14,7 @@ With [Githooks](https://git-scm.com/docs/githooks), you don’t need to install 
 
 ## How to use?
 
-- Create a `hooks` or `.githooks` directory (just like you’d configure `.husky`)
+- Create a `.git/hooks` or `.githooks` directory (just like you’d configure `.husky`)
 
 - Configure Git to use your hooks scripts
 
