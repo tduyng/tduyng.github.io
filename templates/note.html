@@ -16,7 +16,10 @@ macro_math::math_render(style = page.extra.math) }} {% endif %} {% endblock head
 <!--Content block-->
 {% block content %} {% include "_header.html" %}
 <div id="wrapper-notes">
-    <main class="prose notes">
+    <main>
+      <div>
+      {% include "_copy_code.html" %}
+      <article class="prose notes">
         <div class="notes-entry lazy-entry">
             <div class="thought-content">
                 {{ page.content | safe }}
@@ -27,8 +30,8 @@ macro_math::math_render(style = page.extra.math) }} {% endif %} {% endblock head
                 </p>
             </div>
         </div>
-
-
+        <article>
+      </div>
       {% if page.extra.comment is defined %}{% set show_comment = page.extra.comment %}{% else %}{% set show_comment =
       config.extra.comment %}{% endif %}
       {% if show_comment %}
