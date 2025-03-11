@@ -2,6 +2,7 @@
 title = "Migrate to ESLint 9.x"
 description = "In this article, I share some experiences of migrating to ESLint 9.x, which includes significant breaking changes. We'll use the flat config, integrate ESLint plugins, and specify custom rules for various file types: .js, .cjs, .mjs and .ts"
 date = 2024-07-16
+updated = 2025-03-11
 
 [taxonomies]
 categories = ["DEVELOPMENT"]
@@ -326,3 +327,15 @@ That's all!
 **Bonus: ESLint Inspector**
 
 Once you have finished writing your ESLint config file, you can use the tool [eslint-config-inspector](https://eslint.org/blog/2024/04/eslint-config-inspector/). It's a visual tool for inspecting and understanding your ESLint flat configs. Give it a try to better understand your config.
+
+---
+
+## UPDATED: March 11, 2025
+
+ESLint recently has made significant improvements for the way to define the configuration files.
+You can now use `defineConfig` from `eslint/config` to extend your configuration.
+This brings back the `extends` functionality, adds support for global ignores, and maintains compatibility with older plugins…etc. (and a lot of good new features for us)
+
+These changes make migrating to ESLint 9.x much easier than before. Many thanks to the ESLint team for their development efforts!
+
+For more details, check the official ESLint blog post: [Evolving flat config with extends](https://eslint.org/blog/2025/03/flat-config-extends-define-config-global-ignores/)
