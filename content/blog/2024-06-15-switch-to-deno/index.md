@@ -25,4 +25,3 @@ Since its initial stable release with version 1.0, Deno has continued to evolve,
 You can read my full article for a detailed analysis here: [Should You Switch to Deno?](https://medium.com/ekino-france/should-you-switch-to-deno-c0e7c9ca6e41).
 
 I hope this helps you make an informed decision. Happy coding!
-

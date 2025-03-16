@@ -11,7 +11,7 @@ tags = ["performance", "rust", "webp", "image-conversion", "cli"]
 [extra]
 comment = true
 reaction = true
-enjoy = true
+show_ended_words = true
 featured = true
 img = "img/page_speed.webp"
 outdate_alert = true

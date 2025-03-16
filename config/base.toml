@@ -71,8 +71,7 @@ footer_menu = [
   { name = "privacy", path = "/privacy", is_external = false },
   { name = "license", path = "https://creativecommons.org/licenses/by-nc-nd/4.0/", is_external = false },
 ]
-enjoy_text = "Enjoyed this article? For more content, stay updated by subcribing to my blog via "
-
+ended_words = "Thanks for reading! This writing style focuses on clarity and simplicity, explaining concepts in accessible terms rather than pursuing strict academic precision. If you notice anything outdated, feel free to comment or send me a message."
 display_id = true        # Whether to display your id on homepage
 blog_categorized = false # Whether to categorize blog posts
 blur_effect = true       # Whether to turn on blur effect on navigation bar

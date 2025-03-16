@@ -14,6 +14,7 @@ reaction = true
 img = "img/dual-package.webp"
 outdate_alert = true
 outdate_alert_days = 700
+show_ended_words = true
 +++
 
 JavaScript is evolving rapidly. [Now, it’s really important for libraries to work with both CommonJS (CJS) and ECMAScript Modules (ESM)](https://medium.com/ekino-france/de-commonjs-%C3%A0-esm-les-cl%C3%A9s-dune-migration-r%C3%A9ussie-10507304bc01).

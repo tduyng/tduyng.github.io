@@ -10,7 +10,7 @@ tags = ["github", "readme", "typescript"]
 [extra]
 comment = true
 reaction = true
-enjoy = true
+show_ended_words = true
 featured = true
 img = "img/tduyng.webp"
 outdate_alert = true

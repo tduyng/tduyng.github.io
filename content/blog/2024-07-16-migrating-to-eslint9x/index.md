@@ -11,7 +11,7 @@ tags = ["eslint", "typescript", "migration", "nodejs"]
 [extra]
 comment = true
 reaction = true
-enjoy = true
+show_ended_words = true
 featured = true
 img = "img/eslint9x.webp"
 outdate_alert = true
