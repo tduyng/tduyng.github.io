@@ -1,5 +1,5 @@
 +++
-title = "Support dual package in npm - the easy way"
+title = "How to build dual package npm from Typescript - the easiest way"
 description = "Explore an easy way to support dual package TypeScript NPM libraries for both CommonJS and ESM"
 date = 2024-11-13
 updated = 2024-11-19
@@ -327,6 +327,20 @@ try {
     console.log(chalk.green('Overall compilation successful'))
 } catch (error) {
     console.error(chalk.red('Overall compilation failed:'), chalk.red(error.message))
+}
+```
+
+- Other more simple way:
+  For a minimal setup without separate script files, you can add these commands directly to your `package.json`:
+
+Example with `pnpm`:
+
+```json
+"scripts": {
+  "build": "pnpm run build:esm && pnpm run build:cjs",
+  "build:esm": "tsc -p tsconfig.lib.json --outDir lib/esm",
+  "build:cjs": "tsc -p tsconfig.lib.json --module CommonJS --moduleResolution Node --verbatimModuleSyntax false --outDir lib/cjs",
+  "postbuild:cjs": "echo '{\"type\": \"commonjs\"}' > lib/cjs/package.json"
 }
 ```
 
