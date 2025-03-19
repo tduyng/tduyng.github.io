@@ -196,7 +196,7 @@ You will need to install the following packages to use the new config:
 ```
 
 - [@eslint/js](https://www.npmjs.com/package/@eslint/js): ESLint team start to [make a core rewrite the ESLint](https://eslint.org/blog/2024/07/whats-coming-next-for-eslint/), all the rules, documentations will move to the new package. This is a ESLint Javascript package rules. We will also have `@eslint/json` for json linter, `@eslint/markdown` for markdown linter.
-- [@eslint/eslintrc](https://www.npmjs.com/package/@eslint/eslintrc): This gabage contains the legacy `eslintrc` configuration file format for ESLint. You will not need it if you start to write a new flat config files
+- [@eslint/eslintrc](https://www.npmjs.com/package/@eslint/eslintrc): This package contains the legacy `eslintrc` configuration file format for ESLint. You will not need it if you start to write a new flat config files
 - [@eslint/compat](https://www.npmjs.com/package/@eslint/compat): This package allow you to wrap existing previous ESLint rules, plugins and configurations.
 
 After using the migrator, we can identify additional dependencies we need to install: `@eslint/js` and `globals`.
