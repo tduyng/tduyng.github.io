@@ -69,7 +69,6 @@ footer_menu = [
   { name = "subscribe", path = "/subscribe", is_external = false },
   { name = "contact", path = "/contact", is_external = false },
   { name = "privacy", path = "/privacy", is_external = false },
-  { name = "license", path = "https://creativecommons.org/licenses/by-nc-nd/4.0/", is_external = false },
 ]
 ended_words = "Thanks for reading! This writing style focuses on clarity and simplicity, explaining concepts in accessible terms rather than pursuing strict academic precision. If you notice anything outdated, feel free to comment or send me a message."
 display_id = true        # Whether to display your id on homepage
