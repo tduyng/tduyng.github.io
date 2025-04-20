@@ -1,5 +1,5 @@
 +++
-title = "Note"
+title = "Notes"
 template = "notes.html"
 generate_feed = true
 
