@@ -1,26 +1,25 @@
 +++
 title = "Better In Ruby - 01"
 description = "Hidden Ruby gems: uncovering little known tips."
+template = "post.html"
 date = 2020-08-01
-
-[taxonomies]
-categories = ["DEVELOPMENT"]
 tags = ["ruby"]
+generate_feed = false
 
 [extra]
 comment = false
 reaction = true
+toc = true
+copy = true
 img = "/img/post-cover.webp"
-outdate_alert = true
-outdate_alert_days = 365
 +++
 
 Some tips you probably don't know in Ruby.
 
-
 Today, I will make a series that I learned about tips and tricks in ruby.
 
 ## Assigning the rest of an array to a variable
+
 <a style="padding:0px, margin:0px" name="assigning-rest-array" ></a>
 
 When destructuring an array, you can unpack and assign the remaining part of it to a variable using the rest pattern
@@ -35,6 +34,7 @@ When destructuring an array, you can unpack and assign the remaining part of it 
 ```
 
 ## Word array
+
 <a style="padding:0px, margin:0px" name="word-array"></a>
 
 When we want to add a separator in the string
@@ -45,6 +45,7 @@ When we want to add a separator in the string
 ```
 
 ## Concate array
+
 <a style="padding:0px, margin:0px" name="concate-array"></a>
 
 ```ruby
@@ -53,6 +54,7 @@ new_array = Array.new([0], 5) # [0,0,0,0,0]
 ```
 
 ## Format decimal
+
 <a style="padding:0px, margin:0px" name="format-decimal"></a>
 
 ```ruby
@@ -62,6 +64,7 @@ number.round(2)
 ```
 
 ## Remove a folder
+
 <a style="padding:0px, margin:0px" name="remove-folder"></a>
 
 This is a relatively common job of developer. There a many different ways to delete a folder and this is one of the shortest and fastest way to do:
@@ -72,6 +75,7 @@ FileUtils.rm_r 'somedir'
 ```
 
 ## Massive assignment
+
 <a style="padding:0px, margin:0px" name="massive-assignment"></a>
 
 Massive assignment allow us to declare many variables at the same time
@@ -89,6 +93,7 @@ end
 ```
 
 ## Deep copy
+
 <a style="padding:0px, margin:0px" name="deep-copy"></a>
 
 When we copy an object that contains others objects inside, array for example, you only copy references to those objects
@@ -129,34 +134,37 @@ ObjectSpace.each_object(String).select{|x| x == food.first}.count
 For example:
 
 - Singleton methods
-  ```ruby
-  a = Object.new
-  def a.foo; :foo end
-  p a.foo
-  => :foo
-  b = a.dup
-  p b.foo
-  => undefined method `foo' for #<Object:0x007f8bc395ff00> (NoMethodError)
-  c = a.clone
-  c.foo
-  => :foo
-  ```
+
+    ```ruby
+    a = Object.new
+    def a.foo; :foo end
+    p a.foo
+    => :foo
+    b = a.dup
+    p b.foo
+    => undefined method `foo' for #<Object:0x007f8bc395ff00> (NoMethodError)
+    c = a.clone
+    c.foo
+    => :foo
+    ```
+
 - Frozen state
 
-  ```ruby
-  a = Object.new
-  a.freeze
-  p a.frozen?
-  => true
-  b = a.dup
-  p b.frozen?
-  => false
-  c = a.clone
-  p c.frozen?
-  => true
-  ```
+    ```ruby
+    a = Object.new
+    a.freeze
+    p a.frozen?
+    => true
+    b = a.dup
+    p b.frozen?
+    => false
+    c = a.clone
+    p c.frozen?
+    => true
+    ```
 
 ## Create a an array with random values
+
 <a style="padding:0px, margin:0px" name="random-array"></a>
 
 ```ruby
@@ -166,4 +174,5 @@ Array.new(10) { rand 300 }
 It will create an array with 10 item that have the random values from 0 to 299
 
 ---
+
 Thanks you for reading! Stay tunned to update the next chapter.

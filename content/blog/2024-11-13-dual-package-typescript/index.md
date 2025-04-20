@@ -1,19 +1,18 @@
 +++
 title = "How to build dual package npm from Typescript - the easiest way"
 description = "Explore an easy way to support dual package TypeScript NPM libraries for both CommonJS and ESM"
+template = "post.html"
 date = 2024-11-13
 updated = 2024-11-19
-
-[taxonomies]
-categories = ["DEVELOPMENT"]
+generate_feed = true
 tags = ["esm", "dual-package", "typescript", "commonjs"]
 
 [extra]
 comment = true
 reaction = true
+toc = true
+copy = true
 img = "img/dual-package.webp"
-outdate_alert = true
-outdate_alert_days = 700
 show_ended_words = true
 +++
 
@@ -32,8 +31,8 @@ In this article, we’ll guide you through an easy and practical approach to han
 - [Define the `exports` field in `package.json`](#practical-part)
 - [Compile source files into `lib/esm` and `lib/cjs` directories.](#compiling-with-typescript)
 - [Add `package.json` files with the correct type field in `lib/esm` and `lib/cjs`](#build-scripts)
-    - Place a `package.json` file in `lib/esm` with `{"type": "module"}`
-    - Place another in `lib/cjs` with `{"type": "commonjs"}`
+  - Place a `package.json` file in `lib/esm` with `{"type": "module"}`
+  - Place another in `lib/cjs` with `{"type": "commonjs"}`
 
 ## Understanding Javascript file extensions
 
@@ -128,7 +127,7 @@ This configuration ensures proper support for both CJS and ESM. When using the i
 
 ### Compiling with TypeScript
 
-To set up this configuration, ensure that both the ESM and CJS folders (`lib/esm` and `lib/cjs`) contain the necessary library exports. We’ll achieve this using `tsc`.   
+To set up this configuration, ensure that both the ESM and CJS folders (`lib/esm` and `lib/cjs`) contain the necessary library exports. We’ll achieve this using `tsc`.
 First, adjust your `tsconfig.json` file by setting the `module` option to `“nodenext”`:
 
 ```json

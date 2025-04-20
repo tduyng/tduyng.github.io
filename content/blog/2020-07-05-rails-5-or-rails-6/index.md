@@ -1,23 +1,22 @@
 +++
 title = "Rails 5 or Rails 6 ?"
 description = "Trying to Decide Between Rails 5 and Rails 6? Let's Compare!"
+template = "post.html"
 date = 2020-07-05
-
-[taxonomies]
-categories = ["DEVELOPMENT"]
 tags = ["ruby", "rails"]
+generate_feed = false
 
 [extra]
 comment = false
 reaction = true
+toc = true
+copy = true
 img = "/img/post-cover.webp"
-outdate_alert = true
-outdate_alert_days = 365
 +++
 
 What version of rails you use in your projects, today?
 
-At [THP](https://www.thehackingproject.org/), when we start learning rails, we are required to install rails version 5.2.3. But I when I see that the new version of rails has been released is already 6.0. So we have posed a question for our technical manager of [THP](https://www.thehackingproject.org/): 
+At [THP](https://www.thehackingproject.org/), when we start learning rails, we are required to install rails version 5.2.3. But I when I see that the new version of rails has been released is already 6.0. So we have posed a question for our technical manager of [THP](https://www.thehackingproject.org/):
 
 Why we don't install directly the version rails 6.0?
 
@@ -57,7 +56,6 @@ One of the real life examples where this feature could be really useful is our i
 With this version of Rails a new code loader was introduced - Zeitwerk. It promises to load your project’s classes and modules on demand, no need to write `require` calls. Zeitwerk uses absolute file names making the loader more efficient. Your classes and modules are available everywhere. The team behind the loader claims that it is thread-safe and matches Ruby’s semantics for constants.
 
 Still curious for more? You can find more new stuff over at [rubyonrails.org](https://weblog.rubyonrails.org/2019/8/15/Rails-6-0-final-release/).
-
 
 ### So to reponse the question of article?
 

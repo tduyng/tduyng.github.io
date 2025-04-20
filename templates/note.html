@@ -1,56 +1,33 @@
-{% import 'macros/math.html' as macro_math -%} {% import 'macros/post.html' as post_macros -%} {%
-extends "_base.html" %}
+<!doctype html>
 
-<!--Note post-->
-{% block page %}prose-page{% endblock page %} {% block lang -%} {%- set blog_section_path =
-config.extra.blog_section_path | trim_start_matches(pat="/") -%} {%- set section_md_path =
-blog_section_path ~ "/_index.md" -%} {%- set section = get_section(path=section_md_path,
-metadata_only=true) -%} {%- if page.extra.lang %}{{page.extra.lang}}{% elif section.extra.lang
-%}{{section.extra.lang}}{% else %}{{page.lang}}{% endif -%} {%- endblock lang %} {% block title %}{{
-page.title }}{% endblock title %} {% block desc %} {% if page.summary %} {% set desc = page.summary
-%} {% elif page.description %} {% set desc = page.description %} {% endif %} {% if desc %}
-<meta name="description" content="{{ desc }}" />
-{% endif %} {% endblock desc %} {% block head %} {% if page.extra.math %} {{
-macro_math::math_render(style = page.extra.math) }} {% endif %} {% endblock head %}
+<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
+    {{ template "partials/_head.html" . }}
+    <body class="prose-page">
+        {{ template "partials/_header.html" . }}
 
-<!--Content block-->
-{% block content %} {% include "_header.html" %}
-<div id="wrapper-notes">
+    <div id="wrapper-notes">
     <main>
       <div>
-      {% include "_copy_code.html" %}
+      {{ template "partials/_copy_code.html" . }}
       <article class="prose notes">
         <div class="notes-entry lazy-entry">
             <div class="thought-content">
-                {{ page.content | safe }}
+                {{ .Page.Content }}
                 <p class="timestamp">
-                    <a href="{{ page.permalink }}"
-                        >{{ page.date | date(format="%Y/%m/%d %I:%M %p") }}</a
+                    <a href="{{ .Page.Permalink }}"
+                        >{{ date .Page.Config.date "Jan 2, 2006" }}</a
                     >
                 </p>
             </div>
         </div>
         <article>
       </div>
-      {% if page.extra.comment is defined %}{% set show_comment = page.extra.comment %}{% else %}{% set show_comment =
-      config.extra.comment %}{% endif %}
-      {% if show_comment %}
-      <div class="giscus"></div>
-      {% include "_giscus_script.html" %}
-      {% endif %}
-
-      {% include "_footer.html" %}
+    {{ template "partials/_comment.html" . }}
+    {{ template "partials/_footer.html" . }}
     </main>
 </div>
-{% endblock content %}
 
 
-{% block script %}
-<script src="/js/lightense.min.js" defer></script>
-{% if section.extra.mermaid %}
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-  mermaid.initialize({ startOnLoad: true });
-</script>
-{% endif %}
-{% endblock script %}
+        {{ template "partials/_scripts.html" . }}
+    </body>
+</html>

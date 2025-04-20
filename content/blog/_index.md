@@ -1,18 +1,11 @@
 +++
 title = "Blog"
-description = "Z blog site."
-sort_by = "date"
+description = "Duy NG blog"
 template = "blog.html"
-page_template = "post.html"
-insert_anchor_links = "right"
+generate_feed = true
 
 [extra]
 copy = true
-display_tags = true
-featured = false
 lang = "en"
-math = true
-mermaid = true
 toc = true
-truncate_summary = false
 +++

@@ -1,18 +1,17 @@
 +++
 title = "How to switch to another Rails version"
 description = "When you need to use multiple versions of Rails on your computer, how do you switch between them?"
+template = "post.html"
 date = 2020-06-28
-
-[taxonomies]
-categories = ["DEVELOPMENT"]
 tags = ["ruby", "rails"]
+generate_feed = false
 
 [extra]
 comment = false
 reaction = true
+toc = true
+copy = true
 img = "/img/post-cover.webp"
-outdate_alert = true
-outdate_alert_days = 365
 +++
 
 When you need to use multiple versions of Rails on your computer, how do you switch between them?
@@ -21,7 +20,7 @@ When you need to use multiple versions of Rails on your computer, how do you swi
 
 Before I talk about how to switch a version of rails, I will go quickly how to install the different versions of rails. The ruby package manager that I'am using is `rbenv` and I will use it for this tuto.
 
-If you are using another ruby package manager like `rvm`, you should look at `rbenv` and its advantage. `rbenv` is more lighter and faster than the `rvm` and `rbenv` is very recommended by a a lot of developers. 
+If you are using another ruby package manager like `rvm`, you should look at `rbenv` and its advantage. `rbenv` is more lighter and faster than the `rvm` and `rbenv` is very recommended by a a lot of developers.
 
 There is an article on [dev.to](https://dev.to/) help you understand more clearly: [Why and How I Replaced RVM with RBENV](https://dev.to/krtb/why-and-how-i-replaced-rvm-with-rbenv-23ad).
 
@@ -47,12 +46,12 @@ You can check list gems to see if you installed succesfullly:
 
 now you tap `rails version` to see the current version of rails using, but it shows only
 
-
 When you install multi version of rails on your machine, it will always take the lastest version of rails. So the question is how can create a new project rails with the version wanted?
 
 ## Create a project Ruby on Rails with a specific version of rails
 
-I founded two ways to solve it: 
+I founded two ways to solve it:
+
 - Using ruby package manager(rbenv)
 - Using `gem bundler`
 
@@ -62,7 +61,7 @@ I founded two ways to solve it:
 rbenv exec rails _<version_rails>_ new my_project
 ```
 
-for example: 
+for example:
 
 if i want to create a project with rails 5.2.4.2
 
@@ -88,6 +87,7 @@ for example:
 source 'https://rubygems.org'
 gem 'rails', '6.0.3'
 ```
+
 Very simple, isn't it?
 
 Make sure you don't forget `bundle install` to install all the dependencies from your Gemfile.
@@ -96,5 +96,4 @@ And then, what we need to do, just finish with:
 
 `rails new new_app`
 
-
-So that is two ways I used. I hope it will be helpful for you. 
+So that is two ways I used. I hope it will be helpful for you.

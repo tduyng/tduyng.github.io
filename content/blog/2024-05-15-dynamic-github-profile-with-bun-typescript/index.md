@@ -1,20 +1,19 @@
 +++
 title = "Dynamic Github profile with Bun and Typescript"
 description = "Learn how to make your GitHub profile dynamic using Bun and TypeScript as an alternative to Python in my previous article."
+template = "post.html"
 date = 2024-05-15
-
-[taxonomies]
-categories = ["DEVELOPMENT"]
 tags = ["github", "readme", "typescript"]
+generate_feed = true
 
 [extra]
 comment = true
 reaction = true
+toc = true
+copy = true
 show_ended_words = true
 featured = true
 img = "img/tduyng.webp"
-outdate_alert = true
-outdate_alert_days = 1000
 +++
 
 [In a recent article](https://tduyng.github.io/blog/dynamic-github-profile-readme/), I discussed transforming a GitHub profile into an interactive space with icons, badges, and dynamically updated blog posts using Python scripts and GitHub actions.

@@ -1,15 +1,16 @@
 +++
 title = "New home for my website"
 description = "Discover why I switched my website and blog from Jekyll to Zola."
+template = "post.html"
 date = 2024-05-11
-
-[taxonomies]
-categories = ["WEBSITE"]
 tags = ["blog", "static-site-generator"]
+generate_feed = true
 
 [extra]
 comment = false
 reaction = true
+toc = true
+copy = true
 img = "img/social_card.webp"
 +++
 
@@ -25,7 +26,7 @@ However, these days, some of the tools I use are outdated. If I want to update t
 
 Here's how my two websites looked before the migration:
 
-The main site: 
+The main site:
 <img src="img/old_home.webp" alt="old home" loading="lazy">
 <img src="img/old_home2.webp" alt="old home" loading="lazy">
 
@@ -56,7 +57,6 @@ I found an interesting theme called [Tabi](https://www.getzola.org/themes/tabi/)
 - Simple pagination customization
 - Good SEO, search and analytics support
 - Support image preview for social sharing posts
-
 
 You can find more details in the [Tabi documentation](https://github.com/welpo/tabi).
 

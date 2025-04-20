@@ -1,21 +1,20 @@
 +++
 title = "Migrate to ESLint 9.x"
 description = "In this article, I share some experiences of migrating to ESLint 9.x, which includes significant breaking changes. We'll use the flat config, integrate ESLint plugins, and specify custom rules for various file types: .js, .cjs, .mjs and .ts"
+template = "post.html"
 date = 2024-07-16
 updated = 2025-03-11
-
-[taxonomies]
-categories = ["DEVELOPMENT"]
+generate_feed = true
 tags = ["eslint", "typescript", "migration", "nodejs"]
 
 [extra]
 comment = true
 reaction = true
+toc = true
+copy = true
 show_ended_words = true
 featured = true
 img = "img/eslint9x.webp"
-outdate_alert = true
-outdate_alert_days = 365
 +++
 
 Have you updated your ESLint setup to version 9.x? This version includes [many breaking changes](https://eslint.org/blog/2024/04/eslint-v9.0.0-released/). Two major changes you need to consider are:

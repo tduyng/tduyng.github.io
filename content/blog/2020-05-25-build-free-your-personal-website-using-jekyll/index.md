@@ -1,19 +1,18 @@
 +++
 title = "Build your personal website without spending any money"
 description = "Learn how to build your own personal website using Jekyll and GitHub Pages without spending a dime. Dive into the step-by-step process and get your website up and running in no time."
+template = "post.html"
 date = 2020-05-25
-
-[taxonomies]
-categories = ["DEVELOPMENT"]
 tags = ["blog", "static-site-generator", "free", "web-development"]
+generate_feed = true
 
 [extra]
 comment = false
 reaction = true
+toc = true
+copy = true
 featured = true
 img = "/img/post-cover.webp"
-outdate_alert = true
-outdate_alert_days = 365
 +++
 
 In this article, we'll walk through how to set up a Jekyll-powered blog using the Minimal Mistakes theme.
@@ -32,6 +31,7 @@ Initially, I tried to create my website using HTML, CSS, and serving it with Git
 I searched for a solution on the internet and found the awesome technology called "Static Site Generator."
 
 ## STATIC SITE GENERATOR
+
 You may have already heard about static site generators. They aren't new; they were what we used to build the web before dynamic CMSs (WordPress, Drupal, etc.) took over.
 
 What's new is that modern tools—like static site generators—have emerged over the last few years and expanded the capabilities of static sites.
@@ -63,6 +63,7 @@ Jekyll is built with the Ruby programming language. I'm currently learning web d
 Now, let's see how I created my personal blog. And don't forget that it will be totally free.
 
 ## INSTALLATION & BUILD
+
 There are multiple ways to get started with Jekyll, each with its own variations. Here are a few options:
 
 Install Jekyll locally via the command line, create a new boilerplate website using jekyll new, build it locally with jekyll build, then serve it.
@@ -84,9 +85,11 @@ But as the title suggests, we will build our website without paying anything, ch
 You can find almost all the free Jekyll themes on [Free Jekyll Themes](https://jekyllthemes.io/free) and choose the one you prefer.
 
 ### 2.1 Minimal Mistakes Jekyll Theme
+
 I will introduce you to a really good theme for building a blog: the "Minimal Mistakes" theme, created by [Michael Rose](https://github.com/mmistakes). Thank you so much, [Michael](https://mademistakes.com/), for providing an awesome Jekyll theme for the community.
 
 Its advantages:
+
 - Free theme
 - Highly recommended by the community: 7k stars and 12k forks on GitHub (Source GitHub mmistakes)
 - Full features for a blog
@@ -101,24 +104,26 @@ Its advantages:
 We already have a starting point; now, all we need to do is install this theme on your machine.
 
 ### 2.2 Clone Minimal Mistakes theme to your machine
+
 As we will use GitHub Pages to serve our blog, before we clone it to the local machine, I will explain how to create a new repository on GitHub.
 
 You probably won't need to do it the same way, as there are many different ways to do it. This is just a simpler way for me.
 
 ### 2.3 Initialize repository on the local machine
+
 - Create a repository on GitHub
 
 Instead of using git init via the command line, I create it directly on GitHub.
- ![create new repo](img/create-repo-github.webp){:class="lazyload"}
+![create new repo](img/create-repo-github.webp){:class="lazyload"}
 
- This way, we can easily define the visibility of the repository: public or private, and we can initialize it with the template of .gitignore and LICENSE.
+This way, we can easily define the visibility of the repository: public or private, and we can initialize it with the template of .gitignore and LICENSE.
 I named this repo [demo-jekyll-mmtakes](https://github.com/tduyng/demo-jekyll-mmistakes).
 
 If you want this website to be the origin GitHub pages, meaning the domain name of your website is github-user-name.github.io, you will need to create a repository with this name: "github-user-name.github.io".
 
 For example, my GitHub pages: tduyng.github.io, so I need to create a repository named: "tduyng.github.io".
 
-You can check how to create GitHub Pages in the official GitHub documentation: https://guides.github.com/features/pages/
+You can check how to create GitHub Pages in the official GitHub documentation: <https://guides.github.com/features/pages/>
 
 - After we clone the repository that we just created with git clone on the local machine.
 
@@ -135,6 +140,7 @@ You can check how to create GitHub Pages in the official GitHub documentation: h
 - Don't hesitate to make a git commit when you finish that step with a message "Init mmistake theme," for example.
 
 ### 2.4 Setup development environment
+
 First, let’s make sure your development environment is ready.
 
 Ensure you have installed [Ruby](https://www.ruby-lang.org/en/) and [RubyGems](https://rubygems.org/), and [Jekyll](https://jekyllrb.com/) on your computer.
@@ -153,7 +159,9 @@ The result in your browser:
 We have nothing to show on the page now because we need to customize the Minimal Mistakes theme and create a new post.
 
 ### 2.5 Customize Minimal Mistakes Theme
+
 #### 2.5.1 Configurations
+
 Before customizing, let's take a look at the folder structure of our project:
 
 <div align="center">
@@ -188,21 +196,22 @@ footer:
     - label: 'GitHub'
       url: *githubUrl
 ```
+
 Here, you can provide your social information, such as your name, bio, location, and email. Additionally, you can include links to your website, Twitter, LinkedIn, and GitHub profiles.
 
 ```yml
 plugins:
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
-  - jekyll-include-cache
-  - jemoji
+    - jekyll-paginate
+    - jekyll-sitemap
+    - jekyll-gist
+    - jekyll-feed
+    - jekyll-include-cache
+    - jemoji
 ```
 
 Lastly, you can specify the gem plugins you want to use. For example, I've added the jemoji plugin, which allows us to use emoji markdown on our page.
 
-These are just some of the configurations you can customize in the _config.yml file. Once you've made your changes, save the file and move on to the next step.
+These are just some of the configurations you can customize in the \_config.yml file. Once you've made your changes, save the file and move on to the next step.
 
 #### 2.5.2 Gemfile
 
@@ -224,11 +233,12 @@ group :jekyll_plugins do
   gem "jemoji"
   gem "jekyll-include-cache"
 end
-````
+```
 
 After modifying your Gemfile, return to the terminal.
 
 #### 2.5.3 Run Server
+
 ```bash
 bundle install # Install all gems in Gemfile
 bundle update # Update multiple gems
@@ -238,7 +248,7 @@ To run the server, type:
 
 ```bash
 bundle exec jekyll serve
-````
+```
 
 Open your browser at localhost:4000 to view the result.
 
@@ -251,11 +261,12 @@ Looks better, right?
 You're almost finished with the customization. Next, we'll create the first posts and customize our navbar.
 
 #### 2.5.4 Create Posts
-All posts should be placed in the _posts folder. If you don't have one, simply create it.
+
+All posts should be placed in the \_posts folder. If you don't have one, simply create it.
 
 When you clone the Minimal Mistakes repository from GitHub, you'll find two folders named docs and test. These folders contain documentation and examples for different types of posts, which can be very helpful.
 
-For a quick demo, copy all the posts from the test/_posts folder to your _posts folder. You can use both Markdown and HTML files for your posts. Personally, I prefer Markdown because it's faster to write and customize.
+For a quick demo, copy all the posts from the test/\_posts folder to your \_posts folder. You can use both Markdown and HTML files for your posts. Personally, I prefer Markdown because it's faster to write and customize.
 
 If you're new to Markdown, you can learn from tutorials like markdownguide.org.
 
@@ -269,21 +280,22 @@ Here's an example of the first part of a post in Markdown:
 
 ```md
 ---
-title: "Markup: HTML Tags and Formatting"
+title: 'Markup: HTML Tags and Formatting'
 header:
-  teaser: "assets/images/markup-syntax-highlighting-teaser.webp"
+    teaser: 'assets/images/markup-syntax-highlighting-teaser.webp'
 categories:
-  - Markup
+    - Markup
 tags:
-  - content
-  - css
-  - formatting
-  - html
-  - markup
+    - content
+    - css
+    - formatting
+    - html
+    - markup
 ---
 ```
 
 And here's an example of the content of the post:
+
 ```md
 A variety of common markup showing how the theme styles them.
 
@@ -306,8 +318,8 @@ Single line blockquote:
 Multi-line blockquote with a cite reference:
 
 > People think focus means saying yes to the thing you've got to focus on. But that's not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully. I'm actually as proud of the things we haven't done as the things I have done. Innovation is saying no to 1,000 things.
-<cite>Steve Jobs</cite> --- Apple Worldwide Developers' Conference, 1997
-{: .small}
+> <cite>Steve Jobs</cite> --- Apple Worldwide Developers' Conference, 1997
+> {: .small}
 
 ## Tables
 
@@ -321,6 +333,7 @@ Multi-line blockquote with a cite reference:
 | ======= |
 | Foot1   |  Foot2  |   Foot3 |
 ```
+
 For more features, refer to the documentation of this theme.
 
 Once you've added the posts, you can see the result in your browser. The Minimal Mistakes theme offers many excellent features for a modern blog, as demonstrated in the screenshots.
@@ -331,22 +344,23 @@ Next, we'll focus on navigation.
 
 Customizing the navigation is straightforward as Michael has already set it up for us. We just need to make some adjustments.
 
-Navigate to the _data folder in the directory tree, and you'll find navigation.yml. Customize it as follows:
+Navigate to the \_data folder in the directory tree, and you'll find navigation.yml. Customize it as follows:
 
 ```yml
 # main links
 main:
-  - title: 'About'
-    url: https://mmistakes.github.io/minimal-mistakes/about/
-  - title: 'Posts'
-    url: /posts/
-  - title: 'Categories'
-    url: '/categories'
-  - title: 'Tags'
-    url: '/tags'
-  - title: 'Search'
-    url: '/search'
+    - title: 'About'
+      url: https://mmistakes.github.io/minimal-mistakes/about/
+    - title: 'Posts'
+      url: /posts/
+    - title: 'Categories'
+      url: '/categories'
+    - title: 'Tags'
+      url: '/tags'
+    - title: 'Search'
+      url: '/search'
 ```
+
 The resulting navigation will appear as follows:
 
 <div align="center">
@@ -362,14 +376,17 @@ Tag pages
 If you're curious about Jekyll, you can learn more at [Jekyll quickstart](https://jekyllrb.com/docs/).
 
 #### 2.5.6 Build
+
 After finishing an article, you'll need to build the files with:
 
 ```bash
 bundle exec jekyll build
 ```
+
 This command will automatically generate HTML and CSS files in the site folder.
 
 ### 2.6 Deploy on GitHub Pages
+
 Push and commit all the changes to your GitHub repository.
 
 If you haven't set up GitHub Pages for this repository yet, you'll need to do so.
@@ -380,18 +397,17 @@ For more detailed instructions, refer to the [GitHub Pages guide](https://guides
 
 Once you've completed these steps, your beautiful website will be live at your-github-user-name.github.io.
 
-## Extra  topics
+## Extra topics
 
 - Using your own domain name. It's not expensive.
 - [Managing a custom domain for your GitHub Pages site](https://docs.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site)
 - Other static site generator: Gastbyjs, nextjs, nuxtjs, hugo ...
 
-
 ## Reference
+
 - Demo online [https://tduyng.github.io/demo-jekyll-mmistakes/](https://adev42.com/demo-jekyll-mmistakes/)
 - My repo demo Github [demo-jekyll-mmistakes](https://github.com/tduyng/demo-jekyll-mmistakes)
 - Jekyll home page of Jekyll [https://jekyllrb.com/](https://jekyllrb.com/)
 - Documentation of minimal mistake theme [https://mmistakes.github.io/minimal-mistakes/](https://mmistakes.github.io/minimal-mistakes/)
 - Interesting blog about jekyll [https://blog.webjeda.com/](https://blog.webjeda.com/)
 - Using github pages [https://pages.github.com/](https://pages.github.com/)
-

@@ -1,20 +1,19 @@
 +++
 title = "Why you might be using Enums in TypeScript wrong"
 description = "Discover the pitfalls of using Enums in TypeScript and explore a more type-safe alternative with `as const`"
+template = "post.html"
 date = 2024-06-21
 updated = 2024-06-24
-
-[taxonomies]
-categories = ["DEVELOPMENT"]
+generate_feed = true
 tags = ["typescript", "enum", "best-practices"]
 
 [extra]
 comment = true
 reaction = true
+toc = true
+copy = true
 show_ended_words = true
 img = "img/enum.webp"
-outdate_alert = true
-outdate_alert_days = 1000
 +++
 
 The topic of using enums in TypeScript has been discussed a lot, but many developers still remain unaware of their drawbacks. Even though enums are popular and commonly used, they might not always be the best choice. In this article, I'll share my thoughts on why enums can be a problem and show you a better way to do things.

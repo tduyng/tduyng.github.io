@@ -1,9 +1,8 @@
 +++
-title = "About DUY NG"
+title = "About"
 description = "Duy NG blog's website about"
 template = "prose.html"
-insert_anchor_links = "none"
-generate_feeds = false
+generate_feed = false
 
 [extra]
 lang = 'en'

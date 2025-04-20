@@ -1,15 +1,16 @@
 +++
 title = "Simple coding challenges with Ruby - 03"
 description = "Dive into fun coding challenges in Ruby. Get practical tips and solutions to improve your coding skills."
+template = "post.html"
 date = 2020-04-24
-
-[taxonomies]
-categories = ["DEVELOPMENT"]
 tags = ["ruby", "algorithms"]
+generate_feed = false
 
 [extra]
 comment = false
 reaction = true
+toc = true
+copy = true
 img = "/img/post-cover.webp"
 outdate_alert = true
 outdate_alert_days = 365

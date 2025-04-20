@@ -1,13 +1,14 @@
 +++
 title = "Simple coding challenges with Ruby - 01"
 description = "Dive into fun coding challenges in Ruby. Get practical tips and solutions to improve your coding skills."
+template = "post.html"
 date = 2020-04-07
-
-[taxonomies]
-categories = ["DEVELOPMENT"]
 tags = ["ruby", "algorithms"]
+generate_feed = false
 
 [extra]
+toc = true
+copy = true
 comment = false
 reaction = true
 img = "/img/post-cover.webp"
@@ -73,6 +74,7 @@ def get_count(inputStr)
     # .scan: return new array which matching with the pattern
 end
 ```
+
 ---
 
 :heavy_check_mark: Best solution on codewars
@@ -110,6 +112,7 @@ def remove_smallest(numbers)
   clone
 end
 ```
+
 ---
 
 :heavy_check_mark: Best solution on codewars
@@ -147,6 +150,7 @@ def get_middle(s)
   end
 end
 ```
+
 ---
 
 :heavy_check_mark: Best solution on codewars
@@ -208,6 +212,7 @@ def disemvowel(str)
   str.gsub(/[aeiouAEIOU]/,'')
 end
 ```
+
 ---
 
 :heavy_check_mark: Best solution on codewars
@@ -239,6 +244,7 @@ def square_digits num
   num.to_s.split('').map{|x| (x.to_i)**2}.join
 end
 ```
+
 ---
 
 :heavy_check_mark: Best solution on codewars
@@ -276,6 +282,7 @@ def find_short(s)
   return s.split.min_by{|word| word.length}.length
 end
 ```
+
 ---
 
 :heavy_check_mark: Best solution on codewars
@@ -301,6 +308,7 @@ filter_list([1,2,'a','b']) == [1,2]
 filter_list([1,'a','b',0,15]) == [1,0,15]
 filter_list([1,2,'aasf','1','123',123]) == [1,2,123]
 ```
+
 ---
 
 :arrow_right: My solution:
@@ -310,6 +318,7 @@ def filter_list(l)
   return l.select{|item| item.is_a? Numeric}
 end
 ```
+
 ---
 
 :heavy_check_mark: Best solution on codewars

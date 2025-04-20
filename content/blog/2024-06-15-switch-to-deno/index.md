@@ -1,19 +1,17 @@
 +++
 title = "Should you switch to Deno?"
 description = "This article highlights key reasons for the change, explores Deno’s features, and helps you decide if it’s the right choice for your projects"
+template = "post.html"
 date = 2024-06-15
-
-[taxonomies]
-categories = ["DEVELOPMENT"]
+generate_feed = true
 tags = ["deno", "nodejs", "production"]
 
 [extra]
 comment = false
 reaction = true
+toc = true
+copy = true
 img = "img/switch-deno.webp"
-outdate_alert = true
-outdate_alert_days = 365
-enable_word_count = false
 +++
 
 Hi there!

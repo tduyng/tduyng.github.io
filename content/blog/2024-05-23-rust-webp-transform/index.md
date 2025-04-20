@@ -1,21 +1,20 @@
 +++
 title = "Transforming website images into WebP with Rust for faster loading times"
 description = "Explore the process of enhancing website speed through image conversion to WebP using Rust"
+template = "post.html"
 date = 2024-05-23
 updated = 2024-05-23
-
-[taxonomies]
-categories = ["DEVELOPMENT"]
 tags = ["performance", "rust", "webp", "image-conversion", "cli"]
+generate_feed = true
 
 [extra]
 comment = true
 reaction = true
+toc = true
+copy = true
 show_ended_words = true
 featured = true
 img = "img/page_speed.webp"
-outdate_alert = true
-outdate_alert_days = 1000
 +++
 
 Hi everyone 👋,

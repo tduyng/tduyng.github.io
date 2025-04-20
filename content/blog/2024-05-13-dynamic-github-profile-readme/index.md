@@ -1,21 +1,20 @@
 +++
 title = "How I made my GitHub profile README dynamic"
 description = "Explore the process of making your GitHub profile README dynamic with automated updates of your latest blog posts using GitHub Actions and Python scripting"
+template = "post.html"
 date = 2024-05-13
 updated = 2024-05-21
-
-[taxonomies]
-categories = ["DEVELOPMENT"]
 tags = ["github-action", "profile", "readme", "dynamic", "python"]
+generate_feed = true
 
 [extra]
 comment = true
 reaction = true
+toc = true
+copy = true
 show_ended_words = true
 featured = true
 img = "img/tduyng.webp"
-outdate_alert = true
-outdate_alert_days = 1000
 +++
 
 **Have you heard about GitHub profile READMEs?**

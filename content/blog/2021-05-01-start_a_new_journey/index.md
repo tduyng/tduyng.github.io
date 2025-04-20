@@ -1,15 +1,16 @@
 +++
 title = "Start a new journey"
 description = "I share my journey from being a BIM engineer to becoming a full-time backend developer"
+template = "post.html"
 date = 2021-05-01
-
-[taxonomies]
-categories = ["LIFE"]
 tags = ["career", "journey"]
+generate_feed = true
 
 [extra]
 comment = false
 reaction = true
+toc = true
+copy = true
 img = "/img/post-cover.webp"
 +++
 

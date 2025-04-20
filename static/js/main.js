@@ -122,7 +122,7 @@ function enableTocIndicate() {
                     activated = target
                 }
             }),
-        { rootMargin: '-9% 0px -90% 0px' }
+        { rootMargin: '-9% 0px -90% 0px' },
     )
     headers.forEach((header) => observer.observe(header))
 }
@@ -209,7 +209,7 @@ function addFootnoteBacklink() {
                         .getBoundingClientRect().top +
                     window.scrollY -
                     50,
-            })
+            }),
         )
         footnote.appendChild(backlink)
     })
@@ -217,7 +217,7 @@ function addFootnoteBacklink() {
 
 function enableImgLightense() {
     window.addEventListener('load', () =>
-        Lightense('.prose img', { background: 'rgba(43, 43, 43, 0.19)' })
+        Lightense('.prose img', { background: 'rgba(43, 43, 43, 0.19)' }),
     )
 }
 
