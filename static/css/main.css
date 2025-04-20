@@ -2126,6 +2126,8 @@ template {
     padding: 10px;
 
     h1 {
+        font-size: 1.5em;
+        font-weight: bolder;
         margin-top: 20px;
         margin-bottom: 20px;
         color: var(--primary-color);
