@@ -30,16 +30,10 @@ function enablePrerender() {
 
 function enableNavFold() {
     const nav = document.querySelector('header nav')
-    if (!nav) return
-    const toggler = nav.querySelector('#toggler')
-    if (!toggler) return
-    const foldItems = nav.querySelectorAll('.fold')
+    const toggler = nav && nav.querySelector('#toggler')
+    const foldItems = nav && nav.querySelectorAll('.fold')
+    if (!nav || !toggler || !foldItems.length) return
     toggler.addEventListener('click', () => {
-        if (
-            window.innerWidth < 768 &&
-            [...foldItems].every((item) => !item.classList.contains('shown'))
-        )
-            return
         foldItems.forEach((item) => item.classList.toggle('shown'))
     })
 }
