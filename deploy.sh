@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Build the site with the specified environment
-./build.sh production
+./build.sh prod
 
 # Deploy if GITHUB_TOKEN is set
 if [ -n "${GITHUB_TOKEN:-}" ]; then
@@ -26,4 +26,3 @@ if [ -n "${GITHUB_TOKEN:-}" ]; then
   # Push to the gh-pages branch, forcing the update
   git push --force "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" master:gh-pages
 fi
-
