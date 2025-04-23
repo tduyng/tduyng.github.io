@@ -12,6 +12,11 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="{{ .Page.URL }}" />
+    {{ if .Page.Config.tags }}
+    <meta name="keywords" content="{{ join .Page.Config.tags ", " }}" />
+    {{ end }}
+    <meta name="author" content="{{ .Site.Config.extra.name }}" />
     <title>{{ .Page.Config.title }}</title>
     <meta
         property="og:title"
