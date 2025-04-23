@@ -16,7 +16,7 @@ Duy (pronounced "Zwee") is a Software Engineer in France. You'll find him online
 
 ## Current role
 
-At [Ekino](https://www.ekino.fr), he builds and maintains backend projects using Node.js, TypeScript and AWS. Since 2021, he's been working on making applications that can handle heavy workloads reliably.
+At [ekino](https://www.ekino.fr), he builds and maintains backend projects using Node.js, TypeScript and AWS. Since 2021, he's been working on making applications that can handle heavy workloads reliably.
 
 ## Previous work
 
@@ -26,7 +26,7 @@ Before backend development, he worked as a BIM Engineer (Buiding Information Mod
 
 Here's what he works with:
 
-- **Languages**: JavaScript/TypeScript, Rust, C#, Python, Ruby, VBA
+- **Languages**: JavaScript/TypeScript, Go, Rust, C#, Python, Ruby, VBA
 - **Frameworks**: Node.js/Deno/Bun/Nest.js, React/HTML/CSS
 - **DevOps**: AWS, CI/CD, Docker, Kubernetes, ArgoCD
 - **Databases**: SQL/NoSQL (Postgresql, MySql, MongoDB, Redis, Elastic search)
