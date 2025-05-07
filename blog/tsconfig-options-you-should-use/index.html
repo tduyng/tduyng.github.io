@@ -1,0 +1,489 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/blog/tsconfig-options-you-should-use" />
+    
+    <meta name="keywords" content="typescript, tsconfig, best-practices" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>Essential tsconfig.json options you should use</title>
+    <meta
+        property="og:title"
+        content="Essential tsconfig.json options you should use"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="A guide to essential tsconfig.json options for boosting TypeScript code safety, performance, and reliability." />
+    <meta property="og:description" content="A guide to essential tsconfig.json options for boosting TypeScript code safety, performance, and reliability." />
+    
+    <meta property="og:image" content="https://tduyng.com/blog/tsconfig-options-you-should-use/img/tsconfig.webp" />
+    <meta property="og:image:width" content="1500" />
+    <meta property="og:image:height" content="750" />
+    <meta name="twitter:image" content="https://tduyng.com/blog/tsconfig-options-you-should-use/img/tsconfig.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="post">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold">[</span>
+
+               
+            <a class="instant " href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold">]</span>
+            
+        </nav>
+    </div>
+</header>
+
+
+        <div id="wrapper">
+            <div id="blank"></div>
+            <aside>
+                
+<nav>
+    <ul>
+        
+        <li>
+            <a class="h2" href="#tldr">TL;DR</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#what-is-tsconfigjson-and-why-it-matters">What Is  and why it matters?</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#1-performance-boosters-options-for-faster-compilation">1. Performance boosters: options for faster compilation</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#2-strictness-first-options-for-code-safety">2. Strictness first: options for code safety</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#3-output-management-options-for-organizing-build-files">3. Output management: options for organizing build files</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#4-compatibility-controls-options-for-cross-platform-and-module-compatibility">4. Compatibility controls: options for cross-platform and module compatibility</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#5-debugging-and-testing-options-for-a-better-development-experience">5. Debugging and testing: options for a better development experience</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#6-code-quality-enforcements-options-for-cleaner-more-predictable-code">6. Code quality enforcements: options for cleaner, more predictable code</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#7-module-and-json-compatibility-options-for-better-interoperability">7. Module and JSON compatibility: options for better Interoperability</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#8-case-sensitivity-and-cross-platform-stability">8. Case sensitivity and cross-platform stability</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#9-preventing-common-mistakes-safety-checks-and-fallthrough-cases">9. Preventing common mistakes: safety checks and fallthrough cases</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#conclusion">Conclusion</a>
+            
+        </li>
+        
+    </ul>
+</nav>
+
+
+                <button id="back-to-top" aria-label="back to top">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill="currentColor"></path></svg>
+                </button>
+            </aside>
+            <main>
+                <div>
+                    
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+ 
+                    <article class="prose" data-backlink-icon="">
+                        <h1>Essential tsconfig.json options you should use</h1>
+                        <div id="post-info">
+                            <div id="date">
+                                <span id="publish">Nov 11, 2024</span>
+                                
+                            </div>
+
+                            <div id="wordcount">
+    <span>1486 words - 7 min read</span>
+</div>
+
+                        </div>
+
+                        <div id="tags">
+                              
+                            <a class="instant" href="/tags/typescript"><span>#</span>typescript</a>
+                              
+                            <a class="instant" href="/tags/tsconfig"><span>#</span>tsconfig</a>
+                              
+                            <a class="instant" href="/tags/best-practices"><span>#</span>best-practices</a>
+                            
+                        </div>
+
+                        
+ <p>The <code>tsconfig.json</code> file in TypeScript is more than just a list of settings. It's a tool to manage how your code behaves, how secure it is, and how well it works with other systems. Whether you're an experienced TypeScript user or new to the language, understanding these configuration options will help you build a strong, efficient, and easy-to-maintain codebase.</p>
+<h2 id="tldr">TL;DR</h2>
+<p>Here’s a quick look at recommended best-practice settings for your <code>tsconfig.json</code>. These options will help improve build speed, enforce code safety, enhance debugging, and ensure compatibility:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;compilerOptions&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;incremental&#34;</span>: <span style="color:#ff79c6">true</span>, <span style="color:#6272a4">// Enables incremental compilation, build only the changed code
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;strict&#34;</span>: <span style="color:#ff79c6">true</span>, <span style="color:#6272a4">// Enables all strict type-checking options (best practice)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;rootDir&#34;</span>: <span style="color:#f1fa8c">&#34;src&#34;</span>, <span style="color:#6272a4">// Root directory of input files
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;outDir&#34;</span>: <span style="color:#f1fa8c">&#34;./build&#34;</span>, <span style="color:#6272a4">// Output directory for compiled files
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;allowJs&#34;</span>: <span style="color:#ff79c6">true</span>, <span style="color:#6272a4">// Allows JavaScript files to be compiled alongside TypeScript files.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;target&#34;</span>: <span style="color:#f1fa8c">&#34;es6&#34;</span>, <span style="color:#6272a4">// Specifies the ECMAScript target version
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;module&#34;</span>: <span style="color:#f1fa8c">&#34;NodeNext&#34;</span>, <span style="color:#6272a4">// Sets the module system to use (commonjs, nodenext, esnext)
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;lib&#34;</span>: [<span style="color:#f1fa8c">&#34;es2024&#34;</span>], <span style="color:#6272a4">// Specifies the library files to be included in the compilation.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;sourceMap&#34;</span>: <span style="color:#ff79c6">true</span>, <span style="color:#6272a4">// Generates source maps for debugging
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;skipLibCheck&#34;</span>: <span style="color:#ff79c6">true</span>, <span style="color:#6272a4">// Skips type checking of declaration files
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;noUnusedParameters&#34;</span>: <span style="color:#ff79c6">false</span>, <span style="color:#6272a4">// Do not allow unused parameters in functions.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;noUnusedLocals&#34;</span>: <span style="color:#ff79c6">false</span>, <span style="color:#6272a4">// Similar to noUnusedParameters, but for local variables.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;noUncheckedIndexedAccess&#34;</span>: <span style="color:#ff79c6">true</span>, <span style="color:#6272a4">// it ensures that indexed access types are checked for undefined values,
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;esModuleInterop&#34;</span>: <span style="color:#ff79c6">true</span>, <span style="color:#6272a4">// Enables compatibility with CommonJS modules, allowing default imports from modules with no default export.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;resolveJsonModule&#34;</span>: <span style="color:#ff79c6">true</span>, <span style="color:#6272a4">// Allows importing JSON files as modules
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;forceConsistentCasingInFileNames&#34;</span>: <span style="color:#ff79c6">true</span>, <span style="color:#6272a4">// Ensures that file names are treated with consistent casing, which is important for cross-platform compatibility.,
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;noImplicitOverride&#34;</span>: <span style="color:#ff79c6">true</span>, <span style="color:#6272a4">// This option requires that any method in a subclass that overrides a method in a superclass must explicitly use the override keyword.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;noPropertyAccessFromIndexSignature&#34;</span>: <span style="color:#ff79c6">true</span>, <span style="color:#6272a4">// This setting enforces that properties accessed via dot notation must be explicitly defined in the type.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;allowUnreachableCode&#34;</span>: <span style="color:#ff79c6">false</span>, <span style="color:#6272a4">// When set to false, this option raises errors for code that is unreachable, meaning it cannot be executed.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;noFallthroughCasesInSwitch&#34;</span>: <span style="color:#ff79c6">true</span>, <span style="color:#6272a4">// This option reports errors for switch statement cases that fall through without a break, return, or throw statement.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;noErrorTruncation&#34;</span>: <span style="color:#ff79c6">true</span>, <span style="color:#6272a4">// When enabled, this option prevents TypeScript from truncating error messages, providing full details about the error.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>        <span style="color:#ff79c6">&#34;declaration&#34;</span>: <span style="color:#ff79c6">true</span> <span style="color:#6272a4">// Generates corresponding .d.ts file
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;include&#34;</span>: [<span style="color:#f1fa8c">&#34;src/**/*.ts&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;exclude&#34;</span>: []
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><h2 id="what-is-tsconfigjson-and-why-it-matters">What Is <code>tsconfig.json</code> and why it matters?</h2>
+<p>The <code>tsconfig.json</code> file is a key part of any TypeScript project. It tells the compiler how to turn your TypeScript code into JavaScript. By setting up this file, you can control things like how strict the error checks are and what format the output should be in. This is important for managing real-world production issues effectively.</p>
+<h3 id="1-performance-boosters-options-for-faster-compilation">1. Performance boosters: options for faster compilation</h3>
+<p><strong><code>incremental: true</code></strong></p>
+<blockquote>
+<p><em>“Only recompile what has changed.”</em></p>
+</blockquote>
+<p>The <code>incremental</code> option is ideal for large codebases or iterative projects where only a portion of code changes between builds. When enabled, TypeScript caches the previous build, allowing it to skip recompilation for unchanged files, saving time.</p>
+<p><strong>Example:</strong> Suppose you have a large project and make a minor update in one file. With <code>incremental</code> enabled, only that file will be recompiled, significantly reducing the build time.</p>
+<h3 id="2-strictness-first-options-for-code-safety">2. Strictness first: options for code safety</h3>
+<p><strong><code>strict: true</code></strong></p>
+<blockquote>
+<p><em>“Enable all strict type-checking options for enhanced code reliability. A TypeScript best practice.”</em></p>
+</blockquote>
+<p>Setting <code>&quot;strict&quot;: true</code> enables TypeScript’s full range of type-checking features, designed to catch potential bugs and edge cases early. This comprehensive flag is essentially a shortcut that enables several other critical options:</p>
+<ul>
+<li><strong><code>noImplicitAny</code></strong>: Disallows variables and parameters from being implicitly assigned the <code>any</code> type. This setting forces you to explicitly define types, reducing the risk of unexpected behaviors.</li>
+<li><strong><code>strictNullChecks</code></strong>: Ensures <code>null</code> and <code>undefined</code> are treated as distinct types, which makes code more predictable by preventing accidental operations on possibly <code>null</code> or <code>undefined</code> values.</li>
+<li><strong><code>strictFunctionTypes</code></strong>: Enforces stricter checking of function types, particularly useful for function assignments and compatibility across different scopes.</li>
+<li><strong><code>strictBindCallApply</code></strong>: Adds type checks for the <code>bind</code>, <code>call</code>, and <code>apply</code> methods to ensure arguments are compatible with the function’s parameter types.</li>
+<li><strong><code>strictPropertyInitialization</code></strong>: Ensures that class properties are initialized before use, typically by setting them in the constructor, preventing potential runtime errors.</li>
+<li><strong><code>noImplicitThis</code></strong>: Triggers an error if the <code>this</code> keyword implicitly has an <code>any</code> type, requiring explicit typing and promoting safer <code>this</code> usage.</li>
+<li><strong><code>alwaysStrict</code></strong>: Ensures all files are parsed in ECMAScript’s strict mode (<code>&quot;use strict&quot;;</code> is added to each file), catching more errors at runtime.</li>
+<li><strong><code>useUnknownInCatchVariables</code></strong>: Changes the type of the error variable in <code>catch</code> blocks from <code>any</code> to <code>unknown</code>, promoting better error handling by requiring explicit error type checks.</li>
+</ul>
+<p><strong><code>noUncheckedIndexedAccess: true</code></strong></p>
+<blockquote>
+<p><em>“Protect against undefined values in object lookups.”</em></p>
+</blockquote>
+<p>This option is great for when you want an extra layer of safety when accessing object properties dynamically. When enabled, it checks that any indexed access types are not undefined, helping avoid runtime errors.</p>
+<h3 id="3-output-management-options-for-organizing-build-files">3. Output management: options for organizing build files</h3>
+<p><strong><code>rootDir: &quot;src&quot;</code></strong></p>
+<blockquote>
+<p><em>“Specifies the directory of input files.”</em></p>
+</blockquote>
+<p>This option points to the source files directory, which can help keep your project clean by organizing files logically. By setting <code>rootDir</code>, you ensure that the compiler knows where to find the source files it needs to build.</p>
+<p><strong><code>outDir: &quot;./build&quot;</code></strong></p>
+<blockquote>
+<p><em>“Defines the output directory for compiled JavaScript files.”</em></p>
+</blockquote>
+<p>This is where TypeScript will output compiled files. Specifying an <code>outDir</code> is crucial for keeping your source files (<code>src/</code>) separate from generated JavaScript, making it easier to manage and clean up builds.</p>
+<p><strong>Tip:</strong> For a clean project structure, it’s a best practice to specify both <code>rootDir</code> and <code>outDir</code>.</p>
+<h3 id="4-compatibility-controls-options-for-cross-platform-and-module-compatibility">4. Compatibility controls: options for cross-platform and module compatibility</h3>
+<p><strong><code>target: &quot;es6&quot;</code></strong></p>
+<blockquote>
+<p><em>“Sets the ECMAScript version for the output.”</em></p>
+</blockquote>
+<p>TypeScript compiles code to various JavaScript versions, but which version depends on your environment. Setting <code>target</code> to <code>es6</code> is typically ideal for modern applications since it supports async/await and many new JavaScript features while still being compatible with most browsers and Node.js environments.</p>
+<p><strong><code>module: &quot;NodeNext&quot;</code></strong></p>
+<blockquote>
+<p><em>“Defines the module system, such as CommonJS, ESNext, or NodeNext.”</em></p>
+</blockquote>
+<p>With NodeNext, you can use ES modules alongside TypeScript. This is especially useful if you’re working with libraries or Node.js modules in the latest format. For projects targeting other environments, consider <code>commonjs</code> or <code>esnext</code> depending on the requirements.</p>
+<h3 id="5-debugging-and-testing-options-for-a-better-development-experience">5. Debugging and testing: options for a better development experience</h3>
+<p><strong><code>sourceMap: true</code></strong></p>
+<blockquote>
+<p><em>“Generates source maps to assist with debugging.”</em></p>
+</blockquote>
+<p>Source maps map your TypeScript to the output JavaScript, making debugging in tools like Vscode debug, Chrome DevTools much easier. Without source maps, debugging is cumbersome since errors trace back to the generated JavaScript, not the original TypeScript code.</p>
+<p><strong><code>skipLibCheck: true</code></strong></p>
+<blockquote>
+<p><em>“Skip type-checking for third-party libraries.”</em></p>
+</blockquote>
+<p>If you use many third-party libraries, setting <code>skipLibCheck</code> to true can reduce the type-checking workload. This can speed up your build process without compromising your code’s safety since it’s assumed libraries are already well-tested.</p>
+<h3 id="6-code-quality-enforcements-options-for-cleaner-more-predictable-code">6. Code quality enforcements: options for cleaner, more predictable code</h3>
+<p><strong><code>noUnusedParameters</code> and <code>noUnusedLocals: false</code></strong></p>
+<blockquote>
+<p><em>“Checks for unused parameters and variables.”</em></p>
+</blockquote>
+<p>These options raise warnings for unused variables and parameters. It’s good practice to enable these for cleaner code, though occasionally setting them to false is helpful during refactoring or experimentation phases.</p>
+<p><strong><code>noImplicitOverride: true</code></strong></p>
+<blockquote>
+<p><em>“Ensures that methods overriding superclass methods explicitly use the <code>override</code> keyword.”</em></p>
+</blockquote>
+<p>With <code>noImplicitOverride</code>, any overridden method must use the <code>override</code> keyword, making your code more readable and easier to debug, especially in large projects.</p>
+<h3 id="7-module-and-json-compatibility-options-for-better-interoperability">7. Module and JSON compatibility: options for better Interoperability</h3>
+<p><strong><code>esModuleInterop: true</code></strong></p>
+<blockquote>
+<p><em>“Allows default imports from CommonJS modules.”</em></p>
+</blockquote>
+<p>In TypeScript, some modules need interop handling between ES modules and CommonJS. With <code>esModuleInterop</code>, you can cleanly import default exports from CommonJS modules, making it easier to integrate libraries.</p>
+<p><strong><code>resolveJsonModule: true</code></strong></p>
+<blockquote>
+<p><em>“Enables importing JSON files as modules.”</em></p>
+</blockquote>
+<p>Importing JSON files is often needed for configuration, localization, or mock data. By enabling <code>resolveJsonModule</code>, you can import JSON directly, with TypeScript automatically typing it as <code>any</code>.</p>
+<h3 id="8-case-sensitivity-and-cross-platform-stability">8. Case sensitivity and cross-platform stability</h3>
+<p><strong><code>forceConsistentCasingInFileNames: true</code></strong></p>
+<blockquote>
+<p><em>“Prevents issues from inconsistent file naming, which can break cross-platform compatibility.”</em></p>
+</blockquote>
+<p>This option ensures case-sensitive file paths across platforms, preventing subtle bugs and cross-platform issues, especially between Unix and Windows.</p>
+<h3 id="9-preventing-common-mistakes-safety-checks-and-fallthrough-cases">9. Preventing common mistakes: safety checks and fallthrough cases</h3>
+<p><strong><code>allowUnreachableCode: false</code></strong></p>
+<blockquote>
+<p><em>“Raises errors for unreachable code.”</em></p>
+</blockquote>
+<p>Set <code>allowUnreachableCode</code> to false to prevent unreachable code from sneaking into production, ensuring cleaner and more intentional code paths.</p>
+<p><strong><code>noFallthroughCasesInSwitch: true</code></strong></p>
+<blockquote>
+<p><em>“Raises errors for fall-through cases in switch statements.”</em></p>
+</blockquote>
+<p>This option prevents unexpected behavior in <code>switch</code> statements by enforcing an error if a <code>case</code> falls through without an explicit <code>break</code>, <code>return</code>, or <code>throw</code>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Understanding the options in <code>tsconfig.json</code> can greatly enhance your TypeScript development by speeding up builds, organizing output, improving code quality, and making debugging easier. Master these settings to customize your TypeScript projects effectively, producing code that is efficient, easy to maintain, and secure.</p>
+<hr>
+<p>Article also published at <a href="https://medium.com/p/3187af924221">medium.com/tduyng</a>.</p>
+ <div class="pagination">
+    
+    <hr />
+    Thanks for reading! This writing style focuses on clarity and simplicity, explaining concepts in accessible terms rather than pursuing strict academic precision. If you notice anything outdated, feel free to comment or send me a message. 
+
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="/blog/migrating-to-eslint9x/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Migrate to ESLint 9.x</span>
+            </a>
+        </span>
+         
+        <span class="button next">
+            <a href="/blog/dual-package-typescript/">
+                <span class="button__text">How to build dual package npm from Typescript - the easiest way</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+                    </article>
+                    <div class="sharing-buttons">
+    <h3>Share this post:</h3>
+    <ul class="sharing-list" id="right">
+        <li>
+            <a
+                href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2ftduyng.com%2fblog%2ftsconfig-options-you-should-use&t=Essential%20tsconfig.json%20options%20you%20should%20use"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/hacker-news.svg" alt="Share on Hacker News" class="sharing-icon" />
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://www.reddit.com/submit?url=https%3a%2f%2ftduyng.com%2fblog%2ftsconfig-options-you-should-use&title=Essential%20tsconfig.json%20options%20you%20should%20use"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/reddit.svg" alt="Share on Reddit" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://mastodon.social/share?url=https%3a%2f%2ftduyng.com%2fblog%2ftsconfig-options-you-should-use&text=Essential%20tsconfig.json%20options%20you%20should%20use"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/mastodon.svg" alt="Share on Mastodon" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://x.com/intent/tweet?url=https%3a%2f%2ftduyng.com%2fblog%2ftsconfig-options-you-should-use&text=Essential%20tsconfig.json%20options%20you%20should%20use"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/x.svg" alt="Share on Twitter" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftduyng.com%2fblog%2ftsconfig-options-you-should-use"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/facebook.svg" alt="Share on Facebook" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftduyng.com%2fblog%2ftsconfig-options-you-should-use&title=Essential%20tsconfig.json%20options%20you%20should%20use"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/linkedin.svg" alt="Share on LinkedIn" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a href="mailto:?subject=Essential%20tsconfig.json%20options%20you%20should%20use&body=https%3a%2f%2ftduyng.com%2fblog%2ftsconfig-options-you-should-use">
+                <img src="/icon/email.svg" alt="Share via Email" class="sharing-icon" />
+            </a>
+        </li>
+    </ul>
+</div>
+ 
+<div
+    class="reaction right"
+    data-endpoint="https://reaction.tienduy-nguyen-dev.workers.dev"
+></div>
+
+ 
+
+                </div>
+
+                
+<script
+    src="https://giscus.app/client.js"
+    data-repo="tduyng/tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    data-mapping="specific"
+    data-term="blog/tsconfig-options-you-should-use"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="bottom"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async
+></script>
+
+ <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+            </main>
+        </div>
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>

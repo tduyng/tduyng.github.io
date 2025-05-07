@@ -1,0 +1,520 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/blog/config-esling-prettier-react-app" />
+    
+    <meta name="keywords" content="eslint, prettier" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>Config ESLint, Prettier for React App in VSCode</title>
+    <meta
+        property="og:title"
+        content="Config ESLint, Prettier for React App in VSCode"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Discover how to configure ESLint and Prettier within your React application in VSCode for enhanced code quality and consistency." />
+    <meta property="og:description" content="Discover how to configure ESLint and Prettier within your React application in VSCode for enhanced code quality and consistency." />
+    
+    <meta property="og:image" content="https://tduyng.com/img/post-cover.webp" />
+    <meta property="og:image:width" content="1500" />
+    <meta property="og:image:height" content="750" />
+    <meta name="twitter:image" content="https://tduyng.com/img/post-cover.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="post">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold">[</span>
+
+               
+            <a class="instant " href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold">]</span>
+            
+        </nav>
+    </div>
+</header>
+
+
+        <div id="wrapper">
+            <div id="blank"></div>
+            <aside>
+                
+<nav>
+    <ul>
+        
+        <li>
+            <a class="h2" href="#what-are-eslint-and-prettier">What are ESLint and Prettier?</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#eslint">ESlint</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#prettier">Prettier</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#why-vscode">Why VSCode?</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#setup-vscode">Setup VSCode</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#install-extensions">Install extensions</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#setup-workspace-setting-in-vscode">Setup Workspace Setting in VSCode</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#setup-eslint-and-prettier-for-react">Setup ESLint and Prettier for React</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#why-configuration-for-react-app-">Why configuration for React App ?</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#setup">Setup</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#conclusion">Conclusion</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#reference">Reference</a>
+            
+        </li>
+        
+    </ul>
+</nav>
+
+
+                <button id="back-to-top" aria-label="back to top">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill="currentColor"></path></svg>
+                </button>
+            </aside>
+            <main>
+                <div>
+                    
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+ 
+                    <article class="prose" data-backlink-icon="">
+                        <h1>Config ESLint, Prettier for React App in VSCode</h1>
+                        <div id="post-info">
+                            <div id="date">
+                                <span id="publish">Dec 17, 2020</span>
+                                
+                            </div>
+
+                            <div id="wordcount">
+    <span>1208 words - 6 min read</span>
+</div>
+
+                        </div>
+
+                        <div id="tags">
+                              
+                            <a class="instant" href="/tags/eslint"><span>#</span>eslint</a>
+                              
+                            <a class="instant" href="/tags/prettier"><span>#</span>prettier</a>
+                            
+                        </div>
+
+                        
+ <p>As a developer, you will understand how important of quality of code in your project. ESlint and Prettier are great tools helps you for formatting and style of code.</p>
+<p>In this article, you will understand how to setup ESLint &amp; Prettier in your React project and on text-editor VSCode.</p>
+<h2 id="what-are-eslint-and-prettier">What are ESLint and Prettier?</h2>
+<h3 id="eslint">ESlint</h3>
+<p>It is a static code analyzer, that means it tells you errors and mistakes that you may make while you are developing.</p>
+<p>These errors can be stuff like -</p>
+<p>Simple syntax errors eg. not closing a function declaration with }.
+Dead code detection eg. unused variables, code written after a return statement.
+Violating code guidelines, these are rules defined by yourself or a combination of predefined standards like the Airbnb styled guide or Google's style guide etc.</p>
+<h3 id="prettier">Prettier</h3>
+<p>Prettier is a code formatter, it's only concerned with how your code looks, do you want ensure consistent indentation in the entire project?
+Do you want to ensure there're no semicolons in the project? Make your promise chains look perfectly consistent and readable? Prettier can be enabled for the entire project and instead of your team disagreeing about formatting styles, you can just leave it all to Prettier to figure out.</p>
+<h2 id="why-vscode">Why VSCode?</h2>
+<ul>
+<li>Visual Studio Code (VSCode) is a very popular coding editor used by millions of developers around the world.</li>
+<li>VSCode is a source code editor while Visual Studio is a complete IDE.</li>
+<li>Visual Studio Code is a cross-platform which works on Windows, Linux and macOS whereas Visual Studio only works on Windows and macOS.</li>
+<li>VSCode is fast and lightweight, and Visual Studio 2015 is not as fast but consists of a multitude of features. It is very easy to use.</li>
+<li>It support myriads of programming languages. It supports Python, JavaScript, HTML, CSS, TypeScript, C++, Java, PHP, Go, C#, PHP, SQL, Ruby, Objective-C and much more.</li>
+<li>Built-in Git integration</li>
+<li>IntelliSense: It is a feature which is used by programmers for smart code completion, parameter info, content assist, quick info and the code hinting. VSC provides IntelliSense for JavaScript, CSS, HTML, TypeScript, JSON, Sass and Less programming languages. For other languages, we can use IntelliSense by adding its extensions.</li>
+</ul>
+<p>VSCode has much more other advantages. If you don't use this text-editor yet. I think you should take a look, I'm pretty sure that you will fall in love quickly with it.</p>
+<h2 id="setup-vscode">Setup VSCode</h2>
+<h3 id="install-extensions">Install extensions</h3>
+<p>To use ESLint &amp; Prettier tool, first of all, you need to install these extensions:</p>
+<ul>
+<li><strong>ESLint</strong>: ESLint for editor</li>
+<li><strong>Prettier</strong>: Format code</li>
+<li><strong>vscode-styled-components</strong>: Highlight &amp; auto-complete for styled-component</li>
+<li><strong>Auto Rename Tag</strong>: Auto rename tag when code HTML, JSX</li>
+<li><strong>Auto Close Tag</strong>: As its name, it allows auto close tag when code HTML, JSX, TSX... Auto Close Tag and Auto Rename Tag are a great duo.</li>
+<li><strong>Editor Config for VSCode</strong>: Allow to run <code>.editorconfig</code> file.</li>
+</ul>
+<h3 id="setup-workspace-setting-in-vscode">Setup Workspace Setting in VSCode</h3>
+<p>So when all extensions already, we will take some configurations for settings in VScode.</p>
+<p>For anyone who don't know, VSCode has 2 settings, one is for <strong>user</strong>, the orther for <strong>workspace</strong>. If you don't setup for <strong>workspace</strong>, by default VSCode will get settings directly at the <strong>user settings</strong></p>
+<ul>
+<li><strong>user settings</strong>: <code>settings.json</code> file of VSCode</li>
+<li><strong>workspace settings</strong>: Create a folder and file <code>.vscode/settings.json</code> in the root of your project.</li>
+</ul>
+<p>In this article, I just explain how to setup for the <strong>workspace</strong>. You do the same for settings of user.</p>
+<p>Now, start setting up.</p>
+<ul>
+<li>
+<p>Create file <code>.vscode/settings.json</code> in the root of your project</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;editor.defaultFormatter&#34;</span>: <span style="color:#f1fa8c">&#34;esbenp.prettier-vscode&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;editor.formatOnSave&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;editor.codeActionsOnSave&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;source.fixAll.eslint&#34;</span>: <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>It means:</p>
+<ul>
+<li><code>editor.defaultFormatter</code>: take <strong>Prettier</strong> as default formater</li>
+<li><code>editor.formatOnSave: true</code>: format automatically the code when saving files</li>
+<li><code>eslint.format.enable: true</code>: enable formatting code of ESlint</li>
+<li><code>source.fixAll.eslint: true</code>: fix auto code with ESLint. Sometime we need to fix manually.</li>
+</ul>
+</li>
+<li>
+<p>Add <code>.vscode/extensions.json</code> file and paste the following code. It will recommend use install the following extension when open this project on their VScode.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;recommendations&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;mikael.angular-beastcode&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;angular.ng-template&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;coenraads.bracket-pair-colorizer&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;mikestead.dotenv&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;dsznajder.es7-react-js-snippets&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;dbaeumer.vscode-eslint&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;mkxml.vscode-filesize&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;ritwickdey.liveserver&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;davidanson.vscode-markdownlint&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;pkief.material-icon-theme&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;zhuangtongfa.material-theme&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;esbenp.prettier-vscode&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;syler.sass-indented&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;octref.vetur&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;ms-vscode.vscode-typescript-tslint-plugin&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;visualstudioexptteam.vscodeintellicode&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f1fa8c">&#34;formulahendry.code-runner&#34;</span>
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>It's very helpful when we work in team. We just share the folder <code>.vscode</code> and <code>json</code> file each other. But in that case, don't add <strong>.vscode</strong> in <strong>.gitignore</strong> file.</p>
+</li>
+<li>
+<p>Add file <code>.editorconfig</code> in the root project</p>
+<p>If you don't know, <strong>.editorconfig</strong> was created to unify standards between different editors.</p>
+<p>For example: user would use <strong>indent</strong> as <strong>space</strong>, some peoples would use <strong>tag</strong>. Some users want to <strong>2</strong> for indent, the others want to <strong>4</strong>. So <strong>.editorconfig</strong> helps our code to be consistent, easy to read and maintain.</p>
+<p>Because we already have the <strong>Editor Config</strong> extension, installed above, when we created this file, the VSCode will automatically take these settings.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>[*]
+</span></span><span style="display:flex;"><span>end_of_line = lf
+</span></span><span style="display:flex;"><span>indent_style = space
+</span></span><span style="display:flex;"><span>indent_size = 2
+</span></span></code></pre></li>
+</ul>
+<h2 id="setup-eslint-and-prettier-for-react">Setup ESLint and Prettier for React</h2>
+<h3 id="why-configuration-for-react-app-">Why configuration for React App ?</h3>
+<p>The setup in this article isn't only for React app, but also we can setup similarly for other framework as Angular, Vue or any front-end project. React is just a framework that I have familiar with for this moment.</p>
+<h3 id="setup">Setup</h3>
+<p>Here, I use <a href="https://github.com/facebook/create-react-app">create-react-app</a>, so by default they have the basic ESLint installed, I just need to install a few more dependencies.</p>
+<ul>
+<li>
+<p>Create <code>.env</code> in the root folder of project and add the value <code>EXTEND_ESLINT=true</code>. It allows us to add more others linter to <strong>React</strong>.</p>
+</li>
+<li>
+<p>Install more packages</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>yarn add -D prettier eslint-config-prettier eslint-plugin-prettier
+</span></span></code></pre></li>
+<li>
+<p>Add <strong>script</strong> to run them in <code>package.json</code> file</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#f1fa8c">&#34;scripts&#34;</span>: {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;start&#34;</span>: <span style="color:#f1fa8c">&#34;react-scripts start&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;build&#34;</span>: <span style="color:#f1fa8c">&#34;react-scripts build&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;test&#34;</span>: <span style="color:#f1fa8c">&#34;react-scripts test&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;eject&#34;</span>: <span style="color:#f1fa8c">&#34;react-scripts eject&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;lint&#34;</span>: <span style="color:#f1fa8c">&#34;eslint --ext js,jsx,ts,tsx src/&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;lint:fix&#34;</span>: <span style="color:#f1fa8c">&#34;eslint --fix --ext js,jsx,ts,tsx src/&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;prettier&#34;</span>: <span style="color:#f1fa8c">&#34;prettier --check \&#34;src/**/(*.tsx|*.ts|*.jsx|*.js|*.scss|*.css)\&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;prettier:fix&#34;</span>: <span style="color:#f1fa8c">&#34;prettier --write \&#34;src/**/(*.tsx|*.ts|*.jsx|*.js|*.scss|*.css)\&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>So we can use <code>yarn lint</code>, <code>yarn lint:fix</code> ... to check or fix code style with these tools.</p>
+</li>
+<li>
+<p>Create <code>.prettierrc</code></p>
+<p>It contains the rules for <strong>Prettier</strong></p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  &#34;arrowParens&#34;: &#34;avoid&#34;,
+</span></span><span style="display:flex;"><span>  &#34;semi&#34;: false,
+</span></span><span style="display:flex;"><span>  &#34;trailingComma&#34;: &#34;none&#34;,
+</span></span><span style="display:flex;"><span>  &#34;endOfLine&#34;: &#34;lf&#34;,
+</span></span><span style="display:flex;"><span>  &#34;tabWidth&#34;: 2,
+</span></span><span style="display:flex;"><span>  &#34;printWidth&#34;: 80,
+</span></span><span style="display:flex;"><span>  &#34;useTabs&#34;: false
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></li>
+<li>
+<p>Create <code>.prettierignore</code>
+<strong>Prettier</strong> will ignore and will not check these files.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>.cache
+</span></span><span style="display:flex;"><span>package-lock.json
+</span></span></code></pre></li>
+<li>
+<p>Create <code>.eslintrc</code></p>
+<p>This file intend to expand the ESLint React configuration. It helps to catch erros on the terminal. If you have installed the ESLint extension ESlint, it will rely on this file to catch errors directly on the editor.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  &#34;extends&#34;: [&#34;react-app&#34;, &#34;prettier&#34;],
+</span></span><span style="display:flex;"><span>  &#34;plugins&#34;: [&#34;react&#34;, &#34;prettier&#34;],
+</span></span><span style="display:flex;"><span>  &#34;rules&#34;: {
+</span></span><span style="display:flex;"><span>    &#34;prettier/prettier&#34;: [
+</span></span><span style="display:flex;"><span>      &#34;warn&#34;,
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        &#34;arrowParens&#34;: &#34;avoid&#34;,
+</span></span><span style="display:flex;"><span>        &#34;semi&#34;: false,
+</span></span><span style="display:flex;"><span>        &#34;trailingComma&#34;: &#34;none&#34;,
+</span></span><span style="display:flex;"><span>        &#34;endOfLine&#34;: &#34;lf&#34;,
+</span></span><span style="display:flex;"><span>        &#34;tabWidth&#34;: 2,
+</span></span><span style="display:flex;"><span>        &#34;printWidth&#34;: 80,
+</span></span><span style="display:flex;"><span>        &#34;useTabs&#34;: false
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    &#34;no-console&#34;: &#34;warn&#34;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>We have added some <strong>prettier</strong> rules like we added in <code>.prettierrc</code> to ESlint. So that ESlint will catch errors in case we format to format code.</p>
+</li>
+<li>
+<p>Create <code>.eslintignore</code>
+Ignore files that we don't want to catch errors.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>/src/serviceWorker.js
+</span></span><span style="display:flex;"><span>/src/setupTests.js/js
+</span></span></code></pre></li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>So that's it. Hope you learned something new. Eslint is endlessly customizable and you should explore more to find some plugins and configs that best benefit your project.</p>
+<p>All the code snippets can be found here on <a href="https://github.com/tduyng/webpack-react-typescript-template">my GitHub</a></p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://github.com/tduyng/webpack-react-typescript-template">Code GitHub</a></li>
+</ul>
+ <div class="pagination">
+    
+
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="/blog/setup-webpack-react-typescript/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Setup Webpack React TypeScript</span>
+            </a>
+        </span>
+         
+        <span class="button next">
+            <a href="/blog/create-simple-project-nodejs-with-docker/">
+                <span class="button__text">Create simple web app Nodejs with Docker</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+                    </article>
+                    <div class="sharing-buttons">
+    <h3>Share this post:</h3>
+    <ul class="sharing-list" id="right">
+        <li>
+            <a
+                href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2ftduyng.com%2fblog%2fconfig-esling-prettier-react-app&t=Config%20ESLint%2c%20Prettier%20for%20React%20App%20in%20VSCode"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/hacker-news.svg" alt="Share on Hacker News" class="sharing-icon" />
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://www.reddit.com/submit?url=https%3a%2f%2ftduyng.com%2fblog%2fconfig-esling-prettier-react-app&title=Config%20ESLint%2c%20Prettier%20for%20React%20App%20in%20VSCode"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/reddit.svg" alt="Share on Reddit" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://mastodon.social/share?url=https%3a%2f%2ftduyng.com%2fblog%2fconfig-esling-prettier-react-app&text=Config%20ESLint%2c%20Prettier%20for%20React%20App%20in%20VSCode"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/mastodon.svg" alt="Share on Mastodon" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://x.com/intent/tweet?url=https%3a%2f%2ftduyng.com%2fblog%2fconfig-esling-prettier-react-app&text=Config%20ESLint%2c%20Prettier%20for%20React%20App%20in%20VSCode"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/x.svg" alt="Share on Twitter" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftduyng.com%2fblog%2fconfig-esling-prettier-react-app"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/facebook.svg" alt="Share on Facebook" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftduyng.com%2fblog%2fconfig-esling-prettier-react-app&title=Config%20ESLint%2c%20Prettier%20for%20React%20App%20in%20VSCode"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/linkedin.svg" alt="Share on LinkedIn" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a href="mailto:?subject=Config%20ESLint%2c%20Prettier%20for%20React%20App%20in%20VSCode&body=https%3a%2f%2ftduyng.com%2fblog%2fconfig-esling-prettier-react-app">
+                <img src="/icon/email.svg" alt="Share via Email" class="sharing-icon" />
+            </a>
+        </li>
+    </ul>
+</div>
+ 
+<div
+    class="reaction right"
+    data-endpoint="https://reaction.tienduy-nguyen-dev.workers.dev"
+></div>
+
+ 
+
+                </div>
+
+                
+ <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+            </main>
+        </div>
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>

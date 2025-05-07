@@ -1,0 +1,193 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/notes/git-changes" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>[Note] Run a command if there are unstaged changes</title>
+    <meta
+        property="og:title"
+        content="[Note] Run a command if there are unstaged changes"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Software Engineer" />
+    <meta property="og:description" content="Software Engineer" />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="prose-page">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold">[</span>
+
+               
+            <a class="instant fold" href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant " href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold">]</span>
+            
+        </nav>
+    </div>
+</header>
+
+
+    <div id="wrapper-notes">
+    <main>
+      <div>
+      
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+
+      <article class="prose notes">
+        <div class="notes-entry lazy-entry">
+            <div class="thought-content">
+                <h1 id="run-a-command-if-there-are-unstaged-changes">Run a command if there are unstaged changes</h1>
+<p>A quick one-liner to run a command only if there are unstaged changes: the <code>--quiet</code> flag of <a href="https://git-scm.com/docs/git-diff"><code>git diff</code></a></p>
+<p>The flag does two things:</p>
+<ul>
+<li>Disables all output of the command</li>
+<li>Exits with <code>1</code> if there are differences, and <code>0</code> if there are no differences.</li>
+</ul>
+<p>That means you can combine it with boolean operators to only run another command if files have (or have not) changed:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Run `command` if there are unstaged changes</span>
+</span></span><span style="display:flex;"><span>git diff --quiet <span style="color:#ff79c6">||</span> <span style="color:#8be9fd;font-style:italic">command</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Run `command` if there are NO unstaged changes</span>
+</span></span><span style="display:flex;"><span>git diff --quiet <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#8be9fd;font-style:italic">command</span>
+</span></span></code></pre><h2 id="other-tips">Other tips</h2>
+<ul>
+<li>
+<p>Check for untracked files</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>git ls-files --others --exclude-standard | grep -q . <span style="color:#ff79c6">&amp;&amp;</span> <span style="color:#8be9fd;font-style:italic">command</span>
+</span></span></code></pre></li>
+<li>
+<p>Include staged changes</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>git diff --cached --quiet <span style="color:#ff79c6">||</span> <span style="color:#8be9fd;font-style:italic">command</span>
+</span></span></code></pre></li>
+<li>
+<p>Combine with <code>entr</code> for file watching</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>git diff --quiet <span style="color:#ff79c6">||</span> entr -r <span style="color:#8be9fd;font-style:italic">command</span>
+</span></span></code></pre></li>
+<li>
+<p>Use in CI pipelines</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>git diff --quiet <span style="color:#ff79c6">||</span> <span style="color:#8be9fd;font-style:italic">echo</span> <span style="color:#f1fa8c">&#34;Changes detected, running tests...&#34;</span> <span style="color:#ff79c6">&amp;&amp;</span> npm <span style="color:#8be9fd;font-style:italic">test</span>
+</span></span></code></pre></li>
+</ul>
+
+                <p class="timestamp">
+                    <a href="/notes/git-changes/"
+                        >Jan 17, 2025</a
+                    >
+                </p>
+            </div>
+        </div>
+        <article>
+      </div>
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="tduyng/tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    data-mapping="specific"
+    data-term="notes/git-changes"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="bottom"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async
+></script>
+
+
+    <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+    </main>
+</div>
+
+
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>

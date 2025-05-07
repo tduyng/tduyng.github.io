@@ -1,0 +1,623 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/blog/build-free-your-personal-website-using-jekyll" />
+    
+    <meta name="keywords" content="blog, static-site-generator, free, web-development" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>Build your personal website without spending any money</title>
+    <meta
+        property="og:title"
+        content="Build your personal website without spending any money"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Learn how to build your own personal website using Jekyll and GitHub Pages without spending a dime. Dive into the step-by-step process and get your website up and running in no time." />
+    <meta property="og:description" content="Learn how to build your own personal website using Jekyll and GitHub Pages without spending a dime. Dive into the step-by-step process and get your website up and running in no time." />
+    
+    <meta property="og:image" content="https://tduyng.com/img/post-cover.webp" />
+    <meta property="og:image:width" content="1500" />
+    <meta property="og:image:height" content="750" />
+    <meta name="twitter:image" content="https://tduyng.com/img/post-cover.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="post">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold">[</span>
+
+               
+            <a class="instant " href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold">]</span>
+            
+        </nav>
+    </div>
+</header>
+
+
+        <div id="wrapper">
+            <div id="blank"></div>
+            <aside>
+                
+<nav>
+    <ul>
+        
+        <li>
+            <a class="h2" href="#static-site-generator">STATIC SITE GENERATOR</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#jekyll">Jekyll</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#installation--build">INSTALLATION &amp; BUILD</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#21-minimal-mistakes-jekyll-theme">2.1 Minimal Mistakes Jekyll Theme</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#22-clone-minimal-mistakes-theme-to-your-machine">2.2 Clone Minimal Mistakes theme to your machine</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#23-initialize-repository-on-the-local-machine">2.3 Initialize repository on the local machine</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#24-setup-development-environment">2.4 Setup development environment</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#25-customize-minimal-mistakes-theme">2.5 Customize Minimal Mistakes Theme</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#26-deploy-on-github-pages">2.6 Deploy on GitHub Pages</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#extra-topics">Extra topics</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#reference">Reference</a>
+            
+        </li>
+        
+    </ul>
+</nav>
+
+
+                <button id="back-to-top" aria-label="back to top">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill="currentColor"></path></svg>
+                </button>
+            </aside>
+            <main>
+                <div>
+                    
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+ 
+                    <article class="prose" data-backlink-icon="">
+                        <h1>Build your personal website without spending any money</h1>
+                        <div id="post-info">
+                            <div id="date">
+                                <span id="publish">May 25, 2020</span>
+                                
+                            </div>
+
+                            <div id="wordcount">
+    <span>2239 words - 11 min read</span>
+</div>
+
+                        </div>
+
+                        <div id="tags">
+                              
+                            <a class="instant" href="/tags/blog"><span>#</span>blog</a>
+                              
+                            <a class="instant" href="/tags/static-site-generator"><span>#</span>static-site-generator</a>
+                              
+                            <a class="instant" href="/tags/free"><span>#</span>free</a>
+                              
+                            <a class="instant" href="/tags/web-development"><span>#</span>web-development</a>
+                            
+                        </div>
+
+                        
+ <p>In this article, we'll walk through how to set up a Jekyll-powered blog using the Minimal Mistakes theme.</p>
+<p>It’s not always clear why we need a personal website, but here’s the truth, especially for developers: a website is an effective medium to let the world know who we are, what we are capable of, and what our values are.</p>
+<p>The purpose of the website you want to build can vary; it could be a blog, portfolio, landing page, or multi-purpose site. In my case, I need a website to:</p>
+<ul>
+<li>Showcase my projects</li>
+<li>Blog about my experiences, my knowledge in programming, and my other interests</li>
+<li>Share information about me that would be of interest to a recruiter, including my resume, email, and links to my GitHub, Medium, and LinkedIn pages</li>
+<li>Being able to easily generate and publish blog posts is another extremely beneficial feature, though not required.</li>
+</ul>
+<p>Initially, I tried to create my website using HTML, CSS, and serving it with GitHub Pages. However, I realized it would take a lot of time to complete, not to mention the time needed to customize the website for each post.</p>
+<p>I searched for a solution on the internet and found the awesome technology called &quot;Static Site Generator.&quot;</p>
+<h2 id="static-site-generator">STATIC SITE GENERATOR</h2>
+<p>You may have already heard about static site generators. They aren't new; they were what we used to build the web before dynamic CMSs (WordPress, Drupal, etc.) took over.</p>
+<p>What's new is that modern tools—like static site generators—have emerged over the last few years and expanded the capabilities of static sites.</p>
+<p>A static site generator is an application that takes a template directory containing raw text files in various formats, processes them through a converter (like Markdown) and its Liquid renderer, and outputs a complete, ready-to-publish static website suitable for serving with your favorite web server.</p>
+<p>With the growth of the <a href="https://jamstack.org/">JAMstack</a> and its community, Static Site Generators are becoming more and more popular.</p>
+<p>So, why use a static generator?</p>
+<ul>
+<li>Speed</li>
+<li>Security</li>
+<li>Development workflow: no need to create the backend server. This makes it incredibly easy to run your site locally, automate builds, switch to a different host, etc.</li>
+<li>There are a lot of themes available, fast build, easy maintenance. That's true. You can even build a beautiful website within minutes.</li>
+</ul>
+<p>There are many static site generators available; you can check them out on <a href="https://www.staticgen.com/">staticgen.com</a></p>
+<div align="center">
+  <img src="img/static-site-generator.webp" alt="STG" loading="lazy">
+</div>
+In this article, I will present one of them: Jekyll.
+<h3 id="jekyll">Jekyll</h3>
+<p>Jekyll is an extremely popular static site generator. It is an open-source program in Ruby created by GitHub co-founder Tom Preston-Werner. Jekyll enables developers to transform plain text into static websites and blogs. It serves as the engine behind GitHub Pages, allowing you to host sites directly from your GitHub repositories.</p>
+<p>Jekyll is built with the Ruby programming language. I'm currently learning web development with Ruby &amp; Ruby on Rails at The Hacking Project. So, if you come from a Ruby/ROR background like me, you'll want to explore Jekyll.</p>
+<p>Now, let's see how I created my personal blog. And don't forget that it will be totally free.</p>
+<h2 id="installation--build">INSTALLATION &amp; BUILD</h2>
+<p>There are multiple ways to get started with Jekyll, each with its own variations. Here are a few options:</p>
+<p>Install Jekyll locally via the command line, create a new boilerplate website using jekyll new, build it locally with jekyll build, then serve it.</p>
+<p>Make sure you have installed Jekyll on your machine with gem install bundler jekyll. For the full installation guide, you can check out the official guide on <a href="https://jekyllrb.com/">jekyllrb.com</a>.</p>
+<p>Take a Jekyll theme and clone it to your local machine, install Jekyll locally via the command line, make updates to your website, build it locally, and then serve it. (You can also fork a starting point and make changes to it.)</p>
+<p>We'll start with the easiest option: using an available Jekyll theme. This will get us up and running in just a few minutes.</p>
+<p>So, let's choose a theme together.</p>
+<p>Nowadays, there are many Jekyll themes, both free and paid. Developers design these templates perfectly for any corporate business and blogging website.</p>
+<p>You can explore some excellent paid Jekyll themes <a href="https://themeforest.net/category/static-site-generators">here</a>.</p>
+<p>But as the title suggests, we will build our website without paying anything, choosing only free themes.</p>
+<p>You can find almost all the free Jekyll themes on <a href="https://jekyllthemes.io/free">Free Jekyll Themes</a> and choose the one you prefer.</p>
+<h3 id="21-minimal-mistakes-jekyll-theme">2.1 Minimal Mistakes Jekyll Theme</h3>
+<p>I will introduce you to a really good theme for building a blog: the &quot;Minimal Mistakes&quot; theme, created by <a href="https://github.com/mmistakes">Michael Rose</a>. Thank you so much, <a href="https://mademistakes.com/">Michael</a>, for providing an awesome Jekyll theme for the community.</p>
+<p>Its advantages:</p>
+<ul>
+<li>Free theme</li>
+<li>Highly recommended by the community: 7k stars and 12k forks on GitHub (Source GitHub mmistakes)</li>
+<li>Full features for a blog</li>
+<li>Responsive design for mobile, tablet, and desktop</li>
+<li>Compatible with GitHub Pages</li>
+<li>Support for Jekyll's built-in Sass/SCSS preprocessor</li>
+<li>Nine different skins (color variations)</li>
+<li>Several responsive layout options (single, archive index, search, splash, and paginated home page)</li>
+<li>Commenting support (powered by Disqus, Facebook, Google+, Discourse, static-based via Staticman, and utterances)</li>
+<li>Google Analytics support</li>
+</ul>
+<p>We already have a starting point; now, all we need to do is install this theme on your machine.</p>
+<h3 id="22-clone-minimal-mistakes-theme-to-your-machine">2.2 Clone Minimal Mistakes theme to your machine</h3>
+<p>As we will use GitHub Pages to serve our blog, before we clone it to the local machine, I will explain how to create a new repository on GitHub.</p>
+<p>You probably won't need to do it the same way, as there are many different ways to do it. This is just a simpler way for me.</p>
+<h3 id="23-initialize-repository-on-the-local-machine">2.3 Initialize repository on the local machine</h3>
+<ul>
+<li>Create a repository on GitHub</li>
+</ul>
+<p>Instead of using git init via the command line, I create it directly on GitHub.
+<img src="img/create-repo-github.webp" alt="create new repo">{:class=&quot;lazyload&quot;}</p>
+<p>This way, we can easily define the visibility of the repository: public or private, and we can initialize it with the template of .gitignore and LICENSE.
+I named this repo <a href="https://github.com/tduyng/demo-jekyll-mmistakes">demo-jekyll-mmtakes</a>.</p>
+<p>If you want this website to be the origin GitHub pages, meaning the domain name of your website is github-user-name.github.io, you will need to create a repository with this name: &quot;github-user-name.github.io&quot;.</p>
+<p>For example, my GitHub pages: tduyng.github.io, so I need to create a repository named: &quot;tduyng.github.io&quot;.</p>
+<p>You can check how to create GitHub Pages in the official GitHub documentation: <a href="https://guides.github.com/features/pages/">https://guides.github.com/features/pages/</a></p>
+<ul>
+<li>
+<p>After we clone the repository that we just created with git clone on the local machine.</p>
+</li>
+<li>
+<p>Now, we will clone mmistakes repository.</p>
+</li>
+</ul>
+<div align="center">
+  <img src="img/mmistakes-repo.webp" alt="" loading="lazy">
+</div>
+<ul>
+<li>
+<p>Enter the mmistakes directory, remove .git, LICENSE, and README files</p>
+</li>
+<li>
+<p>Then, we move all files from the mmistakes directory to our local repository: demo-jekyll-mmistakes</p>
+</li>
+<li>
+<p>Don't hesitate to make a git commit when you finish that step with a message &quot;Init mmistake theme,&quot; for example.</p>
+</li>
+</ul>
+<h3 id="24-setup-development-environment">2.4 Setup development environment</h3>
+<p>First, let’s make sure your development environment is ready.</p>
+<p>Ensure you have installed <a href="https://www.ruby-lang.org/en/">Ruby</a> and <a href="https://rubygems.org/">RubyGems</a>, and <a href="https://jekyllrb.com/">Jekyll</a> on your computer.</p>
+<p>You’ll be using your own text editor and terminal app.</p>
+<p>Once your development environment is set up, you can try running the server to view your page as it is.</p>
+<p>Use bundle install to install all gem dependencies, and jekyll serve or bundle exec jekyll serve to run the server. The page will be running on localhost:4000</p>
+<p>The result in your browser:</p>
+<div align="center">
+  <img src="img/first-page.webp" alt="first page" loading="lazy">
+</div>
+We have nothing to show on the page now because we need to customize the Minimal Mistakes theme and create a new post.
+<h3 id="25-customize-minimal-mistakes-theme">2.5 Customize Minimal Mistakes Theme</h3>
+<h4 id="251-configurations">2.5.1 Configurations</h4>
+<p>Before customizing, let's take a look at the folder structure of our project:</p>
+<div align="center">
+  <img src="img/tree-folder.webp" alt="tree folder" loading="lazy">
+</div>
+To customize your website, you'll need to modify the _config.yml file to set up the initial settings.
+<p>In the config.yml, Michael has detailed the significance of each tag. For example, here's how I modified the config.yml file for my blog:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">author</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">name</span>: <span style="color:#ff79c6">*name</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">bio</span>: <span style="color:#f1fa8c">&#39;Love people who code&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">location</span>: <span style="color:#f1fa8c">&#39;Paris, France&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">email</span>: <span style="color:#f1fa8c">&#39;z@tduyng.github.io&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">links</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">label</span>: <span style="color:#f1fa8c">&#39;Website&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">url</span>: <span style="color:#f1fa8c">&#39;https://tduyng.github.io&#39;</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">label</span>: <span style="color:#f1fa8c">&#39;Twitter&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">url</span>: <span style="color:#ff79c6">&amp;twitterUrl</span> <span style="color:#f1fa8c">&#39;https://twitter.com/tienduy_nguyen&#39;</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">label</span>: <span style="color:#f1fa8c">&#39;LinkedIn&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">url</span>: <span style="color:#ff79c6">&amp;linkedinUrl</span> <span style="color:#f1fa8c">&#39;https://linkedin.com/in/tduyng&#39;</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">label</span>: <span style="color:#f1fa8c">&#39;GitHub&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">url</span>: <span style="color:#ff79c6">&amp;githubUrl</span> <span style="color:#f1fa8c">&#39;https://github.com/tduyng&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">footer</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">links</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">label</span>: <span style="color:#f1fa8c">&#39;Twitter&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">url</span>: <span style="color:#ff79c6">*twitterUrl</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">label</span>: <span style="color:#f1fa8c">&#39;LinkedIn&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">url</span>: <span style="color:#ff79c6">*linkedinUrl</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">label</span>: <span style="color:#f1fa8c">&#39;GitHub&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">url</span>: <span style="color:#ff79c6">*githubUrl</span>
+</span></span></code></pre><p>Here, you can provide your social information, such as your name, bio, location, and email. Additionally, you can include links to your website, Twitter, LinkedIn, and GitHub profiles.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">plugins</span>:
+</span></span><span style="display:flex;"><span>    - jekyll-paginate
+</span></span><span style="display:flex;"><span>    - jekyll-sitemap
+</span></span><span style="display:flex;"><span>    - jekyll-gist
+</span></span><span style="display:flex;"><span>    - jekyll-feed
+</span></span><span style="display:flex;"><span>    - jekyll-include-cache
+</span></span><span style="display:flex;"><span>    - jemoji
+</span></span></code></pre><p>Lastly, you can specify the gem plugins you want to use. For example, I've added the jemoji plugin, which allows us to use emoji markdown on our page.</p>
+<p>These are just some of the configurations you can customize in the _config.yml file. Once you've made your changes, save the file and move on to the next step.</p>
+<h4 id="252-gemfile">2.5.2 Gemfile</h4>
+<p>Your Gemfile is currently empty, so you need to add some Jekyll plugins that you've declared in your <code>_config.yml</code> file.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>source <span style="color:#f1fa8c">&#34;https://rubygems.org&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ruby <span style="color:#f1fa8c">&#34;2.7.1&#34;</span>
+</span></span><span style="display:flex;"><span>gem <span style="color:#f1fa8c">&#34;jekyll&#34;</span>, <span style="color:#f1fa8c">&#34;~&gt; 3.8.5&#34;</span>
+</span></span><span style="display:flex;"><span>gem <span style="color:#f1fa8c">&#34;minimal-mistakes-jekyll&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>group <span style="color:#f1fa8c">:jekyll_plugins</span> <span style="color:#ff79c6">do</span>
+</span></span><span style="display:flex;"><span>  gem <span style="color:#f1fa8c">&#34;jekyll-remote-theme&#34;</span>
+</span></span><span style="display:flex;"><span>  gem <span style="color:#f1fa8c">&#34;jekyll-paginate&#34;</span>
+</span></span><span style="display:flex;"><span>  gem <span style="color:#f1fa8c">&#34;jekyll-sitemap&#34;</span>
+</span></span><span style="display:flex;"><span>  gem <span style="color:#f1fa8c">&#34;jekyll-gist&#34;</span>
+</span></span><span style="display:flex;"><span>  gem <span style="color:#f1fa8c">&#34;jekyll-feed&#34;</span>, <span style="color:#f1fa8c">&#34;~&gt; 0.6&#34;</span>
+</span></span><span style="display:flex;"><span>  gem <span style="color:#f1fa8c">&#34;jemoji&#34;</span>
+</span></span><span style="display:flex;"><span>  gem <span style="color:#f1fa8c">&#34;jekyll-include-cache&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span></code></pre><p>After modifying your Gemfile, return to the terminal.</p>
+<h4 id="253-run-server">2.5.3 Run Server</h4>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>bundle install <span style="color:#6272a4"># Install all gems in Gemfile</span>
+</span></span><span style="display:flex;"><span>bundle update <span style="color:#6272a4"># Update multiple gems</span>
+</span></span></code></pre><p>To run the server, type:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>bundle <span style="color:#8be9fd;font-style:italic">exec</span> jekyll serve
+</span></span></code></pre><p>Open your browser at localhost:4000 to view the result.</p>
+<div align="center">
+  <img src="img/second-page.webp" alt="second page" loading="lazy">
+</div>
+<p>Looks better, right?</p>
+<p>You're almost finished with the customization. Next, we'll create the first posts and customize our navbar.</p>
+<h4 id="254-create-posts">2.5.4 Create Posts</h4>
+<p>All posts should be placed in the _posts folder. If you don't have one, simply create it.</p>
+<p>When you clone the Minimal Mistakes repository from GitHub, you'll find two folders named docs and test. These folders contain documentation and examples for different types of posts, which can be very helpful.</p>
+<p>For a quick demo, copy all the posts from the test/_posts folder to your _posts folder. You can use both Markdown and HTML files for your posts. Personally, I prefer Markdown because it's faster to write and customize.</p>
+<p>If you're new to Markdown, you can learn from tutorials like markdownguide.org.</p>
+<p>Each post should include:</p>
+<ul>
+<li>Title</li>
+<li>Categories</li>
+<li>Tags</li>
+</ul>
+<p>Here's an example of the first part of a post in Markdown:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>title: &#39;Markup: HTML Tags and Formatting&#39;
+</span></span><span style="display:flex;"><span>header:
+</span></span><span style="display:flex;"><span>    teaser: &#39;assets/images/markup-syntax-highlighting-teaser.webp&#39;
+</span></span><span style="display:flex;"><span>categories:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">-</span> Markup
+</span></span><span style="display:flex;"><span>tags:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">-</span> content
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">-</span> css
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">-</span> formatting
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">-</span> html
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">-</span> markup
+</span></span><span style="display:flex;"><span>---
+</span></span></code></pre><p>And here's an example of the content of the post:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>A variety of common markup showing how the theme styles them.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">## Header Two
+</span></span></span><span style="display:flex;"><span><span style="font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">### Header Three
+</span></span></span><span style="display:flex;"><span><span style="font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">#### Header Four
+</span></span></span><span style="display:flex;"><span><span style="font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">##### Header Five
+</span></span></span><span style="display:flex;"><span><span style="font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">###### Header Six
+</span></span></span><span style="display:flex;"><span><span style="font-weight:bold"></span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">## Blockquotes
+</span></span></span><span style="display:flex;"><span><span style="font-weight:bold"></span>
+</span></span><span style="display:flex;"><span>Single line blockquote:
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt; </span><span style="text-decoration:underline">Stay hungry. Stay foolish.
+</span></span></span><span style="display:flex;"><span><span style="text-decoration:underline"></span>
+</span></span><span style="display:flex;"><span>Multi-line blockquote with a cite reference:
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">
+</span></span></span><span style="display:flex;"><span><span style="color:#ff79c6">&gt; </span><span style="text-decoration:underline">People think focus means saying yes to the thing you&#39;ve got to focus on. But that&#39;s not what it means at all. It means saying no to the hundred other good ideas that there are. You have to pick carefully. I&#39;m actually as proud of the things we haven&#39;t done as the things I have done. Innovation is saying no to 1,000 things.
+</span></span></span><span style="display:flex;"><span><span style="text-decoration:underline"></span><span style="color:#ff79c6">&gt; </span><span style="text-decoration:underline">&lt;cite&gt;Steve Jobs&lt;/cite&gt; --- Apple Worldwide Developers&#39; Conference, 1997
+</span></span></span><span style="display:flex;"><span><span style="text-decoration:underline"></span><span style="color:#ff79c6">&gt; </span><span style="text-decoration:underline">{: .small}
+</span></span></span><span style="display:flex;"><span><span style="text-decoration:underline"></span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">## Tables
+</span></span></span><span style="display:flex;"><span><span style="font-weight:bold"></span>
+</span></span><span style="display:flex;"><span>| Header1 | Header2 | Header3 |
+</span></span><span style="display:flex;"><span>| :------ | :-----: | ------: |
+</span></span><span style="display:flex;"><span>| cell1   |  cell2  |   cell3 |
+</span></span><span style="display:flex;"><span>| cell4   |  cell5  |   cell6 |
+</span></span><span style="display:flex;"><span>| ------- |
+</span></span><span style="display:flex;"><span>| cell1   |  cell2  |   cell3 |
+</span></span><span style="display:flex;"><span>| cell4   |  cell5  |   cell6 |
+</span></span><span style="display:flex;"><span>| ======= |
+</span></span><span style="display:flex;"><span>| Foot1   |  Foot2  |   Foot3 |
+</span></span></code></pre><p>For more features, refer to the documentation of this theme.</p>
+<p>Once you've added the posts, you can see the result in your browser. The Minimal Mistakes theme offers many excellent features for a modern blog, as demonstrated in the screenshots.</p>
+<p>Next, we'll focus on navigation.</p>
+<h4 id="255-navigation">2.5.5 Navigation</h4>
+<p>Customizing the navigation is straightforward as Michael has already set it up for us. We just need to make some adjustments.</p>
+<p>Navigate to the _data folder in the directory tree, and you'll find navigation.yml. Customize it as follows:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># main links</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">main</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">title</span>: <span style="color:#f1fa8c">&#39;About&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">url</span>: https://mmistakes.github.io/minimal-mistakes/about/
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">title</span>: <span style="color:#f1fa8c">&#39;Posts&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">url</span>: /posts/
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">title</span>: <span style="color:#f1fa8c">&#39;Categories&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">url</span>: <span style="color:#f1fa8c">&#39;/categories&#39;</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">title</span>: <span style="color:#f1fa8c">&#39;Tags&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">url</span>: <span style="color:#f1fa8c">&#39;/tags&#39;</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ff79c6">title</span>: <span style="color:#f1fa8c">&#39;Search&#39;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">url</span>: <span style="color:#f1fa8c">&#39;/search&#39;</span>
+</span></span></code></pre><p>The resulting navigation will appear as follows:</p>
+<div align="center">
+  Posts page
+  <img src="img/posts-nav.webp" alt="third page" loading="lazy">
+Categories page
+<img src="img/categories-nav.webp" alt="post detail" loading="lazy">
+<p>Tag pages
+<img src="img/tags-nav.webp" alt="post detail" loading="lazy"></p>
+</div>
+If you're curious about Jekyll, you can learn more at [Jekyll quickstart](https://jekyllrb.com/docs/).
+<h4 id="256-build">2.5.6 Build</h4>
+<p>After finishing an article, you'll need to build the files with:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>bundle <span style="color:#8be9fd;font-style:italic">exec</span> jekyll build
+</span></span></code></pre><p>This command will automatically generate HTML and CSS files in the site folder.</p>
+<h3 id="26-deploy-on-github-pages">2.6 Deploy on GitHub Pages</h3>
+<p>Push and commit all the changes to your GitHub repository.</p>
+<p>If you haven't set up GitHub Pages for this repository yet, you'll need to do so.</p>
+<p>Navigate to the Settings of your repository on GitHub, and activate GitHub Pages.</p>
+<p>For more detailed instructions, refer to the <a href="https://guides.github.com/features/pages/">GitHub Pages guide</a>.</p>
+<p>Once you've completed these steps, your beautiful website will be live at your-github-user-name.github.io.</p>
+<h2 id="extra-topics">Extra topics</h2>
+<ul>
+<li>Using your own domain name. It's not expensive.</li>
+<li><a href="https://docs.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site">Managing a custom domain for your GitHub Pages site</a></li>
+<li>Other static site generator: Gastbyjs, nextjs, nuxtjs, hugo ...</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li>Demo online <a href="https://adev42.com/demo-jekyll-mmistakes/">https://tduyng.github.io/demo-jekyll-mmistakes/</a></li>
+<li>My repo demo Github <a href="https://github.com/tduyng/demo-jekyll-mmistakes">demo-jekyll-mmistakes</a></li>
+<li>Jekyll home page of Jekyll <a href="https://jekyllrb.com/">https://jekyllrb.com/</a></li>
+<li>Documentation of minimal mistake theme <a href="https://mmistakes.github.io/minimal-mistakes/">https://mmistakes.github.io/minimal-mistakes/</a></li>
+<li>Interesting blog about jekyll <a href="https://blog.webjeda.com/">https://blog.webjeda.com/</a></li>
+<li>Using github pages <a href="https://pages.github.com/">https://pages.github.com/</a></li>
+</ul>
+ <div class="pagination">
+    
+
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="/blog/challenges-ruby-03/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Simple coding challenges with Ruby - 03</span>
+            </a>
+        </span>
+         
+        <span class="button next">
+            <a href="/blog/how-to-switch-to-another-rails-version/">
+                <span class="button__text">How to switch to another Rails version</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+                    </article>
+                    <div class="sharing-buttons">
+    <h3>Share this post:</h3>
+    <ul class="sharing-list" id="right">
+        <li>
+            <a
+                href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2ftduyng.com%2fblog%2fbuild-free-your-personal-website-using-jekyll&t=Build%20your%20personal%20website%20without%20spending%20any%20money"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/hacker-news.svg" alt="Share on Hacker News" class="sharing-icon" />
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://www.reddit.com/submit?url=https%3a%2f%2ftduyng.com%2fblog%2fbuild-free-your-personal-website-using-jekyll&title=Build%20your%20personal%20website%20without%20spending%20any%20money"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/reddit.svg" alt="Share on Reddit" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://mastodon.social/share?url=https%3a%2f%2ftduyng.com%2fblog%2fbuild-free-your-personal-website-using-jekyll&text=Build%20your%20personal%20website%20without%20spending%20any%20money"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/mastodon.svg" alt="Share on Mastodon" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://x.com/intent/tweet?url=https%3a%2f%2ftduyng.com%2fblog%2fbuild-free-your-personal-website-using-jekyll&text=Build%20your%20personal%20website%20without%20spending%20any%20money"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/x.svg" alt="Share on Twitter" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftduyng.com%2fblog%2fbuild-free-your-personal-website-using-jekyll"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/facebook.svg" alt="Share on Facebook" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftduyng.com%2fblog%2fbuild-free-your-personal-website-using-jekyll&title=Build%20your%20personal%20website%20without%20spending%20any%20money"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/linkedin.svg" alt="Share on LinkedIn" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a href="mailto:?subject=Build%20your%20personal%20website%20without%20spending%20any%20money&body=https%3a%2f%2ftduyng.com%2fblog%2fbuild-free-your-personal-website-using-jekyll">
+                <img src="/icon/email.svg" alt="Share via Email" class="sharing-icon" />
+            </a>
+        </li>
+    </ul>
+</div>
+ 
+<div
+    class="reaction right"
+    data-endpoint="https://reaction.tienduy-nguyen-dev.workers.dev"
+></div>
+
+ 
+
+                </div>
+
+                
+ <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+            </main>
+        </div>
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>
