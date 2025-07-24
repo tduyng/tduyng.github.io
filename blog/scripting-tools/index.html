@@ -1,0 +1,1101 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/blog/scripting-tools" />
+    
+    <meta name="keywords" content="scripting, makefile, nodejs, typescript, shell" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>Scripting tools - A Node.js friendly alternative to makefile</title>
+    <meta
+        property="og:title"
+        content="Scripting tools - A Node.js friendly alternative to makefile"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Using execa and commander is an alternative that can be considered for replacing makefile in a Node.js project" />
+    <meta property="og:description" content="Using execa and commander is an alternative that can be considered for replacing makefile in a Node.js project" />
+    
+    <meta property="og:image" content="https://tduyng.com/blog/scripting-tools/img/makefile.webp" />
+    <meta property="og:image:width" content="1500" />
+    <meta property="og:image:height" content="750" />
+    <meta name="twitter:image" content="https://tduyng.com/blog/scripting-tools/img/makefile.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="post">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold">[</span>
+
+               
+            <a class="instant " href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold">]</span>
+            
+        </nav>
+    </div>
+</header>
+
+
+        <div id="wrapper">
+            <div id="blank"></div>
+            <aside>
+                
+<nav>
+    <ul>
+        
+        <li>
+            <a class="h2" href="#tldr">TL;DR</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#introduction">Introduction</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#challenges-with-makefile">Challenges with makefile</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#objectif">Objectif</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#tools-exploration">Tools exploration</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#compared-and-select-tools">Compared and select tools</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#js-shell-libraries">JS shell libraries</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#javascript-cli-libraries">JavaScript CLI libraries</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#examples-of-migrations">Examples of migrations</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#feedbacks">Feedbacks</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#our-context-of-this-migration">Our context of this migration</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#why-migrate">Why migrate?</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#how-to-migrate-and-timing">How to migrate and timing?</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#should-we-migrate-everything">Should we migrate everything?</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#why-didnt-we-use-the-built-in-nodejs-module">Why didn&#39;t we use the built-in Node.js module?</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#problems-encountered-during-the-migration">Problems encountered during the migration?</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#whats-good-about-this-migration">What’s good about this migration?</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#conclusion">Conclusion</a>
+            
+        </li>
+        
+    </ul>
+</nav>
+
+
+                <button id="back-to-top" aria-label="back to top">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill="currentColor"></path></svg>
+                </button>
+            </aside>
+            <main>
+                <div>
+                    
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+ 
+                    <article class="prose" data-backlink-icon="">
+                        <h1>Scripting tools - A Node.js friendly alternative to makefile</h1>
+                        <div id="post-info">
+                            <div id="date">
+                                <span id="publish">Jan 29, 2025</span>
+                                
+                            </div>
+
+                            <div id="wordcount">
+    <span>5864 words - 27 min read</span>
+</div>
+
+                        </div>
+
+                        <div id="tags">
+                              
+                            <a class="instant" href="/tags/scripting"><span>#</span>scripting</a>
+                              
+                            <a class="instant" href="/tags/makefile"><span>#</span>makefile</a>
+                              
+                            <a class="instant" href="/tags/nodejs"><span>#</span>nodejs</a>
+                              
+                            <a class="instant" href="/tags/typescript"><span>#</span>typescript</a>
+                              
+                            <a class="instant" href="/tags/shell"><span>#</span>shell</a>
+                            
+                        </div>
+
+                        
+ <h2 id="tldr">TL;DR</h2>
+<p>Using <code>execa</code> and <code>commander</code> is an alternative that can be considered for replacing makefile in a Node.js project.</p>
+<h2 id="introduction">Introduction</h2>
+<p>At <a href="https://ekino.fr">ekino</a>, in some projects handled by our Node.js team, we heavily use <strong>Makefile</strong> to automate tasks such as testing,
+lints, Docker integration, code checking, deployment, Kubernetes management, load testing with K6, and all automating stuff.
+They have been our preferred tool for many years due to their simplicity, efficiency, and adaptability to various workflows.</p>
+<p>As our projects have grown, these files have become increasingly more complex and harder to maintain and understand, especially for team members who are not familiar with shell scripting.
+Because of these challenges, we've started looking into using JavaScript tools for automating tasks.</p>
+<p>Our goal is to simplify our processes, make them easier for everyone on the team to use, and see what advantages this new approach might bring.</p>
+<h2 id="challenges-with-makefile">Challenges with makefile</h2>
+<p>While <code>make</code> has been a reliable tool, they have limitations that are more noticeable in current projects. Here are some our key issues:</p>
+<ul>
+<li>
+<p><em>Debugging with make is not easy</em></p>
+<p>Make doesn't provide clear error messages. If something goes wrong, we often have to figure out confusing shell outputs. Many errors come from shell-specific issues,
+like syntax problems or incorrect environment configurations, which can be difficult to resolve.</p>
+<p>Debugging options are limited. For example, <code>make -d</code> provides verbose logs, but there's no way to set breakpoints or trace errors like we can in JavaScript/Typescript</p>
+</li>
+<li>
+<p><em>Environment variables are hard to manage</em></p>
+<p>Make handles all environment variables the same way, without organizing them. This makes it hard to manage settings across environments like development, staging, and production.
+Unlike JavaScript, which uses modules and scoped variables for better control.</p>
+</li>
+<li>
+<p><em>Challenges for non-UNIX developers</em></p>
+<p>Make is very particular about things like tab indentation and specific shell syntax, which can be confusing for developers who are not familiar with Unix-like systems.</p>
+</li>
+<li>
+<p><em>Limited support for parallel and asynchronous tasks</em></p>
+<p>Make can handle basic parallelisms using the <code>-j</code> flag, but they don't work well with truly asynchronous tasks. For complex workflows,
+especially those that need tasks to run in parallel or asynchronously, things can get very difficult to manage without advanced shell scripting.</p>
+</li>
+<li>
+<p><em>Readability and maintenance issues</em></p>
+<p>As makefiles get bigger, their straightforward, step-by-step instructions become harder to read and manage.
+It's not always clear how tasks depend on each other, and without features like functions or imports, handling a large makefile can feel like trying to untangle a big mess.</p>
+<p>JavaScript provides ways to organize code using functions and libraries, which helps keep the code neat and easy to maintain.</p>
+</li>
+</ul>
+<p><strong>Other alternatives to makefile</strong></p>
+<p>In addition to Node.js-based tools, there are 2 good alternatives to makefile:</p>
+<ul>
+<li><strong><a href="https://github.com/casey/just">Justfile</a></strong> (Rust-based)</li>
+<li><strong><a href="https://github.com/go-task/task">Taskfile</a></strong> (Go-based with YAML syntax)</li>
+</ul>
+<p><strong>Justfile</strong> is written in Rust, which makes it very fast. Its syntax is simpler and more user-friendly than makefile, supporting environment variables from <code>.env</code> files and offering cross-platform compatibility.
+It also integrates well with various languages, including JavaScript (using <code>#!/usr/bin/env node</code>) and a lot of other cool features. It's a very promising tool.</p>
+<p><strong>Taskfile</strong>, built with Go, provides a YAML-based configuration that is fast and structured. It is designed to simplify task definitions and improve maintainability compared to makefile.</p>
+<p>Both tools solve many problems of makefile. However, they also come with their own challenges.
+Using them would require learning a new syntax and adding additional setup steps, such as installing these tools in our Node.js Docker images, which isn’t ideal for our workflow.</p>
+<p>Since we're looking for a JavaScript solution that works well with our current projects, we won't explore these options further in this research.
+However, they are still good choices for teams that want something different from JavaScript (especially <code>Justfile</code>)</p>
+<h2 id="objectif">Objectif</h2>
+<p>We need a solution that uses JavaScript/Typescript, a language our developers is already comfortable with. Our goal is to make scripting easier to write, update, and understand.</p>
+<p>Here's what we're looking for:</p>
+<ul>
+<li>The tool should reduce complexity and make scripts easy to understand, even for those with little scripting experience.</li>
+<li>It should work naturally with JavaScript and TypeScript, fitting into our existing projects without friction.</li>
+<li>Combining the power of JavaScript with shell commands should be easy.</li>
+<li>Clear error messages, stack traces, and debugging tools are essential for identifying and fixing problems quickly.</li>
+<li>It should handle multiple tasks, background tasks effectively using Node.js's native features.</li>
+<li>The tool should work as a JavaScript library or a command-line tool, giving us options depending on the use case. Commands should be easy to use, with helpful features like <code>--help</code> for quick guidance.</li>
+<li>It must work consistently across different plateforme Windows, macOS, and Linux</li>
+</ul>
+<h2 id="tools-exploration">Tools exploration</h2>
+<p>Here's an overview of some tools we've explored:</p>
+<ul>
+<li>
+<p><strong>JS shell libraries</strong></p>
+<p>These libraries allow developers to write scripts that combine JavaScript's flexibility with shell-like commands, making automation tasks intuitive and efficient:</p>
+<ul>
+<li><strong><a href="https://github.com/google/zx">zx</a></strong>: A Google-developed library that simplifies scripting by combining JavaScript with shell syntax.</li>
+<li><strong><a href="https://github.com/sindresorhus/execa">execa</a></strong>: Built on top of the <a href="https://nodejs.org/api/child_process.html"><code>child_process</code></a> core module. This tool makes it easy to execute commands, handle errors, and integrate them directly into JavaScript code.</li>
+<li><strong><a href="https://github.com/dsherret/dax">dax</a></strong>: Similar to <code>zx</code>, optimized for shell scripting within JavaScript, developed for Deno and Node.js.</li>
+<li><strong><a href="https://github.com/shelljs/shelljs">shelljs</a></strong>: A Portable Unix shell commands for Node.js</li>
+</ul>
+</li>
+<li>
+<p><strong>JavaScript CLI libraries</strong></p>
+<p>For building command-line interfaces (CLIs) in JavaScript, these libraries offer varying levels of complexity and features:</p>
+<ul>
+<li><strong><a href="https://github.com/tj/commander.js">commander</a></strong>: Simple CLI building with argument parsing, command support, and <code>--help</code> generation.</li>
+<li><strong><a href="https://github.com/yargs/yargs">yargs</a></strong>: Yargs helps to build interactive command line tools, by parsing arguments and generating an elegant user interface.</li>
+<li><strong><a href="https://github.com/minimistjs/minimist">minimist</a></strong>: Lightweight option parser for CLI arguments, ideal for simpler CLI tools.</li>
+<li><strong><a href="https://github.com/oclif/oclif">oclif</a></strong>: CLI for generating, building, and releasing oclif CLIs. Built by Salesforce.</li>
+</ul>
+</li>
+</ul>
+<h2 id="compared-and-select-tools">Compared and select tools</h2>
+<h3 id="js-shell-libraries">JS shell libraries</h3>
+<table>
+<thead>
+<tr>
+<th>Criteria</th>
+<th><strong>zx</strong></th>
+<th><strong>execa</strong></th>
+<th><strong>dax</strong></th>
+<th><strong>shelljs</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GitHub stars</strong></td>
+<td><img src="https://img.shields.io/github/stars/google/zx" alt="Stars"></td>
+<td><img src="https://img.shields.io/github/stars/sindresorhus/execa" alt="Stars"></td>
+<td><img src="https://img.shields.io/github/stars/dsherret/dax" alt="Stars"></td>
+<td><img src="https://img.shields.io/github/stars/shelljs/shelljs" alt="Stars"></td>
+</tr>
+<tr>
+<td><strong>Popularity</strong></td>
+<td>Gaining traction rapidly</td>
+<td>Established and widely used</td>
+<td>Newer tool with growing interest (Original developed for Deno)</td>
+<td>The oldest tool, widely used</td>
+</tr>
+<tr>
+<td><strong>Maintainers</strong></td>
+<td>Google</td>
+<td>Sindre Sorhus (A open source legend) and Mickael Hebert</td>
+<td>David Sherret (Deno team)</td>
+<td>Nate Fischer (Google engineer)</td>
+</tr>
+<tr>
+<td><strong>Released</strong></td>
+<td>Regularly</td>
+<td>Regularly</td>
+<td>Regularly</td>
+<td>Not relesed since 2022</td>
+</tr>
+<tr>
+<td><strong>Contributors</strong></td>
+<td><img src="https://img.shields.io/github/contributors/google/zx" alt="Contributors"></td>
+<td><img src="https://img.shields.io/github/contributors/sindresorhus/execa" alt="Contributors"></td>
+<td><img src="https://img.shields.io/github/contributors/dsherret/dax" alt="Contributors"></td>
+<td><img src="https://img.shields.io/github/contributors/shelljs/shelljs" alt="Contributors"></td>
+</tr>
+<tr>
+<td><strong>Issues</strong></td>
+<td><img src="https://img.shields.io/github/issues/google/zx" alt="Open Issues"></td>
+<td><img src="https://img.shields.io/github/issues/sindresorhus/execa" alt="Open Issues"></td>
+<td><img src="https://img.shields.io/github/issues/dsherret/dax" alt="Open Issues"></td>
+<td><img src="https://img.shields.io/github/issues/shelljs/shelljs" alt="Open Issues"></td>
+</tr>
+<tr>
+<td><strong>Npm</strong></td>
+<td><img src="https://img.shields.io/npm/dw/zx" alt="Download"></td>
+<td><img src="https://img.shields.io/npm/dw/execa" alt="Download"></td>
+<td><img src="https://img.shields.io/npm/dw/dax-sh" alt="Download"></td>
+<td><img src="https://img.shields.io/npm/dw/shelljs" alt="Download"></td>
+</tr>
+<tr>
+<td><strong>Dependencies</strong></td>
+<td>0 dependency, but include a lot of external builtin utilities</td>
+<td>12 dependencies</td>
+<td>2 dependencies</td>
+<td>3 dependencies</td>
+</tr>
+<tr>
+<td><strong>Install size</strong></td>
+<td><img src="https://packagephobia.now.sh/badge?p=zx" alt="Install Size"></td>
+<td><img src="https://packagephobia.now.sh/badge?p=execa" alt="Install Size"></td>
+<td><img src="https://packagephobia.now.sh/badge?p=dax-sh" alt="Install Size"></td>
+<td><img src="https://packagephobia.now.sh/badge?p=shelljs" alt="Install Size"></td>
+</tr>
+<tr>
+<td><strong>Cross-platform</strong></td>
+<td>Limited to POSIX-compliant environments (Linux, macOS)</td>
+<td>Yes</td>
+<td>Yes (Deno, Node.js-compatible across platforms)</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td><strong>Documentation</strong></td>
+<td>Comprehensive and beginner-friendly, includes examples and guides</td>
+<td>Highly detailed with structured sections, examples , debugging guides</td>
+<td>Thorough, but slightly less mature than <code>zx</code> or <code>execa</code> docs</td>
+<td>Clear and straightforward documentation</td>
+</tr>
+<tr>
+<td><strong>Ease of use</strong></td>
+<td>User-friendly, support syntax with <code>$</code> as shorthand for executing commands</td>
+<td>User-friendly and powerful, support shorthand syntax <code>$</code></td>
+<td>Easy to use, support <code>$</code> shorthand, some features still maturing</td>
+<td>Familiar UNIX-like syntax, lacks <code>$</code> shorthand, suitable for cross-platform scripts</td>
+</tr>
+</tbody>
+</table>
+<br/>
+<img src="img/execa-zx-dax-shelljs.png" alt="execa-zx-dax-shelljs" loading="lazy">
+<figcaption style="font-size: 0.8em; color: gray; margin-top: 4px; text-align: center;">Image from npmtrends.com</figcaption>
+<br/>
+<p>Here are some examples demonstrating the syntax for each tool:</p>
+<ul>
+<li>zx</li>
+</ul>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">#!/usr/bin/env zx
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { $ } from <span style="color:#f1fa8c">&#39;zx&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`rm -rf project_a`</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`mkdir project_a`</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`touch project_a/index.js`</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`echo &#34;console.log(&#39;Hello, World!&#39;);&#34; &gt; project_a/index.js`</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> output <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`node project_a/index.js`</span>
+</span></span><span style="display:flex;"><span>console.log(output.stdout)
+</span></span></code></pre><ul>
+<li>execa</li>
+</ul>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">#!/usr/bin/env node
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { $ } from <span style="color:#f1fa8c">&#39;execa&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`rm -rf project_b`</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`mkdir project_b`</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`touch project_b/index.js`</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">await</span> $({
+</span></span><span style="display:flex;"><span>    shell<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>})<span style="color:#f1fa8c">`echo &#34;console.log(&#39;Hello, World!&#39;);&#34; &gt; project_b/index.js`</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">await</span> $({ stdout<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;inherit&#39;</span> })<span style="color:#f1fa8c">`node project_b/index.js`</span>
+</span></span></code></pre><p>By default, <code>execa</code> does not activate the shell behavior. Here’s why, according to the creator:</p>
+<blockquote>
+<p>In general, <a href="https://en.wikipedia.org/wiki/Shell_(computing)">shells</a> should be avoided because they are:</p>
+<ul>
+<li>Not cross-platform, encouraging shell-specific syntax.</li>
+<li>Slower, because of the additional shell interpretation.</li>
+<li>Unsafe, potentially allowing <a href="https://en.wikipedia.org/wiki/Code_injection#Shell_injection">command injection</a> (see the <a href="https://github.com/sindresorhus/execa/blob/main/docs/escaping.md#shells">escaping section</a>).</li>
+</ul>
+</blockquote>
+<p>If you need to use a shell or capture shell output in <code>execa</code>, you must explicitly enable it by setting <code>$({ shell: true })</code> or <code>$({stdout: 'inherit'})</code> in the options, as shown in the example</p>
+<ul>
+<li>dax</li>
+</ul>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">#!/usr/bin/env -S deno run --allow-all
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> $ from <span style="color:#f1fa8c">&#39;dax-sh&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`rm -rf project_c`</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`mkdir project_c`</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`touch project_c/index.js`</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`echo &#34;console.log(&#39;Hello, World!&#39;);&#34; &gt; project_c/index.js`</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`node project_c/index.js`</span>
+</span></span></code></pre><ul>
+<li>shell.js</li>
+</ul>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">#!/usr/bin/env node
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> shell from <span style="color:#f1fa8c">&#39;shelljs&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>shell.rm(<span style="color:#f1fa8c">&#39;-rf&#39;</span>, <span style="color:#f1fa8c">&#39;project_d&#39;</span>)
+</span></span><span style="display:flex;"><span>shell.mkdir(<span style="color:#f1fa8c">&#39;project_d&#39;</span>)
+</span></span><span style="display:flex;"><span>shell.touch(<span style="color:#f1fa8c">&#39;project_d/index.js&#39;</span>)
+</span></span><span style="display:flex;"><span>shell.exec(<span style="color:#f1fa8c">`echo &#34;console.log(&#39;Hello, World!&#39;);&#34; &gt; project_d/index.js`</span>)
+</span></span><span style="display:flex;"><span>shell.exec(<span style="color:#f1fa8c">&#39;node project_d/index.js&#39;</span>)
+</span></span></code></pre><ul>
+<li>Same thing we can do with makefile</li>
+</ul>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#50fa7b">run_js</span><span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span> rm -rf project_e
+</span></span><span style="display:flex;"><span> mkdir project_e
+</span></span><span style="display:flex;"><span> touch project_e/index.run_js
+</span></span><span style="display:flex;"><span> <span style="color:#8be9fd;font-style:italic">echo</span> <span style="color:#f1fa8c">&#34;console.log(&#39;Hello makefile&#39;);&#34;</span> &gt; project_e/index.js
+</span></span><span style="display:flex;"><span> node project_e/index.js
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#50fa7b">.PHONY</span><span style="color:#ff79c6">:</span> run_js
+</span></span><span style="display:flex;"><span>
+</span></span></code></pre><p>These examples shows how each tool deals with simple tasks, but they are very different when it comes to more complicated tasks. When looking at these tools, we aimed to find one that is feature-rich, well-documented, and reliably maintained.</p>
+<p><code>zx</code> is an interesting option developed by Google. This typically means it’s stable and well-maintained. However, zx is somewhat heavy, as it includes several built-in utilities (e.g., chalk, which, yaml) that may not always be necessary for every project. While this bundling can simplify scripting tasks, it could add unnecessary overhead, especially in lightweight use cases.</p>
+<p><code>Execa</code> is an excellent option for scripting tasks. It’s lightweight, cross-platform, well-documented, and incredibly popular, (with 100M downloads per week compared to <code>zx</code>'s 720k). This level of adoption places it among the most widely used npm libraries, which is quite impressive.
+But there are also some limitations. <code>execa</code> only supports Node.js versions <code>18.19.0</code> and above. While this is fine for modern projects (the current LTS version is 22.11.0), if we need to use it for a legacy project, that won't be possible. Additionally, <code>execa</code> has 12 dependencies, which is relatively high for a utility library of this type. However, these dependencies are actively maintained by the library’s creator, so I think that’s acceptable (considering the number of downloads and contributors, we likely won’t face security issues with these dependencies). Still, if they could reduce the dependencies to 3–4, it would make <code>execa</code> even more streamlined and appealing.</p>
+<p><code>Dax</code> is also a quite interesting tool developed for both Deno and Node.js compatibility. It’s written in Rust and uses the <a href="https://github.com/denoland/deno_task_shell">deno_task_shell</a> parser, which ensures good performance. However, it’s still relatively young and might lack some maturity. Looking at the API of this library, it seems sufficient for handling most basic scripting needs. But I encountered an issue when managing errors. The <code>.catch</code> function does not always work as expected, which suggests that the result of the <code>await</code> function may not be a true <code>async</code> function. For example:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>await $<span style="color:#f1fa8c">`</span>kubectl delete secrets aws-ecr-secret -n <span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">namespace</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>.catch<span style="color:#ff79c6">(()</span> <span style="color:#ff79c6">=</span>&gt; <span style="color:#8be9fd;font-style:italic">true</span><span style="color:#ff79c6">)</span>; // Throws: TypeError: <span style="color:#ff79c6">$(</span>...<span style="color:#ff79c6">)</span>.catch is not a <span style="color:#ff79c6">function</span>
+</span></span></code></pre><p>In most cases, this issue can be resolved using a <code>try-catch</code> block, although it does make the syntax slightly more verbose.</p>
+<p><code>Shelljs</code> works well as a cross-platform tool and is reliable for basic tasks. However, it relies on older syntax and lacks the shorthand flexibility found in more modern tools like <code>zx</code> and <code>execa</code>. Additionally, its less frequent updates make it feel somewhat outdated and less suitable for current development requirements.</p>
+<p>There is also an interesting comparison of the APIs of <code>execa</code> and <code>zx</code> (the two most widely used libraries in this list), which can be found <a href="https://github.com/sindresorhus/execa/blob/main/docs/bash.md">here</a>. Here’s a summary of key differences:</p>
+<table>
+<thead>
+<tr>
+<th>Criteria</th>
+<th><strong>execa</strong></th>
+<th><strong>zx</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Shell</strong></td>
+<td>Does not require a shell; can run JavaScript directly with <code>#!/usr/bin/env node</code>.</td>
+<td>Requires <code>zx</code> as the shell; uses <code>#!/usr/bin/env zx</code> for execution.</td>
+</tr>
+<tr>
+<td><strong>Modularity</strong></td>
+<td>Designed to be small and modular; does not include any built-in utilities, allowing for focused functionality.</td>
+<td>Includes many built-in utilities (e.g., chalk, yaml, which), which can simplify tasks, so it can be heavy</td>
+</tr>
+<tr>
+<td><strong>Debugging</strong></td>
+<td>- Offers verbose debugging options, including timestamps, command completion, duration, and interleaved commands.<br>- Pure functional.</td>
+<td>- Provides less detailed information than <code>execa</code> during debugging.<br>- Statefull, retaining options and the current directory.</td>
+</tr>
+<tr>
+<td><strong>Syntax</strong></td>
+<td>Features a simple and flexible syntax that aligns with Node.js standards for environment variables (e.g., <code>process.env.LANG</code>).<br>- Easily executes serial commands.<br>- Silent stdout by default.</td>
+<td>- Less flexible with syntax; uses UNIX-style environment variables (e.g., <code>$LANG</code>).<br>- Does not silence stdout by default, which can clutter output.</td>
+</tr>
+<tr>
+<td><strong>Piping</strong></td>
+<td>Supports simple piping with an intuitive API.</td>
+<td>Offers less flexible piping with a more verbose syntax.</td>
+</tr>
+<tr>
+<td><strong>Streams</strong></td>
+<td>Supports web streams and duplex streams, enhancing integration with modern APIs.</td>
+<td>Does not support streams, which may limit certain use cases.</td>
+</tr>
+<tr>
+<td><strong>Pipeline results</strong></td>
+<td>Returns results from all commands in the pipeline, providing comprehensive data for further processing.</td>
+<td>Only returns the result of the last command in the pipeline, which may restrict data access.</td>
+</tr>
+</tbody>
+</table>
+<p>From this comparison, it’s clear that <code>execa</code> has several advantages. Its API is closer to the Node.js syntax and ecosystem, making it feel more natural for developers familiar with Node.js.</p>
+<h4 id="what-about-the-performance-of-these-tools">What about the performance of these tools?</h4>
+<p>We made a simple benchmark for these tools using the examples provided. The results are shown below:</p>
+<p>(Benchmark ran on Node.js 22.11.0, Bun: 1.1.37, Deno 2.1.1)</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>❯ hyperfine --warmup <span style="color:#bd93f9">3</span> <span style="color:#f1fa8c">&#34;node zx.js&#34;</span> <span style="color:#f1fa8c">&#34;node execa.js&#34;</span> <span style="color:#f1fa8c">&#34;node dax.js&#34;</span> <span style="color:#f1fa8c">&#34;node shell.js&#34;</span> <span style="color:#f1fa8c">&#34;make run_js&#34;</span>
+</span></span><span style="display:flex;"><span>Benchmark 1: node zx.js
+</span></span><span style="display:flex;"><span>  Time <span style="color:#ff79c6">(</span>mean ± σ<span style="color:#ff79c6">)</span>:     301.8 ms ±   9.1 ms    <span style="color:#ff79c6">[</span>User: 229.3 ms, System: 67.1 ms<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span>  Range <span style="color:#ff79c6">(</span>min … max<span style="color:#ff79c6">)</span>:   295.1 ms … 326.0 ms    <span style="color:#bd93f9">10</span> runs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Benchmark 2: node execa.js
+</span></span><span style="display:flex;"><span>  Time <span style="color:#ff79c6">(</span>mean ± σ<span style="color:#ff79c6">)</span>:     340.7 ms ±  68.3 ms    <span style="color:#ff79c6">[</span>User: 258.1 ms, System: 88.1 ms<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span>  Range <span style="color:#ff79c6">(</span>min … max<span style="color:#ff79c6">)</span>:   298.8 ms … 532.9 ms    <span style="color:#bd93f9">10</span> runs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Warning: Statistical outliers were detected. Consider re-running this benchmark on a quiet system without any interferences from other programs. It might <span style="color:#8be9fd;font-style:italic">help</span> to use the <span style="color:#f1fa8c">&#39;--warmup&#39;</span> or <span style="color:#f1fa8c">&#39;--prepare&#39;</span> options.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Benchmark 3: node dax.js
+</span></span><span style="display:flex;"><span>  Time <span style="color:#ff79c6">(</span>mean ± σ<span style="color:#ff79c6">)</span>:     241.4 ms ±  21.6 ms    <span style="color:#ff79c6">[</span>User: 217.3 ms, System: 46.1 ms<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span>  Range <span style="color:#ff79c6">(</span>min … max<span style="color:#ff79c6">)</span>:   217.2 ms … 307.1 ms    <span style="color:#bd93f9">12</span> runs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Warning: Statistical outliers were detected. Consider re-running this benchmark on a quiet system without any interferences from other programs. It might <span style="color:#8be9fd;font-style:italic">help</span> to use the <span style="color:#f1fa8c">&#39;--warmup&#39;</span> or <span style="color:#f1fa8c">&#39;--prepare&#39;</span> options.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Benchmark 4: node shell.js
+</span></span><span style="display:flex;"><span>  Time <span style="color:#ff79c6">(</span>mean ± σ<span style="color:#ff79c6">)</span>:     411.8 ms ±  12.5 ms    <span style="color:#ff79c6">[</span>User: 325.4 ms, System: 86.8 ms<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span>  Range <span style="color:#ff79c6">(</span>min … max<span style="color:#ff79c6">)</span>:   396.5 ms … 435.7 ms    <span style="color:#bd93f9">10</span> runs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Benchmark 5: make run_js
+</span></span><span style="display:flex;"><span>  Time <span style="color:#ff79c6">(</span>mean ± σ<span style="color:#ff79c6">)</span>:     165.8 ms ±  37.7 ms    <span style="color:#ff79c6">[</span>User: 90.5 ms, System: 47.7 ms<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span>  Range <span style="color:#ff79c6">(</span>min … max<span style="color:#ff79c6">)</span>:   131.6 ms … 250.9 ms    <span style="color:#bd93f9">15</span> runs
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Summary
+</span></span><span style="display:flex;"><span>  make run_js ran
+</span></span><span style="display:flex;"><span>    1.46 ± 0.36 <span style="color:#8be9fd;font-style:italic">times</span> faster than node dax.js
+</span></span><span style="display:flex;"><span>    1.82 ± 0.42 <span style="color:#8be9fd;font-style:italic">times</span> faster than node zx.js
+</span></span><span style="display:flex;"><span>    2.05 ± 0.62 <span style="color:#8be9fd;font-style:italic">times</span> faster than node execa.js
+</span></span><span style="display:flex;"><span>    2.48 ± 0.57 <span style="color:#8be9fd;font-style:italic">times</span> faster than node shell.js
+</span></span></code></pre><p>For benchmarking, you can see that executing code with <code>make</code> is consistently faster than using JavaScript tools for scripting. <code>dax</code> comes in second place, likely because it’s written in Rust, which ensures good performance. <code>execa</code> and <code>zx</code> are nearly the same in performance, while <code>shelljs</code> is the slowest.</p>
+<p>I also tested other runtimes like <code>bun</code> and <code>deno</code>, but running scripts with <code>make</code> is still the fastest:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>Summary
+</span></span><span style="display:flex;"><span>  make run_js ran
+</span></span><span style="display:flex;"><span>    1.43 ± 0.15 <span style="color:#8be9fd;font-style:italic">times</span> faster than deno -A dax.js
+</span></span><span style="display:flex;"><span>    1.58 ± 0.50 <span style="color:#8be9fd;font-style:italic">times</span> faster than bun dax.js
+</span></span><span style="display:flex;"><span>    1.74 ± 0.17 <span style="color:#8be9fd;font-style:italic">times</span> faster than bun execa.js
+</span></span><span style="display:flex;"><span>    1.85 ± 0.22 <span style="color:#8be9fd;font-style:italic">times</span> faster than node dax.js
+</span></span><span style="display:flex;"><span>    1.90 ± 0.19 <span style="color:#8be9fd;font-style:italic">times</span> faster than bun zx.js
+</span></span><span style="display:flex;"><span>    1.97 ± 0.24 <span style="color:#8be9fd;font-style:italic">times</span> faster than deno -A zx.js
+</span></span><span style="display:flex;"><span>    2.00 ± 0.21 <span style="color:#8be9fd;font-style:italic">times</span> faster than deno -A execa.js
+</span></span><span style="display:flex;"><span>    2.30 ± 0.22 <span style="color:#8be9fd;font-style:italic">times</span> faster than node execa.js
+</span></span><span style="display:flex;"><span>    2.32 ± 0.47 <span style="color:#8be9fd;font-style:italic">times</span> faster than node zx.js
+</span></span><span style="display:flex;"><span>    2.69 ± 0.98 <span style="color:#8be9fd;font-style:italic">times</span> faster than bun shell.js
+</span></span><span style="display:flex;"><span>    2.89 ± 0.51 <span style="color:#8be9fd;font-style:italic">times</span> faster than deno -A shell.js
+</span></span><span style="display:flex;"><span>    3.05 ± 0.30 <span style="color:#8be9fd;font-style:italic">times</span> faster than node shell.js
+</span></span></code></pre><p>The differences in these benchmarks might be due to a small startup delay when executing JavaScript code with JS runtime. However, for typical scripting tasks, this difference is only in milliseconds, which isn’t really significant when running scripts.</p>
+<p>After considering features, simplicity, documentation, support, and how well they adapt to our scripting system, the best candidates for our project are <strong>execa</strong> and <strong>dax</strong>. These two stand out as the most interesting options. Both offer plenty of useful features and are more than sufficient for our needs.</p>
+<h3 id="javascript-cli-libraries">JavaScript CLI libraries</h3>
+<p>After choosing the main tools for writing JavaScript code with shell scripts, there’s one crucial piece missing to create the perfect combination: a tool for creating command-line interfaces (CLI). To finish setting up our system, we looked at several options and compared what they can do to find the best one for us.</p>
+<p>Here's a summary of the tools we checked out:</p>
+<table>
+<thead>
+<tr>
+<th>Criteria</th>
+<th><strong>commander</strong></th>
+<th><strong>yargs</strong></th>
+<th><strong>minimist</strong></th>
+<th><strong>oclif</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GitHub Stars</strong></td>
+<td><img src="https://img.shields.io/github/stars/tj/commander.js" alt="Stars"></td>
+<td><img src="https://img.shields.io/github/stars/yargs/yargs" alt="Stars"></td>
+<td><img src="https://img.shields.io/github/stars/minimistjs/minimist" alt="Stars"></td>
+<td><img src="https://img.shields.io/github/stars/oclif/oclif" alt="Stars"></td>
+</tr>
+<tr>
+<td><strong>Popularity</strong></td>
+<td>Very popular, widely used</td>
+<td>Very popular, established</td>
+<td>Older but still widely used</td>
+<td>Newer, gaining some traction</td>
+</tr>
+<tr>
+<td><strong>Released</strong></td>
+<td>Regularly</td>
+<td>Not relesed since 2023</td>
+<td>Not relesed since 2023</td>
+<td>Regularly</td>
+</tr>
+<tr>
+<td><strong>Maintainers</strong></td>
+<td>Actively maintained by TJ Holowaychuk</td>
+<td>Actively maintained by the yargs team</td>
+<td>Maintained by Jordan Harband</td>
+<td>Maintained by Salesforce</td>
+</tr>
+<tr>
+<td><strong>Contributors</strong></td>
+<td><img src="https://img.shields.io/github/contributors/tj/commander.js" alt="Contributors"></td>
+<td><img src="https://img.shields.io/github/contributors/yargs/yargs" alt="Contributors"></td>
+<td><img src="https://img.shields.io/github/contributors/minimistjs/minimist" alt="Contributors"></td>
+<td><img src="https://img.shields.io/github/contributors/oclif/oclif" alt="Contributors"></td>
+</tr>
+<tr>
+<td><strong>Issues</strong></td>
+<td><img src="https://img.shields.io/github/issues/tj/commander.js" alt="Open Issues"></td>
+<td><img src="https://img.shields.io/github/issues/yargs/yargs" alt="Open Issues"></td>
+<td><img src="https://img.shields.io/github/issues/minimistjs/minimist" alt="Open Issues"></td>
+<td><img src="https://img.shields.io/github/issues/oclif/oclif" alt="Open Issues"></td>
+</tr>
+<tr>
+<td><strong>Npm</strong></td>
+<td><img src="https://img.shields.io/npm/dw/commander" alt="Download"></td>
+<td><img src="https://img.shields.io/npm/dw/yargs" alt="Download"></td>
+<td><img src="https://img.shields.io/npm/dw/minimist" alt="Download"></td>
+<td><img src="https://img.shields.io/npm/dw/oclif" alt="Download"></td>
+</tr>
+<tr>
+<td><strong>Dependencies</strong></td>
+<td>0 dependency</td>
+<td>7 dependencies</td>
+<td>0 dependency</td>
+<td>24 dependencies</td>
+</tr>
+<tr>
+<td><strong>Install size</strong></td>
+<td><img src="https://packagephobia.now.sh/badge?p=commander" alt="Install Size"></td>
+<td><img src="https://packagephobia.now.sh/badge?p=yargs" alt="Install Size"></td>
+<td><img src="https://packagephobia.now.sh/badge?p=minimist" alt="Install Size"></td>
+<td><img src="https://packagephobia.now.sh/badge?p=oclif" alt="Install Size"></td>
+</tr>
+</tbody>
+</table>
+<br/>
+<img src="img/commander-yargs-minimist-oclif.png" alt="commander-yargs-minimist-oclif" loading="lazy">
+<figcaption style="font-size: 0.8em; color: gray; margin-top: 4px; text-align: center;">Image from npmtrends.com</figcaption>
+<br/>
+<p><strong>Oclif</strong> is an interesting option for generating CLI applications, but it’s not well-suited for our needs. At 22.6 MB, it’s too heavy for what we require. It’s better suited for building standalone programs rather than being used as a lightweight library within a project.</p>
+<p><strong>Minimist</strong>, on the other hand, is very small but too simple for our requirements. It lacks several features we need, such as subcommands, helpers, and similar-suggest support. Additionally, its documentation is quite poor, which makes it harder, less clearly to work with.</p>
+<p>Both of <strong>yargs</strong> and <strong>commander.js</strong> are the better choice for us. Both libraries are widely used, and their documentation is good. We have used <code>yargs</code> in some projects, and while it works fine, we often run into typing issues when writing <code>yargs</code> commands in async TypeScript code. Using <code>commander.js</code> provided a better development experience overall. It offers simpler syntax, a clean and straightforward API, great TypeScript support (via <code>@commander-js/extra-typings</code>), built-in features like command suggestions, and a small footprint with zero dependencies.</p>
+<p>So, this time, we chose <code>commander</code>.</p>
+<h2 id="examples-of-migrations">Examples of migrations</h2>
+<p>Now that we've picked the tools, let's look at some migration examples. These examples will show you how we moved from using makefile to our new system. Knowing these changes will help you understand the feedback in the next part better and make it more relevant.</p>
+<ol>
+<li><strong>Linting</strong></li>
+</ol>
+<p>In the example below, we’re migrating a linting script from <code>make</code> to <code>execa</code> in a Node.js script. The migration process consists of two parts:</p>
+<ul>
+<li>Writing the script with the shell scripting logic, here using <code>execa</code> for executing commands</li>
+<li>Creating the CLI commands with <code>commander</code> to handle options and arguments.</li>
+</ul>
+<p><strong>makefile</strong>:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">FORMAT_FILE_EXTENSIONS</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">(</span>ts|js|cjs|mjs|json|yaml|yml<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">FOLDER_TO_FORMAT</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">(</span>app|aws|conf|types|mocks|tests<span style="color:#ff79c6">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">ALL_FORMAT_FILES</span> <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;*.${FORMAT_FILE_EXTENSIONS}&#39;</span> <span style="color:#f1fa8c">&#39;${FOLDER_TO_FORMAT}/**/*.${FORMAT_FILE_EXTENSIONS}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>lint: <span style="color:#6272a4">##@lint Lint all ts, js, yaml, json and feature files</span>
+</span></span><span style="display:flex;"><span>    @make eslint
+</span></span><span style="display:flex;"><span>    @make prettier
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>eslint: <span style="color:#6272a4">##@lint Run eslint</span>
+</span></span><span style="display:flex;"><span>    @echo <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">YELLOW</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">Running eslint</span><span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">RESET</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>    ifdef CI
+</span></span><span style="display:flex;"><span>        @npx eslint <span style="color:#f1fa8c">&#34;{app,tests,scripts}/**/*.{ts,js,cjs,mjs}&#34;</span> --quiet --cache
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">else</span>
+</span></span><span style="display:flex;"><span>        @npx eslint <span style="color:#f1fa8c">&#34;{app,tests,scripts}/**/*.{ts,js,cjs,mjs}&#34;</span> --quiet --cache --fix
+</span></span><span style="display:flex;"><span>    endif
+</span></span><span style="display:flex;"><span> @echo <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">GREEN</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">✔ Well done!</span><span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">RESET</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>prettier: <span style="color:#6272a4">##@lint Run prettier on json and yaml files</span>
+</span></span><span style="display:flex;"><span>    @echo <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">YELLOW</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">Running prettier</span><span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">RESET</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>    ifdef CI
+</span></span><span style="display:flex;"><span>        @npx prettier <span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">ALL_FORMAT_FILES</span><span style="color:#f1fa8c">}</span> --log-level warn --check --cache --cache-location<span style="color:#ff79c6">=</span>.prettiercache --cache-strategy<span style="color:#ff79c6">=</span>metadata
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">else</span>
+</span></span><span style="display:flex;"><span>        @npx prettier <span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">ALL_FORMAT_FILES</span><span style="color:#f1fa8c">}</span> --log-level warn --write --cache --cache-location<span style="color:#ff79c6">=</span>.prettiercache --cache-strategy<span style="color:#ff79c6">=</span>metadata
+</span></span><span style="display:flex;"><span>    endif
+</span></span><span style="display:flex;"><span>    @echo <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">GREEN</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">✔ Well done! You can check the changed files with command git status.</span><span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">RESET</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>
+</span></span></code></pre><p>The makefile defines tasks for running linting with <strong>eslint</strong> and <strong>prettier</strong>. It uses <code>make</code> commands to manage different environments (local/CI).</p>
+<p><strong>Execa migration</strong>:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">#!/usr/bin/env node
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { $ } from <span style="color:#f1fa8c">&#39;execa&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { Command } from <span style="color:#f1fa8c">&#39;commander&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { inherit, printExecaError } from <span style="color:#f1fa8c">&#39;./helper/execa.mjs&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { colors } from <span style="color:#f1fa8c">&#39;./helper/colors.mjs&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> ESLINT_FILES <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;{app,tests,scripts}/**/*.{ts,js,cjs,mjs}&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> PRETTIER_FILES <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;{app,aws,conf,types,mocks,tests}/**/*.{ts,js,cjs,mjs,json,yml,yaml}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> runEslint <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">async</span> ({ fix, files }) =&gt; {
+</span></span><span style="display:flex;"><span>    console.log(colors.yellow(<span style="color:#f1fa8c">&#39;Running eslint&#39;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">await</span> $(inherit)<span style="color:#f1fa8c">`yarn eslint </span><span style="color:#f1fa8c">${</span>files<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> --quiet --cache </span><span style="color:#f1fa8c">${</span>fix <span style="color:#ff79c6">?</span> <span style="color:#f1fa8c">&#39;--fix&#39;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&#39;</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>
+</span></span><span style="display:flex;"><span>        .<span style="color:#ff79c6">catch</span>((error) =&gt; printExecaError(error))
+</span></span><span style="display:flex;"><span>        .then(() =&gt; console.log(colors.green(<span style="color:#f1fa8c">&#39;✔ Well done!&#39;</span>)))
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> runPrettier <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">async</span> ({ fix, files }) =&gt; {
+</span></span><span style="display:flex;"><span>    console.log(colors.yellow(<span style="color:#f1fa8c">&#39;Running prettier&#39;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">await</span> $(
+</span></span><span style="display:flex;"><span>        inherit,
+</span></span><span style="display:flex;"><span>    )<span style="color:#f1fa8c">`yarn prettier </span><span style="color:#f1fa8c">${</span>files<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> --log-level warn --cache --cache-location=.prettiercache --cache-strategy=metadata </span><span style="color:#f1fa8c">${</span>
+</span></span><span style="display:flex;"><span>        fix <span style="color:#ff79c6">?</span> <span style="color:#f1fa8c">&#39;--write&#39;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;--check&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>
+</span></span><span style="display:flex;"><span>        .<span style="color:#ff79c6">catch</span>((error) =&gt; printExecaError(error))
+</span></span><span style="display:flex;"><span>        .then(() =&gt;
+</span></span><span style="display:flex;"><span>            console.log(
+</span></span><span style="display:flex;"><span>                colors.green(
+</span></span><span style="display:flex;"><span>                    <span style="color:#f1fa8c">&#39;✔ Well done! You can check the changed files with command git status.&#39;</span>,
+</span></span><span style="display:flex;"><span>                ),
+</span></span><span style="display:flex;"><span>            ),
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> runLint <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">async</span> ({ fix }) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">await</span> runEslint({ fix, files<span style="color:#ff79c6">:</span> ESLINT_FILES })
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">await</span> runPrettier({ fix, files<span style="color:#ff79c6">:</span> PRETTIER_FILES })
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">/********************************** CLI ******************************************/</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> program <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Command()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>program
+</span></span><span style="display:flex;"><span>    .command(<span style="color:#f1fa8c">&#39;eslint&#39;</span>)
+</span></span><span style="display:flex;"><span>    .description(<span style="color:#f1fa8c">&#39;Run Eslint&#39;</span>)
+</span></span><span style="display:flex;"><span>    .option(<span style="color:#f1fa8c">&#39;-f, --files &lt;file-glob-pattern&gt;&#39;</span>, <span style="color:#f1fa8c">&#39;Eslint files&#39;</span>, ESLINT_FILES)
+</span></span><span style="display:flex;"><span>    .option(<span style="color:#f1fa8c">&#39;--fix &lt;boolean&gt;&#39;</span>, <span style="color:#f1fa8c">&#39;Fix option&#39;</span>, <span style="color:#ff79c6">true</span>)
+</span></span><span style="display:flex;"><span>    .action(runEslint)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>program
+</span></span><span style="display:flex;"><span>    .command(<span style="color:#f1fa8c">&#39;prettier&#39;</span>)
+</span></span><span style="display:flex;"><span>    .description(<span style="color:#f1fa8c">&#39;Run Prettier&#39;</span>)
+</span></span><span style="display:flex;"><span>    .option(<span style="color:#f1fa8c">&#39;-f, --files &lt;file-glob-pattern&gt;&#39;</span>, <span style="color:#f1fa8c">&#39;Eslint files&#39;</span>, PRETTIER_FILES)
+</span></span><span style="display:flex;"><span>    .option(<span style="color:#f1fa8c">&#39;--fix &lt;boolean&gt;&#39;</span>, <span style="color:#f1fa8c">&#39;Fix option&#39;</span>, <span style="color:#ff79c6">true</span>)
+</span></span><span style="display:flex;"><span>    .action(runPrettier)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>program
+</span></span><span style="display:flex;"><span>    .command(<span style="color:#f1fa8c">&#39;lint&#39;</span>)
+</span></span><span style="display:flex;"><span>    .description(<span style="color:#f1fa8c">&#39;Run Eslint &amp; Prettier&#39;</span>)
+</span></span><span style="display:flex;"><span>    .option(<span style="color:#f1fa8c">&#39;--fix &lt;boolean&gt;&#39;</span>, <span style="color:#f1fa8c">&#39;Fix option&#39;</span>, <span style="color:#ff79c6">true</span>)
+</span></span><span style="display:flex;"><span>    .action(runLint)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>program.parse(process.argv)
+</span></span></code></pre><p>In the JavaScript version, we replicate what we did in the makefile. We write the code in ESM syntax, define the variables, and create the logic for the tasks (such as linting and formatting). These tasks are migrated into a JavaScript file that uses <code>execa</code> to run the commands. The shorthand syntax <code>$</code> of execa makes it really handy and easy to execute all the shell commands.</p>
+<p>For each task, we use the <code>Command</code> API from <code>commander</code> to define a command that is equivalent to the ones in the makefile, using the <code>program.command()</code> syntax. We can also add options or required arguments for each command, just like we would define flags or variables in a makefile.</p>
+<p>In that example, we created a helper function, <code>printExecaError</code>, to improve how errors are printed to the terminal. By default, when using <code>execa</code> or any JS shell tools, we get verbose JS error outputs that can be hard to read. To address this, we ensure that only the root cause of the shell error is displayed, which makes the error more understandable and readable.</p>
+<p>As you can see, the JavaScript solution is much longer than the makefile version. However, there is one major advantage: the JavaScript approach provides more flexibility for handling complex conditions, custom logic, and error handling.</p>
+<ol start="2">
+<li><strong>Testing</strong></li>
+</ol>
+<p><strong>makefile</strong>:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>test-unit: <span style="color:#6272a4">##@test Run unit tests</span>
+</span></span><span style="display:flex;"><span> @echo <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">YELLOW</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">Running unit tests</span><span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">RESET</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span> @yarn mocha <span style="color:#f1fa8c">&#39;tests/unit/**/*.[tj]s&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>test-func: <span style="color:#6272a4">##@test Run functional test. To add args to veggies, use args env var. &#39;args=&#34;--tags @tag1 --tags @tag2&#34; make test-func&#39;</span>
+</span></span><span style="display:flex;"><span> @echo <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">YELLOW</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">Loading stack into test mode</span><span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">RESET</span><span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span> @make sync-docker-stack <span style="color:#8be9fd;font-style:italic">CONF_FILES</span><span style="color:#ff79c6">=</span>local,test
+</span></span><span style="display:flex;"><span> @make make-in-app <span style="color:#8be9fd;font-style:italic">MAKE_RULE</span><span style="color:#ff79c6">=</span>wait-app-up
+</span></span><span style="display:flex;"><span> @make make-in-app <span style="color:#8be9fd;font-style:italic">MAKE_RULE</span><span style="color:#ff79c6">=</span>veggies-cmd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>veggies-cmd: <span style="color:#6272a4">##@test Run veggies command</span>
+</span></span><span style="display:flex;"><span> @yarn veggies --format-options <span style="color:#f1fa8c">&#39;{&#34;colorsEnabled&#34;: true}&#39;</span> --require tests/functional/support tests/functional/features <span style="color:#f1fa8c">${</span><span style="color:#8be9fd;font-style:italic">args</span><span style="color:#f1fa8c">}</span>
+</span></span></code></pre><p>In the <code>makefile</code>, we define 3 commands to execute unit tests (with Mocha) and functional tests (using <a href="https://github.com/ekino/veggies">@ekino/veggies</a>, a Cucumber helper). For the functional tests, we run the tests inside a Node.js container. The following methods are used to achieve this:</p>
+<ul>
+<li><code>sync-docker-stack</code>: This command starts or resets all services in the Docker Compose setup.</li>
+<li><code>make-in-app</code>: This command runs a specific task inside the <code>app</code> container.</li>
+</ul>
+<p>Starting docker compose services and restarting the server usually takes a significant amount of time. Therefore, we need some logic to check if the application is ready to accept requests. We use the command <code>wait-app-up</code> to check if <code>localhost:3000</code> is up and running.</p>
+<p><strong>Execa migration</strong>:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">#!/usr/bin/env node
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">import</span> { $ } from <span style="color:#f1fa8c">&#39;execa&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { Command } from <span style="color:#f1fa8c">&#39;commander&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { execInContainer, printExecaError } from <span style="color:#f1fa8c">&#39;./helper/execa.mjs&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { colors } from <span style="color:#f1fa8c">&#39;./helper/colors.mjs&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> testUnit <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">async</span> ({ files }) =&gt; {
+</span></span><span style="display:flex;"><span>    console.log(colors.yellow(<span style="color:#f1fa8c">&#39;Running unit tests&#39;</span>))
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">await</span> $({ stdio<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;inherit&#39;</span> })<span style="color:#f1fa8c">`yarn mocha </span><span style="color:#f1fa8c">${</span>files<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>.<span style="color:#ff79c6">catch</span>((error) =&gt; printExecaError(error))
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> testFunc <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">async</span> ({ args }) =&gt; {
+</span></span><span style="display:flex;"><span>    console.log(colors.yellow(<span style="color:#f1fa8c">&#39;Running functional tests&#39;</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> cmd <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">`yarn veggies --format-options &#34;{\\&#34;colorsEnabled\\&#34;: true}&#34; --require tests/functional/support tests/functional/features </span><span style="color:#f1fa8c">${</span>args<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">await</span> execInContainer({ containerName<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;app&#39;</span>, command<span style="color:#ff79c6">:</span> cmd }).<span style="color:#ff79c6">catch</span>((error) =&gt;
+</span></span><span style="display:flex;"><span>        printExecaError(error),
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">/********************************** CLI ******************************************/</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> program <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> Command()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>program
+</span></span><span style="display:flex;"><span>    .command(<span style="color:#f1fa8c">&#39;unit&#39;</span>)
+</span></span><span style="display:flex;"><span>    .description(<span style="color:#f1fa8c">&#39;Execute unit tests&#39;</span>)
+</span></span><span style="display:flex;"><span>    .option(<span style="color:#f1fa8c">&#39;-f, --files &lt;file-glob-pattern&gt;&#39;</span>, <span style="color:#f1fa8c">&#39;Tests files&#39;</span>, <span style="color:#f1fa8c">&#39;tests/unit/**/*.{ts,js,mjs}&#39;</span>)
+</span></span><span style="display:flex;"><span>    .action(testUnit)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>program
+</span></span><span style="display:flex;"><span>    .command(<span style="color:#f1fa8c">&#39;func&#39;</span>)
+</span></span><span style="display:flex;"><span>    .description(<span style="color:#f1fa8c">&#39;Execute functional tests&#39;</span>)
+</span></span><span style="display:flex;"><span>    .option(<span style="color:#f1fa8c">&#39;-a, --args &lt;args&gt;&#39;</span>, <span style="color:#f1fa8c">&#39;Veggies args&#39;</span>)
+</span></span><span style="display:flex;"><span>    .action(testFunc)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>program.parse(process.argv)
+</span></span></code></pre><p>In the JS version, we've simplified many of the principles. Locally, we've implemented Kubernetes to replace docker compose (using the same architecture and technologies as on the cloud with EKS). As a result, we no longer need the logic like <code>sync-docker-stack</code> to start or restart docker compose services, or the <code>wait-app-up</code> command.</p>
+<p>Instead, we've adapted the Kubernetes commands to run separately. Restarting pods in Kubernetes is much faster, and the server is always up after the command reset pods finish. That's why you see simpler logic in the JS files. The only helper command we need now is <code>execInContainer</code>, which executes commands within a Kubernetes container.</p>
+<h2 id="feedbacks">Feedbacks</h2>
+<p>We've provided a lot of details about our research up to this point. Thanks for sticking with us!</p>
+<p>Everything we've talked about might seem quite theoretical, and you can find similar information online. However, in some articles about migration, I find it really helpful to hear about real life experiences, the challenges people face when they migrate a solution from X to Y. I think many of you might feel the same way (I hope you do!)</p>
+<p>After doing this research and choosing the tools for our project, we still had many things to think about:</p>
+<ul>
+<li>Why should we migrate?</li>
+<li>How to migrate and how long will It take?</li>
+<li>Do we need to migrate all the existing makefile, or not?</li>
+<li>What problems will we encounter?</li>
+<li>Should we keep two systems running in parallel?</li>
+<li>What are the pros and cons of this migration?</li>
+</ul>
+<p>At the time of writing this article, we haven’t migrated everything yet. We’ve only migrated some parts and want to gather feedback from each team member to see what they think about the process.</p>
+<h3 id="our-context-of-this-migration">Our context of this migration</h3>
+<p>In fact, we did this research while migrating from Docker Compose to Kubernetes using Helm. Since we use makefile a lot for writing scripts for manipulating with Docker, rewriting all of that code could be a huge challenge. It would take a lot of time and effort, especially to avoid breaking changes in the existing scripts.</p>
+<p>That's why we considered it a good idea to start creating scripting tools in JavaScript for managing Kubernetes scripts. As mentioned before, we selected <code>execa</code> and <code>commander</code> for our scripting needs.</p>
+<p>We started writing all the Kubernetes scripts, including those for testing, performance with K6, Sonar analysis, and coverage scripts, because these scripts also run within containers. Thus, we needed to test each command to ensure it works with Kubernetes and that our local Kubernetes setup is operating correctly.</p>
+<p>Having completed this process, I believe we now have some interesting experience to share a more detailed account of our migration.</p>
+<h3 id="why-migrate">Why migrate?</h3>
+<p>I’ve already mentioned some reasons earlier in the article, but now the question is: should you migrate as well?</p>
+<p>The decision to migrate depends on your team’s needs and expertise. If you have a lot of experience with Bash scripts and makefile, you might find our approach to be more complicated than necessary, or even a bit excessive. It’s true that JavaScript syntax is much more verbose than Bash or makefile. To achieve the same results, you often need to write significantly more JavaScript code. <strong>We totally get that! It’s one of the reasons we love makefile</strong>. In the future, we might also look at other options like <code>justfile</code>.</p>
+<p>However, if not everyone on your team is proficient with shell scripting, our proposed solution might be a better alternative. JavaScript can work well for bash scripting tasks, and you can even embed Bash scripts in your JavaScript if you prefer.</p>
+<h3 id="how-to-migrate-and-timing">How to migrate and timing?</h3>
+<p>This depends on your project. If your existing scripts are complex, it might be better to migrate them over slowly, one set of task with same logic, same utility at a time (example: linting, testing, deploy...). This approach will make it easier to control the process and better organize the code. Migrating in different steps also gives you time to test the new approach and see if it fits your project. Before starting, make sure you fully understand how your existing scripts work and what they do.</p>
+<p>As for how long it will take, it really depends on your experience. The process might be fast for some or take longer for others, but you should avoid letting this migration affect production or sprint deadlines.</p>
+<h3 id="should-we-migrate-everything">Should we migrate everything?</h3>
+<p>Ideally, it’s best to have only one scripting system in your project for easier maintenance.</p>
+<p>In our case, we have a lot of scripts, and we want to migrate all of them. But we also have deployment/release scripts that integrate with our GitLab CI. Often, it’s us (the backend engineers) writing these scripts, but sometimes our DevOps engineers will work with us, they will take some modifications or create new ones in makefile to handle cloud changes or blue/green deployments... Not everyone on that team is familiar with JavaScript. So, migrating everything to JavaScript might create some problems for them. We need to negotiate with all teams and come to an agreement about the migration.</p>
+<h3 id="why-didnt-we-use-the-built-in-nodejs-module">Why didn't we use the built-in Node.js module?</h3>
+<p>As we already know that Node.js also support some utils for execute shell commands and support command line as <code>child_process</code>, <code>parseArgs</code> de <code>node:util</code>. So why didn't we use these instead of adding more dependencies to our project?</p>
+<p>The answer is pretty simple: their syntax and usability are not as user-friendly as we would like, making them harder to work with and requiring more effort to achieve our goals.</p>
+<p>For example, <code>child_process</code> is already wrapped by the libraries like <code>zx</code>, <code>execa</code>, and <code>shelljs</code>. They provide additional features, utilities, and much cleaner syntax and much easy to use (such as the shorthand <code>$</code>). On the other hand, <code>parseArgs</code> only handles very basic tasks and lacks the flexibility needed for more complex command-line parsing. You can read more about this in <a href="https://bjornlu.com/blog/im-tired-of-node-builtin-apis">this issue discussion</a> and <a href="https://bjornlu.com/blog/im-tired-of-node-b">this article</a>.</p>
+<h3 id="problems-encountered-during-the-migration">Problems encountered during the migration?</h3>
+<ul>
+<li>
+<p><em>Run scripts are less flexible</em></p>
+<p>With JavaScript, running scripts isn’t as flexible as with makefile.</p>
+<p>For example, you can run a script in the following ways:</p>
+<ul>
+<li>
+<p><code>node scripts/lint.js lint</code> (using any JS runtime like <code>bun</code>, <code>deno</code>, etc.)</p>
+</li>
+<li>
+<p><code>./scripts/lint.js lint</code> (if you’ve added the appropriate shebang at the top of the JS file: <code>#!/usr/bin/env node</code>)</p>
+</li>
+<li>
+<p>Or, if you add the script to <code>package.json</code>, you can use your package manager: <code>npm run lint</code>, <code>pnpm run lint</code>, etc.</p>
+<pre><code>                    While this works, it’s not as flexible as using `make lint`, and adding many commands to `package.json` can make it longer and more verbose.
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p><em>JavaScript code is more verbose, bigger code base</em></p>
+<p>As mentioned earlier, JavaScript code tends to be much longer than makefile code.</p>
+</li>
+<li>
+<p><em>Manually writing global helpers</em></p>
+<p>In makefile, we can create helper functions and use <code>perl</code> or other tools to automatically detect all public commands and print their descriptions (via comments added to each command). By simply typing <code>make help</code> or <code>make</code> (if the help command is set as the default), all existing commands are listed with explanations. This is incredibly practical and convenient.</p>
+<p>However, in JavaScript, we use the <code>commander</code>library for handling scripts. While <code>commander</code> provides built-in support for generating helpers for each <code>program</code> (or script module), it is limited to single files or modules. It does not support generating helpers for commands spread across multiple files. Even if we attempt to group multiple <code>program</code> instances together by importing them, it doesn’t work as expected—the help function will only display commands from the first imported file.</p>
+<p>To achieve the same <code>make help</code> functionality,, we would have to manually list all the commands from each script file. This is time-consuming and not as efficient. I hope we can find a better solution in the future.</p>
+</li>
+<li>
+<p><em>Increased dependencies</em></p>
+<p>One downside of migrating to JavaScript is the need for more dependencies. Each new library you install adds to the project’s dependencies, which can increase the maintenance burden over time. Since we’re using a lot of dependencies in our project, adding more in devDependencies isn’t a big deal for us, but it's something to consider.</p>
+</li>
+<li>
+<p><em>Error handling is more complex</em></p>
+<p>from <code>execa</code>. This makes error handling less intuitive and more verbose.</p>
+</li>
+</ul>
+<h3 id="whats-good-about-this-migration">What’s good about this migration?</h3>
+<p>One major benefit of this migration is that all team members now have a better understanding of how each script works and what it does.</p>
+<p>For example, when we wrote our K6 performance testing scripts, which involve Grafana, InfluxDB, WireMock, and mock servers, it took us a lot of time to set up the makefile and Bash scripts with all the helpers, complex arguments, loops, and conditions. Reading and understanding that code wasn’t always easy.</p>
+<p>With the same logic implemented in JavaScript, we can now write it much more clearly and maintainably. This is a big win for us, it’s a motivating factor for the team.</p>
+<p>Despite its limitations, the team voted to proceed with the migration after completing a proof of concept (POC). While JavaScript requires more lines of code than <code>bash</code> or <code>make</code>, we think it can save us time when fixing issues, making updates, or trying to understand the code in the future.</p>
+<p>This research also gave us the chance to rethink our whole script system. We took the time to look at every script, understand exactly what it does, and figure out if we could improve it. That helped us clean up and optimize parts of our system.</p>
+<p>Now, we have more ideas and options to fit different projects and situations. This process has been a great learning experience for the whole team.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>When should you use makefile?</p>
+<ul>
+<li>Your team loves makefile, and you have significant experience with it.</li>
+<li>You're working with simple scripts that don't require much conditional logic, argument handling, or complex environments.</li>
+<li>You don't need to handle asynchronous or parallel tasks.</li>
+<li>Your CI/CD, Docker, and deployment systems already support makefile.</li>
+<li>You need a fast solution for simple tasks.</li>
+</ul>
+<p>If these conditions don't apply, you might want to consider using the JavaScript approach we discussed.</p>
+<p>In short, <code>make</code> is great for simple tasks, but for more complex scripts requiring helpers, conditionals, async operations, or detailed error handling, JavaScript can be a better fit.</p>
+<hr>
+<p>Article originally published at <a href="https://medium.com/ekino-france/scripting-tools-a-node-js-friendly-alternative-to-makefile-45efb7fe23ee">medium.com</a></p>
+ <div class="pagination">
+    
+    <hr />
+    Thanks for reading! This writing style focuses on clarity and simplicity, explaining concepts in accessible terms rather than pursuing strict academic precision. If you notice anything outdated, feel free to comment or send me a message. 
+
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="/blog/dual-package-typescript/">
+                <span class="button__icon">←</span>
+                <span class="button__text">How to build dual package npm from Typescript - the easiest way</span>
+            </a>
+        </span>
+         
+    </div>
+</div>
+
+                    </article>
+                    <div class="sharing-buttons">
+    <h3>Share this post:</h3>
+    <ul class="sharing-list" id="right">
+        <li>
+            <a
+                href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2ftduyng.com%2fblog%2fscripting-tools&t=Scripting%20tools%20-%20A%20Node.js%20friendly%20alternative%20to%20makefile"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/hacker-news.svg" alt="Share on Hacker News" class="sharing-icon" />
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://www.reddit.com/submit?url=https%3a%2f%2ftduyng.com%2fblog%2fscripting-tools&title=Scripting%20tools%20-%20A%20Node.js%20friendly%20alternative%20to%20makefile"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/reddit.svg" alt="Share on Reddit" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://mastodon.social/share?url=https%3a%2f%2ftduyng.com%2fblog%2fscripting-tools&text=Scripting%20tools%20-%20A%20Node.js%20friendly%20alternative%20to%20makefile"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/mastodon.svg" alt="Share on Mastodon" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://x.com/intent/tweet?url=https%3a%2f%2ftduyng.com%2fblog%2fscripting-tools&text=Scripting%20tools%20-%20A%20Node.js%20friendly%20alternative%20to%20makefile"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/x.svg" alt="Share on Twitter" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftduyng.com%2fblog%2fscripting-tools"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/facebook.svg" alt="Share on Facebook" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftduyng.com%2fblog%2fscripting-tools&title=Scripting%20tools%20-%20A%20Node.js%20friendly%20alternative%20to%20makefile"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/linkedin.svg" alt="Share on LinkedIn" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a href="mailto:?subject=Scripting%20tools%20-%20A%20Node.js%20friendly%20alternative%20to%20makefile&body=https%3a%2f%2ftduyng.com%2fblog%2fscripting-tools">
+                <img src="/icon/email.svg" alt="Share via Email" class="sharing-icon" />
+            </a>
+        </li>
+    </ul>
+</div>
+ 
+<div
+    class="reaction right"
+    data-endpoint="https://reaction.tienduy-nguyen-dev.workers.dev"
+></div>
+
+ 
+
+                </div>
+
+                
+<script
+    src="https://giscus.app/client.js"
+    data-repo="tduyng/tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    data-mapping="specific"
+    data-term="blog/scripting-tools"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="bottom"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async
+></script>
+
+ <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+            </main>
+        </div>
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>

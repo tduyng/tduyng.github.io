@@ -1,0 +1,464 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/blog/dynamic-github-profile-readme" />
+    
+    <meta name="keywords" content="github-action, profile, readme, dynamic, python" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>How I made my GitHub profile README dynamic</title>
+    <meta
+        property="og:title"
+        content="How I made my GitHub profile README dynamic"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Explore the process of making your GitHub profile README dynamic with automated updates of your latest blog posts using GitHub Actions and Python scripting" />
+    <meta property="og:description" content="Explore the process of making your GitHub profile README dynamic with automated updates of your latest blog posts using GitHub Actions and Python scripting" />
+    
+    <meta property="og:image" content="https://tduyng.com/blog/dynamic-github-profile-readme/img/tduyng.webp" />
+    <meta property="og:image:width" content="1500" />
+    <meta property="og:image:height" content="750" />
+    <meta name="twitter:image" content="https://tduyng.com/blog/dynamic-github-profile-readme/img/tduyng.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="post">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold">[</span>
+
+               
+            <a class="instant " href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold">]</span>
+            
+        </nav>
+    </div>
+</header>
+
+
+        <div id="wrapper">
+            <div id="blank"></div>
+            <aside>
+                
+<nav>
+    <ul>
+        
+    </ul>
+</nav>
+
+
+                <button id="back-to-top" aria-label="back to top">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill="currentColor"></path></svg>
+                </button>
+            </aside>
+            <main>
+                <div>
+                    
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+ 
+                    <article class="prose" data-backlink-icon="">
+                        <h1>How I made my GitHub profile README dynamic</h1>
+                        <div id="post-info">
+                            <div id="date">
+                                <span id="publish">May 13, 2024</span>
+                                
+                                <span>Last update:</span>
+                                <span id="updated"
+                                    >May 21, 2024</span
+                                >
+                                
+                            </div>
+
+                            <div id="wordcount">
+    <span>1027 words - 5 min read</span>
+</div>
+
+                        </div>
+
+                        <div id="tags">
+                              
+                            <a class="instant" href="/tags/github-action"><span>#</span>github-action</a>
+                              
+                            <a class="instant" href="/tags/profile"><span>#</span>profile</a>
+                              
+                            <a class="instant" href="/tags/readme"><span>#</span>readme</a>
+                              
+                            <a class="instant" href="/tags/dynamic"><span>#</span>dynamic</a>
+                              
+                            <a class="instant" href="/tags/python"><span>#</span>python</a>
+                            
+                        </div>
+
+                        
+ <p><strong>Have you heard about GitHub profile READMEs?</strong></p>
+<p><strong>Did you know you can add a README to your GitHub profile to tell others about yourself and create a really cool profile?</strong></p>
+<p>To do that, you simply create a repository with the same name as your GitHub username. For more details on how to do this and how it works, check out <a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme">GitHub's guide on managing your profile README</a>.</p>
+<p><strong>Now, how can you customize it to make a cool GitHub profile?</strong></p>
+<p>There are numerous ways to do this. Some people design their profiles using HTML and CSS because README.md files are written in markdown, which supports them. Many individuals add more <a href="https://github.com/tandpfun/skill-icons">icons</a> and <a href="https://github.com/alexandresanlim/Badges4-README.md-Profile">badges</a> to enhance the appearance. You can find various ideas and tools in the repository <a href="https://github.com/abhisheknaiidu/awesome-github-profile-readme">awesome-github-profile-readme</a>.</p>
+<p>Here are a couple of examples of cool profiles:</p>
+<p><a href="https://github.com/JessicaLim8">JessicaLim8</a>
+<img src="img/profile1.webp" alt="JessicaLim8 profile" loading="lazy"></p>
+<p><a href="https://github.com/WaylonWalker">WaylonWalker</a>
+<img src="img/profile2.webp" alt="WaylonWalker profile" loading="lazy"></p>
+<p>However, for me, making something dynamic in the README is even cooler. This means displaying information about repositories, stars, languages written, followers, and more. To achieve this, we often use GitHub Actions to fetch the data and rewrite them to the README.</p>
+<p>Luckily, some folks have already done this for us. Open source is awesome!</p>
+<p>Two popular repositories for this purpose are:</p>
+<ul>
+<li><a href="https://github.com/anuraghazra/github-readme-stats">github-readme-stats</a>: Dynamically generated stats for your GitHub READMEs.</li>
+<li><a href="https://github.com/lowlighter/metrics">metrics</a>: An infographics generator with 30+ plugins and 300+ options to display stats about your GitHub account and render them as SVG, Markdown, PDF, or JSON.</li>
+</ul>
+<p>Both projects are fantastic, but I prefer to use metrics because it offers a wide range of cool features and plugins. You can explore these repositories for more details and examples.</p>
+<p>Here's an example of <a href="https://github.com/anuraghazra/github-readme-stats">github-readme-stats</a>
+<img src="img/github_stats.webp" alt="Github stats example" loading="lazy"></p>
+<p>and example of my profile using <a href="https://github.com/lowlighter/metrics">metrics</a>
+<img src="img/metrics.svg" alt="My github profile using metrics" loading="lazy"></p>
+<p>Additionally if you write a blog, it would be cool to include your latest post on your GitHub profile. I was inspired by how <a href="https://github.com/simonw">Simon Willison</a> made the content of <a href="https://github.com/simonw/simonw">his README profile</a> dynamic. He wrote a <a href="https://github.com/simonw/simonw/blob/main/build_readme.py">Python script</a> and a <a href="https://github.com/simonw/simonw/blob/main/.github/workflows/build.yml">GitHub action</a> for this job and explained the process in his article <a href="https://simonwillison.net/2020/Jul/10/self-updating-profile-readme/">Building a self-updating profile README for GitHub</a>.</p>
+<p>Here's how his profile looks like:
+<img src="img/simonw.webp" alt="Simonw profile" loading="lazy"></p>
+<p>Additionally, <a href="https://osc.garden/">Óscar</a> - the creator of <a href="https://github.com/welpo/tabi">Tabi theme</a>, that <a href="https://tduyng.github.io/blog/new-home-for-my-website/">I use on this website</a>, also created a tool called <a href="https://github.com/welpo/doteki">dōteki</a>. <a href="https://osc.garden/blog/doteki-building-a-dynamic-github-profile/">dōteki builds on Simon’s idea</a> but is more complete and flexible, supporting various plugins: <a href="https://doteki.org/docs/category/plugins">Feed, current date, FIGlet, Last.fm and Random choice plugin</a>.</p>
+<p>dōteki supports these features via a GitHub action, making it easier to implement. For anyone looking for a quick and easy solution, I think dōteki is a great choice. Check out the tool and give it a star if you find it useful.</p>
+<p>Thanks so much to Simon and Óscar for your contributions and for sharing your knowledge with the community.</p>
+<p>Personally, I prefer to follow Simon’s original idea and write something from scratch. It helps me understand the different tools better and is more fun. Plus, it allows for more customization.</p>
+<p>Now, it’s time for some coding. Here is the Python script I use to fetch posts from my blog:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">import</span> logging
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> typing <span style="color:#ff79c6">import</span> Any
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> pathlib
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> feedparser
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> requests
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> re
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">from</span> datetime <span style="color:#ff79c6">import</span> datetime
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>DEFAULT_N <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span>
+</span></span><span style="display:flex;"><span>DEFAULT_DATE_FORMAT <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;%Y-%m-</span><span style="color:#f1fa8c">%d</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>root <span style="color:#ff79c6">=</span> pathlib<span style="color:#ff79c6">.</span>Path(__file__)<span style="color:#ff79c6">.</span>parent<span style="color:#ff79c6">.</span>resolve()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">fetch_feed</span>(url: <span style="color:#8be9fd;font-style:italic">str</span>) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">list</span>[<span style="color:#8be9fd;font-style:italic">dict</span>[<span style="color:#8be9fd;font-style:italic">str</span>, <span style="color:#8be9fd;font-style:italic">str</span>]]:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span>:
+</span></span><span style="display:flex;"><span>        response <span style="color:#ff79c6">=</span> requests<span style="color:#ff79c6">.</span>get(url)
+</span></span><span style="display:flex;"><span>        response<span style="color:#ff79c6">.</span>raise_for_status()
+</span></span><span style="display:flex;"><span>        feed <span style="color:#ff79c6">=</span> feedparser<span style="color:#ff79c6">.</span>parse(response<span style="color:#ff79c6">.</span>content)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">not</span> feed<span style="color:#ff79c6">.</span>entries:
+</span></span><span style="display:flex;"><span>            logging<span style="color:#ff79c6">.</span>error(<span style="color:#f1fa8c">&#34;Malformed feed: no entries found&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">return</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">except</span> requests<span style="color:#ff79c6">.</span>exceptions<span style="color:#ff79c6">.</span>RequestException <span style="color:#ff79c6">as</span> e:
+</span></span><span style="display:flex;"><span>        logging<span style="color:#ff79c6">.</span>error(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Error fetching the feed: </span><span style="color:#f1fa8c">{</span>e<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">except</span> Exception <span style="color:#ff79c6">as</span> e:
+</span></span><span style="display:flex;"><span>        logging<span style="color:#ff79c6">.</span>error(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Error processing the feed: </span><span style="color:#f1fa8c">{</span>e<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;title&#34;</span>: entry<span style="color:#ff79c6">.</span>title,
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;url&#34;</span>: entry<span style="color:#ff79c6">.</span>link,
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;date&#34;</span>: format_entry_date(entry),
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> entry <span style="color:#ff79c6">in</span> feed<span style="color:#ff79c6">.</span>entries[:DEFAULT_N]
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">format_feed_entry</span>(entry: <span style="color:#8be9fd;font-style:italic">dict</span>[<span style="color:#8be9fd;font-style:italic">str</span>, <span style="color:#8be9fd;font-style:italic">str</span>]) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">str</span>:
+</span></span><span style="display:flex;"><span>    title <span style="color:#ff79c6">=</span> entry<span style="color:#ff79c6">.</span>get(<span style="color:#f1fa8c">&#34;title&#34;</span>, <span style="color:#f1fa8c">&#34;No Title&#34;</span>)
+</span></span><span style="display:flex;"><span>    link <span style="color:#ff79c6">=</span> entry<span style="color:#ff79c6">.</span>get(<span style="color:#f1fa8c">&#34;url&#34;</span>, <span style="color:#f1fa8c">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>    date <span style="color:#ff79c6">=</span> entry<span style="color:#ff79c6">.</span>get(<span style="color:#f1fa8c">&#34;date&#34;</span>, <span style="color:#f1fa8c">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;[</span><span style="color:#f1fa8c">{</span>title<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">](</span><span style="color:#f1fa8c">{</span>link<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">) - </span><span style="color:#f1fa8c">{</span>date<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">format_entry_date</span>(entry: Any, date_format: <span style="color:#8be9fd;font-style:italic">str</span> <span style="color:#ff79c6">=</span> DEFAULT_DATE_FORMAT) <span style="color:#ff79c6">-&gt;</span> <span style="color:#8be9fd;font-style:italic">str</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">hasattr</span>(entry, <span style="color:#f1fa8c">&#34;published_parsed&#34;</span>):
+</span></span><span style="display:flex;"><span>        published_time <span style="color:#ff79c6">=</span> datetime(<span style="color:#ff79c6">*</span>entry<span style="color:#ff79c6">.</span>published_parsed[:<span style="color:#bd93f9">6</span>])
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> published_time<span style="color:#ff79c6">.</span>strftime(date_format)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">replace_chunk</span>(content, marker, chunk, inline<span style="color:#ff79c6">=</span><span style="color:#ff79c6">False</span>):
+</span></span><span style="display:flex;"><span>    pattern <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;&lt;!-- </span><span style="color:#f1fa8c">{</span>marker<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> start --&gt;.*&lt;!-- </span><span style="color:#f1fa8c">{</span>marker<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> end --&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>    r <span style="color:#ff79c6">=</span> re<span style="color:#ff79c6">.</span>compile(pattern, re<span style="color:#ff79c6">.</span>DOTALL)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">not</span> inline:
+</span></span><span style="display:flex;"><span>        chunk <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">{</span>chunk<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">\n</span><span style="color:#f1fa8c">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> r<span style="color:#ff79c6">.</span>sub(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;&lt;!-- </span><span style="color:#f1fa8c">{</span>marker<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> start --&gt;</span><span style="color:#f1fa8c">{</span>chunk<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&lt;!-- </span><span style="color:#f1fa8c">{</span>marker<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> end --&gt;&#34;</span>, content)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> __name__ <span style="color:#ff79c6">==</span> <span style="color:#f1fa8c">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    readme <span style="color:#ff79c6">=</span> root <span style="color:#ff79c6">/</span> <span style="color:#f1fa8c">&#34;README.md&#34;</span>
+</span></span><span style="display:flex;"><span>    url <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;https://tduyng.github.io/atom.xml&#34;</span>
+</span></span><span style="display:flex;"><span>    feeds <span style="color:#ff79c6">=</span> fetch_feed(url)
+</span></span><span style="display:flex;"><span>    feeds_md <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">\n\n</span><span style="color:#f1fa8c">&#34;</span><span style="color:#ff79c6">.</span>join([format_feed_entry(feed) <span style="color:#ff79c6">for</span> feed <span style="color:#ff79c6">in</span> feeds])
+</span></span><span style="display:flex;"><span>    readme_contents <span style="color:#ff79c6">=</span> readme<span style="color:#ff79c6">.</span>read_text()
+</span></span><span style="display:flex;"><span>    rewritten <span style="color:#ff79c6">=</span> replace_chunk(readme_contents, <span style="color:#f1fa8c">&#34;blog&#34;</span>, feeds_md)
+</span></span><span style="display:flex;"><span>    readme<span style="color:#ff79c6">.</span>write_text(rewritten)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(feeds_md)
+</span></span></code></pre><p>The script fetches data from the <code>atom.xml</code> feed on my blog and retrieves the five latest posts.</p>
+<p>Here is an example of the result of the python script:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>[<span style="color:#ff79c6">How I made my GitHub profile README dynamic</span>](<span style="color:#50fa7b">https://tduyng.github.io/blog/dynamic-github-profile-readme/</span>) - 2024-05-13
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ff79c6">New home for my website</span>](<span style="color:#50fa7b">https://tduyng.github.io/blog/new-home-for-my-website/</span>) - 2024-05-11
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ff79c6">Start a new journey</span>](<span style="color:#50fa7b">https://tduyng.github.io/blog/start-a-new-journey/</span>) - 2021-05-01
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ff79c6">Why use Docker compose</span>](<span style="color:#50fa7b">https://tduyng.github.io/blog/why-use-dockercompose/</span>) - 2021-01-25
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#ff79c6">Create simple web app Nodejs with Docker</span>](<span style="color:#50fa7b">https://tduyng.github.io/blog/create-simple-project-nodejs-with-docker/</span>) - 2020-12-22
+</span></span></code></pre><p>Then the result will be inserted between the following sections in my README:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">&lt;!-- blog start --&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">&lt;!-- blog end --&gt;</span>
+</span></span></code></pre><p>To ensure the script functions properly, we should include that comment in our README.md file (before running the script).</p>
+<p>You can find the complete source code for <a href="https://github.com/tduyng/tduyng/blob/master/feed.py">this script</a> in my profile repository.</p>
+<p>Integrating it with GitHub Actions is quite simple:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">name</span>: Fetch latest posts from blog for README
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">on</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">push</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">workflow_dispatch</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">schedule</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff79c6">cron</span>: <span style="color:#f1fa8c">&#39;0 0 * * *&#39;</span> <span style="color:#6272a4"># 00:00 AM every day</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">jobs</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">build</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">runs-on</span>: ubuntu-latest
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">steps</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#ff79c6">uses</span>: actions/checkout@v4
+</span></span><span style="display:flex;"><span>            - <span style="color:#ff79c6">uses</span>: actions/setup-python@v5
+</span></span><span style="display:flex;"><span>              <span style="color:#ff79c6">with</span>:
+</span></span><span style="display:flex;"><span>                  <span style="color:#ff79c6">python-version</span>: <span style="color:#f1fa8c">&#39;3.12&#39;</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#ff79c6">uses</span>: actions/cache@v4
+</span></span><span style="display:flex;"><span>              <span style="color:#ff79c6">name</span>: Configure pip caching
+</span></span><span style="display:flex;"><span>              <span style="color:#ff79c6">with</span>:
+</span></span><span style="display:flex;"><span>                  <span style="color:#ff79c6">path</span>: ~/.cache/pip
+</span></span><span style="display:flex;"><span>                  <span style="color:#ff79c6">key</span>: ${{ runner.os }}-pip-${{ hashFiles(&#39;**/requirements.txt&#39;) }}
+</span></span><span style="display:flex;"><span>                  <span style="color:#ff79c6">restore-keys</span>: |<span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">                      </span>                      ${{ runner.os }}-pip-
+</span></span><span style="display:flex;"><span>            - <span style="color:#ff79c6">name</span>: Install Python dependencies
+</span></span><span style="display:flex;"><span>              <span style="color:#ff79c6">run</span>: |<span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">                  </span>                  python -m pip install -r requirements.txt
+</span></span><span style="display:flex;"><span>            - <span style="color:#ff79c6">name</span>: Update README
+</span></span><span style="display:flex;"><span>              <span style="color:#ff79c6">run</span>: |-<span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">                  </span>                  python feed.py
+</span></span><span style="display:flex;"><span>            - <span style="color:#ff79c6">name</span>: Commit and push if changed
+</span></span><span style="display:flex;"><span>              <span style="color:#ff79c6">run</span>: |-<span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">                  git diff
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">                  git config --global user.email &#34;${{ vars.USER_EMAIL }}&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">                  git config --global user.name &#34;${{ vars.USER_NAME }}&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">                  git add -A
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">                  git commit -m &#34;chore: update blog posts&#34; || exit 0
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">                  git push</span>                  
+</span></span></code></pre><p>To ensure your information remains secure, you can set <code>USER_EMAIL</code> and <code>USER_NAME</code> in the repository environment. After checking the differences for the latest posts, if there are any, GitHub Actions will then create a new commit and update your GitHub account's main/master branch.</p>
+<p>And that's it! With the script and GitHub actions, all the information will update automatically.</p>
+<p>Here's how my profile looks now:
+<img src="img/tduyng.webp" alt="Simonw profile" loading="lazy"></p>
+<p>Thank you for reading this far. I hope this method proves helpful to you. Feel free to read the comments or provide feedback on <a href="https://tduyng.medium.com/how-i-made-my-github-profile-readme-dynamic-933967d268ea">my medium post</a>.</p>
+<p>Happy coding!</p>
+ <div class="pagination">
+    
+    <hr />
+    Thanks for reading! This writing style focuses on clarity and simplicity, explaining concepts in accessible terms rather than pursuing strict academic precision. If you notice anything outdated, feel free to comment or send me a message. 
+
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="/blog/new-home-for-my-website/">
+                <span class="button__icon">←</span>
+                <span class="button__text">New home for my website</span>
+            </a>
+        </span>
+         
+        <span class="button next">
+            <a href="/blog/dynamic-github-profile-with-bun-typescript/">
+                <span class="button__text">Dynamic Github profile with Bun and Typescript</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+                    </article>
+                    <div class="sharing-buttons">
+    <h3>Share this post:</h3>
+    <ul class="sharing-list" id="right">
+        <li>
+            <a
+                href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2ftduyng.com%2fblog%2fdynamic-github-profile-readme&t=How%20I%20made%20my%20GitHub%20profile%20README%20dynamic"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/hacker-news.svg" alt="Share on Hacker News" class="sharing-icon" />
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://www.reddit.com/submit?url=https%3a%2f%2ftduyng.com%2fblog%2fdynamic-github-profile-readme&title=How%20I%20made%20my%20GitHub%20profile%20README%20dynamic"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/reddit.svg" alt="Share on Reddit" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://mastodon.social/share?url=https%3a%2f%2ftduyng.com%2fblog%2fdynamic-github-profile-readme&text=How%20I%20made%20my%20GitHub%20profile%20README%20dynamic"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/mastodon.svg" alt="Share on Mastodon" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://x.com/intent/tweet?url=https%3a%2f%2ftduyng.com%2fblog%2fdynamic-github-profile-readme&text=How%20I%20made%20my%20GitHub%20profile%20README%20dynamic"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/x.svg" alt="Share on Twitter" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftduyng.com%2fblog%2fdynamic-github-profile-readme"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/facebook.svg" alt="Share on Facebook" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftduyng.com%2fblog%2fdynamic-github-profile-readme&title=How%20I%20made%20my%20GitHub%20profile%20README%20dynamic"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/linkedin.svg" alt="Share on LinkedIn" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a href="mailto:?subject=How%20I%20made%20my%20GitHub%20profile%20README%20dynamic&body=https%3a%2f%2ftduyng.com%2fblog%2fdynamic-github-profile-readme">
+                <img src="/icon/email.svg" alt="Share via Email" class="sharing-icon" />
+            </a>
+        </li>
+    </ul>
+</div>
+ 
+<div
+    class="reaction right"
+    data-endpoint="https://reaction.tienduy-nguyen-dev.workers.dev"
+></div>
+
+ 
+
+                </div>
+
+                
+<script
+    src="https://giscus.app/client.js"
+    data-repo="tduyng/tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    data-mapping="specific"
+    data-term="blog/dynamic-github-profile-readme"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="bottom"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async
+></script>
+
+ <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+            </main>
+        </div>
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,726 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/blog/setup-webpack-react-typescript" />
+    
+    <meta name="keywords" content="webpack, react, typescript" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>Setup Webpack React TypeScript</title>
+    <meta
+        property="og:title"
+        content="Setup Webpack React TypeScript"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Learn the essentials of setting up Webpack with React and TypeScript to build powerful and efficient web applications." />
+    <meta property="og:description" content="Learn the essentials of setting up Webpack with React and TypeScript to build powerful and efficient web applications." />
+    
+    <meta property="og:image" content="https://tduyng.com/img/post-cover.webp" />
+    <meta property="og:image:width" content="1500" />
+    <meta property="og:image:height" content="750" />
+    <meta name="twitter:image" content="https://tduyng.com/img/post-cover.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="post">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold">[</span>
+
+               
+            <a class="instant " href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold">]</span>
+            
+        </nav>
+    </div>
+</header>
+
+
+        <div id="wrapper">
+            <div id="blank"></div>
+            <aside>
+                
+<nav>
+    <ul>
+        
+        <li>
+            <a class="h2" href="#init-project">Init project</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#configuration">Configuration</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#config-tsconfigjson">Config</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#config-webpackconfigjs">Config</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#demo-code">Demo code</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#structure-folder">Structure folder</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#reference">Reference</a>
+            
+        </li>
+        
+    </ul>
+</nav>
+
+
+                <button id="back-to-top" aria-label="back to top">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill="currentColor"></path></svg>
+                </button>
+            </aside>
+            <main>
+                <div>
+                    
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+ 
+                    <article class="prose" data-backlink-icon="">
+                        <h1>Setup Webpack React TypeScript</h1>
+                        <div id="post-info">
+                            <div id="date">
+                                <span id="publish">Nov 28, 2020</span>
+                                
+                            </div>
+
+                            <div id="wordcount">
+    <span>1529 words - 7 min read</span>
+</div>
+
+                        </div>
+
+                        <div id="tags">
+                              
+                            <a class="instant" href="/tags/webpack"><span>#</span>webpack</a>
+                              
+                            <a class="instant" href="/tags/react"><span>#</span>react</a>
+                              
+                            <a class="instant" href="/tags/typescript"><span>#</span>typescript</a>
+                            
+                        </div>
+
+                        
+ <p>How to setup a React project with Webpack and TypeScript?</p>
+<hr>
+<p>With <a href="https://github.com/facebook/create-react-app">create-react-app</a>, it only takes a few clicks to create a complete React project, requires not in-depth knowledge of webpack or babel. But if you are still not satisfied with the features that <code>create-react-app</code> brings. For example, CSS does not show source-map when dev, or may be you simply configure more deeply. If in this case, It's the time to configure manually <code>webpack</code>.</p>
+<p>If you do not have any knowledge about webpack, you can refer my two previous articles:</p>
+<ul>
+<li><a href="/blog/basic-setup-webpack">Setup basic webpack</a></li>
+<li><a href="/blog/setup-webpack-with-typescript">Webpack &amp; TypeScript</a></li>
+</ul>
+<h2 id="init-project">Init project</h2>
+<ul>
+<li>
+<p>Install dependencies packages</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>yarn init -y
+</span></span><span style="display:flex;"><span>yarn add -D react react-dom redux react-redux react-router-dom typescript
+</span></span><span style="display:flex;"><span>yarn add -D webpack webpack-cli webpack-dev-server style-loader css-loader sass sass-loader typescript ts-loader
+</span></span></code></pre></li>
+<li>
+<p>Install plugin for webpack</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>yarn add -D clean-webpack-plugin compression-webpack-plugin copy-webpack-plugin dotenv-webpack html-webpack-plugin mini-css-extract-plugin webpack-bundle-analyzer
+</span></span></code></pre><ul>
+<li><strong>clean-webpack-plugin</strong>: A webpack plugin to remove/clean your build folder(s). Check <a href="https://github.com/johnagan/clean-webpack-plugin">clean-webpack-plugin</a></li>
+<li><strong>compression-webpack-plugin</strong>: Compress asset file (css, js, html ...) to <strong>gzip</strong> Check more <a href="https://webpack.js.org/plugins/compression-webpack-plugin/">compression-webpack-plugin</a></li>
+<li><strong>copy-webpack-plugin</strong>: Copies individual files or entire directories, which already exist, to the build directory. For example: you have files such as favicon.ico, robots.txt at the same level as index.html, when the build is complete, these files will also be present in the build. If you do not have this plugin, you have to copy them manually. Check <a href="https://webpack.js.org/plugins/copy-webpack-plugin/">copy-webpack-plugin</a>.</li>
+<li><strong>dotenv-webpack</strong>: Using <code>.env</code> file in your app. Check <a href="https://github.com/mrsteele/dotenv-webpack">dotenv-webpack</a></li>
+<li><strong>html-webpack-plugin</strong>: Clone <code>public/index.html</code> file to build folder. Check how it works in my previous post <a href="/blog/setup-webpack-with-typescript">Webpack &amp; Typescript</a></li>
+<li><strong>mini-css-extract-plugin</strong>: Normally, the <code>css</code> will be in the js file after build. When running the app, <code>js</code> will add that <code>css</code> to <style></style> tag. Now, if we want the <code>css</code> to be in a separate file with <code>js</code> and when app running, <code>js</code> will automatically import it with the <link></link> tag. That is the function of this plugin.<br>
+Check more information for <a href="https://webpack.js.org/plugins/mini-css-extract-plugin/">mini-css-extract-plugin</a></li>
+<li><strong>webpack-bundle-analyzer</strong>: It will create an interactive treemap visualization of the contents of all your bundles. Check <a href="https://github.com/webpack-contrib/webpack-bundle-analyzer">webpack-bundle-analyzer</a></li>
+</ul>
+</li>
+<li>
+<p>Install <code>ESLint</code> &amp; <code>Prettier</code></p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>yarn add -D eslint eslint-config-react-app eslint-loader eslint-plugin-flowtype eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks @typescript-eslint/eslint-plugin @typescript-eslint/parser prettier eslint-plugin-prettier eslint-config-prettier
+</span></span></code></pre><p>Except <code>prettier</code>, <code>eslint-config-prettier</code> and <code>eslint-plugin-prettier</code> the rest are plugins used by <code>create-react-app</code>.</p>
+<p><strong>Create file configuration:</strong>:</p>
+<ul>
+<li>
+<p><code>.eslintrc</code></p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;extends&#34;</span>: [<span style="color:#f1fa8c">&#34;react-app&#34;</span>, <span style="color:#f1fa8c">&#34;prettier&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;plugins&#34;</span>: [<span style="color:#f1fa8c">&#34;react&#34;</span>, <span style="color:#f1fa8c">&#34;prettier&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;rules&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;prettier/prettier&#34;</span>: [
+</span></span><span style="display:flex;"><span>            <span style="color:#f1fa8c">&#34;warn&#34;</span>,
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&#34;arrowParens&#34;</span>: <span style="color:#f1fa8c">&#34;avoid&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&#34;semi&#34;</span>: <span style="color:#ff79c6">false</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&#34;trailingComma&#34;</span>: <span style="color:#f1fa8c">&#34;none&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&#34;endOfLine&#34;</span>: <span style="color:#f1fa8c">&#34;lf&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&#34;tabWidth&#34;</span>: <span style="color:#bd93f9">2</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&#34;printWidth&#34;</span>: <span style="color:#bd93f9">80</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">&#34;useTabs&#34;</span>: <span style="color:#ff79c6">false</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;no-console&#34;</span>: <span style="color:#f1fa8c">&#34;warn&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></li>
+<li>
+<p><code>.eslintignore</code></p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>/src/serviceWorker.ts
+</span></span><span style="display:flex;"><span>/src/setupTests.ts
+</span></span></code></pre></li>
+<li>
+<p><code>.prettierrc</code></p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;arrowParens&#34;</span>: <span style="color:#f1fa8c">&#34;avoid&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;semi&#34;</span>: <span style="color:#ff79c6">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;trailingComma&#34;</span>: <span style="color:#f1fa8c">&#34;none&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;endOfLine&#34;</span>: <span style="color:#f1fa8c">&#34;lf&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;tabWidth&#34;</span>: <span style="color:#bd93f9">2</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;printWidth&#34;</span>: <span style="color:#bd93f9">80</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;useTabs&#34;</span>: <span style="color:#ff79c6">false</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></li>
+<li>
+<p><code>prettierignore</code></p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>.cache
+</span></span><span style="display:flex;"><span>package-lock.json
+</span></span></code></pre></li>
+</ul>
+</li>
+<li>
+<p>Add scripts to <code>package.json</code></p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#f1fa8c">&#34;scripts&#34;</span>: {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;start&#34;</span>: <span style="color:#f1fa8c">&#34;webpack serve --mode development&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;build&#34;</span>: <span style="color:#f1fa8c">&#34;webpack --mode production&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;build:analyze&#34;</span>: <span style="color:#f1fa8c">&#34;webpack --mode production --env analyze&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;lint&#34;</span>: <span style="color:#f1fa8c">&#34;eslint --ext js,jsx,ts,tsx src/&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;lint:fix&#34;</span>: <span style="color:#f1fa8c">&#34;eslint --fix --ext js,jsx,ts,tsx src/&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;prettier&#34;</span>: <span style="color:#f1fa8c">&#34;prettier --check \&#34;src/**/(*.tsx|*.ts|*.jsx|*.js|*.scss|*.css)\&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;prettier:fix&#34;</span>: <span style="color:#f1fa8c">&#34;prettier --write \&#34;src/**/(*.tsx|*.ts|*.jsx|*.js|*.scss|*.css)\&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>},
+</span></span></code></pre></li>
+</ul>
+<h2 id="configuration">Configuration</h2>
+<h3 id="config-tsconfigjson">Config <code>tsconfig.json</code></h3>
+<ul>
+<li>
+<p>Code
+I will use TypeScript for this template, so I need a config file for TypeScript to compile JavaScript. If you want to use JavaScript, that will be very similar, you just need install <code>babel</code> and these loader. Check my <a href="/blog/basic-setup-webpack">previous article</a> for the details.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;compilerOptions&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;target&#34;</span>: <span style="color:#f1fa8c">&#34;ES5&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;allowJs&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;strict&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;module&#34;</span>: <span style="color:#f1fa8c">&#34;ESNext&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;moduleResolution&#34;</span>: <span style="color:#f1fa8c">&#34;node&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;noImplicitAny&#34;</span>: <span style="color:#ff79c6">false</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;sourceMap&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;jsx&#34;</span>: <span style="color:#f1fa8c">&#34;react&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;allowSyntheticDefaultImports&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;baseUrl&#34;</span>: <span style="color:#f1fa8c">&#34;.&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;paths&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;@/*&#34;</span>: [<span style="color:#f1fa8c">&#34;src/*&#34;</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;@@/*&#34;</span>: [<span style="color:#f1fa8c">&#34;./*&#34;</span>]
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;include&#34;</span>: [<span style="color:#f1fa8c">&#34;src/**/*&#34;</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></li>
+</ul>
+<h3 id="config-webpackconfigjs">Config <code>webpack.config.js</code></h3>
+<ul>
+<li>
+<p>Code</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">const</span> path <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;path&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> webpack <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;webpack&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> HtmlWebpackPlugin <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;html-webpack-plugin&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> CopyPlugin <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;copy-webpack-plugin&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> Dotenv <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;dotenv-webpack&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> MiniCssExtractPlugin <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;mini-css-extract-plugin&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> { CleanWebpackPlugin } <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;clean-webpack-plugin&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> CompressionPlugin <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;compression-webpack-plugin&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> BundleAnalyzerPlugin <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;webpack-bundle-analyzer&#39;</span>).BundleAnalyzerPlugin
+</span></span><span style="display:flex;"><span>module.exports <span style="color:#ff79c6">=</span> (env, agrv) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> isDev <span style="color:#ff79c6">=</span> agrv.mode <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#39;development&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> isAnalyze <span style="color:#ff79c6">=</span> env <span style="color:#ff79c6">&amp;&amp;</span> env.analyze
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> basePlugins <span style="color:#ff79c6">=</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">new</span> Dotenv(),
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">new</span> HtmlWebpackPlugin({
+</span></span><span style="display:flex;"><span>            template<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;public/index.html&#39;</span>,
+</span></span><span style="display:flex;"><span>        }),
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">new</span> CopyPlugin({
+</span></span><span style="display:flex;"><span>            patterns<span style="color:#ff79c6">:</span> [
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    from<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;**/*&#39;</span>,
+</span></span><span style="display:flex;"><span>                    globOptions<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>                        ignore<span style="color:#ff79c6">:</span> [<span style="color:#f1fa8c">&#39;index.html&#39;</span>],
+</span></span><span style="display:flex;"><span>                    },
+</span></span><span style="display:flex;"><span>                    to<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&#39;</span>,
+</span></span><span style="display:flex;"><span>                    context<span style="color:#ff79c6">:</span> path.resolve(<span style="color:#f1fa8c">&#39;public&#39;</span>),
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>        }),
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">new</span> MiniCssExtractPlugin({
+</span></span><span style="display:flex;"><span>            filename<span style="color:#ff79c6">:</span> isDev <span style="color:#ff79c6">?</span> <span style="color:#f1fa8c">&#39;[name].css&#39;</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;static/css/[name].[contenthash:6].css&#39;</span>,
+</span></span><span style="display:flex;"><span>        }),
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">new</span> webpack.ProgressPlugin(),
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> prodPlugins <span style="color:#ff79c6">=</span> [
+</span></span><span style="display:flex;"><span>        ...basePlugins,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">new</span> CleanWebpackPlugin(),
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">new</span> CompressionPlugin({
+</span></span><span style="display:flex;"><span>            test<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">/\.(css|js|html|svg)$/</span>,
+</span></span><span style="display:flex;"><span>        }),
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (isAnalyze) {
+</span></span><span style="display:flex;"><span>        prodPlugins <span style="color:#ff79c6">=</span> [...prodPlugins, <span style="color:#ff79c6">new</span> BundleAnalyzerPlugin()]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> {
+</span></span><span style="display:flex;"><span>        entry<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;./src/index.tsx&#39;</span>,
+</span></span><span style="display:flex;"><span>        module<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>            rules<span style="color:#ff79c6">:</span> [
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    test<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">/\.(ts|tsx)$/</span>,
+</span></span><span style="display:flex;"><span>                    use<span style="color:#ff79c6">:</span> [<span style="color:#f1fa8c">&#39;ts-loader&#39;</span>, <span style="color:#f1fa8c">&#39;eslint-loader&#39;</span>],
+</span></span><span style="display:flex;"><span>                    exclude<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">/node_modules/</span>,
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    test<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">/\.(s[ac]ss|css)$/</span>,
+</span></span><span style="display:flex;"><span>                    use<span style="color:#ff79c6">:</span> [
+</span></span><span style="display:flex;"><span>                        MiniCssExtractPlugin.loader,
+</span></span><span style="display:flex;"><span>                        {
+</span></span><span style="display:flex;"><span>                            loader<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;css-loader&#39;</span>,
+</span></span><span style="display:flex;"><span>                            options<span style="color:#ff79c6">:</span> { sourceMap<span style="color:#ff79c6">:</span> isDev <span style="color:#ff79c6">?</span> <span style="color:#ff79c6">true</span> <span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span> },
+</span></span><span style="display:flex;"><span>                        },
+</span></span><span style="display:flex;"><span>                        {
+</span></span><span style="display:flex;"><span>                            loader<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;sass-loader&#39;</span>,
+</span></span><span style="display:flex;"><span>                            options<span style="color:#ff79c6">:</span> { sourceMap<span style="color:#ff79c6">:</span> isDev <span style="color:#ff79c6">?</span> <span style="color:#ff79c6">true</span> <span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span> },
+</span></span><span style="display:flex;"><span>                        },
+</span></span><span style="display:flex;"><span>                    ],
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    test<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">/\.(eot|ttf|woff|woff2)$/</span>,
+</span></span><span style="display:flex;"><span>                    use<span style="color:#ff79c6">:</span> [
+</span></span><span style="display:flex;"><span>                        {
+</span></span><span style="display:flex;"><span>                            loader<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;file-loader&#39;</span>,
+</span></span><span style="display:flex;"><span>                            options<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>                                name<span style="color:#ff79c6">:</span> isDev
+</span></span><span style="display:flex;"><span>                                    <span style="color:#ff79c6">?</span> <span style="color:#f1fa8c">&#39;[path][name].[ext]&#39;</span>
+</span></span><span style="display:flex;"><span>                                    <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;static/fonts/[name].[ext]&#39;</span>,
+</span></span><span style="display:flex;"><span>                            },
+</span></span><span style="display:flex;"><span>                        },
+</span></span><span style="display:flex;"><span>                    ],
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>                {
+</span></span><span style="display:flex;"><span>                    test<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">/\.(png|svg|jpg|gif)$/</span>,
+</span></span><span style="display:flex;"><span>                    use<span style="color:#ff79c6">:</span> [
+</span></span><span style="display:flex;"><span>                        {
+</span></span><span style="display:flex;"><span>                            loader<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;file-loader&#39;</span>,
+</span></span><span style="display:flex;"><span>                            options<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>                                name<span style="color:#ff79c6">:</span> isDev
+</span></span><span style="display:flex;"><span>                                    <span style="color:#ff79c6">?</span> <span style="color:#f1fa8c">&#39;[path][name].[ext]&#39;</span>
+</span></span><span style="display:flex;"><span>                                    <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;static/media/[name].[contenthash:6].[ext]&#39;</span>,
+</span></span><span style="display:flex;"><span>                            },
+</span></span><span style="display:flex;"><span>                        },
+</span></span><span style="display:flex;"><span>                    ],
+</span></span><span style="display:flex;"><span>                },
+</span></span><span style="display:flex;"><span>            ],
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        resolve<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>            extensions<span style="color:#ff79c6">:</span> [<span style="color:#f1fa8c">&#39;.tsx&#39;</span>, <span style="color:#f1fa8c">&#39;.ts&#39;</span>, <span style="color:#f1fa8c">&#39;.jsx&#39;</span>, <span style="color:#f1fa8c">&#39;.js&#39;</span>],
+</span></span><span style="display:flex;"><span>            alias<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">&#39;@&#39;</span><span style="color:#ff79c6">:</span> path.resolve(<span style="color:#f1fa8c">&#39;src&#39;</span>),
+</span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">&#39;@@&#39;</span><span style="color:#ff79c6">:</span> path.resolve(),
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        output<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>            path<span style="color:#ff79c6">:</span> path.resolve(<span style="color:#f1fa8c">&#39;build&#39;</span>),
+</span></span><span style="display:flex;"><span>            publicPath<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;/&#39;</span>,
+</span></span><span style="display:flex;"><span>            filename<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;static/js/main.[contenthash:6].js&#39;</span>,
+</span></span><span style="display:flex;"><span>            environment<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>                arrowFunction<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>,
+</span></span><span style="display:flex;"><span>                bigIntLiteral<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#ff79c6">const</span><span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>,
+</span></span><span style="display:flex;"><span>                destructuring<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>,
+</span></span><span style="display:flex;"><span>                dynamicImport<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>,
+</span></span><span style="display:flex;"><span>                forOf<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>,
+</span></span><span style="display:flex;"><span>                module<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>,
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        devtool<span style="color:#ff79c6">:</span> isDev <span style="color:#ff79c6">?</span> <span style="color:#f1fa8c">&#39;source-map&#39;</span> <span style="color:#ff79c6">:</span> <span style="color:#ff79c6">false</span>,
+</span></span><span style="display:flex;"><span>        devServer<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>            contentBase<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;public&#39;</span>,
+</span></span><span style="display:flex;"><span>            port<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">3000</span>,
+</span></span><span style="display:flex;"><span>            hot<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>            watchContentBase<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>            historyApiFallback<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        plugins<span style="color:#ff79c6">:</span> isDev <span style="color:#ff79c6">?</span> basePlugins <span style="color:#ff79c6">:</span> prodPlugins,
+</span></span><span style="display:flex;"><span>        performance<span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>            maxEntrypointSize<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">800000</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></li>
+<li>
+<p>Explanation</p>
+<p>I have explain the details of many definition in the <code>webpack.config.js</code> file in my two previous article <a href="/blog/basic-setup-webpack">setup webpack basic</a> &amp; <a href="/blog/setup-webpack-with-typescript">setup webpack typescript</a>. In this article, I just explain the new definitions..</p>
+<ul>
+<li><code>isDev</code>: We have 2 modes: <strong>development</strong> and <strong>production</strong> equivalent to dev and build. These two modes are passed through the <code>--mode</code> in the script in <code>package.json</code>.</li>
+<li><code>isAnalyze</code>: To define use <code>BundleAnalyzerPlugin</code> or not</li>
+<li><code>basePlugins</code>: plugins use in dev mode</li>
+<li><code>CopyPlugin</code>: copy all files in <strong>public</strong> folder to <strong>build</strong> folder, except <code>index.html</code>. Because we have already plugin <code>HtmlWebpackPlugin</code> do it.</li>
+<li><code>webpack.ProgressPlugin()</code> show by percentage of progress when run webpack</li>
+<li><code>CompressionPlugin()</code>: compress build files to <strong>gzip</strong></li>
+<li><code>prodPlugins</code>: plugins used in mode production.</li>
+<li><code>plugins</code>: Contains plugins of webpack</li>
+<li><code>performance.maxEntrypointSize</code>: When a build file exceeds this limit (in bytes), it will be warned on the terminal.</li>
+</ul>
+</li>
+</ul>
+<h2 id="demo-code">Demo code</h2>
+<ul>
+<li>
+<p>Create <code>public/index.html</code></p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#ff79c6">html</span> <span style="color:#50fa7b">lang</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;en&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">head</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">charset</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;UTF-8&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#ff79c6">meta</span> <span style="color:#50fa7b">name</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;viewport&#34;</span> <span style="color:#50fa7b">content</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;width=device-width, initial-scale=1.0&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#ff79c6">title</span>&gt;Webpack&lt;/<span style="color:#ff79c6">title</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#ff79c6">head</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#ff79c6">body</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">id</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;root&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#ff79c6">h1</span>&gt;Webpack React TypeScript&lt;/<span style="color:#ff79c6">h1</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#ff79c6">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#ff79c6">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#ff79c6">html</span>&gt;
+</span></span></code></pre><p>All others codes are created as a template of Webpack React TS project. Check <a href="https://github.com/tduyng/webpack/tree/master/webpack-react-typescript">code GitHub</a> for more details.</p>
+</li>
+<li>
+<p>Run and build project</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>yarn start <span style="color:#6272a4"># Run dev enviroment</span>
+</span></span><span style="display:flex;"><span>yarn build <span style="color:#6272a4"># Build</span>
+</span></span><span style="display:flex;"><span>yarn build:analyze <span style="color:#6272a4"># Build and analyze project</span>
+</span></span><span style="display:flex;"><span>
+</span></span></code></pre><p>We can use <code>yarn lint</code>, <code>yarn lint:fix</code>, <code>yarn prettier</code> and <code>yarn prettier:fix</code> to run the command check and fix syntax code with eslint or prettier.</p>
+</li>
+</ul>
+<h2 id="structure-folder">Structure folder</h2>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>├── package.json
+</span></span><span style="display:flex;"><span>├── public
+</span></span><span style="display:flex;"><span>│   ├── favicon.ico
+</span></span><span style="display:flex;"><span>│   ├── index.html
+</span></span><span style="display:flex;"><span>│   ├── logo192.png
+</span></span><span style="display:flex;"><span>│   ├── logo512.png
+</span></span><span style="display:flex;"><span>│   ├── manifest.json
+</span></span><span style="display:flex;"><span>│   └── robots.txt
+</span></span><span style="display:flex;"><span>├── README.md
+</span></span><span style="display:flex;"><span>├── src
+</span></span><span style="display:flex;"><span>│   ├── apis
+</span></span><span style="display:flex;"><span>│   │   ├── product.api.ts
+</span></span><span style="display:flex;"><span>│   │   └── user.api.ts
+</span></span><span style="display:flex;"><span>│   ├── App
+</span></span><span style="display:flex;"><span>│   │   ├── App.actions.ts
+</span></span><span style="display:flex;"><span>│   │   ├── App.constants.ts
+</span></span><span style="display:flex;"><span>│   │   ├── App.reducer.ts
+</span></span><span style="display:flex;"><span>│   │   └── App.tsx
+</span></span><span style="display:flex;"><span>│   ├── assets
+</span></span><span style="display:flex;"><span>│   │   ├── fonts
+</span></span><span style="display:flex;"><span>│   │   │   ├── OpenSans-BoldItalic.ttf
+</span></span><span style="display:flex;"><span>│   │   │   ├── OpenSans-Bold.ttf
+</span></span><span style="display:flex;"><span>│   │   │   ├── OpenSans-ExtraBoldItalic.ttf
+</span></span><span style="display:flex;"><span>│   │   │   ├── OpenSans-ExtraBold.ttf
+</span></span><span style="display:flex;"><span>│   │   │   ├── OpenSans-Italic.ttf
+</span></span><span style="display:flex;"><span>│   │   │   ├── OpenSans-LightItalic.ttf
+</span></span><span style="display:flex;"><span>│   │   │   ├── OpenSans-Light.ttf
+</span></span><span style="display:flex;"><span>│   │   │   ├── OpenSans-Regular.ttf
+</span></span><span style="display:flex;"><span>│   │   │   ├── OpenSans-SemiBoldItalic.ttf
+</span></span><span style="display:flex;"><span>│   │   │   └── OpenSans-SemiBold.ttf
+</span></span><span style="display:flex;"><span>│   │   ├── images
+</span></span><span style="display:flex;"><span>│   │   │   ├── home.svg
+</span></span><span style="display:flex;"><span>│   │   │   ├── list.svg
+</span></span><span style="display:flex;"><span>│   │   │   └── open-menu.svg
+</span></span><span style="display:flex;"><span>│   │   └── scss
+</span></span><span style="display:flex;"><span>│   │       └── index.scss
+</span></span><span style="display:flex;"><span>│   ├── components
+</span></span><span style="display:flex;"><span>│   │   ├── Header
+</span></span><span style="display:flex;"><span>│   │   │   ├── Header.styles.ts
+</span></span><span style="display:flex;"><span>│   │   │   └── Header.tsx
+</span></span><span style="display:flex;"><span>│   │   ├── Loading
+</span></span><span style="display:flex;"><span>│   │   │   └── Loading.tsx
+</span></span><span style="display:flex;"><span>│   │   └── SideNav
+</span></span><span style="display:flex;"><span>│   │       ├── SideNav.styles.ts
+</span></span><span style="display:flex;"><span>│   │       └── SideNav.tsx
+</span></span><span style="display:flex;"><span>│   ├── constants
+</span></span><span style="display:flex;"><span>│   │   ├── paths.ts
+</span></span><span style="display:flex;"><span>│   │   └── styles.ts
+</span></span><span style="display:flex;"><span>│   ├── guards
+</span></span><span style="display:flex;"><span>│   │   └── AuthenticatedGuard.tsx
+</span></span><span style="display:flex;"><span>│   ├── helpers
+</span></span><span style="display:flex;"><span>│   │   └── string.ts
+</span></span><span style="display:flex;"><span>│   ├── hooks
+</span></span><span style="display:flex;"><span>│   │   └── usePrevious.tsx
+</span></span><span style="display:flex;"><span>│   ├── index.tsx
+</span></span><span style="display:flex;"><span>│   ├── layouts
+</span></span><span style="display:flex;"><span>│   │   └── MainLayout.tsx
+</span></span><span style="display:flex;"><span>│   ├── logo.svg
+</span></span><span style="display:flex;"><span>│   ├── pages
+</span></span><span style="display:flex;"><span>│   │   ├── Home
+</span></span><span style="display:flex;"><span>│   │   │   └── Home.tsx
+</span></span><span style="display:flex;"><span>│   │   ├── Login
+</span></span><span style="display:flex;"><span>│   │   │   ├── Login.actions.ts
+</span></span><span style="display:flex;"><span>│   │   │   ├── Login.constants.ts
+</span></span><span style="display:flex;"><span>│   │   │   ├── Login.reducer.ts
+</span></span><span style="display:flex;"><span>│   │   │   ├── Login.styles.ts
+</span></span><span style="display:flex;"><span>│   │   │   ├── Login.thunks.ts
+</span></span><span style="display:flex;"><span>│   │   │   └── Login.tsx
+</span></span><span style="display:flex;"><span>│   │   └── Product
+</span></span><span style="display:flex;"><span>│   │       ├── ProductItem
+</span></span><span style="display:flex;"><span>│   │       │   ├── ProductItem.actions.ts
+</span></span><span style="display:flex;"><span>│   │       │   ├── ProductItem.constants.ts
+</span></span><span style="display:flex;"><span>│   │       │   ├── ProductItem.reducer.ts
+</span></span><span style="display:flex;"><span>│   │       │   ├── ProductItem.thunks.ts
+</span></span><span style="display:flex;"><span>│   │       │   └── ProductItem.tsx
+</span></span><span style="display:flex;"><span>│   │       └── ProductList
+</span></span><span style="display:flex;"><span>│   │           ├── ProductList.actions.ts
+</span></span><span style="display:flex;"><span>│   │           ├── ProductList.constants.ts
+</span></span><span style="display:flex;"><span>│   │           ├── ProductList.reducer.ts
+</span></span><span style="display:flex;"><span>│   │           ├── ProductList.styles.ts
+</span></span><span style="display:flex;"><span>│   │           ├── ProductList.thunks.ts
+</span></span><span style="display:flex;"><span>│   │           └── ProductList.tsx
+</span></span><span style="display:flex;"><span>│   ├── react-app-env.d.ts
+</span></span><span style="display:flex;"><span>│   ├── reducer
+</span></span><span style="display:flex;"><span>│   │   └── reducer.ts
+</span></span><span style="display:flex;"><span>│   ├── routes
+</span></span><span style="display:flex;"><span>│   │   ├── HomeRoutes.tsx
+</span></span><span style="display:flex;"><span>│   │   ├── LoginRoutes.tsx
+</span></span><span style="display:flex;"><span>│   │   ├── ProductRoutes.tsx
+</span></span><span style="display:flex;"><span>│   │   └── routes.tsx
+</span></span><span style="display:flex;"><span>│   ├── serviceWorker.ts
+</span></span><span style="display:flex;"><span>│   ├── setupTests.ts
+</span></span><span style="display:flex;"><span>│   ├── store
+</span></span><span style="display:flex;"><span>│   │   └── store.ts
+</span></span><span style="display:flex;"><span>│   └── @types
+</span></span><span style="display:flex;"><span>│       ├── action.d.ts
+</span></span><span style="display:flex;"><span>│       ├── api.d.ts
+</span></span><span style="display:flex;"><span>│       ├── files.d.ts
+</span></span><span style="display:flex;"><span>│       ├── product.d.ts
+</span></span><span style="display:flex;"><span>│       ├── reducer.d.ts
+</span></span><span style="display:flex;"><span>│       └── user.d.ts
+</span></span><span style="display:flex;"><span>├── tsconfig.json
+</span></span><span style="display:flex;"><span>├── webpack.config.js
+</span></span><span style="display:flex;"><span>└── yarn.lock
+</span></span></code></pre><hr>
+<p>Stay tunned to keep update my next articles and understand how I use the structures project like that.</p>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://github.com/tduyng/webpack/tree/master/webpack-react-typescript">Gihub code demo</a></li>
+</ul>
+ <div class="pagination">
+    
+
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="/blog/setup-webpack-with-typescript/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Setup Webpack TypeScript</span>
+            </a>
+        </span>
+         
+        <span class="button next">
+            <a href="/blog/config-esling-prettier-react-app/">
+                <span class="button__text">Config ESLint, Prettier for React App in VSCode</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+                    </article>
+                    <div class="sharing-buttons">
+    <h3>Share this post:</h3>
+    <ul class="sharing-list" id="right">
+        <li>
+            <a
+                href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2ftduyng.com%2fblog%2fsetup-webpack-react-typescript&t=Setup%20Webpack%20React%20TypeScript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/hacker-news.svg" alt="Share on Hacker News" class="sharing-icon" />
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://www.reddit.com/submit?url=https%3a%2f%2ftduyng.com%2fblog%2fsetup-webpack-react-typescript&title=Setup%20Webpack%20React%20TypeScript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/reddit.svg" alt="Share on Reddit" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://mastodon.social/share?url=https%3a%2f%2ftduyng.com%2fblog%2fsetup-webpack-react-typescript&text=Setup%20Webpack%20React%20TypeScript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/mastodon.svg" alt="Share on Mastodon" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://x.com/intent/tweet?url=https%3a%2f%2ftduyng.com%2fblog%2fsetup-webpack-react-typescript&text=Setup%20Webpack%20React%20TypeScript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/x.svg" alt="Share on Twitter" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftduyng.com%2fblog%2fsetup-webpack-react-typescript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/facebook.svg" alt="Share on Facebook" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftduyng.com%2fblog%2fsetup-webpack-react-typescript&title=Setup%20Webpack%20React%20TypeScript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/linkedin.svg" alt="Share on LinkedIn" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a href="mailto:?subject=Setup%20Webpack%20React%20TypeScript&body=https%3a%2f%2ftduyng.com%2fblog%2fsetup-webpack-react-typescript">
+                <img src="/icon/email.svg" alt="Share via Email" class="sharing-icon" />
+            </a>
+        </li>
+    </ul>
+</div>
+ 
+<div
+    class="reaction right"
+    data-endpoint="https://reaction.tienduy-nguyen-dev.workers.dev"
+></div>
+
+ 
+
+                </div>
+
+                
+ <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+            </main>
+        </div>
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>

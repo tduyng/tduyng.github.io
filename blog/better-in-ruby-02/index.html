@@ -1,0 +1,429 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/blog/better-in-ruby-02" />
+    
+    <meta name="keywords" content="ruby" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>Better In Ruby - 02</title>
+    <meta
+        property="og:title"
+        content="Better In Ruby - 02"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Hidden Ruby gems: uncovering little known tips." />
+    <meta property="og:description" content="Hidden Ruby gems: uncovering little known tips." />
+    
+    <meta property="og:image" content="https://tduyng.com/img/post-cover.webp" />
+    <meta property="og:image:width" content="1500" />
+    <meta property="og:image:height" content="750" />
+    <meta name="twitter:image" content="https://tduyng.com/img/post-cover.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="post">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold">[</span>
+
+               
+            <a class="instant " href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold">]</span>
+            
+        </nav>
+    </div>
+</header>
+
+
+        <div id="wrapper">
+            <div id="blank"></div>
+            <aside>
+                
+<nav>
+    <ul>
+        
+        <li>
+            <a class="h2" href="#create-a-hash-from-a-list-of-values">Create a hash from a list of values</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#lambda-literal--">Lambda Literal -&gt;</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#double-star-">Double star (\*\*)</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#handle-single-object-and-array-in-the-same-way">Handle single object and array in the same way</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#double-pipe-equals-">Double Pipe Equals ||=</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#mandatory-hash-parameters">Mandatory hash parameters</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#generate-array-of-alphabet-or-numbers">Generate array of alphabet or numbers</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#tap">Tap</a>
+            
+        </li>
+        
+    </ul>
+</nav>
+
+
+                <button id="back-to-top" aria-label="back to top">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill="currentColor"></path></svg>
+                </button>
+            </aside>
+            <main>
+                <div>
+                    
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+ 
+                    <article class="prose" data-backlink-icon="">
+                        <h1>Better In Ruby - 02</h1>
+                        <div id="post-info">
+                            <div id="date">
+                                <span id="publish">Aug 30, 2020</span>
+                                
+                            </div>
+
+                            <div id="wordcount">
+    <span>884 words - 5 min read</span>
+</div>
+
+                        </div>
+
+                        <div id="tags">
+                              
+                            <a class="instant" href="/tags/ruby"><span>#</span>ruby</a>
+                            
+                        </div>
+
+                        
+ <p>Some tips you probably don't know in Ruby - 02</p>
+<p>In this article, I want to show you some nice Ruby features that you may know or not. Anyway, it’s a quick read and it’s always interesting to learn new stuff, right?!</p>
+<h2 id="create-a-hash-from-a-list-of-values">Create a hash from a list of values</h2>
+<p><a style="padding:0px, margin:0px" name="assigning-rest-array" ></a></p>
+<p>You can create a hash from a list of values by using Hash[...]. It will create a hash like below:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>Hash<span style="color:#ff79c6">[</span><span style="color:#f1fa8c">&#39;key1&#39;</span>, <span style="color:#f1fa8c">&#39;value1&#39;</span>, <span style="color:#f1fa8c">&#39;key2&#39;</span>, <span style="color:#f1fa8c">&#39;value2&#39;</span><span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># =&gt; {&#34;key1&#34;=&gt;&#34;value1&#34;, &#34;key2&#34;=&gt;&#34;value2&#34;}</span>
+</span></span></code></pre><h2 id="lambda-literal--">Lambda Literal -&gt;</h2>
+<p><a style="padding:0px, margin:0px" name="word-array"></a></p>
+<p>Lambda Literal is a anonymous function like lambda in python, <code>=&gt;</code> in JS or C#, allows you to create lambda easily.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>a <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">-&gt;</span> { <span style="color:#bd93f9">1</span> <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span> }
+</span></span><span style="display:flex;"><span>a<span style="color:#ff79c6">.</span>call
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># =&gt; 2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>a <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">-&gt;</span> (v) { v <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span> }
+</span></span><span style="display:flex;"><span>a<span style="color:#ff79c6">.</span>call(<span style="color:#bd93f9">2</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># =&gt; 3</span>
+</span></span></code></pre><h2 id="double-star-">Double star (**)</h2>
+<p><a style="padding:0px, margin:0px" name="concate-array"></a></p>
+<p>The double star is a neat little trick in Ruby. See the following method:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">my_method</span>(a, <span style="color:#ff79c6">*</span>b, <span style="color:#ff79c6">**</span>c)
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> a, b, c
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span></code></pre><p><code>a</code> is a regular parameter. <code>*b</code> will take all the parameters passed after the first one and put them in an array. <code>c</code> will take any parameter given in the format key: value at the end of the method call.</p>
+<p>See the following examples:</p>
+<p>One parameter</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>my_method(<span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># =&gt; [1, [], {}]</span>
+</span></span></code></pre><p>More than one parameter</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>my_method(<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># =&gt; [1, [2, 3, 4], {}]</span>
+</span></span></code></pre><p>More than one parameter + hash-style parameters</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>my_method(<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span>, <span style="color:#bd93f9">4</span>, <span style="color:#f1fa8c">a</span>: <span style="color:#bd93f9">1</span>, <span style="color:#f1fa8c">b</span>: <span style="color:#bd93f9">2</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># =&gt; [1, [2, 3, 4], {:a=&gt;1, :b=&gt;2}]</span>
+</span></span></code></pre><h2 id="handle-single-object-and-array-in-the-same-way">Handle single object and array in the same way</h2>
+<p><a style="padding:0px, margin:0px" name="format-decimal"></a></p>
+<p>Sometimes you might want to give the option to either accept a single object or an array of objects. Instead of checking for the type of object you’ve received, you could use <code>[*something] or Array(something)</code>.</p>
+<p>Let’s assign two variables. The first one is a single digit and the second one is an array of digits.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>stuff <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>stuff_arr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">[</span><span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">2</span>, <span style="color:#bd93f9">3</span><span style="color:#ff79c6">]</span>
+</span></span></code></pre><p>In the following example, I use <code>[*...]</code> to loop through whatever is give</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">[*</span>stuff<span style="color:#ff79c6">].</span>each { <span style="color:#ff79c6">|</span>s<span style="color:#ff79c6">|</span> s }
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[*</span>stuff_arr<span style="color:#ff79c6">].</span>each { <span style="color:#ff79c6">|</span>s<span style="color:#ff79c6">|</span> s }
+</span></span></code></pre><p>Same in this one but using Array(...).</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">Array</span>(stuff)<span style="color:#ff79c6">.</span>each { <span style="color:#ff79c6">|</span>s<span style="color:#ff79c6">|</span> s }
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">Array</span>(stuff_arr)<span style="color:#ff79c6">.</span>each { <span style="color:#ff79c6">|</span>s<span style="color:#ff79c6">|</span> s }
+</span></span></code></pre><h2 id="double-pipe-equals-">Double Pipe Equals ||=</h2>
+<p><a style="padding:0px, margin:0px" name="remove-folder"></a></p>
+<p>The Double Pipe Equals is a great tool to write concise code.</p>
+<p>It’s actually equivalent to the following:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>a <span style="color:#ff79c6">||</span> a <span style="color:#ff79c6">=</span> b <span style="color:#6272a4"># Correct</span>
+</span></span></code></pre><p>And not this one, as a lot of people think:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>a <span style="color:#ff79c6">=</span> a <span style="color:#ff79c6">||</span> b <span style="color:#6272a4"># Wrong</span>
+</span></span></code></pre><p>The second one doesn’t make sense because there is no point reassigning a if we already have it!</p>
+<p>This operator can be used to create methods like this in your classes. I love to use it for calculations.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">total</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">@total</span> <span style="color:#ff79c6">||=</span> (<span style="color:#bd93f9">1</span><span style="color:#ff79c6">..</span><span style="color:#bd93f9">100000000</span>)<span style="color:#ff79c6">.</span>to_a<span style="color:#ff79c6">.</span>inject(<span style="color:#f1fa8c">:+</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span></code></pre><p>Now you could have other method calling total to get the total value but it will only be calculated the first time.</p>
+<h2 id="mandatory-hash-parameters">Mandatory hash parameters</h2>
+<p><a style="padding:0px, margin:0px" name="massive-assignment"></a></p>
+<p>This one was introduced in Ruby 2.0. Instead of just defining a method that takes a hash in parameters like this:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">my_method</span>({})
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span></code></pre><p>You can specify the keys that you are waiting for and even define default values for them! a and b are mandatory keys.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">my_method</span>(<span style="color:#f1fa8c">a</span>:, <span style="color:#f1fa8c">b</span>:, <span style="color:#f1fa8c">c</span>: <span style="color:#f1fa8c">&#39;default&#39;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> a, b, c
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span></code></pre><p>We can try to call it without giving a value for b but it won’t work.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>my_method(<span style="color:#f1fa8c">a</span>: <span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># =&gt; ArgumentError: missing keyword: b</span>
+</span></span></code></pre><p>Since c has a default value, we can just call the method with a and b.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>my_method(<span style="color:#f1fa8c">a</span>: <span style="color:#bd93f9">1</span>, <span style="color:#f1fa8c">b</span>: <span style="color:#bd93f9">2</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># =&gt; [1, 2, &#34;default&#34;]</span>
+</span></span></code></pre><p>Or with all of them.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>my_method(<span style="color:#f1fa8c">a</span>: <span style="color:#bd93f9">1</span>, <span style="color:#f1fa8c">b</span>: <span style="color:#bd93f9">2</span>, <span style="color:#f1fa8c">c</span>: <span style="color:#bd93f9">3</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># =&gt; [1, 2, 3]</span>
+</span></span></code></pre><p>All we are doing is passing a hash and using some visual shortcuts but obviously, you can also pass a hash like this:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">hash</span> <span style="color:#ff79c6">=</span> { <span style="color:#f1fa8c">a</span>: <span style="color:#bd93f9">1</span>, <span style="color:#f1fa8c">b</span>: <span style="color:#bd93f9">2</span>, <span style="color:#f1fa8c">c</span>: <span style="color:#bd93f9">3</span> }
+</span></span><span style="display:flex;"><span>my_method(<span style="color:#8be9fd;font-style:italic">hash</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># =&gt; [1, 2, 3]</span>
+</span></span></code></pre><h2 id="generate-array-of-alphabet-or-numbers">Generate array of alphabet or numbers</h2>
+<p><a style="padding:0px, margin:0px" name="deep-copy"></a></p>
+<p>You might want to generate a list of numbers or put the entire alphabet inside an array. Well, you can use ruby ranges to do this.</p>
+<p>A to Z</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>(<span style="color:#f1fa8c">&#39;a&#39;</span><span style="color:#ff79c6">..</span><span style="color:#f1fa8c">&#39;z&#39;</span>)<span style="color:#ff79c6">.</span>to_a
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># =&gt; [&#34;a&#34;, &#34;b&#34;, &#34;c&#34;, &#34;d&#34;, &#34;e&#34;, &#34;f&#34;, &#34;g&#34;, &#34;h&#34;, &#34;i&#34;, &#34;j&#34;, &#34;k&#34;, &#34;l&#34;, &#34;m&#34;, &#34;n&#34;, &#34;o&#34;, &#34;p&#34;, &#34;q&#34;, &#34;r&#34;, &#34;s&#34;, &#34;t&#34;, &#34;u&#34;, &#34;v&#34;, &#34;w&#34;, &#34;x&#34;, &#34;y&#34;, &#34;z&#34;]</span>
+</span></span></code></pre><p>1 to 10</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>(<span style="color:#bd93f9">1</span><span style="color:#ff79c6">..</span><span style="color:#bd93f9">10</span>)<span style="color:#ff79c6">.</span>to_a
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># =&gt; [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</span>
+</span></span></code></pre><h2 id="tap">Tap</h2>
+<p><a style="padding:0px, margin:0px" name="random-array"></a></p>
+<p>Tap is a nice little method that improves code readability. Let’s take the following class as an example.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">class</span> <span style="color:#50fa7b">User</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">attr_accessor</span> <span style="color:#f1fa8c">:a</span>, <span style="color:#f1fa8c">:b</span>, <span style="color:#f1fa8c">:c</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span></code></pre><p>Now let’s say you want to instantiate a new user and assign a value to each of its attributes. You could do it like this:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">my_method</span>
+</span></span><span style="display:flex;"><span>  o <span style="color:#ff79c6">=</span> User<span style="color:#ff79c6">.</span>new
+</span></span><span style="display:flex;"><span>  o<span style="color:#ff79c6">.</span>a <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>  o<span style="color:#ff79c6">.</span>b <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span>
+</span></span><span style="display:flex;"><span>  o<span style="color:#ff79c6">.</span>c <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">3</span>
+</span></span><span style="display:flex;"><span>  o
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span></code></pre><p>Or you could use tap to do it like this.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">my_method</span>
+</span></span><span style="display:flex;"><span>  User<span style="color:#ff79c6">.</span>new<span style="color:#ff79c6">.</span>tap <span style="color:#ff79c6">do</span> <span style="color:#ff79c6">|</span>o<span style="color:#ff79c6">|</span>
+</span></span><span style="display:flex;"><span>    o<span style="color:#ff79c6">.</span>a <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>    o<span style="color:#ff79c6">.</span>b <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span>
+</span></span><span style="display:flex;"><span>    o<span style="color:#ff79c6">.</span>c <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">3</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span></code></pre><p>Basically, the tap method yields the calling object to the block and returns it.</p>
+<hr>
+<p>Thanks you for reading! Stay tunned to update the next chapter.</p>
+ <div class="pagination">
+    
+
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="/blog/better-in-ruby-01/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Better In Ruby - 01</span>
+            </a>
+        </span>
+         
+        <span class="button next">
+            <a href="/blog/python-vs-javascript/">
+                <span class="button__text">Syntax Python vs Javascript</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+                    </article>
+                    <div class="sharing-buttons">
+    <h3>Share this post:</h3>
+    <ul class="sharing-list" id="right">
+        <li>
+            <a
+                href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2ftduyng.com%2fblog%2fbetter-in-ruby-02&t=Better%20In%20Ruby%20-%2002"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/hacker-news.svg" alt="Share on Hacker News" class="sharing-icon" />
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://www.reddit.com/submit?url=https%3a%2f%2ftduyng.com%2fblog%2fbetter-in-ruby-02&title=Better%20In%20Ruby%20-%2002"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/reddit.svg" alt="Share on Reddit" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://mastodon.social/share?url=https%3a%2f%2ftduyng.com%2fblog%2fbetter-in-ruby-02&text=Better%20In%20Ruby%20-%2002"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/mastodon.svg" alt="Share on Mastodon" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://x.com/intent/tweet?url=https%3a%2f%2ftduyng.com%2fblog%2fbetter-in-ruby-02&text=Better%20In%20Ruby%20-%2002"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/x.svg" alt="Share on Twitter" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftduyng.com%2fblog%2fbetter-in-ruby-02"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/facebook.svg" alt="Share on Facebook" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftduyng.com%2fblog%2fbetter-in-ruby-02&title=Better%20In%20Ruby%20-%2002"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/linkedin.svg" alt="Share on LinkedIn" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a href="mailto:?subject=Better%20In%20Ruby%20-%2002&body=https%3a%2f%2ftduyng.com%2fblog%2fbetter-in-ruby-02">
+                <img src="/icon/email.svg" alt="Share via Email" class="sharing-icon" />
+            </a>
+        </li>
+    </ul>
+</div>
+ 
+<div
+    class="reaction right"
+    data-endpoint="https://reaction.tienduy-nguyen-dev.workers.dev"
+></div>
+
+ 
+
+                </div>
+
+                
+ <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+            </main>
+        </div>
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>
