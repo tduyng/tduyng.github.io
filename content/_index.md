@@ -1,5 +1,5 @@
 +++
-title = "Home"
+title = "Duy NG"
 template = "home.html"
 generate_feed = false
 
