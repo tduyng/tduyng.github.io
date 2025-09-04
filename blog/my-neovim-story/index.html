@@ -1,0 +1,555 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/blog/my-neovim-story" />
+    
+    <meta name="keywords" content="neovim, vim, ide, vscode" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>Part 1: My Journey from IDEs to Neovim</title>
+    <meta
+        property="og:title"
+        content="Part 1: My Journey from IDEs to Neovim"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Just sharing my story with Neovim and why I finally made the switch" />
+    <meta property="og:description" content="Just sharing my story with Neovim and why I finally made the switch" />
+    
+    <meta property="og:image" content="https://tduyng.com/img/dashboard.png" />
+    <meta property="og:image:width" content="1500" />
+    <meta property="og:image:height" content="750" />
+    <meta name="twitter:image" content="https://tduyng.com/img/dashboard.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="post">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold">[</span>
+
+               
+            <a class="instant " href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold">]</span>
+            
+        </nav>
+    </div>
+</header>
+
+
+        <div id="wrapper">
+            <div id="blank"></div>
+            <aside>
+                
+<nav>
+    <ul>
+        
+        <li>
+            <a class="h2" href="#how-it-started">How it started?</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#my-first-try">My first try</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#why-i-tried-again-at-the-end-of-2024">Why I tried again at the end of 2024</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#my-ides-were-getting-slow">My IDEs were getting slow</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#working-with-multiple-languages-got-more-complicated">Working with multiple languages got more complicated</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#the-ai-problem">The AI problem</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#terminal-tools-got-really-good">Terminal tools got really good</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#my-wrists-started-hurting">My wrists started hurting</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#what-changed-neovim-got-much-better">What changed: Neovim got much better</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#lua-instead-of-vimscript">Lua instead of Vimscript</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#better-plugins-and-documentation">Better plugins and documentation</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#learning-became-approachable">Learning became approachable</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#built-in-lsp-support">Built-in LSP support</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#my-current-setup-minimal-but-complete">My current setup: minimal but complete</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#the-results-so-far">The results so far</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#why-im-writing-this-series">Why I&#39;m writing this series</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#article-series-plan">Article series plan</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#faq">FAQ</a>
+            
+        </li>
+        
+    </ul>
+</nav>
+
+
+                <button id="back-to-top" aria-label="back to top">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill="currentColor"></path></svg>
+                </button>
+            </aside>
+            <main>
+                <div>
+                    
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+ 
+                    <article class="prose" data-backlink-icon="">
+                        <h1>Part 1: My Journey from IDEs to Neovim</h1>
+                        <div id="post-info">
+                            <div id="date">
+                                <span id="publish">Sep 1, 2025</span>
+                                
+                            </div>
+
+                            <div id="wordcount">
+    <span>1881 words - 9 min read</span>
+</div>
+
+                        </div>
+
+                        <div id="tags">
+                              
+                            <a class="instant" href="/tags/neovim"><span>#</span>neovim</a>
+                              
+                            <a class="instant" href="/tags/vim"><span>#</span>vim</a>
+                              
+                            <a class="instant" href="/tags/ide"><span>#</span>ide</a>
+                              
+                            <a class="instant" href="/tags/vscode"><span>#</span>vscode</a>
+                            
+                        </div>
+
+                        
+<blockquote
+    id="outdate_alert"
+    class="callout caution hidden"
+    data-days="365"
+    data-alert-text-before="This article was last updated "
+    data-alert-text-after=" days ago and may be out of date."
+>
+    <div class="content"></div>
+</blockquote>
+
+ <h2 id="how-it-started">How it started?</h2>
+<p>Back in 2019, I spent a lot of time on YouTube watching programmers. I was curious about how they worked, especially those using Vim. What I noticed was how they did everything so fast, no mouse, no menus, just pure typing. They could jump between files, make complex changes, and refactor code all in seconds. It looked almost like magic. Their hands seemed glued to the keyboard, and the workflow was so clean and focused. Watching them made me think, “Wow, this is really cool, I want to try that too. Maybe I can code faster, more efficiently, and spend less time wasting time clicking around.”</p>
+<p>So, I decided to give it a shot. I downloaded Vim, opened my terminal, and started searching for guides online. I was excited, but that excitement soon turned into frustration.</p>
+<h2 id="my-first-try">My first try</h2>
+<p>Like many beginners, my first experience with Vim was… rough.</p>
+<p>I quickly realized it wasn't as easy as just opening the editor and starting to type. There were a lot of obstacles, and I struggled a lot during those first weeks.</p>
+<ul>
+<li>
+<p>Setting up plugins was confusing. I used Vim so I setup my configuration with Vim script. I didn't understand Vim script very well, the documentation was poor, and every guide I read looked complicated or incomplete. I tried to add autocompletion, syntax highlighting, and other features, but it took me many hours just to get simple things working. Sometimes, I would copy-paste commands, only for my setup to break later, and I had no idea why.</p>
+</li>
+<li>
+<p>LSP and linters kept breaking. I wanted to set up language servers for Python, TypeScript, HTML, CSS, and others, but it was a constant struggle. Sometimes, I'd get strange error messages that made no sense.</p>
+</li>
+<li>
+<p>Too many commands to remember. Unlike VSCode, where I just clicked icons or used simple shortcuts, Vim required me to memorize lots of key combinations. Moving around, copying, pasting, searching, go to definition, refactor ...etc everything needed specific shortcuts. I kept forgetting them, which slowed me down even more.</p>
+</li>
+<li>
+<p>Basic tasks took forever. Things like opening a file, switching buffers, or refactoring code that were quick in IDEs now took much longer in Vim.</p>
+</li>
+</ul>
+<p>After about two or three weeks of this, I gave up. I went back to VSCode and only used Vim for quick edits in the terminal. I thought &quot;Maybe I'm just not smart enough for this.&quot;</p>
+<h2 id="why-i-tried-again-at-the-end-of-2024">Why I tried again at the end of 2024</h2>
+<p>By 2024, several things made me reconsider Neovim. My daily development workflow was getting more and more frustrating.</p>
+<h3 id="my-ides-were-getting-slow">My IDEs were getting slow</h3>
+<ul>
+<li>
+<p><strong>WebStorm</strong> was killing my productivity. Sure, it has amazing features, but when I works on the big projects and the mono repos, on my machine it takes 8+ seconds just to start. It eats tons of RAM and completely freezes when I open large files. I'd spend more time waiting for it to respond than actually coding.</p>
+</li>
+<li>
+<p><strong>VSCode</strong> feels great at first: it starts fast, looks clean, and has many extensions. But in big projects, it quickly slows down. Find and replace, and run prettier/eslint auto takes too long, debugging uses too much memory, and adding more plugins only makes things worse.</p>
+</li>
+<li>
+<p><strong>Zed</strong> looked promising with its speed, but it is missing basics I need every day. There is no proper debugging, git integration is limited, language server support is weak, and it still feels too new for serious work.</p>
+</li>
+</ul>
+<p>Meanwhile, I kept hearing that Neovim users were much faster compared to these IDEs.</p>
+<h3 id="working-with-multiple-languages-got-more-complicated">Working with multiple languages got more complicated</h3>
+<p>I started working with JavaScript/TypeScript, Python, Go, Rust and Zig. WebStorm didn’t suit this workflow. VSCode allows more extensions and plugins, but it felt slower.</p>
+<h3 id="the-ai-problem">The AI problem</h3>
+<p>Here's what really pushed me over the edge: AI integration in IDEs is a mess.</p>
+<p>Everyone talks about how great AI coding assistance is, but in practice it's frustrating:</p>
+<ul>
+<li>AI works randomly, sometimes it's helpful, sometimes it suggests complete garbage</li>
+<li>Some work projects ban AI tools, so I have to disable everything, but IDEs make this really hard to configure</li>
+<li>AI autocomplete kills creativity, it interrupts my thinking with suggestions I didn't ask for</li>
+<li>Can't use just AI chat, most IDEs force me to take all AI features or none</li>
+</ul>
+<p>Most of the time I just want AI turned off, or maybe just access to chat for questions. But try configuring that in VSCode or WebStorm. It's either everything on or a confusing mess of settings.</p>
+<h3 id="terminal-tools-got-really-good">Terminal tools got really good</h3>
+<p>While IDEs were getting bloated, terminal tools were getting amazing:</p>
+<ul>
+<li>Modern terminals like Ghostty, WezTerm, Alacritty and Kitty actually work well and look good (they also support some interesting animations)</li>
+<li>Raise of Rust powered or terminal tools like ripgrep, zoxide, eza, fd, bat, lazygit, and yazi are incredibly fast</li>
+</ul>
+<p>Working in the terminal stopped feeling like a punishment and started feeling productive.</p>
+<h3 id="my-wrists-started-hurting">My wrists started hurting</h3>
+<p>I got a mechanical keyboard and realized how much damage all that mouse movement was doing. Constantly switching between keyboard and mouse for basic editing was:</p>
+<ul>
+<li>Straining my hands and wrists</li>
+<li>Breaking my focus every few seconds</li>
+<li>Slowing me down overall</li>
+<li>I prefer keeping my hands on the keyboard while typing</li>
+</ul>
+<p>I needed a way to reduce mouse use, but GUI IDEs made that difficult without Vim-style bindings.</p>
+<h2 id="what-changed-neovim-got-much-better">What changed: Neovim got much better</h2>
+<p>Between my 2019 failure and 2024, the Neovim ecosystem evolved dramatically:</p>
+<h3 id="lua-instead-of-vimscript">Lua instead of Vimscript</h3>
+<p><strong>Before</strong>: Neovim relied on Vimscript, which was often cryptic and prone to breaking for unclear reasons.</p>
+<p><strong>Now</strong>: I can configure Neovim using Lua, allowing for cleaner, more maintainable code.</p>
+<h3 id="better-plugins-and-documentation">Better plugins and documentation</h3>
+<p><strong>Before</strong>: Plugins were often experimental, lacked documentation, and could break unexpectedly.</p>
+<p><strong>Now</strong>: The Neovim ecosystem has matured, with well-documented plugins and a wealth of examples available online.</p>
+<h3 id="learning-became-approachable">Learning became approachable</h3>
+<ul>
+<li><code>which-key.nvim</code> shows available shortcuts as we type, no more memorizing everything</li>
+<li>Tons of dotfiles and tutorials everywhere, we can learn from real configurations</li>
+<li>Starter distributions like LazyVim, Kickstart, AstroVim, and LunarVim give us working setups immediately</li>
+<li>AI and community (reddit) can help debug or fix configuration issues and suggest improvements</li>
+</ul>
+<h3 id="built-in-lsp-support">Built-in LSP support</h3>
+<p><strong>Before</strong>: Complex third-party LSP setups that barely worked and broke constantly<br>
+<strong>Now</strong>: Language servers work out of the box with native Neovim LSP</p>
+<h2 id="my-current-setup-minimal-but-complete">My current setup: minimal but complete</h2>
+<p>Before becoming truly productive with Neovim, I first tried using Vim keybindings inside VSCode. This helped me get familiar with the shortcuts and the Vim way of editing. It was actually fun, and I felt more productive even in VSCode. (I’m planning to write an article on how I made VSCode keymaps feel like Neovim later)</p>
+<p>But I quickly realized there were limits. VSCode’s interface and features kept me from experiencing true Vim, it was never 100% Vim experiences. So I gradually forced myself to switch back and forth between VSCode and Neovim until I felt confident and comfortable in Neovim. That process took me a few weeks.</p>
+<p>Now, I work entirely in the terminal with Neovim. I don’t miss VSCode at all.</p>
+<p>After lots of experimenting, I ended up with about <strong>20 plugins</strong>. That's it. They give me everything I need for professional development.</p>
+<p>Here's my actual Neovim folder structure:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>nvim/
+</span></span><span style="display:flex;"><span>├── init.lua                   # Entry point
+</span></span><span style="display:flex;"><span>├── lazy-lock.json             # Plugin versions (for reproducibility)
+</span></span><span style="display:flex;"><span>├── lsp/                       # Individual language server configs
+</span></span><span style="display:flex;"><span>│   ├── biome.lua              # Modern web linting
+</span></span><span style="display:flex;"><span>│   ├── vtsls.lua              # Advanced TypeScript
+</span></span><span style="display:flex;"><span>│   ├── pyright.lua            # Python intelligence
+</span></span><span style="display:flex;"><span>│   ├── gopls.lua              # Go language server
+</span></span><span style="display:flex;"><span>│   ├── rust_analyzer.lua      # Rust development
+</span></span><span style="display:flex;"><span>│   └── ... (+ language servers)
+</span></span><span style="display:flex;"><span>├── lua/
+</span></span><span style="display:flex;"><span>│   ├── config/                # Core configuration
+</span></span><span style="display:flex;"><span>│   │   ├── keymaps.lua        # VSCode-like shortcuts
+</span></span><span style="display:flex;"><span>│   │   ├── options.lua        # Neovim behavior
+</span></span><span style="display:flex;"><span>│   │   ├── statusline.lua     # Custom status bar
+</span></span><span style="display:flex;"><span>│   │   └── ...
+</span></span><span style="display:flex;"><span>│   ├── plugins/               # Plugin configurations
+</span></span><span style="display:flex;"><span>│   │   ├── blink.lua          # Rust-powered completion
+</span></span><span style="display:flex;"><span>│   │   ├── snacks.lua         # Multi-tool productivity
+</span></span><span style="display:flex;"><span>│   │   ├── conform.lua        # Code formatting
+</span></span><span style="display:flex;"><span>│   │   └── ...
+</span></span><span style="display:flex;"><span>│   └── utils/lsp.lua          # LSP helper functions
+</span></span><span style="display:flex;"><span>├── snippets/                  # Custom code snippets
+</span></span><span style="display:flex;"><span>└── spell/                     # Multi-language spell check
+</span></span></code></pre><br/>
+<img src="img/neovim-config-folder.png" alt="Neovim config folder" loading="lazy">
+<figcaption style="font-size: 0.8em; color: gray; margin-top: 4px; text-align: center;">My Neovim config folder</figcaption>
+<br/>
+<h2 id="the-results-so-far">The results so far</h2>
+<p><strong>Daily workflow:</strong></p>
+<ul>
+<li>Everything happens in one place: coding, note-taking, file search, Git, and AI tools all inside Neovim. No more constant tool switching.</li>
+<li>Built-in terminal integration means I can run tests, scripts, or even AI assistants (Claude CLI, Gemini CLI, Opencode) directly from the editor.</li>
+<li>No mouse needed for 95% of tasks (In the browser I use the vimium extension, and on macOS I use homerow for full keyboard navigation)</li>
+<li>I code faster and feel more productive. Vim’s actions and motions are really powerful (<code>ci</code>, <code>ca</code>, <code>fuzzy search</code>, <code>LSP go-to</code>, <code>registers</code>, <code>marks</code>, <code>selections</code>,<code>macros</code> ...etc).</li>
+<li>Same interface for all 10+ programming languages</li>
+<li>Complete control over AI - I can turn it off, use just chat, or customize exactly what I want</li>
+</ul>
+<p><strong>Performance:</strong></p>
+<ul>
+<li>Startup is almost instant (under 100 ms vs several seconds for VSCode or IntelliJ).</li>
+<li>Memory usage stays light (50–150 MB, compared to 400+ MB for VSCode and ~1 GB for WebStorm/IntelliJ).</li>
+<li>Large files are no problem, I can open 100 MB+ logs or 100k-line projects in under a second.</li>
+<li>Even with 30+ plugins loaded, Neovim still feels faster than a fresh install of most IDEs.</li>
+<li>CPU stays quiet, background LSP tasks or Treesitter parsing barely register compared to the heavy background processes of Electron-based editors.</li>
+</ul>
+<p>I now work fully in Neovim and haven’t looked back at VSCode. It feels faster, lighter, and more in tune with how I want to code.</p>
+<h2 id="why-im-writing-this-series">Why I'm writing this series</h2>
+<p>Neovim changes fast. It's still version 0.x (I'm using 0.12), not 1.0 yet. Things can break between updates.</p>
+<p>I'm sharing my setup because it works very well for me, and maybe it'll help you too. I'm not claiming it's perfect, just showing what I figured out after lots of trial and error.</p>
+<p>This isn't expert advice. Just one developer sharing what actually works.</p>
+<h2 id="article-series-plan">Article series plan</h2>
+<p>Based on my setup, here are the core topics for upcoming articles:</p>
+<ul>
+<li>Part 2: basics setup (init.lua, keymaps, options, autocmds, diagnostics)</li>
+<li>Part 3: setup native LSP</li>
+<li>Part 4: setup lazyvim, snacks.nvim (+ which-key.nvim, nvim-web-devicons)</li>
+<li>Part 5: code quality tools (formatter, highlighting, theme)</li>
+<li>Part 6: setup smart completion with blink.cmp, snippets</li>
+<li>Part 7: setup git tools (gitsigns, diffview, lazygit)</li>
+<li>Part 8: debugging (nvim-dap, nvim-dap-ui)</li>
+<li>Part 9: enhanced editing experience (flash.nvim, yanky.nvim, grug-far.nvim, noice.nvim)</li>
+<li>Part 10: custom lua scripts (statusline, tabline, session)</li>
+</ul>
+<p><strong>Bonus series</strong>: I'll also create a smaller series showing how to achieve the same setup using Neovim's native <code>vim.pack</code> in neovim 0.12+ instead of <code>lazy.nvim,</code> for those who want minimal dependencies.</p>
+<h2 id="faq">FAQ</h2>
+<ol>
+<li>Did I used Helix?</li>
+</ol>
+<p>Yes, I tried Helix. It’s nice, very fast, and simple to set up. But I still prefer Neovim because of its modal editing with actions + motions. Neovim also has far more plugins and better UI/UX. So I decided to stay with Neovim.</p>
+ <div class="pagination">
+    
+    <hr />
+    Thanks for reading! This writing style focuses on clarity and simplicity, explaining concepts in accessible terms rather than pursuing strict academic precision. If you notice anything outdated, feel free to comment or send me a message. 
+
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="/blog/scripting-tools/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Scripting tools - A Node.js friendly alternative to makefile</span>
+            </a>
+        </span>
+         
+        <span class="button next">
+            <a href="/blog/neovim-basic-setup/">
+                <span class="button__text">Part 2: Setting up neovim 0.12 (the core configuration before plugins)</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+                    </article>
+                    <div class="sharing-buttons">
+    <h3>Share this post:</h3>
+    <ul class="sharing-list" id="right">
+        <li>
+            <a
+                href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2ftduyng.com%2fblog%2fmy-neovim-story&t=Part%201%3a%20My%20Journey%20from%20IDEs%20to%20Neovim"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/hacker-news.svg" alt="Share on Hacker News" class="sharing-icon" />
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://www.reddit.com/submit?url=https%3a%2f%2ftduyng.com%2fblog%2fmy-neovim-story&title=Part%201%3a%20My%20Journey%20from%20IDEs%20to%20Neovim"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/reddit.svg" alt="Share on Reddit" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://mastodon.social/share?url=https%3a%2f%2ftduyng.com%2fblog%2fmy-neovim-story&text=Part%201%3a%20My%20Journey%20from%20IDEs%20to%20Neovim"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/mastodon.svg" alt="Share on Mastodon" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://x.com/intent/tweet?url=https%3a%2f%2ftduyng.com%2fblog%2fmy-neovim-story&text=Part%201%3a%20My%20Journey%20from%20IDEs%20to%20Neovim"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/x.svg" alt="Share on Twitter" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftduyng.com%2fblog%2fmy-neovim-story"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/facebook.svg" alt="Share on Facebook" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftduyng.com%2fblog%2fmy-neovim-story&title=Part%201%3a%20My%20Journey%20from%20IDEs%20to%20Neovim"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/linkedin.svg" alt="Share on LinkedIn" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a href="mailto:?subject=Part%201%3a%20My%20Journey%20from%20IDEs%20to%20Neovim&body=https%3a%2f%2ftduyng.com%2fblog%2fmy-neovim-story">
+                <img src="/icon/email.svg" alt="Share via Email" class="sharing-icon" />
+            </a>
+        </li>
+    </ul>
+</div>
+ 
+<div
+    class="reaction right"
+    data-endpoint="https://reaction.tienduy-nguyen-dev.workers.dev"
+></div>
+
+ 
+
+                </div>
+
+                
+<script
+    src="https://giscus.app/client.js"
+    data-repo="tduyng/tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    data-mapping="specific"
+    data-term="blog/my-neovim-story"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="bottom"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async
+></script>
+
+ <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+            </main>
+        </div>
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>

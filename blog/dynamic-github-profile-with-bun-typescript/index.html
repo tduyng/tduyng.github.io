@@ -1,0 +1,527 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/blog/dynamic-github-profile-with-bun-typescript" />
+    
+    <meta name="keywords" content="github, readme, typescript" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>Dynamic Github profile with Bun and Typescript</title>
+    <meta
+        property="og:title"
+        content="Dynamic Github profile with Bun and Typescript"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Learn how to make your GitHub profile dynamic using Bun and TypeScript as an alternative to Python in my previous article." />
+    <meta property="og:description" content="Learn how to make your GitHub profile dynamic using Bun and TypeScript as an alternative to Python in my previous article." />
+    
+    <meta property="og:image" content="https://tduyng.com/blog/dynamic-github-profile-with-bun-typescript/img/tduyng.webp" />
+    <meta property="og:image:width" content="1500" />
+    <meta property="og:image:height" content="750" />
+    <meta name="twitter:image" content="https://tduyng.com/blog/dynamic-github-profile-with-bun-typescript/img/tduyng.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="post">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold">[</span>
+
+               
+            <a class="instant " href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold">]</span>
+            
+        </nav>
+    </div>
+</header>
+
+
+        <div id="wrapper">
+            <div id="blank"></div>
+            <aside>
+                
+<nav>
+    <ul>
+        
+    </ul>
+</nav>
+
+
+                <button id="back-to-top" aria-label="back to top">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill="currentColor"></path></svg>
+                </button>
+            </aside>
+            <main>
+                <div>
+                    
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+ 
+                    <article class="prose" data-backlink-icon="">
+                        <h1>Dynamic Github profile with Bun and Typescript</h1>
+                        <div id="post-info">
+                            <div id="date">
+                                <span id="publish">May 15, 2024</span>
+                                
+                            </div>
+
+                            <div id="wordcount">
+    <span>1391 words - 7 min read</span>
+</div>
+
+                        </div>
+
+                        <div id="tags">
+                              
+                            <a class="instant" href="/tags/github"><span>#</span>github</a>
+                              
+                            <a class="instant" href="/tags/readme"><span>#</span>readme</a>
+                              
+                            <a class="instant" href="/tags/typescript"><span>#</span>typescript</a>
+                            
+                        </div>
+
+                        
+ <p><a href="https://tduyng.github.io/blog/dynamic-github-profile-readme/">In a recent article</a>, I discussed transforming a GitHub profile into an interactive space with icons, badges, and dynamically updated blog posts using Python scripts and GitHub actions.</p>
+<p>After sharing my work in the &quot;r/javascript&quot; community on Reddit, I received serveral positive feedback and upvotes. I chose to post in this community due to my familiarity with JavaScript and TypeScript. After several hours, moderators removed my post because it wasn't directly related to JavaScript. They made the right decision, and I appreciate their careful moderation of the community. This made me rethink my approach and think about using a language that would better connect with the audience, given the simplicity of the script's principle: fetching feed URL, parsing it, and writing the response to the README.md file, along with automatic updates using a cron job on GitHub action.</p>
+<p>I decided to explore using JavaScript or TypeScript for this idea. While JavaScript would have been sufficient, I opted for TypeScript because of its enhanced safety and the overall enjoyment it offers during development—for me, it's more fun to work with than JavaScript.</p>
+<p>Choosing a runtime was the next consideration. With options like <a href="https://nodejs.org/en">Node.js</a>, <a href="https://deno.com/">Deno</a>, and <a href="https://bun.sh/">Bun</a> available, I choose on Bun. Because the runtime mainly executes the script, Bun seemed like the perfect choice. It's fast, simple, and allows running JavaScript or TypeScript without needing compilation steps.</p>
+<p><strong>Let's set up and implement the code to see how it works.</strong></p>
+<p>Firstly, ensure that Bun is installed on your machine. There are several ways to install it, all of which are outlined on the Bun website's <a href="https://bun.sh/docs/installation">Installation</a> page.</p>
+<p>Bun undergoes improvements regularly and changes rapidly. You can ensure you're using the latest version of Bun by executing the command: <code>bun upgrade</code>.</p>
+<p>In the project, you can initialize Bun by using the command: <code>bun init</code>, which will generate some files for you. Here is an example of the folder structure after running <code>bun init</code>:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>❯ tree
+</span></span><span style="display:flex;"><span>├── bun.lockb
+</span></span><span style="display:flex;"><span>├── node_modules
+</span></span><span style="display:flex;"><span>├── package.json
+</span></span><span style="display:flex;"><span>├── README.md
+</span></span><span style="display:flex;"><span>├── src
+</span></span><span style="display:flex;"><span>│  └── index.ts
+</span></span><span style="display:flex;"><span>└── tsconfig.json
+</span></span></code></pre><p>In my case, I prefer to add it manually for more control.</p>
+<p>As I'm using TypeScript, I need to add <code>@types/bun</code> to work with TypeScript typings. Run the command:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>bun add -d @types/bun
+</span></span></code></pre><p>The <code>tsconfig.json</code> file is also necessary for TypeScript. You can either use the recommended <code>tsconfig.json</code> provided by Bun or generate one. It's minimal enough and follows best practices. Here is my <code>tsconfig.json</code>:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;compilerOptions&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;lib&#34;</span>: [<span style="color:#f1fa8c">&#34;ESNext&#34;</span>],
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;target&#34;</span>: <span style="color:#f1fa8c">&#34;ESNext&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;module&#34;</span>: <span style="color:#f1fa8c">&#34;ESNext&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;moduleDetection&#34;</span>: <span style="color:#f1fa8c">&#34;force&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;allowJs&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;moduleResolution&#34;</span>: <span style="color:#f1fa8c">&#34;bundler&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;allowImportingTsExtensions&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;verbatimModuleSyntax&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;noEmit&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;strict&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;skipLibCheck&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;noFallthroughCasesInSwitch&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;noUnusedLocals&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;noUnusedParameters&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;noPropertyAccessFromIndexSignature&#34;</span>: <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;include&#34;</span>: [<span style="color:#f1fa8c">&#34;src/**/*.ts&#34;</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>I specify <code>&quot;include&quot;: [&quot;src/**/*.ts&quot;]</code> to tell TypeScript to compile all <code>.ts</code> files within the <code>src</code> folder, simplifying TypeScript's server checking and compilation processes.</p>
+<p>Next, I'll use the <strong><a href="https://www.npmjs.com/package/rss-parser">rss-parser</a></strong> library from npm to parse the feed <code>atom.xml</code> from my blog. The principle of this library is similar to the one I used in Python, called <a href="https://pypi.org/project/feedparser/">feedparser</a>.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>bun add rss-parser
+</span></span></code></pre><p>Here's how my <code>package.json</code> looks:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;type&#34;</span>: <span style="color:#f1fa8c">&#34;module&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;scripts&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;readme&#34;</span>: <span style="color:#f1fa8c">&#34;bun src/feed.ts&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;dependencies&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;rss-parser&#34;</span>: <span style="color:#f1fa8c">&#34;^3.13.0&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;devDependencies&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;@types/bun&#34;</span>: <span style="color:#f1fa8c">&#34;^1.1.2&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>I use <code>&quot;type&quot;: &quot;module&quot;</code> to write the code in <a href="https://developer.mozilla.org/en-US/docs/Glossary/ECMAScript">ESM</a>.</p>
+<p>The script <code>&quot;readme&quot;: &quot;bun src/feed.ts&quot;</code> runs the TypeScript script I will write later.</p>
+<p>Don’t forget to add <code>node_modules</code> to <code>.gitignore</code>.&quot;</p>
+<p><strong>Now it's time to write the script <code>feed.ts</code>.</strong></p>
+<p>I'll use <code>rss-parser</code> to fetch the feeds from <code>atom.xml.</code></p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { promises <span style="color:#ff79c6">as</span> fs } <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;fs&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> rssParser <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;rss-parser&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> DEFAULT_N <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">type</span> Entry <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    title?: <span style="color:#8be9fd">string</span>
+</span></span><span style="display:flex;"><span>    link?: <span style="color:#8be9fd">string</span>
+</span></span><span style="display:flex;"><span>    isoDate?: <span style="color:#8be9fd">string</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Fetches and parses the feed from the provided URL.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @param {string} url - The URL of the feed.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @returns {Promise&lt;string[]&gt;} An array of formatted feed entries.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> fetchFeed <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">async</span> (url: <span style="color:#8be9fd">string</span>)<span style="color:#ff79c6">:</span> Promise&lt;<span style="color:#ff79c6">string</span>[]&gt; <span style="color:#ff79c6">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">const</span> parser <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> rssParser()
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">const</span> response <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> parser.parseURL(url)
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">let</span> feeds <span style="color:#ff79c6">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">for</span> (<span style="color:#ff79c6">const</span> item <span style="color:#ff79c6">of</span> response.items) {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (item.title <span style="color:#ff79c6">&amp;&amp;</span> item.link) feeds.push(formatFeedEntry(item))
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">if</span> (feeds.length <span style="color:#ff79c6">===</span> DEFAULT_N) <span style="color:#ff79c6">break</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> feeds
+</span></span><span style="display:flex;"><span>    } <span style="color:#ff79c6">catch</span> (error) {
+</span></span><span style="display:flex;"><span>        console.error(<span style="color:#f1fa8c">&#39;Error fetching or parsing the feed:&#39;</span>, error)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">return</span> []
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * Formats a feed entry into a string.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @param {Entry} entry - The feed entry to format.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> * @returns {string} The formatted feed entry.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"> */</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> formatFeedEntry <span style="color:#ff79c6">=</span> ({ title, link, isoDate }<span style="color:#ff79c6">:</span> Entry)<span style="color:#ff79c6">:</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> date <span style="color:#ff79c6">=</span> isoDate <span style="color:#ff79c6">?</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">Date</span>(isoDate).toISOString().slice(<span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">10</span>) <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> date <span style="color:#ff79c6">?</span> <span style="color:#f1fa8c">`[</span><span style="color:#f1fa8c">${</span>title<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">](</span><span style="color:#f1fa8c">${</span>link<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">) - </span><span style="color:#f1fa8c">${</span>date<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span> <span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">`[</span><span style="color:#f1fa8c">${</span>title<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">](</span><span style="color:#f1fa8c">${</span>link<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">)`</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>Parsing the URL with <code>rss-parser</code> is quite simple:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">const</span> parser <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> rssParser()
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> response <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> parser.parseURL(url)
+</span></span></code></pre><p>It returns a response in JSON format. Here's an example of the response:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;items&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;title&#34;</span>: <span style="color:#f1fa8c">&#34;How I made my GitHub profile README dynamic&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;link&#34;</span>: <span style="color:#f1fa8c">&#34;https://tduyng.github.io/blog/dynamic-github-profile-readme/&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;pubDate&#34;</span>: <span style="color:#f1fa8c">&#34;2024-05-13T00:00:00.000Z&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;author&#34;</span>: <span style="color:#f1fa8c">&#34;Z&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;summary&#34;</span>: <span style="color:#f1fa8c">&#34;Explore the process of making your GitHub profile README dynamic with automated updates of your latest blog posts using GitHub Actions and Python scripting&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;id&#34;</span>: <span style="color:#f1fa8c">&#34;https://tduyng.github.io/blog/dynamic-github-profile-readme/&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;isoDate&#34;</span>: <span style="color:#f1fa8c">&#34;2024-05-13T00:00:00.000Z&#34;</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;title&#34;</span>: <span style="color:#f1fa8c">&#34;New home for my website&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;link&#34;</span>: <span style="color:#f1fa8c">&#34;https://tduyng.github.io/blog/new-home-for-my-website/&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;pubDate&#34;</span>: <span style="color:#f1fa8c">&#34;2024-05-11T00:00:00.000Z&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;author&#34;</span>: <span style="color:#f1fa8c">&#34;Z&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;summary&#34;</span>: <span style="color:#f1fa8c">&#34;Discover why I switched my website and blog from Jekyll to Zola.&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;id&#34;</span>: <span style="color:#f1fa8c">&#34;https://tduyng.github.io/blog/new-home-for-my-website/&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;isoDate&#34;</span>: <span style="color:#f1fa8c">&#34;2024-05-11T00:00:00.000Z&#34;</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;title&#34;</span>: <span style="color:#f1fa8c">&#34;Start a new journey&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;link&#34;</span>: <span style="color:#f1fa8c">&#34;https://tduyng.github.io/blog/start-a-new-journey/&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;pubDate&#34;</span>: <span style="color:#f1fa8c">&#34;2021-05-01T00:00:00.000Z&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;author&#34;</span>: <span style="color:#f1fa8c">&#34;Z&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;summary&#34;</span>: <span style="color:#f1fa8c">&#34;I share my journey from being a BIM engineer to becoming a full-time backend developer&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;id&#34;</span>: <span style="color:#f1fa8c">&#34;https://tduyng.github.io/blog/start-a-new-journey/&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;isoDate&#34;</span>: <span style="color:#f1fa8c">&#34;2021-05-01T00:00:00.000Z&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;link&#34;</span>: <span style="color:#f1fa8c">&#34;https://tduyng.github.io/atom.xml&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;feedUrl&#34;</span>: <span style="color:#f1fa8c">&#34;https://tduyng.github.io/atom.xml&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;title&#34;</span>: <span style="color:#f1fa8c">&#34;~/Z&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;lastBuildDate&#34;</span>: <span style="color:#f1fa8c">&#34;2024-05-14T00:00:00+00:00&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>This response is already sorted by the date of the post. With this response, I can easily filter and format it according to our requirements.</p>
+<p>The remaining code reads the current <a href="http://readme.md/">README.md</a> file, writes the feeds found above, and inserts them into comments in the README file.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">&lt;!-- blog start --&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">&lt;!-- blog end --&gt;</span>
+</span></span></code></pre><p>Here is the code:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">const</span> replaceChunk <span style="color:#ff79c6">=</span> (
+</span></span><span style="display:flex;"><span>    content: <span style="color:#8be9fd">string</span>,
+</span></span><span style="display:flex;"><span>    marker: <span style="color:#8be9fd">string</span>,
+</span></span><span style="display:flex;"><span>    chunk: <span style="color:#8be9fd">string</span>,
+</span></span><span style="display:flex;"><span>    inline: <span style="color:#8be9fd">boolean</span> <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>,
+</span></span><span style="display:flex;"><span>)<span style="color:#ff79c6">:</span> <span style="color:#8be9fd">string</span> <span style="color:#ff79c6">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> startMarker <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">`&lt;!-- </span><span style="color:#f1fa8c">${</span>marker<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> start --&gt;`</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> endMarker <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">`&lt;!-- </span><span style="color:#f1fa8c">${</span>marker<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c"> end --&gt;`</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> pattern <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">new</span> <span style="color:#8be9fd;font-style:italic">RegExp</span>(<span style="color:#f1fa8c">`</span><span style="color:#f1fa8c">${</span>startMarker<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">[\\s\\S]*</span><span style="color:#f1fa8c">${</span>endMarker<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>, <span style="color:#f1fa8c">&#39;g&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (<span style="color:#ff79c6">!</span>inline) {
+</span></span><span style="display:flex;"><span>        chunk <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">`</span>\<span style="color:#f1fa8c">n</span><span style="color:#f1fa8c">${</span>chunk<span style="color:#f1fa8c">}</span>\<span style="color:#f1fa8c">n`</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> content.replace(pattern, <span style="color:#f1fa8c">`</span><span style="color:#f1fa8c">${</span>startMarker<span style="color:#f1fa8c">}${</span>chunk<span style="color:#f1fa8c">}${</span>endMarker<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> updateReadme <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">async</span> ()<span style="color:#ff79c6">:</span> Promise&lt;<span style="color:#ff79c6">void</span>&gt; <span style="color:#ff79c6">=&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> url <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;https://tduyng.github.io/atom.xml&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> feeds <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fetchFeed(url)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">const</span> readmePath <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">`</span><span style="color:#f1fa8c">${</span>process.cwd()<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">/README.md`</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">let</span> readmeContent <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">await</span> fs.readFile(readmePath, <span style="color:#f1fa8c">&#39;utf-8&#39;</span>)
+</span></span><span style="display:flex;"><span>        readmeContent <span style="color:#ff79c6">=</span> replaceChunk(readmeContent, <span style="color:#f1fa8c">&#39;blog&#39;</span>, feeds.join(<span style="color:#f1fa8c">&#39;\n\n&#39;</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">await</span> fs.writeFile(readmePath, readmeContent, <span style="color:#f1fa8c">&#39;utf-8&#39;</span>)
+</span></span><span style="display:flex;"><span>        console.log(<span style="color:#f1fa8c">&#39;README.md updated successfully!&#39;</span>)
+</span></span><span style="display:flex;"><span>    } <span style="color:#ff79c6">catch</span> (error) {
+</span></span><span style="display:flex;"><span>        console.error(<span style="color:#f1fa8c">&#39;Error updating README.md:&#39;</span>, error)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Since I&#39;m using ESM syntax, I can use the top-level &#34;await&#34; here.
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">await</span> updateReadme()
+</span></span></code></pre><p>Alright, the script is complete. You can find the full code <a href="https://github.com/tduyng/tduyng/blob/bun/src/feed.ts">here</a>.</p>
+<p><strong>Next, let's move on to the final step: Configuring the GitHub action.</strong></p>
+<p>It's essentially the same process as I did in <a href="https://tduyng.github.io/blog/dynamic-github-profile-readme/">the previous article with Python</a>. The only difference is replacing the Python implementation with Bun. Here's the code:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">name</span>: Fetch latest posts from blog for README
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">on</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">push</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">workflow_dispatch</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">schedule</span>:
+</span></span><span style="display:flex;"><span>        - <span style="color:#ff79c6">cron</span>: <span style="color:#f1fa8c">&#39;0 0 * * *&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">jobs</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">build</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">runs-on</span>: ubuntu-latest
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">steps</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#ff79c6">uses</span>: actions/checkout@v4
+</span></span><span style="display:flex;"><span>            - <span style="color:#ff79c6">uses</span>: oven-sh/setup-bun@v1
+</span></span><span style="display:flex;"><span>            - <span style="color:#ff79c6">uses</span>: actions/cache@v4
+</span></span><span style="display:flex;"><span>              <span style="color:#ff79c6">name</span>: Configure bun caching
+</span></span><span style="display:flex;"><span>              <span style="color:#ff79c6">with</span>:
+</span></span><span style="display:flex;"><span>                  <span style="color:#ff79c6">path</span>: ~/.bun/install/cache
+</span></span><span style="display:flex;"><span>                  <span style="color:#ff79c6">key</span>: ${{ runner.os }}-${{ matrix.bun }}-bun-${{ hashFiles(&#39;**/bun.lockb&#39;) }}
+</span></span><span style="display:flex;"><span>                  <span style="color:#ff79c6">restore-keys</span>: |<span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">                      </span>                      ${{ runner.os }}-${{ matrix.bun }}-bun-
+</span></span><span style="display:flex;"><span>            - <span style="color:#ff79c6">run</span>: bun install
+</span></span><span style="display:flex;"><span>            - <span style="color:#ff79c6">run</span>: bun run readme
+</span></span><span style="display:flex;"><span>            - <span style="color:#ff79c6">name</span>: Commit and push if changed
+</span></span><span style="display:flex;"><span>              <span style="color:#ff79c6">run</span>: |-<span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">                  git diff
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">                  git config --global user.email &#34;${{ vars.USER_EMAIL }}&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">                  git config --global user.name &#34;${{ vars.USER_NAME }}&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">                  git add -A
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">                  git commit -m &#34;chore: update blog posts&#34; || exit 0
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">                  git push</span>                  
+</span></span></code></pre><p>In this scenario, I might not require the caching step for Bun.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>- <span style="color:#ff79c6">uses</span>: actions/cache@v4
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">name</span>: Configure bun caching
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#ff79c6">path</span>: ~/.bun/install/cache
+</span></span><span style="display:flex;"><span>          <span style="color:#ff79c6">key</span>: ${{ runner.os }}-${{ matrix.bun }}-bun-${{ hashFiles(&#39;**/bun.lockb&#39;) }}
+</span></span><span style="display:flex;"><span>          <span style="color:#ff79c6">restore-keys</span>: |<span style="color:#f1fa8c">
+</span></span></span><span style="display:flex;"><span><span style="color:#f1fa8c">            </span>            ${{ runner.os }}-${{ matrix.bun }}-bun-
+</span></span></code></pre><p><code>bun install</code> is already sufficiently fast. I'm including this for best practice.</p>
+<p>The GitHub Action will execute the command <code>bun run readme</code> to update the README and create a new commit to reflect the changes.</p>
+<p>In summary, I've demonstrated how to enhance your GitHub profile using Bun and TypeScript. This straightforward <a href="https://tduyng.github.io/blog/dynamic-github-profile-readme/">alternative to Python</a> provides a simple method for adding dynamism to your profile. You can find all the code from this article in <a href="https://github.com/tduyng/tduyng/tree/bun">this branch</a></p>
+<p>For now, I've decided to keep the Python version on my main branch because it's easier to set up.</p>
+<p>I hope it helps. Feel free to read the comments or provide feedback on <a href="https://tduyng.medium.com/dynamic-github-profile-with-bun-and-typescript-fe61127acabb">my medium post</a>.</p>
+<p>Happy coding!</p>
+ <div class="pagination">
+    
+    <hr />
+    Thanks for reading! This writing style focuses on clarity and simplicity, explaining concepts in accessible terms rather than pursuing strict academic precision. If you notice anything outdated, feel free to comment or send me a message. 
+
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="/blog/dynamic-github-profile-readme/">
+                <span class="button__icon">←</span>
+                <span class="button__text">How I made my GitHub profile README dynamic</span>
+            </a>
+        </span>
+         
+        <span class="button next">
+            <a href="/blog/rust-webp-transform/">
+                <span class="button__text">Transforming website images into WebP with Rust for faster loading times</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+                    </article>
+                    <div class="sharing-buttons">
+    <h3>Share this post:</h3>
+    <ul class="sharing-list" id="right">
+        <li>
+            <a
+                href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2ftduyng.com%2fblog%2fdynamic-github-profile-with-bun-typescript&t=Dynamic%20Github%20profile%20with%20Bun%20and%20Typescript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/hacker-news.svg" alt="Share on Hacker News" class="sharing-icon" />
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://www.reddit.com/submit?url=https%3a%2f%2ftduyng.com%2fblog%2fdynamic-github-profile-with-bun-typescript&title=Dynamic%20Github%20profile%20with%20Bun%20and%20Typescript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/reddit.svg" alt="Share on Reddit" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://mastodon.social/share?url=https%3a%2f%2ftduyng.com%2fblog%2fdynamic-github-profile-with-bun-typescript&text=Dynamic%20Github%20profile%20with%20Bun%20and%20Typescript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/mastodon.svg" alt="Share on Mastodon" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://x.com/intent/tweet?url=https%3a%2f%2ftduyng.com%2fblog%2fdynamic-github-profile-with-bun-typescript&text=Dynamic%20Github%20profile%20with%20Bun%20and%20Typescript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/x.svg" alt="Share on Twitter" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftduyng.com%2fblog%2fdynamic-github-profile-with-bun-typescript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/facebook.svg" alt="Share on Facebook" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftduyng.com%2fblog%2fdynamic-github-profile-with-bun-typescript&title=Dynamic%20Github%20profile%20with%20Bun%20and%20Typescript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/linkedin.svg" alt="Share on LinkedIn" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a href="mailto:?subject=Dynamic%20Github%20profile%20with%20Bun%20and%20Typescript&body=https%3a%2f%2ftduyng.com%2fblog%2fdynamic-github-profile-with-bun-typescript">
+                <img src="/icon/email.svg" alt="Share via Email" class="sharing-icon" />
+            </a>
+        </li>
+    </ul>
+</div>
+ 
+<div
+    class="reaction right"
+    data-endpoint="https://reaction.tienduy-nguyen-dev.workers.dev"
+></div>
+
+ 
+
+                </div>
+
+                
+<script
+    src="https://giscus.app/client.js"
+    data-repo="tduyng/tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    data-mapping="specific"
+    data-term="blog/dynamic-github-profile-with-bun-typescript"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="bottom"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async
+></script>
+
+ <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+            </main>
+        </div>
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,1287 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/blog/neovim-basic-setup" />
+    
+    <meta name="keywords" content="neovim, vim, keymaps" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>Part 2: Setting up neovim 0.12 (the core configuration before plugins)</title>
+    <meta
+        property="og:title"
+        content="Part 2: Setting up neovim 0.12 (the core configuration before plugins)"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="My complete basic setup keymaps, options, autocmds and diagnostics with Neovim 0.12 without installed plugins yet" />
+    <meta property="og:description" content="My complete basic setup keymaps, options, autocmds and diagnostics with Neovim 0.12 without installed plugins yet" />
+    
+    <meta property="og:image" content="https://tduyng.com/img/dashboard.png" />
+    <meta property="og:image:width" content="1500" />
+    <meta property="og:image:height" content="750" />
+    <meta name="twitter:image" content="https://tduyng.com/img/dashboard.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="post">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold">[</span>
+
+               
+            <a class="instant " href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold">]</span>
+            
+        </nav>
+    </div>
+</header>
+
+
+        <div id="wrapper">
+            <div id="blank"></div>
+            <aside>
+                
+<nav>
+    <ul>
+        
+        <li>
+            <a class="h2" href="#prerequisites">Prerequisites</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#why-neovim-012-nightly">Why Neovim 0.12 (nightly)?</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#my-configuration-structure">My configuration structure</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#optionslua">options.lua</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#line-numbers-and-navigation">Line numbers and navigation</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#smart-search-settings">Smart search settings</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#performance-settings">Performance settings</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#file-handling-philosophy">File handling philosophy</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#smart-clipboard-integration">Smart clipboard integration</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#visual-polish">Visual polish</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#file-type-detection">File type detection</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#keymapslua">keymaps.lua</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#understanding-the-leader-key">Understanding the leader key</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#core-keymap-categories">Core keymap categories</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#browser-style-buffer-navigation">Browser style buffer navigation</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#smart-line-movement">Smart line movement</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#vscode-style-line-movement">VSCode style line movement</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#ergonomic-shortcuts">Ergonomic shortcuts</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#intelligent-search">Intelligent search</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#undo-break-points-really-useful">Undo break points (really useful)</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#smart-auto-pairs-no-plugin">Smart auto-pairs (no plugin!)</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#visual-mode-improvements">Visual mode improvements</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#folding-navigation">Folding navigation</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#my-diagnostics-configuration">My diagnostics configuration</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#the-color-philosophy">The color philosophy</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#modern-diagnostic-features">Modern diagnostic features</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#smart-navigation">Smart navigation</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#debugging-integration">Debugging integration</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#my-complete-autocmds-setup">My complete autocmds setup</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#visual-yank">Visual yank</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#it-just-works-file-handling">&#34;It just works&#34; file handling</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#smart-cursor-memory">Smart cursor memory</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#context-aware-settings">Context aware settings</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#smart-buffer-management">Smart buffer management</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+    </ul>
+</nav>
+
+
+                <button id="back-to-top" aria-label="back to top">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill="currentColor"></path></svg>
+                </button>
+            </aside>
+            <main>
+                <div>
+                    
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+ 
+                    <article class="prose" data-backlink-icon="">
+                        <h1>Part 2: Setting up neovim 0.12 (the core configuration before plugins)</h1>
+                        <div id="post-info">
+                            <div id="date">
+                                <span id="publish">Sep 4, 2025</span>
+                                
+                            </div>
+
+                            <div id="wordcount">
+    <span>5067 words - 24 min read</span>
+</div>
+
+                        </div>
+
+                        <div id="tags">
+                              
+                            <a class="instant" href="/tags/neovim"><span>#</span>neovim</a>
+                              
+                            <a class="instant" href="/tags/vim"><span>#</span>vim</a>
+                              
+                            <a class="instant" href="/tags/keymaps"><span>#</span>keymaps</a>
+                            
+                        </div>
+
+                        
+<blockquote
+    id="outdate_alert"
+    class="callout caution hidden"
+    data-days="365"
+    data-alert-text-before="This article was last updated "
+    data-alert-text-after=" days ago and may be out of date."
+>
+    <div class="content"></div>
+</blockquote>
+
+ <h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Neovim 0.11+ or higher (0.12 (nightly) recommended for latest features)</li>
+<li><code>ripgrep</code> (<code>rg</code>) - For fast file searching (used in grep settings)</li>
+<li>A <a href="https://www.nerdfonts.com/">Nerd Font</a> - For diagnostic icons and symbols</li>
+</ul>
+<p>This config includes macOS-specific keybindings (<code>Cmd</code> key combinations)</p>
+<h2 id="why-neovim-012-nightly">Why Neovim 0.12 (nightly)?</h2>
+<p>I use the nightly version because I want to test new features as soon as they're available. The 0.12 development has some really cool stuff coming, including improved diagnostic line highlighting and better LSP integration. The nightly builds are surprisingly stable. I've been running them for months without issues.</p>
+<p>For installation, follow the <a href="https://github.com/neovim/neovim/blob/master/INSTALL.md">Neovim installation guide</a>.</p>
+<h2 id="my-configuration-structure">My configuration structure</h2>
+<p>Here's exactly how I organize everything (without plugins yet). This modular approach makes the configuration maintainable and easy to understand:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>~/.config/nvim/
+</span></span><span style="display:flex;"><span>├── init.lua                   # Entry point - loads everything
+</span></span><span style="display:flex;"><span>├── lua/
+</span></span><span style="display:flex;"><span>│   └── config/                # Core configuration modules
+</span></span><span style="display:flex;"><span>│       ├── init.lua           # Orchestrates loading order
+</span></span><span style="display:flex;"><span>│       ├── options.lua        # Neovim behavior settings
+</span></span><span style="display:flex;"><span>│       ├── keymaps.lua        # All keyboard shortcuts
+</span></span><span style="display:flex;"><span>│       ├── diagnostics.lua    # Error/warning appearance
+</span></span><span style="display:flex;"><span>│       └── autocmds.lua       # Automatic behaviors
+</span></span></code></pre><p>The entry points</p>
+<p><code>~/.config/nvim/init.lua</code>:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">-- Entry point for Neovim configuration</span>
+</span></span><span style="display:flex;"><span>require(<span style="color:#f1fa8c">&#34;config&#34;</span>)
+</span></span></code></pre><p><strong><code>~/.config/nvim/lua/config/init.lua</code>:</strong></p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">-- Load all configuration modules</span>
+</span></span><span style="display:flex;"><span>require(<span style="color:#f1fa8c">&#34;config.options&#34;</span>)
+</span></span><span style="display:flex;"><span>require(<span style="color:#f1fa8c">&#34;config.keymaps&#34;</span>)
+</span></span><span style="display:flex;"><span>require(<span style="color:#f1fa8c">&#34;config.diagnostics&#34;</span>)
+</span></span><span style="display:flex;"><span>require(<span style="color:#f1fa8c">&#34;config.autocmds&#34;</span>)
+</span></span></code></pre><p><strong>NOTES</strong>: Most of my current setup comes from what I learned using <a href="https://github.com/LazyVim/LazyVim">Lazyvim</a>. This gives us the foundation to understand how modern Neovim configurations work.</p>
+<h2 id="optionslua">options.lua</h2>
+<p>Create <code>lua/config/options.lua</code>. This is where I make Neovim behave the way I want:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">local</span> opt <span style="color:#ff79c6">=</span> vim.opt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>opt.number <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Line numbers</span>
+</span></span><span style="display:flex;"><span>opt.relativenumber <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Relative line numbers</span>
+</span></span><span style="display:flex;"><span>opt.cursorline <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Highlight current line</span>
+</span></span><span style="display:flex;"><span>opt.wrap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span> <span style="color:#6272a4">-- Don&#39;t wrap lines</span>
+</span></span><span style="display:flex;"><span>opt.scrolloff <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span> <span style="color:#6272a4">-- Keep 10 lines above/below cursor</span>
+</span></span><span style="display:flex;"><span>opt.sidescrolloff <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">8</span> <span style="color:#6272a4">-- Keep 8 columns left/right of cursor</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Indentation</span>
+</span></span><span style="display:flex;"><span>opt.tabstop <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span> <span style="color:#6272a4">-- Tab width</span>
+</span></span><span style="display:flex;"><span>opt.shiftwidth <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span> <span style="color:#6272a4">-- Indent width</span>
+</span></span><span style="display:flex;"><span>opt.softtabstop <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span> <span style="color:#6272a4">-- Soft tab stop</span>
+</span></span><span style="display:flex;"><span>opt.expandtab <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Use spaces instead of tabs</span>
+</span></span><span style="display:flex;"><span>opt.smartindent <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Smart auto-indenting</span>
+</span></span><span style="display:flex;"><span>opt.autoindent <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Copy indent from current line</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Search settings</span>
+</span></span><span style="display:flex;"><span>opt.ignorecase <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Case insensitive search</span>
+</span></span><span style="display:flex;"><span>opt.smartcase <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Case sensitive if uppercase in search</span>
+</span></span><span style="display:flex;"><span>opt.hlsearch <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span> <span style="color:#6272a4">-- Don&#39;t highlight search results</span>
+</span></span><span style="display:flex;"><span>opt.incsearch <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Show matches as you type</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Visual settings</span>
+</span></span><span style="display:flex;"><span>opt.termguicolors <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Enable 24-bit colors</span>
+</span></span><span style="display:flex;"><span>opt.signcolumn <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;yes&#34;</span> <span style="color:#6272a4">-- Always show sign column</span>
+</span></span><span style="display:flex;"><span>opt.showmatch <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Highlight matching brackets</span>
+</span></span><span style="display:flex;"><span>opt.matchtime <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span> <span style="color:#6272a4">-- How long to show matching bracket</span>
+</span></span><span style="display:flex;"><span>opt.cmdheight <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">1</span> <span style="color:#6272a4">-- Command line height</span>
+</span></span><span style="display:flex;"><span>opt.showmode <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span> <span style="color:#6272a4">-- Don&#39;t show mode in command line</span>
+</span></span><span style="display:flex;"><span>opt.pumheight <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span> <span style="color:#6272a4">-- Popup menu height</span>
+</span></span><span style="display:flex;"><span>opt.pumblend <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span> <span style="color:#6272a4">-- Popup menu transparency</span>
+</span></span><span style="display:flex;"><span>opt.winblend <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span> <span style="color:#6272a4">-- Floating window transparency</span>
+</span></span><span style="display:flex;"><span>opt.completeopt <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;menu,menuone,noselect&#34;</span>
+</span></span><span style="display:flex;"><span>opt.conceallevel <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span> <span style="color:#6272a4">-- Hide * markup for bold and italic, but not markers with substitutions</span>
+</span></span><span style="display:flex;"><span>opt.confirm <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Confirm to save changes before exiting modified buffer</span>
+</span></span><span style="display:flex;"><span>opt.concealcursor <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span> <span style="color:#6272a4">-- Don&#39;t hide cursor line markup</span>
+</span></span><span style="display:flex;"><span>opt.synmaxcol <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">300</span> <span style="color:#6272a4">-- Syntax highlighting limit</span>
+</span></span><span style="display:flex;"><span>opt.ruler <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span> <span style="color:#6272a4">-- Disable the default ruler</span>
+</span></span><span style="display:flex;"><span>opt.virtualedit <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;block&#34;</span> <span style="color:#6272a4">-- Allow cursor to move where there is no text in visual block mode</span>
+</span></span><span style="display:flex;"><span>opt.winminwidth <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span> <span style="color:#6272a4">-- Minimum window width</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- File handling</span>
+</span></span><span style="display:flex;"><span>opt.backup <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span> <span style="color:#6272a4">-- Don&#39;t create backup files</span>
+</span></span><span style="display:flex;"><span>opt.writebackup <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span> <span style="color:#6272a4">-- Don&#39;t create backup before writing</span>
+</span></span><span style="display:flex;"><span>opt.swapfile <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span> <span style="color:#6272a4">-- Don&#39;t create swap files</span>
+</span></span><span style="display:flex;"><span>opt.undofile <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Persistent undo</span>
+</span></span><span style="display:flex;"><span>opt.undolevels <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10000</span>
+</span></span><span style="display:flex;"><span>opt.undodir <span style="color:#ff79c6">=</span> vim.fn.expand(<span style="color:#f1fa8c">&#34;~/.vim/undodir&#34;</span>) <span style="color:#6272a4">-- Undo directory</span>
+</span></span><span style="display:flex;"><span>opt.updatetime <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">300</span> <span style="color:#6272a4">-- Faster completion</span>
+</span></span><span style="display:flex;"><span>opt.timeoutlen <span style="color:#ff79c6">=</span> vim.g.vscode <span style="color:#ff79c6">and</span> <span style="color:#bd93f9">1000</span> <span style="color:#ff79c6">or</span> <span style="color:#bd93f9">300</span> <span style="color:#6272a4">-- Lower than default (1000) to quickly trigger which-key</span>
+</span></span><span style="display:flex;"><span>opt.ttimeoutlen <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span> <span style="color:#6272a4">-- Key code timeout</span>
+</span></span><span style="display:flex;"><span>opt.autoread <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Auto reload files changed outside vim</span>
+</span></span><span style="display:flex;"><span>opt.autowrite <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Auto save</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Behavior settings</span>
+</span></span><span style="display:flex;"><span>opt.hidden <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Allow hidden buffers</span>
+</span></span><span style="display:flex;"><span>opt.errorbells <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span> <span style="color:#6272a4">-- No error bells</span>
+</span></span><span style="display:flex;"><span>opt.backspace <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;indent,eol,start&#34;</span> <span style="color:#6272a4">-- Better backspace behavior</span>
+</span></span><span style="display:flex;"><span>opt.autochdir <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span> <span style="color:#6272a4">-- Don&#39;t auto change directory</span>
+</span></span><span style="display:flex;"><span>opt.iskeyword:append(<span style="color:#f1fa8c">&#34;-&#34;</span>) <span style="color:#6272a4">-- Treat dash as part of word</span>
+</span></span><span style="display:flex;"><span>opt.path:append(<span style="color:#f1fa8c">&#34;**&#34;</span>) <span style="color:#6272a4">-- include subdirectories in search</span>
+</span></span><span style="display:flex;"><span>opt.selection <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;exclusive&#34;</span> <span style="color:#6272a4">-- Selection behavior</span>
+</span></span><span style="display:flex;"><span>opt.mouse <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;a&#34;</span> <span style="color:#6272a4">-- Enable mouse support</span>
+</span></span><span style="display:flex;"><span>opt.clipboard <span style="color:#ff79c6">=</span> vim.env.SSH_TTY <span style="color:#ff79c6">and</span> <span style="color:#f1fa8c">&#34;&#34;</span> <span style="color:#ff79c6">or</span> <span style="color:#f1fa8c">&#34;unnamedplus&#34;</span> <span style="color:#6272a4">-- Sync with system clipboard</span>
+</span></span><span style="display:flex;"><span>opt.modifiable <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Allow buffer modifications</span>
+</span></span><span style="display:flex;"><span>opt.encoding <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;UTF-8&#34;</span> <span style="color:#6272a4">-- Set encoding</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Folding settings</span>
+</span></span><span style="display:flex;"><span>opt.smoothscroll <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>vim.wo.foldmethod <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;expr&#34;</span>
+</span></span><span style="display:flex;"><span>opt.foldlevel <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">99</span> <span style="color:#6272a4">-- Start with all folds open</span>
+</span></span><span style="display:flex;"><span>opt.formatoptions <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;jcroqlnt&#34;</span> <span style="color:#6272a4">-- tcqj</span>
+</span></span><span style="display:flex;"><span>opt.grepformat <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;%f:%l:%c:%m&#34;</span>
+</span></span><span style="display:flex;"><span>opt.grepprg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;rg --vimgrep&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Split behavior</span>
+</span></span><span style="display:flex;"><span>opt.splitbelow <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Horizontal splits go below</span>
+</span></span><span style="display:flex;"><span>opt.splitright <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Vertical splits go right</span>
+</span></span><span style="display:flex;"><span>opt.splitkeep <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;screen&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Command-line completion</span>
+</span></span><span style="display:flex;"><span>opt.wildmenu <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>opt.wildmode <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;longest:full,full&#34;</span>
+</span></span><span style="display:flex;"><span>opt.wildignore:append({ <span style="color:#f1fa8c">&#34;*.o&#34;</span>, <span style="color:#f1fa8c">&#34;*.obj&#34;</span>, <span style="color:#f1fa8c">&#34;*.pyc&#34;</span>, <span style="color:#f1fa8c">&#34;*.class&#34;</span>, <span style="color:#f1fa8c">&#34;*.jar&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Better diff options</span>
+</span></span><span style="display:flex;"><span>opt.diffopt:append(<span style="color:#f1fa8c">&#34;linematch:60&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Performance improvements</span>
+</span></span><span style="display:flex;"><span>opt.redrawtime <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10000</span>
+</span></span><span style="display:flex;"><span>opt.maxmempattern <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">20000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Create undo directory if it doesn&#39;t exist</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">local</span> undodir <span style="color:#ff79c6">=</span> vim.fn.expand(<span style="color:#f1fa8c">&#34;~/.vim/undodir&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> vim.fn.isdirectory(undodir) <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">then</span>
+</span></span><span style="display:flex;"><span>  vim.fn.mkdir(undodir, <span style="color:#f1fa8c">&#34;p&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vim.g.autoformat <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>vim.g.trouble_lualine <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>opt.fillchars <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>  foldopen <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>  foldclose <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>  fold <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34; &#34;</span>,
+</span></span><span style="display:flex;"><span>  foldsep <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34; &#34;</span>,
+</span></span><span style="display:flex;"><span>  diff <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;╱&#34;</span>,
+</span></span><span style="display:flex;"><span>  eob <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34; &#34;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>opt.jumpoptions <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;view&#34;</span>
+</span></span><span style="display:flex;"><span>opt.laststatus <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">3</span> <span style="color:#6272a4">-- global statusline</span>
+</span></span><span style="display:flex;"><span>opt.list <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>
+</span></span><span style="display:flex;"><span>opt.linebreak <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Wrap lines at convenient points</span>
+</span></span><span style="display:flex;"><span>opt.list <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Show some invisible characters (tabs...</span>
+</span></span><span style="display:flex;"><span>opt.shiftround <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Round indent</span>
+</span></span><span style="display:flex;"><span>opt.shiftwidth <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">2</span> <span style="color:#6272a4">-- Size of an indent</span>
+</span></span><span style="display:flex;"><span>opt.shortmess:append({ W <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, I <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, c <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, C <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vim.g.markdown_recommended_style <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vim.filetype.add({
+</span></span><span style="display:flex;"><span>  extension <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    env <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;dotenv&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  filename <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    [<span style="color:#f1fa8c">&#34;.env&#34;</span>] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;dotenv&#34;</span>,
+</span></span><span style="display:flex;"><span>    [<span style="color:#f1fa8c">&#34;env&#34;</span>] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;dotenv&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  pattern <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    [<span style="color:#f1fa8c">&#34;[jt]sconfig.*.json&#34;</span>] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;jsonc&#34;</span>,
+</span></span><span style="display:flex;"><span>    [<span style="color:#f1fa8c">&#34;%.env%.[%w_.-]+&#34;</span>] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;dotenv&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre><p>Let me walk through the key sections of this configuration:</p>
+<h3 id="line-numbers-and-navigation">Line numbers and navigation</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>opt.number <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Line numbers</span>
+</span></span><span style="display:flex;"><span>opt.relativenumber <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Relative line numbers</span>
+</span></span><span style="display:flex;"><span>opt.cursorline <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Highlight current line</span>
+</span></span><span style="display:flex;"><span>opt.scrolloff <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span> <span style="color:#6272a4">-- Keep 10 lines above/below cursor</span>
+</span></span><span style="display:flex;"><span>opt.sidescrolloff <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">8</span> <span style="color:#6272a4">-- Keep 8 columns left/right of cursor</span>
+</span></span></code></pre><p>The <code>relativenumber = true</code> changed how I navigate code. Instead of thinking &quot;I need to go to line 47&quot;, I see &quot;that line is 5 down&quot; and just hit <code>5j</code>. Way faster.</p>
+<p>The <code>scrolloff = 10</code> keeps my cursor away from screen edges. I always have context around what I'm editing. Try it - you'll never go back.</p>
+<h3 id="smart-search-settings">Smart search settings</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>opt.ignorecase <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Case insensitive search</span>
+</span></span><span style="display:flex;"><span>opt.smartcase <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Case sensitive if uppercase in search</span>
+</span></span><span style="display:flex;"><span>opt.hlsearch <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span> <span style="color:#6272a4">-- Don&#39;t highlight search results</span>
+</span></span></code></pre><p>This combo is genius. Search for &quot;hello&quot; and it finds everything. But search for &quot;Hello&quot; and it only finds exact matches. The <code>hlsearch = false</code> stops those annoying yellow highlights after you've found what you need.</p>
+<h3 id="performance-settings">Performance settings</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>opt.synmaxcol <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">300</span> <span style="color:#6272a4">-- Syntax highlighting limit</span>
+</span></span><span style="display:flex;"><span>opt.updatetime <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">300</span> <span style="color:#6272a4">-- Faster completion</span>
+</span></span><span style="display:flex;"><span>opt.redrawtime <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10000</span>
+</span></span><span style="display:flex;"><span>opt.maxmempattern <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">20000</span>
+</span></span></code></pre><p>That <code>synmaxcol = 300</code> prevents freezes on minified files. The <code>updatetime = 300</code> (down from 4000ms default) makes completion and git signs feel instant. These small changes make a huge difference in daily use.</p>
+<h3 id="file-handling-philosophy">File handling philosophy</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>opt.backup <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span> <span style="color:#6272a4">-- Don&#39;t create backup files</span>
+</span></span><span style="display:flex;"><span>opt.writebackup <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span> <span style="color:#6272a4">-- Don&#39;t create backup before writing</span>
+</span></span><span style="display:flex;"><span>opt.swapfile <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span> <span style="color:#6272a4">-- Don&#39;t create swap files</span>
+</span></span><span style="display:flex;"><span>opt.undofile <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> <span style="color:#6272a4">-- Persistent undo</span>
+</span></span></code></pre><p>I don't want <code>.swp</code> and <code>.bak</code> files cluttering my projects. Git is my backup system. But persistent undo? That's magic - close Neovim, reopen a file days later, and your undo history is still there.</p>
+<h3 id="smart-clipboard-integration">Smart clipboard integration</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>opt.clipboard <span style="color:#ff79c6">=</span> vim.env.SSH_TTY <span style="color:#ff79c6">and</span> <span style="color:#f1fa8c">&#34;&#34;</span> <span style="color:#ff79c6">or</span> <span style="color:#f1fa8c">&#34;unnamedplus&#34;</span> <span style="color:#6272a4">-- Sync with system clipboard</span>
+</span></span></code></pre><p>This automatically disables system clipboard when I'm SSH'd into a server (prevents weird terminal behavior) but enables it when I'm working locally. It just figures out what I want.</p>
+<h3 id="visual-polish">Visual polish</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>opt.fillchars <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>  foldopen <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>  foldclose <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>  fold <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34; &#34;</span>,
+</span></span><span style="display:flex;"><span>  foldsep <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34; &#34;</span>,
+</span></span><span style="display:flex;"><span>  diff <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;╱&#34;</span>,
+</span></span><span style="display:flex;"><span>  eob <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34; &#34;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>Replace ugly default fold markers with clean Unicode symbols. Makes code look modern instead of like it's from 1985.</p>
+<h3 id="file-type-detection">File type detection</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>vim.filetype.add({
+</span></span><span style="display:flex;"><span>  extension <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    env <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;dotenv&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  filename <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    [<span style="color:#f1fa8c">&#34;.env&#34;</span>] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;dotenv&#34;</span>,
+</span></span><span style="display:flex;"><span>    [<span style="color:#f1fa8c">&#34;env&#34;</span>] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;dotenv&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  pattern <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    [<span style="color:#f1fa8c">&#34;[jt]sconfig.*.json&#34;</span>] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;jsonc&#34;</span>,
+</span></span><span style="display:flex;"><span>    [<span style="color:#f1fa8c">&#34;%.env%.[%w_.-]+&#34;</span>] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;dotenv&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre><p>This handles modern file types that Neovim doesn't recognize by default. TypeScript configs get proper JSON with comments support, and all those <code>.env.local</code>, <code>.env.production</code> files get shell syntax highlighting.</p>
+<h2 id="keymapslua">keymaps.lua</h2>
+<p>Create <code>lua/config/keymaps.lua</code>. This is where I make Neovim feel familiar and efficient. Instead of dumping all the keymaps at once, let me organize them by functionality so you can understand what each group does.</p>
+<h3 id="understanding-the-leader-key">Understanding the leader key</h3>
+<p>First, understand that <code>&lt;leader&gt;</code> is a special prefix key. By default in Neovim, it's the space bar. So when you see <code>&lt;leader&gt;qq</code>, that means &quot;Space + q + q&quot;.</p>
+<h3 id="core-keymap-categories">Core keymap categories</h3>
+<p>I organize my keymaps into logical groups:</p>
+<ol>
+<li>Buffer Navigation - Moving between open files</li>
+<li>Window Management - Splitting and navigating windows</li>
+<li>Line Movement - Moving and editing lines efficiently</li>
+<li>Search &amp; Navigation - Finding and jumping to content</li>
+<li>Text Editing - Advanced editing operations</li>
+<li>File Operations - Creating, saving, and managing files</li>
+<li>Development Tools - Debugging and development helpers</li>
+</ol>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">local</span> map <span style="color:#ff79c6">=</span> vim.keymap.set
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">local</span> opts <span style="color:#ff79c6">=</span> { noremap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, silent <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- BUFFER NAVIGATION (think browser tabs)</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Tab/Shift-Tab: Like browser tabs, feels natural</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;Tab&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;:bnext&lt;CR&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Next buffer&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;S-Tab&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;:bprevious&lt;CR&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Previous buffer&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Alternative buffer switching (vim-style)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;bn&#34;</span>, <span style="color:#f1fa8c">&#34;:bnext&lt;CR&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Next buffer&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;bp&#34;</span>, <span style="color:#f1fa8c">&#34;:bprevious&lt;CR&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Previous buffer&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;S-h&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;bprevious&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Prev Buffer&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;S-l&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;bnext&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Next Buffer&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;[b&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;bprevious&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Prev Buffer&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;]b&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;bnext&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Next Buffer&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Quick switch to last edited file (super useful!)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;bb&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;e #&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Switch to Other Buffer&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;`&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;e #&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Switch to Other Buffer&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- WINDOW MANAGEMENT (splitting and navigation)</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Move between windows with Ctrl+hjkl (like tmux)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-h&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-w&gt;h&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Go to Left Window&#34;</span>, remap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-j&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-w&gt;j&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Go to Lower Window&#34;</span>, remap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-k&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-w&gt;k&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Go to Upper Window&#34;</span>, remap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-l&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-w&gt;l&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Go to Right Window&#34;</span>, remap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Resize windows with Ctrl+Shift+arrows (macOS friendly)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-S-Up&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;resize +5&lt;CR&gt;&#34;</span>, opts)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-S-Down&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;resize -5&lt;CR&gt;&#34;</span>, opts)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-S-Left&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;vertical resize -5&lt;CR&gt;&#34;</span>, opts)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-S-Right&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;vertical resize +5&lt;CR&gt;&#34;</span>, opts)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Window splitting</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;ww&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-W&gt;p&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Other Window&#34;</span>, remap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;wd&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-W&gt;c&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Delete Window&#34;</span>, remap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;w-&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-W&gt;s&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Split Window Below&#34;</span>, remap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;sh&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-W&gt;s&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Split Window Below&#34;</span>, remap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;w|&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-W&gt;v&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Split Window Right&#34;</span>, remap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;|&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-W&gt;v&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Split Window Right&#34;</span>, remap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;sv&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-W&gt;v&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Split Window Right&#34;</span>, remap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- SMART LINE MOVEMENT (the VSCode experience)</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Smart j/k: moves by visual lines when no count, real lines with count</span>
+</span></span><span style="display:flex;"><span>map({ <span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;x&#34;</span> }, <span style="color:#f1fa8c">&#34;j&#34;</span>, <span style="color:#f1fa8c">&#34;v:count == 0 ? &#39;gj&#39; : &#39;j&#39;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Down&#34;</span>, expr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, silent <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>map({ <span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;x&#34;</span> }, <span style="color:#f1fa8c">&#34;&lt;Down&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;v:count == 0 ? &#39;gj&#39; : &#39;j&#39;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Down&#34;</span>, expr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, silent <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>map({ <span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;x&#34;</span> }, <span style="color:#f1fa8c">&#34;k&#34;</span>, <span style="color:#f1fa8c">&#34;v:count == 0 ? &#39;gk&#39; : &#39;k&#39;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Up&#34;</span>, expr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, silent <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>map({ <span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;x&#34;</span> }, <span style="color:#f1fa8c">&#34;&lt;Up&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;v:count == 0 ? &#39;gk&#39; : &#39;k&#39;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Up&#34;</span>, expr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, silent <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Move lines up/down (Alt+j/k like VSCode)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-j&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;execute &#39;move .+&#39; . v:count1&lt;cr&gt;==&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Move Down&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-k&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;execute &#39;move .-&#39; . (v:count1 + 1)&lt;cr&gt;==&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Move Up&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-j&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;esc&gt;&lt;cmd&gt;m .+1&lt;cr&gt;==gi&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Move Down&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-k&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;esc&gt;&lt;cmd&gt;m .-2&lt;cr&gt;==gi&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Move Up&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;v&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-j&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;:&lt;C-u&gt;execute </span><span style="color:#f1fa8c">\&#34;</span><span style="color:#f1fa8c">&#39;&lt;,&#39;&gt;move &#39;&gt;+</span><span style="color:#f1fa8c">\&#34;</span><span style="color:#f1fa8c"> . v:count1&lt;cr&gt;gv=gv&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Move Down&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;v&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-k&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;:&lt;C-u&gt;execute </span><span style="color:#f1fa8c">\&#34;</span><span style="color:#f1fa8c">&#39;&lt;,&#39;&gt;move &#39;&lt;-</span><span style="color:#f1fa8c">\&#34;</span><span style="color:#f1fa8c"> . (v:count1 + 1)&lt;cr&gt;gv=gv&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Move Up&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Alternative line movement (for terminals that don&#39;t support Alt)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;v&#34;</span>, <span style="color:#f1fa8c">&#34;J&#34;</span>, <span style="color:#f1fa8c">&#34;:move &#39;&gt;+1&lt;CR&gt;gv=gv&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Move Block Down&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;v&#34;</span>, <span style="color:#f1fa8c">&#34;K&#34;</span>, <span style="color:#f1fa8c">&#34;:move &#39;&lt;-2&lt;CR&gt;gv=gv&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Move Block Up&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-Down&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;:m .+1&lt;CR&gt;&#34;</span>, opts)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-Up&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;:m .-2&lt;CR&gt;&#34;</span>, opts)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-Down&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;Esc&gt;:m .+1&lt;CR&gt;==gi&#34;</span>, opts)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-Up&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;Esc&gt;:m .-2&lt;CR&gt;==gi&#34;</span>, opts)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;v&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-Down&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;:m &#39;&gt;+1&lt;CR&gt;gv=gv&#34;</span>, opts)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;v&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-Up&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;:m &#39;&lt;-2&lt;CR&gt;gv=gv&#34;</span>, opts)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- SEARCH &amp; NAVIGATION (ergonomic improvements)</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Better line start/end (more comfortable than $ and ^)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;gl&#34;</span>, <span style="color:#f1fa8c">&#34;$&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Go to end of line&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;gh&#34;</span>, <span style="color:#f1fa8c">&#34;^&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Go to start of line&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-h&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;^&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Go to start of line&#34;</span>, silent <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-l&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;$&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Go to end of line&#34;</span>, silent <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Select all content</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;==&#34;</span>, <span style="color:#f1fa8c">&#34;gg&lt;S-v&gt;G&#34;</span>)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-a&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;ggVG&#34;</span>, { noremap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, silent <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Select all&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Clear search highlighting</span>
+</span></span><span style="display:flex;"><span>map({ <span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;n&#34;</span> }, <span style="color:#f1fa8c">&#34;&lt;esc&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;noh&lt;cr&gt;&lt;esc&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Escape and Clear hlsearch&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;ur&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;Cmd&gt;nohlsearch&lt;Bar&gt;diffupdate&lt;Bar&gt;normal! &lt;C-L&gt;&lt;CR&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Redraw / Clear hlsearch / Diff Update&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Smart search navigation (n always goes forward, N always backward)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&#39;Nn&#39;[v:searchforward].&#39;zv&#39;&#34;</span>, { expr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Next Search Result&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;x&#34;</span>, <span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&#39;Nn&#39;[v:searchforward]&#34;</span>, { expr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Next Search Result&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;o&#34;</span>, <span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&#39;Nn&#39;[v:searchforward]&#34;</span>, { expr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Next Search Result&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;N&#34;</span>, <span style="color:#f1fa8c">&#34;&#39;nN&#39;[v:searchforward].&#39;zv&#39;&#34;</span>, { expr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Prev Search Result&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;x&#34;</span>, <span style="color:#f1fa8c">&#34;N&#34;</span>, <span style="color:#f1fa8c">&#34;&#39;nN&#39;[v:searchforward]&#34;</span>, { expr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Prev Search Result&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;o&#34;</span>, <span style="color:#f1fa8c">&#34;N&#34;</span>, <span style="color:#f1fa8c">&#34;&#39;nN&#39;[v:searchforward]&#34;</span>, { expr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Prev Search Result&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- SMART TEXT EDITING</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Better indenting (stay in visual mode)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;v&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;gv&#34;</span>)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;v&#34;</span>, <span style="color:#f1fa8c">&#34;&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&gt;gv&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Better paste (doesn&#39;t replace clipboard with deleted text)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;v&#34;</span>, <span style="color:#f1fa8c">&#34;p&#34;</span>, <span style="color:#f1fa8c">&#39;&#34;_dP&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Copy whole file to clipboard</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-c&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;:%y+&lt;CR&gt;&#34;</span>, opts)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Smart undo break-points (create undo points at logical stops)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;,&#34;</span>, <span style="color:#f1fa8c">&#34;,&lt;c-g&gt;u&#34;</span>)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;.&#34;</span>, <span style="color:#f1fa8c">&#34;.&lt;c-g&gt;u&#34;</span>)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;;&#34;</span>, <span style="color:#f1fa8c">&#34;;&lt;c-g&gt;u&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Auto-close pairs (simple, no plugin needed)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;`&#34;</span>, <span style="color:#f1fa8c">&#34;``&lt;left&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#39;&#34;&#39;</span>, <span style="color:#f1fa8c">&#39;&#34;&#34;&lt;left&gt;&#39;</span>)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;(&#34;</span>, <span style="color:#f1fa8c">&#34;()&lt;left&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;[&#34;</span>, <span style="color:#f1fa8c">&#34;[]&lt;left&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;{&#34;</span>, <span style="color:#f1fa8c">&#34;{}&lt;left&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;&gt;&lt;left&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Note: Single quotes commented out to avoid conflicts in some contexts</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- map(&#34;i&#34;, &#34;&#39;&#34;, &#34;&#39;&#39;&lt;left&gt;&#34;)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- FILE OPERATIONS</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Save file (works in all modes)</span>
+</span></span><span style="display:flex;"><span>map({ <span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;x&#34;</span>, <span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;s&#34;</span> }, <span style="color:#f1fa8c">&#34;&lt;C-s&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;w&lt;cr&gt;&lt;esc&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Save File&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Create new file</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;fn&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;enew&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;New File&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Quit operations</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;qq&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;qa&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Quit All&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- 🔧 DEVELOPMENT TOOLS</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Commenting (add comment above/below current line)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;gco&#34;</span>, <span style="color:#f1fa8c">&#34;o&lt;esc&gt;Vcx&lt;esc&gt;&lt;cmd&gt;normal gcc&lt;cr&gt;fxa&lt;bs&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Add Comment Below&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;gcO&#34;</span>, <span style="color:#f1fa8c">&#34;O&lt;esc&gt;Vcx&lt;esc&gt;&lt;cmd&gt;normal gcc&lt;cr&gt;fxa&lt;bs&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Add Comment Above&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Quickfix and location lists</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;xl&#34;</span>, <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">local</span> success, err <span style="color:#ff79c6">=</span> pcall(vim.fn.getloclist(<span style="color:#bd93f9">0</span>, { winid <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span> }).winid <span style="color:#ff79c6">~=</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">and</span> vim.cmd.lclose <span style="color:#ff79c6">or</span> vim.cmd.lopen)
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">not</span> success <span style="color:#ff79c6">and</span> err <span style="color:#ff79c6">then</span>
+</span></span><span style="display:flex;"><span>    vim.notify(err, vim.log.levels.ERROR)
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Location List&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;xq&#34;</span>, <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#8be9fd;font-style:italic">local</span> success, err <span style="color:#ff79c6">=</span> pcall(vim.fn.getqflist({ winid <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span> }).winid <span style="color:#ff79c6">~=</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">and</span> vim.cmd.cclose <span style="color:#ff79c6">or</span> vim.cmd.copen)
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">if</span> <span style="color:#ff79c6">not</span> success <span style="color:#ff79c6">and</span> err <span style="color:#ff79c6">then</span>
+</span></span><span style="display:flex;"><span>    vim.notify(err, vim.log.levels.ERROR)
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Quickfix List&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;[q&#34;</span>, vim.cmd.cprev, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Previous Quickfix&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;]q&#34;</span>, vim.cmd.cnext, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Next Quickfix&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Inspection tools (useful for debugging highlights and treesitter)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;ui&#34;</span>, vim.show_pos, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Inspect Pos&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;uI&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;InspectTree&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Inspect Tree&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Keyword program (K for help on word under cursor)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;K&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;norm! K&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Keywordprg&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- TERMINAL INTEGRATION</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Terminal mode navigation</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;t&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;esc&gt;&lt;esc&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;c-</span><span style="color:#f1fa8c">\\</span><span style="color:#f1fa8c">&gt;&lt;c-n&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Enter Normal Mode&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;t&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-h&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;wincmd h&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Go to Left Window&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;t&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-j&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;wincmd j&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Go to Lower Window&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;t&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-k&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;wincmd k&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Go to Upper Window&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;t&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-l&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;wincmd l&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Go to Right Window&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;t&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;C-/&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;close&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Hide Terminal&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;t&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;c-_&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;close&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;which_key_ignore&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- TAB MANAGEMENT (when you need multiple workspaces)</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;&lt;tab&gt;l&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;tablast&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Last Tab&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;&lt;tab&gt;o&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;tabonly&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Close Other Tabs&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;&lt;tab&gt;f&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;tabfirst&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;First Tab&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;&lt;tab&gt;&lt;tab&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;tabnew&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;New Tab&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;&lt;tab&gt;]&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;tabnext&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Next Tab&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;&lt;tab&gt;d&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;tabclose&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Close Tab&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;&lt;tab&gt;[&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;tabprevious&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Previous Tab&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- FOLDING NAVIGATION (for code organization)</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Close all folds except current one (great for focus)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;zv&#34;</span>, <span style="color:#f1fa8c">&#34;zMzvzz&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Close all folds except the current one&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Smart fold navigation (closes current, opens next/previous)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;zj&#34;</span>, <span style="color:#f1fa8c">&#34;zcjzOzz&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Close current fold when open. Always open next fold.&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;zk&#34;</span>, <span style="color:#f1fa8c">&#34;zckzOzz&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Close current fold when open. Always open previous fold.&#34;</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- UTILITY SHORTCUTS</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- ═══════════════════════════════════════════════════════════</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Toggle line wrapping</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;tw&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;set wrap!&lt;CR&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Toggle Wrap&#34;</span>, silent <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Fix spelling (picks first suggestion)</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;z0&#34;</span>, <span style="color:#f1fa8c">&#34;1z=&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Fix word under cursor&#34;</span> })
+</span></span></code></pre><p>Let me explain the cool parts:</p>
+<h3 id="browser-style-buffer-navigation">Browser style buffer navigation</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">-- Tab switching</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;Tab&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;:bnext&lt;CR&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Next buffer&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;S-Tab&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;:bprevious&lt;CR&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Previous buffer&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;bb&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;e #&lt;cr&gt;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Switch to Other Buffer&#34;</span> })
+</span></span></code></pre><p>Tab/Shift-Tab feels like browser tabs. Everyone knows this pattern. The <code>&lt;leader&gt;bb</code> is really interesting shortcut, instantly jumps back to the last file I was editing. Super useful when switching between test files and implementation.</p>
+<h3 id="smart-line-movement">Smart line movement</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">-- Better up/down</span>
+</span></span><span style="display:flex;"><span>map({ <span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;x&#34;</span> }, <span style="color:#f1fa8c">&#34;j&#34;</span>, <span style="color:#f1fa8c">&#34;v:count == 0 ? &#39;gj&#39; : &#39;j&#39;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Down&#34;</span>, expr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, silent <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>map({ <span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;x&#34;</span> }, <span style="color:#f1fa8c">&#34;k&#34;</span>, <span style="color:#f1fa8c">&#34;v:count == 0 ? &#39;gk&#39; : &#39;k&#39;&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Up&#34;</span>, expr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, silent <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span></code></pre><p>This fixes Vim's annoying behavior with wrapped lines. When I press <code>j</code>, it moves down visually. But when I press <code>5j</code>, it moves 5 actual lines. I get both behaviors automatically.</p>
+<h3 id="vscode-style-line-movement">VSCode style line movement</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">-- Move Lines</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-j&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;execute &#39;move .+&#39; . v:count1&lt;cr&gt;==&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Move Down&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-k&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;cmd&gt;execute &#39;move .-&#39; . (v:count1 + 1)&lt;cr&gt;==&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Move Up&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;v&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-j&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;:&lt;C-u&gt;execute </span><span style="color:#f1fa8c">\&#34;</span><span style="color:#f1fa8c">&#39;&lt;,&#39;&gt;move &#39;&gt;+</span><span style="color:#f1fa8c">\&#34;</span><span style="color:#f1fa8c"> . v:count1&lt;cr&gt;gv=gv&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Move Down&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;v&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;A-k&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;:&lt;C-u&gt;execute </span><span style="color:#f1fa8c">\&#34;</span><span style="color:#f1fa8c">&#39;&lt;,&#39;&gt;move &#39;&lt;-</span><span style="color:#f1fa8c">\&#34;</span><span style="color:#f1fa8c"> . (v:count1 + 1)&lt;cr&gt;gv=gv&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Move Up&#34;</span> })
+</span></span></code></pre><p><code>Alt+j/k</code> moves lines just like VSCode. The magic is in the details:</p>
+<ul>
+<li>Works with counts (<code>3Alt+j</code> moves 3 lines)</li>
+<li>Auto-indents after moving (<code>==</code>)</li>
+<li>In visual mode, moves the whole selection and keeps it selected</li>
+<li>Works in insert mode too</li>
+</ul>
+<h3 id="ergonomic-shortcuts">Ergonomic shortcuts</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">-- Goto</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;gl&#34;</span>, <span style="color:#f1fa8c">&#34;$&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Go to end of line&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;gh&#34;</span>, <span style="color:#f1fa8c">&#34;^&#34;</span>, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Go to start of line&#34;</span> })
+</span></span></code></pre><p><code>$</code> and <code>^</code> are painful to reach. <code>gl</code> (go line-end) and <code>gh</code> (go home) are much more comfortable. After using these for a few days, going back to <code>$</code> feels clunky. (Here is that I learned from Helix)</p>
+<h3 id="intelligent-search">Intelligent search</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&#39;Nn&#39;[v:searchforward].&#39;zv&#39;&#34;</span>, { expr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Next Search Result&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;N&#34;</span>, <span style="color:#f1fa8c">&#34;&#39;nN&#39;[v:searchforward].&#39;zv&#39;&#34;</span>, { expr <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Prev Search Result&#34;</span> })
+</span></span></code></pre><p>This fixes Vim's confusing search behavior. <code>n</code> always goes forward in your search direction, <code>N</code> always goes backward. The <code>.'zv'</code> opens folds if the match is hidden. Much more intuitive.</p>
+<h3 id="undo-break-points-really-useful">Undo break points (really useful)</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">-- Add undo break-points</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;,&#34;</span>, <span style="color:#f1fa8c">&#34;,&lt;c-g&gt;u&#34;</span>)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;.&#34;</span>, <span style="color:#f1fa8c">&#34;.&lt;c-g&gt;u&#34;</span>)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;;&#34;</span>, <span style="color:#f1fa8c">&#34;;&lt;c-g&gt;u&#34;</span>)
+</span></span></code></pre><p>This changed how I edit text. Without this, typing a long paragraph and hitting <code>u</code> undoes everything. With break-points, <code>u</code> goes back to natural stopping places. Type &quot;Hello, world. How are you;&quot; and <code>u</code> takes you back to &quot;Hello, world. How are you&quot; instead of deleting everything.</p>
+<h3 id="smart-auto-pairs-no-plugin">Smart auto-pairs (no plugin!)</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">-- auto close pairs</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- map(&#34;i&#34;, &#34;&#39;&#34;, &#34;&#39;&#39;&lt;left&gt;&#34;) -- commented out - smart!</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;`&#34;</span>, <span style="color:#f1fa8c">&#34;``&lt;left&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#39;&#34;&#39;</span>, <span style="color:#f1fa8c">&#39;&#34;&#34;&lt;left&gt;&#39;</span>)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;(&#34;</span>, <span style="color:#f1fa8c">&#34;()&lt;left&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;[&#34;</span>, <span style="color:#f1fa8c">&#34;[]&lt;left&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;{&#34;</span>, <span style="color:#f1fa8c">&#34;{}&lt;left&gt;&#34;</span>)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;i&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;&gt;&lt;left&gt;&#34;</span>)
+</span></span></code></pre><p>I spent way too much time fighting with auto-pair plugins. This simple approach just works:</p>
+<ul>
+<li>No plugin overhead</li>
+<li>No weird edge cases</li>
+<li>Covers 95% of use cases with zero complexity</li>
+</ul>
+<h3 id="visual-mode-improvements">Visual mode improvements</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">-- Better paste</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;v&#34;</span>, <span style="color:#f1fa8c">&#34;p&#34;</span>, <span style="color:#f1fa8c">&#39;&#34;_dP&#39;</span>, opts)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- better indenting</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;v&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;gv&#34;</span>)
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;v&#34;</span>, <span style="color:#f1fa8c">&#34;&gt;&#34;</span>, <span style="color:#f1fa8c">&#34;&gt;gv&#34;</span>)
+</span></span></code></pre><p>The paste improvement is huge, when you paste over selected text, it doesn't replace your clipboard with the deleted text. So you can paste the same thing multiple times.</p>
+<p>The indenting keeps you in visual mode, so you can adjust indentation multiple times without reselecting.</p>
+<h3 id="folding-navigation">Folding navigation</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">-- Close all fold except the current one.</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;zv&#34;</span>, <span style="color:#f1fa8c">&#34;zMzvzz&#34;</span>, {
+</span></span><span style="display:flex;"><span>  desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Close all folds except the current one&#34;</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Close current fold when open. Always open next fold.</span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;zj&#34;</span>, <span style="color:#f1fa8c">&#34;zcjzOzz&#34;</span>, {
+</span></span><span style="display:flex;"><span>  desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Close current fold when open. Always open next fold.&#34;</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre><p>These make folding actually useful. <code>zv</code> gives me focus, closes everything except what I'm working on. <code>zj</code>/<code>zk</code> navigate through functions while managing fold state automatically.</p>
+<h2 id="my-diagnostics-configuration">My diagnostics configuration</h2>
+<p>Create <code>lua/config/diagnostics.lua</code>. This makes errors look better</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">--- diagnostic settings</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">local</span> map <span style="color:#ff79c6">=</span> vim.keymap.set
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">local</span> palette <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>  err <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;#51202A&#34;</span>,
+</span></span><span style="display:flex;"><span>  warn <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;#3B3B1B&#34;</span>,
+</span></span><span style="display:flex;"><span>  info <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;#1F3342&#34;</span>,
+</span></span><span style="display:flex;"><span>  hint <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;#1E2E1E&#34;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_set_hl(<span style="color:#bd93f9">0</span>, <span style="color:#f1fa8c">&#34;DiagnosticErrorLine&#34;</span>, { bg <span style="color:#ff79c6">=</span> palette.err, blend <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">20</span> })
+</span></span><span style="display:flex;"><span>vim.api.nvim_set_hl(<span style="color:#bd93f9">0</span>, <span style="color:#f1fa8c">&#34;DiagnosticWarnLine&#34;</span>, { bg <span style="color:#ff79c6">=</span> palette.warn, blend <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">15</span> })
+</span></span><span style="display:flex;"><span>vim.api.nvim_set_hl(<span style="color:#bd93f9">0</span>, <span style="color:#f1fa8c">&#34;DiagnosticInfoLine&#34;</span>, { bg <span style="color:#ff79c6">=</span> palette.info, blend <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span> })
+</span></span><span style="display:flex;"><span>vim.api.nvim_set_hl(<span style="color:#bd93f9">0</span>, <span style="color:#f1fa8c">&#34;DiagnosticHintLine&#34;</span>, { bg <span style="color:#ff79c6">=</span> palette.hint, blend <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span> })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_set_hl(<span style="color:#bd93f9">0</span>, <span style="color:#f1fa8c">&#34;DapBreakpointSign&#34;</span>, { fg <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;#FF0000&#34;</span>, bg <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">nil</span>, bold <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>vim.fn.sign_define(<span style="color:#f1fa8c">&#34;DapBreakpoint&#34;</span>, {
+</span></span><span style="display:flex;"><span>  text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;●&#34;</span>, <span style="color:#6272a4">-- a large dot; change as desired</span>
+</span></span><span style="display:flex;"><span>  texthl <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;DapBreakpointSign&#34;</span>, <span style="color:#6272a4">-- the highlight group you just defined</span>
+</span></span><span style="display:flex;"><span>  linehl <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>, <span style="color:#6272a4">-- no full-line highlight</span>
+</span></span><span style="display:flex;"><span>  numhl <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;&#34;</span>, <span style="color:#6272a4">-- no number-column highlight</span>
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">local</span> sev <span style="color:#ff79c6">=</span> vim.diagnostic.severity
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vim.diagnostic.config({
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">-- keep underline &amp; severity_sort on for quick scanning</span>
+</span></span><span style="display:flex;"><span>  underline <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>  severity_sort <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>  update_in_insert <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>, <span style="color:#6272a4">-- less flicker</span>
+</span></span><span style="display:flex;"><span>  float <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    border <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;rounded&#34;</span>,
+</span></span><span style="display:flex;"><span>    source <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">-- keep signs &amp; virtual text, but tune them as you like</span>
+</span></span><span style="display:flex;"><span>  signs <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    text <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>      [sev.ERROR] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34; &#34;</span>,
+</span></span><span style="display:flex;"><span>      [sev.WARN] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34; &#34;</span>,
+</span></span><span style="display:flex;"><span>      [sev.INFO] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34; &#34;</span>,
+</span></span><span style="display:flex;"><span>      [sev.HINT] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;󰌵 &#34;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  virtual_text <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    spacing <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">4</span>,
+</span></span><span style="display:flex;"><span>    source <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;if_many&#34;</span>,
+</span></span><span style="display:flex;"><span>    prefix <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;●&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4">-- NEW in 0.11 — dim whole line</span>
+</span></span><span style="display:flex;"><span>  linehl <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    [sev.ERROR] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;DiagnosticErrorLine&#34;</span>,
+</span></span><span style="display:flex;"><span>    [sev.WARN] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;DiagnosticWarnLine&#34;</span>,
+</span></span><span style="display:flex;"><span>    [sev.INFO] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;DiagnosticInfoLine&#34;</span>,
+</span></span><span style="display:flex;"><span>    [sev.HINT] <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;DiagnosticHintLine&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- diagnostic keymaps</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">local</span> diagnostic_goto <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>(next, severity)
+</span></span><span style="display:flex;"><span>  severity <span style="color:#ff79c6">=</span> severity <span style="color:#ff79c6">and</span> vim.diagnostic.severity[severity] <span style="color:#ff79c6">or</span> <span style="color:#ff79c6">nil</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>    vim.diagnostic.jump({ count <span style="color:#ff79c6">=</span> next <span style="color:#ff79c6">and</span> <span style="color:#bd93f9">1</span> <span style="color:#ff79c6">or</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>, float <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, severity <span style="color:#ff79c6">=</span> severity })
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;&lt;leader&gt;cd&#34;</span>, vim.diagnostic.open_float, { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Line Diagnostics&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;]d&#34;</span>, diagnostic_goto(<span style="color:#ff79c6">true</span>), { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Next Diagnostic&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;[d&#34;</span>, diagnostic_goto(<span style="color:#ff79c6">false</span>), { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Prev Diagnostic&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;]e&#34;</span>, diagnostic_goto(<span style="color:#ff79c6">true</span>, <span style="color:#f1fa8c">&#34;ERROR&#34;</span>), { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Next Error&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;[e&#34;</span>, diagnostic_goto(<span style="color:#ff79c6">false</span>, <span style="color:#f1fa8c">&#34;ERROR&#34;</span>), { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Prev Error&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;]w&#34;</span>, diagnostic_goto(<span style="color:#ff79c6">true</span>, <span style="color:#f1fa8c">&#34;WARN&#34;</span>), { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Next Warning&#34;</span> })
+</span></span><span style="display:flex;"><span>map(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;[w&#34;</span>, diagnostic_goto(<span style="color:#ff79c6">false</span>, <span style="color:#f1fa8c">&#34;WARN&#34;</span>), { desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Prev Warning&#34;</span> })
+</span></span></code></pre><h3 id="the-color-philosophy">The color philosophy</h3>
+<p>Those color values aren't random. I spent time finding colors that indicate problems without screaming at me. Default red error backgrounds hurt my eyes during long coding sessions. These subtle colors are visible but not harsh.</p>
+<h3 id="modern-diagnostic-features">Modern diagnostic features</h3>
+<p>The <code>linehl</code> feature is new in Neovim 0.11+. It highlights entire lines with problems, making errors much easier to spot when scanning large files. Way better than just highlighting the problematic text.</p>
+<h3 id="smart-navigation">Smart navigation</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">local</span> diagnostic_goto <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>(next, severity)
+</span></span><span style="display:flex;"><span>  severity <span style="color:#ff79c6">=</span> severity <span style="color:#ff79c6">and</span> vim.diagnostic.severity[severity] <span style="color:#ff79c6">or</span> <span style="color:#ff79c6">nil</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>    vim.diagnostic.jump({ count <span style="color:#ff79c6">=</span> next <span style="color:#ff79c6">and</span> <span style="color:#bd93f9">1</span> <span style="color:#ff79c6">or</span> <span style="color:#ff79c6">-</span><span style="color:#bd93f9">1</span>, float <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>, severity <span style="color:#ff79c6">=</span> severity })
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span></code></pre><p>This creates separate navigation for errors vs warnings. When fixing bugs, I want to see errors first (<code>]e</code>/<code>[e</code>), then deal with warnings later (<code>]w</code>/<code>[w</code>). The floating window shows details without cluttering the screen.</p>
+<h3 id="debugging-integration">Debugging integration</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>vim.fn.sign_define(<span style="color:#f1fa8c">&#34;DapBreakpoint&#34;</span>, {
+</span></span><span style="display:flex;"><span>  text <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;●&#34;</span>, <span style="color:#6272a4">-- a large dot</span>
+</span></span><span style="display:flex;"><span>  texthl <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;DapBreakpointSign&#34;</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre><p>I set up debugging breakpoint appearance here since it uses the same sign column as diagnostics. The red dot is clear and better looking.</p>
+<h2 id="my-complete-autocmds-setup">My complete autocmds setup</h2>
+<p>Create <code>lua/config/autocmds.lua</code>. These automatic behaviors save me tons of time:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">local</span> <span style="color:#ff79c6">function</span> <span style="color:#50fa7b">augroup</span>(name)
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> vim.api.nvim_create_augroup(<span style="color:#f1fa8c">&#34;user_&#34;</span> <span style="color:#ff79c6">..</span> name, { clear <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Check if we need to reload the file when it changed</span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd({ <span style="color:#f1fa8c">&#34;FocusGained&#34;</span>, <span style="color:#f1fa8c">&#34;TermClose&#34;</span>, <span style="color:#f1fa8c">&#34;TermLeave&#34;</span> }, {
+</span></span><span style="display:flex;"><span>  group <span style="color:#ff79c6">=</span> augroup(<span style="color:#f1fa8c">&#34;checktime&#34;</span>),
+</span></span><span style="display:flex;"><span>  callback <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> vim.o.buftype <span style="color:#ff79c6">~=</span> <span style="color:#f1fa8c">&#34;nofile&#34;</span> <span style="color:#ff79c6">then</span>
+</span></span><span style="display:flex;"><span>      vim.cmd(<span style="color:#f1fa8c">&#34;checktime&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Highlight on yank</span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd(<span style="color:#f1fa8c">&#34;TextYankPost&#34;</span>, {
+</span></span><span style="display:flex;"><span>  group <span style="color:#ff79c6">=</span> augroup(<span style="color:#f1fa8c">&#34;highlight_yank&#34;</span>),
+</span></span><span style="display:flex;"><span>  callback <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>    (vim.hl <span style="color:#ff79c6">or</span> vim.highlight).on_yank()
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- resize splits if window got resized</span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd({ <span style="color:#f1fa8c">&#34;VimResized&#34;</span> }, {
+</span></span><span style="display:flex;"><span>  group <span style="color:#ff79c6">=</span> augroup(<span style="color:#f1fa8c">&#34;resize_splits&#34;</span>),
+</span></span><span style="display:flex;"><span>  callback <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">local</span> current_tab <span style="color:#ff79c6">=</span> vim.fn.tabpagenr()
+</span></span><span style="display:flex;"><span>    vim.cmd(<span style="color:#f1fa8c">&#34;tabdo wincmd =&#34;</span>)
+</span></span><span style="display:flex;"><span>    vim.cmd(<span style="color:#f1fa8c">&#34;tabnext &#34;</span> <span style="color:#ff79c6">..</span> current_tab)
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- make it easier to close man-files when opened inline</span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd(<span style="color:#f1fa8c">&#34;FileType&#34;</span>, {
+</span></span><span style="display:flex;"><span>  group <span style="color:#ff79c6">=</span> augroup(<span style="color:#f1fa8c">&#34;man_unlisted&#34;</span>),
+</span></span><span style="display:flex;"><span>  pattern <span style="color:#ff79c6">=</span> { <span style="color:#f1fa8c">&#34;man&#34;</span> },
+</span></span><span style="display:flex;"><span>  callback <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>(event)
+</span></span><span style="display:flex;"><span>    vim.bo[event.buf].buflisted <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- close some filetypes with &lt;q&gt;</span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd(<span style="color:#f1fa8c">&#34;FileType&#34;</span>, {
+</span></span><span style="display:flex;"><span>  group <span style="color:#ff79c6">=</span> augroup(<span style="color:#f1fa8c">&#34;close_with_q&#34;</span>),
+</span></span><span style="display:flex;"><span>  pattern <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;PlenaryTestPopup&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;checkhealth&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;dbout&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;gitsigns-blame&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;grug-far&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;help&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;lspinfo&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;neotest-output&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;neotest-output-panel&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;neotest-summary&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;notify&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;qf&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;spectre_panel&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;startuptime&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;tsplayground&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  callback <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>(event)
+</span></span><span style="display:flex;"><span>    vim.bo[event.buf].buflisted <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">false</span>
+</span></span><span style="display:flex;"><span>    vim.schedule(<span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>      vim.keymap.set(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;q&#34;</span>, <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>        vim.cmd(<span style="color:#f1fa8c">&#34;close&#34;</span>)
+</span></span><span style="display:flex;"><span>        pcall(vim.api.nvim_buf_delete, event.buf, { force <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">end</span>, {
+</span></span><span style="display:flex;"><span>        buffer <span style="color:#ff79c6">=</span> event.buf,
+</span></span><span style="display:flex;"><span>        silent <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        desc <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Quit buffer&#34;</span>,
+</span></span><span style="display:flex;"><span>      })
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">end</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- wrap and check for spell in text filetypes</span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd(<span style="color:#f1fa8c">&#34;FileType&#34;</span>, {
+</span></span><span style="display:flex;"><span>  group <span style="color:#ff79c6">=</span> augroup(<span style="color:#f1fa8c">&#34;wrap_spell&#34;</span>),
+</span></span><span style="display:flex;"><span>  pattern <span style="color:#ff79c6">=</span> { <span style="color:#f1fa8c">&#34;text&#34;</span>, <span style="color:#f1fa8c">&#34;plaintex&#34;</span>, <span style="color:#f1fa8c">&#34;typst&#34;</span>, <span style="color:#f1fa8c">&#34;gitcommit&#34;</span>, <span style="color:#f1fa8c">&#34;markdown&#34;</span> },
+</span></span><span style="display:flex;"><span>  callback <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>    vim.opt_local.wrap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>    vim.opt_local.spell <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Fix conceallevel for json files</span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd({ <span style="color:#f1fa8c">&#34;FileType&#34;</span> }, {
+</span></span><span style="display:flex;"><span>  group <span style="color:#ff79c6">=</span> augroup(<span style="color:#f1fa8c">&#34;json_conceal&#34;</span>),
+</span></span><span style="display:flex;"><span>  pattern <span style="color:#ff79c6">=</span> { <span style="color:#f1fa8c">&#34;json&#34;</span>, <span style="color:#f1fa8c">&#34;jsonc&#34;</span>, <span style="color:#f1fa8c">&#34;json5&#34;</span> },
+</span></span><span style="display:flex;"><span>  callback <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>    vim.opt_local.conceallevel <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Auto create dir when saving a file, in case some intermediate directory does not exist</span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd({ <span style="color:#f1fa8c">&#34;BufWritePre&#34;</span> }, {
+</span></span><span style="display:flex;"><span>  group <span style="color:#ff79c6">=</span> augroup(<span style="color:#f1fa8c">&#34;auto_create_dir&#34;</span>),
+</span></span><span style="display:flex;"><span>  callback <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>(event)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> event.match:match(<span style="color:#f1fa8c">&#34;^%w%w+:[</span>\<span style="color:#f1fa8c">/][</span>\<span style="color:#f1fa8c">/]&#34;</span>) <span style="color:#ff79c6">then</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#ff79c6">return</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">local</span> file <span style="color:#ff79c6">=</span> vim.uv.fs_realpath(event.match) <span style="color:#ff79c6">or</span> event.match
+</span></span><span style="display:flex;"><span>    vim.fn.mkdir(vim.fn.fnamemodify(file, <span style="color:#f1fa8c">&#34;:p:h&#34;</span>), <span style="color:#f1fa8c">&#34;p&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Set filetype for .env and .env.* files</span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd({ <span style="color:#f1fa8c">&#34;BufRead&#34;</span>, <span style="color:#f1fa8c">&#34;BufNewFile&#34;</span> }, {
+</span></span><span style="display:flex;"><span>  group <span style="color:#ff79c6">=</span> augroup(<span style="color:#f1fa8c">&#34;env_filetype&#34;</span>),
+</span></span><span style="display:flex;"><span>  pattern <span style="color:#ff79c6">=</span> { <span style="color:#f1fa8c">&#34;*.env&#34;</span>, <span style="color:#f1fa8c">&#34;.env.*&#34;</span> },
+</span></span><span style="display:flex;"><span>  callback <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>    vim.opt_local.filetype <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;sh&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Set filetype for .toml files</span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd({ <span style="color:#f1fa8c">&#34;BufRead&#34;</span>, <span style="color:#f1fa8c">&#34;BufNewFile&#34;</span> }, {
+</span></span><span style="display:flex;"><span>  group <span style="color:#ff79c6">=</span> augroup(<span style="color:#f1fa8c">&#34;toml_filetype&#34;</span>),
+</span></span><span style="display:flex;"><span>  pattern <span style="color:#ff79c6">=</span> { <span style="color:#f1fa8c">&#34;*.tomg-config*&#34;</span> },
+</span></span><span style="display:flex;"><span>  callback <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>    vim.opt_local.filetype <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;toml&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Set filetype for .ejs files</span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd({ <span style="color:#f1fa8c">&#34;BufRead&#34;</span>, <span style="color:#f1fa8c">&#34;BufNewFile&#34;</span> }, {
+</span></span><span style="display:flex;"><span>  group <span style="color:#ff79c6">=</span> augroup(<span style="color:#f1fa8c">&#34;ejs_filetype&#34;</span>),
+</span></span><span style="display:flex;"><span>  pattern <span style="color:#ff79c6">=</span> { <span style="color:#f1fa8c">&#34;*.ejs&#34;</span>, <span style="color:#f1fa8c">&#34;*.ejs.t&#34;</span> },
+</span></span><span style="display:flex;"><span>  callback <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>    vim.opt_local.filetype <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;embedded_template&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">-- Set filetype for .code-snippets files</span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd({ <span style="color:#f1fa8c">&#34;BufRead&#34;</span>, <span style="color:#f1fa8c">&#34;BufNewFile&#34;</span> }, {
+</span></span><span style="display:flex;"><span>  group <span style="color:#ff79c6">=</span> augroup(<span style="color:#f1fa8c">&#34;code_snippets_filetype&#34;</span>),
+</span></span><span style="display:flex;"><span>  pattern <span style="color:#ff79c6">=</span> { <span style="color:#f1fa8c">&#34;*.code-snippets&#34;</span> },
+</span></span><span style="display:flex;"><span>  callback <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>    vim.opt_local.filetype <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;json&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span></code></pre><p>Let me explain the interesting parts:</p>
+<h3 id="visual-yank">Visual yank</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">-- Highlight on yank</span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd(<span style="color:#f1fa8c">&#34;TextYankPost&#34;</span>, {
+</span></span><span style="display:flex;"><span>  callback <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>    (vim.hl <span style="color:#ff79c6">or</span> vim.highlight).on_yank()
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre><p>This briefly highlights whatever I yank (copy). Great visual feedback - I know exactly what I copied. Simple but really helpful during refactoring.</p>
+<h3 id="it-just-works-file-handling">&quot;It just works&quot; file handling</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">-- Auto create dir when saving a file</span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd({ <span style="color:#f1fa8c">&#34;BufWritePre&#34;</span> }, {
+</span></span><span style="display:flex;"><span>  callback <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>(event)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">local</span> file <span style="color:#ff79c6">=</span> vim.uv.fs_realpath(event.match) <span style="color:#ff79c6">or</span> event.match
+</span></span><span style="display:flex;"><span>    vim.fn.mkdir(vim.fn.fnamemodify(file, <span style="color:#f1fa8c">&#34;:p:h&#34;</span>), <span style="color:#f1fa8c">&#34;p&#34;</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre><p>Try creating <code>src/api/index.js</code> when the folders don't exist. Instead of an error, it creates the directory structure automatically. This removes friction from my workflow.</p>
+<h3 id="smart-cursor-memory">Smart cursor memory</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">-- go to last loc when opening a buffer</span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd(<span style="color:#f1fa8c">&#34;BufReadPost&#34;</span>, {
+</span></span><span style="display:flex;"><span>  callback <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>(event)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">local</span> exclude <span style="color:#ff79c6">=</span> { <span style="color:#f1fa8c">&#34;gitcommit&#34;</span> } <span style="color:#6272a4">-- don&#39;t remember position in commit messages</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">local</span> mark <span style="color:#ff79c6">=</span> vim.api.nvim_buf_get_mark(event.buf, <span style="color:#f1fa8c">&#39;&#34;&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">local</span> lcount <span style="color:#ff79c6">=</span> vim.api.nvim_buf_line_count(event.buf)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> mark[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">0</span> <span style="color:#ff79c6">and</span> mark[<span style="color:#bd93f9">1</span>] <span style="color:#ff79c6">&lt;=</span> lcount <span style="color:#ff79c6">then</span>
+</span></span><span style="display:flex;"><span>      pcall(vim.api.nvim_win_set_cursor, <span style="color:#bd93f9">0</span>, mark)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre><p>Reopen any file and the cursor goes back to where I left off. Except git commit messages, those should always start at the top. Small detail that saves time every day.</p>
+<h3 id="context-aware-settings">Context aware settings</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">-- wrap and check for spell in text filetypes</span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd(<span style="color:#f1fa8c">&#34;FileType&#34;</span>, {
+</span></span><span style="display:flex;"><span>  pattern <span style="color:#ff79c6">=</span> { <span style="color:#f1fa8c">&#34;text&#34;</span>, <span style="color:#f1fa8c">&#34;markdown&#34;</span>, <span style="color:#f1fa8c">&#34;gitcommit&#34;</span> },
+</span></span><span style="display:flex;"><span>  callback <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>    vim.opt_local.wrap <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>    vim.opt_local.spell <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre><p>Writing files get spell check and word wrap. Code files don't. Simple context awareness that makes each file type feel right.</p>
+<h3 id="smart-buffer-management">Smart buffer management</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">-- close some filetypes with &lt;q&gt;</span>
+</span></span><span style="display:flex;"><span>vim.api.nvim_create_autocmd(<span style="color:#f1fa8c">&#34;FileType&#34;</span>, {
+</span></span><span style="display:flex;"><span>  pattern <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;help&#34;</span>, <span style="color:#f1fa8c">&#34;lspinfo&#34;</span>, <span style="color:#f1fa8c">&#34;checkhealth&#34;</span>, <span style="color:#f1fa8c">&#34;qf&#34;</span>, <span style="color:#f1fa8c">&#34;grug-far&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  callback <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">function</span>(event)
+</span></span><span style="display:flex;"><span>    vim.keymap.set(<span style="color:#f1fa8c">&#34;n&#34;</span>, <span style="color:#f1fa8c">&#34;q&#34;</span>, <span style="color:#ff79c6">function</span>()
+</span></span><span style="display:flex;"><span>      vim.cmd(<span style="color:#f1fa8c">&#34;close&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">end</span>, { buffer <span style="color:#ff79c6">=</span> event.buf, silent <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span> })
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre><p>Help windows, quickfix lists, and plugin windows can be closed with just <code>q</code>. I don't have to remember different commands for different buffer types. Notice I included &quot;grug-far&quot;, I thought about which plugin buffers should be easy to close.</p>
+<p>All this setup is already more pleasant than default Neovim or many bloated configurations.</p>
+<p>In the next article, we'll set up native LSP support. All the diagnostic configuration we just created will light up with real language intelligence.</p>
+ <div class="pagination">
+    
+    <hr />
+    Thanks for reading! This writing style focuses on clarity and simplicity, explaining concepts in accessible terms rather than pursuing strict academic precision. If you notice anything outdated, feel free to comment or send me a message. 
+
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="/blog/my-neovim-story/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Part 1: My Journey from IDEs to Neovim</span>
+            </a>
+        </span>
+         
+    </div>
+</div>
+
+                    </article>
+                    <div class="sharing-buttons">
+    <h3>Share this post:</h3>
+    <ul class="sharing-list" id="right">
+        <li>
+            <a
+                href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2ftduyng.com%2fblog%2fneovim-basic-setup&t=Part%202%3a%20Setting%20up%20neovim%200.12%20%28the%20core%20configuration%20before%20plugins%29"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/hacker-news.svg" alt="Share on Hacker News" class="sharing-icon" />
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://www.reddit.com/submit?url=https%3a%2f%2ftduyng.com%2fblog%2fneovim-basic-setup&title=Part%202%3a%20Setting%20up%20neovim%200.12%20%28the%20core%20configuration%20before%20plugins%29"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/reddit.svg" alt="Share on Reddit" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://mastodon.social/share?url=https%3a%2f%2ftduyng.com%2fblog%2fneovim-basic-setup&text=Part%202%3a%20Setting%20up%20neovim%200.12%20%28the%20core%20configuration%20before%20plugins%29"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/mastodon.svg" alt="Share on Mastodon" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://x.com/intent/tweet?url=https%3a%2f%2ftduyng.com%2fblog%2fneovim-basic-setup&text=Part%202%3a%20Setting%20up%20neovim%200.12%20%28the%20core%20configuration%20before%20plugins%29"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/x.svg" alt="Share on Twitter" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftduyng.com%2fblog%2fneovim-basic-setup"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/facebook.svg" alt="Share on Facebook" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftduyng.com%2fblog%2fneovim-basic-setup&title=Part%202%3a%20Setting%20up%20neovim%200.12%20%28the%20core%20configuration%20before%20plugins%29"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/linkedin.svg" alt="Share on LinkedIn" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a href="mailto:?subject=Part%202%3a%20Setting%20up%20neovim%200.12%20%28the%20core%20configuration%20before%20plugins%29&body=https%3a%2f%2ftduyng.com%2fblog%2fneovim-basic-setup">
+                <img src="/icon/email.svg" alt="Share via Email" class="sharing-icon" />
+            </a>
+        </li>
+    </ul>
+</div>
+ 
+<div
+    class="reaction right"
+    data-endpoint="https://reaction.tienduy-nguyen-dev.workers.dev"
+></div>
+
+ 
+
+                </div>
+
+                
+<script
+    src="https://giscus.app/client.js"
+    data-repo="tduyng/tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    data-mapping="specific"
+    data-term="blog/neovim-basic-setup"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="bottom"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async
+></script>
+
+ <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+            </main>
+        </div>
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>
