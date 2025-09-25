@@ -1,0 +1,182 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/notes/zoxide" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>[Note] everyone should use zoxide</title>
+    <meta
+        property="og:title"
+        content="[Note] everyone should use zoxide"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Software Engineer" />
+    <meta property="og:description" content="Software Engineer" />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="prose-page">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold">[</span>
+
+               
+            <a class="instant fold" href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant " href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold">]</span>
+            
+        </nav>
+    </div>
+</header>
+
+
+    <div id="wrapper-notes">
+    <main>
+      <div>
+      
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+
+      <article class="prose notes">
+        <div class="notes-entry lazy-entry">
+            <div class="thought-content">
+                <h1 id="everyone-should-use-zoxide">Everyone should use zoxide</h1>
+<p>I stopped using <code>cd</code> since more than a year ago.
+Now I use <a href="https://github.com/ajeetdsouza/zoxide">zoxide</a>.</p>
+<p>It’s a small rust tool, super fast, and it just remembers every folder you’ve been to.
+Next time you want to jump back, type:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>z projects
+</span></span><span style="display:flex;"><span>z notes
+</span></span><span style="display:flex;"><span>z blog
+</span></span></code></pre><p>That’s it. No full paths. No thinking. It learns your habits.</p>
+<p>And the best part: <code>zi</code> + <a href="https://github.com/junegunn/fzf">fzf</a>.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>zi
+</span></span></code></pre><p>It pops up a fuzzy list of your most used folders. Type a few letters, hit enter, and you’re there.</p>
+<p>Example:</p>
+<ul>
+<li><code>zi</code> → type <code>doc</code> → jumps straight to <code>~/work/docs/2025</code>.</li>
+<li>Way faster than <code>cd ~/work/docs/2025</code>.</li>
+</ul>
+<p>After 5 minutes, <code>cd</code> feels broken.</p>
+<p>Bonus tricks:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">alias</span> <span style="color:#8be9fd;font-style:italic">cd</span><span style="color:#ff79c6">=</span><span style="color:#f1fa8c">&#34;z&#34;</span>
+</span></span><span style="display:flex;"><span>nvim <span style="color:#ff79c6">$(</span>zi<span style="color:#ff79c6">)</span>
+</span></span></code></pre>
+                <p class="timestamp">
+                    <a href="/notes/zoxide/"
+                        >Sep 20, 2025</a
+                    >
+                </p>
+            </div>
+        </div>
+        <article>
+      </div>
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="tduyng/tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    data-mapping="specific"
+    data-term="notes/zoxide"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="bottom"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async
+></script>
+
+
+    <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+    </main>
+</div>
+
+
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,511 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/blog/create-simple-project-nodejs-with-docker" />
+    
+    <meta name="keywords" content="docker, nodejs, javascript" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>Create simple web app Nodejs with Docker</title>
+    <meta
+        property="og:title"
+        content="Create simple web app Nodejs with Docker"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Learn to build a basic web application using Node.js and Docker, simplifying the deployment process across different environments." />
+    <meta property="og:description" content="Learn to build a basic web application using Node.js and Docker, simplifying the deployment process across different environments." />
+    
+    <meta property="og:image" content="https://tduyng.com/img/post-cover.webp" />
+    <meta property="og:image:width" content="1500" />
+    <meta property="og:image:height" content="750" />
+    <meta name="twitter:image" content="https://tduyng.com/img/post-cover.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="post">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold">[</span>
+
+               
+            <a class="instant " href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold">,</span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold">]</span>
+            
+        </nav>
+    </div>
+</header>
+
+
+        <div id="wrapper">
+            <div id="blank"></div>
+            <aside>
+                
+<nav>
+    <ul>
+        
+        <li>
+            <a class="h2" href="#steps-to-create-a-web-application-nodejs-with-docker">Steps to create a web application Nodejs with Docker</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#getting-started">Getting started</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#create-root-folder-of-project">Create root folder of project</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#init-packagejson">Init</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#create-indexjs-file-in-root-project">Create  file (in root project)</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#create-dockerfile">Create</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#create-dockerignore-file-with-the-following-content">Create  file with the following content</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#build-your-image">Build your image</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#run-the-image">Run the image</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#test-your-docker-container">Test your Docker container</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#some-useful-other-commands">Some useful other commands</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#reference">Reference</a>
+            
+        </li>
+        
+    </ul>
+</nav>
+
+
+                <button id="back-to-top" aria-label="back to top">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill="currentColor"></path></svg>
+                </button>
+            </aside>
+            <main>
+                <div>
+                    
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+ 
+                    <article class="prose" data-backlink-icon="">
+                        <h1>Create simple web app Nodejs with Docker</h1>
+                        <div id="post-info">
+                            <div id="date">
+                                <span id="publish">Dec 22, 2020</span>
+                                
+                            </div>
+
+                            <div id="wordcount">
+    <span>916 words - 5 min read</span>
+</div>
+
+                        </div>
+
+                        <div id="tags">
+                              
+                            <a class="instant" href="/tags/docker"><span>#</span>docker</a>
+                              
+                            <a class="instant" href="/tags/nodejs"><span>#</span>nodejs</a>
+                              
+                            <a class="instant" href="/tags/javascript"><span>#</span>javascript</a>
+                            
+                        </div>
+
+                        
+ <p>How to get a Node.js application into a Docker container?</p>
+<h2 id="steps-to-create-a-web-application-nodejs-with-docker">Steps to create a web application Nodejs with Docker</h2>
+<ul>
+<li>Create NodeJS web app</li>
+<li>Create a Dockerfile</li>
+<li>Build image from Dockerfile</li>
+<li>Run image as container</li>
+<li>Connect to web app from a browser</li>
+</ul>
+<h2 id="getting-started">Getting started</h2>
+<h3 id="create-root-folder-of-project">Create root folder of project</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>mkdir simple-nodejs
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">cd</span> simple-nodejs
+</span></span></code></pre><h3 id="init-packagejson">Init <code>package.json</code></h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>yarn init -y
+</span></span></code></pre><p>Add dependencies and scripts in this <strong>package.json</strong> file</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;name&#34;</span>: <span style="color:#f1fa8c">&#34;simple-nodejs&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;version&#34;</span>: <span style="color:#f1fa8c">&#34;1.0.0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;main&#34;</span>: <span style="color:#f1fa8c">&#34;index.js&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;license&#34;</span>: <span style="color:#f1fa8c">&#34;MIT&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;scripts&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;start&#34;</span>: <span style="color:#f1fa8c">&#34;node index.js&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;dev&#34;</span>: <span style="color:#f1fa8c">&#34;nodemon index.js&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;dependencies&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;express&#34;</span>: <span style="color:#f1fa8c">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;nodemon&#34;</span>: <span style="color:#f1fa8c">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;dotenv&#34;</span>: <span style="color:#f1fa8c">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;mongoose&#34;</span>: <span style="color:#f1fa8c">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;axios&#34;</span>: <span style="color:#f1fa8c">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><h3 id="create-indexjs-file-in-root-project">Create <code>index.js</code> file (in root project)</h3>
+<p>Add the following code to run server nodejs with <code>express</code> framework.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">const</span> express <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;express&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> app <span style="color:#ff79c6">=</span> express()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app.get(<span style="color:#f1fa8c">&#39;/&#39;</span>, (req, res) =&gt; {
+</span></span><span style="display:flex;"><span>    res.send(<span style="color:#f1fa8c">&#39;Hi there!&#39;</span>)
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> port <span style="color:#ff79c6">=</span> process.env.PORT <span style="color:#ff79c6">||</span> <span style="color:#bd93f9">3000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app.listen(port, () =&gt; {
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#f1fa8c">`Server is running on port </span><span style="color:#f1fa8c">${</span>port<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">`</span>)
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre><h3 id="create-dockerfile">Create <code>Dockerfile</code></h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>touch Dockerfile
+</span></span></code></pre><ul>
+<li>
+<p>The first thing we need to do is define from what image we want to build from. Here is the version 12.18.1 of Nodejs from <a href="https://hub.docker.com/">DockerHub</a></p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>FROM node:12.18.1
+</span></span></code></pre></li>
+<li>
+<p>Next we create a directory to hold the application code inside the image. This will be the working directory for your application.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Create app directory</span>
+</span></span><span style="display:flex;"><span>WORKDIR /app
+</span></span></code></pre></li>
+<li>
+<p>This image comes with Node.js and NPM already installed so the next thing we need to do is to install your app dependencies using the npm binary. Please note that if you are using npm version 4 or earlier a package-lock.json file will not be generated.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Install app dependencies</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># A wildcard is used to ensure both package.json AND package-lock.json are copied</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># where available (npm@5+)</span>
+</span></span><span style="display:flex;"><span>COPY package*.json ./
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RUN npm install
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># If you are building your code for production</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># RUN npm ci --only=production</span>
+</span></span></code></pre></li>
+<li>
+<p>To bundle your app's source code inside the Docker image, use the COPY instruction:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Bundle app source</span>
+</span></span><span style="display:flex;"><span>COPY . .
+</span></span></code></pre></li>
+<li>
+<p>Your app binds to port <code>8080</code> so you'll use the <code>EXPOSE</code> instruction to have it mapped by the docker daemon:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>EXPOSE 8080
+</span></span></code></pre></li>
+<li>
+<p>Last but not least, define the command to run your app using CMD which defines your runtime. Here we will use <code>node index.js</code> to start your server as write in scripts of <code>package.json</code> file.</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>CMD [&#34;yarn&#34;, &#34;dev&#34;]
+</span></span></code></pre></li>
+<li>
+<p>Your <code>Dockerfile</code> should now look like this:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>  <span style="color:#6272a4"># Specify a base image</span>
+</span></span><span style="display:flex;"><span>  FROM node:12.18.1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4"># Create app directory</span>
+</span></span><span style="display:flex;"><span>  WORKDIR /app
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4"># Install app dependencies</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4"># A wildcard is used to ensure both package.json AND package-lock.json are copied</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4"># where available (npm@5+)</span>
+</span></span><span style="display:flex;"><span>  COPY package*.json ./
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4"># Install dependencies</span>
+</span></span><span style="display:flex;"><span>  RUN yarn install
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4"># If you are building your code for production</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4"># RUN npm ci --only=production</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4"># Bundle app source</span>
+</span></span><span style="display:flex;"><span>  COPY . .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  EXPOSE 8080
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4"># Default command</span>
+</span></span><span style="display:flex;"><span>  CMD [ &#34;yarn&#34;, &#34;dev&#34; ]
+</span></span></code></pre></li>
+</ul>
+<h3 id="create-dockerignore-file-with-the-following-content">Create <code>.dockerignore</code> file with the following content</h3>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>node_modules
+</span></span><span style="display:flex;"><span>npm-debug.log
+</span></span></code></pre><h3 id="build-your-image">Build your image</h3>
+<p>Go to the directory that has your <code>Dockerfile</code> and run the following command to build the Docker image. The <code>-t</code> flag lets you tag your image so it's easier to find later using the <code>docker images</code> command:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>docker build -t &lt;your username&gt;/node-docker .
+</span></span></code></pre><p>Your image will now be listed by Docker:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>$ docker images
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Example</span>
+</span></span><span style="display:flex;"><span>REPOSITORY                      TAG        ID              CREATED
+</span></span><span style="display:flex;"><span>node                            <span style="color:#bd93f9">12</span>         1934b0b038d1    <span style="color:#bd93f9">5</span> days ago
+</span></span><span style="display:flex;"><span>&lt;your username&gt;/node-web-app    latest     d64d3505b0d2    <span style="color:#bd93f9">1</span> minute ago
+</span></span></code></pre><h3 id="run-the-image">Run the image</h3>
+<p>Running your image with <code>-d</code> runs the container in detached mode, leaving the container running in the background. The <code>-p</code> flag redirects a public port to a private port inside the container. Run the image you previously built:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>docker run -p 49160:8080 -d &lt;your username&gt;/node-docker
+</span></span></code></pre><p>Print the output of your app:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Get container ID</span>
+</span></span><span style="display:flex;"><span>$ docker ps
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Print app output</span>
+</span></span><span style="display:flex;"><span>$ docker logs &lt;container id&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Example</span>
+</span></span><span style="display:flex;"><span>Running on http://localhost:8080
+</span></span></code></pre><p>If you need to go inside the container you can use the exec command:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Enter the container</span>
+</span></span><span style="display:flex;"><span>$ docker <span style="color:#8be9fd;font-style:italic">exec</span> -it &lt;container id&gt; /bin/bash
+</span></span></code></pre><h3 id="test-your-docker-container">Test your Docker container</h3>
+<p>To test your app, get the port of your app that Docker mapped:</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>$ docker ps
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Example</span>
+</span></span><span style="display:flex;"><span>ID            IMAGE                                COMMAND    ...   PORTS
+</span></span><span style="display:flex;"><span>ecce33b30ebf  &lt;your username&gt;/node-docker:latest  npm start  ...   49160-&gt;8080
+</span></span></code></pre><p>In the example above, Docker mapped the 8080 port inside of the container to the port 49160 on your machine.</p>
+<p>Now you can call your app using curl (install if needed via: sudo apt-get install curl):</p>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>$ curl -i localhost:49160
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HTTP/1.1 <span style="color:#bd93f9">200</span> OK
+</span></span><span style="display:flex;"><span>X-Powered-By: Express
+</span></span><span style="display:flex;"><span>Content-Type: text/html; <span style="color:#8be9fd;font-style:italic">charset</span><span style="color:#ff79c6">=</span>utf-8
+</span></span><span style="display:flex;"><span>Content-Length: <span style="color:#bd93f9">9</span>
+</span></span><span style="display:flex;"><span>ETag: W/<span style="color:#f1fa8c">&#34;9-leKwfhJ1TlLDfP1IVUTU9ERZe/8&#34;</span>
+</span></span><span style="display:flex;"><span>Date: Mon, <span style="color:#bd93f9">23</span> Nov <span style="color:#bd93f9">2020</span> 14:41:00 GMT
+</span></span><span style="display:flex;"><span>Connection: keep-alive
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Hi there!
+</span></span></code></pre><h2 id="some-useful-other-commands">Some useful other commands</h2>
+<pre tabindex="0" style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>docker images <span style="color:#6272a4">#show all images installed</span>
+</span></span><span style="display:flex;"><span>docker rmi -f &lt;image id&gt; <span style="color:#6272a4">#remove image by id</span>
+</span></span><span style="display:flex;"><span>docker ps <span style="color:#6272a4">#list all containers running</span>
+</span></span><span style="display:flex;"><span>docker ps -aq <span style="color:#6272a4">#list all containers (only ids)</span>
+</span></span><span style="display:flex;"><span>docker stop &lt;container id&gt; <span style="color:#6272a4">#stop a container</span>
+</span></span><span style="display:flex;"><span>docker stop <span style="color:#ff79c6">$(</span>docker ps -aq<span style="color:#ff79c6">)</span> <span style="color:#6272a4">#stop all running container</span>
+</span></span><span style="display:flex;"><span>docker rm <span style="color:#ff79c6">$(</span>docker ps -aq<span style="color:#ff79c6">)</span> <span style="color:#6272a4">#remove all containers</span>
+</span></span><span style="display:flex;"><span>docker rmi <span style="color:#ff79c6">$(</span>docker images -q<span style="color:#ff79c6">)</span> <span style="color:#6272a4">#remove all images</span>
+</span></span><span style="display:flex;"><span>docker system prune <span style="color:#6272a4">#remove all stopped containers, all dangling images, all networks, all dangling build cache</span>
+</span></span><span style="display:flex;"><span>docker system prune -a <span style="color:#6272a4"># remove all stopped container, all images, all networks, all build caches</span>
+</span></span><span style="display:flex;"><span>
+</span></span></code></pre><h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://github.com/tduyng/try-docker/tree/master/01.dive-into-docker/simple-nodejs">Code GitHub example</a></li>
+<li><a href="https://hub.docker.com/_/node/">Official Nodejs Docker image</a></li>
+<li><a href="https://github.com/nodejs/docker-node/blob/master/docs/BestPractices.md">Nodejs Docker best practice guide</a></li>
+<li><a href="https://docs.docker.com/">Official Docker documentation</a></li>
+<li><a href="https://nodejs.org/en/docs/guides/nodejs-docker-webapp/">Doc guides NodeJS-Docker</a></li>
+<li><a href="https://docs.docker.com/get-started/nodejs/build-images/">Doc guides Docker-NodeJS</a></li>
+</ul>
+ <div class="pagination">
+    
+
+    <div class="pagination__buttons">
+        
+        <span class="button previous">
+            <a href="/blog/config-esling-prettier-react-app/">
+                <span class="button__icon">←</span>
+                <span class="button__text">Config ESLint, Prettier for React App in VSCode</span>
+            </a>
+        </span>
+         
+        <span class="button next">
+            <a href="/blog/why-use-dockercompose/">
+                <span class="button__text">Why use Docker compose</span>
+                <span class="button__icon">→</span>
+            </a>
+        </span>
+        
+    </div>
+</div>
+
+                    </article>
+                    <div class="sharing-buttons">
+    <h3>Share this post:</h3>
+    <ul class="sharing-list" id="right">
+        <li>
+            <a
+                href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2ftduyng.com%2fblog%2fcreate-simple-project-nodejs-with-docker&t=Create%20simple%20web%20app%20Nodejs%20with%20Docker"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/hacker-news.svg" alt="Share on Hacker News" class="sharing-icon" />
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://www.reddit.com/submit?url=https%3a%2f%2ftduyng.com%2fblog%2fcreate-simple-project-nodejs-with-docker&title=Create%20simple%20web%20app%20Nodejs%20with%20Docker"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/reddit.svg" alt="Share on Reddit" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://mastodon.social/share?url=https%3a%2f%2ftduyng.com%2fblog%2fcreate-simple-project-nodejs-with-docker&text=Create%20simple%20web%20app%20Nodejs%20with%20Docker"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/mastodon.svg" alt="Share on Mastodon" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://x.com/intent/tweet?url=https%3a%2f%2ftduyng.com%2fblog%2fcreate-simple-project-nodejs-with-docker&text=Create%20simple%20web%20app%20Nodejs%20with%20Docker"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/x.svg" alt="Share on Twitter" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftduyng.com%2fblog%2fcreate-simple-project-nodejs-with-docker"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/facebook.svg" alt="Share on Facebook" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftduyng.com%2fblog%2fcreate-simple-project-nodejs-with-docker&title=Create%20simple%20web%20app%20Nodejs%20with%20Docker"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/linkedin.svg" alt="Share on LinkedIn" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a href="mailto:?subject=Create%20simple%20web%20app%20Nodejs%20with%20Docker&body=https%3a%2f%2ftduyng.com%2fblog%2fcreate-simple-project-nodejs-with-docker">
+                <img src="/icon/email.svg" alt="Share via Email" class="sharing-icon" />
+            </a>
+        </li>
+    </ul>
+</div>
+ 
+<div
+    class="reaction right"
+    data-endpoint="https://reaction.tienduy-nguyen-dev.workers.dev"
+></div>
+
+ 
+
+                </div>
+
+                
+ <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+            </main>
+        </div>
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>
