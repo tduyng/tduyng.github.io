@@ -9,7 +9,7 @@ comment = true
 copy = true
 +++
 
-## zoxide > cd
+# Everyone should use zoxide
 
 I stopped using `cd` since more than a year ago.
 Now I use [zoxide](https://github.com/ajeetdsouza/zoxide).
