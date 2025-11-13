@@ -10,7 +10,7 @@ if [ -n "${GITHUB_TOKEN:-}" ]; then
   cd public
 
   # Initialize git and set up configuration
-  git init
+  git init -b main
   git config user.name "GitHub Actions"
   git config user.email "github-actions-bot@users.noreply.github.com"
 
@@ -20,9 +20,6 @@ if [ -n "${GITHUB_TOKEN:-}" ]; then
   # Commit the changes
   git commit -m "Deploy site"
 
-  # Check if gh-pages exists on the remote and create it if not
-  git fetch origin gh-pages || git checkout --orphan gh-pages
-
   # Push to the gh-pages branch, forcing the update
-  git push --force "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" master:gh-pages
+  git push --force "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" main:gh-pages
 fi
