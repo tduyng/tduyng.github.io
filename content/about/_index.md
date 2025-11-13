@@ -14,8 +14,6 @@ reaction = true
 
 I'm a Software Engineer in France. You'll find me online as "tduyng", where I code, learn, and occasionally contribute to open source.
 
-My name is pronounced "Zwee" (yes, really).
-
 ## Work
 
 At [ekino](https://www.ekino.fr), I build and maintain backend projects using Node.js, TypeScript, Docker, Kubernetes and AWS. Since 2021, I've been working on making applications that can handle heavy workloads reliably.
