@@ -40,4 +40,5 @@ reaction_endpoint = "https://reaction.tienduy-nguyen-dev.workers.dev"
 footer_copyright = "©2025 Duy NG"
 outdate_alert_text_before = "This article was last updated "
 outdate_alert_text_after = " days ago and may be out of date."
+recent_more_text = "View All Posts"
 enable_analytics = true
