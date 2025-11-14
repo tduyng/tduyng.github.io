@@ -1876,10 +1876,11 @@ body.tag-list {
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(10px);
             font-weight: 500;
-            overflow: visible;
+            overflow: hidden;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            isolation: isolate;
 
             /* Count badge as pseudo-element badge */
             &::after {
@@ -1896,20 +1897,6 @@ body.tag-list {
                 text-align: center;
             }
 
-            /* Shimmer effect on main element */
-            &::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: -100%;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(90deg, transparent, rgba(111, 143, 209, 0.2), transparent);
-                transition: left 0.5s ease;
-                border-radius: 24px;
-                z-index: -1;
-            }
-
             &:hover {
                 border-color: var(--primary-color);
                 transform: translateY(-4px) scale(1.05);
@@ -1922,10 +1909,6 @@ body.tag-list {
                 background: linear-gradient(135deg, var(--text-bold-color), var(--primary-color));
                 transform: scale(1.1);
                 box-shadow: 0 4px 12px rgba(111, 143, 209, 0.5);
-            }
-
-            &:hover::before {
-                left: 100%;
             }
         }
     }
