@@ -33,6 +33,7 @@
         </div>
         <script>
             document.addEventListener('DOMContentLoaded', () => {
+                // Lazy loading for entries
                 const entries = document.querySelectorAll('.lazy-entry')
                 const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 }
 
@@ -46,6 +47,21 @@
                 }, observerOptions)
 
                 entries.forEach((entry) => observer.observe(entry))
+
+                // Restore scroll position when returning from a note
+                const savedScrollPos = sessionStorage.getItem('notesScrollPosition')
+                if (savedScrollPos) {
+                    window.scrollTo(0, parseInt(savedScrollPos, 10))
+                    sessionStorage.removeItem('notesScrollPosition')
+                }
+
+                // Save scroll position when clicking a note link
+                const noteLinks = document.querySelectorAll('.timestamp a')
+                noteLinks.forEach((link) => {
+                    link.addEventListener('click', () => {
+                        sessionStorage.setItem('notesScrollPosition', window.scrollY)
+                    })
+                })
             })
         </script>
 

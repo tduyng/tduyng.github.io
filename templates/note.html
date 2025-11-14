@@ -14,9 +14,7 @@
             <div class="thought-content">
                 {{ .Page.Content }}
                 <p class="timestamp">
-                    <a href="{{ .Page.Permalink }}"
-                        >{{ date .Page.Config.date "Jan 2, 2006" }}</a
-                    >
+                    <a href="/notes/">← Back to Notes</a>
                 </p>
             </div>
         </div>
@@ -27,6 +25,10 @@
     </main>
 </div>
 
+        <script>
+            // No need to save scroll on this page - the notes list page handles restoration
+            // But we could add analytics or other single-note specific scripts here
+        </script>
 
         {{ template "partials/_scripts.html" . }}
     </body>
