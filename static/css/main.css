@@ -3212,11 +3212,11 @@ template {
     }
 }
 
-/* Scroll reveal utility classes */
+/* Scroll reveal utility classes - Optimized for speed */
 .scroll-reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
 
 .scroll-reveal.revealed {
@@ -3226,8 +3226,8 @@ template {
 
 .scroll-reveal-stagger {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transform: translateY(15px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
 
 .scroll-reveal-stagger.revealed {

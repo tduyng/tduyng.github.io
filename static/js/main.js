@@ -232,7 +232,7 @@ function enableReadingProgress() {
 }
 
 function enableScrollReveal() {
-    // Setup IntersectionObserver
+    // Setup IntersectionObserver - optimized for faster reveal
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
@@ -243,15 +243,15 @@ function enableScrollReveal() {
             })
         },
         {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.15, // Reveal when 15% visible (faster)
+            rootMargin: '50px 0px -100px 0px' // Start revealing earlier
         }
     )
     
-    // Handle stagger elements first - add transition delay and scroll-reveal class
+    // Handle stagger elements first - smaller delay for snappier feel
     const staggerElements = document.querySelectorAll('.scroll-reveal-stagger')
     staggerElements.forEach((el, index) => {
-        el.style.transitionDelay = `${index * 0.1}s`
+        el.style.transitionDelay = `${index * 0.05}s` // 0.05s instead of 0.1s
         el.classList.add('scroll-reveal')
     })
     
