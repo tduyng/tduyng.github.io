@@ -218,7 +218,7 @@ function enableImgLightense() {
 function enableReadingProgress() {
     const progressBar = document.querySelector('#reading-progress')
     if (!progressBar) return
-    
+
     const updateProgress = () => {
         const windowHeight = window.innerHeight
         const documentHeight = document.documentElement.scrollHeight
@@ -226,7 +226,7 @@ function enableReadingProgress() {
         const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100
         progressBar.style.width = Math.min(scrollPercent, 100) + '%'
     }
-    
+
     window.addEventListener('scroll', updateProgress, { passive: true })
     updateProgress()
 }
@@ -243,18 +243,18 @@ function enableScrollReveal() {
             })
         },
         {
-            threshold: 0.15, // Reveal when 15% visible (faster)
-            rootMargin: '50px 0px -100px 0px' // Start revealing earlier
-        }
+            threshold: 0.1, // Reveal when 10% visible (faster)
+            rootMargin: '50px 0px -100px 0px', // Start revealing earlier
+        },
     )
-    
+
     // Handle stagger elements first - smaller delay for snappier feel
     const staggerElements = document.querySelectorAll('.scroll-reveal-stagger')
     staggerElements.forEach((el, index) => {
-        el.style.transitionDelay = `${index * 0.05}s` // 0.05s instead of 0.1s
+        el.style.transitionDelay = `${index * 0.01}s` // 0.01s
         el.classList.add('scroll-reveal')
     })
-    
+
     // Now observe all scroll-reveal elements (including converted stagger elements)
     const revealElements = document.querySelectorAll('.scroll-reveal')
     revealElements.forEach((el) => observer.observe(el))
