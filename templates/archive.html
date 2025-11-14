@@ -1,0 +1,62 @@
+<!doctype html>
+
+<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
+    {{ template "partials/_head.html" . }}
+    <body class="blog">
+        {{ template "partials/_header.html" . }}
+
+        <div id="wrapper-archive">
+            <main class="archive-container">
+                <div class="archive-header">
+                    <h1 class="archive-title">Archive</h1>
+                    <p class="archive-description">Complete timeline of all posts and notes</p>
+                    
+                    {{ $blog := get_section "blog" }}
+                    {{ $notes := get_section "notes" }}
+                    {{ $merged := concat $blog.Children $notes.Children }}
+                    {{ $sorted := sort_by "date" $merged }}
+                    
+                    <div class="archive-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">{{ len $blog.Children }}</span>
+                            <span class="stat-label">Blog Posts</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">{{ len $notes.Children }}</span>
+                            <span class="stat-label">Notes</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">{{ len $merged }}</span>
+                            <span class="stat-label">Total</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="archive-timeline">
+                    {{ range $group := group_by "year" $sorted }}
+                    <div class="timeline-year">
+                        <h2 class="year-marker scroll-reveal">{{ $group.Key }}</h2>
+                        <div class="timeline-items">
+                            {{ range $group.Items }}
+                            <a class="timeline-item instant scroll-reveal-stagger" href="{{ .Permalink }}">
+                                <span class="item-date">{{ date .Config.date "Jan 02" }}</span>
+                                <span class="item-content">
+                                    <span class="item-type {{ if has_prefix .Permalink "/blog/" }}type-blog{{ else }}type-note{{ end }}">
+                                        {{ if has_prefix .Permalink "/blog/" }}Blog{{ else }}Note{{ end }}
+                                    </span>
+                                    <span class="item-title">{{ .Config.title }}</span>
+                                </span>
+                            </a>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+                
+                {{ template "partials/_footer.html" . }}
+            </main>
+        </div>
+
+        {{ template "partials/_scripts.html" . }}
+    </body>
+</html>
