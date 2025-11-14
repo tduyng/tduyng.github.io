@@ -109,8 +109,13 @@ def process_content_dir(base_dir, url_prefix):
             # Get the slug from directory name
             slug = md_file.parent.name
 
+            # Strip date prefix from slug (YYYY-MM-DD- format)
+            # e.g., "2024-11-11-tsconfig-options" -> "tsconfig-options"
+            date_pattern = r"^\d{4}-\d{2}-\d{2}-"
+            clean_slug = re.sub(date_pattern, "", slug)
+
             # Build URL
-            url = f"{url_prefix}/{slug}"
+            url = f"{url_prefix}/{clean_slug}"
 
             # Clean content
             clean_content = clean_markdown(body)
