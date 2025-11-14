@@ -125,6 +125,11 @@ body::-webkit-scrollbar {
         font-size: 1.5em;
         font-weight: bolder;
         margin: 1em 0 0.5em 0;
+        background: linear-gradient(135deg, var(--text-bold-color) 0%, var(--primary-color) 70%, #8fa3d8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.02em;
     }
 
     h2 {
@@ -698,6 +703,16 @@ body.homepage {
         #name,
         #id {
             font-size: 1.1em;
+        }
+
+        #name {
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-bold-color) 0%, var(--primary-color) 50%, #8fa3d8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradient-shift 8s ease infinite;
         }
 
         #id {
@@ -2141,5 +2156,17 @@ template {
                 text-align: center;
             }
         }
+    }
+}
+
+/* Animations
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+@keyframes gradient-shift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
     }
 }
