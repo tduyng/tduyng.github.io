@@ -215,6 +215,22 @@ function enableImgLightense() {
     )
 }
 
+function enableReadingProgress() {
+    const progressBar = document.querySelector('#reading-progress')
+    if (!progressBar) return
+    
+    const updateProgress = () => {
+        const windowHeight = window.innerHeight
+        const documentHeight = document.documentElement.scrollHeight
+        const scrollTop = window.scrollY || document.documentElement.scrollTop
+        const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100
+        progressBar.style.width = Math.min(scrollPercent, 100) + '%'
+    }
+    
+    window.addEventListener('scroll', updateProgress, { passive: true })
+    updateProgress()
+}
+
 function enableReaction() {
     const container = document.querySelector('.reaction')
     if (!container) return
@@ -279,6 +295,7 @@ if (document.body.classList.contains('post')) {
     enableTocIndicate()
     addBackToTopBtn()
     enableTocTooltip()
+    enableReadingProgress()
 }
 if (document.querySelector('.prose')) {
     addCopyBtns()

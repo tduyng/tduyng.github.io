@@ -930,6 +930,17 @@ header {
         }
     }
 
+    #reading-progress {
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary-color), #8fa3d8);
+        width: 0%;
+        transition: width 0.1s ease-out;
+        box-shadow: 0 0 10px rgba(111, 143, 209, 0.5);
+    }
+
     #header-wrapper {
         height: 100%;
         max-width: var(--main-max-width);
