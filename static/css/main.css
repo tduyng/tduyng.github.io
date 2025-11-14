@@ -2647,17 +2647,160 @@ template {
     }
 }
 
+@media (max-width: 900px) {
+    /* Homepage links responsive */
+    body.homepage #links {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1.5em;
+
+        #left {
+            flex-direction: column;
+            gap: 12px;
+
+            a {
+                text-align: center;
+                padding: 0.65em 1.2em;
+            }
+        }
+
+        #right {
+            justify-content: center;
+            margin-left: 0;
+        }
+    }
+
+    /* Notes entries responsive */
+    .notes-entries .notes-entry {
+        padding: 20px;
+    }
+
+    /* Blog post cards */
+    .home-layout-list .post {
+        padding: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Pagination already has responsive in main definition */
+
+    /* Homepage links smaller screens */
+    body.homepage #links #left a {
+        font-size: 1em;
+        padding: 0.6em 1em;
+    }
+
+    /* Notes entries */
+    .notes-entries {
+        gap: 24px;
+
+        .notes-entry {
+            padding: 18px;
+
+            &:hover {
+                transform: translateX(4px);
+            }
+        }
+    }
+
+    /* Post header responsive */
+    body.post article h1 {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 600px) {
+    body.post article #tags {
+        gap: 0.3em;
+
+        a {
+            padding: 0.2em 0.4em;
+            font-size: 0.85em;
+        }
+    }
+
+    .sharing-list {
+        justify-content: center;
+    }
+
+    /* Blockquote responsive */
+    .prose blockquote {
+        padding: 10px 16px;
+        margin: 1.2em 0;
+
+        &::before {
+            font-size: 2.5em;
+            top: -6px;
+            left: 6px;
+        }
+    }
+
+    /* Prose links */
+    .prose a {
+        word-break: break-word;
+    }
+
+    /* Homepage links very small */
+    body.homepage #links {
+        margin: 1.5em 0 2em;
+
+        #left {
+            gap: 10px;
+
+            a {
+                font-size: 0.95em;
+                padding: 0.6em 1em;
+            }
+        }
+
+        #right {
+            gap: 10px;
+
+            a,
+            button {
+                width: 32px;
+                height: 32px;
+
+                svg {
+                    width: 16px;
+                    height: 16px;
+                }
+            }
+        }
+    }
+
+    /* Notes entries mobile */
+    .notes-entries .notes-entry {
+        padding: 16px;
+
+        .thought-content {
+            font-size: 0.95em;
+        }
+    }
+}
+
 @media screen and (max-width: var(--small-screen-max-width)) {
     body.homepage main {
         padding: 2em 0;
     }
 
+    /* Reduce animation complexity on very small screens for performance */
+    body.homepage #wrapper::before {
+        animation-duration: 30s;
+        opacity: 0.7;
+    }
+
     body.homepage #links #left {
-        gap: 0.75em;
+        gap: 8px;
+
+        a {
+            font-size: 0.9em;
+            padding: 0.55em 0.9em;
+        }
     }
 
     body.homepage #links #right {
-        gap: 0.3em;
+        gap: 8px;
     }
 
     body.homepage #brief {

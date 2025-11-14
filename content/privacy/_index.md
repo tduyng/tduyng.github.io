@@ -14,17 +14,11 @@ comment = false
 toc = true
 +++
 
-## The short version
+## What analytics I collect
 
 I don't collect personal data. No IP addresses, no tracking across sessions, no cookies.
 
-Comments are handled by [giscus](https://giscus.app/) via GitHub. I use self-hosted [Umami](https://umami.is/) for basic analytics (page views, referrers) - fully GDPR compliant.
-
-That's it.
-
-## What analytics I collect
-
-To improve the site, I track these non-personal metrics:
+To improve the site, I use self-hosted [Umami](https://umami.is/) for basic analytics (page views, referrers) - fully GDPR compliant, That track these non-personal metrics:
 
 - Which pages you visit
 - Where you came from (referrer)
@@ -32,6 +26,7 @@ To improve the site, I track these non-personal metrics:
 - Your country (based on IP, not stored)
 
 I **don't** track:
+
 - Individual users across sessions
 - How long you stay
 - Where you go after leaving
