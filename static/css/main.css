@@ -1250,7 +1250,7 @@ header {
         font-size: 1.35em;
         display: flex;
         align-items: center;
-        gap: 0.5em;
+        gap: 0.3em;
 
         /* Logo/Brand - tduyng */
         > a:first-child {
