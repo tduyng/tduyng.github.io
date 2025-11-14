@@ -2869,35 +2869,58 @@ template {
         }
 
         .timestamp {
-            font-size: 0.85em;
-            color: var(--text-pale-color);
-            margin-top: 16px;
-            padding-top: 12px;
+            margin-top: 20px;
+            padding-top: 0;
             text-align: left;
-            border-top: 1px solid rgba(111, 143, 209, 0.08);
+            display: flex;
+            justify-content: flex-start;
             
             a {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 0.5em 1em;
+                background: rgba(111, 143, 209, 0.05);
+                border: 1.5px solid rgba(111, 143, 209, 0.15);
+                border-radius: 20px;
                 color: var(--primary-color);
                 text-decoration: none;
-                transition: var(--transition-color);
+                font-size: 0.85em;
+                font-weight: 500;
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                backdrop-filter: blur(10px);
                 position: relative;
+                overflow: hidden;
+
+                &::before {
+                    content: '→';
+                    transition: transform 0.3s ease;
+                    font-weight: bold;
+                }
 
                 &::after {
-                    content: '→';
-                    margin-left: 6px;
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    background: radial-gradient(circle at center, rgba(111, 143, 209, 0.1), transparent);
                     opacity: 0;
-                    transform: translateX(-4px);
-                    transition: opacity 0.3s ease, transform 0.3s ease;
-                    display: inline-block;
+                    transition: opacity 0.3s ease;
                 }
 
                 &:hover {
                     color: var(--text-bold-color);
+                    background: rgba(111, 143, 209, 0.12);
+                    border-color: var(--primary-color);
+                    transform: translateX(4px);
+                    box-shadow: 0 4px 12px rgba(111, 143, 209, 0.2);
+                }
+
+                &:hover::before {
+                    transform: translateX(2px);
                 }
 
                 &:hover::after {
                     opacity: 1;
-                    transform: translateX(0);
                 }
             }
         }
