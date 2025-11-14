@@ -13,9 +13,9 @@ copy = false
 comment = false
 +++
 
-For professional inquiries, technical discussions, or networking opportunities, Duy can be reached through various platforms. He maintains an active presence on both professional and social networks.
+I'm always open to professional inquiries, technical discussions, or just connecting with fellow developers.
 
-Connect with him on:
+Reach me on:
 
 - **Email:** [hi@tduyng.com](mailto:hi@tduyng.com)
 - **GitHub:** [tduyng](https://github.com/tduyng)
