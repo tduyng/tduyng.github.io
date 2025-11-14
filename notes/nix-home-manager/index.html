@@ -1,0 +1,168 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/notes/nix-home-manager" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>[Note] First attempt at migrating from Homebrew to Nix with Nix Home Manager</title>
+    <meta
+        property="og:title"
+        content="[Note] First attempt at migrating from Homebrew to Nix with Nix Home Manager"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Software Engineer" />
+    <meta property="og:description" content="Software Engineer" />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="prose-page">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold"></span>
+
+               
+            <a class="instant fold" href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold"></span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold"></span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold"></span>
+            
+        </nav>
+    </div>
+    <div id="reading-progress"></div>
+</header>
+
+
+    <div id="wrapper-notes">
+    <main>
+      <div>
+      
+
+      <article class="prose notes">
+        <div class="notes-entry lazy-entry">
+            <div class="thought-content">
+                <h1 id="first-attempt-at-migrating-from-homebrew-to-nix-with-nix-home-manager">First attempt at migrating from Homebrew to Nix with Nix Home Manager</h1>
+<p>It didn’t go exactly as planned. I dived into Nix scripts, flakes, and started installing packages with nixpkgs while keeping Homebrew on the side.
+But... nothing seemed to work correctly. 😵</p>
+<p>Tools like <code>fish</code> shell, <code>fzf</code>, and <code>ghostty</code> .etc... didn't work.
+I probably need to configure each program properly, manage environments, and link the <code>~/.config</code> files with Nix...</p>
+<p>During the migration, I enabled autoCleanUp Homebrew with &quot;zap&quot; without paying close attention. Big mistake! It wiped out everything I’d installed through Homebrew. 😱 Aie aie aie.</p>
+<p>Thankfully, I had saved all my tools in a Brewfile in my dotfiles. A quick <code>brew bundle</code> restored everything (though it took time to install).</p>
+<p>Lesson learned: I need to take it step by step with Nix, learning more about proper configurations before jumping in too deep.</p>
+<p>For now, I’m sticking with Homebrew but I’ll give Nix another try someday.</p>
+
+                <p class="timestamp">
+                    <a href="/notes/">← Back to Notes</a>
+                </p>
+            </div>
+        </div>
+        <article>
+      </div>
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="tduyng/tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    data-mapping="specific"
+    data-term="notes/nix-home-manager"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="bottom"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async
+></script>
+
+
+    <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/archive">archive</a>
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+    </main>
+</div>
+
+        <script>
+            
+            
+        </script>
+
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>

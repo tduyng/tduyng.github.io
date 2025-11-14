@@ -1,0 +1,621 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/blog/dual-package-typescript" />
+    
+    <meta name="keywords" content="esm, dual-package, typescript, commonjs" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>How to build dual package npm from Typescript - the easiest way</title>
+    <meta
+        property="og:title"
+        content="How to build dual package npm from Typescript - the easiest way"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Explore an easy way to support dual package TypeScript NPM libraries for both CommonJS and ESM" />
+    <meta property="og:description" content="Explore an easy way to support dual package TypeScript NPM libraries for both CommonJS and ESM" />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="post">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold"></span>
+
+               
+            <a class="instant fold" href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold"></span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold"></span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold"></span>
+            
+        </nav>
+    </div>
+    <div id="reading-progress"></div>
+</header>
+
+
+        <div id="wrapper">
+            <div id="blank"></div>
+            <aside>
+                
+<nav>
+    <ul>
+        
+        <li>
+            <a class="h2" href="#tldr">TL;DR</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#understanding-javascript-file-extensions">Understanding Javascript file extensions</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#selected-solution-using-js-for-simplifying">Selected solution: using  for simplifying</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#practical-part">Practical part</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#modifying-packagejson">Modifying package.json</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#compiling-with-typescript">Compiling with TypeScript</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#build-scripts">Build scripts</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#key-points-in-this-script">Key points in this script</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#bonus-part-yal--yet-another-library">Bonus part (YAL — Yet another library)</a>
+            
+        </li>
+        
+    </ul>
+</nav>
+
+
+                <button id="back-to-top" aria-label="back to top">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill="currentColor"></path></svg>
+                </button>
+            </aside>
+            <main>
+                <div>
+                    
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+ 
+                    <article class="prose" data-backlink-icon="">
+                        <h1>How to build dual package npm from Typescript - the easiest way</h1>
+                        <div id="post-info">
+                            <div id="date">
+                                <span id="publish">Nov 13, 2024</span>
+                                
+                                <span>Last update:</span>
+                                <span id="updated"
+                                    >Nov 19, 2024</span
+                                >
+                                
+                            </div>
+
+                            <div id="wordcount">
+    <span>1892 words - 9 min read</span>
+</div>
+
+                        </div>
+
+                        <div id="tags">
+                              
+                            <a class="instant" href="/tags/esm"><span>#</span>esm</a>
+                              
+                            <a class="instant" href="/tags/dual-package"><span>#</span>dual-package</a>
+                              
+                            <a class="instant" href="/tags/typescript"><span>#</span>typescript</a>
+                              
+                            <a class="instant" href="/tags/commonjs"><span>#</span>commonjs</a>
+                            
+                        </div>
+
+                        
+ <p>JavaScript is evolving rapidly. <a href="https://medium.com/ekino-france/de-commonjs-%C3%A0-esm-les-cl%C3%A9s-dune-migration-r%C3%A9ussie-10507304bc01">Now, it’s really important for libraries to work with both CommonJS (CJS) and ECMAScript Modules (ESM)</a>.</p>
+<p>In this article, we’ll guide you through an easy and practical approach to handle dual-package support. That means more people can use your library, and it’s easier for them to do so.</p>
+<h2 id="tldr">TL;DR</h2>
+<p><strong>Create a dual-package TypeScript library supporting both ESM and CommonJS</strong>:</p>
+<ul>
+<li><a href="#understanding-javascript-file-extensions">Understand the different of Javascript file extensions: <code>.js</code>, <code>.mjs</code>, <code>.cjs</code></a></li>
+<li><a href="#selected-solution-using-js-for-simplifying">Use only the <code>.js</code> extension for both esm and cjs outputs after compilation</a></li>
+<li>Write source code Typescript in ESM</li>
+<li>Avoid external build tools</li>
+<li><a href="#practical-part">Define the <code>exports</code> field in <code>package.json</code></a></li>
+<li><a href="#compiling-with-typescript">Compile source files into <code>lib/esm</code> and <code>lib/cjs</code> directories.</a></li>
+<li><a href="#build-scripts">Add <code>package.json</code> files with the correct type field in <code>lib/esm</code> and <code>lib/cjs</code></a>
+<ul>
+<li>Place a <code>package.json</code> file in <code>lib/esm</code> with <code>{&quot;type&quot;: &quot;module&quot;}</code></li>
+<li>Place another in <code>lib/cjs</code> with <code>{&quot;type&quot;: &quot;commonjs&quot;}</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="understanding-javascript-file-extensions">Understanding Javascript file extensions</h2>
+<p>Firstly, we need clarify the different extensions in JavaScript:</p>
+<ul>
+<li><code>.cjs</code>: files are for modules used with the <code>require()</code> function.</li>
+<li><code>.mjs</code> files are for ESM modules, used with import statements.</li>
+<li><code>.js</code> files can be used for both CJS and ESM modules if you specify <code>“type: “module”</code> in <code>package.json</code>.</li>
+</ul>
+<p><strong>Challenges and solutions</strong></p>
+<p>Understanding which file extension corresponds to which type of module is essential but can be confusing.</p>
+<p>When you use a specific file extension in the <code>import path</code>, you must ensure that the corresponding extension is present in the compiled JavaScript files.</p>
+<p>Here’s how Javascript extensions work:</p>
+<ul>
+<li><code>.cjs</code> and <code>.mjs</code>: If you use <code>.cjs</code> in the import path, the compiled JavaScript files should also have the <code>.cjs</code> extension. Similarly, if you use <code>.mjs</code> in the import path, the compiled files should have the <code>.mjs</code> extension. This ensures that the JavaScript engine knows which module system to use.</li>
+<li><code>.js</code> : Alternatively, you can choose to use the <code>.js</code> extension for both CJS and ESM. However, when you do this, you need to be aware of how your code is compiled with the configuration in <code>package.json</code>.</li>
+</ul>
+<p>Based on my experiences, developers often choose to use <code>.js</code> for writing both ESM and CJS, picking <code>.cjs</code> for CJS and <code>.mjs</code> for ESM. In other words, if they use <code>.js</code> for ESM, they use <code>.cjs</code> for CJS, and vice versa.</p>
+<p><strong>Here are some examples of how different libraries handle this:</strong></p>
+<ul>
+<li><a href="https://github.com/axios/axios">axios</a>: A tool for making HTTP requests in Node.js and the browser. They use <code>.js</code> for ESM and <code>.cjs</code> for CJS. They don’t have a build step because they write code in JS with the `.d.ts_** files included.</li>
+<li><a href="https://github.com/helmetjs/helmet">helmet</a>: A tool for securing HTTP headers in Node.js. They use <a href="https://github.com/rollup/rollup">rollup</a> to manage the build process, picking <code>.cjs</code> for CJS and <code>.mjs</code> for ESM.</li>
+<li><a href="https://github.com/colinhacks/zod">zod</a>: A validation library for TypeScript. They write code in TypeScript CJS, also using <code>rollup</code> to build ESM with <code>.mjs</code> extension. They use TSC to build CJS with <code>.js</code> extension.</li>
+<li><a href="https://github.com/cucumber/cucumber-js">cucumber</a>: A tool for writing tests with Gherkin syntax, we used it a lot for integration tests in our projects. They write code in TypeScript in CJS and use <code>.mjs</code> for ESM. They use TSC and have their own rules for building both CJS and ESM.</li>
+</ul>
+<p>Let’s look at the following example to understand this better:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// example.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4">// Importing with .cjs extension
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">import</span> { stringify } <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;./output_utils.cjs&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { LogColor, Log, LogLevel, Output } <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;./index.cjs&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Importing with .mjs extension
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">import</span> { stringify } <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;./output_utils.mjs&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { LogColor, Log, LogLevel, Output } <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;./index.mjs&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// Importing with .js extension
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">import</span> { stringify } <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;./output_utils.js&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { LogColor, Log, LogLevel, Output } <span style="color:#ff79c6">from</span> <span style="color:#f1fa8c">&#39;./index.js&#39;</span>
+</span></span></code></pre><p>This code is written in TypeScript. We used <code>“type”: “module”</code> in <code>package.json</code> to enable ESM, which means we must specify the extension in each import path. After compilation, these extensions become crucial.</p>
+<p>Now, let’s say you want to use different extensions like <code>.cjs</code> or <code>.mjs</code> for your imports and compilation. If the extension you specify in your import statement doesn’t match the one in the compiled JavaScript files, it can cause issues like: <code>[ERR_MODULE_NOT_FOUND]: Cannot find module…</code></p>
+<p>Choosing different extensions for imports and compilation, such as <code>.cjs</code> or <code>.mjs</code>, requires careful attention. Tools like <code>esbuild</code>, <code>swc</code>, <code>tsc</code>, <code>rollup</code>, or <code>tsup</code>…etc.. can help you compile TypeScript to JavaScript with these extensions. However, it often involves adding more scripts to modify the import paths during the build process. While this method can work, it can also be risky and challenging to maintain consistency, especially in complex projects.</p>
+<h2 id="selected-solution-using-js-for-simplifying">Selected solution: using <code>.js</code> for simplifying</h2>
+<p>We decided to keep it simple by using <code>.js</code> for both importing and compiling. With the <code>“type”</code> field in <code>package.json</code>, we can we can easily distinguish between CJS and ESM.</p>
+<ul>
+<li>It doesn’t require additional compilation tools, except for a quick build tool like <code>esbuild</code>, if needed. For simpler projects, you can stick directly with TypeScript’s built-in <code>TSC</code>.</li>
+<li>By using <code>.js</code> for everything, we make our code easier to handle and avoid any issues with file extensions.</li>
+</ul>
+<p><strong>So how this solution works?</strong></p>
+<p>As mentioned earlier, the important part of making this method work is the <code>“type”</code> field in your <code>package.json</code> file.</p>
+<p>By default, if you don’t specify <code>type: “commonjs”</code> in your <code>package.json</code>, your project is considered to be in CJS mode. In this mode, all <code>.js</code> files are treated as CJS modules. However, if you specify <code>type: “module”</code>, all <code>.js</code> files are treated as ESM.</p>
+<p>Additionally, placing another <code>package.json</code> file in a child folder allows you to control the scope of that folder, similar to how  <code>.eslintrc</code> works. For example, if you have a <code>package.json</code> file with <code>type: “module&quot;</code> in the <code>lib/esm</code> folder, all <code>.js</code> files in that folder must follow the syntax of ESM.</p>
+<h2 id="practical-part">Practical part</h2>
+<p>Now, let’s explore a practical example of how to configure your project for dual-package support using scripts.</p>
+<h3 id="modifying-packagejson">Modifying package.json</h3>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#f1fa8c">&#34;type&#34;</span>: <span style="color:#f1fa8c">&#34;module&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#f1fa8c">&#34;files&#34;</span>: [<span style="color:#f1fa8c">&#34;/lib&#34;</span>],
+</span></span><span style="display:flex;"><span><span style="color:#f1fa8c">&#34;exports&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;.&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;require&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;default&#34;</span>: <span style="color:#f1fa8c">&#34;./lib/cjs/index.js&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;types&#34;</span>: <span style="color:#f1fa8c">&#34;./lib/cjs/index.d.ts&#34;</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;import&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;default&#34;</span>: <span style="color:#f1fa8c">&#34;./lib/esm/index.js&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#ff79c6">&#34;types&#34;</span>: <span style="color:#f1fa8c">&#34;./lib/esm/index.d.ts&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>This configuration ensures proper support for both CJS and ESM. When using the import syntax, the library points to the ESM folder and executes code with ESM. On the other hand, when using the require syntax, the library directs to the CJS folder.</p>
+<h3 id="compiling-with-typescript">Compiling with TypeScript</h3>
+<p>To set up this configuration, ensure that both the ESM and CJS folders (<code>lib/esm</code> and <code>lib/cjs</code>) contain the necessary library exports. We’ll achieve this using <code>tsc</code>.
+First, adjust your <code>tsconfig.json</code> file by setting the <code>module</code> option to <code>“nodenext”</code>:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;compilerOptions&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;incremental&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;noImplicitAny&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;allowJs&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;target&#34;</span>: <span style="color:#f1fa8c">&#34;esnext&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;lib&#34;</span>: [<span style="color:#f1fa8c">&#34;esnext&#34;</span>, <span style="color:#f1fa8c">&#34;dom&#34;</span>],
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;module&#34;</span>: <span style="color:#f1fa8c">&#34;nodenext&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;alwaysStrict&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;skipLibCheck&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;noUnusedParameters&#34;</span>: <span style="color:#ff79c6">false</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;noUnusedLocals&#34;</span>: <span style="color:#ff79c6">false</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;strictNullChecks&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;noUncheckedIndexedAccess&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;esModuleInterop&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;allowSyntheticDefaultImports&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;forceConsistentCasingInFileNames&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;typeRoots&#34;</span>: [<span style="color:#f1fa8c">&#34;./node_modules/@types&#34;</span>, <span style="color:#f1fa8c">&#34;./@types&#34;</span>]
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;include&#34;</span>: [<span style="color:#f1fa8c">&#34;src/**/*&#34;</span>, <span style="color:#f1fa8c">&#34;test/**/*.ts&#34;</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>This configuration is well-suited for managing TypeScript code within your project, including test files. To handle compilation specifically for npm packages, create a separate <code>tsconfig.lib.json</code> file that extends the original configuration:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;extends&#34;</span>: <span style="color:#f1fa8c">&#34;./tsconfig.json&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;include&#34;</span>: [<span style="color:#f1fa8c">&#34;src/**/*.ts&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">&#34;compilerOptions&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;sourceMap&#34;</span>: <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">&#34;declaration&#34;</span>: <span style="color:#ff79c6">true</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><h3 id="build-scripts">Build scripts</h3>
+<p>There are various methods and tools available for scripting compilation tasks. Below are some examples using JavaScript with the zx tool, native Node.js, or Bash scripts. You can also consider other tools like bun $shell or execa...</p>
+<ul>
+<li><strong>zx solution</strong></li>
+</ul>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// build.mjs
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>#<span style="color:#ff79c6">!</span>/usr/bin/env zx
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { $, chalk } from <span style="color:#f1fa8c">&#39;zx&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">await</span> <span style="color:#f1fa8c">`rm -rf lib`</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`npx tsc -p tsconfig.lib.json --module NodeNext --outDir lib/esm`</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`echo &#39;{&#34;type&#34;: &#34;module&#34;}&#39; &gt; lib/esm/package.json`</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`npx tsc -p tsconfig.lib.json --module CommonJS --moduleResolution Node --outDir lib/cjs`</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`echo &#39;{&#34;type&#34;: &#34;commonjs&#34;}&#39; &gt; lib/cjs/package.json`</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    console.log(chalk.green(<span style="color:#f1fa8c">&#39;Compilation successful&#39;</span>))
+</span></span><span style="display:flex;"><span>} <span style="color:#ff79c6">catch</span> (error) {
+</span></span><span style="display:flex;"><span>    console.error(chalk.red(<span style="color:#f1fa8c">&#39;Compilation failed:&#39;</span>), chalk.red(error.message))
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><ul>
+<li><strong>Native Node.js solution</strong></li>
+</ul>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// build.mjs
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>#<span style="color:#ff79c6">!</span>/usr/bin/env node
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { exec } from <span style="color:#f1fa8c">&#39;node:child_process&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { writeFile } from <span style="color:#f1fa8c">&#39;node:fs/promises&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> { promisify } from <span style="color:#f1fa8c">&#39;node:util&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> execAsync <span style="color:#ff79c6">=</span> promisify(exec)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">async</span> <span style="color:#8be9fd;font-style:italic">function</span> run() {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">await</span> <span style="color:#8be9fd;font-style:italic">Promise</span>.all([
+</span></span><span style="display:flex;"><span>            execAsync(<span style="color:#f1fa8c">&#39;npx tsc -p tsconfig.lib.json --module NodeNext --outDir lib/esm&#39;</span>),
+</span></span><span style="display:flex;"><span>            execAsync(
+</span></span><span style="display:flex;"><span>                <span style="color:#f1fa8c">&#39;npx tsc -p tsconfig.lib.json --module CommonJS --moduleResolution Node --outDir lib/cjs&#39;</span>
+</span></span><span style="display:flex;"><span>            ),
+</span></span><span style="display:flex;"><span>        ])
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">await</span> <span style="color:#8be9fd;font-style:italic">Promise</span>.all([
+</span></span><span style="display:flex;"><span>            writeFile(<span style="color:#f1fa8c">&#39;lib/esm/package.json&#39;</span>, <span style="color:#f1fa8c">&#39;{&#34;type&#34;: &#34;module&#34;}&#39;</span>),
+</span></span><span style="display:flex;"><span>            writeFile(<span style="color:#f1fa8c">&#39;lib/cjs/package.json&#39;</span>, <span style="color:#f1fa8c">&#39;{&#34;type&#34;: &#34;commonjs&#34;}&#39;</span>),
+</span></span><span style="display:flex;"><span>        ])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        console.log(<span style="color:#f1fa8c">&#39;Compilation successful&#39;</span>)
+</span></span><span style="display:flex;"><span>    } <span style="color:#ff79c6">catch</span> (error) {
+</span></span><span style="display:flex;"><span>        console.error(<span style="color:#f1fa8c">&#39;Compilation failed:&#39;</span>, error)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">await</span> run()
+</span></span><span style="display:flex;"><span>
+</span></span></code></pre><ul>
+<li><strong>Bash script</strong></li>
+</ul>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># build.sh</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">#!/bin/bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">set</span> -e <span style="color:#6272a4"># exit immediately if error</span>
+</span></span><span style="display:flex;"><span>rm -rf lib
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>npx tsc -p tsconfig.lib.json --module NodeNext --outDir lib/esm
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">echo</span> <span style="color:#f1fa8c">&#39;{&#34;type&#34;: &#34;module&#34;}&#39;</span> &gt; lib/esm/package.json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>npx tsc -p tsconfig.lib.json --module CommonJS --moduleResolution Node --outDir lib/cjs
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">echo</span> <span style="color:#f1fa8c">&#39;{&#34;type&#34;: &#34;commonjs&#34;}&#39;</span> &gt; lib/cjs/package.json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">echo</span> <span style="color:#f1fa8c">&#39;Compilation successful&#39;</span>
+</span></span></code></pre><p>This script efficiently handles compilation tasks. It use TypeScript’s compiler (<code>tsc</code>) with the appropriate configuration options to ensure compatibility with different module types.</p>
+<h3 id="key-points-in-this-script">Key points in this script</h3>
+<ul>
+<li>Ensure to specify output folders for both ESM and CJS builds:</li>
+</ul>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>Use - module nodenext - outDir lib/esm for ESM.  
+</span></span><span style="display:flex;"><span>Use - module commonjs - outDir lib/cjs for CommonJS.
+</span></span></code></pre><ul>
+<li>Create nested package.json files for each build type:</li>
+</ul>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>Use $echo &#39;{&#34;type&#34;: &#34;module&#34;}&#39; &gt; lib/esm/package.json for ESM.  
+</span></span><span style="display:flex;"><span>Use $echo &#39;{&#34;type&#34;: &#34;commonjs&#34;}&#39; &gt; lib/cjs/package.json for CommonJS.
+</span></span></code></pre><p>These nested files allow the use of <code>.js</code> extensions for both CJS and ESM, preventing errors like <code>“ReferenceError: require is not defined”</code>.</p>
+<p>By following these steps and adapting the example to your specific project structure, you can establish effective dual-package support for your TypeScript library.</p>
+<p>For a detailed implementation, you can find the migration code from CJS to ESM and the compilation example in <a href="https://github.com/ekino/node-logger/pull/46">this GitHub PR</a>. We made a similar transition for our library <a href="https://github.com/ekino/node-logger">@ekino/node-logger</a> which is a lightweight yet efficient logger that combines debug namespacing capabilities with winston levels and multi-output. Exploring this library might provide valuable insights for your projects.</p>
+<h2 id="bonus-part-yal--yet-another-library">Bonus part (YAL — Yet another library)</h2>
+<p>If you like using a quick build tool like <code>esbuild</code> (I really do!).</p>
+<p>For now, <code>esbuild</code> doesn’t support glob pattern, so we need to use the library like <a href="https://github.com/mrmlnc/fast-glob">fast-glob</a> to handle that part. This makes the code a bit more complex compared to using <code>TSC</code>, but the speed boost you get from esbuild is totally worth it. Here are the scripts.</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">#!/usr/bin/env zx
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">import</span> { $, chalk } from <span style="color:#f1fa8c">&#39;zx&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> esbuild from <span style="color:#f1fa8c">&#39;esbuild&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">import</span> fg from <span style="color:#f1fa8c">&#39;fast-glob&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> entryPoints <span style="color:#ff79c6">=</span> fg.sync([<span style="color:#f1fa8c">&#39;src/**/*.[tj]s&#39;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> buildESM <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">async</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">await</span> esbuild.build({
+</span></span><span style="display:flex;"><span>            entryPoints,
+</span></span><span style="display:flex;"><span>            outdir<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;lib/esm&#39;</span>,
+</span></span><span style="display:flex;"><span>            platform<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;node&#39;</span>,
+</span></span><span style="display:flex;"><span>            sourcemap<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>            target<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;esnext&#39;</span>,
+</span></span><span style="display:flex;"><span>            format<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;esm&#39;</span>,
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`echo &#39;{&#34;type&#34;: &#34;module&#34;}&#39; &gt; lib/esm/package.json`</span>
+</span></span><span style="display:flex;"><span>        console.log(chalk.green(<span style="color:#f1fa8c">&#39;ESM compilation successful&#39;</span>))
+</span></span><span style="display:flex;"><span>    } <span style="color:#ff79c6">catch</span> (error) {
+</span></span><span style="display:flex;"><span>        console.error(chalk.red(<span style="color:#f1fa8c">&#39;ESM compilation failed:&#39;</span>), chalk.red(error.message))
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> buildCJS <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">async</span> () =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">await</span> esbuild.build({
+</span></span><span style="display:flex;"><span>            entryPoints,
+</span></span><span style="display:flex;"><span>            outdir<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;lib/cjs&#39;</span>,
+</span></span><span style="display:flex;"><span>            platform<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;node&#39;</span>,
+</span></span><span style="display:flex;"><span>            sourcemap<span style="color:#ff79c6">:</span> <span style="color:#ff79c6">true</span>,
+</span></span><span style="display:flex;"><span>            target<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;esnext&#39;</span>,
+</span></span><span style="display:flex;"><span>            format<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;cjs&#39;</span>,
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`echo &#39;{&#34;type&#34;: &#34;commonjs&#34;}&#39; &gt; lib/cjs/package.json`</span>
+</span></span><span style="display:flex;"><span>        console.log(chalk.green(<span style="color:#f1fa8c">&#39;CJS compilation successful&#39;</span>))
+</span></span><span style="display:flex;"><span>    } <span style="color:#ff79c6">catch</span> (error) {
+</span></span><span style="display:flex;"><span>        console.error(chalk.red(<span style="color:#f1fa8c">&#39;CJS compilation failed:&#39;</span>), chalk.red(error.message))
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">try</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`rm -rf lib`</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`npx tsc --declaration --emitDeclarationOnly --outDir lib/esm`</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">await</span> buildESM()
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">await</span> $<span style="color:#f1fa8c">`npx tsc --declaration --emitDeclarationOnly --outDir lib/cjs`</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">await</span> buildCJS()
+</span></span><span style="display:flex;"><span>    console.log(chalk.green(<span style="color:#f1fa8c">&#39;Overall compilation successful&#39;</span>))
+</span></span><span style="display:flex;"><span>} <span style="color:#ff79c6">catch</span> (error) {
+</span></span><span style="display:flex;"><span>    console.error(chalk.red(<span style="color:#f1fa8c">&#39;Overall compilation failed:&#39;</span>), chalk.red(error.message))
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><ul>
+<li>Other more simple way:
+For a minimal setup without separate script files, you can add these commands directly to your <code>package.json</code>:</li>
+</ul>
+<p>Example with <code>pnpm</code>:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#f1fa8c">&#34;scripts&#34;</span>: {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;build&#34;</span>: <span style="color:#f1fa8c">&#34;pnpm run build:esm &amp;&amp; pnpm run build:cjs&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;build:esm&#34;</span>: <span style="color:#f1fa8c">&#34;tsc -p tsconfig.lib.json --outDir lib/esm&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;build:cjs&#34;</span>: <span style="color:#f1fa8c">&#34;tsc -p tsconfig.lib.json --module CommonJS --moduleResolution Node --verbatimModuleSyntax false --outDir lib/cjs&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">&#34;postbuild:cjs&#34;</span>: <span style="color:#f1fa8c">&#34;echo &#39;{\&#34;type\&#34;: \&#34;commonjs\&#34;}&#39; &gt; lib/cjs/package.json&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><hr>
+<p>Article originally published at <a href="https://medium.com/p/b5feabac1357">medium.com/tduyng</a> on 14 June, 2024</p>
+ <div class="pagination">
+    
+    <hr />
+    Thanks for reading! This writing style focuses on clarity and simplicity, explaining concepts in accessible terms rather than pursuing strict academic precision. If you notice anything outdated, feel free to comment or send me a message. 
+
+    <div class="pagination__buttons">
+        
+        <div class="previous">
+            <span class="button__label">Previous</span>
+            <span class="button">
+                <a href="/blog/tsconfig-options-you-should-use/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">Essential tsconfig.json options you should use</span>
+                </a>
+            </span>
+        </div>
+         
+        <div class="next">
+            <span class="button__label">Next</span>
+            <span class="button">
+                <a href="/blog/scripting-tools/">
+                    <span class="button__text">Scripting tools - A Node.js friendly alternative to makefile</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+        </div>
+        
+    </div>
+</div>
+
+                    </article>
+                    <div class="sharing-buttons">
+    <h3>Share this post:</h3>
+    <ul class="sharing-list" id="right">
+        <li>
+            <a
+                href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2ftduyng.com%2fblog%2fdual-package-typescript&t=How%20to%20build%20dual%20package%20npm%20from%20Typescript%20-%20the%20easiest%20way"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/hacker-news.svg" alt="Share on Hacker News" class="sharing-icon" />
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://www.reddit.com/submit?url=https%3a%2f%2ftduyng.com%2fblog%2fdual-package-typescript&title=How%20to%20build%20dual%20package%20npm%20from%20Typescript%20-%20the%20easiest%20way"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/reddit.svg" alt="Share on Reddit" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://mastodon.social/share?url=https%3a%2f%2ftduyng.com%2fblog%2fdual-package-typescript&text=How%20to%20build%20dual%20package%20npm%20from%20Typescript%20-%20the%20easiest%20way"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/mastodon.svg" alt="Share on Mastodon" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://x.com/intent/tweet?url=https%3a%2f%2ftduyng.com%2fblog%2fdual-package-typescript&text=How%20to%20build%20dual%20package%20npm%20from%20Typescript%20-%20the%20easiest%20way"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/x.svg" alt="Share on Twitter" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftduyng.com%2fblog%2fdual-package-typescript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/facebook.svg" alt="Share on Facebook" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftduyng.com%2fblog%2fdual-package-typescript&title=How%20to%20build%20dual%20package%20npm%20from%20Typescript%20-%20the%20easiest%20way"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/linkedin.svg" alt="Share on LinkedIn" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a href="mailto:?subject=How%20to%20build%20dual%20package%20npm%20from%20Typescript%20-%20the%20easiest%20way&body=https%3a%2f%2ftduyng.com%2fblog%2fdual-package-typescript">
+                <img src="/icon/email.svg" alt="Share via Email" class="sharing-icon" />
+            </a>
+        </li>
+    </ul>
+</div>
+ 
+<div
+    class="reaction right"
+    data-endpoint="https://reaction.tienduy-nguyen-dev.workers.dev"
+></div>
+
+ 
+
+                </div>
+
+                
+<script
+    src="https://giscus.app/client.js"
+    data-repo="tduyng/tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    data-mapping="specific"
+    data-term="blog/dual-package-typescript"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="bottom"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async
+></script>
+
+ <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/archive">archive</a>
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+            </main>
+        </div>
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>

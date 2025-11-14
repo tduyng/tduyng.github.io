@@ -1,0 +1,203 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/notes/update-dependencies-nodejs" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>[Note] Different ways to batch update Nodejs dependencies</title>
+    <meta
+        property="og:title"
+        content="[Note] Different ways to batch update Nodejs dependencies"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Software Engineer" />
+    <meta property="og:description" content="Software Engineer" />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="prose-page">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold"></span>
+
+               
+            <a class="instant fold" href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold"></span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold"></span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold"></span>
+            
+        </nav>
+    </div>
+    <div id="reading-progress"></div>
+</header>
+
+
+    <div id="wrapper-notes">
+    <main>
+      <div>
+      
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+
+      <article class="prose notes">
+        <div class="notes-entry lazy-entry">
+            <div class="thought-content">
+                <h1 id="different-ways-to-batch-update-nodejs-dependencies">Different ways to batch update Node.js dependencies</h1>
+<p>Here are a few simple ways to batch update all the Node.js dependencies in package.json:</p>
+<ul>
+<li>
+<p><strong>yarn v2:</strong></p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>yarn upgrade-interactive
+</span></span></code></pre><p>This gives you an interactive list so you can choose exactly which packages to update.</p>
+</li>
+<li>
+<p><strong>npm:</strong><br>
+Use <a href="https://www.npmjs.com/package/npm-check-updates">npm-check-updates</a>.</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>npm install -g npm-check-updates
+</span></span><span style="display:flex;"><span>ncu -i <span style="color:#6272a4"># interactive update</span>
+</span></span></code></pre><p>This automatically updates your <code>package.json</code> with the latest versions.</p>
+</li>
+<li>
+<p><strong>pnpm:</strong></p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>pnpm update -i <span style="color:#6272a4"># interactive update</span>
+</span></span><span style="display:flex;"><span>pnpm update --latest <span style="color:#6272a4"># update all to latest versions</span>
+</span></span></code></pre></li>
+<li>
+<p><strong>bun:</strong></p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>bun update --latest <span style="color:#6272a4"># update all to latest versions</span>
+</span></span></code></pre></li>
+<li>
+<p><strong>deno:</strong></p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>deno outdateed --update --latest <span style="color:#6272a4"># update dependencies to latest versions, ignoring semver requirements</span>
+</span></span></code></pre></li>
+<li>
+<p><strong>taze:</strong><br>
+If you don't want to rely on a specific package management, <a href="https://www.npmjs.com/package/taze">taze</a> is another tool that smartly upgrades your dependencies.</p>
+</li>
+<li>
+<p><strong>CI</strong></p>
+<p>If you’d rather automate the whole process on CI, consider integrating tools like Renovate or Dependabot into your workflow. They’ll automatically open pull requests with updates, so you can review and merge changes without extra efforts.</p>
+</li>
+</ul>
+
+                <p class="timestamp">
+                    <a href="/notes/">← Back to Notes</a>
+                </p>
+            </div>
+        </div>
+        <article>
+      </div>
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="tduyng/tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    data-mapping="specific"
+    data-term="notes/update-dependencies-nodejs"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="bottom"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async
+></script>
+
+
+    <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/archive">archive</a>
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+    </main>
+</div>
+
+        <script>
+            
+            
+        </script>
+
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>

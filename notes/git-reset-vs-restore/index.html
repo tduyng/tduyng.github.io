@@ -1,0 +1,271 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/notes/git-reset-vs-restore" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>[Note] Git Reset vs. Git Restore</title>
+    <meta
+        property="og:title"
+        content="[Note] Git Reset vs. Git Restore"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Software Engineer" />
+    <meta property="og:description" content="Software Engineer" />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="prose-page">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold"></span>
+
+               
+            <a class="instant fold" href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold"></span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold"></span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold"></span>
+            
+        </nav>
+    </div>
+    <div id="reading-progress"></div>
+</header>
+
+
+    <div id="wrapper-notes">
+    <main>
+      <div>
+      
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+
+      <article class="prose notes">
+        <div class="notes-entry lazy-entry">
+            <div class="thought-content">
+                <h1 id="git-reset-vs-git-restore">Git Reset vs. Git Restore</h1>
+<h2 id="git-reset"><code>git reset</code></h2>
+<ul>
+<li>
+<p>Undo commits (keep changes staged):</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>git reset --soft HEAD~        <span style="color:#6272a4"># Move HEAD but keep changes staged</span>
+</span></span><span style="display:flex;"><span>git reset --soft &lt;commit&gt;     <span style="color:#6272a4"># Move to specific commit, keep changes staged</span>
+</span></span></code></pre></li>
+<li>
+<p>Unstage changes (keep changes in working directory):</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>git reset HEAD~              <span style="color:#6272a4"># Reset --mixed (default), move HEAD and unstage changes</span>
+</span></span><span style="display:flex;"><span>git reset &lt;commit&gt;           <span style="color:#6272a4"># Reset --mixed, move to specific commit and unstage changes</span>
+</span></span><span style="display:flex;"><span>git reset HEAD &lt;file&gt;        <span style="color:#6272a4"># Unstage a specific file</span>
+</span></span></code></pre></li>
+<li>
+<p>Discard commits and changes (destructive):</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>git reset --hard HEAD~1      <span style="color:#6272a4"># Discard commits and changes permanently</span>
+</span></span></code></pre></li>
+</ul>
+<h2 id="git-restore"><code>git restore</code></h2>
+<ul>
+<li>
+<p>Discard working directory changes:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>git restore &lt;file&gt;           <span style="color:#6272a4"># Revert file to its state in the last commit</span>
+</span></span></code></pre></li>
+<li>
+<p>Unstage changes:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>git restore --staged &lt;file&gt;  <span style="color:#6272a4"># Move changes from staging area to working directory</span>
+</span></span></code></pre></li>
+<li>
+<p>Restore a file from a specific commit:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>git restore --source<span style="color:#ff79c6">=</span>&lt;commit&gt; &lt;file&gt; <span style="color:#6272a4"># Restore file from a specific commit</span>
+</span></span></code></pre></li>
+</ul>
+<h2 id="key-differences">Key differences</h2>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Branch pointer</th>
+<th>Staging area</th>
+<th>Working directory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>git reset &lt;commit&gt;</code></td>
+<td>Moves</td>
+<td>Resets (unstages)</td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>git reset --soft &lt;commit&gt;</code></td>
+<td>Moves</td>
+<td>Unchanged</td>
+<td>Unchanged</td>
+</tr>
+<tr>
+<td><code>git restore &lt;file&gt;</code></td>
+<td>Unchanged</td>
+<td>Unchanged</td>
+<td>Resets file</td>
+</tr>
+<tr>
+<td><code>git restore --staged &lt;file&gt;</code></td>
+<td>Unchanged</td>
+<td>Resets (unstages)</td>
+<td>Unchanged</td>
+</tr>
+</tbody>
+</table>
+<h2 id="when-to-use">When to use?</h2>
+<ul>
+<li>
+<p><code>git reset</code>:</p>
+<ul>
+<li>Move branch pointers or undo commits.</li>
+<li>Unstage changes (though <code>git restore --staged</code> is more intuitive).</li>
+</ul>
+</li>
+<li>
+<p><code>git restore</code>:</p>
+<ul>
+<li>Discard changes in the working directory.</li>
+<li>Unstage changes (modern alternative to <code>git reset HEAD &lt;file&gt;</code>).</li>
+</ul>
+</li>
+</ul>
+<h2 id="pro-tips">Pro tips</h2>
+<ul>
+<li>Recover from a hard reset:
+Use <code>git reflog</code> to find the lost commit and reset back:</li>
+</ul>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>git reflog
+</span></span><span style="display:flex;"><span>git reset --hard &lt;hash&gt;
+</span></span></code></pre><ul>
+<li>Combine <code>git reset</code> and <code>git restore</code>:
+Reset to a specific commit but keep changes in the working directory:</li>
+</ul>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>git reset &lt;commit&gt;
+</span></span><span style="display:flex;"><span>git restore .
+</span></span></code></pre><ul>
+<li>Avoid <code>--hard</code> unless necessary:
+Use <code>--soft</code> or <code>--mixed</code> to preserve changes.</li>
+</ul>
+
+                <p class="timestamp">
+                    <a href="/notes/">← Back to Notes</a>
+                </p>
+            </div>
+        </div>
+        <article>
+      </div>
+    
+<script
+    src="https://giscus.app/client.js"
+    data-repo="tduyng/tduyng.github.io"
+    data-repo-id="MDEwOlJlcG9zaXRvcnkyNjAzNTM0NzM="
+    data-category="General"
+    data-category-id="DIC_kwDOD4Stwc4CfSpo"
+    data-mapping="specific"
+    data-term="notes/git-reset-vs-restore"
+    data-strict="1"
+    data-reactions-enabled="1"
+    data-emit-metadata="1"
+    data-input-position="bottom"
+    data-theme="dark_dimmed"
+    data-lang="en"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async
+></script>
+
+
+    <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/archive">archive</a>
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+    </main>
+</div>
+
+        <script>
+            
+            
+        </script>
+
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>

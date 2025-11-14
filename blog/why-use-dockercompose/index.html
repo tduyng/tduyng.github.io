@@ -1,0 +1,545 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/blog/why-use-dockercompose" />
+    
+    <meta name="keywords" content="docker, compose" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>Why use Docker compose</title>
+    <meta
+        property="og:title"
+        content="Why use Docker compose"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Discover the advantages and reasons behind utilizing Docker Compose for managing multi-container Docker applications." />
+    <meta property="og:description" content="Discover the advantages and reasons behind utilizing Docker Compose for managing multi-container Docker applications." />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="post">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold"></span>
+
+               
+            <a class="instant fold" href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold"></span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold"></span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold"></span>
+            
+        </nav>
+    </div>
+    <div id="reading-progress"></div>
+</header>
+
+
+        <div id="wrapper">
+            <div id="blank"></div>
+            <aside>
+                
+<nav>
+    <ul>
+        
+        <li>
+            <a class="h2" href="#what-is-docker-compose">What is ?</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#project-demo">Project demo</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#installation">Installation</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#create-docker-images-without-docker-compose">Create Docker Images without Docker compose</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#create-docker-image-using-docker-compose">Create Docker image using Docker compose</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#resume">Resume</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#reference">Reference</a>
+            
+        </li>
+        
+    </ul>
+</nav>
+
+
+                <button id="back-to-top" aria-label="back to top">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill="currentColor"></path></svg>
+                </button>
+            </aside>
+            <main>
+                <div>
+                    
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+ 
+                    <article class="prose" data-backlink-icon="">
+                        <h1>Why use Docker compose</h1>
+                        <div id="post-info">
+                            <div id="date">
+                                <span id="publish">Jan 25, 2021</span>
+                                
+                            </div>
+
+                            <div id="wordcount">
+    <span>1186 words - 6 min read</span>
+</div>
+
+                        </div>
+
+                        <div id="tags">
+                              
+                            <a class="instant" href="/tags/docker"><span>#</span>docker</a>
+                              
+                            <a class="instant" href="/tags/compose"><span>#</span>compose</a>
+                            
+                        </div>
+
+                        
+ <h2 id="what-is-docker-compose">What is <strong>Docker compose</strong>?</h2>
+<p>If you read this article, I think you maybe already understand what is <a href="https://www.docker.com/why-docker">Docker</a>.</p>
+<p>Docker is a tool which helps to create, deploy, and run applications by using containers. Docker provides developers and operators with a friendly interface to build, ship, and run containers on any environment.</p>
+<p>With the docker-cli, we can run and execute the Docker container via <a href="https://docs.docker.com/engine/reference/builder/#:~:text=A%20Dockerfile%20is%20a%20text,can%20use%20in%20a%20Dockerfile%20.">Dockerfile</a>. But with Dockerfile, we can work only with a container, but in the project, we normally work with multiple containers. In that case, we need to use <strong>Docker compose</strong>.</p>
+<p><strong>Docker Compose</strong> define the services that make up your app in <code>docker-compose.yml</code> so they can be run together in an isolated environment. It get an app running in one command by just running <code>docker-compose up</code>.</p>
+<p><strong>Docker compose</strong> uses the <code>Dockerfile</code> if one add the build command to your project’s <code>docker-compose.yml</code>. Your Docker workflow should be to build a suitable <code>Dockerfile</code> for each image you wish to create, then use compose to assemble the images using the build command.</p>
+<p>We will create a demo: simple app nodejs using Redis. You will see the problem with only <strong>Dockerfile</strong> and why use <strong>Docker compose</strong>.</p>
+<h2 id="project-demo">Project demo</h2>
+<h3 id="installation">Installation</h3>
+<p>Make sure you have docker &amp; docker-compose installed in your machine:</p>
+<ul>
+<li><a href="https://docs.docker.com/get-docker/">How to install docker</a></li>
+<li><a href="https://docs.docker.com/compose/install/">How to install docker-compose</a></li>
+</ul>
+<h3 id="create-docker-images-without-docker-compose">Create Docker Images without Docker compose</h3>
+<ul>
+<li>
+<p>Create project folder</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>mkdir node-redis-demo
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">cd</span> node-redis-demo
+</span></span></code></pre></li>
+<li>
+<p>Create <code>package.json</code> file</p>
+<p>In this file, we will declare the dependencies we use for our application. This step is similar as you create the Nodejs application (without <strong>npm install</strong> or <strong>yarn add</strong> dependencies).</p>
+<p>We consider our computer don't have <strong>npm</strong> or <strong>yarn</strong> installed. We just use Docker to create the develop environment.</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>touch package.json <span style="color:#6272a4"># or yarn init -y</span>
+</span></span></code></pre><p>Paste the following code:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">//package.json
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  {
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#34;name&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;node-redis-app&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#34;version&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;1.0.0&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#34;main&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;index.js&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#34;license&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;MIT&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#34;scripts&#34;</span><span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;start&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;node index.js&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#34;dependencies&#34;</span><span style="color:#ff79c6">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;redis&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;*&#34;</span>, <span style="color:#6272a4">//We don&#39;t care about the version of dependencies
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    <span style="color:#f1fa8c">&#34;express&#34;</span><span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#34;*&#34;</span>, <span style="color:#6272a4">//Docker will fetch the latest version of them
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></li>
+<li>
+<p>Create <code>index.js</code> file to config <code>express</code> and run server</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">//index.js
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> express <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;express&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> redis <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;redis&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> app <span style="color:#ff79c6">=</span> express();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> client <span style="color:#ff79c6">=</span> redis.createClient();
+</span></span><span style="display:flex;"><span>client.on(<span style="color:#f1fa8c">&#39;error&#39;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (error) {
+</span></span><span style="display:flex;"><span>  console.error(error);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>client.set(<span style="color:#f1fa8c">&#39;visits&#39;</span>, <span style="color:#bd93f9">0</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app.get(<span style="color:#f1fa8c">&#39;/&#39;</span>, (req, res) =&gt; {
+</span></span><span style="display:flex;"><span>  client.get(<span style="color:#f1fa8c">&#39;visits&#39;</span>, (err, visits) =&gt; {
+</span></span><span style="display:flex;"><span>    res.send(<span style="color:#f1fa8c">&#39;Number of visits is &#39;</span> <span style="color:#ff79c6">+</span> visits);
+</span></span><span style="display:flex;"><span>    client.set(<span style="color:#f1fa8c">&#39;visits&#39;</span>, <span style="color:#8be9fd;font-style:italic">parseInt</span>(visits) <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> port <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">8080</span>;
+</span></span><span style="display:flex;"><span>app.listen(port, () =&gt; {
+</span></span><span style="display:flex;"><span>  console.log(<span style="color:#f1fa8c">&#39;App Redis is running on port 8080&#39;</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span>
+</span></span></code></pre></li>
+<li>
+<p>Create <strong>Dockerfile</strong></p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Dockerfile</span>
+</span></span><span style="display:flex;"><span>FROM node:12.18-alpine <span style="color:#6272a4">#Version nodejs we want to use</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>WORKDIR /app <span style="color:#6272a4">#Define the work directory of project in Docker container</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>COPY package*.json ./ <span style="color:#6272a4">#Make sure always copy package.json and package-lock.json to build folder</span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># Copy package.json to avoid reinstall all the dependencies for each build</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>RUN yarn install <span style="color:#6272a4">#Run install and update dependencies from package.json</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>COPY . . <span style="color:#6272a4">#Copy all other files to the build folder</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">EXPOSE 8080 #Optional</span>: Port running on Docker container
+</span></span><span style="display:flex;"><span>CMD [&#34;node&#34;, &#34;index.js&#34;] <span style="color:#6272a4">#Command line to run project</span>
+</span></span><span style="display:flex;"><span>
+</span></span></code></pre><p>You can also check an article on my blog for more information of Dockerfile: <a href="https://tduyng.github.io/blog/create-simple-project-nodejs-with-docker">Create simple project Nodejs with Docker</a></p>
+</li>
+<li>
+<p>Create <code>.dockerignore</code></p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>node_modules
+</span></span><span style="display:flex;"><span>npm-debug.log
+</span></span><span style="display:flex;"><span>yarn-debug.log
+</span></span></code></pre></li>
+<li>
+<p>Build Docker Image
+OK, everything is done. Now, we will build this image:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>docker build -t node-redis-app .
+</span></span></code></pre><p>Don't forget the point <strong>.</strong> in the end.</p>
+<p>You can check all images available in your computer:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>docker images
+</span></span></code></pre></li>
+<li>
+<p>Run Docker container from Docker image
+We have already an Docker image node-redis-app. The thing to do now is run container from this image to start project.</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>docker run -p 8080:8080 -it node-redis-app
+</span></span></code></pre><p><strong>-p 8080:8080</strong> flag: declare port using (port on Docker container and port on your machine)
+<strong>-it</strong> flag: allow access inside the terminal of Docker container
+<strong>node-redis-app</strong>: name image of your app</p>
+</li>
+<li>
+<p>Problem
+When you run with the command above, you will see an error failed connection with Redis-server:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>$ docker run -p 8080:8080 -it node-redis-app
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>App Redis is running on port <span style="color:#bd93f9">8080</span>
+</span></span><span style="display:flex;"><span>Error: Redis connection to 127.0.0.1:6379 failed - connect ECONNREFUSED 127.0.0.1:6379
+</span></span><span style="display:flex;"><span>    at TCPConnectWrap.afterConnect <span style="color:#ff79c6">[</span>as oncomplete<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">(</span>net.js:1141:16<span style="color:#ff79c6">)</span> <span style="color:#ff79c6">{</span>
+</span></span><span style="display:flex;"><span>  errno: <span style="color:#f1fa8c">&#39;ECONNREFUSED&#39;</span>,
+</span></span><span style="display:flex;"><span>  code: <span style="color:#f1fa8c">&#39;ECONNREFUSED&#39;</span>,
+</span></span><span style="display:flex;"><span>  syscall: <span style="color:#f1fa8c">&#39;connect&#39;</span>,
+</span></span><span style="display:flex;"><span>  address: <span style="color:#f1fa8c">&#39;127.0.0.1&#39;</span>,
+</span></span><span style="display:flex;"><span>  port: <span style="color:#bd93f9">6379</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span></code></pre><p><strong>What is the problem ?</strong>
+The problem is: You want to run 2 containers in same times.
+==&gt; <strong>redis-server</strong> &amp;&amp; <strong>nodejs</strong>
+But when you run your Dockerfile, you run only Nodejs app container, not to redis container.
+You can also create other redis-server container from <a href="https://hub.docker.com/_/redis">redis</a> image</p>
+<p>There are no any link between 2 this containers. Your Nodejs application can't connect to <strong>redis-server</strong>(from <strong>redis</strong> Docker image).</p>
+<p><strong>How to resolve this error?</strong>
+The answer is <strong>Docker compose</strong>. In this case, we need to use Docker compose to run and connect multiple Docker container.</p>
+</li>
+</ul>
+<h3 id="create-docker-image-using-docker-compose">Create Docker image using Docker compose</h3>
+<ul>
+<li>
+<p>To make sure the project above running, we need simply create a <code>docker-compose.yml</code> file.
+It is a config file for docker-compose. It allows us to define the services (container) using in our app.</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>touch docker-compose.yml
+</span></span></code></pre></li>
+<li>
+<p>Add the following code:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">version</span>: <span style="color:#f1fa8c">&#39;3.8&#39;</span> <span style="color:#6272a4">#version of docker-compose</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">services</span>: <span style="color:#6272a4"># declare containers used</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">redis-server</span>: <span style="color:#6272a4">#image of redis</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">image</span>: <span style="color:#f1fa8c">&#39;redis&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">node-app</span>: <span style="color:#6272a4">#images of your node app (using Dockerfile, package.json ...)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">restart</span>: always <span style="color:#6272a4">#If this container stops for any reason, always attempt to restart it</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">build</span>: .
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">ports</span>:
+</span></span><span style="display:flex;"><span>            - <span style="color:#f1fa8c">&#39;8080:8080&#39;</span>
+</span></span></code></pre><p>Check <a href="https://docs.docker.com/compose/gettingstarted/">docker compose</a> for more details about configuration.</p>
+</li>
+<li>
+<p>Update redis services to <code>index.js</code> file</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// index.js
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> express <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;express&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> redis <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;redis&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> app <span style="color:#ff79c6">=</span> express()
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> process <span style="color:#ff79c6">=</span> require(<span style="color:#f1fa8c">&#39;process&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> client <span style="color:#ff79c6">=</span> redis.createClient({
+</span></span><span style="display:flex;"><span>    host<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;redis-server&#39;</span>,
+</span></span><span style="display:flex;"><span>    port<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;6379&#39;</span>,
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>client.on(<span style="color:#f1fa8c">&#39;error&#39;</span>, <span style="color:#8be9fd;font-style:italic">function</span> (error) {
+</span></span><span style="display:flex;"><span>    console.error(error)
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>client.set(<span style="color:#f1fa8c">&#39;visits&#39;</span>, <span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app.get(<span style="color:#f1fa8c">&#39;/&#39;</span>, (req, res) =&gt; {
+</span></span><span style="display:flex;"><span>    process.exit(<span style="color:#bd93f9">0</span>)
+</span></span><span style="display:flex;"><span>    client.get(<span style="color:#f1fa8c">&#39;visits&#39;</span>, (err, visits) =&gt; {
+</span></span><span style="display:flex;"><span>        res.send(<span style="color:#f1fa8c">&#39;Number of visits is &#39;</span> <span style="color:#ff79c6">+</span> visits)
+</span></span><span style="display:flex;"><span>        client.set(<span style="color:#f1fa8c">&#39;visits&#39;</span>, <span style="color:#8be9fd;font-style:italic">parseInt</span>(visits) <span style="color:#ff79c6">+</span> <span style="color:#bd93f9">1</span>)
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> port <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">8080</span>
+</span></span><span style="display:flex;"><span>app.listen(port, () =&gt; {
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#f1fa8c">&#39;App Redis is running on port 8080&#39;</span>)
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></li>
+<li>
+<p>Build and run your app with docker-compose</p>
+<p>In the root project:</p>
+<ul>
+<li>
+<p>Build images:</p>
+<pre><code>                    ```bash
+                    docker-compose build
+                    ```
+
+                    When you use docker-compose to build the image, the image name is always going to be `&lt;project&gt;_&lt;service&gt;`, where `&lt;service&gt;` in this example is node-redis-app_node-app.
+</code></pre>
+</li>
+<li>
+<p>Run containers with docker-compose</p>
+<pre><code>                ```bash
+                docker-compose up # all services declared in docker-compose.yml will be started
+                docker-compose up -d #detach mode
+                ```
+</code></pre>
+</li>
+<li>
+<p>Stop containers with docker-compose</p>
+<pre><code>                ```bash
+                docker-compose down # Stop all containers declared in docker-compose.yml file
+                ```
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p>That's it. Test the code on your machine and check it in then <a href="http://localhost:8080">localhost8080</a> to see the result.</p>
+<h2 id="resume">Resume</h2>
+<p>Docker compose:</p>
+<ul>
+<li>Separate CLI that gets installed along with Docker</li>
+<li>Used to startup multiple Docker containers at the same time</li>
+<li>Automate some of the long-winded arguments we were passing to <code>docker run</code></li>
+<li>Docker compose will start and connect all the containers Docker that you declare in the <code>docker-compose.yml</code> file. We will use it usually when we work with Docker.</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<ul>
+<li><a href="https://github.com/tduyng/try-docker/tree/master/01.dive-into-docker/simple-with-redis">Code demo GitHub</a></li>
+<li><a href="https://tduyng.github.io/blog/create-simple-project-nodejs-with-docker">Previous post: create simple Nodejs app with Docker</a></li>
+<li><a href="https://docs.docker.com/">Docker official</a></li>
+<li><a href="https://docs.docker.com/compose/">Learn about Docker compose</a></li>
+<li><a href="https://jstobigdata.com/docker-compose-cheatsheet/">Docker compose cheatsheet</a></li>
+</ul>
+ <div class="pagination">
+    
+
+    <div class="pagination__buttons">
+        
+        <div class="previous">
+            <span class="button__label">Previous</span>
+            <span class="button">
+                <a href="/blog/create-simple-project-nodejs-with-docker/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">Create simple web app Nodejs with Docker</span>
+                </a>
+            </span>
+        </div>
+         
+        <div class="next">
+            <span class="button__label">Next</span>
+            <span class="button">
+                <a href="/blog/start-a-new-journey/">
+                    <span class="button__text">Start a new journey</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+        </div>
+        
+    </div>
+</div>
+
+                    </article>
+                    <div class="sharing-buttons">
+    <h3>Share this post:</h3>
+    <ul class="sharing-list" id="right">
+        <li>
+            <a
+                href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2ftduyng.com%2fblog%2fwhy-use-dockercompose&t=Why%20use%20Docker%20compose"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/hacker-news.svg" alt="Share on Hacker News" class="sharing-icon" />
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://www.reddit.com/submit?url=https%3a%2f%2ftduyng.com%2fblog%2fwhy-use-dockercompose&title=Why%20use%20Docker%20compose"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/reddit.svg" alt="Share on Reddit" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://mastodon.social/share?url=https%3a%2f%2ftduyng.com%2fblog%2fwhy-use-dockercompose&text=Why%20use%20Docker%20compose"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/mastodon.svg" alt="Share on Mastodon" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://x.com/intent/tweet?url=https%3a%2f%2ftduyng.com%2fblog%2fwhy-use-dockercompose&text=Why%20use%20Docker%20compose"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/x.svg" alt="Share on Twitter" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftduyng.com%2fblog%2fwhy-use-dockercompose"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/facebook.svg" alt="Share on Facebook" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftduyng.com%2fblog%2fwhy-use-dockercompose&title=Why%20use%20Docker%20compose"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/linkedin.svg" alt="Share on LinkedIn" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a href="mailto:?subject=Why%20use%20Docker%20compose&body=https%3a%2f%2ftduyng.com%2fblog%2fwhy-use-dockercompose">
+                <img src="/icon/email.svg" alt="Share via Email" class="sharing-icon" />
+            </a>
+        </li>
+    </ul>
+</div>
+ 
+<div
+    class="reaction right"
+    data-endpoint="https://reaction.tienduy-nguyen-dev.workers.dev"
+></div>
+
+ 
+
+                </div>
+
+                
+ <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/archive">archive</a>
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+            </main>
+        </div>
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>

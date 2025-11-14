@@ -1,0 +1,533 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/blog/challenges-ruby-03" />
+    
+    <meta name="keywords" content="ruby, algorithms" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>Simple coding challenges with Ruby - 03</title>
+    <meta
+        property="og:title"
+        content="Simple coding challenges with Ruby - 03"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Dive into fun coding challenges in Ruby. Get practical tips and solutions to improve your coding skills." />
+    <meta property="og:description" content="Dive into fun coding challenges in Ruby. Get practical tips and solutions to improve your coding skills." />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="post">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold"></span>
+
+               
+            <a class="instant fold" href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold"></span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold"></span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold"></span>
+            
+        </nav>
+    </div>
+    <div id="reading-progress"></div>
+</header>
+
+
+        <div id="wrapper">
+            <div id="blank"></div>
+            <aside>
+                
+<nav>
+    <ul>
+        
+        <li>
+            <a class="h2" href="#kata-challenges">Kata challenges</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#1-rot13-5kyu">1. Rot13 (5kyu)</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#2-greed-is-good-5kyu">2. Greed is Good (5kyu)</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#3-string-incrementer-5kyu">3. String incrementer (5kyu)</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#reference">Reference</a>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#series-ruby-coding-challenges">Series Ruby Coding Challenges</a>
+            
+        </li>
+        
+    </ul>
+</nav>
+
+
+                <button id="back-to-top" aria-label="back to top">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill="currentColor"></path></svg>
+                </button>
+            </aside>
+            <main>
+                <div>
+                    
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+ 
+                    <article class="prose" data-backlink-icon="">
+                        <h1>Simple coding challenges with Ruby - 03</h1>
+                        <div id="post-info">
+                            <div id="date">
+                                <span id="publish">Apr 24, 2020</span>
+                                
+                            </div>
+
+                            <div id="wordcount">
+    <span>1112 words - 6 min read</span>
+</div>
+
+                        </div>
+
+                        <div id="tags">
+                              
+                            <a class="instant" href="/tags/ruby"><span>#</span>ruby</a>
+                              
+                            <a class="instant" href="/tags/algorithms"><span>#</span>algorithms</a>
+                            
+                        </div>
+
+                        
+<blockquote
+    id="outdate_alert"
+    class="callout caution hidden"
+    data-days="365"
+    data-alert-text-before="This article was last updated "
+    data-alert-text-after=" days ago and may be out of date."
+>
+    <div class="content"></div>
+</blockquote>
+
+ <p>Doing coding challenges is an excellent way to imporve your programming language &amp; problem-solvings skills.</p>
+<p><sub><em>I'am learning and trying to improve my English. So I'm really sorry if my grammar mistakes annoy you. Thank you for your understanding.</em></sub></p>
+<h2 id="kata-challenges">Kata challenges</h2>
+<p>My level on codewars now is 5kyu. You can check my <a href="https://www.codewars.com/users/tduyng">Codewars</a>. So, today when I take the new challenges with the option rank up, Codewars gave me only the 5kyu challenges.</p>
+<p>Let's take a look together!</p>
+<h3 id="1-rot13-5kyu">1. Rot13 (5kyu)</h3>
+<p>The first challenge today is still handle string. There are too many string algorithms. Maybe in the next day, I will choose the challenges by subject. For example, I will learn the OOP soon. So I think I will choose the katas in this subject.</p>
+<p>Now, we will go to solve the challenge.</p>
+<p>:bell: Task: <a href="https://www.codewars.com/kata/530e15517bc88ac656000716/train/ruby">Rot13</a></p>
+<blockquote>
+<p>ROT13 is a simple letter substitution cipher that replaces a letter with the letter 13 letters after it in the alphabet. ROT13 is an example of the Caesar cipher.</p>
+</blockquote>
+<blockquote>
+<p>Create a function that takes a string and returns the string ciphered with Rot13. If there are numbers or special characters included in the string, they should be returned as they are. Only letters from the latin/english alphabet should be shifted, like in the original Rot13 &quot;implementation&quot;.</p>
+</blockquote>
+<p>For example</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>&#34;grfg&#34; == rot13(&#34;test&#34;)
+</span></span><span style="display:flex;"><span>&#34;Grfg&#34; == rot13(&#34;Test&#34;)
+</span></span></code></pre><hr>
+<p>:arrow_right: My solution:</p>
+<ul>
+<li>It becomes more complicated with the 5kyu level. I take me more time to reach the best solution what I can.</li>
+<li>To do this challenge</li>
+</ul>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">rot13</span>(str)
+</span></span><span style="display:flex;"><span>  lower<span style="color:#ff79c6">=*</span>(<span style="color:#bd93f9">97</span><span style="color:#ff79c6">..</span><span style="color:#bd93f9">122</span>)
+</span></span><span style="display:flex;"><span>  upper<span style="color:#ff79c6">=*</span>(<span style="color:#bd93f9">65</span><span style="color:#ff79c6">..</span><span style="color:#bd93f9">90</span>)
+</span></span><span style="display:flex;"><span>  str_ascii <span style="color:#ff79c6">=</span> str<span style="color:#ff79c6">.</span>bytes<span style="color:#ff79c6">.</span>map <span style="color:#ff79c6">do</span> <span style="color:#ff79c6">|</span>num<span style="color:#ff79c6">|</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> lower<span style="color:#ff79c6">.</span>include?(num)
+</span></span><span style="display:flex;"><span>      (num<span style="color:#ff79c6">-</span><span style="color:#bd93f9">13</span>) <span style="color:#ff79c6">&gt;=</span> <span style="color:#bd93f9">97</span> <span style="color:#ff79c6">?</span> (num<span style="color:#ff79c6">-</span><span style="color:#bd93f9">13</span>) : (num<span style="color:#ff79c6">-</span><span style="color:#bd93f9">13</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">122</span><span style="color:#ff79c6">-</span><span style="color:#bd93f9">96</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">elsif</span> upper<span style="color:#ff79c6">.</span>include?(num)
+</span></span><span style="display:flex;"><span>      (num<span style="color:#ff79c6">-</span><span style="color:#bd93f9">13</span>) <span style="color:#ff79c6">&gt;=</span> <span style="color:#bd93f9">65</span> <span style="color:#ff79c6">?</span> (num<span style="color:#ff79c6">-</span><span style="color:#bd93f9">13</span>) : (num<span style="color:#ff79c6">-</span><span style="color:#bd93f9">13</span><span style="color:#ff79c6">+</span><span style="color:#bd93f9">90</span><span style="color:#ff79c6">-</span><span style="color:#bd93f9">64</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">else</span>
+</span></span><span style="display:flex;"><span>      num
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> str_ascii<span style="color:#ff79c6">.</span>map(<span style="color:#ff79c6">&amp;</span><span style="color:#f1fa8c">:chr</span>)<span style="color:#ff79c6">.</span>join
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span></code></pre><hr>
+<p>:heavy_check_mark: Best solution on codewars</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">rot13</span>(string)
+</span></span><span style="display:flex;"><span>  string<span style="color:#ff79c6">.</span>tr(<span style="color:#f1fa8c">&#34;A-Za-z&#34;</span>, <span style="color:#f1fa8c">&#34;N-ZA-Mn-za-m&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span></code></pre><pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">rot13</span>(string)
+</span></span><span style="display:flex;"><span>  origin <span style="color:#ff79c6">=</span> (<span style="color:#f1fa8c">&#39;a&#39;</span><span style="color:#ff79c6">..</span><span style="color:#f1fa8c">&#39;z&#39;</span>)<span style="color:#ff79c6">.</span>to_a<span style="color:#ff79c6">.</span>join <span style="color:#ff79c6">+</span> (<span style="color:#f1fa8c">&#39;A&#39;</span><span style="color:#ff79c6">..</span><span style="color:#f1fa8c">&#39;Z&#39;</span>)<span style="color:#ff79c6">.</span>to_a<span style="color:#ff79c6">.</span>join
+</span></span><span style="display:flex;"><span>  cipher <span style="color:#ff79c6">=</span> (<span style="color:#f1fa8c">&#39;a&#39;</span><span style="color:#ff79c6">..</span><span style="color:#f1fa8c">&#39;z&#39;</span>)<span style="color:#ff79c6">.</span>to_a<span style="color:#ff79c6">.</span>rotate(<span style="color:#bd93f9">13</span>)<span style="color:#ff79c6">.</span>join <span style="color:#ff79c6">+</span> (<span style="color:#f1fa8c">&#39;A&#39;</span><span style="color:#ff79c6">..</span><span style="color:#f1fa8c">&#39;Z&#39;</span>)<span style="color:#ff79c6">.</span>to_a<span style="color:#ff79c6">.</span>rotate(<span style="color:#bd93f9">13</span>)<span style="color:#ff79c6">.</span>join
+</span></span><span style="display:flex;"><span>  string<span style="color:#ff79c6">.</span>tr(origin, cipher)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span></code></pre><p>Oh la la, how smart are they!!!
+I don't think the people can have a lot of super clever idea to resolve this challenge like that.</p>
+<h3 id="2-greed-is-good-5kyu">2. Greed is Good (5kyu)</h3>
+<p>:bell: Task: <a href="https://www.codewars.com/kata/5270d0d18625160ada0000e4/train/ruby">Greed is Good</a></p>
+<blockquote>
+<p>Greed is a dice game played with five six-sided dice. Your mission, should you choose to accept it, is to score a throw according to these rules. You will always be given an array with five six-sided dice values.</p>
+</blockquote>
+<p>dice values</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>  Three 1&#39;s =&gt; 1000 points
+</span></span><span style="display:flex;"><span>  Three 6&#39;s =&gt;  600 points
+</span></span><span style="display:flex;"><span>  Three 5&#39;s =&gt;  500 points
+</span></span><span style="display:flex;"><span>  Three 4&#39;s =&gt;  400 points
+</span></span><span style="display:flex;"><span>  Three 3&#39;s =&gt;  300 points
+</span></span><span style="display:flex;"><span>  Three 2&#39;s =&gt;  200 points
+</span></span><span style="display:flex;"><span>  One   1   =&gt;  100 points
+</span></span><span style="display:flex;"><span>  One   5   =&gt;   50 point
+</span></span></code></pre><p>For example</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>Throw       Score
+</span></span><span style="display:flex;"><span>---------   ------------------
+</span></span><span style="display:flex;"><span>5 1 3 4 1   250:  50 (for the 5) + 2 * 100 (for the 1s)
+</span></span><span style="display:flex;"><span>1 1 1 3 1   1100: 1000 (for three 1s) + 100 (for the other 1)
+</span></span><span style="display:flex;"><span>2 4 4 5 4   450:  400 (for three 4s) + 50 (for the 5)
+</span></span></code></pre><hr>
+<p>:arrow_right: My solution:</p>
+<ul>
+<li>I struggled to find an short and better solution for this challenge.</li>
+<li>Finally I did a quite long solution.</li>
+<li>So my idea is create an dictionary rules contains all case points of numbers. I convert it to string. For example: 31 means three 1's.</li>
+<li>Then I took some steps to convert the input array to an array with the same format of rules: new_array</li>
+<li>Loop through new_array, check with the rules to solve the sum</li>
+</ul>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">score</span>(dice)
+</span></span><span style="display:flex;"><span>  rules <span style="color:#ff79c6">=</span> {<span style="color:#f1fa8c">&#34;31&#34;</span><span style="color:#ff79c6">=&gt;</span><span style="color:#bd93f9">1000</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;36&#34;</span><span style="color:#ff79c6">=&gt;</span><span style="color:#bd93f9">600</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;35&#34;</span><span style="color:#ff79c6">=&gt;</span><span style="color:#bd93f9">500</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;34&#34;</span><span style="color:#ff79c6">=&gt;</span><span style="color:#bd93f9">400</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;33&#34;</span><span style="color:#ff79c6">=&gt;</span><span style="color:#bd93f9">300</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;32&#34;</span><span style="color:#ff79c6">=&gt;</span><span style="color:#bd93f9">200</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;11&#34;</span><span style="color:#ff79c6">=&gt;</span><span style="color:#bd93f9">100</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;21&#34;</span><span style="color:#ff79c6">=&gt;</span><span style="color:#bd93f9">200</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;41&#34;</span><span style="color:#ff79c6">=&gt;</span><span style="color:#bd93f9">1100</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;51&#34;</span><span style="color:#ff79c6">=&gt;</span><span style="color:#bd93f9">1200</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;15&#34;</span><span style="color:#ff79c6">=&gt;</span><span style="color:#bd93f9">50</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;25&#34;</span><span style="color:#ff79c6">=&gt;</span><span style="color:#bd93f9">100</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;45&#34;</span><span style="color:#ff79c6">=&gt;</span><span style="color:#bd93f9">550</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f1fa8c">&#34;55&#34;</span><span style="color:#ff79c6">=&gt;</span><span style="color:#bd93f9">600</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  arr_uniq<span style="color:#ff79c6">=</span>dice<span style="color:#ff79c6">.</span>uniq
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4"># Create a hash {&#34;1&#34; =&gt; 0, &#34;2&#34; =&gt;0 ...}</span>
+</span></span><span style="display:flex;"><span>  check <span style="color:#ff79c6">=</span> arr_uniq<span style="color:#ff79c6">.</span>zip(<span style="color:#8be9fd;font-style:italic">Array</span><span style="color:#ff79c6">.</span>new(arr_uniq<span style="color:#ff79c6">.</span>size,<span style="color:#bd93f9">0</span>))<span style="color:#ff79c6">.</span>to_h
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4"># Count the number of dice array and set it in the check hash</span>
+</span></span><span style="display:flex;"><span>  arr <span style="color:#ff79c6">=</span> dice<span style="color:#ff79c6">.</span>each <span style="color:#ff79c6">do</span> <span style="color:#ff79c6">|</span>num<span style="color:#ff79c6">|</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> check<span style="color:#ff79c6">.</span>key?(num)
+</span></span><span style="display:flex;"><span>      check<span style="color:#ff79c6">[</span>num<span style="color:#ff79c6">]</span> <span style="color:#ff79c6">+=</span> <span style="color:#bd93f9">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4"># Convert the hash to an array with the same format of rules</span>
+</span></span><span style="display:flex;"><span>  new_arr <span style="color:#ff79c6">=[]</span>
+</span></span><span style="display:flex;"><span>  check<span style="color:#ff79c6">.</span>each {<span style="color:#ff79c6">|</span>k,v<span style="color:#ff79c6">|</span>
+</span></span><span style="display:flex;"><span>    new_arr<span style="color:#ff79c6">.</span>push(v<span style="color:#ff79c6">.</span>to_s<span style="color:#ff79c6">+</span>k<span style="color:#ff79c6">.</span>to_s)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#6272a4"># solve the sum</span>
+</span></span><span style="display:flex;"><span>  sum <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>
+</span></span><span style="display:flex;"><span>  new_arr<span style="color:#ff79c6">.</span>each <span style="color:#ff79c6">do</span> <span style="color:#ff79c6">|</span>item<span style="color:#ff79c6">|</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> rules<span style="color:#ff79c6">.</span>key?(item)
+</span></span><span style="display:flex;"><span>      sum <span style="color:#ff79c6">+=</span> rules<span style="color:#ff79c6">[</span>item<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> sum
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span></code></pre><hr>
+<p>:heavy_check_mark: Best solution on codewars</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>SCORE_MAP <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">1</span> <span style="color:#ff79c6">=&gt;</span> <span style="color:#ff79c6">[</span><span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">100</span>, <span style="color:#bd93f9">200</span>, <span style="color:#bd93f9">1000</span>, <span style="color:#bd93f9">1100</span>, <span style="color:#bd93f9">1200</span>, <span style="color:#bd93f9">2000</span><span style="color:#ff79c6">]</span>,
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">2</span> <span style="color:#ff79c6">=&gt;</span> <span style="color:#ff79c6">[</span><span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">200</span>, <span style="color:#bd93f9">200</span>, <span style="color:#bd93f9">200</span>, <span style="color:#bd93f9">400</span><span style="color:#ff79c6">]</span>,
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">3</span> <span style="color:#ff79c6">=&gt;</span> <span style="color:#ff79c6">[</span><span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">300</span>, <span style="color:#bd93f9">300</span>, <span style="color:#bd93f9">300</span>, <span style="color:#bd93f9">600</span><span style="color:#ff79c6">]</span>,
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">4</span> <span style="color:#ff79c6">=&gt;</span> <span style="color:#ff79c6">[</span><span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">400</span>, <span style="color:#bd93f9">400</span>, <span style="color:#bd93f9">400</span>, <span style="color:#bd93f9">800</span><span style="color:#ff79c6">]</span>,
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">5</span> <span style="color:#ff79c6">=&gt;</span> <span style="color:#ff79c6">[</span><span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">50</span>, <span style="color:#bd93f9">100</span>, <span style="color:#bd93f9">500</span>, <span style="color:#bd93f9">550</span>, <span style="color:#bd93f9">600</span>, <span style="color:#bd93f9">1000</span><span style="color:#ff79c6">]</span>,
+</span></span><span style="display:flex;"><span><span style="color:#bd93f9">6</span> <span style="color:#ff79c6">=&gt;</span> <span style="color:#ff79c6">[</span><span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">600</span>, <span style="color:#bd93f9">600</span>, <span style="color:#bd93f9">600</span>, <span style="color:#bd93f9">1200</span><span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">score</span>( dice )
+</span></span><span style="display:flex;"><span>  (<span style="color:#bd93f9">1</span><span style="color:#ff79c6">..</span><span style="color:#bd93f9">6</span>)<span style="color:#ff79c6">.</span>inject(<span style="color:#bd93f9">0</span>) <span style="color:#ff79c6">do</span> <span style="color:#ff79c6">|</span>score, die<span style="color:#ff79c6">|</span>
+</span></span><span style="display:flex;"><span>    score <span style="color:#ff79c6">+=</span> SCORE_MAP<span style="color:#ff79c6">[</span>die<span style="color:#ff79c6">][</span>dice<span style="color:#ff79c6">.</span>count(die)<span style="color:#ff79c6">]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span></code></pre><pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">score</span>( dice )
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">[</span> dice<span style="color:#ff79c6">.</span>count(<span style="color:#bd93f9">1</span>) <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">3</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">1000</span>,
+</span></span><span style="display:flex;"><span>  dice<span style="color:#ff79c6">.</span>count(<span style="color:#bd93f9">6</span>) <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">3</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">600</span>,
+</span></span><span style="display:flex;"><span>  dice<span style="color:#ff79c6">.</span>count(<span style="color:#bd93f9">5</span>) <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">3</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">500</span>,
+</span></span><span style="display:flex;"><span>  dice<span style="color:#ff79c6">.</span>count(<span style="color:#bd93f9">4</span>) <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">3</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">400</span>,
+</span></span><span style="display:flex;"><span>  dice<span style="color:#ff79c6">.</span>count(<span style="color:#bd93f9">3</span>) <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">3</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">300</span>,
+</span></span><span style="display:flex;"><span>  dice<span style="color:#ff79c6">.</span>count(<span style="color:#bd93f9">2</span>) <span style="color:#ff79c6">/</span> <span style="color:#bd93f9">3</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">200</span>,
+</span></span><span style="display:flex;"><span>  dice<span style="color:#ff79c6">.</span>count(<span style="color:#bd93f9">1</span>) <span style="color:#ff79c6">%</span> <span style="color:#bd93f9">3</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">100</span>,
+</span></span><span style="display:flex;"><span>  dice<span style="color:#ff79c6">.</span>count(<span style="color:#bd93f9">5</span>) <span style="color:#ff79c6">%</span> <span style="color:#bd93f9">3</span> <span style="color:#ff79c6">*</span> <span style="color:#bd93f9">50</span> <span style="color:#ff79c6">].</span>reduce(<span style="color:#f1fa8c">:+</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span></code></pre><pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">score</span>( dice )
+</span></span><span style="display:flex;"><span>  m <span style="color:#ff79c6">=</span> {<span style="color:#bd93f9">1</span> <span style="color:#ff79c6">=&gt;</span> <span style="color:#bd93f9">100</span>, <span style="color:#bd93f9">5</span> <span style="color:#ff79c6">=&gt;</span> <span style="color:#bd93f9">50</span>}
+</span></span><span style="display:flex;"><span>  (<span style="color:#bd93f9">1</span><span style="color:#ff79c6">..</span><span style="color:#bd93f9">6</span>)<span style="color:#ff79c6">.</span>reduce(<span style="color:#bd93f9">0</span>) <span style="color:#ff79c6">do</span><span style="color:#ff79c6">|</span>res, i<span style="color:#ff79c6">|</span>
+</span></span><span style="display:flex;"><span>    count <span style="color:#ff79c6">=</span> dice<span style="color:#ff79c6">.</span>count(i)
+</span></span><span style="display:flex;"><span>    res <span style="color:#ff79c6">+</span> count<span style="color:#ff79c6">/</span><span style="color:#bd93f9">3</span> <span style="color:#ff79c6">*</span> i <span style="color:#ff79c6">*</span> (i<span style="color:#ff79c6">==</span><span style="color:#bd93f9">1</span> <span style="color:#ff79c6">?</span> <span style="color:#bd93f9">1000</span> : <span style="color:#bd93f9">100</span>) <span style="color:#ff79c6">+</span> count<span style="color:#ff79c6">%</span><span style="color:#bd93f9">3</span><span style="color:#ff79c6">*</span>(m<span style="color:#ff79c6">[</span>i<span style="color:#ff79c6">].</span>to_i)
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>
+</span></span></code></pre><p>I take more 2 solutions of coderwars for this challenge because each solution give an each different way to solve this interesting kata.</p>
+<p>I love the first solution because it is the same idea as I thought. But they use an excelent method. The code is very elegent and readable.</p>
+<h3 id="3-string-incrementer-5kyu">3. String incrementer (5kyu)</h3>
+<p>:bell: Task: <a href="https://www.codewars.com/kata/54a91a4883a7de5d7800009c/train/ruby">String incrementer</a></p>
+<blockquote>
+<p>Your job is to write a function which increments a string, to create a new string. If the string already ends with a number, the number should be incremented by 1. If the string does not end with a number. the number 1 should be appended to the new string.</p>
+</blockquote>
+<p>For example</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>foo -&gt; foo1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>foobar23 -&gt; foobar24
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>foo0042 -&gt; foo0043
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>foo9 -&gt; foo10
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>foo099 -&gt; foo100
+</span></span></code></pre><hr>
+<p>:arrow_right: My solution:</p>
+<ul>
+<li>Return &quot;1&quot; if input string is empty</li>
+<li>Split array to two parts: only last numbers and the first part</li>
+<li>With the last numbers, we will increase one and keep their same format</li>
+<li>Join the first part and the new numbers and we are the result</li>
+</ul>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">increment_string</span>(input)
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">if</span> input<span style="color:#ff79c6">.</span>empty?
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> <span style="color:#f1fa8c">&#34;1&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">end</span>
+</span></span><span style="display:flex;"><span>  arr <span style="color:#ff79c6">=</span> input<span style="color:#ff79c6">.</span>split(<span style="color:#f1fa8c">/(\d*$)/</span>)
+</span></span><span style="display:flex;"><span>  num <span style="color:#ff79c6">=</span> (arr<span style="color:#ff79c6">[</span><span style="color:#bd93f9">1</span><span style="color:#ff79c6">].</span>to_i<span style="color:#ff79c6">+</span><span style="color:#bd93f9">1</span>)<span style="color:#ff79c6">.</span>to_s
+</span></span><span style="display:flex;"><span>  new_num <span style="color:#ff79c6">=</span> (arr<span style="color:#ff79c6">.</span>size <span style="color:#ff79c6">&gt;</span> <span style="color:#bd93f9">1</span>) <span style="color:#ff79c6">&amp;&amp;</span> num<span style="color:#ff79c6">.</span>length <span style="color:#ff79c6">&lt;</span> arr<span style="color:#ff79c6">[</span><span style="color:#bd93f9">1</span><span style="color:#ff79c6">].</span>length ? (<span style="color:#f1fa8c">&#34;0&#34;</span><span style="color:#ff79c6">*</span>(arr<span style="color:#ff79c6">[</span><span style="color:#bd93f9">1</span><span style="color:#ff79c6">].</span>length<span style="color:#ff79c6">-</span>num<span style="color:#ff79c6">.</span>length)<span style="color:#ff79c6">+</span>num) : num
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">return</span> arr<span style="color:#ff79c6">[</span><span style="color:#bd93f9">0</span><span style="color:#ff79c6">]+</span>new_num
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span></code></pre><hr>
+<p>:heavy_check_mark: Best solution on codewars</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">increment_string</span>(input)
+</span></span><span style="display:flex;"><span>  input<span style="color:#ff79c6">.</span>sub(<span style="color:#f1fa8c">/\d*$/</span>) { <span style="color:#ff79c6">|</span>n<span style="color:#ff79c6">|</span> n<span style="color:#ff79c6">.</span>empty? ? <span style="color:#bd93f9">1</span> : n<span style="color:#ff79c6">.</span>succ }
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span></code></pre><pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">increment_string</span>(input)
+</span></span><span style="display:flex;"><span>  input<span style="color:#ff79c6">[</span><span style="color:#f1fa8c">/\d\z/</span><span style="color:#ff79c6">]</span> ? input<span style="color:#ff79c6">.</span>sub(<span style="color:#f1fa8c">/(\d+)\z/</span>) { <span style="color:#8be9fd;font-style:italic">$1</span><span style="color:#ff79c6">.</span>next } : input <span style="color:#ff79c6">+</span> <span style="color:#f1fa8c">&#39;1&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span></code></pre><pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">increment_string</span>(input)
+</span></span><span style="display:flex;"><span>  input<span style="color:#ff79c6">.</span>gsub(<span style="color:#f1fa8c">/\d+/</span>) { <span style="color:#ff79c6">|</span>match<span style="color:#ff79c6">|</span> match<span style="color:#ff79c6">.</span>succ } <span style="color:#ff79c6">if</span> <span style="color:#8be9fd;font-style:italic">Integer</span>(input<span style="color:#ff79c6">.</span>chars<span style="color:#ff79c6">.</span>last) <span style="color:#ff79c6">rescue</span> input <span style="color:#ff79c6">&lt;&lt;</span> <span style="color:#f1fa8c">&#34;1&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">end</span>
+</span></span></code></pre><p>You can see what the people can do, always one line of code. That's awesome!
+With these solutions, I can learn more about a method &quot;.succ&quot; and &quot;.next&quot; and more about using the block code of the gsub like them.</p>
+<h2 id="reference">Reference</h2>
+<p>You can find the code in my github repository <i class="fab fa-github"></i> <a href="https://github.com/tduyng/coding-challenges/tree/master/codewars-ruby">Codewars Ruby</a></p>
+<p>You can also check out my another repository that contains all the programs day by day I worked with The Hacking project <i class="fab fa-github"></i> <a href="https://github.com/tduyng/thehackingproject">thehackingproject</a></p>
+<p>The Hacking Project website <a href="https://www.thehackingproject.org/">thehackingproject.org</a></p>
+<p>Codeware website <a href="https://codewars.com">coderwars.com</a></p>
+<h2 id="series-ruby-coding-challenges">Series Ruby Coding Challenges</h2>
+<ol>
+<li><a href="/blog/challenges-ruby-01">Ruby Coding Challenges with TheHackingProject - 01</a></li>
+<li><a href="/blog/challenges-ruby-02">Ruby Coding Challenges with TheHackingProject - 02</a></li>
+<li><a href="/blog/challenges-ruby-03">Ruby Coding Challenges with TheHackingProject - 03</a></li>
+</ol>
+ <div class="pagination">
+    
+
+    <div class="pagination__buttons">
+        
+        <div class="previous">
+            <span class="button__label">Previous</span>
+            <span class="button">
+                <a href="/blog/challenges-ruby-02/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">Simple coding challenges with Ruby - 02</span>
+                </a>
+            </span>
+        </div>
+         
+        <div class="next">
+            <span class="button__label">Next</span>
+            <span class="button">
+                <a href="/blog/build-free-your-personal-website-using-jekyll/">
+                    <span class="button__text">Build your personal website without spending any money</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+        </div>
+        
+    </div>
+</div>
+
+                    </article>
+                    <div class="sharing-buttons">
+    <h3>Share this post:</h3>
+    <ul class="sharing-list" id="right">
+        <li>
+            <a
+                href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2ftduyng.com%2fblog%2fchallenges-ruby-03&t=Simple%20coding%20challenges%20with%20Ruby%20-%2003"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/hacker-news.svg" alt="Share on Hacker News" class="sharing-icon" />
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://www.reddit.com/submit?url=https%3a%2f%2ftduyng.com%2fblog%2fchallenges-ruby-03&title=Simple%20coding%20challenges%20with%20Ruby%20-%2003"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/reddit.svg" alt="Share on Reddit" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://mastodon.social/share?url=https%3a%2f%2ftduyng.com%2fblog%2fchallenges-ruby-03&text=Simple%20coding%20challenges%20with%20Ruby%20-%2003"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/mastodon.svg" alt="Share on Mastodon" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://x.com/intent/tweet?url=https%3a%2f%2ftduyng.com%2fblog%2fchallenges-ruby-03&text=Simple%20coding%20challenges%20with%20Ruby%20-%2003"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/x.svg" alt="Share on Twitter" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftduyng.com%2fblog%2fchallenges-ruby-03"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/facebook.svg" alt="Share on Facebook" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftduyng.com%2fblog%2fchallenges-ruby-03&title=Simple%20coding%20challenges%20with%20Ruby%20-%2003"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/linkedin.svg" alt="Share on LinkedIn" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a href="mailto:?subject=Simple%20coding%20challenges%20with%20Ruby%20-%2003&body=https%3a%2f%2ftduyng.com%2fblog%2fchallenges-ruby-03">
+                <img src="/icon/email.svg" alt="Share via Email" class="sharing-icon" />
+            </a>
+        </li>
+    </ul>
+</div>
+ 
+<div
+    class="reaction right"
+    data-endpoint="https://reaction.tienduy-nguyen-dev.workers.dev"
+></div>
+
+ 
+
+                </div>
+
+                
+ <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/archive">archive</a>
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+            </main>
+        </div>
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>

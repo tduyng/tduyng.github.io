@@ -1,0 +1,597 @@
+<!doctype html>
+
+<html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="base" content="https://tduyng.com" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="robots" content="index, nofollow" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
+    <link rel="canonical" href="https://tduyng.com/blog/python-vs-javascript" />
+    
+    <meta name="keywords" content="python, javascript" />
+    
+    <meta name="author" content="Duy NG" />
+    <title>Syntax Python vs Javascript</title>
+    <meta
+        property="og:title"
+        content="Syntax Python vs Javascript"
+    />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Duy NG" />
+    
+    <meta name="description" content="Discover the key differences and unique syntax nuances between Python and JavaScript in this engaging comparison." />
+    <meta property="og:description" content="Discover the key differences and unique syntax nuances between Python and JavaScript in this engaging comparison." />
+    
+    <link rel="stylesheet" href="/css/main.css" />
+</head>
+
+    <body class="post">
+        
+<header class="blur">
+    <div id="header-wrapper">
+        <nav>
+            <a class="instant" href="/">tduyng</a>
+
+            
+            <button id="toggler" class="separator" aria-label="toggle expand">
+                ☰
+            </button>
+            <span class="wrap left fold"></span>
+
+               
+            <a class="instant fold" href="/blog">
+                blog
+            </a>
+
+            
+            <span class="wrap-separator fold"></span>
+              
+            <a class="instant fold" href="/notes">
+                notes
+            </a>
+
+            
+            <span class="wrap-separator fold"></span>
+              
+            <a class="instant fold" href="/about">
+                about
+            </a>
+
+             
+
+            <span class="wrap right fold"></span>
+            
+        </nav>
+    </div>
+    <div id="reading-progress"></div>
+</header>
+
+
+        <div id="wrapper">
+            <div id="blank"></div>
+            <aside>
+                
+<nav>
+    <ul>
+        
+        <li>
+            <a class="h2" href="#python-vs-javascript-language-basics">Python vs. JavaScript Language Basics</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#primitive-types">Primitive Types</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#type-checking-and-conversion">Type Checking and Conversion</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#built-in-string-methods">Built-in String Methods</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+        <li>
+            <a class="h2" href="#python-vs-javascript-data-structures">Python vs. JavaScript Data Structures</a>
+            
+            <ul>
+                
+                <li>
+                    <a class="h3" href="#arrays-and-lists">Arrays and Lists</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#array-and-list-methods">Array and List Methods</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#spreading-and-unpacking">Spreading and Unpacking</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#objects-and-dictionaries">Objects and Dictionaries</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#functions">Functions</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#single-line-functions">Single Line Functions</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#conditional-statements">Conditional Statements</a>
+                </li>
+                
+                <li>
+                    <a class="h3" href="#loops-and-iteration">Loops and Iteration</a>
+                </li>
+                
+            </ul>
+            
+        </li>
+        
+    </ul>
+</nav>
+
+
+                <button id="back-to-top" aria-label="back to top">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill="currentColor"></path></svg>
+                </button>
+            </aside>
+            <main>
+                <div>
+                    
+<div
+    id="copy-cfg"
+    style="display: none"
+    data-copy-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M6.9998 6V3C6.9998 2.44772 7.44752 2 7.9998 2H19.9998C20.5521 2 20.9998 2.44772 20.9998 3V17C20.9998 17.5523 20.5521 18 19.9998 18H16.9998V20.9991C16.9998 21.5519 16.5499 22 15.993 22H4.00666C3.45059 22 3 21.5554 3 20.9991L3.0026 7.00087C3.0027 6.44811 3.45264 6 4.00942 6H6.9998ZM5.00242 8L5.00019 20H14.9998V8H5.00242ZM8.9998 6H16.9998V16H18.9998V4H8.9998V6Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+    data-check-icon="&lt;svg xmlns=&#34;http://www.w3.org/2000/svg&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;20&#34; height=&#34;20&#34;&gt;&lt;path d=&#34;M10.0007 15.1709L19.1931 5.97852L20.6073 7.39273L10.0007 17.9993L3.63672 11.6354L5.05093 10.2212L10.0007 15.1709Z&#34; fill=&#34;currentColor&#34;&gt;&lt;/path&gt;&lt;/svg&gt;"
+></div>
+
+ 
+                    <article class="prose" data-backlink-icon="">
+                        <h1>Syntax Python vs Javascript</h1>
+                        <div id="post-info">
+                            <div id="date">
+                                <span id="publish">Sep 5, 2020</span>
+                                
+                            </div>
+
+                            <div id="wordcount">
+    <span>1808 words - 9 min read</span>
+</div>
+
+                        </div>
+
+                        <div id="tags">
+                              
+                            <a class="instant" href="/tags/python"><span>#</span>python</a>
+                              
+                            <a class="instant" href="/tags/javascript"><span>#</span>javascript</a>
+                            
+                        </div>
+
+                        
+ <p>Programming in a new language can feel unfamiliar, intimidating, and tricky to navigate at first. There are new rules, syntax, and nuances to learn.</p>
+<h1 id="python-vs-javascript-language-basics">Python vs. JavaScript Language Basics</h1>
+<p>JavaScript and Python are interpreted programming languages, meaning their runtime environments use an interpreter (or engine) that parses and executes code one statement at a time.</p>
+<p>The two languages are also “object-based” — everything is (or can be treated as) an object: strings, numbers, data structures, functions, etc.</p>
+<h2 id="primitive-types">Primitive Types</h2>
+<p>First up, JavaScript and Python have similar built-in data types. For example, both use numeric data types (integers and floats), strings and Booleans.</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript data types
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> pi <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">3.14</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> age <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">31</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> greeting <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;good morning&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> isAdmin <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">true</span>
+</span></span></code></pre><pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python data types</span>
+</span></span><span style="display:flex;"><span>pi <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">3.14</span>
+</span></span><span style="display:flex;"><span>age <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">13</span>
+</span></span><span style="display:flex;"><span>greeting <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;good morning&#34;</span>
+</span></span><span style="display:flex;"><span>is_admin <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">True</span>
+</span></span></code></pre><h2 id="type-checking-and-conversion">Type Checking and Conversion</h2>
+<p>Python and JavaScript are “dynamically typed” languages, which means you do not have to set the type of a variable explicitly. The data type is set when you assign a value to a variable.</p>
+<p>In JavaScript, you use the typeof operator to verify the data type of a variable. Python provides a similar built-in function, type().</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> greeting <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;good morning&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">typeof</span> greeting <span style="color:#6272a4">// &#34;string&#34;
+</span></span></span></code></pre><pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python</span>
+</span></span><span style="display:flex;"><span>pi <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">3.14</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">type</span>(pi) <span style="color:#6272a4"># float</span>
+</span></span></code></pre><p>You can convert from one type to another, like a string to a number, in Python with the int() and float() functions:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">input</span> <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">input</span>(<span style="color:#f1fa8c">&#39;Enter a number: &#39;</span>) <span style="color:#6272a4">#&#39;2&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># convert string to int</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">int</span>(<span style="color:#8be9fd;font-style:italic">input</span>) <span style="color:#6272a4"># 2</span>
+</span></span></code></pre><p>JavaScript includes the methods parseInt() and parseFloat() for the same purpose:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> input <span style="color:#ff79c6">=</span> prompt(<span style="color:#f1fa8c">&#39;Enter a number:&#39;</span>) <span style="color:#6272a4">// &#39;4&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">parseInt</span>(input) <span style="color:#6272a4">// 4
+</span></span></span></code></pre><h2 id="built-in-string-methods">Built-in String Methods</h2>
+<p>To convert cased characters in a string from uppercase to lowercase (and the reverse), use Python’s upper() and lower() functions:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python</span>
+</span></span><span style="display:flex;"><span>user_name <span style="color:#ff79c6">=</span> <span style="color:#8be9fd;font-style:italic">input</span>(<span style="color:#f1fa8c">&#39;What is your name? &#39;</span>) <span style="color:#6272a4"># GUIL</span>
+</span></span><span style="display:flex;"><span>user_name<span style="color:#ff79c6">.</span>lower() <span style="color:#6272a4"># &#39;guil&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>greeting <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;good evening&#34;</span>
+</span></span><span style="display:flex;"><span>greeting<span style="color:#ff79c6">.</span>upper() <span style="color:#6272a4"># &#39;GOOD EVENING&#39;</span>
+</span></span></code></pre><p>JavaScript supplies the toUpperCase() and toLowerCase() methods to convert strings:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> greeting <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;good evening&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> userName <span style="color:#ff79c6">=</span> prompt(<span style="color:#f1fa8c">&#39;What is your name?&#39;</span>) <span style="color:#6272a4">// &#34;gUiL&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>
+</span></span><span style="display:flex;"><span>greeting.toUpperCase() <span style="color:#6272a4">// &#34;GOOD EVENING&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>userName.toLowerCase() <span style="color:#6272a4">// &#34;guil&#34;
+</span></span></span></code></pre><p><strong>String Interpolation</strong>
+Template literals in JavaScript let you replace ${} placeholders with values inside of a string literal. This process is called string interpolation:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> greeting <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;Good evening&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#39;Guil&#39;</span>
+</span></span><span style="display:flex;"><span>console.log(<span style="color:#f1fa8c">`</span><span style="color:#f1fa8c">${</span>greeting<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, </span><span style="color:#f1fa8c">${</span>name<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">!`</span>) <span style="color:#6272a4">// Good evening, Guil!
+</span></span></span></code></pre><p>The Python string format() method inserts values into a template string containing {} replacement fields. You pass the method the values to interpolate. For example:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python strings</span>
+</span></span><span style="display:flex;"><span>greeting <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Good evening&#34;</span>
+</span></span><span style="display:flex;"><span>name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Guil&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>( <span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">, </span><span style="color:#f1fa8c">{}</span><span style="color:#f1fa8c">!&#34;</span><span style="color:#ff79c6">.</span>format(greeting, name) ) <span style="color:#6272a4"># Good evening, Guil!</span>
+</span></span></code></pre><p>Each set of curly braces gets replaced with the values passed to format() in sequential order.</p>
+<p>Python’s formatted string literal (f-String) offers a more concise syntax to accomplish the same. It looks like a regular string that’s prepended by the character f, and you include the value to interpolate directly inside the string.</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python strings</span>
+</span></span><span style="display:flex;"><span>greeting <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Good evening&#34;</span>
+</span></span><span style="display:flex;"><span>name <span style="color:#ff79c6">=</span> <span style="color:#f1fa8c">&#34;Guil&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;</span><span style="color:#f1fa8c">{</span>greeting<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">, </span><span style="color:#f1fa8c">{</span>name<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">!&#34;</span>) <span style="color:#6272a4"># Good evening, Guil!</span>
+</span></span></code></pre><h1 id="python-vs-javascript-data-structures">Python vs. JavaScript Data Structures</h1>
+<p>JavaScript and Python give you comparable structures to store and organize your data.</p>
+<h2 id="arrays-and-lists">Arrays and Lists</h2>
+<p>Like a JavaScript array, a Python list stores a collection of values in a single container. The values can be different data types like strings, integers, Booleans, etc.</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python list</span>
+</span></span><span style="display:flex;"><span>students <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;Lee&#39;</span>, <span style="color:#f1fa8c">&#39;Toni&#39;</span>, <span style="color:#f1fa8c">&#39;Marie&#39;</span>, <span style="color:#f1fa8c">&#39;Agata&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#6272a4"># return length of list</span>
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">len</span>(students) <span style="color:#6272a4"># 4</span>
+</span></span><span style="display:flex;"><span>students[<span style="color:#bd93f9">2</span>] <span style="color:#6272a4"># &#39;Marie&#39;</span>
+</span></span></code></pre><pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript array
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> students <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;Lee&#39;</span>, <span style="color:#f1fa8c">&#39;Toni&#39;</span>, <span style="color:#f1fa8c">&#39;Marie&#39;</span>, <span style="color:#f1fa8c">&#39;Agata&#39;</span>]
+</span></span><span style="display:flex;"><span>students.length <span style="color:#6272a4">// 4
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>students[<span style="color:#bd93f9">0</span>] <span style="color:#6272a4">// Lee
+</span></span></span></code></pre><p>Notice how both languages have similar ways of returning the length of a list and retrieving a value by index.</p>
+<h2 id="array-and-list-methods">Array and List Methods</h2>
+<p>Since arrays and lists are considered objects in their respective language, there are various properties and methods you can use on them. For example, a common way to add elements to the end of an array in JavaScript is with the push() method:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> instruments <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;piano&#39;</span>, <span style="color:#f1fa8c">&#39;drums&#39;</span>, <span style="color:#f1fa8c">&#39;trumpet&#39;</span>]
+</span></span><span style="display:flex;"><span>instruments.push(<span style="color:#f1fa8c">&#39;guitar&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// [&#39;piano&#39;, &#39;drums&#39;, &#39;trumpet&#39;, &#39;guitar&#39;]
+</span></span></span></code></pre><p>You add an item to the end of a Python list with the append() method:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python</span>
+</span></span><span style="display:flex;"><span>instruments <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;piano&#39;</span>, <span style="color:#f1fa8c">&#39;drums&#39;</span>, <span style="color:#f1fa8c">&#39;trumpet&#39;</span>]
+</span></span><span style="display:flex;"><span>instruments<span style="color:#ff79c6">.</span>append(<span style="color:#f1fa8c">&#39;guitar&#39;</span>) <span style="color:#6272a4"># [&#39;piano&#39;, &#39;drums&#39;, &#39;trumpet&#39;, &#39;guitar&#39;]</span>
+</span></span></code></pre><p>JavaScript arrays and Python lists have a pop() method for removing and returning items. Calling pop() on a JavaScript array removes the last element:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript arrays
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> instruments <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;piano&#39;</span>, <span style="color:#f1fa8c">&#39;drums&#39;</span>, <span style="color:#f1fa8c">&#39;trumpet&#39;</span>]
+</span></span><span style="display:flex;"><span>instruments.pop()
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// &#34;trumpet&#34;
+</span></span></span></code></pre><p>While JavaScript’s pop() method does not accept arguments, Python’s does! For instance, pass pop() the index of the item you want to remove:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python lists</span>
+</span></span><span style="display:flex;"><span>instruments <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;piano&#39;</span>, <span style="color:#f1fa8c">&#39;drums&#39;</span>, <span style="color:#f1fa8c">&#39;trumpet&#39;</span>]
+</span></span><span style="display:flex;"><span>instruments<span style="color:#ff79c6">.</span>pop(<span style="color:#bd93f9">1</span>) <span style="color:#6272a4"># &#39;drums&#39;</span>
+</span></span></code></pre><h2 id="spreading-and-unpacking">Spreading and Unpacking</h2>
+<p>In JavaScript, you use the spread operator (...) to copy, combine and manipulate arrays:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript arrays
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> studentsA <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;Lee&#39;</span>, <span style="color:#f1fa8c">&#39;Toni&#39;</span>, <span style="color:#f1fa8c">&#39;Marie&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> studentsB <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;Meg&#39;</span>, <span style="color:#f1fa8c">&#39;Jesse&#39;</span>, <span style="color:#f1fa8c">&#39;Anwar&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> students <span style="color:#ff79c6">=</span> [...studentsA, ...studentsB]
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// [&#39;Lee&#39;, &#39;Toni&#39;, &#39;Marie&#39;, &#39;Meg&#39;, &#39;Jesse&#39;, &#39;Anwar&#39;]
+</span></span></span></code></pre><p>In a similar way, you can “unpack” items from one Python list into another using an asterisks (*):</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python lists</span>
+</span></span><span style="display:flex;"><span>students_a <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;Lee&#39;</span>, <span style="color:#f1fa8c">&#39;Toni&#39;</span>, <span style="color:#f1fa8c">&#39;Marie&#39;</span>]
+</span></span><span style="display:flex;"><span>students_b <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;Meg&#39;</span>, <span style="color:#f1fa8c">&#39;Jesse&#39;</span>, <span style="color:#f1fa8c">&#39;Anwar&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>students <span style="color:#ff79c6">=</span> [<span style="color:#ff79c6">*</span>students_a, <span style="color:#ff79c6">*</span>students_b]
+</span></span><span style="display:flex;"><span> <span style="color:#6272a4"># [&#39;Lee&#39;, &#39;Toni&#39;, &#39;Marie&#39;, &#39;Meg&#39;, &#39;Jesse&#39;, &#39;Anwar&#39;]</span>
+</span></span></code></pre><p>Both create a copy of a list or array, preserving the original values.</p>
+<p>One handy aspect of the JavaScript spread operator is that you can pass arrays as arguments to functions.</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> numbers <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">10</span>, <span style="color:#bd93f9">20</span>, <span style="color:#bd93f9">30</span>, <span style="color:#bd93f9">40</span>]
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">Math</span>.max(...numbers) <span style="color:#6272a4">// 40
+</span></span></span></code></pre><p>Likewise, you have the ability to unpack items in a Python list for function calls:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python</span>
+</span></span><span style="display:flex;"><span>numbers <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">1</span>, <span style="color:#bd93f9">10</span>]
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">list</span>( <span style="color:#8be9fd;font-style:italic">range</span>(<span style="color:#ff79c6">*</span>numbers) ) <span style="color:#6272a4"># [1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+</span></span></code></pre><p>Both expand an array or list into separate arguments.</p>
+<h2 id="objects-and-dictionaries">Objects and Dictionaries</h2>
+<p>If you’re familiar with JavaScript objects, you’ll recognize Python dictionaries. You write both using curly brackets holding related data in the form of key/value pairs.</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript object
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> pet <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    name<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;Joey&#39;</span>,
+</span></span><span style="display:flex;"><span>    type<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;Dog&#39;</span>,
+</span></span><span style="display:flex;"><span>    breed<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;Australian Shepherd&#39;</span>,
+</span></span><span style="display:flex;"><span>    age<span style="color:#ff79c6">:</span> <span style="color:#bd93f9">8</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python dictionary</span>
+</span></span><span style="display:flex;"><span>pet <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#39;name&#39;</span>: <span style="color:#f1fa8c">&#39;Joey&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#39;type&#39;</span>: <span style="color:#f1fa8c">&#39;Dog&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#39;breed&#39;</span>: <span style="color:#f1fa8c">&#39;Australian Shepherd&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#39;age&#39;</span>: <span style="color:#bd93f9">8</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>Lists and dictionaries, like arrays and objects are mutable, which means that you can change the data inside them without changing their identity. Once you create an object, its type and identity (or the address in memory it’s pointing to) does not change.</p>
+<p><strong>Copying/Merging Objects and Dictionaries</strong></p>
+<p>JavaScript’s spread operator copies key/value pairs from one object literal to another. It’s comparable to the double asterisks (**) operator in Python, which copies and merges dictionaries:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript objects
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> name <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    firstName<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;Reggie&#39;</span>,
+</span></span><span style="display:flex;"><span>    lastName<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;Williams&#39;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">const</span> developer <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>    ...name, <span style="color:#6272a4">// place the &#39;name&#39; key/values here
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span>    title<span style="color:#ff79c6">:</span> <span style="color:#f1fa8c">&#39;Software developer&#39;</span>,
+</span></span><span style="display:flex;"><span>    skills<span style="color:#ff79c6">:</span> [<span style="color:#f1fa8c">&#39;JavaScript&#39;</span>, <span style="color:#f1fa8c">&#39;HTML&#39;</span>, <span style="color:#f1fa8c">&#39;CSS&#39;</span>],
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python dictionaries</span>
+</span></span><span style="display:flex;"><span>name <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#39;firstName&#39;</span>: <span style="color:#f1fa8c">&#39;Reggie&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#39;lastName&#39;</span>: <span style="color:#f1fa8c">&#39;Williams&#39;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>developer <span style="color:#ff79c6">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#ff79c6">**</span>name, <span style="color:#6272a4"># place the &#39;name&#39; key/values here</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#39;title&#39;</span>: <span style="color:#f1fa8c">&#39;Software developer&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f1fa8c">&#39;skills&#39;</span>: [<span style="color:#f1fa8c">&#39;JavaScript&#39;</span>, <span style="color:#f1fa8c">&#39;HTML&#39;</span>, <span style="color:#f1fa8c">&#39;CSS&#39;</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><h2 id="functions">Functions</h2>
+<p>Both languages take full advantage of functions for code reuse. Python uses the def keyword compared to function in JavaScript.</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python function</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">def</span> <span style="color:#50fa7b">add</span>(a, b<span style="color:#ff79c6">=</span><span style="color:#bd93f9">10</span>):
+</span></span><span style="display:flex;"><span>    val a <span style="color:#ff79c6">+</span> b
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> val
+</span></span></code></pre><pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript function
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">function</span> add(a, b <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">10</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">const</span> val <span style="color:#ff79c6">=</span> a <span style="color:#ff79c6">+</span> b
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">return</span> val
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>Notice how both use the return keyword to return a value, and you’re able to specify default parameters in each function definition.</p>
+<h2 id="single-line-functions">Single Line Functions</h2>
+<p>Arrow functions in JavaScript offer a concise syntax for creating functions. More so, if your function body is only one line of code, you can omit the return keyword and place everything on one line:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript arrow function
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> add <span style="color:#ff79c6">=</span> (a, b) =&gt; a <span style="color:#ff79c6">+</span> b
+</span></span></code></pre><p>In Python, the lambda keyword provides syntactic sugar for defining functions as single-line expressions:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python lambda</span>
+</span></span><span style="display:flex;"><span>add <span style="color:#ff79c6">=</span> <span style="color:#ff79c6">lambda</span> a,b : a <span style="color:#ff79c6">+</span> b
+</span></span></code></pre><p>These single-line functions are common when you want to pass an anonymous function as an argument to another (higher-order) function. For example, they’re used with the built-in Python and JavaScript functions map(), filter(), and reduce().</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript arrow function
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> states <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;ca&#39;</span>, <span style="color:#f1fa8c">&#39;fl&#39;</span>, <span style="color:#f1fa8c">&#39;hi&#39;</span>, <span style="color:#f1fa8c">&#39;ny&#39;</span>]
+</span></span><span style="display:flex;"><span>states.map((s) =&gt; s.toUpperCase())
+</span></span><span style="display:flex;"><span><span style="color:#6272a4">// [&#34;CA&#34;, &#34;FL&#34;, &#34;HI&#34;, &#34;NY&#34;]
+</span></span></span></code></pre><pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python lambda</span>
+</span></span><span style="display:flex;"><span>states <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;ca&#39;</span>, <span style="color:#f1fa8c">&#39;fl&#39;</span>, <span style="color:#f1fa8c">&#39;hi&#39;</span>, <span style="color:#f1fa8c">&#39;ny&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#8be9fd;font-style:italic">list</span>( <span style="color:#8be9fd;font-style:italic">map</span>(<span style="color:#ff79c6">lambda</span> s: s<span style="color:#ff79c6">.</span>upper(), states) )
+</span></span><span style="display:flex;"><span> <span style="color:#6272a4"># [&#39;CA&#39;, &#39;FL&#39;, &#39;HI&#39;, &#39;NY&#39;]</span>
+</span></span></code></pre><h2 id="conditional-statements">Conditional Statements</h2>
+<p>Python’s flow control statements also look and work similarly to the if/else you know from JavaScript:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript conditional
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#8be9fd;font-style:italic">let</span> score <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> (score <span style="color:#ff79c6">===</span> <span style="color:#bd93f9">5</span>) {
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#f1fa8c">&#39;Gold Medal!&#39;</span>)
+</span></span><span style="display:flex;"><span>} <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span> (score <span style="color:#ff79c6">&gt;=</span> <span style="color:#bd93f9">3</span>) {
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#f1fa8c">&#39;Silver Medal&#39;</span>)
+</span></span><span style="display:flex;"><span>} <span style="color:#ff79c6">else</span> <span style="color:#ff79c6">if</span> (score <span style="color:#ff79c6">&gt;=</span> <span style="color:#bd93f9">1</span>) {
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#f1fa8c">&#39;Bronze Medal&#39;</span>)
+</span></span><span style="display:flex;"><span>} <span style="color:#ff79c6">else</span> {
+</span></span><span style="display:flex;"><span>    console.log(<span style="color:#f1fa8c">&#39;No Medal :(&#39;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>The most significant difference besides the absence of curly braces and parentheses around the condition is the elif clause, which is short for “else if”.</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python conditional</span>
+</span></span><span style="display:flex;"><span>score <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">5</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">if</span> score <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">5</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Gold Medal!&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">elif</span> score <span style="color:#ff79c6">&gt;=</span> <span style="color:#bd93f9">3</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Silver Medal&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">elif</span> score <span style="color:#ff79c6">&gt;=</span> <span style="color:#bd93f9">1</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;Bronze Medal&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">else</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;No Medal :(&#34;</span>)
+</span></span></code></pre><p>Like JavaScript’s else if clause, you can specify any number of elif clauses, and the optional else clause should appear last.</p>
+<h2 id="loops-and-iteration">Loops and Iteration</h2>
+<p>Lastly, Python has a while loop, which looks and works almost the same as its JavaScript counterpart:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span># Python
+</span></span><span style="display:flex;"><span>password = input(&#34;Enter the secret password: &#34;)
+</span></span><span style="display:flex;"><span>while password != &#39;sesame&#39;:
+</span></span><span style="display:flex;"><span>    password = input(&#34;Invalid password. Try again: &#34;)
+</span></span></code></pre><pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span>// JavaScript
+</span></span><span style="display:flex;"><span>let password = prompt(&#34;Enter the secret password:&#34;);
+</span></span><span style="display:flex;"><span>while (password !== &#39;sesame&#39;) {
+</span></span><span style="display:flex;"><span>  password = prompt(&#34;Invalid password. Try again: &#34;);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>Data types like strings, lists, and dictionaries are also iterable objects in Python; you use a for loop to iterate over them:</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span># Python <span style="color:#ff79c6">for</span> loop
+</span></span><span style="display:flex;"><span>students <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;Lee&#39;</span>, <span style="color:#f1fa8c">&#39;Toni&#39;</span>, <span style="color:#f1fa8c">&#39;Marie&#39;</span>, <span style="color:#f1fa8c">&#39;Jesse&#39;</span>, <span style="color:#f1fa8c">&#39;Anwar&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> student <span style="color:#ff79c6">in</span> students<span style="color:#ff79c6">:</span>
+</span></span><span style="display:flex;"><span>    print(student)
+</span></span></code></pre><p>The above loop seems more elegant as opposed to JavaScript’s verbose for loop. It’s comparable to the for...of loop introduced in ES2015.</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript for...of loop
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">const</span> students <span style="color:#ff79c6">=</span> [<span style="color:#f1fa8c">&#39;Lee&#39;</span>, <span style="color:#f1fa8c">&#39;Toni&#39;</span>, <span style="color:#f1fa8c">&#39;Marie&#39;</span>, <span style="color:#f1fa8c">&#39;Jesse&#39;</span>, <span style="color:#f1fa8c">&#39;Anwar&#39;</span>]
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> (<span style="color:#8be9fd;font-style:italic">let</span> student <span style="color:#ff79c6">of</span> students) {
+</span></span><span style="display:flex;"><span>    console.log(student)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><p>You also use the break keyword in either to exit (or break out of) a while and for loop.</p>
+<pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4"># Python</span>
+</span></span><span style="display:flex;"><span>scores <span style="color:#ff79c6">=</span> [<span style="color:#bd93f9">50</span>, <span style="color:#bd93f9">20</span>, <span style="color:#bd93f9">30</span>, <span style="color:#bd93f9">0</span>, <span style="color:#bd93f9">10</span>, <span style="color:#bd93f9">15</span>, <span style="color:#bd93f9">35</span>]
+</span></span><span style="display:flex;"><span><span style="color:#ff79c6">for</span> score <span style="color:#ff79c6">in</span> scores:
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">f</span><span style="color:#f1fa8c">&#34;Score: </span><span style="color:#f1fa8c">{</span>score<span style="color:#f1fa8c">}</span><span style="color:#f1fa8c">&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> score <span style="color:#ff79c6">==</span> <span style="color:#bd93f9">0</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#8be9fd;font-style:italic">print</span>(<span style="color:#f1fa8c">&#34;You may not continue if you have a 0 score.&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">break</span>
+</span></span></code></pre><pre style="color:#f8f8f2;background-color:#282a36;"><code><span style="display:flex;"><span><span style="color:#6272a4">// JavaScript
+</span></span></span><span style="display:flex;"><span><span style="color:#6272a4"></span><span style="color:#ff79c6">while</span> (<span style="color:#ff79c6">true</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#8be9fd;font-style:italic">let</span> response <span style="color:#ff79c6">=</span> prompt(<span style="color:#f1fa8c">&#34;Type &#39;exit&#39; to make this stop.&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff79c6">if</span> (response <span style="color:#ff79c6">===</span> <span style="color:#f1fa8c">&#39;exit&#39;</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#ff79c6">break</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre><hr>
+<p>Happy learning!</p>
+ <div class="pagination">
+    
+
+    <div class="pagination__buttons">
+        
+        <div class="previous">
+            <span class="button__label">Previous</span>
+            <span class="button">
+                <a href="/blog/better-in-ruby-02/">
+                    <span class="button__icon">←</span>
+                    <span class="button__text">Better In Ruby - 02</span>
+                </a>
+            </span>
+        </div>
+         
+        <div class="next">
+            <span class="button__label">Next</span>
+            <span class="button">
+                <a href="/blog/basic-setup-webpack/">
+                    <span class="button__text">Basic Setup Webpack</span>
+                    <span class="button__icon">→</span>
+                </a>
+            </span>
+        </div>
+        
+    </div>
+</div>
+
+                    </article>
+                    <div class="sharing-buttons">
+    <h3>Share this post:</h3>
+    <ul class="sharing-list" id="right">
+        <li>
+            <a
+                href="https://news.ycombinator.com/submitlink?u=https%3a%2f%2ftduyng.com%2fblog%2fpython-vs-javascript&t=Syntax%20Python%20vs%20Javascript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/hacker-news.svg" alt="Share on Hacker News" class="sharing-icon" />
+            </a>
+        </li>
+        <li>
+            <a
+                href="https://www.reddit.com/submit?url=https%3a%2f%2ftduyng.com%2fblog%2fpython-vs-javascript&title=Syntax%20Python%20vs%20Javascript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/reddit.svg" alt="Share on Reddit" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://mastodon.social/share?url=https%3a%2f%2ftduyng.com%2fblog%2fpython-vs-javascript&text=Syntax%20Python%20vs%20Javascript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/mastodon.svg" alt="Share on Mastodon" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://x.com/intent/tweet?url=https%3a%2f%2ftduyng.com%2fblog%2fpython-vs-javascript&text=Syntax%20Python%20vs%20Javascript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/x.svg" alt="Share on Twitter" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2ftduyng.com%2fblog%2fpython-vs-javascript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/facebook.svg" alt="Share on Facebook" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2ftduyng.com%2fblog%2fpython-vs-javascript&title=Syntax%20Python%20vs%20Javascript"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <img src="/icon/linkedin.svg" alt="Share on LinkedIn" class="sharing-icon" />
+            </a>
+        </li>
+
+        <li>
+            <a href="mailto:?subject=Syntax%20Python%20vs%20Javascript&body=https%3a%2f%2ftduyng.com%2fblog%2fpython-vs-javascript">
+                <img src="/icon/email.svg" alt="Share via Email" class="sharing-icon" />
+            </a>
+        </li>
+    </ul>
+</div>
+ 
+<div
+    class="reaction right"
+    data-endpoint="https://reaction.tienduy-nguyen-dev.workers.dev"
+></div>
+
+ 
+
+                </div>
+
+                
+ <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/archive">archive</a>
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        ©2025 Duy NG
+        <span>|</span>
+        Built with
+        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+    </div>
+</footer>
+
+            </main>
+        </div>
+        <script src="/js/main.js" defer></script>
+<script src="/js/lightense.min.js" defer></script>
+ 
+<script
+    async
+    defer
+    data-website-id="0403ec1f-fbf8-4e6c-b24b-0c585ca25873"
+    src="https://cloud.umami.is/script.js"
+    data-do-not-track="true"
+></script>
+
+
+    </body>
+</html>
