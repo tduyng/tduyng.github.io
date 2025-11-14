@@ -14,25 +14,24 @@ comment = false
 toc = true
 +++
 
-## What analytics I collect
+## Analytics
 
-I don't collect personal data. No IP addresses, no tracking across sessions, no cookies.
+I use self-hosted [Umami](https://umami.is/) to understand how people use this site. It's privacy-friendly (GDPR compliant, no cookies) and tracks only these basics:
 
-To improve the site, I use self-hosted [Umami](https://umami.is/) for basic analytics (page views, referrers) - fully GDPR compliant, That track these non-personal metrics:
+- Pages you visit
+- Where you came from
+- Browser and device type
+- Country (from IP, not stored)
 
-- Which pages you visit
-- Where you came from (referrer)
-- Your browser and device type
-- Your country (based on IP, not stored)
-
-I **don't** track:
-
-- Individual users across sessions
-- How long you stay
+**What I don't track:**
+- Individual users across visits
+- Time spent on pages
 - Where you go after leaving
+
+No personal data. No IP addresses stored. No tracking cookies.
 
 ## Comments
 
-Comments use [giscus](https://giscus.app/) powered by GitHub Discussions. GitHub handles the data per their [privacy policy](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement).
+Comments work through [giscus](https://giscus.app/), which uses GitHub Discussions. GitHub handles this data under their [privacy policy](https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement).
 
-You can view all comments in the [discussions tab](https://github.com/tduyng/tduyng.github.io/discussions/categories/general).
+All comments are public in the [discussions tab](https://github.com/tduyng/tduyng.github.io/discussions/categories/general).
