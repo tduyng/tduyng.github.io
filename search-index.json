@@ -1,33 +1,33 @@
 [
   {
-    "id": "/notes/2025-09-26-nix-again",
+    "id": "/notes/nix-again",
     "title": "[Note] managing everything with nix-darwin + home manager",
     "description": "",
     "content": "Managing everything with nix-darwin + home manager At the beginning of the year, I tried Nix for the first time. I even wrote about my first attempt: migrating from Homebrew to Nix with Home Manager. This time, I finally made it work. I’m now running nix-darwin + nix home manager with flakes to manage all my dotfiles. The cool part: I don’t need anymore. Nix (through flakes) handles all the symlinks. See my old note about stow dotfiles, now all of that is replaced by Nix. Flakes make the whole setup feel cleaner: everything is versioned, pinned, and reproducible. One → all dependencies stay fresh but consistent across machines. Everything is in one place, declarative, reproducible. Install and update feels much faster than when I was only using brew. I still keep Homebrew integrated in my ",
     "tags": [],
-    "url": "/notes/2025-09-26-nix-again",
+    "url": "/notes/nix-again",
     "date": "2025-09-26"
   },
   {
-    "id": "/notes/2025-09-25-atuin",
+    "id": "/notes/atuin",
     "title": "[Note] make your shell magical with Atuin",
     "description": "",
     "content": "Make your shell magical with Atuin Discovered Atuin. Feels like my shell just leveled up. Atuin replaces boring history with something smart: - Full-screen fuzzy search (rebind , or arrow up). - All commands stored in SQLite, not a flat text file. - Encrypted sync across machines. - History per session, per directory, or global. - Knows exit code, duration, cwd, hostname… even stats of “most used commands.” Example: I open a new laptop → log into Atuin → my history is already there. Magic. Bonus: it doesn’t delete your old history file, just makes it better. Supported shells: zsh, bash, fish, nushell, xonsh.",
     "tags": [],
-    "url": "/notes/2025-09-25-atuin",
+    "url": "/notes/atuin",
     "date": "2025-09-25"
   },
   {
-    "id": "/notes/2025-09-20-zoxide",
+    "id": "/notes/zoxide",
     "title": "[Note] everyone should use zoxide",
     "description": "",
     "content": "Everyone should use zoxide I stopped using since more than a year ago. Now I use zoxide. It’s a small rust tool, super fast, and it just remembers every folder you’ve been to. Next time you want to jump back, type: That’s it. No full paths. No thinking. It learns your habits. And the best part: + fzf. It pops up a fuzzy list of your most used folders. Type a few letters, hit enter, and you’re there. Example: - → type → jumps straight to . - Way faster than . After 5 minutes, feels broken. Bonus tricks:",
     "tags": [],
-    "url": "/notes/2025-09-20-zoxide",
+    "url": "/notes/zoxide",
     "date": "2025-09-20"
   },
   {
-    "id": "/blog/2025-09-04-neovim-basic-setup",
+    "id": "/blog/neovim-basic-setup",
     "title": "Part 2: Setting up neovim 0.12 (the core configuration before plugins)",
     "description": "My complete basic setup keymaps, options, autocmds and diagnostics with Neovim 0.12 without installed plugins yet",
     "content": "Prerequisites - Neovim 0.11+ or higher (0.12 (nightly) recommended for latest features) - () - For fast file searching (used in grep settings) - A Nerd Font - For diagnostic icons and symbols This config includes macOS-specific keybindings ( key combinations) Why Neovim 0.12 (nightly)? I use the nightly version because I want to test new features as soon as they're available. The 0.12 development has some really cool stuff coming, including improved diagnostic line highlighting and better LSP integration. The nightly builds are surprisingly stable. I've been running them for months without issues. For installation, follow the Neovim installation guide. My configuration structure Here's exactly how I organize everything (without plugins yet). This modular approach makes the configuration ma",
@@ -36,11 +36,11 @@
       "vim",
       "keymaps"
     ],
-    "url": "/blog/2025-09-04-neovim-basic-setup",
+    "url": "/blog/neovim-basic-setup",
     "date": "2025-09-04"
   },
   {
-    "id": "/blog/2025-09-01-my-neovim-story",
+    "id": "/blog/my-neovim-story",
     "title": "Part 1: My Journey from IDEs to Neovim",
     "description": "Just sharing my story with Neovim and why I finally made the switch",
     "content": "How it started? Back in 2019, I spent a lot of time on YouTube watching programmers. I was curious about how they worked, especially those using Vim. What I noticed was how they did everything so fast, no mouse, no menus, just pure typing. They could jump between files, make complex changes, and refactor code all in seconds. It looked almost like magic. Their hands seemed glued to the keyboard, and the workflow was so clean and focused. Watching them made me think, “Wow, this is really cool, I want to try that too. Maybe I can code faster, more efficiently, and spend less time wasting time clicking around.” So, I decided to give it a shot. I downloaded Vim, opened my terminal, and started searching for guides online. I was excited, but that excitement soon turned into frustration. My first",
@@ -50,38 +50,38 @@
       "ide",
       "vscode"
     ],
-    "url": "/blog/2025-09-01-my-neovim-story",
+    "url": "/blog/my-neovim-story",
     "date": "2025-09-01"
   },
   {
-    "id": "/notes/2025-02-23-update-dependencies-nodejs",
+    "id": "/notes/update-dependencies-nodejs",
     "title": "[Note] Different ways to batch update Nodejs dependencies",
     "description": "",
     "content": "Different ways to batch update Node.js dependencies Here are a few simple ways to batch update all the Node.js dependencies in package.json: - yarn v2: This gives you an interactive list so you can choose exactly which packages to update. - npm: Use npm-check-updates. This automatically updates your with the latest versions. - pnpm: - bun: - deno: - taze: If you don't want to rely on a specific package management, taze is another tool that smartly upgrades your dependencies. - CI If you’d rather automate the whole process on CI, consider integrating tools like Renovate or Dependabot into your workflow. They’ll automatically open pull requests with updates, so you can review and merge changes without extra efforts.",
     "tags": [],
-    "url": "/notes/2025-02-23-update-dependencies-nodejs",
+    "url": "/notes/update-dependencies-nodejs",
     "date": "2025-02-23"
   },
   {
-    "id": "/notes/2025-02-06-git-filter-repo",
+    "id": "/notes/git-filter-repo",
     "title": "[Note] The fastest way to rewrite Git history",
     "description": "",
     "content": "The fastest way to rewrite Git history Ever pushed commits and then realized you messed up? - Wrong Git user/email. - Bad commit messages. - Accidentally committed secrets (API keys, passwords). - A huge file is bloating the repo. - ...and more. Many developers try , but it’s slow, manual, and limited. A better way? Use git-filter-repo, it’s faster, more powerful, and works across the entire repo. Examples of Git problems and fixes - Fix author name/email in all commits - Edit commit messages in bulk - Remove sensitive files from history - Delete large files from old commits - Erase all commits from a specific author For more use cases, check out the full docs.",
     "tags": [],
-    "url": "/notes/2025-02-06-git-filter-repo",
+    "url": "/notes/git-filter-repo",
     "date": "2025-02-06"
   },
   {
-    "id": "/notes/2025-02-05-husky-alternative",
+    "id": "/notes/husky-alternative",
     "title": "[Note] You don't need husky",
     "description": "",
     "content": "You don’t need Husky Do you use to manage Git commit hooks? Husky is a popular tool (50M+ downloads per month!), but did you know that Git already has built-in support for hooks? With Githooks, you don’t need to install extra dependencies. Git provides 28 different hooks that allow you to automate git hooks tasks. How to use? - Create a or directory (just like you’d configure ) - Configure Git to use your hooks scripts Tell Git to use this folder for hooks by adding the following script in your . This ensures that Git hooks are always active after running install (or , , ). - Hook scripts Inside the folder, create scripts named according to the Git Hooks documentation (e.g., , ). Example:",
     "tags": [],
-    "url": "/notes/2025-02-05-husky-alternative",
+    "url": "/notes/husky-alternative",
     "date": "2025-02-05"
   },
   {
-    "id": "/blog/2025-01-29-scripting-tools",
+    "id": "/blog/scripting-tools",
     "title": "Scripting tools - A Node.js friendly alternative to makefile",
     "description": "Using execa and commander is an alternative that can be considered for replacing makefile in a Node.js project",
     "content": "TL;DR Using and is an alternative that can be considered for replacing makefile in a Node.js project. Introduction At ekino, in some projects handled by our Node.js team, we heavily use Makefile to automate tasks such as testing, lints, Docker integration, code checking, deployment, Kubernetes management, load testing with K6, and all automating stuff. They have been our preferred tool for many years due to their simplicity, efficiency, and adaptability to various workflows. As our projects have grown, these files have become increasingly more complex and harder to maintain and understand, especially for team members who are not familiar with shell scripting. Because of these challenges, we've started looking into using JavaScript tools for automating tasks. Our goal is to simplify our pro",
@@ -92,191 +92,191 @@
       "typescript",
       "shell"
     ],
-    "url": "/blog/2025-01-29-scripting-tools",
+    "url": "/blog/scripting-tools",
     "date": "2025-01-29"
   },
   {
-    "id": "/notes/2025-01-23-display-colors-makefile",
+    "id": "/notes/display-colors-makefile",
     "title": "[Note] Display colors in Makefile",
     "description": "",
     "content": "Display colors in Makefile In a previous note, I shared how to create a command in a Makefile. This time, let’s make it visually appealing by adding colors to the output. Here’s how to do it: - , , , and are ANSI escape codes for terminal colors. - sets the color to yellow, to green, and to white. - resets the color to the terminal default. It formats the output with colors: - Yellow for target names. - Green for descriptions. - White for the rest",
     "tags": [],
-    "url": "/notes/2025-01-23-display-colors-makefile",
+    "url": "/notes/display-colors-makefile",
     "date": "2025-01-23"
   },
   {
-    "id": "/notes/2025-01-22-make-display-helper",
+    "id": "/notes/make-display-helper",
     "title": "[Note] Display all Makefile commands",
     "description": "",
     "content": "Display all Makefiles commands Makefiles can be hard to navigate, especially as they grow. Adding a help command makes it easy to see all available targets and their purposes. The magic target Add this snippet to your : How it works - Use to group related targets - And place the description of each command after that group Example Makefile Running or shows:",
     "tags": [],
-    "url": "/notes/2025-01-22-make-display-helper",
+    "url": "/notes/make-display-helper",
     "date": "2025-01-22"
   },
   {
-    "id": "/notes/2025-01-21-combine-git-fzf",
+    "id": "/notes/combine-git-fzf",
     "title": "[Note] Supercharge Git with fzf",
     "description": "",
     "content": "Supercharge Git with fzf Working with Git branches can be annoying, especially with long names or when cleaning up old ones. Try fzf, a tool that makes managing branches easy. Switch branches Use to select and switch branches interactively: Delete branches Delete branch interactively with : I setup them in my shell config to save time:",
     "tags": [],
-    "url": "/notes/2025-01-21-combine-git-fzf",
+    "url": "/notes/combine-git-fzf",
     "date": "2025-01-21"
   },
   {
-    "id": "/notes/2025-01-20-git-log-better",
+    "id": "/notes/git-log-better",
     "title": "[Note] Better Git log",
     "description": "",
     "content": "Better Git log The default output can be hard to read. Here’s how I make it more visual and informative using aliases. - Add these aliases to the global : - Alternatively, set up aliases in your shell config: - Example output That is a little bit better than this: And a lot more readable than the default:",
     "tags": [],
-    "url": "/notes/2025-01-20-git-log-better",
+    "url": "/notes/git-log-better",
     "date": "2025-01-20"
   },
   {
-    "id": "/notes/2025-01-19-git-multiple-account",
+    "id": "/notes/git-multiple-account",
     "title": "[Note] Managing multiple Git accounts",
     "description": "",
     "content": "Managing multiple Git accounts Working with multiple Git accounts (e.g., work, personal, open-source) can be tricky. Here’s how I manage them seamlessly using conditional includes in . Global setup Add conditional includes to the global : Local In each project’s , specify the user and SSH key. Here is example for Git will help us to automatically switch configurations based on the project directory.",
     "tags": [],
-    "url": "/notes/2025-01-19-git-multiple-account",
+    "url": "/notes/git-multiple-account",
     "date": "2025-01-19"
   },
   {
-    "id": "/notes/2025-01-18-git-alias",
+    "id": "/notes/git-alias",
     "title": "[Note] Git aliases",
     "description": "",
     "content": "Git aliases Git aliases are a must have for every developer. They save time, reduce typing, and make your workflow more efficient. You can set them up in two ways: terminal shell aliases or . Terminal shell aliases Here’s a part how I set up my Git aliases in my shell config (e.g. or ...etc.): alias Other way to manage git alias with global",
     "tags": [],
-    "url": "/notes/2025-01-18-git-alias",
+    "url": "/notes/git-alias",
     "date": "2025-01-18"
   },
   {
-    "id": "/notes/2025-01-17-git-changes",
+    "id": "/notes/git-changes",
     "title": "[Note] Run a command if there are unstaged changes",
     "description": "",
     "content": "Run a command if there are unstaged changes A quick one-liner to run a command only if there are unstaged changes: the flag of [](https://git-scm.com/docs/git-diff) The flag does two things: - Disables all output of the command - Exits with if there are differences, and if there are no differences. That means you can combine it with boolean operators to only run another command if files have (or have not) changed: Other tips - Check for untracked files - Include staged changes - Combine with for file watching - Use in CI pipelines",
     "tags": [],
-    "url": "/notes/2025-01-17-git-changes",
+    "url": "/notes/git-changes",
     "date": "2025-01-17"
   },
   {
-    "id": "/notes/2025-01-16-git-ls-files",
+    "id": "/notes/git-ls-files",
     "title": "[Note] List all files tracked by Git",
     "description": "",
     "content": "List all files tracked by Git Sometimes you need a list of all files tracked by Git—for example, when using tools like [](http://eradman.com/entrproject/) to watch files for changes. Instead of fiddling with , Git provides a clean and concise command git-ls-files: This lists all files in the repository that are tracked by Git. Other tips - Include ignored files: - Filter by file type: - Use with to watch files:",
     "tags": [],
-    "url": "/notes/2025-01-16-git-ls-files",
+    "url": "/notes/git-ls-files",
     "date": "2025-01-16"
   },
   {
-    "id": "/notes/2025-01-15-git-checkout-vs-switch",
+    "id": "/notes/git-checkout-vs-switch",
     "title": "[Note] Git Checkout vs. Git Switch",
     "description": "",
     "content": "Git Checkout vs. Git Switch - Switch branches: - Create and switch to a new branch: - Restore files from a specific commit or branch: (modern alternative) - Switch branches: - Create and switch to a new branch: Key differences | Command | Purpose | Notes | | --------------------------------- | --------------------------------- | ------------------------------------ | | | Switch branches | Older, more versatile command. | | | Create and switch to a new branch | Combines branch creation and switch. | | | Restore a file from a commit | Useful for recovering files. | | | Switch branches | Modern, focused alternative. | | | Create and switch to a new branch | Simpler and more intuitive. | When to use? - : - Use for restoring files from a specific commit or branch. - Still works for switching br",
     "tags": [],
-    "url": "/notes/2025-01-15-git-checkout-vs-switch",
+    "url": "/notes/git-checkout-vs-switch",
     "date": "2025-01-15T20:00:00"
   },
   {
-    "id": "/notes/2025-01-15-git-reset-vs-restore",
+    "id": "/notes/git-reset-vs-restore",
     "title": "[Note] Git Reset vs. Git Restore",
     "description": "",
     "content": "Git Reset vs. Git Restore - Undo commits (keep changes staged): - Unstage changes (keep changes in working directory): - Discard commits and changes (destructive): - Discard working directory changes: - Unstage changes: - Restore a file from a specific commit: Key differences | Command | Branch pointer | Staging area | Working directory | | ----------------------------- | -------------- | ----------------- | ----------------- | | | Moves | Resets (unstages) | Unchanged | | | Moves | Unchanged | Unchanged | | | Unchanged | Unchanged | Resets file | | | Unchanged | Resets (unstages) | Unchanged | When to use? - : - Move branch pointers or undo commits. - Unstage changes (though is more intuitive). - : - Discard changes in the working directory. - Unstage changes (modern alternative to ). Pro",
     "tags": [],
-    "url": "/notes/2025-01-15-git-reset-vs-restore",
+    "url": "/notes/git-reset-vs-restore",
     "date": "2025-01-15"
   },
   {
-    "id": "/notes/2025-01-14-gitignore-globally",
+    "id": "/notes/gitignore-globally",
     "title": "[Note] Ingore all .DS_store files globally",
     "description": "",
     "content": "Ignore all files globally If you use Git on a Mac, you’ve probably accidentally committed a file to a repo at least once. I used to add to every file to avoid this, but there’s a better way! You can create a global file that applies to all your repositories. Just run this command: Then, add to your file: This command adds the following to your : Now, files will be ignored across all your projects, no more accidental commits! You can directly edit the file to globally ignore many other files.",
     "tags": [],
-    "url": "/notes/2025-01-14-gitignore-globally",
+    "url": "/notes/gitignore-globally",
     "date": "2025-01-14"
   },
   {
-    "id": "/notes/2025-01-13-update-git-submodules",
+    "id": "/notes/update-git-submodules",
     "title": "[Note] Update all Git submodules to latest commit",
     "description": "",
     "content": "Update all Git submodules to the latest commit If you use Git submodules often, here's the one-liner to update them to the latest commit on origin (since Git 1.8.2): Prefer merging? Swap for .",
     "tags": [],
-    "url": "/notes/2025-01-13-update-git-submodules",
+    "url": "/notes/update-git-submodules",
     "date": "2025-01-13"
   },
   {
-    "id": "/notes/2025-01-12-run-github-actions-locally",
+    "id": "/notes/run-github-actions-locally",
     "title": "[Note] Run Github actions locally",
     "description": "",
     "content": "Run Github actions locally Run GitHub actions locally with act to skip the long feedback loop! It uses Docker to pull images and run workflows right on your machine. Need a GitHub token? Use the flag with the GitHub CLI: Quick, easy, and no more waiting for GitHub to run workflows!",
     "tags": [],
-    "url": "/notes/2025-01-12-run-github-actions-locally",
+    "url": "/notes/run-github-actions-locally",
     "date": "2025-01-12"
   },
   {
-    "id": "/notes/2025-01-10-nix-home-manager",
+    "id": "/notes/nix-home-manager",
     "title": "[Note] First attempt at migrating from Homebrew to Nix with Nix Home Manager",
     "description": "",
     "content": "First attempt at migrating from Homebrew to Nix with Nix Home Manager It didn’t go exactly as planned. I dived into Nix scripts, flakes, and started installing packages with nixpkgs while keeping Homebrew on the side. But... nothing seemed to work correctly. 😵 Tools like shell, , and .etc... didn't work. I probably need to configure each program properly, manage environments, and link the files with Nix... During the migration, I enabled autoCleanUp Homebrew with \"zap\" without paying close attention. Big mistake! It wiped out everything I’d installed through Homebrew. 😱 Aie aie aie. Thankfully, I had saved all my tools in a Brewfile in my dotfiles. A quick restored everything (though it took time to install). Lesson learned: I need to take it step by step with Nix, learning more about prop",
     "tags": [],
-    "url": "/notes/2025-01-10-nix-home-manager",
+    "url": "/notes/nix-home-manager",
     "date": "2025-01-10T20:09:30"
   },
   {
-    "id": "/notes/2025-01-08-aerospace",
+    "id": "/notes/aerospace",
     "title": "[Note] Tilting window management on macOS with aerospace",
     "description": "",
     "content": "Tiling window management on macOS with In the past, I was a user. I used it to move windows into corners or split the screen, basic functionality. Honestly, it never felt transformative. It was fine, but quite basic. I only used it during screen-sharing sessions on Teams calls. I always wanted something more controllable and better organized, with groupings of applications. Recently, I explored , and at first, it seemed like the solution I had been looking for. It offered intuitive window organization, powerful workspace controls, and a lot of cool features. But then I discovered that many of the features I wanted required the Pro version. So I knew I had to look elsewhere. That’s when I came across aerospace, thanks to all the people sharing it on YouTube. And wow! This is the tool I was ",
     "tags": [],
-    "url": "/notes/2025-01-08-aerospace",
+    "url": "/notes/aerospace",
     "date": "2025-01-08T22:00:00"
   },
   {
-    "id": "/notes/2025-01-05-stow-dotfiles",
+    "id": "/notes/stow-dotfiles",
     "title": "[Note] Manage better for my dotfiles.",
     "description": "",
     "content": "Manage better for my dotfiles Up until now, I’ve been handling my dotfiles manually with a Makefile and shell scripts. I used commands like to mirror files from my directory to my folder, and then saved everything on GitHub. While this approach worked, it was tedious and had a lot of limitations: - wouldn’t handle deletions properly, so if I deleted a file in , it wouldn’t be removed from the dotfiles folder. - I had to run every time I wanted to update my dotfiles - Restoring configurations wasn’t properly handled - I also wanted to directly manage the folder with Git, but my current setup didn’t make that easy. Then, I stumbled across a YouTube video about using GNU Stow to manage dotfiles. It’s such a simple yet powerful tool! Stow creates symlinks from your dotfiles folder to your dire",
     "tags": [],
-    "url": "/notes/2025-01-05-stow-dotfiles",
+    "url": "/notes/stow-dotfiles",
     "date": "2025-01-05T12:01:00"
   },
   {
-    "id": "/notes/2025-01-02-neovim-coding",
+    "id": "/notes/neovim-coding",
     "title": "[Note] Returning to Neovim for Coding",
     "description": "",
     "content": "Returning to Neovim for coding I’ve started using Neovim for coding again. Early in my career, like many others, I tried to learn Vim. At first, it was difficult to get used to, but I found it fun and rewarding. For some, Vim can feel more \"professional,\" and there's something satisfying about the cool things you can do with it. I really liked Vim, but when it came to coding, I ran into many challenges. Configuring Vim with the right plugins, settings, and workflows took a lot of time. Back then, I was working with many different languages—Python, Ruby, JavaScript, TypeScript, HTML, CSS—and I could never quite get Vim to work smoothly across all of them. I faced too many issues, so eventually, I switched to VSCode and IntelliJ for most of my coding, using Vim only for occasional file edits",
     "tags": [],
-    "url": "/notes/2025-01-02-neovim-coding",
+    "url": "/notes/neovim-coding",
     "date": "2025-01-03T15:00:00"
   },
   {
-    "id": "/notes/2025-01-04-cli-tools",
+    "id": "/notes/cli-tools",
     "title": "[Note] CLI tools I love using",
     "description": "",
     "content": "CLI tools I love using I’m a huge fan of Rust, and it’s no surprise that many of the tools I rely on in the terminal are written in rust. Here’s a quick rundown of my favorites: - : Fuzzy finder that makes searching files or commands a breeze. - : A modern, colorful alternative to that adds more functionality. - : A smarter command that remembers your most-used directories. - : A user-friendly shell with auto-suggestions and syntax highlighting. - : Fast, customizable prompt with support for all major shells. - : Lightning-fast search tool, a must-have for large codebases. - : Simpler, more intuitive replacement for . - : Faster, friendlier alternative to with colorful output. - : Power tool for processing JSON data in the terminal. - : Terminal-based Git interface, perfect for lazy devs. ",
     "tags": [],
-    "url": "/notes/2025-01-04-cli-tools",
+    "url": "/notes/cli-tools",
     "date": "2025-01-03T15:00:00"
   },
   {
-    "id": "/notes/2025-01-01-ghostty",
+    "id": "/notes/ghostty",
     "title": "[Note] Ghostty?",
     "description": "",
     "content": "Ghostty? Ghostty has just released its official production-ready version: 1.0, and it’s causing quite a hype among developers across all platforms. I’m really curious to try it out! Ghostty is a terminal emulator built with Zig. Most terminal emulators I’ve used, like WezTerm, Warp, Alacritty, and Zellij, are written in Rust. So it’s exciting to see a terminal tool developed in Zig instead. (I really like both of 2 this languages: rust and zig) I decided to give it a shot, even though I’ve been happily using WezTerm. And I have to say, I’m impressed. It’s fast—faster than WezTerm in terms of startup time and when opening new tabs. It integrates smoothly with Fish shell, which I love. The keybindings are easy to access, and the setup process is a really simple. Plus, it supports a variety o",
     "tags": [],
-    "url": "/notes/2025-01-01-ghostty",
+    "url": "/notes/ghostty",
     "date": "2025-01-01T21:00:00"
   },
   {
-    "id": "/notes/2024-12-26-init-notes",
+    "id": "/notes/init-notes",
     "title": "[Note] I’ve started implementing short notes on my website",
     "description": "",
     "content": "I’ve started implementing notes on my website The goal is to create a space for sharing shorter updates, thoughts, and progress on ongoing projects. I plan to update this space regularly with useful insights and updates. Stay tuned for more posts soon.",
     "tags": [],
-    "url": "/notes/2024-12-26-init-notes",
+    "url": "/notes/init-notes",
     "date": "2024-12-26T08:09:00"
   },
   {
-    "id": "/blog/2024-11-13-dual-package-typescript",
+    "id": "/blog/dual-package-typescript",
     "title": "How to build dual package npm from Typescript - the easiest way",
     "description": "Explore an easy way to support dual package TypeScript NPM libraries for both CommonJS and ESM",
     "content": "JavaScript is evolving rapidly. Now, it’s really important for libraries to work with both CommonJS (CJS) and ECMAScript Modules (ESM). In this article, we’ll guide you through an easy and practical approach to handle dual-package support. That means more people can use your library, and it’s easier for them to do so. TL;DR Create a dual-package TypeScript library supporting both ESM and CommonJS: - Understand the different of Javascript file extensions: , , - Use only the extension for both esm and cjs outputs after compilation - Write source code Typescript in ESM - Avoid external build tools - Define the field in - Compile source files into and directories. - Add files with the correct type field in and - Place a file in with - Place another in with Understanding Javascript file extensi",
@@ -286,11 +286,11 @@
       "typescript",
       "commonjs"
     ],
-    "url": "/blog/2024-11-13-dual-package-typescript",
+    "url": "/blog/dual-package-typescript",
     "date": "2024-11-13"
   },
   {
-    "id": "/blog/2024-11-11-tsconfig-options-you-should-use",
+    "id": "/blog/tsconfig-options-you-should-use",
     "title": "Essential tsconfig.json options you should use",
     "description": "A guide to essential tsconfig.json options for boosting TypeScript code safety, performance, and reliability.",
     "content": "The file in TypeScript is more than just a list of settings. It's a tool to manage how your code behaves, how secure it is, and how well it works with other systems. Whether you're an experienced TypeScript user or new to the language, understanding these configuration options will help you build a strong, efficient, and easy-to-maintain codebase. TL;DR Here’s a quick look at recommended best-practice settings for your . These options will help improve build speed, enforce code safety, enhance debugging, and ensure compatibility: What Is and why it matters? The file is a key part of any TypeScript project. It tells the compiler how to turn your TypeScript code into JavaScript. By setting up this file, you can control things like how strict the error checks are and what format the output sh",
@@ -299,11 +299,11 @@
       "tsconfig",
       "best-practices"
     ],
-    "url": "/blog/2024-11-11-tsconfig-options-you-should-use",
+    "url": "/blog/tsconfig-options-you-should-use",
     "date": "2024-11-11"
   },
   {
-    "id": "/blog/2024-07-16-migrating-to-eslint9x",
+    "id": "/blog/migrating-to-eslint9x",
     "title": "Migrate to ESLint 9.x",
     "description": "In this article, I share some experiences of migrating to ESLint 9.x, which includes significant breaking changes. We'll use the flat config, integrate ESLint plugins, and specify custom rules for various file types: .js, .cjs, .mjs and .ts",
     "content": "Have you updated your ESLint setup to version 9.x? This version includes many breaking changes. Two major changes you need to consider are: - Node.js Image by Antony Fu (https://portal.gitnation.org/contents/eslint-one-for-all-made-easy) If you want to continue to use the legacy way, you can turn off the new system by setting an environment variable called to , but you'll see a warning message in your terminal. So the recommended way is to migrate to the flat config file. This might pose some challenges if you aren't familiar with this new system. Example of migrating ESLint 9.x in a Typescript project We'll dive directly into an example to better understand how the flat config works. We will migrate a legacy ESLint config from ESLint 8.x to ESLint 9.x. Preparing for migration Here are som",
@@ -313,11 +313,11 @@
       "migration",
       "nodejs"
     ],
-    "url": "/blog/2024-07-16-migrating-to-eslint9x",
+    "url": "/blog/migrating-to-eslint9x",
     "date": "2024-07-16"
   },
   {
-    "id": "/blog/2024-06-21-enum-typescript",
+    "id": "/blog/enum-typescript",
     "title": "Why you might be using Enums in TypeScript wrong",
     "description": "Discover the pitfalls of using Enums in TypeScript and explore a more type-safe alternative with `as const`",
     "content": "The topic of using enums in TypeScript has been discussed a lot, but many developers still remain unaware of their drawbacks. Even though enums are popular and commonly used, they might not always be the best choice. In this article, I'll share my thoughts on why enums can be a problem and show you a better way to do things. TL;DR - is a TypeScript-only feature and doesn't exist in JavaScript. - has several problems: - The compiled output can be hard to read and understand, leading to potential bugs. - Performance impacts due to runtime creation and initialization. - Compatibility issues with type declarations, especially in projects using . - Use with a generic type helper: for a simpler, more efficient alternative. If you are a TypeScript developer, you’re likely familiar with using . Ho",
@@ -326,11 +326,11 @@
       "enum",
       "best-practices"
     ],
-    "url": "/blog/2024-06-21-enum-typescript",
+    "url": "/blog/enum-typescript",
     "date": "2024-06-21"
   },
   {
-    "id": "/blog/2024-06-15-switch-to-deno",
+    "id": "/blog/switch-to-deno",
     "title": "Should you switch to Deno?",
     "description": "This article highlights key reasons for the change, explores Deno’s features, and helps you decide if it’s the right choice for your projects",
     "content": "Hi there! Deno, created by Ryan Dahl, the original mind behind Node.js, is a modern runtime for JavaScript and TypeScript. It addresses various limitations and issues found in Node.js. Since its initial stable release with version 1.0, Deno has continued to evolve, with the latest version currently at 1.44. Are you ever curious about Deno's suitability for production projects today? Wondering if developers are actively using it in production? You can read my full article for a detailed analysis here: Should You Switch to Deno?. I hope this helps you make an informed decision. Happy coding!",
@@ -339,11 +339,11 @@
       "nodejs",
       "production"
     ],
-    "url": "/blog/2024-06-15-switch-to-deno",
+    "url": "/blog/switch-to-deno",
     "date": "2024-06-15"
   },
   {
-    "id": "/blog/2024-06-10-full-text-rss-feeds",
+    "id": "/blog/full-text-rss-feeds",
     "title": "My blog now offers full-text RSS feeds",
     "description": "Explore the reasons behind this decision",
     "content": "Guess what? My blog now offers full-text RSS feeds! Not long ago, I discovered a new way to get updates RSS feeds from websites using a reader app. It might seem strange, right? Most people probably already know about this method since it has existed for a long time, but I had no idea about it before. I only knew how to subscribe to newsletters via email. For the past two years, I've been reading a lot more, especially on daily.dev, a platform where people share interesting articles. I've found many new blogs that I want to follow and subscribe to. I don’t remember exactly where I learned about subscribing to RSS feeds, but it was probably from a \"subscribe\" or \"newsletter\" tab on a blog, maybe tonsky.me. They explained how to use a reader app to subscribe to RSS feeds. It's totally free a",
@@ -352,11 +352,11 @@
       "full-text",
       "rss"
     ],
-    "url": "/blog/2024-06-10-full-text-rss-feeds",
+    "url": "/blog/full-text-rss-feeds",
     "date": "2024-06-10"
   },
   {
-    "id": "/blog/2024-05-23-rust-webp-transform",
+    "id": "/blog/rust-webp-transform",
     "title": "Transforming website images into WebP with Rust for faster loading times",
     "description": "Explore the process of enhancing website speed through image conversion to WebP using Rust",
     "content": "Hi everyone 👋, Recently, I attended Ekinoday, our company’s annual conference, where my colleagues share knowledge on various topics, from technology to life tips. This event is always very interesting for me. I had a chance to talk with my colleague Raphaël Tho Vo, who gave a presentation on optimising web performance. Raphaël mentioned that many people don’t realise how much image size and format can effect the web performance. Large image files can slow down a website significantly, affecting user experience. Raphaël explained that we can improve performance by using better image formats. He mentioned several modern formats like AVIF, WebP, JPEG 2000. Among these, AVIF and WebP are the most supported by web browsers today. Inspired by Raphaël’s advice, I decided to take a closer look at",
@@ -367,11 +367,11 @@
       "image-conversion",
       "cli"
     ],
-    "url": "/blog/2024-05-23-rust-webp-transform",
+    "url": "/blog/rust-webp-transform",
     "date": "2024-05-23"
   },
   {
-    "id": "/blog/2024-05-15-dynamic-github-profile-with-bun-typescript",
+    "id": "/blog/dynamic-github-profile-with-bun-typescript",
     "title": "Dynamic Github profile with Bun and Typescript",
     "description": "Learn how to make your GitHub profile dynamic using Bun and TypeScript as an alternative to Python in my previous article.",
     "content": "In a recent article, I discussed transforming a GitHub profile into an interactive space with icons, badges, and dynamically updated blog posts using Python scripts and GitHub actions. After sharing my work in the \"r/javascript\" community on Reddit, I received serveral positive feedback and upvotes. I chose to post in this community due to my familiarity with JavaScript and TypeScript. After several hours, moderators removed my post because it wasn't directly related to JavaScript. They made the right decision, and I appreciate their careful moderation of the community. This made me rethink my approach and think about using a language that would better connect with the audience, given the simplicity of the script's principle: fetching feed URL, parsing it, and writing the response to the R",
@@ -380,11 +380,11 @@
       "readme",
       "typescript"
     ],
-    "url": "/blog/2024-05-15-dynamic-github-profile-with-bun-typescript",
+    "url": "/blog/dynamic-github-profile-with-bun-typescript",
     "date": "2024-05-15"
   },
   {
-    "id": "/blog/2024-05-13-dynamic-github-profile-readme",
+    "id": "/blog/dynamic-github-profile-readme",
     "title": "How I made my GitHub profile README dynamic",
     "description": "Explore the process of making your GitHub profile README dynamic with automated updates of your latest blog posts using GitHub Actions and Python scripting",
     "content": "Have you heard about GitHub profile READMEs? Did you know you can add a README to your GitHub profile to tell others about yourself and create a really cool profile? To do that, you simply create a repository with the same name as your GitHub username. For more details on how to do this and how it works, check out GitHub's guide on managing your profile README. Now, how can you customize it to make a cool GitHub profile? There are numerous ways to do this. Some people design their profiles using HTML and CSS because README.md files are written in markdown, which supports them. Many individuals add more icons and badges to enhance the appearance. You can find various ideas and tools in the repository awesome-github-profile-readme. Here are a couple of examples of cool profiles: JessicaLim8 ",
@@ -395,11 +395,11 @@
       "dynamic",
       "python"
     ],
-    "url": "/blog/2024-05-13-dynamic-github-profile-readme",
+    "url": "/blog/dynamic-github-profile-readme",
     "date": "2024-05-13"
   },
   {
-    "id": "/blog/2024-05-11-new-home-for-my-website",
+    "id": "/blog/new-home-for-my-website",
     "title": "New home for my website",
     "description": "Discover why I switched my website and blog from Jekyll to Zola.",
     "content": "Hey there, it's been quite a while since my last article—almost 3 years. I'm not sure if anyone is still reading my posts because I've stopped using analytics for my website. Now, I've moved it to GitHub and use the free domain of GitHub Pages. It might not be great for SEO, but I'm happy with it. After all, the main reason I write is for myself. Each time I write, I learn something new and improve my skills on various topics. So, I've decided to get back into the habit of writing regularly. It's a good practice for developers to improve day by day. But first things first: I need to update my website. In the past, I usually used Jekyll to create my site. It runs on Ruby and used to fit my needs perfectly because it's free, powerful, and offers many themes for customization. For my main web",
@@ -407,11 +407,11 @@
       "blog",
       "static-site-generator"
     ],
-    "url": "/blog/2024-05-11-new-home-for-my-website",
+    "url": "/blog/new-home-for-my-website",
     "date": "2024-05-11"
   },
   {
-    "id": "/blog/2021-05-01-start_a_new_journey",
+    "id": "/blog/start_a_new_journey",
     "title": "Start a new journey",
     "description": "I share my journey from being a BIM engineer to becoming a full-time backend developer",
     "content": "Hey everyone! I'm excited to share my journey from being a BIM engineer to becoming a full-time developer. In modern construction, digital technologies are being used more and more. A big development is Building Information Modeling (BIM), which involves putting a lot of information about things like materials, planning, costs and more into 3D models. As a BIM engineer, my main job was to make sure this process worked well, fast, and effectively for different construction teams, like architects, engineers, and planners. My aim was to keep high-quality models that each team could use again, reducing the need to do things over. We mainly used a software named Revit for this. To do high-quality work, I used my skills in programming to make processes automatic. So, I spent time writing scripts",
@@ -419,11 +419,11 @@
       "career",
       "journey"
     ],
-    "url": "/blog/2021-05-01-start_a_new_journey",
+    "url": "/blog/start_a_new_journey",
     "date": "2021-05-01"
   },
   {
-    "id": "/blog/2021-01-25-why-use-dockercompose",
+    "id": "/blog/why-use-dockercompose",
     "title": "Why use Docker compose",
     "description": "Discover the advantages and reasons behind utilizing Docker Compose for managing multi-container Docker applications.",
     "content": "What is Docker compose? If you read this article, I think you maybe already understand what is Docker. Docker is a tool which helps to create, deploy, and run applications by using containers. Docker provides developers and operators with a friendly interface to build, ship, and run containers on any environment. With the docker-cli, we can run and execute the Docker container via Dockerfile. But with Dockerfile, we can work only with a container, but in the project, we normally work with multiple containers. In that case, we need to use Docker compose. Docker Compose define the services that make up your app in so they can be run together in an isolated environment. It get an app running in one command by just running . Docker compose uses the if one add the build command to your project’",
@@ -431,11 +431,11 @@
       "docker",
       "compose"
     ],
-    "url": "/blog/2021-01-25-why-use-dockercompose",
+    "url": "/blog/why-use-dockercompose",
     "date": "2021-01-25"
   },
   {
-    "id": "/blog/2020-12-22-create-simple-project-nodejs-with-docker",
+    "id": "/blog/create-simple-project-nodejs-with-docker",
     "title": "Create simple web app Nodejs with Docker",
     "description": "Learn to build a basic web application using Node.js and Docker, simplifying the deployment process across different environments.",
     "content": "How to get a Node.js application into a Docker container? Steps to create a web application Nodejs with Docker - Create NodeJS web app - Create a Dockerfile - Build image from Dockerfile - Run image as container - Connect to web app from a browser Getting started Create root folder of project Init Add dependencies and scripts in this package.json file Create file (in root project) Add the following code to run server nodejs with framework. Create - The first thing we need to do is define from what image we want to build from. Here is the version 12.18.1 of Nodejs from DockerHub - Next we create a directory to hold the application code inside the image. This will be the working directory for your application. - This image comes with Node.js and NPM already installed so the next thing we nee",
@@ -444,11 +444,11 @@
       "nodejs",
       "javascript"
     ],
-    "url": "/blog/2020-12-22-create-simple-project-nodejs-with-docker",
+    "url": "/blog/create-simple-project-nodejs-with-docker",
     "date": "2020-12-22"
   },
   {
-    "id": "/blog/2020-12-17-config-esling-prettier-react-app",
+    "id": "/blog/config-esling-prettier-react-app",
     "title": "Config ESLint, Prettier for React App in VSCode",
     "description": "Discover how to configure ESLint and Prettier within your React application in VSCode for enhanced code quality and consistency.",
     "content": "As a developer, you will understand how important of quality of code in your project. ESlint and Prettier are great tools helps you for formatting and style of code. In this article, you will understand how to setup ESLint & Prettier in your React project and on text-editor VSCode. What are ESLint and Prettier? ESlint It is a static code analyzer, that means it tells you errors and mistakes that you may make while you are developing. These errors can be stuff like - Simple syntax errors eg. not closing a function declaration with }. Dead code detection eg. unused variables, code written after a return statement. Violating code guidelines, these are rules defined by yourself or a combination of predefined standards like the Airbnb styled guide or Google's style guide etc. Prettier Prettier ",
@@ -456,11 +456,11 @@
       "eslint",
       "prettier"
     ],
-    "url": "/blog/2020-12-17-config-esling-prettier-react-app",
+    "url": "/blog/config-esling-prettier-react-app",
     "date": "2020-12-17"
   },
   {
-    "id": "/blog/2020-11-28-setup-webpack-react-typescript",
+    "id": "/blog/setup-webpack-react-typescript",
     "title": "Setup Webpack React TypeScript",
     "description": "Learn the essentials of setting up Webpack with React and TypeScript to build powerful and efficient web applications.",
     "content": "How to setup a React project with Webpack and TypeScript? --- With create-react-app, it only takes a few clicks to create a complete React project, requires not in-depth knowledge of webpack or babel. But if you are still not satisfied with the features that brings. For example, CSS does not show source-map when dev, or may be you simply configure more deeply. If in this case, It's the time to configure manually . If you do not have any knowledge about webpack, you can refer my two previous articles: - Setup basic webpack - Webpack & TypeScript Init project - Install dependencies packages - Install plugin for webpack - clean-webpack-plugin: A webpack plugin to remove/clean your build folder(s). Check clean-webpack-plugin - compression-webpack-plugin: Compress asset file (css, js, html ...)",
@@ -469,11 +469,11 @@
       "react",
       "typescript"
     ],
-    "url": "/blog/2020-11-28-setup-webpack-react-typescript",
+    "url": "/blog/setup-webpack-react-typescript",
     "date": "2020-11-28"
   },
   {
-    "id": "/blog/2020-11-14-setup-webpack-with-typescript",
+    "id": "/blog/setup-webpack-with-typescript",
     "title": "Setup Webpack TypeScript",
     "description": "Discover how to configure Webpack with TypeScript to enhance your web development workflow with type safety and modern JavaScript features.",
     "content": "How to setup a webpack project with TypeScript? We continue from the previous article basic setup webpack. In this article, we will discover how to setup a webpack project with TypeScript and using plugin in Webpack. Install webpack and loaders packages - Create new project and install packages dependencies To understand each dependencies means, checkout my previous article basic setup webpack - Install HTMLWebpackPlugin This plugin will help use import automatically the new file after build into build file. You will see more explanation below. - Install TypeScript TypeScript extends JavaScript by adding types. By understanding JavaScript, TypeScript saves you time catching errors, debug adn providing fixes before you run code. Any browser, any OS, anywhere JavaScript runs. We can use Type",
@@ -481,22 +481,22 @@
       "webpack",
       "typescript"
     ],
-    "url": "/blog/2020-11-14-setup-webpack-with-typescript",
+    "url": "/blog/setup-webpack-with-typescript",
     "date": "2020-11-14"
   },
   {
-    "id": "/blog/2020-11-03-basic-setup-webpack",
+    "id": "/blog/basic-setup-webpack",
     "title": "Basic Setup Webpack",
     "description": "Learn the fundamental steps for setting up Webpack to optimize and bundle your web assets efficiently.",
     "content": "Webpack fundamentals for fast learning and step by step to setup a project with webpack. Webpack basics is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, yet it is also capable of transforming, bundling, or packaging ... Check more information on Webpack website Setup a webpack project - Create project and init file - In the root project create folder and Setup Babel Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a backwards compatible version of JavaScript in current and older browsers or environments. See the website babeljs.io for more information. - Installation - : Core of babel contains algorithms of its - : is a smart preset that allows you to use the latest JavaScript without needing to micromanage which synt",
     "tags": [
       "webpack"
     ],
-    "url": "/blog/2020-11-03-basic-setup-webpack",
+    "url": "/blog/basic-setup-webpack",
     "date": "2020-11-03"
   },
   {
-    "id": "/blog/2020-09-05-python-vs-javascript",
+    "id": "/blog/python-vs-javascript",
     "title": "Syntax Python vs Javascript",
     "description": "Discover the key differences and unique syntax nuances between Python and JavaScript in this engaging comparison.",
     "content": "Programming in a new language can feel unfamiliar, intimidating, and tricky to navigate at first. There are new rules, syntax, and nuances to learn. Python vs. JavaScript Language Basics JavaScript and Python are interpreted programming languages, meaning their runtime environments use an interpreter (or engine) that parses and executes code one statement at a time. The two languages are also “object-based” — everything is (or can be treated as) an object: strings, numbers, data structures, functions, etc. Primitive Types First up, JavaScript and Python have similar built-in data types. For example, both use numeric data types (integers and floats), strings and Booleans. Type Checking and Conversion Python and JavaScript are “dynamically typed” languages, which means you do not have to set",
@@ -504,33 +504,33 @@
       "python",
       "javascript"
     ],
-    "url": "/blog/2020-09-05-python-vs-javascript",
+    "url": "/blog/python-vs-javascript",
     "date": "2020-09-05"
   },
   {
-    "id": "/blog/2020-08-30-better-in-ruby-02",
+    "id": "/blog/better-in-ruby-02",
     "title": "Better In Ruby - 02",
     "description": "Hidden Ruby gems: uncovering little known tips.",
     "content": "Some tips you probably don't know in Ruby - 02 In this article, I want to show you some nice Ruby features that you may know or not. Anyway, it’s a quick read and it’s always interesting to learn new stuff, right?! Create a hash from a list of values You can create a hash from a list of values by using Hash[...]. It will create a hash like below: Lambda Literal -> Lambda Literal is a anonymous function like lambda in python, in JS or C#, allows you to create lambda easily. Double star (\\\\) The double star is a neat little trick in Ruby. See the following method: is a regular parameter. will take all the parameters passed after the first one and put them in an array. will take any parameter given in the format key: value at the end of the method call. See the following examples: One paramet",
     "tags": [
       "ruby"
     ],
-    "url": "/blog/2020-08-30-better-in-ruby-02",
+    "url": "/blog/better-in-ruby-02",
     "date": "2020-08-30"
   },
   {
-    "id": "/blog/2020-08-01-better-in-ruby-01",
+    "id": "/blog/better-in-ruby-01",
     "title": "Better In Ruby - 01",
     "description": "Hidden Ruby gems: uncovering little known tips.",
     "content": "Some tips you probably don't know in Ruby. Today, I will make a series that I learned about tips and tricks in ruby. Assigning the rest of an array to a variable When destructuring an array, you can unpack and assign the remaining part of it to a variable using the rest pattern Word array When we want to add a separator in the string Concate array Format decimal Remove a folder This is a relatively common job of developer. There a many different ways to delete a folder and this is one of the shortest and fastest way to do: Massive assignment Massive assignment allow us to declare many variables at the same time This feature will be very useful in the method with many parameters Deep copy When we copy an object that contains others objects inside, array for example, you only copy references",
     "tags": [
       "ruby"
     ],
-    "url": "/blog/2020-08-01-better-in-ruby-01",
+    "url": "/blog/better-in-ruby-01",
     "date": "2020-08-01"
   },
   {
-    "id": "/blog/2020-07-05-rails-5-or-rails-6",
+    "id": "/blog/rails-5-or-rails-6",
     "title": "Rails 5 or Rails 6 ?",
     "description": "Trying to Decide Between Rails 5 and Rails 6? Let's Compare!",
     "content": "What version of rails you use in your projects, today? At THP, when we start learning rails, we are required to install rails version 5.2.3. But I when I see that the new version of rails has been released is already 6.0. So we have posed a question for our technical manager of THP: Why we don't install directly the version rails 6.0? And he said: \"One word: . I always don't understand so much for the \"webpack\", and I need to search more on the internet. And with this article (this is not mine), we will know some advantages and new features of rails 6 . I hear that: Rails 5 is still just fine Rails 5.0.Z is still on the severe patches list, and Rails 5.2.Z is still receiving regular security updates; so you're still OK on Rails 5 (especially 5.2 or higher) Now We will see 4 amazing feature",
@@ -538,11 +538,11 @@
       "ruby",
       "rails"
     ],
-    "url": "/blog/2020-07-05-rails-5-or-rails-6",
+    "url": "/blog/rails-5-or-rails-6",
     "date": "2020-07-05"
   },
   {
-    "id": "/blog/2020-06-28-how-to-switch-to-another-rails-version",
+    "id": "/blog/how-to-switch-to-another-rails-version",
     "title": "How to switch to another Rails version",
     "description": "When you need to use multiple versions of Rails on your computer, how do you switch between them?",
     "content": "When you need to use multiple versions of Rails on your computer, how do you switch between them? Installation rails Before I talk about how to switch a version of rails, I will go quickly how to install the different versions of rails. The ruby package manager that I'am using is and I will use it for this tuto. If you are using another ruby package manager like , you should look at and its advantage. is more lighter and faster than the and is very recommended by a a lot of developers. There is an article on dev.to help you understand more clearly: Why and How I Replaced RVM with RBENV. Ok, now go on our article. To install whatever version(s) of rails you want: To know all rails versions released, you check out on all rails versions. You can also do it with your terminal with the command ",
@@ -550,11 +550,11 @@
       "ruby",
       "rails"
     ],
-    "url": "/blog/2020-06-28-how-to-switch-to-another-rails-version",
+    "url": "/blog/how-to-switch-to-another-rails-version",
     "date": "2020-06-28"
   },
   {
-    "id": "/blog/2020-05-25-build-free-your-personal-website-using-jekyll",
+    "id": "/blog/build-free-your-personal-website-using-jekyll",
     "title": "Build your personal website without spending any money",
     "description": "Learn how to build your own personal website using Jekyll and GitHub Pages without spending a dime. Dive into the step-by-step process and get your website up and running in no time.",
     "content": "In this article, we'll walk through how to set up a Jekyll-powered blog using the Minimal Mistakes theme. It’s not always clear why we need a personal website, but here’s the truth, especially for developers: a website is an effective medium to let the world know who we are, what we are capable of, and what our values are. The purpose of the website you want to build can vary; it could be a blog, portfolio, landing page, or multi-purpose site. In my case, I need a website to: - Showcase my projects - Blog about my experiences, my knowledge in programming, and my other interests - Share information about me that would be of interest to a recruiter, including my resume, email, and links to my GitHub, Medium, and LinkedIn pages - Being able to easily generate and publish blog posts is another",
@@ -564,11 +564,11 @@
       "free",
       "web-development"
     ],
-    "url": "/blog/2020-05-25-build-free-your-personal-website-using-jekyll",
+    "url": "/blog/build-free-your-personal-website-using-jekyll",
     "date": "2020-05-25"
   },
   {
-    "id": "/blog/2020-04-24-challenges-ruby-03",
+    "id": "/blog/challenges-ruby-03",
     "title": "Simple coding challenges with Ruby - 03",
     "description": "Dive into fun coding challenges in Ruby. Get practical tips and solutions to improve your coding skills.",
     "content": "Doing coding challenges is an excellent way to imporve your programming language & problem-solvings skills. I'am learning and trying to improve my English. So I'm really sorry if my grammar mistakes annoy you. Thank you for your understanding. Kata challenges My level on codewars now is 5kyu. You can check my Codewars. So, today when I take the new challenges with the option rank up, Codewars gave me only the 5kyu challenges. Let's take a look together! 1. Rot13 (5kyu) The first challenge today is still handle string. There are too many string algorithms. Maybe in the next day, I will choose the challenges by subject. For example, I will learn the OOP soon. So I think I will choose the katas in this subject. Now, we will go to solve the challenge. :bell: Task: Rot13 ROT13 is a simple lette",
@@ -576,11 +576,11 @@
       "ruby",
       "algorithms"
     ],
-    "url": "/blog/2020-04-24-challenges-ruby-03",
+    "url": "/blog/challenges-ruby-03",
     "date": "2020-04-24"
   },
   {
-    "id": "/blog/2020-04-18-challenges-ruby-02",
+    "id": "/blog/challenges-ruby-02",
     "title": "Simple coding challenges with Ruby - 02",
     "description": "Dive into fun coding challenges in Ruby. Get practical tips and solutions to improve your coding skills.",
     "content": "Doing coding challenges is an excellent way to imporve your programming language & problem-solvings skills. I'am learning and trying to improve my English. So I'm really sorry if my grammar mistakes annoy you. Thank you for your understanding. Kata challenges In the last article, we have done the very simple challenges. Now we will challenge in the next level with the 6kyu challenges. 1. Replace with alphabet position (6kyu) All the next challenges have distributed random by codewars. :bell: Task: Replace with alphabet position In this kata you are required to, given a string, replace every letter with its position in the alphabet. If anything in the text isn't a letter, ignore it and don't return it. \"a\" = 1, \"b\" = 2, etc For example Should return --- :arrowright: My solution: - This chal",
@@ -588,11 +588,11 @@
       "ruby",
       "algorithms"
     ],
-    "url": "/blog/2020-04-18-challenges-ruby-02",
+    "url": "/blog/challenges-ruby-02",
     "date": "2020-04-18"
   },
   {
-    "id": "/blog/2020-04-07-challenges-ruby-01",
+    "id": "/blog/challenges-ruby-01",
     "title": "Simple coding challenges with Ruby - 01",
     "description": "Dive into fun coding challenges in Ruby. Get practical tips and solutions to improve your coding skills.",
     "content": "Doing coding challenges is an excellent way to imporve your programming language & problem-solvings skills. I'am learning and trying to improve my English. So I'm really sorry if my grammar mistakes annoy you. Thank you for your understanding. The Hacking Project (THP) You may be asking: \"What is The Hacking Project?\" The Hacking Project (THP) is a type coding bootcamps within 12 weeks for the full-stack web development on Ruby & Ruby on Rails. The Hacking Project has been created in France since 2017 to help the people who want to learn a new coding skills, who want to create a startup or even for the people who want to make their career change into web development. In 12 weeks, you will learn how to create a web application with the front-end skills (HMLT, CSS, JavaScript), the back-end ",
@@ -600,7 +600,7 @@
       "ruby",
       "algorithms"
     ],
-    "url": "/blog/2020-04-07-challenges-ruby-01",
+    "url": "/blog/challenges-ruby-01",
     "date": "2020-04-07"
   }
 ]
