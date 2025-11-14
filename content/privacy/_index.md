@@ -16,12 +16,11 @@ toc = true
 
 ## The short version
 
-- **No personal data collected** – I don't store IP addresses or track you across sessions
-- **No cookies** – This site doesn't use cookies
-- **Comments via GitHub** – Handled by [giscus](https://giscus.app/), stored on GitHub
-- **Basic analytics** – I use self-hosted [Umami](https://umami.is/) to see page views and referrers (GDPR compliant, no personal data)
+I don't collect personal data. No IP addresses, no tracking across sessions, no cookies.
 
-That's it. Simple and privacy-friendly.
+Comments are handled by [giscus](https://giscus.app/) via GitHub. I use self-hosted [Umami](https://umami.is/) for basic analytics (page views, referrers) - fully GDPR compliant.
+
+That's it.
 
 ## What analytics I collect
 

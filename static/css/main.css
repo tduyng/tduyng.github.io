@@ -2011,7 +2011,15 @@ body.not-found {
 /* Pagination
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .pagination {
-    margin-top: 50px;
+    margin-top: 60px;
+    padding: 0 15px;
+
+    hr {
+        border: none;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--primary-pale-color), transparent);
+        margin: 2em 0;
+    }
 }
 
 .pagination__title {
@@ -2035,15 +2043,147 @@ body.not-found {
 .pagination__buttons {
     display: flex;
     justify-content: space-between;
-    margin-top: 2em;
+    gap: 20px;
+    margin-top: 3em;
+    flex-wrap: wrap;
+
+    .previous,
+    .next {
+        flex: 1;
+        min-width: 280px;
+        max-width: 45%;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
 
     .previous {
-        margin-right: 3em;
+        margin-right: auto;
     }
 
     .next {
         margin-left: auto;
-        text-align: right;
+        align-items: flex-end;
+
+        .button__label {
+            text-align: right;
+        }
+    }
+
+    .button__label {
+        font-size: 0.75em;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-pale-color);
+        font-weight: 600;
+        padding: 0 4px;
+    }
+
+    .button {
+        display: block;
+        padding: 20px 24px;
+        background: rgba(111, 143, 209, 0.04);
+        backdrop-filter: blur(10px);
+        border: 1.5px solid rgba(111, 143, 209, 0.15);
+        border-radius: 12px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(111, 143, 209, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            border: none;
+            color: var(--text-color);
+            position: relative;
+            z-index: 1;
+
+            .button__icon {
+                font-size: 1.2em;
+                color: var(--primary-color);
+                transition: transform 0.3s ease, color 0.3s ease;
+                flex-shrink: 0;
+            }
+
+            .button__text {
+                flex: 1;
+                font-size: 0.95em;
+                line-height: 1.5;
+                transition: color 0.3s ease;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+        }
+
+        &:hover {
+            background: rgba(111, 143, 209, 0.1);
+            border-color: var(--primary-color);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(111, 143, 209, 0.2);
+        }
+
+        &:hover::before {
+            opacity: 1;
+        }
+
+        &:hover a .button__icon {
+            color: var(--text-bold-color);
+        }
+
+        &:hover a .button__text {
+            color: var(--primary-color);
+        }
+
+        &:active {
+            transform: translateY(-2px);
+        }
+    }
+
+    .previous .button {
+        &:hover a .button__icon {
+            transform: translateX(-4px);
+        }
+    }
+
+    .next .button {
+        a {
+            flex-direction: row-reverse;
+        }
+
+        &:hover a .button__icon {
+            transform: translateX(4px);
+        }
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+
+        .previous,
+        .next {
+            max-width: 100%;
+            min-width: 100%;
+        }
+
+        .next {
+            text-align: left;
+        }
+
+        .next .button a {
+            flex-direction: row;
+        }
     }
 }
 
@@ -2462,20 +2602,6 @@ template {
 
     .home-layout-list .read-more {
         margin-top: 0.5em;
-    }
-
-    .pagination__buttons {
-        flex-direction: column;
-        align-items: center;
-
-        .previous {
-            margin-right: 1em;
-        }
-
-        .next {
-            margin-left: auto;
-            text-align: right;
-        }
     }
 
     body.post article #post-info {
