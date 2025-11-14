@@ -13,6 +13,8 @@ copy = false
 comment = false
 +++
 
+# Contact
+
 I'm always open to professional inquiries, technical discussions, or just connecting with fellow developers.
 
 Reach me on:

@@ -14,6 +14,8 @@ comment = false
 toc = true
 +++
 
+# Privacy
+
 ## Analytics
 
 I use self-hosted [Umami](https://umami.is/) to understand how people use this site. It's privacy-friendly (GDPR compliant, no cookies) and tracks only these basics:
@@ -24,6 +26,7 @@ I use self-hosted [Umami](https://umami.is/) to understand how people use this s
 - Country (from IP, not stored)
 
 **What I don't track:**
+
 - Individual users across visits
 - Time spent on pages
 - Where you go after leaving

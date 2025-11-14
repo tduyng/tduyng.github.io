@@ -13,7 +13,7 @@ copy = false
 comment = false
 +++
 
-# Subscribe to [my RSS feed](/atom.xml) to get new posts delivered directly to your reader.
+# Subscribe to my RSS feed
 
 RSS (Really Simple Syndication) lets you follow your favorite websites without checking them manually.
 
