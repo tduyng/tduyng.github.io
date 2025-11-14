@@ -4,6 +4,10 @@ set -euo pipefail
 # Build the site with the specified environment
 gozzi build --config config/config.prod.toml
 
+# Generate search index
+echo "Generating search index..."
+python3 generate-search-index.py
+
 # Deploy if GITHUB_TOKEN is set
 if [ -n "${GITHUB_TOKEN:-}" ]; then
   # Clone the existing gh-pages branch (preserving full history)

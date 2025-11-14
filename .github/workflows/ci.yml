@@ -25,6 +25,11 @@ jobs:
       - name: Bump gozzi version
         run: gozzi version
 
+      - name: Setup Python for search index
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
       - name: Build and deploy site
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

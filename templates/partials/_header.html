@@ -1,5 +1,5 @@
 {{ $feed_url := .Site.Config.feed_url }}
-<header class="blur">
+<header class="blur" data-pagefind-ignore>
     <div id="header-wrapper">
         <nav>
             <a class="instant" href="/">{{ .Site.Config.extra.id }}</a>
@@ -24,6 +24,40 @@
             <span class="wrap right fold">{{ .Site.Config.extra.nav_wrapper_right }}</span>
             {{ end }}
         </nav>
+        
+        <button id="search-toggle" aria-label="Search (⌘K)" title="Search (⌘K or Ctrl+K)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+        </button>
     </div>
     <div id="reading-progress"></div>
 </header>
+
+<!-- Search Modal -->
+<dialog id="search-modal">
+    <div id="search-container">
+        <div class="search-header">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Search posts and notes..." 
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+            />
+            <button id="search-close" aria-label="Close search">✕</button>
+        </div>
+        <div id="search-results"></div>
+        <div class="search-footer">
+            <kbd>↑</kbd><kbd>↓</kbd> Navigate
+            <kbd>↵</kbd> Select
+            <kbd>ESC</kbd> Close
+        </div>
+    </div>
+</dialog>
