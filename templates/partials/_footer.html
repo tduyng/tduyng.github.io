@@ -5,9 +5,14 @@
         {{ end }}
     </div>
     <div class="copyright">
-        {{ .Site.Config.extra.footer_copyright }}
-        <span>|</span>
-        Built with
-        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+        <span class="copyright-text">{{ .Site.Config.extra.footer_copyright }}</span>
+        <span class="separator">•</span>
+        <span class="built-with">
+            Built with
+            <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">
+                <span class="gozzi-icon">⚡</span>
+                gozzi
+            </a>
+        </span>
     </div>
 </footer>
