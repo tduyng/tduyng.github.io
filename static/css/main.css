@@ -2892,12 +2892,6 @@ template {
                 position: relative;
                 overflow: hidden;
 
-                &::before {
-                    content: '→';
-                    transition: transform 0.3s ease;
-                    font-weight: bold;
-                }
-
                 &::after {
                     content: '';
                     position: absolute;
@@ -2913,10 +2907,6 @@ template {
                     border-color: var(--primary-color);
                     transform: translateX(4px);
                     box-shadow: 0 4px 12px rgba(111, 143, 209, 0.2);
-                }
-
-                &:hover::before {
-                    transform: translateX(2px);
                 }
 
                 &:hover::after {
