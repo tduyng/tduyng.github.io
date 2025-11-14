@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # Build the site with the specified environment
-./build.sh prod
+gozzi build --config config/config.prod.toml
 
 # Deploy if GITHUB_TOKEN is set
 if [ -n "${GITHUB_TOKEN:-}" ]; then
