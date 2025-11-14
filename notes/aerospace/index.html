@@ -34,7 +34,7 @@
 
     <body class="prose-page">
         
-<header class="blur">
+<header class="blur" data-pagefind-ignore>
     <div id="header-wrapper">
         <nav>
             <a class="instant" href="/">tduyng</a>
@@ -69,9 +69,43 @@
             <span class="wrap right fold"></span>
             
         </nav>
+        
+        <button id="search-toggle" aria-label="Search (⌘K)" title="Search (⌘K or Ctrl+K)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+        </button>
     </div>
     <div id="reading-progress"></div>
 </header>
+
+
+<dialog id="search-modal">
+    <div id="search-container">
+        <div class="search-header">
+            <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Search posts and notes..." 
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+            />
+            <button id="search-close" aria-label="Close search">✕</button>
+        </div>
+        <div id="search-results"></div>
+        <div class="search-footer">
+            <kbd>↑</kbd><kbd>↓</kbd> Navigate
+            <kbd>↵</kbd> Select
+            <kbd>ESC</kbd> Close
+        </div>
+    </div>
+</dialog>
 
 
     <div id="wrapper-notes">
@@ -135,10 +169,15 @@ But then I discovered that many of the features I wanted required the Pro versio
         
     </div>
     <div class="copyright">
-        ©2025 Duy NG
-        <span>|</span>
-        Built with
-        <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">gozzi</a>
+        <span class="copyright-text">©2025 Duy NG</span>
+        <span class="separator">•</span>
+        <span class="built-with">
+            Built with
+            <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">
+                <span class="gozzi-icon">⚡</span>
+                gozzi
+            </a>
+        </span>
     </div>
 </footer>
 
@@ -152,6 +191,7 @@ But then I discovered that many of the features I wanted required the Pro versio
 
         <script src="/js/main.js" defer></script>
 <script src="/js/lightense.min.js" defer></script>
+<script src="/js/search.js" defer></script>
  
 <script
     async
