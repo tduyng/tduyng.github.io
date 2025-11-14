@@ -232,9 +232,7 @@ function enableReadingProgress() {
 }
 
 function enableScrollReveal() {
-    const revealElements = document.querySelectorAll('.scroll-reveal')
-    if (revealElements.length === 0) return
-    
+    // Setup IntersectionObserver
     const observer = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
@@ -250,14 +248,16 @@ function enableScrollReveal() {
         }
     )
     
-    revealElements.forEach((el) => observer.observe(el))
-    
-    // Stagger animation for lists
+    // Handle stagger elements first - add transition delay and scroll-reveal class
     const staggerElements = document.querySelectorAll('.scroll-reveal-stagger')
     staggerElements.forEach((el, index) => {
         el.style.transitionDelay = `${index * 0.1}s`
         el.classList.add('scroll-reveal')
     })
+    
+    // Now observe all scroll-reveal elements (including converted stagger elements)
+    const revealElements = document.querySelectorAll('.scroll-reveal')
+    revealElements.forEach((el) => observer.observe(el))
 }
 
 function enableReaction() {
