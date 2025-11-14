@@ -53,12 +53,12 @@
                 <section id="brief" class="prose">
                     {{ .Page.Content }}
                     <hr />
-                    <section class="home-layout-list">
+                    <section class="home-layout-list scroll-reveal">
                         <h2>Here are the latest posts:</h2>
                         {{ $blog_section := get_section "blog" }}
                         <div class="post-list">
                             {{ range limit 10 (reverse $blog_section.Children) }}
-                            <div class="post instant">
+                            <div class="post instant scroll-reveal-stagger">
                                 <div class="post-content">
                                     <div class="post-header">
                                         <div class="title">
@@ -73,14 +73,14 @@
                             </div>
                             {{ end }}
                         </div>
-                        <div class="read-more">
+                        <div class="read-more scroll-reveal">
                             <a class="instant" href="/blog"
                                 >{{ .Site.Config.extra.recent_more_text }}</a
                             >
                         </div>
                     </section>
                     <hr />
-                    <p>
+                    <p class="scroll-reveal">
                         Want to get in touch? <a href="/contact">Contact me</a> or check out his
                         <a href="https://github.com/tduyng">GitHub</a>.
                     </p>

@@ -231,6 +231,35 @@ function enableReadingProgress() {
     updateProgress()
 }
 
+function enableScrollReveal() {
+    const revealElements = document.querySelectorAll('.scroll-reveal')
+    if (revealElements.length === 0) return
+    
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed')
+                    observer.unobserve(entry.target)
+                }
+            })
+        },
+        {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        }
+    )
+    
+    revealElements.forEach((el) => observer.observe(el))
+    
+    // Stagger animation for lists
+    const staggerElements = document.querySelectorAll('.scroll-reveal-stagger')
+    staggerElements.forEach((el, index) => {
+        el.style.transitionDelay = `${index * 0.1}s`
+        el.classList.add('scroll-reveal')
+    })
+}
+
 function enableReaction() {
     const container = document.querySelector('.reaction')
     if (!container) return
@@ -289,6 +318,7 @@ function enableReaction() {
 enablePrerender()
 enableNavFold()
 enableRssMask()
+enableScrollReveal()
 if (document.body.classList.contains('post')) {
     enableOutdateAlert()
     enableTocToggle()
