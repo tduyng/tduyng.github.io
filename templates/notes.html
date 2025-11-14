@@ -11,6 +11,7 @@
                     {{ template "partials/_copy_code.html" . }} {{ $backlink_icon := load
                     "static/icon/backlink.svg" }}
                     <article class="prose notes" data-backlink-icon="{{ $backlink_icon }}">
+                        <h1>{{ .Section.Config.title }}</h1>
                         <p>{{ .Section.Config.description }}</p>
                         <div class="notes-entries">
                             {{ range (reverse .Section.Children) }}
