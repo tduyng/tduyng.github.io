@@ -142,10 +142,9 @@ For my job, I work with:
 
 - **Backend**: Node.js, TypeScript, NestJS
 - **Databases**: PostgreSQL, MySQL, MongoDB, Redis, Elasticsearch
-- **Infrastructure**: Docker, Kubernetes, AWS (using AWS CLI v2)
+- **Infrastructure**: Docker, Kubernetes, AWS
 - **CI/CD**: GitLab, GitHub Actions
 - **Scripting**: Makefiles, Justfiles, Bash, JS/GO/Python scripting
-- **Build Tools**: esbuild, Biome (linter & formatter)
 
 ---
 

@@ -28,6 +28,12 @@
                             {{ end }}
                         </div>
                     </article>
+                    {{ if .Section.Config.extra.reaction }}
+                    <div
+                        class="reaction {{ .Site.Config.extra.reaction_align }}"
+                        data-endpoint="{{ .Site.Config.extra.reaction_endpoint }}"
+                    ></div>
+                    {{ end }}
                 </div>
                 {{ template "partials/_footer.html" . }}
             </main>
