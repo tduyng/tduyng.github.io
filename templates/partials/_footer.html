@@ -14,5 +14,13 @@
                 gozzi
             </a>
         </span>
+        <span class="separator">•</span>
+        <span class="last-deployed" id="last-deployed" style="opacity: 0.5; font-size: 0.85em;"></span>
     </div>
+    <script src="/build-time.js"></script>
+    <script>
+        if (window.BUILD_TIME) {
+            document.getElementById('last-deployed').textContent = 'deployed ' + window.BUILD_TIME;
+        }
+    </script>
 </footer>
