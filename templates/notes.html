@@ -31,6 +31,11 @@
                 </div>
                 {{ template "partials/_footer.html" . }}
             </main>
+            
+            <!-- Back to top button -->
+            <button id="back-to-top" aria-label="back to top">
+                {{ $icon := load "static/icon/arrow-up.svg" }} {{ $icon }}
+            </button>
         </div>
         <script>
             document.addEventListener('DOMContentLoaded', () => {
@@ -63,6 +68,32 @@
                         sessionStorage.setItem('notesScrollPosition', window.scrollY)
                     })
                 })
+
+                // Reading progress bar
+                const readingProgress = document.getElementById('reading-progress')
+                if (readingProgress) {
+                    window.addEventListener('scroll', () => {
+                        const docHeight = document.documentElement.scrollHeight - window.innerHeight
+                        const scrolled = (window.scrollY / docHeight) * 100
+                        readingProgress.style.width = `${scrolled}%`
+                    })
+                }
+
+                // Back to top button
+                const backToTop = document.getElementById('back-to-top')
+                if (backToTop) {
+                    window.addEventListener('scroll', () => {
+                        if (window.scrollY > 300) {
+                            backToTop.classList.add('shown')
+                        } else {
+                            backToTop.classList.remove('shown')
+                        }
+                    })
+
+                    backToTop.addEventListener('click', () => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                    })
+                }
             })
         </script>
 
