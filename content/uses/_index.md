@@ -49,6 +49,7 @@ A curated list of tools, software, and hardware that power my daily workflow.
 
 - [Neovim](https://neovim.io/) 💚 - My main editor for everything now
 - **[VSCode](https://code.visualstudio.com/) + Vim Extension** - Rarely used, but handy for debugging or git conflicts
+- **[OpenCode](https://opencode.ai/)** - AI coding assistant in the terminal, alternative to Claude Code, connects with GitHub Copilot
 - Past: IntelliJ, Zed, Helix, Vim
 
 ---
@@ -60,6 +61,7 @@ Modern CLI tools (mostly Rust 🦀 and Go):
 - **[Zoxide](https://github.com/ajeetdsouza/zoxide)** 💚 - Smarter `cd`, haven't typed full paths in over a year
 - **[Fzf](https://github.com/junegunn/fzf)** 💚 - Fuzzy finder for everything
 - **[Atuin](https://github.com/atuinsh/atuin)** 💚 - Magical shell history with sync across machines
+- **[Yazi](https://github.com/sxyazi/yazi)** - Blazing fast terminal file manager written in Rust
 - **[Eza](https://github.com/eza-community/eza)** - Modern `ls` with colors
 - **[Fd](https://github.com/sharkdp/fd)** - Faster, friendlier `find`
 - **[Ripgrep](https://github.com/BurntSushi/ripgrep)** - Lightning-fast code search
@@ -67,6 +69,7 @@ Modern CLI tools (mostly Rust 🦀 and Go):
 - **[Sd](https://github.com/chmln/sd)** - Intuitive `sed` replacement
 - **[Jq](https://github.com/jqlang/jq)** - JSON processor
 - **[Hyperfine](https://github.com/sharkdp/hyperfine)** - Benchmarking tool
+- **[Bottom](https://github.com/ClementTsang/bottom)** - Graphical process/system monitor
 
 ---
 
@@ -74,6 +77,7 @@ Modern CLI tools (mostly Rust 🦀 and Go):
 
 - **[Lazygit](https://github.com/jesseduffield/lazygit)** 💚 - Terminal UI for Git
 - **[Git Delta](https://github.com/dandavison/delta)** - Beautiful diffs with syntax highlighting
+- **[Git Cliff](https://github.com/orhun/git-cliff)** - Automated changelog generator
 - **Git + Fzf** - Interactive branch switching and management
 
 ---
@@ -96,9 +100,8 @@ Modern CLI tools (mostly Rust 🦀 and Go):
 
 ## 🐳 Containers & Kubernetes
 
-- **[Docker](https://www.docker.com/)** - Container runtime
+- **[Docker](https://www.docker.com/)** - Container runtime with Docker Compose and Buildx
 - **[Podman](https://podman.io/)** + **[Podman Desktop](https://podman-desktop.io/)** - Daemonless alternative
-- **[Lazydocker](https://github.com/jesseduffield/lazydocker)** - Terminal UI for container management
 - **[Kubectl](https://kubernetes.io/docs/reference/kubectl/)** - Kubernetes CLI
 - **[Kind](https://kind.sigs.k8s.io/)** - Local Kubernetes clusters
 - **[Helm](https://helm.sh/)** - Kubernetes package manager
@@ -120,12 +123,16 @@ Modern CLI tools (mostly Rust 🦀 and Go):
 
 ---
 
-## 💚 Languages I Love
+## 💚 Languages & Runtimes
 
 - **[TypeScript](https://www.typescriptlang.org/)** - Daily driver for my work
 - **[Go](https://go.dev/)** 💚 - Built [gozzi](https://github.com/tduyng/gozzi) with it, love its simplicity
 - **[Zig](https://ziglang.org/)** 💚 - Exciting modern and simple systems language
 - **[Rust](https://www.rust-lang.org/)** - Most of my favorite CLI tools are written in Rust
+- **[Python](https://www.python.org/)** - Scripting and automation
+- **[Lua](https://www.lua.org/)** - Neovim configuration
+- **[Node.js](https://nodejs.org/)** - Via pnpm and fnm for version management
+- **[UV](https://github.com/astral-sh/uv)** - Fast Python package installer
 
 ---
 
@@ -135,9 +142,25 @@ For my job, I work with:
 
 - **Backend**: Node.js, TypeScript, NestJS
 - **Databases**: PostgreSQL, MySQL, MongoDB, Redis, Elasticsearch
-- **Infrastructure**: Docker, Kubernetes, AWS
+- **Infrastructure**: Docker, Kubernetes, AWS (using AWS CLI v2)
 - **CI/CD**: GitLab, GitHub Actions
-- **Scripting**: Makefiles, Justfiles, Bash
+- **Scripting**: Makefiles, Justfiles, Bash, JS/GO/Python scripting
+- **Build Tools**: esbuild, Biome (linter & formatter)
+
+---
+
+## 🎨 Design & Presentation
+
+- **[Presenterm](https://github.com/mfontanini/presenterm)** - Create stunning presentations from Markdown in the terminal
+- **[FFmpeg](https://ffmpeg.org/)** - Video/audio processing
+- **[ImageMagick](https://imagemagick.org/)** - Image manipulation
+
+---
+
+## 🔤 Fonts
+
+- **[Fira Code](https://github.com/tonsky/FiraCode)** - Programming ligatures that look beautiful
+- **[Nerd Fonts](https://www.nerdfonts.com/)** - Patched fonts with tons of glyphs for terminal icons
 
 ---
 
