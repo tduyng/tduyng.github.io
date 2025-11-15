@@ -8,4 +8,5 @@ generate_feed = true
 lang = "en"
 comment = true
 copy = true
+reaction = true
 +++
