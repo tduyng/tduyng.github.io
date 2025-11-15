@@ -4047,3 +4047,138 @@ dialog#search-modal {
         transform: translateY(0);
     }
 }
+
+/* Uses Page Styling
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* Green heart love animation */
+article a[href*='github.com']:has(+ strong:contains('💚')),
+article strong:has(+ strong:contains('💚')),
+article:has(.prose) h3:contains('💚') {
+    position: relative;
+}
+
+/* Make green hearts glow */
+article:has(.prose) strong:contains('💚'),
+article:has(.prose) h3:contains('💚') {
+    display: inline-block;
+    animation: heartPulse 2s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 2px rgba(34, 197, 94, 0.5));
+    }
+    50% {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 8px rgba(34, 197, 94, 0.8));
+    }
+}
+
+/* Uses page special sections */
+article:has(.prose) h2 {
+    margin-top: 2.5em;
+    margin-bottom: 0.8em;
+    padding-bottom: 0.3em;
+    border-bottom: 2px solid var(--primary-decoration-color);
+    position: relative;
+}
+
+article:has(.prose) h2::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--primary-color);
+    border-radius: 2px;
+}
+
+/* Enhanced code blocks for uses page */
+article:has(.prose) pre {
+    position: relative;
+    background: rgba(111, 143, 209, 0.05);
+    border-left: 3px solid var(--primary-color);
+    margin: 1.5em 0;
+}
+
+/* Tool links get special treatment */
+article:has(.prose) ul li a[href*='github.com'],
+article:has(.prose) ul li a[href*='http'] {
+    font-weight: 500;
+    color: var(--primary-color);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+    position: relative;
+    padding: 2px 0;
+}
+
+article:has(.prose) ul li a[href*='github.com']:hover,
+article:has(.prose) ul li a[href*='http']:hover {
+    border-bottom-color: var(--primary-color);
+    color: var(--text-bold-color);
+}
+
+article:has(.prose) ul li a[href*='github.com']::after {
+    content: ' →';
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+article:has(.prose) ul li a[href*='github.com']:hover::after {
+    opacity: 1;
+}
+
+/* Category sections with subtle background */
+article:has(.prose) h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    padding: 0.5em 0.8em;
+    background: rgba(111, 143, 209, 0.03);
+    border-radius: 6px;
+    border-left: 3px solid var(--primary-color);
+    color: var(--text-bold-color);
+}
+
+/* Make bullet lists more spacious on uses page */
+article:has(.prose) ul {
+    line-height: 2;
+}
+
+article:has(.prose) ul li {
+    padding-left: 0.5em;
+    position: relative;
+}
+
+article:has(.prose) ul li::marker {
+    color: var(--primary-color);
+}
+
+/* Horizontal rule styling for uses page */
+article:has(.prose) hr {
+    margin: 3em 0;
+    border: none;
+    height: 2px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        var(--primary-color) 30%,
+        var(--primary-color) 70%,
+        transparent
+    );
+    opacity: 0.3;
+}
+
+/* Last updated text at bottom */
+article:has(.prose) p:last-child em {
+    display: block;
+    text-align: center;
+    color: var(--text-pale-color);
+    font-size: 0.9em;
+    margin-top: 3em;
+    padding-top: 2em;
+    border-top: 1px solid var(--primary-decoration-color);
+}
