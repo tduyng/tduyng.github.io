@@ -1195,6 +1195,8 @@ header {
         display: flex;
         align-items: center;
         gap: 0.3em;
+        flex: 1 1 auto;
+        overflow: visible;
 
         /* Logo/Brand - tduyng */
         > a:first-child {
@@ -1307,7 +1309,7 @@ header {
             display: none;
 
             &.shown {
-                display: initial;
+                display: inline-flex;
             }
         }
     }
@@ -1347,6 +1349,44 @@ header {
                 &.active {
                     color: var(--primary-color);
                 }
+            }
+        }
+    }
+
+    /* Responsive navigation for small screens */
+    @media (max-width: 600px) {
+        nav {
+            font-size: 1em;
+            gap: 0.25em;
+
+            a:not(:first-child) {
+                font-size: 0.9em;
+                padding: 0.3em 0.6em;
+            }
+
+            .separator {
+                width: 18px;
+                font-size: 0.85em;
+            }
+
+            .wrap-separator {
+                margin: 0 0.2em 0 0.1em;
+            }
+        }
+    }
+
+    @media (max-width: 400px) {
+        nav {
+            font-size: 0.95em;
+            gap: 0.2em;
+
+            a:not(:first-child) {
+                font-size: 0.85em;
+                padding: 0.25em 0.5em;
+            }
+
+            .separator {
+                width: 16px;
             }
         }
     }
@@ -3764,6 +3804,7 @@ template {
 #search-toggle {
     width: 32px;
     height: 32px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4066,7 +4107,8 @@ article:has(.prose) h3:contains('💚') {
 }
 
 @keyframes heartPulse {
-    0%, 100% {
+    0%,
+    100% {
         transform: scale(1);
         filter: drop-shadow(0 0 2px rgba(34, 197, 94, 0.5));
     }
