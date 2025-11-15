@@ -60,6 +60,13 @@
             
             <span class="wrap-separator fold"></span>
               
+            <a class="instant fold" href="/uses">
+                uses
+            </a>
+
+            
+            <span class="wrap-separator fold"></span>
+              
             <a class="instant fold" href="/about">
                 about
             </a>
@@ -1224,7 +1231,43 @@ so there’s no need for manual mirroring. Everything stays organized and up-to-
                         </div>
                     </article>
                 </div>
+                <footer>
+    <div class="footer-menu">
+        
+        <a class="instant fold" href="/archive">archive</a>
+        
+        <a class="instant fold" href="/uses">uses</a>
+        
+        <a class="instant fold" href="/tags">tags</a>
+        
+        <a class="instant fold" href="/subscribe">subscribe</a>
+        
+        <a class="instant fold" href="/contact">contact</a>
+        
+        <a class="instant fold" href="/privacy">privacy</a>
+        
+        <a class="instant fold" href="/atom.xml">rss</a>
+        
+    </div>
+    <div class="copyright">
+        <span class="copyright-text">©2025 Duy NG</span>
+        <span class="separator">•</span>
+        <span class="built-with">
+            Built with
+            <a href="https://github.com/tduyng/gozzi" rel="noreferrer" target="_blank">
+                <span class="gozzi-icon">⚡</span>
+                gozzi
+            </a>
+        </span>
+    </div>
+</footer>
+
             </main>
+            
+            
+            <button id="back-to-top" aria-label="back to top">
+                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z" fill="currentColor"></path></svg>
+            </button>
         </div>
         <script>
             document.addEventListener('DOMContentLoaded', () => {
@@ -1257,6 +1300,32 @@ so there’s no need for manual mirroring. Everything stays organized and up-to-
                         sessionStorage.setItem('notesScrollPosition', window.scrollY)
                     })
                 })
+
+                
+                const readingProgress = document.getElementById('reading-progress')
+                if (readingProgress) {
+                    window.addEventListener('scroll', () => {
+                        const docHeight = document.documentElement.scrollHeight - window.innerHeight
+                        const scrolled = (window.scrollY / docHeight) * 100
+                        readingProgress.style.width = `${scrolled}%`
+                    })
+                }
+
+                
+                const backToTop = document.getElementById('back-to-top')
+                if (backToTop) {
+                    window.addEventListener('scroll', () => {
+                        if (window.scrollY > 300) {
+                            backToTop.classList.add('shown')
+                        } else {
+                            backToTop.classList.remove('shown')
+                        }
+                    })
+
+                    backToTop.addEventListener('click', () => {
+                        window.scrollTo({ top: 0, behavior: 'smooth' })
+                    })
+                }
             })
         </script>
 
