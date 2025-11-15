@@ -150,8 +150,9 @@
 <hr>
 <h2 id="-editor--coding">🛠️ Editor &amp; Coding</h2>
 <ul>
-<li><a href="https://neovim.io/">Neovim</a> 💚 - My main editor for everything now</li>
+<li><a href="https://neovim.io/">Neovim</a> 💚 - My main editor for everything now, using LazyVim</li>
 <li><strong><a href="https://code.visualstudio.com/">VSCode</a> + Vim Extension</strong> - Rarely used, but handy for debugging or git conflicts</li>
+<li><strong><a href="https://opencode.ai/">OpenCode</a></strong> 💚 - AI coding assistant in the terminal, alternative to Claude Code, connects with GitHub Copilot</li>
 <li>Past: IntelliJ, Zed, Helix, Vim</li>
 </ul>
 <hr>
@@ -161,6 +162,7 @@
 <li><strong><a href="https://github.com/ajeetdsouza/zoxide">Zoxide</a></strong> 💚 - Smarter <code>cd</code>, haven't typed full paths in over a year</li>
 <li><strong><a href="https://github.com/junegunn/fzf">Fzf</a></strong> 💚 - Fuzzy finder for everything</li>
 <li><strong><a href="https://github.com/atuinsh/atuin">Atuin</a></strong> 💚 - Magical shell history with sync across machines</li>
+<li><strong><a href="https://github.com/sxyazi/yazi">Yazi</a></strong> 💚 - Blazing fast terminal file manager written in Rust</li>
 <li><strong><a href="https://github.com/eza-community/eza">Eza</a></strong> - Modern <code>ls</code> with colors</li>
 <li><strong><a href="https://github.com/sharkdp/fd">Fd</a></strong> - Faster, friendlier <code>find</code></li>
 <li><strong><a href="https://github.com/BurntSushi/ripgrep">Ripgrep</a></strong> - Lightning-fast code search</li>
@@ -168,12 +170,15 @@
 <li><strong><a href="https://github.com/chmln/sd">Sd</a></strong> - Intuitive <code>sed</code> replacement</li>
 <li><strong><a href="https://github.com/jqlang/jq">Jq</a></strong> - JSON processor</li>
 <li><strong><a href="https://github.com/sharkdp/hyperfine">Hyperfine</a></strong> - Benchmarking tool</li>
+<li><strong><a href="https://github.com/ClementTsang/bottom">Bottom</a></strong> - Graphical process/system monitor</li>
+<li><strong><a href="https://github.com/bcicen/ctop">Ctop</a></strong> - Top-like interface for containers</li>
 </ul>
 <hr>
 <h2 id="-version-control">🌳 Version Control</h2>
 <ul>
 <li><strong><a href="https://github.com/jesseduffield/lazygit">Lazygit</a></strong> 💚 - Terminal UI for Git</li>
 <li><strong><a href="https://github.com/dandavison/delta">Git Delta</a></strong> - Beautiful diffs with syntax highlighting</li>
+<li><strong><a href="https://github.com/orhun/git-cliff">Git Cliff</a></strong> - Automated changelog generator</li>
 <li><strong>Git + Fzf</strong> - Interactive branch switching and management</li>
 </ul>
 <hr>
@@ -193,12 +198,12 @@
 <hr>
 <h2 id="-containers--kubernetes">🐳 Containers &amp; Kubernetes</h2>
 <ul>
-<li><strong><a href="https://www.docker.com/">Docker</a></strong> - Container runtime</li>
+<li><strong><a href="https://www.docker.com/">Docker</a></strong> - Container runtime with Docker Compose and Buildx</li>
 <li><strong><a href="https://podman.io/">Podman</a></strong> + <strong><a href="https://podman-desktop.io/">Podman Desktop</a></strong> - Daemonless alternative</li>
-<li><strong><a href="https://github.com/jesseduffield/lazydocker">Lazydocker</a></strong> - Terminal UI for container management</li>
 <li><strong><a href="https://kubernetes.io/docs/reference/kubectl/">Kubectl</a></strong> - Kubernetes CLI</li>
 <li><strong><a href="https://kind.sigs.k8s.io/">Kind</a></strong> - Local Kubernetes clusters</li>
 <li><strong><a href="https://helm.sh/">Helm</a></strong> - Kubernetes package manager</li>
+<li><strong><a href="https://github.com/bcicen/ctop">Ctop</a></strong> - Container monitoring</li>
 </ul>
 <hr>
 <h2 id="-dotfiles">🗂️ Dotfiles</h2>
@@ -214,12 +219,16 @@
 <li>Past: Arc, Firefox, Chrome, Safari</li>
 </ul>
 <hr>
-<h2 id="-languages-i-love">💚 Languages I Love</h2>
+<h2 id="-languages--runtimes">💚 Languages &amp; Runtimes</h2>
 <ul>
 <li><strong><a href="https://www.typescriptlang.org/">TypeScript</a></strong> - Daily driver for my work</li>
 <li><strong><a href="https://go.dev/">Go</a></strong> 💚 - Built <a href="https://github.com/tduyng/gozzi">gozzi</a> with it, love its simplicity</li>
 <li><strong><a href="https://ziglang.org/">Zig</a></strong> 💚 - Exciting modern and simple systems language</li>
 <li><strong><a href="https://www.rust-lang.org/">Rust</a></strong> - Most of my favorite CLI tools are written in Rust</li>
+<li><strong><a href="https://www.python.org/">Python</a></strong> - Scripting and automation</li>
+<li><strong><a href="https://www.lua.org/">Lua</a></strong> - Neovim configuration</li>
+<li><strong><a href="https://nodejs.org/">Node.js</a></strong> - Via pnpm and fnm for version management</li>
+<li><strong><a href="https://github.com/astral-sh/uv">UV</a></strong> - Fast Python package installer</li>
 </ul>
 <hr>
 <h2 id="-work-setup">🎯 Work Setup</h2>
@@ -227,9 +236,23 @@
 <ul>
 <li><strong>Backend</strong>: Node.js, TypeScript, NestJS</li>
 <li><strong>Databases</strong>: PostgreSQL, MySQL, MongoDB, Redis, Elasticsearch</li>
-<li><strong>Infrastructure</strong>: Docker, Kubernetes, AWS</li>
+<li><strong>Infrastructure</strong>: Docker, Kubernetes, AWS (using AWS CLI v2)</li>
 <li><strong>CI/CD</strong>: GitLab, GitHub Actions</li>
 <li><strong>Scripting</strong>: Makefiles, Justfiles, Bash</li>
+<li><strong>Build Tools</strong>: esbuild, Biome (linter &amp; formatter)</li>
+</ul>
+<hr>
+<h2 id="-design--presentation">🎨 Design &amp; Presentation</h2>
+<ul>
+<li><strong><a href="https://github.com/mfontanini/presenterm">Presenterm</a></strong> 💚 - Create stunning presentations from Markdown in the terminal</li>
+<li><strong><a href="https://ffmpeg.org/">FFmpeg</a></strong> - Video/audio processing</li>
+<li><strong><a href="https://imagemagick.org/">ImageMagick</a></strong> - Image manipulation</li>
+</ul>
+<hr>
+<h2 id="-fonts">🔤 Fonts</h2>
+<ul>
+<li><strong><a href="https://github.com/tonsky/FiraCode">Fira Code</a></strong> - Programming ligatures that look beautiful</li>
+<li><strong><a href="https://www.nerdfonts.com/">Nerd Fonts</a></strong> - Patched fonts with tons of glyphs for terminal icons</li>
 </ul>
 <hr>
 <h2 id="-philosophy">💡 Philosophy</h2>

@@ -386,37 +386,7 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://tduyng.com/tags/static-site-generator/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/journey/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
     <loc>https://tduyng.com/tags/performance/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/shell/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/python/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/career/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/deno/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -426,47 +396,17 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://tduyng.com/tags/esm/</loc>
+    <loc>https://tduyng.com/tags/compose/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://tduyng.com/tags/commonjs/</loc>
+    <loc>https://tduyng.com/tags/makefile/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://tduyng.com/tags/ide/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/web-development/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/rss/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/production/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/rust/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/image-conversion/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/cli/</loc>
+    <loc>https://tduyng.com/tags/free/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -481,97 +421,7 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://tduyng.com/tags/profile/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/tsconfig/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/vscode/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
     <loc>https://tduyng.com/tags/scripting/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/makefile/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/rails/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/webpack/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/dynamic/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/react/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/full-text/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/nodejs/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/webp/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/enum/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/typescript/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/github-action/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/compose/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/neovim/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/keymaps/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://tduyng.com/tags/algorithms/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -581,12 +431,12 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://tduyng.com/tags/free/</loc>
+    <loc>https://tduyng.com/tags/javascript/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://tduyng.com/tags/github/</loc>
+    <loc>https://tduyng.com/tags/full-text/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -601,7 +451,17 @@
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://tduyng.com/tags/ruby/</loc>
+    <loc>https://tduyng.com/tags/commonjs/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/ide/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/static-site-generator/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
@@ -611,17 +471,157 @@
     <priority>0.4</priority>
   </url>
   <url>
+    <loc>https://tduyng.com/tags/deno/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/webp/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/python/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/career/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/github-action/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/vscode/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/ruby/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/dynamic/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/tsconfig/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/neovim/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/shell/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/keymaps/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/webpack/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/typescript/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/journey/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/github/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/rss/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/nodejs/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/image-conversion/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/cli/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/production/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/rust/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/algorithms/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/web-development/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
     <loc>https://tduyng.com/tags/prettier/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
-    <loc>https://tduyng.com/tags/javascript/</loc>
+    <loc>https://tduyng.com/tags/profile/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/enum/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/esm/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/rails/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://tduyng.com/tags/readme/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://tduyng.com/tags/react/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
