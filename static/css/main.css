@@ -65,6 +65,33 @@
         background-color var(--transition-standard), transform var(--transition-standard);
 }
 
+/* Responsive font sizes for mobile
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+@media (max-width: 768px) {
+    :root {
+        --homepage-font-size: 15px;
+        --paragraph-font-size: 15px;
+        --aside-font-size: 14px;
+    }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --homepage-font-size: 14px;
+        --paragraph-font-size: 14px;
+        --aside-font-size: 13px;
+    }
+}
+
+@media (max-width: 400px) {
+    :root {
+        --homepage-font-size: 13px;
+        --paragraph-font-size: 13px;
+        --aside-font-size: 12px;
+    }
+}
+
 /* base
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
@@ -1356,7 +1383,7 @@ header {
     /* Responsive navigation for small screens */
     @media (max-width: 600px) {
         nav {
-            font-size: 1em;
+            font-size: 1.1em;
             gap: 0.25em;
 
             a:not(:first-child) {
@@ -1365,8 +1392,8 @@ header {
             }
 
             .separator {
-                width: 18px;
-                font-size: 0.85em;
+                width: 20px;
+                font-size: 0.9em;
             }
 
             .wrap-separator {
@@ -1377,7 +1404,7 @@ header {
 
     @media (max-width: 400px) {
         nav {
-            font-size: 0.95em;
+            font-size: 1em;
             gap: 0.2em;
 
             a:not(:first-child) {
@@ -1386,7 +1413,7 @@ header {
             }
 
             .separator {
-                width: 16px;
+                width: 18px;
             }
         }
     }
