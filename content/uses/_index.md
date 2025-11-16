@@ -6,7 +6,7 @@ generate_feed = false
 
 [extra]
 lang = 'en'
-comment = false
+comment = true
 reaction = true
 +++
 
@@ -34,7 +34,7 @@ A curated list of tools, software, and hardware that power my daily workflow.
 
 ### Terminal Emulator
 
-- **[Ghostty](https://github.com/ghostty-org/ghostty)** - Built with Zig, fast, modern and easy to configure
+- **[Ghostty](https://github.com/ghostty-org/ghostty)** 💚 - Built with Zig, fast, modern and easy to configure
 - Past: Wezterm, iTerm2, Warp
 
 ### Shell & Prompt
@@ -47,7 +47,7 @@ A curated list of tools, software, and hardware that power my daily workflow.
 
 ## 🛠️ Editor & Coding
 
-- [Neovim](https://neovim.io/) 💚 - My main editor for everything now
+- **[Neovim](https://neovim.io/)** 💚 - My main editor for everything now
 - **[VSCode](https://code.visualstudio.com/) + Vim Extension** - Rarely used, but handy for debugging or git conflicts
 - **[OpenCode](https://opencode.ai/)** - AI coding assistant in the terminal, alternative to Claude Code, connects with GitHub Copilot
 - Past: IntelliJ, Zed, Helix, Vim
@@ -66,10 +66,11 @@ Modern CLI tools (mostly Rust 🦀 and Go):
 - **[Fd](https://github.com/sharkdp/fd)** - Faster, friendlier `find`
 - **[Ripgrep](https://github.com/BurntSushi/ripgrep)** - Lightning-fast code search
 - **[Bat](https://github.com/sharkdp/bat)** - `cat` with syntax highlighting
-- **[Sd](https://github.com/chmln/sd)** - Intuitive `sed` replacement
 - **[Jq](https://github.com/jqlang/jq)** - JSON processor
 - **[Hyperfine](https://github.com/sharkdp/hyperfine)** - Benchmarking tool
 - **[Bottom](https://github.com/ClementTsang/bottom)** - Graphical process/system monitor
+- **[UV](https://github.com/astral-sh/uv)** - Fast Python package installer
+- **[Direnv](https://direnv.net/)** - Auto environment switching per directory
 
 ---
 
@@ -85,6 +86,7 @@ Modern CLI tools (mostly Rust 🦀 and Go):
 ## 🎨 Window Management
 
 - **[Aerospace](https://github.com/nikitabobko/aerospace)** 💚 - Tiling window manager for macOS. Keyboard-driven workspaces: Coding (C), Terminal (T), Browser (B), Music (M)
+- **[Homerow](https://www.homerow.app/)** - Keyboard shortcuts for every button in macOS
 - Past: Rectangle, Raycast
 
 ---
@@ -94,7 +96,6 @@ Modern CLI tools (mostly Rust 🦀 and Go):
 - **[Nix](https://nixos.org/)** 💚 - Reproducible package management
 - **[nix-darwin](https://github.com/LnL7/nix-darwin)** - Nix integration for macOS
 - **[Homebrew](https://brew.sh/)** - Works alongside Nix via nix-darwin
-- **[Direnv](https://direnv.net/)** - Auto environment switching per directory
 
 ---
 
@@ -131,8 +132,7 @@ Modern CLI tools (mostly Rust 🦀 and Go):
 - **[Rust](https://www.rust-lang.org/)** - Most of my favorite CLI tools are written in Rust
 - **[Python](https://www.python.org/)** - Scripting and automation
 - **[Lua](https://www.lua.org/)** - Neovim configuration
-- **[Node.js](https://nodejs.org/)** - Via pnpm and fnm for version management
-- **[UV](https://github.com/astral-sh/uv)** - Fast Python package installer
+- **[Node.js](https://nodejs.org/)** - Via pnpm and fnm for version management (also nest.js, deno and bun)
 
 ---
 
