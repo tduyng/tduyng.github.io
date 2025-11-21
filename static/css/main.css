@@ -9,10 +9,10 @@
         ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
         monospace;
 
-    --homepage-max-width: 1400px;
-    --main-max-width: 1400px;
-    --header-max-width: 1600px;
-    --blog-cards-max-width: 1600px;
+    --homepage-max-width: 1200px;
+    --main-max-width: 1200px;
+    --header-max-width: 1200px;
+    --blog-cards-max-width: 1200px;
     --tablet-max-width: 768px;
     --small-screen-max-width: 400px;
     --avatar-size: 60px;
