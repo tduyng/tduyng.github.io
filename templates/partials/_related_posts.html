@@ -5,8 +5,8 @@
 
 <!-- First pass: count matching posts -->
 {{ $foundCount := 0 }}
-{{ range $blog_section.Children }}
-    {{ if and (ne .Permalink $currentPermalink) (lt $foundCount 4) }}
+{{ range (reverse $blog_section.Children) }}
+    {{ if and (ne .Permalink $currentPermalink) (lt $foundCount 3) }}
         {{ if .Config.tags }}
             {{ $hasMatch := false }}
             {{ range .Config.tags }}
@@ -30,8 +30,8 @@
     <h3>Related Posts</h3>
     <div class="related-posts-grid">
         {{ $rendered := 0 }}
-        {{ range $blog_section.Children }}
-            {{ if and (ne .Permalink $currentPermalink) (lt $rendered 4) }}
+        {{ range (reverse $blog_section.Children) }}
+            {{ if and (ne .Permalink $currentPermalink) (lt $rendered 3) }}
                 {{ if .Config.tags }}
                     {{ $hasMatch := false }}
                     {{ range .Config.tags }}
