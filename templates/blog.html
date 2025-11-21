@@ -11,14 +11,51 @@
                 <h2 class="scroll-reveal">{{ $group.Key }}</h2>
                 <div class="post-list">
                     {{ range (reverse $group.Items) }}
+                    {{ $post_image := "/img/post-cover.webp" }}
+                    {{ if .Config.extra.img }}
+                        {{ $img_path := .Config.extra.img }}
+                        {{ $first_char := index (split $img_path "") 0 }}
+                        {{ if eq $first_char "/" }}
+                            {{ $post_image = $img_path }}
+                        {{ else }}
+                            {{ $post_image = printf "%s%s" .Permalink $img_path }}
+                        {{ end }}
+                    {{ end }}
+                    
                     <a
-                        class="post instant scroll-reveal-stagger {{ if .Config.extra.featured }}featured{{end}}"
+                        class="blog-card instant scroll-reveal-stagger {{ if .Config.extra.featured }}featured{{end}}"
                         href="{{ .Permalink }}"
                     >
-                        <span>{{ .Config.title }}</span>
-                        <span class="date">{{ date .Config.date "Jan 2, 2006" }}</span>
+                        <div class="post-card-image">
+                            <img src="{{ $post_image }}" alt="{{ .Config.title }}" loading="lazy" onerror="this.src='/img/post-cover.webp'" />
+                        </div>
+                        
+                        <div class="blog-card-content">
+                            <div class="blog-card-header">
+                                <h3 class="blog-card-title">{{ .Config.title }}</h3>
+                                <div class="blog-card-date">{{ date .Config.date "Jan 2, 2006" }}</div>
+                            </div>
+                            
+                            {{ if .Config.description }}
+                            <p class="blog-card-description">{{ .Config.description }}</p>
+                            {{ end }}
+                            
+                            <div class="blog-card-footer">
+                                {{ if .Config.tags }}
+                                <div class="blog-card-tags">
+                                    {{ $tag_count := 0 }}
+                                    {{ range .Config.tags }}
+                                        {{ if lt $tag_count 2 }}
+                                        <span class="blog-card-tag">#{{ . }}</span>
+                                        {{ $tag_count = add $tag_count 1 }}
+                                        {{ end }}
+                                    {{ end }}
+                                </div>
+                                {{ end }}
+                                <span class="blog-card-read-more">Read</span>
+                            </div>
+                        </div>
                     </a>
-
                     {{ end }}
                 </div>
                 <hr class="scroll-reveal" />

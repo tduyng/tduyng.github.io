@@ -59,6 +59,21 @@
                         <div class="post-list">
                             {{ range limit 10 (reverse $blog_section.Children) }}
                             <div class="post instant scroll-reveal-stagger">
+                                {{ $post_image := "/img/post-cover.webp" }}
+                                {{ if .Config.extra.img }}
+                                    {{ $img_path := .Config.extra.img }}
+                                    {{ $first_char := index (split $img_path "") 0 }}
+                                    {{ if eq $first_char "/" }}
+                                        {{ $post_image = $img_path }}
+                                    {{ else }}
+                                        {{ $post_image = printf "%s%s" .Permalink $img_path }}
+                                    {{ end }}
+                                {{ end }}
+                                
+                                <div class="post-card-image">
+                                    <img src="{{ $post_image }}" alt="{{ .Config.title }}" loading="lazy" onerror="this.src='/img/post-cover.webp'" />
+                                </div>
+                                
                                 <div class="post-content">
                                     <div class="post-header">
                                         <div class="title">
