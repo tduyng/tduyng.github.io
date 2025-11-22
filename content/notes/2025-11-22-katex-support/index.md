@@ -1,5 +1,5 @@
 +++
-title = "[NOTE] Native KaTeX Support on Gozzi"
+title = "[Gozzi] Native KaTeX support"
 date = 2025-11-22
 template = "note.html"
 generate_feed = true
@@ -9,7 +9,7 @@ comment = true
 copy = true
 +++
 
-# Native KaTeX Support on Gozzi
+# [Gozzi] Native KaTeX support
 
 Gozzi now has native KaTeX support! Let's test it.
 
