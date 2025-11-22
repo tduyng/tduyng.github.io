@@ -7,7 +7,6 @@ generate_feed = false
 
 [extra]
 lang = 'en'
-math = false
 mermaid = false
 copy = false
 comment = false
