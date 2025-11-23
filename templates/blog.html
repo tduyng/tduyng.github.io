@@ -7,6 +7,12 @@
 
         <div id="wrapper">
             <main class="layout-list">
+                <article class="prose blog">
+                    <h1>{{ .Section.Config.title }}</h1>
+                    {{ if .Section.Config.description }}
+                    <p>{{ .Section.Config.description }}</p>
+                    {{ end }}
+                </article>
                 {{ range $group := group_by "year" .Section.Children }}
                 <h2 class="scroll-reveal">{{ $group.Key }}</h2>
                 <div class="post-list">

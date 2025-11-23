@@ -1649,17 +1649,20 @@ footer {
 body.blog {
     #wrapper {
         margin: 0 auto;
-        max-width: var(--blog-cards-max-width);
+        max-width: var(--main-max-width);
         min-height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         width: 100%;
+        font-size: var(--paragraph-font-size);
+        line-height: 1.6;
     }
 
     main {
         margin: 45px 0;
         width: 100%;
+        padding: 0 15px;
     }
 }
 
@@ -4451,19 +4454,19 @@ article:has(.prose) p:last-child em {
     .related-post-card {
         padding: 0;
     }
-    
+
     .related-post-card h4 {
         margin: 1em 1.2em 0.8em 1.2em;
     }
-    
+
     .related-post-card .description {
         margin: 0 1.2em 1em 1.2em;
     }
-    
+
     .related-post-card .related-tags {
         margin: 0.8em 1.2em;
     }
-    
+
     .related-post-card .read-more {
         margin: auto 1.2em 1.2em 1.2em;
     }
@@ -4721,6 +4724,66 @@ body.blog .layout-list .blog-card:hover .blog-card-read-more {
 
 body.blog .layout-list .blog-card:hover .blog-card-read-more::after {
     transform: translateX(4px);
+}
+
+/* Blog page prose header (title + description) - matching .notes styling */
+.prose.blog {
+    margin: 0 auto;
+    padding: 10px;
+    margin-bottom: 2em;
+}
+
+.prose.blog h1 {
+    font-size: 1.8em;
+    font-weight: bolder;
+    margin-top: 20px;
+    background: linear-gradient(135deg, var(--text-bold-color) 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    text-align: left;
+}
+
+.prose.blog > p:first-of-type {
+    font-size: 1.1em;
+    color: var(--text-color);
+    padding: 16px 0 24px;
+    border-bottom: 1px solid rgba(111, 143, 209, 0.1);
+    margin-bottom: 24px;
+}
+
+.prose.blog h1 {
+    font-size: 1.8em;
+    font-weight: bolder;
+    margin-top: 20px;
+    background: linear-gradient(135deg, var(--text-bold-color) 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    text-align: left;
+}
+
+.prose.blog p {
+    margin-top: 0.5em;
+    color: var(--text-color);
+}
+
+/* Year headers with gradient */
+body.blog .layout-list h2 {
+    background: linear-gradient(
+        135deg,
+        var(--text-bold-color) 0%,
+        var(--primary-color) 70%,
+        #8fa3d8 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
 }
 
 /* Fallback: If no image, show gradient placeholder */

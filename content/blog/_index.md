@@ -1,6 +1,6 @@
 +++
 title = "Blog"
-description = "Duy NG blog"
+description = "Technical articles and programming tutorials"
 template = "blog.html"
 generate_feed = true
 
