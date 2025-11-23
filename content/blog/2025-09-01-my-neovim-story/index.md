@@ -198,15 +198,13 @@ Based on my setup, here are the core topics for upcoming articles:
 
 - Part 2: basics setup (init.lua, keymaps, options, autocmds, diagnostics)
 - Part 3: setup native LSP
-- Part 4: setup lazyvim, snacks.nvim (+ which-key.nvim, nvim-web-devicons)
+- Part 4: setup vim.pack, snacks.nvim (+ which-key.nvim, nvim-web-devicons)
 - Part 5: code quality tools (formatter, highlighting, theme)
 - Part 6: setup smart completion with blink.cmp, snippets
 - Part 7: setup git tools (gitsigns, diffview, lazygit)
 - Part 8: debugging (nvim-dap, nvim-dap-ui)
 - Part 9: enhanced editing experience (flash.nvim, yanky.nvim, grug-far.nvim, noice.nvim)
 - Part 10: custom lua scripts (statusline, tabline, session)
-
-**Bonus series**: I'll also create a smaller series showing how to achieve the same setup using Neovim's native `vim.pack` in neovim 0.12+ instead of `lazy.nvim,` for those who want minimal dependencies.
 
 ## FAQ
 
