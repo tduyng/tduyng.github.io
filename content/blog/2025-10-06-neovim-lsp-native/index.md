@@ -2,7 +2,7 @@
 title = "Part 3: Setting up Neovim native lsp"
 description = "Getting real IDE intelligence with Neovim's built-in language server support"
 template = "post.html"
-date = 2025-11-22
+date = 2025-10-06
 generate_feed = true
 tags = ["neovim", "lsp", "ide"]
 
@@ -39,7 +39,7 @@ But here's the thing: if you're new to Neovim or don't have time to set this up 
 
 Huge thanks to the nvim-lspconfig maintainers and community! Their work is invaluable.
 
-## The Easy Way: Using nvim-lspconfig
+## The easy way: using nvim-lspconfig
 
 If you use this plugin, you can enable language servers with just a few lines:
 
@@ -99,11 +99,11 @@ Why go native?
 
 Because it keeps your setup minimal, helps you understand how LSP works, and gives you more control.
 
-## How Native LSP Works
+## How native LSP works
 
 Neovim 0.11 introduced two new APIs: `vim.lsp.config()` and `vim.lsp.enable()`.
 
-### Method 1: Inline Config
+### Method 1: inline config
 
 You can define configs directly in your Lua code:
 
@@ -155,7 +155,7 @@ You can specify the workspace root in two ways:
 
 Use `root_markers` for simple cases. Use `root_dir` when you need custom logic (like monorepo handling, conditional activation, etc.).
 
-### Method 2: Modular Config (Recommended)
+### Method 2: modular config (recommended)
 
 But I prefer a more modular approach using the `lsp/` directory.
 
@@ -163,9 +163,9 @@ Neovim automatically searches for LSP configs in `lsp/*.lua` files within your N
 
 This is the same pattern `nvim-lspconfig` uses. We'll learn from them and create our own configs.
 
-## Setting Up LSP Configs
+## Setting up LSP configs
 
-### Where to Put Config Files
+### Where to put config files
 
 Create a `lsp/` directory in your Neovim config:
 
@@ -181,7 +181,7 @@ Create a `lsp/` directory in your Neovim config:
 
 The `lsp/` directory is at the same level as `lua/`, not inside it. Neovim searches your runtime path for `lsp/*.lua` files.
 
-### Creating a Config
+### Creating a config
 
 Here's an example for `lua_ls`:
 
@@ -233,7 +233,7 @@ root_markers = {
 }
 ```
 
-## Setting Up Other Languages
+## Setting up other languages
 
 Learn from the community. The `nvim-lspconfig` plugin has configs for every language in their `lsp/` directory: https://github.com/neovim/nvim-lspconfig/tree/master/lsp
 
@@ -291,13 +291,13 @@ Here's my file structure:
 
 Most of these configs come directly from nvim-lspconfig's `lsp/` directory. I just copied the ones I need.
 
-## Example: ESLint Setup
+## Example: ESLint setup
 
 Let me show you a real example. ESLint is tricky because it needs to find `package.json` correctly, especially in monorepos.
 
 This config comes from nvim-lspconfig's `lsp/eslint.lua`. I copied it to my config and it works perfectly.
 
-### Optional: Helper Utilities
+### Optional: helper utilities
 
 The ESLint config uses some helper functions. I have `lua/utils/lsp.lua` (learned from nvim-lspconfig) to help detect `package.json` for tools like ESLint, Biome, or Tailwind CSS:
 
@@ -341,7 +341,7 @@ end
 return M
 ```
 
-### The ESLint Config
+### The ESLint config
 
 Now I can use those utils in `~/.config/nvim/lsp/eslint.lua`:
 
@@ -643,11 +643,9 @@ Now you have these keymaps:
 
 For advanced navigation (`gI`, `gD`, `gr`), we'll enhance these with snacks.nvim in the next article.
 
-## That's It!
+That's it! You now have a full IDE experience in Neovim, just like VSCode. You understand how LSP works, and you have full control over your setup.
 
-You now have a full IDE experience in Neovim, just like VSCode. You understand how LSP works, and you have full control over your setup.
-
-### The Key Points
+The key points:
 
 1. **Neovim 0.11 made native LSP much simpler** with `vim.lsp.config()` and `vim.lsp.enable()`
 2. **Config files go in `lsp/*.lua`** at your Neovim config root (parallel to `lua/`)
