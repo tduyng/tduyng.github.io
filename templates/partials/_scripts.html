@@ -1,6 +1,9 @@
 <script src="/js/main.js" defer></script>
 <script src="/js/lightense.min.js" defer></script>
 <script src="/js/search.js" defer></script>
+<!-- KaTeX auto-render for client-side math rendering -->
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.body, {delimiters: [{left: '\\[', right: '\\]', display: true}, {left: '\\(', right: '\\)', display: false}]});"></script>
 {{ if .Site.Config.extra.enable_analytics }}
 <script
     async
