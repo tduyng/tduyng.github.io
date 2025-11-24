@@ -148,6 +148,16 @@ For my job, I work with:
 
 ---
 
+## 🏃 Task Runners
+
+Task runners help automate repetitive workflows with simple commands:
+
+- **[Just](https://github.com/casey/just)** 💚 - Modern command runner with better UX than Make
+- **[Make](https://www.gnu.org/software/make/)** - The classic, used it a lot in the past but now prefer Just
+- **[npm scripts](https://docs.npmjs.com/cli/v10/using-npm/scripts)** - Built into Node.js, practical but meh
+
+---
+
 ## 🎨 Design & Presentation
 
 - **[Presenterm](https://github.com/mfontanini/presenterm)** - Create stunning presentations from Markdown in the terminal
