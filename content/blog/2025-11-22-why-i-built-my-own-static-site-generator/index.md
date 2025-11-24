@@ -2,7 +2,7 @@
 title = "Why I built my own static site generator"
 description = "From Jekyll to Zola to building Gozzi learning by building instead of just using."
 template = "post.html"
-date = 2025-11-25
+date = 2025-11-22
 tags = ["blog", "static-site-generator", "go", "learning"]
 generate_feed = true
 
