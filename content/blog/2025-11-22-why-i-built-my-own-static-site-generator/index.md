@@ -7,7 +7,7 @@ tags = ["blog", "static-site-generator", "go", "learning"]
 generate_feed = true
 
 [extra]
-comment = false
+comment = true
 reaction = true
 toc = true
 copy = true

@@ -7,7 +7,7 @@ tags = ["justfile", "makefile", "scripting", "task-runner"]
 generate_feed = true
 
 [extra]
-comment = false
+comment = true
 reaction = true
 toc = true
 copy = true
