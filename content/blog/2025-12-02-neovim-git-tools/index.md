@@ -2,7 +2,7 @@
 title = "Part 8: Neovim git integration"
 description = "Setup git tools with gitsigns and diffview. See changes, blame, diff in Neovim"
 template = "post.html"
-date = 2025-11-30
+date = 2025-12-02
 generate_feed = true
 tags = ["neovim", "git", "gitsigns", "diffview"]
 
