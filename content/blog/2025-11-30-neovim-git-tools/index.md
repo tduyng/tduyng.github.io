@@ -216,7 +216,7 @@ map("n", "]h", function()
 end, "Next Hunk")
 ```
 
-**]h** - Jump to next change (hunk). **[h** - Jump to previous change.
+`]h` - Jump to next change (hunk). `[h` - Jump to previous change.
 
 Works in diff mode too. Smart navigation.
 
@@ -226,7 +226,7 @@ map("n", "]H", function()
 end, "Last Hunk")
 ```
 
-**]H** - Jump to last change. **[H** - Jump to first change.
+`]H` - Jump to last change. `[H` - Jump to first change.
 
 ### Stage and reset keymaps
 
@@ -235,18 +235,22 @@ map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
 map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
 ```
 
-**<leader>ghs** - Stage current hunk. Works in visual mode too (stage selection).
+`<leader>ghs` - Stage current hunk. Works in visual mode too (stage selection).
 
-**<leader>ghr** - Reset current hunk (discard changes).
+`<leader>ghr` - Reset current hunk (discard changes).
 
 ```lua
 map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
 map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
 ```
 
-**<leader>ghS** - Stage entire file.
+`<leader>ghS` - Stage entire file.
 
-**<leader>ghR** - Reset entire file (discard all changes).
+`<leader>ghu` - Undo stage hunk (unstage last staged hunk).
+
+`<leader>ghR` - Reset entire file (discard all changes).
+
+`<leader>ghp` - Preview hunk inline (show changes without opening a split).
 
 ### Blame keymaps
 
@@ -256,9 +260,9 @@ map("n", "<leader>ghb", function()
 end, "Blame Line")
 ```
 
-**<leader>ghb** - Show full blame for current line. See commit message and author.
+`<leader>ghb` - Show full blame for current line. See commit message and author.
 
-**<leader>ghB** - Show blame for entire file.
+`<leader>ghB` - Show blame for entire file.
 
 ### Diff keymaps
 
@@ -266,9 +270,9 @@ end, "Blame Line")
 map("n", "<leader>ghd", gs.diffthis, "Diff This")
 ```
 
-**<leader>ghd** - Open diff view for current file. See all changes in a split.
+`<leader>ghd` - Open diff view for current file. See all changes in a split.
 
-**<leader>ghD** - Diff against HEAD~.
+`<leader>ghD` - Diff against HEAD~.
 
 ### Text object
 
@@ -276,7 +280,7 @@ map("n", "<leader>ghd", gs.diffthis, "Diff This")
 map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
 ```
 
-**ih** - Text object for hunk. Use like `vih` (select hunk), `dih` (delete hunk), `yih` (yank hunk).
+`ih` - Text object for hunk. Use like `vih` (select hunk), `dih` (delete hunk), `yih` (yank hunk).
 
 ### Diffview config
 
@@ -310,15 +314,15 @@ vim.keymap.set("n", "<leader>Do", function()
 end, { desc = "Diffview: open (prompt for refs or default)" })
 ```
 
-**<leader>Do** - Open diffview. Prompts for refs (like `main..feature`). Leave empty to see uncommitted changes.
+`<leader>Do` - Open diffview. Prompts for refs (like `main..feature`). Leave empty to see uncommitted changes.
 
-**<leader>Dc** - Close diffview.
+`<leader>Dc` - Close diffview.
 
-**<leader>Dt** - Toggle file list.
+`<leader>Dt` - Toggle file list.
 
-**<leader>Dh** - Show history for current file.
+`<leader>Dh` - Show history for current file.
 
-**<leader>DH** - Show history for entire repo.
+`<leader>DH` - Show history for entire repo.
 
 ### Toggle signs
 
@@ -331,7 +335,7 @@ vim.keymap.set("n", "<leader>uG", function()
 end, { desc = "Toggle Git Signs" })
 ```
 
-**<leader>uG** - Toggle git signs on/off. Clean view when you don't need them.
+`<leader>uG` - Toggle git signs on/off. Clean view when you don't need them.
 
 ## What's next
 
