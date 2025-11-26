@@ -293,209 +293,53 @@ Most of these configs come directly from nvim-lspconfig's `lsp/` directory. I ju
 
 ## Example: ESLint setup
 
-Let me show you a real example. ESLint is tricky because it needs to find `package.json` correctly, especially in monorepos.
-
-This config comes from nvim-lspconfig's `lsp/eslint.lua`. I copied it to my config and it works perfectly.
-
-### Optional: helper utilities
-
-The ESLint config uses some helper functions. I have `lua/utils/lsp.lua` (learned from nvim-lspconfig) to help detect `package.json` for tools like ESLint, Biome, or Tailwind CSS:
+Let me show you a real example with eslint setup.
 
 ```lua
--- lua/utils/lsp.lua
-local lsp = vim.lsp
-local M = { path = {} }
-
-M.default_config = {
-	log_level = lsp.protocol.MessageType.Warning,
-	message_level = lsp.protocol.MessageType.Warning,
-	settings = vim.empty_dict(),
-	init_options = vim.empty_dict(),
-	handlers = {},
-	autostart = true,
-	capabilities = lsp.protocol.make_client_capabilities(),
-}
-
--- This function searches for files (like package.json) that contain a specific field
-function M.root_markers_with_field(root_files, new_names, field, fname)
-	local path = vim.fn.fnamemodify(fname, ":h")
-	local found = vim.fs.find(new_names, { path = path, upward = true })
-
-	for _, f in ipairs(found or {}) do
-		for line in io.lines(f) do
-			if line:find(field) then
-				root_files[#root_files + 1] = vim.fs.basename(f)
-				break
-			end
-		end
-	end
-
-	return root_files
-end
-
--- Helper to add package.json to root markers if it contains a specific field
-function M.insert_package_json(root_files, field, fname)
-	return M.root_markers_with_field(root_files, { "package.json", "package.json5" }, field, fname)
-end
-
-return M
-```
-
-### The ESLint config
-
-Now I can use those utils in `~/.config/nvim/lsp/eslint.lua`:
-
-(This is copied directly from https://github.com/neovim/nvim-lspconfig/blob/master/lsp/eslint.lua)
-
-Notice this config uses `root_dir` (the function approach) instead of `root_markers`. That's because ESLint needs custom logic to handle monorepos correctly.
-
-```lua
-local util = require("utils.lsp")
-local lsp = vim.lsp
-
+-- Install vscode-eslint-language-server
 return {
 	cmd = { "vscode-eslint-language-server", "--stdio" },
-	filetypes = {
-		"javascript",
-		"javascriptreact",
-		"javascript.jsx",
-		"typescript",
-		"typescriptreact",
-		"typescript.tsx",
-		"vue",
-		"svelte",
-		"astro",
-		"htmlangular",
-	},
-	workspace_required = true,
-	on_attach = function(client, bufnr)
-		vim.api.nvim_buf_create_user_command(bufnr, "LspEslintFixAll", function()
-			client:request_sync("workspace/executeCommand", {
-				command = "eslint.applyAllFixes",
-				arguments = {
-					{
-						uri = vim.uri_from_bufnr(bufnr),
-						version = lsp.util.buf_versions[bufnr],
-					},
-				},
-			}, nil, bufnr)
-		end, {})
-	end,
-	root_dir = function(bufnr, on_dir)
-		local fname = vim.api.nvim_buf_get_name(bufnr)
-
-		local workspace_root_patterns = {
-			".git",
-			"pnpm-workspace.yaml",
-			"turbo.json",
-			"rush.json",
-			"lerna.json",
-			"nx.json",
-			"package.json",
-		}
-
-		local workspace_root = vim.fs.dirname(vim.fs.find(workspace_root_patterns, { path = fname, upward = true })[1])
-
-		if not workspace_root then
-			workspace_root = vim.fn.getcwd()
-		end
-
-		on_dir(workspace_root)
-	end,
+	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "graphql" },
+	root_markers = { ".eslintrc", ".eslintrc.js", ".eslintrc.json", "eslint.config.js", "eslint.config.mjs" },
 	settings = {
 		validate = "on",
-		packageManager = nil,
+		packageManager = vim.NIL,
 		useESLintClass = false,
-		experimental = {
-			useFlatConfig = false,
-		},
-		codeActionOnSave = {
-			enable = false,
-			mode = "all",
-		},
-		format = true,
+		experimental = { useFlatConfig = false },
+		codeActionOnSave = { enable = false, mode = "all" },
+		format = false,
 		quiet = false,
 		onIgnoredFiles = "off",
+		options = {},
 		rulesCustomizations = {},
 		run = "onType",
-		problems = {
-			shortenToSingleLine = false,
-		},
+		problems = { shortenToSingleLine = false },
 		nodePath = "",
+		workingDirectory = { mode = "location" },
 		codeAction = {
-			disableRuleComment = {
-				enable = true,
-				location = "separateLine",
-			},
-			showDocumentation = {
-				enable = true,
-			},
+			disableRuleComment = { enable = true, location = "separateLine" },
+			showDocumentation = { enable = true },
 		},
 	},
-	before_init = function(_, config)
-		local root_dir = config.root_dir
-
-		if root_dir then
-			config.settings = config.settings or {}
-			config.settings.workspaceFolder = {
-				uri = root_dir,
-				name = vim.fn.fnamemodify(root_dir, ":t"),
-			}
-
-			-- Find the nearest ESLint config from the current file
-			local fname = vim.api.nvim_buf_get_name(0)
-			local eslint_config_patterns = {
-				".eslintrc",
-				".eslintrc.js",
-				".eslintrc.cjs",
-				".eslintrc.yaml",
-				".eslintrc.yml",
-				".eslintrc.json",
-				"eslint.config.js",
-				"eslint.config.mjs",
-				"eslint.config.cjs",
-				"eslint.config.ts",
-				"eslint.config.mts",
-				"eslint.config.cts",
-			}
-
-			-- Add package.json with eslintConfig to patterns
-			eslint_config_patterns = util.insert_package_json(eslint_config_patterns, "eslintConfig", fname)
-
-			local nearest_config = vim.fs.find(eslint_config_patterns, { path = fname, upward = true })[1]
-			local config_dir = nearest_config and vim.fs.dirname(nearest_config) or root_dir
-
-			-- Set working directory to where the ESLint config is found
-			-- This is crucial for monorepos where config might be in a subdirectory
-			config.settings.workingDirectory = {
-				mode = "location",
-				location = config_dir,
-			}
-
-			-- Support flat config
-			local flat_config_files = {
-				"eslint.config.js",
-				"eslint.config.mjs",
-				"eslint.config.cjs",
-				"eslint.config.ts",
-				"eslint.config.mts",
-				"eslint.config.cts",
-			}
-
-			for _, file in ipairs(flat_config_files) do
-				if vim.fn.filereadable(config_dir .. "/" .. file) == 1 then
-					config.settings.experimental = config.settings.experimental or {}
-					config.settings.experimental.useFlatConfig = true
-					break
-				end
-			end
-		end
+	before_init = function(params, config)
+		-- Set the workspace folder setting for correct search of tsconfig.json files etc.
+		config.settings.workspaceFolder = {
+			uri = params.rootPath,
+			name = vim.fn.fnamemodify(params.rootPath, ":t"),
+		}
 	end,
+	---@type table<string, lsp.Handler>
 	handlers = {
-		["eslint/openDoc"] = function(_, result)
-			if result then
-				vim.ui.open(result.url)
-			end
+		["eslint/openDoc"] = function(_, params)
+			vim.ui.open(params.url)
+			return {}
+		end,
+		["eslint/probeFailed"] = function()
+			vim.notify("LSP[eslint]: Probe failed.", vim.log.levels.WARN)
+			return {}
+		end,
+		["eslint/noLibrary"] = function()
+			vim.notify("LSP[eslint]: Unable to load ESLint library.", vim.log.levels.WARN)
 			return {}
 		end,
 		["eslint/confirmESLintExecution"] = function(_, result)
@@ -503,10 +347,6 @@ return {
 				return
 			end
 			return 4 -- approved
-		end,
-		["eslint/probeFailed"] = function()
-			vim.notify("[lspconfig] ESLint probe failed.", vim.log.levels.WARN)
-			return {}
 		end,
 	},
 }
@@ -519,17 +359,12 @@ This looks like a lot of code, but you don't need to write it yourself. Just cop
     - Calls `on_dir(workspace_root)` to activate LSP with that root
     - If `on_dir()` isn't called, LSP won't activate (this lets you skip activation for certain buffers)
 - **Detecting ESLint config files** (`.eslintrc.*`, `eslint.config.*`)
-- **Monorepo support** (finds the right workspace root)
 - **Flat config support** (new ESLint 9+ format)
 - **Custom `:LspEslintFixAll` command**
 
-**Key takeaway**: Use `root_markers` for simple cases. Use `root_dir` function when you need custom logic like the ESLint config does.
+Use `root_markers` for simple cases. Use `root_dir` function when you need custom logic like the ESLint config does.
 
-**Important**: Make sure you install the LSP tool for each language. For ESLint, you need `vscode-langservers-extracted`:
-
-```bash
-npm install -g vscode-langservers-extracted
-```
+Make sure you install the LSP tool for each language. For ESLint, you need `vscode-langservers-extracted`:
 
 ## Setting up keymaps
 
