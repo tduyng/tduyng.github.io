@@ -4812,6 +4812,92 @@ body.blog .layout-list h2 {
     opacity: 0.3;
 }
 
+/* Post Engagement Section (Ended Words + Suggest Edit)
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.post-engagement {
+    margin: 2.5em 0;
+    padding: 1.5em;
+    background: rgba(111, 143, 209, 0.05);
+    border: 1px solid rgba(111, 143, 209, 0.15);
+    border-radius: 8px;
+    transition: var(--transition-border-bg);
+}
+
+.post-engagement:hover {
+    background: rgba(111, 143, 209, 0.08);
+    border-color: rgba(111, 143, 209, 0.25);
+}
+
+.post-engagement .ended-words {
+    margin: 0 0 1.25em 0;
+    padding-bottom: 1.25em;
+    border-bottom: 1px solid rgba(111, 143, 209, 0.15);
+    color: var(--text-color);
+    font-size: 0.95em;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.post-engagement .suggest-edit {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+}
+
+.post-engagement .suggest-edit:hover {
+    background: transparent;
+}
+
+.suggest-edit-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.95em;
+    font-weight: 500;
+    transition: var(--transition-color);
+}
+
+.suggest-edit-link:hover {
+    color: var(--text-bold-color);
+}
+
+.suggest-edit-link .edit-icon {
+    width: 18px;
+    height: 18px;
+    transition: transform var(--transition-standard);
+}
+
+.suggest-edit-link:hover .edit-icon {
+    transform: translateY(-2px) rotate(-5deg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .post-engagement {
+        padding: 1.25em;
+        margin: 2em 0;
+    }
+
+    .post-engagement .ended-words {
+        font-size: 0.9em;
+        margin-bottom: 1em;
+        padding-bottom: 1em;
+    }
+
+    .suggest-edit-link {
+        font-size: 0.9em;
+    }
+
+    .suggest-edit-link .edit-icon {
+        width: 16px;
+        height: 16px;
+    }
+}
+
 /* Responsive Blog Cards */
 @media (max-width: 1024px) {
     body.blog .layout-list .post-list {

@@ -13,6 +13,7 @@
         <div class="notes-entry lazy-entry">
             <div class="thought-content">
                 {{ .Page.Content }}
+                {{ template "partials/_suggest_edit.html" . }}
                 <p class="timestamp">
                     <a href="/notes/">← Back to Notes</a>
                 </p>

@@ -1,0 +1,26 @@
+{{ if .Page.Path }}
+<div class="post-engagement">
+    <p class="ended-words">
+        {{ if .Site.Config.extra.ended_words }}
+        {{ .Site.Config.extra.ended_words }}
+        {{ else }}
+        Thanks for reading! If you notice anything outdated, feel free to comment or send me a message.
+        {{ end }}
+    </p>
+    
+    <div class="suggest-edit">
+        <a
+            href="https://github.com/tduyng/tduyng.github.io/edit/main/content/{{ .Page.Path }}/index.md"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="suggest-edit-link"
+        >
+            <svg class="edit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+            <span>Suggest an edit</span>
+        </a>
+    </div>
+</div>
+{{ end }}

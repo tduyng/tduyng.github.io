@@ -43,6 +43,7 @@
                         {{ template "partials/_outdate.html" . }} {{ .Page.Content }} {{ pagination
                         .}}
                     </article>
+                    {{ template "partials/_suggest_edit.html" . }}
                     {{ template "partials/_related_posts.html" . }}
                     {{ template "partials/_sharing.html" . }} {{ template "partials/_reaction.html"
                     . }} {{ template "partials/_giscus_script.html" . }}
