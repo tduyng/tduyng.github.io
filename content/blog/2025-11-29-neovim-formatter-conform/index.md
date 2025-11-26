@@ -17,17 +17,13 @@ outdate_alert_days = 365
 img = "/img/dashboard.png"
 +++
 
-This is part 7 of my Neovim series. Today we setup code formatter. Format on save, like VSCode.
+This is part 7 of my Neovim series. Today we setup code formatter. Format on save.
 
-Code formatter keeps your code clean. No more arguing about spaces vs tabs. No more manual indentation. Save the file, it formats. Simple.
+Code formatters keep your code clean. No arguing about spaces vs tabs. No manual indentation. Save the file, it formats.
 
-With LSP (we set this up in [part 3](https://tduyng.com/blog/neovim-lsp-native/)), Neovim can format code. But LSP formatting is limited. Not all LSP servers format well. Some are slow. Some don't support all languages.
+Neovim can format with LSP (from [part 3](https://tduyng.com/blog/neovim-lsp-native/)). But LSP formatting has limits. Not all servers format well. Some are slow. Some don't support your language.
 
-## What is conform.nvim?
-
-[conform.nvim](https://github.com/stevearc/conform.nvim) is a formatting plugin. It runs external formatters like prettier, stylua, black, gofmt. It's fast. It supports many languages. It has good defaults.
-
-There are other plugins like formatter.nvim and null-ls. conform.nvim is the newest and most maintained.
+I use [conform.nvim](https://github.com/stevearc/conform.nvim) instead. It runs external formatters like prettier, stylua, black, gofmt. Fast. Supports many languages. Good defaults.
 
 ## Setup conform.nvim
 
@@ -314,13 +310,6 @@ end, { desc = "Format Injected Langs" })
 **<leader>cF** - Format injected languages. Like code blocks in markdown. Or HTML in JavaScript template strings.
 
 **IMPORTANT**: conform.nvim doesn't include formatters. Install them separately (prettier, stylua ...etc)
-
-## Tips
-
-- Install formatters you actually use
-- Use `:ConformInfo` to see which formatters will run
-- Disable autoformat with `:FormatDisable!` for current file
-- Format manually with `<leader>cf`
 
 ## What's next
 
