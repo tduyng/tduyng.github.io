@@ -21,11 +21,26 @@ This is part 8 of my Neovim series. Today we setup git tools. See git changes in
 
 Git integration shows you what changed. Which lines you added. Which you deleted. Who wrote this line. When it was changed. All without leaving Neovim.
 
-## What we'll use
+We already setup snacks.nvim in [part 4](https://tduyng.com/blog/vim-pack-and-snacks/). That gives us many Git utilities:
+
+- `<leader>gb` - Show git branches
+- `<leader>gl` - Show git logs
+- `<leader>gs` - Show git status
+- `<leader>gd` - Show git diff
+  ...etc
+
+Snacks.nvim already wraps `lazygit`. That handles a lot of Git work. But it still misses some features:
+
+- Show changes directly in the buffer
+- Blame individual lines
+- Show diffs in splits
+- Resolve conflicts
+
+To get these features, I use two plugins: gitsigns.nvim and diffview.nvim
 
 **gitsigns.nvim** - Shows git changes in the sign column. Blame lines. Stage hunks. Navigate changes.
 
-**diffview.nvim** - View diffs in a split. Compare branches. See file history. Review changes before commit, resolve conflicts
+**diffview.nvim** - View diffs in a split. Compare branches. See file history. Review changes before commit. Resolve conflicts
 
 ## Setup git tools
 
@@ -151,17 +166,6 @@ Restart Neovim. Open a git repo. You see git signs in the gutter.
 
 ## Breaking down the setup
 
-### Install plugins
-
-```lua
-vim.pack.add({
-	"https://github.com/lewis6991/gitsigns.nvim",
-	"https://github.com/sindrets/diffview.nvim",
-})
-```
-
-Two plugins. gitsigns for inline changes. diffview for comparing branches and history.
-
 ### Gitsigns config
 
 ```lua
@@ -199,6 +203,8 @@ signs_staged = {
 Different signs for staged changes. You see what's staged vs unstaged.
 
 ### Navigation keymaps
+
+Some more keymaps:
 
 ```lua
 map("n", "]h", function()
@@ -326,62 +332,6 @@ end, { desc = "Toggle Git Signs" })
 ```
 
 **<leader>uG** - Toggle git signs on/off. Clean view when you don't need them.
-
-## How to use
-
-### See what changed
-
-Open a file in git repo. You see signs in the gutter:
-
-- Green bar on left = added lines
-- Blue bar = changed lines
-- Red triangle = deleted lines
-
-Current line shows blame: `John Doe, 2 months ago: Add user auth`
-
-### Navigate changes
-
-Press **]h** to jump to next change. Press **[h** to go back.
-
-Press **]H** to jump to last change in file.
-
-### Stage hunks
-
-Put cursor on a change. Press **<leader>ghs** to stage just that change.
-
-Or visual select multiple changes. Press **<leader>ghs** to stage selection.
-
-Press **<leader>ghS** to stage entire file.
-
-### See what you're staging
-
-Before commit, press **<leader>ghd** to see diff. Review all changes.
-
-Press **<leader>Do** then Enter to see all uncommitted changes in diffview.
-
-### Compare branches
-
-Press **<leader>Do**. Type `main..feature`. See all changes between branches.
-
-Navigate files in left panel. See diffs on right.
-
-### See file history
-
-Press **<leader>Dh** to see history of current file. Click commits to see changes.
-
-Press **<leader>DH** to see entire repo history.
-
-### Close diffview
-
-Press **<leader>Dc** when done.
-
-## Tips
-
-- Use **]h** and **[h** to review all changes before commit
-- Stage hunks with **<leader>ghs** for partial commits
-- Use **<leader>ghb** to see why a line was changed
-- Compare branches with **<leader>Do** then `main..feature`
-- Press **<leader>uG** to hide signs when presenting
 
 ## What's next
 
