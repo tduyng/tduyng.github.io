@@ -17,17 +17,13 @@ outdate_alert_days = 365
 img = "/img/dashboard.png"
 +++
 
-This is part 6 of my Neovim series. Today we setup auto-completion. Like VSCode, but faster.
+This is part 6 of my Neovim series. Today we setup auto-completion.
 
-Auto-completion helps you code faster. You type a few letters, it suggests the rest. You hit Tab, it completes. Simple.
+Auto-completion helps you code faster. Type a few letters, it suggests the rest. Hit Tab, it completes.
 
-With LSP (we set this up in [part 3](https://tduyng.com/blog/neovim-lsp-native/)), Neovim knows your code. It knows functions, variables, types. Auto-completion uses this to suggest what you need.
+LSP (from [part 3](https://tduyng.com/blog/neovim-lsp-native/)) knows your code. It knows functions, variables, types. Auto-completion uses this to suggest what you need.
 
-## What is blink.cmp?
-
-[blink.cmp](https://github.com/Saghen/blink.cmp) is a completion plugin with support for LSPs, cmdline, signature help, and snippets. It uses a custom fuzzy matcher for typo resistance. It provides extensibility via pluggable sources (LSP, buffer, snippets, etc), component based rendering and dynamic configuration.
-
-There are other plugins like nvim-cmp and coq_nvim. blink.cmp is the newest and fastest.
+I use [blink.cmp](https://github.com/Saghen/blink.cmp). It supports LSP, cmdline, signature help, and snippets. Has fuzzy matching for typos. Fast and extensible.
 
 ## Setup blink.cmp
 
@@ -43,7 +39,7 @@ vim.pack.add({
 	},
 })
 
--- Lazy load on first insert mode entry
+-- Lazy load on first insert mode entry (may not necessary)
 local group = vim.api.nvim_create_augroup("BlinkCmpLazyLoad", { clear = true })
 
 vim.api.nvim_create_autocmd("InsertEnter", {
@@ -284,13 +280,6 @@ blink shows:
 ```
 
 Press Tab to accept. If you pick the snippet, it expands. If you pick LSP suggestion, it completes the word.
-
-## Tips
-
-- Use Tab liberally. Press Tab to see suggestions. Press Tab again to accept. Simple workflow.
-- Create snippets for repeated code. If you write the same pattern often, make a snippet. Save time.
-- LSP must be running. Completion needs LSP. If you don't see suggestions, check `:LspInfo`.
-- Disable auto_show docs if distracting. You can still trigger docs manually.
 
 ## What's next
 
