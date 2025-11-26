@@ -12,7 +12,6 @@ comment = true
 reaction = true
 toc = true
 copy = true
-show_ended_words = true
 featured = true
 img = "img/eslint9x.webp"
 +++

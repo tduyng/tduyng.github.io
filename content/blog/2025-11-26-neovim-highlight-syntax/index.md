@@ -11,7 +11,6 @@ comment = true
 reaction = true
 toc = true
 copy = true
-show_ended_words = true
 outdate_alert = true
 outdate_alert_days = 365
 img = "/img/dashboard.png"

@@ -11,7 +11,6 @@ comment = true
 reaction = true
 toc = true
 copy = true
-show_ended_words = true
 featured = true
 img = "img/tduyng.webp"
 +++
