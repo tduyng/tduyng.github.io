@@ -2494,7 +2494,7 @@ body.not-found {
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .pagination {
     margin-top: 60px;
-    padding: 0 15px;
+    padding: 0;
 
     hr {
         border: none;
