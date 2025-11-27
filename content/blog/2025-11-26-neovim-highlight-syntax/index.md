@@ -439,4 +439,13 @@ These also use Neovim's built-in Tree-sitter API:
 
 That's it! Now you have modern syntax highlighting with Tree-sitter.
 
-In the next article, we'll learn about setting up auto-completion with blink.cmp.
+## What's next
+
+Now you have:
+
+- Basic setup ([part 2](https://tduyng.com/blog/neovim-basic-setup/))
+- LSP ([part 3](https://tduyng.com/blog/neovim-lsp-native/))
+- Setup vim.pack with snacks.nvim ([part 4](https://tduyng.com/blog/vim-pack-and-snacks/))
+- Tree-sitter syntax highlighting (this article)
+
+Next article, we will setup auto-completion with blink.cmp ([part 6](https://tduyng.com/blog/neovim-auto-completions/))

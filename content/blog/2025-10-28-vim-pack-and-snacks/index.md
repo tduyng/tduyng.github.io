@@ -649,4 +649,10 @@ Now you have:
 
 ## What's next
 
-In the next article, we'll add more plugins: syntax highlighting, formatter and theme.
+Now you have:
+
+- Basic setup ([part 2](https://tduyng.com/blog/neovim-basic-setup/))
+- LSP ([part 3](https://tduyng.com/blog/neovim-lsp-native/))
+- Setup vim.pack with snacks.nvim (this article)
+
+Next article, we will setup Tree-sitter syntax highlighting ([part 5](https://tduyng.com/blog/neovim-highlight-syntax))

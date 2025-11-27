@@ -314,10 +314,11 @@ end, { desc = "Format Injected Langs" })
 
 Now you have:
 
+- Basic setup ([part 2](https://tduyng.com/blog/neovim-basic-setup/))
 - LSP ([part 3](https://tduyng.com/blog/neovim-lsp-native/))
 - Setup vim.pack with snacks.nvim ([part 4](https://tduyng.com/blog/vim-pack-and-snacks/))
 - Tree-sitter syntax highlighting ([part 5](https://tduyng.com/blog/neovim-highlight-syntax))
 - Auto-completion ([part 6](https://tduyng.com/blog/neovim-auto-completions/))
 - Code formatter (this article)
 
-Next article, we will setup git tools
+Next article, we will setup git tools ([part 8](https://tduyng.com/blog/neovim-git-tools/))

@@ -340,6 +340,7 @@ end, { desc = "Toggle Git Signs" })
 
 Now you have:
 
+- Basic setup ([part 2](https://tduyng.com/blog/neovim-basic-setup/))
 - LSP ([part 3](https://tduyng.com/blog/neovim-lsp-native/))
 - Setup vim.pack with snacks.nvim ([part 4](https://tduyng.com/blog/vim-pack-and-snacks/))
 - Tree-sitter syntax highlighting ([part 5](https://tduyng.com/blog/neovim-highlight-syntax))
@@ -347,4 +348,4 @@ Now you have:
 - Code formatter ([part 7](https://tduyng.com/blog/neovim-formatter-conform/))
 - Git tools (this article)
 
-Next article, we will setup debug tools
+Next article, we will setup debug tools with nvim-dap

@@ -284,9 +284,10 @@ Press Tab to accept. If you pick the snippet, it expands. If you pick LSP sugges
 
 Now you have:
 
+- Basic setup ([part 2](https://tduyng.com/blog/neovim-basic-setup/))
 - LSP ([part 3](https://tduyng.com/blog/neovim-lsp-native/))
 - Setup vim.pack with snacks.nvim ([part 4](https://tduyng.com/blog/vim-pack-and-snacks/))
 - Tree-sitter syntax highlighting ([part 5](https://tduyng.com/blog/neovim-highlight-syntax))
 - Auto-completion (this article)
 
-Next article, we will setup formatter with conform.nvim
+Next article, we will setup formatter with conform.nvim ([part 7](https://tduyng.com/blog/neovim-formatter-conform/))

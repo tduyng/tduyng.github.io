@@ -490,4 +490,9 @@ The native approach takes a bit more setup upfront, but you learn how everything
 
 ## What's next
 
-In the next article, we'll cover how to configure native `vim.pack` along with `snacks.nvim` (capable of replacing 10–12 other plugins) and `which-key.nvim`.
+Now you have:
+
+- Basic setup ([part 2](https://tduyng.com/blog/neovim-basic-setup/))
+- LSP (this article)
+
+Next article, we will setup vim.pack with snacks.nvim ([part 4](https://tduyng.com/blog/vim-pack-and-snacks/))
