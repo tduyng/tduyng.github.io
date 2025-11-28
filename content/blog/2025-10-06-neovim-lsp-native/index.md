@@ -359,7 +359,6 @@ This looks like a lot of code, but you don't need to write it yourself. Just cop
     - If `on_dir()` isn't called, LSP won't activate (this lets you skip activation for certain buffers)
 - **Detecting ESLint config files** (`.eslintrc.*`, `eslint.config.*`)
 - **Flat config support** (new ESLint 9+ format)
-- **Custom `:LspEslintFixAll` command**
 
 Use `root_markers` for simple cases. Use `root_dir` function when you need custom logic like the ESLint config does.
 
