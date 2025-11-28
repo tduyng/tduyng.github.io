@@ -495,3 +495,7 @@ Now you have:
 - LSP (this article)
 
 Next article, we will setup vim.pack with snacks.nvim ([part 4](https://tduyng.com/blog/vim-pack-and-snacks/))
+
+---
+
+My complete Neovim configuration: [https://github.com/tduyng/nvim](https://github.com/tduyng/nvim)

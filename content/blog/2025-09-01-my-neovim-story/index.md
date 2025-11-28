@@ -213,3 +213,7 @@ Based on my setup, here are the core topics for upcoming articles:
 1. Did I used Helix?
 
 Yes, I tried Helix. It’s nice, very fast, and simple to set up. But I still prefer Neovim because of its modal editing with actions + motions. Neovim also has far more plugins and better UI/UX. So I decided to stay with Neovim.
+
+---
+
+My complete Neovim configuration: [https://github.com/tduyng/nvim](https://github.com/tduyng/nvim)

@@ -322,3 +322,7 @@ Now you have:
 - Code formatter (this article)
 
 Next article, we will setup git tools ([part 8](https://tduyng.com/blog/neovim-git-tools/))
+
+---
+
+My complete Neovim configuration: [https://github.com/tduyng/nvim](https://github.com/tduyng/nvim)

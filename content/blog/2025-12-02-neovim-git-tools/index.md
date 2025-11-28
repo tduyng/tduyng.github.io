@@ -349,3 +349,7 @@ Now you have:
 - Git tools (this article)
 
 Next article, we will setup debug tools with nvim-dap
+
+---
+
+My complete Neovim configuration: [https://github.com/tduyng/nvim](https://github.com/tduyng/nvim)

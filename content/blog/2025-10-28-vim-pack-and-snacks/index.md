@@ -656,3 +656,7 @@ Now you have:
 - Setup vim.pack with snacks.nvim (this article)
 
 Next article, we will setup Tree-sitter syntax highlighting ([part 5](https://tduyng.com/blog/neovim-highlight-syntax))
+
+---
+
+My complete Neovim configuration: [https://github.com/tduyng/nvim](https://github.com/tduyng/nvim)

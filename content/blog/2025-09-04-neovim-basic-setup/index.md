@@ -1011,3 +1011,7 @@ Help windows, quickfix lists, and plugin windows can be closed with just `q`. I 
 All this setup is already more pleasant than default Neovim or many bloated configurations.
 
 In the next article, we'll set up native LSP support. All the diagnostic configuration we just created will light up with real language intelligence.
+
+---
+
+My complete Neovim configuration: [https://github.com/tduyng/nvim](https://github.com/tduyng/nvim)

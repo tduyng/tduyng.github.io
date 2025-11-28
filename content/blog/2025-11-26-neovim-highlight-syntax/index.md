@@ -449,3 +449,7 @@ Now you have:
 - Tree-sitter syntax highlighting (this article)
 
 Next article, we will setup auto-completion with blink.cmp ([part 6](https://tduyng.com/blog/neovim-auto-completions/))
+
+---
+
+My complete Neovim configuration: [https://github.com/tduyng/nvim](https://github.com/tduyng/nvim)

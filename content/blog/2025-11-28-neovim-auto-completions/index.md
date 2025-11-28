@@ -271,3 +271,7 @@ Now you have:
 - Auto-completion (this article)
 
 Next article, we will setup formatter with conform.nvim ([part 7](https://tduyng.com/blog/neovim-formatter-conform/))
+
+---
+
+My complete Neovim configuration: [https://github.com/tduyng/nvim](https://github.com/tduyng/nvim)
