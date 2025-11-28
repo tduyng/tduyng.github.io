@@ -402,73 +402,73 @@ I put it in both files because sometimes Vim extension doesn't catch it. Adding 
 
 #### Basic editing
 
-- **jj** or **jk** - Exit insert mode (I prefer jk, less finger movement)
-- **Ctrl+s** - Save (muscle memory from VSCode, works in insert mode)
-- **g+h** - Jump to start of line (instead of `^`)
-- **g+l** - Jump to end of line (instead of `$`)
-- **Ctrl+d/u** - Half page down/up (from Vim extension)
-- **gg** / **G** - Top/bottom of file (from Vim extension)
+- `jj` or `jk` - Exit insert mode (I prefer jk, less finger movement)
+- `Ctrl+s` - Save (muscle memory from VSCode, works in insert mode)
+- `g+h` - Jump to start of line (instead of `^`)
+- `g+l` - Jump to end of line (instead of `$`)
+- `Ctrl+d/u` - Half page down/up (from Vim extension)
+- `gg` / `G` - Top/bottom of file (from Vim extension)
 
 #### Window navigation
 
-- **Ctrl+h** - Move to left split
-- **Ctrl+l** - Move to right split
-- **Ctrl+k** - Move to upper split (only when not in input)
-- **Ctrl+j** - Move to lower split (only when not in input)
+- `Ctrl+h` - Move to left split
+- `Ctrl+l` - Move to right split
+- `Ctrl+k` - Move to upper split (only when not in input)
+- `Ctrl+j` - Move to lower split (only when not in input)
 
 Note: `Ctrl+k` has condition `!inputFocus` so it doesn't break VSCode's command palette (`Ctrl+k Ctrl+s`, etc).
 
 #### Splits
 
-- **<space>sh** - Split horizontal (`:split`)
-- **<space>sv** - Split vertical (`:vsplit`)
+- `<leader>sh` - Split horizontal (`:split`)
+- `<leader>sv` - Split vertical (`:vsplit`)
 
 #### Buffer management
 
-- **Tab** / **Shift+Tab** - Next/previous buffer
-- **<space>bd** - Close current buffer
-- **<space>bo** - Close other buffers
+- `Tab` / `Shift+Tab` - Next/previous buffer
+- `<leader>bd` - Close current buffer
+- `<leader>bo` - Close other buffers
 
 #### File navigation
 
-- **<space>e** - Toggle file explorer (and focus it)
-- **<space>e** (in explorer) - Close explorer and back to editor
-- **<space><space>** - Quick open file (fuzzy finder)
-- **<space>sg** - Search in files (grep)
+- `<leader>e` - Toggle file explorer (and focus it)
+- `<leader>e` (in explorer) - Close explorer and back to editor
+- `<leader><leader>` - Quick open file (fuzzy finder)
+- `<leader>sg` - Search in files (grep)
 
 #### LSP features
 
-- **gd** - Go to definition
-- **gr** - Go to references
-- **gi** - Go to implementation
-- **gh** - Show hover info
-- **<space>ca** - Code actions
-- **<space>cr** - Rename symbol
-- **<space>cd** - Show problems panel
-- **g+c** - Toggle comment
-- **>** - Indent and reselect (so I can indent multiple times)
-- **<** - Outdent and reselect
+- `gd` - Go to definition
+- `gr` - Go to references
+- `gi` - Go to implementation
+- `gh` - Show hover info
+- `<leader>ca` - Code actions
+- `<leader>cr` - Rename symbol
+- `<leader>cd` - Show problems panel
+- `g+c` - Toggle comment
+- `>` - Indent and reselect (so I can indent multiple times)
+- `<` - Outdent and reselect
 
 #### File explorer (when focused)
 
-- **r** - Rename file
-- **a** - New file
-- **d** - Delete file
-- **c** - Copy file
-- **p** - Paste file
-- **x** - Cut file
+- `r` - Rename file
+- `a` - New file
+- `d` - Delete file
+- `c` - Copy file
+- `p` - Paste file
+- `x` - Cut file
 
 I can use vim motions in file explorer. Navigate with `j/k`, then use these keys.
 
 #### Git
 
-- **<space>gb** - Open git view (source control)
+- `<leader>gb` - Open git view (source control)
 
 #### Other useful ones
 
-- **Ctrl+n** - Clear search highlight
-- **Alt+j** / **Alt+k** - Move lines up/down (works in insert/normal mode)
-- **u** / **Ctrl+r** - Undo/redo (defined in NonRecursive to prevent conflicts)
+- `Ctrl+n` - Clear search highlight
+- `Alt+j` / `Alt+k` - Move lines up/down (works in insert/normal mode)
+- `u` / `Ctrl+r` - Undo/redo (defined in NonRecursive to prevent conflicts)
 
 I disable Vim handling for these keys:
 

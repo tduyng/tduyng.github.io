@@ -260,26 +260,6 @@ Each snippet has:
 
 These snippets load automatically when you open TypeScript/JavaScript files.
 
-## How it looks
-
-When you type in insert mode:
-
-```
-You type: desc
-```
-
-blink shows:
-
-```
-┌──────────────────────────────┐
-│ describe                     │ (lsp)
-│ description                  │ (lsp)
-│ descr → describe('...', ...) │ (snippet)
-└──────────────────────────────┘
-```
-
-Press Tab to accept. If you pick the snippet, it expands. If you pick LSP suggestion, it completes the word.
-
 ## What's next
 
 Now you have:
