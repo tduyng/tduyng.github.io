@@ -11,6 +11,8 @@ comment = false
 reaction = true
 toc = true
 copy = true
+outdate_alert = true
+outdate_alert_days = 365
 img = "/img/post-cover.webp"
 +++
 
@@ -298,7 +300,6 @@ To understand better how webpack works, we will create some simple demo code
     - Notice for `file-loader`: using `[path][name].[ext]` means after build, the files will be created with the similar names in similar folder. For example: if you have `src/logo.webp` file, when you build it, you will have `dist/src/logo.webp`.
 - `resolve: { extensions: [‘.js’, ‘.jsx’] }`: The priority order when import files. For example, there are 2 files name.js and name.jsx in the same folder. In another file you import \* from 'name', it will prioritize .js file
 - `output`: configuration of build file webpack
-
     - `output.path`: the absolute path to the directory after build. For the absolute path, we usually use `path.resolve()` or `path.join()` in combination with the global variable `__dirname`.
     - `output.publicPath`: the relative path from the `index.html` file pointing to the files in the **dist** directory after build.
 

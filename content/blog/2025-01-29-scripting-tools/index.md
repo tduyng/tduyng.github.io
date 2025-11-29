@@ -11,6 +11,8 @@ comment = true
 reaction = true
 toc = true
 copy = true
+outdate_alert = true
+outdate_alert_days = 365
 img = "img/makefile.webp"
 
 +++
@@ -101,20 +103,18 @@ Here's an overview of some tools we've explored:
 - **JS shell libraries**
 
     These libraries allow developers to write scripts that combine JavaScript's flexibility with shell-like commands, making automation tasks intuitive and efficient:
-
-  - **[zx](https://github.com/google/zx)**: A Google-developed library that simplifies scripting by combining JavaScript with shell syntax.
-  - **[execa](https://github.com/sindresorhus/execa)**: Built on top of the [`child_process`](https://nodejs.org/api/child_process.html) core module. This tool makes it easy to execute commands, handle errors, and integrate them directly into JavaScript code.
-  - **[dax](https://github.com/dsherret/dax)**: Similar to `zx`, optimized for shell scripting within JavaScript, developed for Deno and Node.js.
-  - **[shelljs](https://github.com/shelljs/shelljs)**: A Portable Unix shell commands for Node.js
+    - **[zx](https://github.com/google/zx)**: A Google-developed library that simplifies scripting by combining JavaScript with shell syntax.
+    - **[execa](https://github.com/sindresorhus/execa)**: Built on top of the [`child_process`](https://nodejs.org/api/child_process.html) core module. This tool makes it easy to execute commands, handle errors, and integrate them directly into JavaScript code.
+    - **[dax](https://github.com/dsherret/dax)**: Similar to `zx`, optimized for shell scripting within JavaScript, developed for Deno and Node.js.
+    - **[shelljs](https://github.com/shelljs/shelljs)**: A Portable Unix shell commands for Node.js
 
 - **JavaScript CLI libraries**
 
     For building command-line interfaces (CLIs) in JavaScript, these libraries offer varying levels of complexity and features:
-
-  - **[commander](https://github.com/tj/commander.js)**: Simple CLI building with argument parsing, command support, and `--help` generation.
-  - **[yargs](https://github.com/yargs/yargs)**: Yargs helps to build interactive command line tools, by parsing arguments and generating an elegant user interface.
-  - **[minimist](https://github.com/minimistjs/minimist)**: Lightweight option parser for CLI arguments, ideal for simpler CLI tools.
-  - **[oclif](https://github.com/oclif/oclif)**: CLI for generating, building, and releasing oclif CLIs. Built by Salesforce.
+    - **[commander](https://github.com/tj/commander.js)**: Simple CLI building with argument parsing, command support, and `--help` generation.
+    - **[yargs](https://github.com/yargs/yargs)**: Yargs helps to build interactive command line tools, by parsing arguments and generating an elegant user interface.
+    - **[minimist](https://github.com/minimistjs/minimist)**: Lightweight option parser for CLI arguments, ideal for simpler CLI tools.
+    - **[oclif](https://github.com/oclif/oclif)**: CLI for generating, building, and releasing oclif CLIs. Built by Salesforce.
 
 ## Compared and select tools
 
@@ -606,12 +606,11 @@ For example, `child_process` is already wrapped by the libraries like `zx`, `exe
     With JavaScript, running scripts isn’t as flexible as with makefile.
 
     For example, you can run a script in the following ways:
+    - `node scripts/lint.js lint` (using any JS runtime like `bun`, `deno`, etc.)
+    - `./scripts/lint.js lint` (if you’ve added the appropriate shebang at the top of the JS file: `#!/usr/bin/env node`)
+    - Or, if you add the script to `package.json`, you can use your package manager: `npm run lint`, `pnpm run lint`, etc.
 
-  - `node scripts/lint.js lint` (using any JS runtime like `bun`, `deno`, etc.)
-  - `./scripts/lint.js lint` (if you’ve added the appropriate shebang at the top of the JS file: `#!/usr/bin/env node`)
-  - Or, if you add the script to `package.json`, you can use your package manager: `npm run lint`, `pnpm run lint`, etc.
-
-                            While this works, it’s not as flexible as using `make lint`, and adding many commands to `package.json` can make it longer and more verbose.
+                                While this works, it’s not as flexible as using `make lint`, and adding many commands to `package.json` can make it longer and more verbose.
 
 - _JavaScript code is more verbose, bigger code base_
 

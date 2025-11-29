@@ -11,6 +11,8 @@ comment = false
 reaction = true
 toc = true
 copy = true
+outdate_alert = true
+outdate_alert_days = 365
 img = "/img/post-cover.webp"
 +++
 
@@ -59,7 +61,6 @@ If you do not have any knowledge about webpack, you can refer my two previous ar
     Except `prettier`, `eslint-config-prettier` and `eslint-plugin-prettier` the rest are plugins used by `create-react-app`.
 
     **Create file configuration:**:
-
     - `.eslintrc`
 
         ```json
@@ -295,7 +296,6 @@ If you do not have any knowledge about webpack, you can refer my two previous ar
 - Explanation
 
     I have explain the details of many definition in the `webpack.config.js` file in my two previous article [setup webpack basic](/blog/basic-setup-webpack) & [setup webpack typescript](/blog/setup-webpack-with-typescript). In this article, I just explain the new definitions..
-
     - `isDev`: We have 2 modes: **development** and **production** equivalent to dev and build. These two modes are passed through the `--mode` in the script in `package.json`.
     - `isAnalyze`: To define use `BundleAnalyzerPlugin` or not
     - `basePlugins`: plugins use in dev mode

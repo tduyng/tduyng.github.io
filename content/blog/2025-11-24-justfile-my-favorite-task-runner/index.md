@@ -12,6 +12,8 @@ reaction = true
 toc = true
 copy = true
 img = "img/just.png"
+outdate_alert = true
+outdate_alert_days = 365
 +++
 
 ## From Make to Just

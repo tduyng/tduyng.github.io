@@ -11,6 +11,8 @@ comment = false
 reaction = true
 toc = true
 copy = true
+outdate_alert = true
+outdate_alert_days = 365
 img = "/img/post-cover.webp"
 +++
 
@@ -86,7 +88,6 @@ Now, start setting up.
     ```
 
     It means:
-
     - `editor.defaultFormatter`: take **Prettier** as default formater
     - `editor.formatOnSave: true`: format automatically the code when saving files
     - `eslint.format.enable: true`: enable formatting code of ESlint

@@ -12,6 +12,8 @@ comment = true
 reaction = true
 toc = true
 copy = true
+outdate_alert = true
+outdate_alert_days = 365
 img = "img/enum.webp"
 +++
 

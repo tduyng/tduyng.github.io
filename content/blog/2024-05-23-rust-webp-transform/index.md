@@ -13,6 +13,8 @@ reaction = true
 toc = true
 copy = true
 featured = true
+outdate_alert = true
+outdate_alert_days = 500
 img = "img/page_speed.webp"
 +++
 

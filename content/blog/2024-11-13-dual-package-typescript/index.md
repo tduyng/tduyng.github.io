@@ -12,6 +12,8 @@ comment = true
 reaction = true
 toc = true
 copy = true
+outdate_alert = true
+outdate_alert_days = 365
 img = "img/dual-package.webp"
 +++
 
@@ -30,8 +32,8 @@ In this article, we’ll guide you through an easy and practical approach to han
 - [Define the `exports` field in `package.json`](#practical-part)
 - [Compile source files into `lib/esm` and `lib/cjs` directories.](#compiling-with-typescript)
 - [Add `package.json` files with the correct type field in `lib/esm` and `lib/cjs`](#build-scripts)
-  - Place a `package.json` file in `lib/esm` with `{"type": "module"}`
-  - Place another in `lib/cjs` with `{"type": "commonjs"}`
+    - Place a `package.json` file in `lib/esm` with `{"type": "module"}`
+    - Place another in `lib/cjs` with `{"type": "commonjs"}`
 
 ## Understanding Javascript file extensions
 
