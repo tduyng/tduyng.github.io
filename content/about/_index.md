@@ -42,7 +42,7 @@ I keep two types of content here:
 
 You'll also find some of my writing on [tduyng.medium.com](https://tduyng.medium.com).
 
-I'm always open to feedback, corrections, or discussions. Reach me at [contact@tduyng.com](mailto:contact@tduyng.com).
+I'm always open to feedback, corrections, or discussions. Reach me at [hi@tduyng.com](mailto:hi@tduyng.com).
 
 ## This site
 
