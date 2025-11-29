@@ -1,5 +1,5 @@
 +++
-title = "Why Justfile became my favorite task runner"
+title = "Justfile became my favorite task runner"
 description = "Discover why Just is better than Make: simpler syntax, better UX, and a lot of cool features"
 template = "post.html"
 date = 2025-11-24
@@ -30,7 +30,7 @@ Here's what I love about it:
 
 1. **Show all commands easily**
 
-Just do `just --list` and it shows all available commands with descriptions. No more grep through Makefile to find what commands you have.
+I just run `just --list` and it shows all available commands with descriptions. No more grepping through Makefile to find what commands I have.
 
 Here's example in my [gozzi](https://github.com/tduyng/gozzi) project:
 
@@ -70,9 +70,9 @@ Available recipes:
 
 2. **No more tab vs space problem**
 
-Make requires tabs. That makes it harder to write Makefile in some editors. If you use spaces instead of tabs, the command will fail to run. That's sucks. I had that problem many times.
+Make requires tabs. That makes it harder to write Makefile in some editors. If I use spaces instead of tabs, the command will fail to run. That sucks. I had that problem many times.
 
-In Just, this problem is gone. Just accepts both tabs and spaces. Much easier to write Justfile now.
+In Just, this problem is gone. Just accepts both tabs and spaces. Much easier for me to write Justfile now.
 
 3. **Simple variable syntax**
 
@@ -82,13 +82,13 @@ Just uses `:=` for everything. Just one way. Simple.
 
 4. **No `.PHONY` needed**
 
-In Make, you need to write `.PHONY: target` for every command that is not a file. That's verbose and annoying.
+In Make, I need to write `.PHONY: target` for every command that is not a file. That's verbose and annoying.
 
-Just is a command runner, not a build system. Every recipe is a command by default. No need to write `.PHONY` anymore.
+Just is a command runner, not a build system. Every recipe is a command by default. I don't need to write `.PHONY` anymore.
 
 5. **Run with or without dependencies**
 
-Run commands with dependencies, or bypass them with `--no-deps` when needed:
+I can run commands with dependencies, or bypass them with `--no-deps` when needed:
 
 ```just
 cmd_a:
@@ -109,11 +109,11 @@ $ just --no-deps cmd_b
 run command b
 ```
 
-This is really useful for workflows like `build → test → deploy`. Sometimes you just want to run `deploy` without running `build` again. Just makes this easy.
+This is really useful for workflows like `build → test → deploy`. Sometimes I just want to run `deploy` without running `build` again. Just makes this easy.
 
 6. **Write recipes in any language - special one, my favorite!**
 
-This is the coolest feature. You can write recipes in any language you want. Python, JavaScript, Ruby, whatever. Just use shebang:
+This is the coolest feature. I can write recipes in any language I want. Python, JavaScript, Ruby, whatever. Just use shebang:
 
 ```just
 polyglot: python js perl sh ruby nu
@@ -147,7 +147,7 @@ ruby:
 
 This solves the problem from my [scripting tools article](https://tduyng.com/blog/scripting-tools/)!
 
-Node.js teams can write complex tasks in JavaScript directly in Justfile. Python teams can use Python. For simple tasks, you still use shell commands. No need to install extra libraries like `zx` or `execa`.
+Node.js teams can write complex tasks in JavaScript directly in Justfile. Python teams can use Python. For simple tasks, I still use shell commands. No need to install extra libraries like `zx` or `execa`.
 
 7. **Arguments are easy**
 
@@ -196,13 +196,13 @@ just test verbose=true coverage=true # Both
 
 Compare with make:
 
-- Use `{{arg}}` instead of Make's `$(VAR)` or `$$var`, much clearer
+- I use `{{arg}}` instead of Make's `$(VAR)` or `$$var`, much clearer
 - Default values: `version='dev'` more simple and more natural
-- Handle easier multiple arguments
+- Handling multiple arguments is easier
 
 8. **Easy to migrate from Make**
 
-Just was made to be a better Make. Most Makefile syntax works in Justfile. So migration is easy.
+Just was made to be a better Make. Most Makefile syntax works in Justfile. So I found migration easy.
 
 Here's a real example:
 
@@ -250,7 +250,7 @@ That's it! I migrated most of my Makefiles in less than 10 minutes for simple Ma
 
 - **Run tasks in parallel**
 
-You can run multiple tasks at the same time. Just add `[parallel]`:
+I can run multiple tasks at the same time. Just add `[parallel]`:
 
 ```just
 [parallel]
@@ -289,17 +289,17 @@ just --fmt --check --unstable # Check formatting
 
 - **Choose command interactively**
 
-Forgot what commands you have? Use `--choose`:
+When I forget what commands I have, I use `--choose`:
 
 ```bash
 just --choose
 ```
 
-This opens fuzzy finder (uses `fzf` by default). You can see all commands and choose one. Really convenient! I use this a lot when I switch between different projects.
+This opens fuzzy finder (uses `fzf` by default). I can see all commands and choose one. Really convenient! I use this a lot when I switch between different projects.
 
 - **Group your commands**
 
-You can organize commands into groups:
+I can organize commands into groups:
 
 ```just
 [group: 'development']
@@ -315,11 +315,11 @@ publish:
   goreleaser release
 ```
 
-Groups show up in `just --list`. Makes it easier to find commands in large Justfiles.
+Groups show up in `just --list`. Makes it easier for me to find commands in large Justfiles.
 
 - **Environment variables**
 
-You can control Just with environment variables. All start with `JUST_`:
+I can control Just with environment variables. All start with `JUST_`:
 
 ```bash
 export JUST_UNSTABLE=1
@@ -360,11 +360,11 @@ test $RUST_BACKTRACE="1":
   cargo test  # RUST_BACKTRACE is available
 ```
 
-Use `$` prefix and the parameter becomes environment variable in that recipe.
+I use `$` prefix and the parameter becomes environment variable in that recipe.
 
 - **Just can load `.env` files automatically**
 
-Add this to your Justfile:
+I add this to my Justfile:
 
 ```just
 set dotenv-load
@@ -389,6 +389,6 @@ See all [color constants in the docs](https://just.systems/man/en/constants.html
 
 Justfile is much much better than Make for me. Like how ripgrep is better than grep, or how eza is better than ls. Everything Make can do, Just does better. And Just can do things that Make can't do.
 
-There's more stuff I didn't write about. Run `just --help` or read the [docs](https://just.systems/) to see what else Just can do.
+There's more stuff I didn't write about. I recommend running `just --help` or reading the [docs](https://just.systems/) to see what else Just can do.
 
-Give Just a try. I think you will like it.
+Give Just a try. I think you'll like it as much as I do.
