@@ -58,7 +58,7 @@
                         <article class="related-post-card">
                             <a class="instant" href="{{ .Permalink }}">
                                 <div class="post-card-image">
-                                    <img src="{{ $post_image }}" alt="{{ .Config.title }}" loading="lazy" onerror="this.src='/img/post-cover.webp'" />
+                                    <img src="{{ $post_image }}" alt="{{ .Config.title }}" width="1200" height="630" loading="lazy" decoding="async" onerror="this.src='/img/post-cover.webp'" />
                                 </div>
                                 <h4>{{ .Config.title }}</h4>
                                 {{ if .Config.description }}
