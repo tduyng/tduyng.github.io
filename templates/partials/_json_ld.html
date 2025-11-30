@@ -1,0 +1,175 @@
+{{ $page_type := .Page.Path }}
+{{ if eq $page_type "" }}
+<!-- Home/Person Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ .Site.Config.extra.name }}",
+  "url": "{{ .Site.Config.base_url }}",
+  "image": "{{ .Site.Config.base_url }}{{ .Site.Config.extra.avatar }}",
+  "jobTitle": "{{ .Site.Config.extra.bio }}",
+  "description": "{{ .Site.Config.description }}",
+  "sameAs": [
+    "https://github.com/tduyng",
+    "https://x.com/tduyng"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ .Site.Config.title }}",
+  "url": "{{ .Site.Config.base_url }}",
+  "description": "{{ .Site.Config.description }}",
+  "publisher": {
+    "@type": "Person",
+    "name": "{{ .Site.Config.extra.name }}"
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "{{ .Site.Config.base_url }}/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+{{ else if has_prefix .Page.Path "blog/" }}
+{{ if .Page.Config.title }}
+<!-- BlogPosting Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ .Page.Config.title }}",
+  "description": "{{ .Page.Config.description }}",
+  "image": "{{ if .Page.Config.img }}{{ .Page.Config.img_url }}{{ else }}{{ .Site.Config.base_url }}{{ .Site.Config.extra.img }}{{ end }}",
+  "url": "{{ .Site.Config.base_url }}{{ .Page.Permalink }}",
+  "datePublished": "{{ .Page.Config.date }}",
+  {{ if not .Page.Config.updated.IsZero }}
+  "dateModified": "{{ .Page.Config.updated }}",
+  {{ else }}
+  "dateModified": "{{ .Page.Config.date }}",
+  {{ end }}
+  "author": {
+    "@type": "Person",
+    "name": "{{ .Site.Config.extra.name }}",
+    "url": "{{ .Site.Config.base_url }}"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "{{ .Site.Config.extra.name }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ .Site.Config.base_url }}{{ .Site.Config.extra.avatar }}"
+    }
+  },
+  {{ if .Page.Config.tags }}
+  "keywords": "{{ join .Page.Config.tags ", " }}",
+  {{ end }}
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ .Site.Config.base_url }}{{ .Page.Permalink }}"
+  }
+}
+</script>
+{{ end }}
+{{ else if has_prefix .Page.Path "notes/" }}
+{{ if .Page.Config.title }}
+<!-- Article Schema for Notes -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ .Page.Config.title }}",
+  "url": "{{ .Site.Config.base_url }}{{ .Page.Permalink }}",
+  "datePublished": "{{ .Page.Config.date }}",
+  {{ if not .Page.Config.updated.IsZero }}
+  "dateModified": "{{ .Page.Config.updated }}",
+  {{ else }}
+  "dateModified": "{{ .Page.Config.date }}",
+  {{ end }}
+  "author": {
+    "@type": "Person",
+    "name": "{{ .Site.Config.extra.name }}",
+    "url": "{{ .Site.Config.base_url }}"
+  },
+  "publisher": {
+    "@type": "Person",
+    "name": "{{ .Site.Config.extra.name }}"
+  }
+}
+</script>
+{{ end }}
+{{ else }}
+<!-- Generic WebPage Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ priority .Page.Config.title .Section.Config.title .Site.Config.title }}",
+  "url": "{{ .Site.Config.base_url }}{{ .Page.Permalink }}",
+  "description": "{{ priority .Page.Config.description .Section.Config.description .Site.Config.description }}",
+  "publisher": {
+    "@type": "Person",
+    "name": "{{ .Site.Config.extra.name }}"
+  }
+}
+</script>
+{{ end }}
+
+<!-- BreadcrumbList Schema -->
+{{ if ne .Page.Path "" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ .Site.Config.base_url }}"
+    }
+    {{ if has_prefix .Page.Path "blog/" }}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "{{ .Site.Config.base_url }}/blog"
+    }
+    {{ if .Page.Config.title }}
+    ,{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ .Page.Config.title }}",
+      "item": "{{ .Site.Config.base_url }}{{ .Page.Permalink }}"
+    }
+    {{ end }}
+    {{ else if has_prefix .Page.Path "notes/" }}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Notes",
+      "item": "{{ .Site.Config.base_url }}/notes"
+    }
+    {{ if .Page.Config.title }}
+    ,{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ .Page.Config.title }}",
+      "item": "{{ .Site.Config.base_url }}{{ .Page.Permalink }}"
+    }
+    {{ end }}
+    {{ else if has_prefix .Page.Path "tags/" }}
+    ,{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tags",
+      "item": "{{ .Site.Config.base_url }}/tags"
+    }
+    {{ end }}
+  ]
+}
+</script>
+{{ end }}

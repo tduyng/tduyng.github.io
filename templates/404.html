@@ -4,32 +4,49 @@
     <head>
         <meta charset="utf-8" />
         <meta name="color-scheme" content="dark" />
+        <meta name="theme-color" content="#000000" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="base" content="{{.Site.BaseURL}}" />
+        <meta name="base" content="{{.Site.Config.base_url}}" />
         <meta name="HandheldFriendly" content="True" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="msapplication-TileColor" content="#000000" />
         <meta name="robots" content="noindex, follow" />
+        
+        <!-- Favicons -->
         <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
-        <meta property="og:title" content="Page not found" />
-        <meta property="og:type" content="article" />
+        
+        <!-- Title and Description -->
+        <title>404 - Page Not Found | {{.Site.Config.title}}</title>
+        <meta name="description" content="The page you're looking for doesn't exist. It might have been moved or deleted." />
+        
+        <!-- Open Graph -->
+        <meta property="og:title" content="404 - Page Not Found" />
+        <meta property="og:type" content="website" />
         <meta property="og:site_name" content="{{.Site.Config.title}}" />
-        <meta name="description" content="{{.Site.Config.Description}}" />
-        <meta property="og:description" content="{{.Site.Config.Description}}" />
+        <meta property="og:description" content="The page you're looking for doesn't exist." />
+        <meta property="og:locale" content="en_US" />
+        
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@tduyng" />
+        <meta name="twitter:title" content="404 - Page Not Found" />
+        <meta name="twitter:description" content="The page you're looking for doesn't exist." />
+        
         <link rel="stylesheet" href="/css/main.css" />
     </head>
     <body class="not-found">
-        <div class="wrapper">
+        <main class="wrapper" role="main">
             <div class="error">
-                <span>404</span>
+                <span aria-label="Error code">404</span>
                 <span>Page Not Found</span>
             </div>
             <p>Oops! The page you're looking for doesn't exist. It might have been moved or deleted.</p>
-            <a class="instant" href="/">← Back to Home</a>
-        </div>
+            <a class="instant" href="/" aria-label="Return to homepage">← Back to Home</a>
+        </main>
     </body>
 </html>

@@ -1,40 +1,96 @@
 <head>
     <meta charset="utf-8" />
     <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#000000" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="base" content="{{.Site.Config.base_url }}" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <meta name="robots" content="index, nofollow" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="msapplication-TileColor" content="#000000" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    
+    <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
-    <link rel="canonical" href="{{ .Page.URL }}" />
+    
+    <!-- Canonical and alternate links -->
+    <link rel="canonical" href="{{ .Site.Config.base_url }}{{ .Page.Permalink }}" />
+    <link rel="alternate" type="application/atom+xml" title="{{ .Site.Config.title }} - Atom Feed" href="{{ .Site.Config.feed_url }}" />
+    
+    <!-- Basic meta tags -->
     {{ if .Page.Config.tags }}
     <meta name="keywords" content="{{ join .Page.Config.tags ", " }}" />
     {{ end }}
     <meta name="author" content="{{ .Site.Config.extra.name }}" />
-    <title>{{ .Page.Config.title }}</title>
-    <meta
-        property="og:title"
-        content="{{ priority .Page.Config.title .Section.Config.title .Site.Config.title }}"
-    />
-    <meta property="og:type" content="article" />
-    <meta property="og:site_name" content="{{.Site.Config.title }}" />
-    {{ $description := priority .Page.Config.description .Section.Config.description
-    .Site.Config.description }}
+    <meta name="language" content="{{ .Site.Config.language }}" />
+    
+    <!-- Title -->
+    <title>{{ priority .Page.Config.title .Section.Config.title .Site.Config.title }}{{ if .Page.Config.title }} | {{ .Site.Config.title }}{{ end }}</title>
+    
+    <!-- Description -->
+    {{ $description := priority .Page.Config.description .Section.Config.description .Site.Config.description }}
     <meta name="description" content="{{ $description }}" />
+    
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="{{ priority .Page.Config.title .Section.Config.title .Site.Config.title }}" />
     <meta property="og:description" content="{{ $description }}" />
-    {{if .Page.Config.img }}
-    <meta property="og:image" content="{{.Page.Config.img_url}}" />
+    <meta property="og:type" content="{{ if has_prefix .Page.Path "blog/" }}article{{ else }}website{{ end }}" />
+    <meta property="og:url" content="{{ .Site.Config.base_url }}{{ .Page.Permalink }}" />
+    <meta property="og:site_name" content="{{ .Site.Config.title }}" />
+    <meta property="og:locale" content="en_US" />
+    
+    {{ if .Page.Config.img }}
+    <meta property="og:image" content="{{ .Page.Config.img_url }}" />
+    <meta property="og:image:secure_url" content="{{ .Page.Config.img_url }}" />
     <meta property="og:image:width" content="1500" />
     <meta property="og:image:height" content="750" />
-    <meta name="twitter:image" content="{{ .Page.Config.img_url }}" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:image:alt" content="{{ .Page.Config.title }}" />
+    {{ else }}
+    <meta property="og:image" content="{{ .Site.Config.base_url }}{{ .Site.Config.extra.img }}" />
+    <meta property="og:image:secure_url" content="{{ .Site.Config.base_url }}{{ .Site.Config.extra.img }}" />
     {{ end }}
+    
+    <!-- Article specific OG tags -->
+    {{ if has_prefix .Page.Path "blog/" }}
+    {{ if .Page.Config.date }}
+    <meta property="article:published_time" content="{{ .Page.Config.date }}" />
+    {{ end }}
+    {{ if not .Page.Config.updated.IsZero }}
+    <meta property="article:modified_time" content="{{ .Page.Config.updated }}" />
+    {{ end }}
+    <meta property="article:author" content="{{ .Site.Config.base_url }}" />
+    <meta property="article:section" content="Blog" />
+    {{ range .Page.Config.tags }}
+    <meta property="article:tag" content="{{ . }}" />
+    {{ end }}
+    {{ end }}
+    
+    <!-- Twitter Card meta tags -->
+    <meta name="twitter:card" content="{{ if .Page.Config.img }}summary_large_image{{ else }}summary{{ end }}" />
+    <meta name="twitter:site" content="@tduyng" />
+    <meta name="twitter:creator" content="@tduyng" />
+    <meta name="twitter:title" content="{{ priority .Page.Config.title .Section.Config.title .Site.Config.title }}" />
+    <meta name="twitter:description" content="{{ $description }}" />
+    {{ if .Page.Config.img }}
+    <meta name="twitter:image" content="{{ .Page.Config.img_url }}" />
+    <meta name="twitter:image:alt" content="{{ .Page.Config.title }}" />
+    {{ else }}
+    <meta name="twitter:image" content="{{ .Site.Config.base_url }}{{ .Site.Config.extra.img }}" />
+    {{ end }}
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="/css/main.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" crossorigin="anonymous">
+    <link rel="preload" href="/css/main.css" as="style" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous" />
+    
+    <!-- JSON-LD Structured Data -->
+    {{ template "partials/_json_ld.html" . }}
 </head>
