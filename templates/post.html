@@ -21,11 +21,11 @@
                         <h1>{{ .Page.Config.title }}</h1>
                         <div id="post-info">
                             <div id="date">
-                                <span id="publish">{{ date .Page.Config.date "Jan 2, 2006" }}</span>
+                                <time id="publish" datetime="{{ .Page.Config.date }}">{{ date .Page.Config.date "Jan 2, 2006" }}</time>
                                 {{ if not .Page.Config.updated.IsZero }}
                                 <span>Last update:</span>
-                                <span id="updated"
-                                    >{{ date .Page.Config.updated "Jan 2, 2006" }}</span
+                                <time id="updated" datetime="{{ .Page.Config.updated }}"
+                                    >{{ date .Page.Config.updated "Jan 2, 2006" }}</time
                                 >
                                 {{ end }}
                             </div>

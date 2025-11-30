@@ -20,7 +20,7 @@
                                     {{ .Content }}
                                     <p class="timestamp">
                                         <a href="{{ .Permalink }}"
-                                            >→ {{ date .Config.date "Jan 2, 2006" }}</a
+                                            >→ <time datetime="{{ .Config.date }}">{{ date .Config.date "Jan 2, 2006" }}</time></a
                                         >
                                     </p>
                                 </div>

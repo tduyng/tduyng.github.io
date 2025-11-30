@@ -33,13 +33,13 @@
                         href="{{ .Permalink }}"
                     >
                         <div class="post-card-image">
-                            <img src="{{ $post_image }}" alt="{{ .Config.title }}" loading="lazy" onerror="this.src='/img/post-cover.webp'" />
+                            <img src="{{ $post_image }}" alt="{{ .Config.title }}" width="1200" height="630" loading="lazy" decoding="async" onerror="this.src='/img/post-cover.webp'" />
                         </div>
                         
                         <div class="blog-card-content">
                             <div class="blog-card-header">
                                 <h3 class="blog-card-title">{{ .Config.title }}</h3>
-                                <div class="blog-card-date">{{ date .Config.date "Jan 2, 2006" }}</div>
+                                <time class="blog-card-date" datetime="{{ .Config.date }}">{{ date .Config.date "Jan 2, 2006" }}</time>
                             </div>
                             
                             {{ if .Config.description }}

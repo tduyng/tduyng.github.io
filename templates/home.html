@@ -6,7 +6,7 @@
         <div id="wrapper">
             <main>
                 <section id="info">
-                    <img src="{{ .Site.Config.extra.avatar }}" loading="lazy" alt="avatar" />
+                    <img src="{{ .Site.Config.extra.avatar }}" width="120" height="120" loading="eager" decoding="async" fetchpriority="high" alt="{{ .Site.Config.extra.name }} avatar" />
                     <div id="text">
                         <div>
                             <span id="name">{{ .Site.Config.extra.name }}</span>
@@ -70,18 +70,18 @@
                                     {{ end }}
                                 {{ end }}
                                 
-                                <div class="post-card-image">
-                                    <img src="{{ $post_image }}" alt="{{ .Config.title }}" loading="lazy" onerror="this.src='/img/post-cover.webp'" />
+                        <div class="post-card-image">
+                            <img src="{{ $post_image }}" alt="{{ .Config.title }}" width="1200" height="630" loading="lazy" decoding="async" onerror="this.src='/img/post-cover.webp'" />
+                        </div>
+                        
+                        <div class="post-content">
+                            <div class="post-header">
+                                <div class="title">
+                                    <a href="{{ .Permalink }}">{{ .Config.title }}</a>
                                 </div>
-                                
-                                <div class="post-content">
-                                    <div class="post-header">
-                                        <div class="title">
-                                            <a href="{{ .Permalink }}">{{ .Config.title }}</a>
-                                        </div>
-                                        <span class="date"
-                                            >{{ date .Config.date "Jan 2, 2006" }}</span
-                                        >
+                                <time class="date" datetime="{{ .Config.date }}"
+                                    >{{ date .Config.date "Jan 2, 2006" }}</time
+                                >
                                     </div>
                                     <p class="description">{{ .Config.description }}</p>
                                 </div>

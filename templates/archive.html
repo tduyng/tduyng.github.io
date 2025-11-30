@@ -39,7 +39,7 @@
                         <div class="timeline-items">
                             {{ range $group.Items }}
                             <a class="timeline-item instant scroll-reveal-stagger" href="{{ .Permalink }}">
-                                <span class="item-date">{{ date .Config.date "Jan 02" }}</span>
+                                <time class="item-date" datetime="{{ .Config.date }}">{{ date .Config.date "Jan 02" }}</time>
                                 <span class="item-content">
                                     <span class="item-type {{ if has_prefix .Permalink "/blog/" }}type-blog{{ else }}type-note{{ end }}">
                                         {{ if has_prefix .Permalink "/blog/" }}Blog{{ else }}Note{{ end }}
