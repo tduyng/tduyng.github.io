@@ -1,0 +1,150 @@
+# Block all AI crawlers and bots
+# Based on Cloudflare AI Crawler list
+# https://tduyng.github.io/robots.txt
+
+# OpenAI
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Claude-SearchBot
+Disallow: /
+
+User-agent: Claude-User
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+# Meta
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: Meta-ExternalFetcher
+Disallow: /
+
+# Amazon
+User-agent: Amazonbot
+Disallow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Perplexity-User
+Disallow: /
+
+# ByteDance (TikTok)
+User-agent: Bytespider
+Disallow: /
+
+# Huawei
+User-agent: PetalBot
+Disallow: /
+
+# Apple AI
+User-agent: Applebot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+# Google AI
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Google-CloudVertexBot
+Disallow: /
+
+# DuckDuckGo AI
+User-agent: DuckAssistBot
+Disallow: /
+
+# Common Crawl
+User-agent: CCBot
+Disallow: /
+
+# Mistral
+User-agent: MistralAI-User
+Disallow: /
+
+# Novellum
+User-agent: Novellum AI Crawl
+Disallow: /
+
+# ProRata.ai
+User-agent: ProRataInc
+Disallow: /
+
+# Timpi
+User-agent: Timpibot
+Disallow: /
+
+# Anchor Browser
+User-agent: Anchor Browser
+Disallow: /
+
+# Cohere
+User-agent: cohere-ai
+Disallow: /
+
+# Diffbot
+User-agent: Diffbot
+Disallow: /
+
+# Omgili
+User-agent: omgili
+Disallow: /
+
+User-agent: omgilibot
+Disallow: /
+
+# AI2 (Allen Institute)
+User-agent: AI2Bot
+Disallow: /
+
+# Scrapy
+User-agent: scrapy
+Disallow: /
+
+# Allow legitimate search engines (not AI)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Allow Internet Archive
+User-agent: archive.org_bot
+Allow: /
+
+User-agent: ia_archiver
+Allow: /
+
+# Default rule for everything else
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://tduyng.github.io/sitemap.xml
