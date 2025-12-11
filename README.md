@@ -15,11 +15,11 @@
 
 ---
 
-### ✨ About
+### About
 
 A lightweight, fast, and modern personal website showcasing blog posts, technical notes, and projects. Built with **Go** through the custom [gozzi](https://github.com/tduyng/gozzi) static site generator, prioritizing simplicity and performance.
 
-### 📦 Repository Structure
+### Repository Structure
 
 ```
 📁 content/       → Markdown content (blog posts, notes, pages)
@@ -28,7 +28,7 @@ A lightweight, fast, and modern personal website showcasing blog posts, technica
 📁 config/        → Site configuration (dev & prod)
 ```
 
-### 🚀 Quick Start
+### Quick Start
 
 ```bash
 # Generate the site
@@ -38,7 +38,7 @@ gozzi build
 gozzi serve
 ```
 
-### 🛠️ Tech Stack
+### Tech Stack
 
 - **Generator**: [Gozzi](https://github.com/tduyng/gozzi) (Go-based SSG)
 - **Deployment**: GitHub Pages
