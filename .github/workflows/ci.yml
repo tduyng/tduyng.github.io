@@ -27,6 +27,8 @@ jobs:
 
       - name: Install Gozzi
         run: go install github.com/tduyng/gozzi@latest
+        env:
+          GOPROXY: direct
 
       - name: Show Gozzi version
         run: gozzi version
