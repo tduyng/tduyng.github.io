@@ -33,7 +33,9 @@
     <meta name="language" content="{{ .Site.Config.language }}" />
     
     <!-- Title -->
-    <title>{{ priority .Page.Config.title .Section.Config.title .Site.Config.title }}{{ if .Page.Config.title }} | {{ .Site.Config.title }}{{ end }}</title>
+    {{ $page_title := priority .Page.Config.title .Section.Config.title .Site.Config.title }}
+    {{ $site_title := .Site.Config.title }}
+    <title>{{ if and .Page.Config.title (ne $page_title $site_title) }}{{ $page_title }} | {{ $site_title }}{{ else }}{{ $page_title }}{{ end }}</title>
     
     <!-- Description -->
     {{ $description := priority .Page.Config.description .Section.Config.description .Site.Config.description }}
