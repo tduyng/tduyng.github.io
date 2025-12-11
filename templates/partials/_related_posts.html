@@ -1,82 +1,68 @@
 {{ if .Page.Config.tags }}
 {{ $blog_section := get_section "blog" }}
-{{ $currentPermalink := .Page.Permalink }}
-{{ $currentTags := .Page.Config.tags }}
+{{ $related := related_posts .Page $blog_section.Children }}
 
-<!-- First pass: count matching posts -->
-{{ $foundCount := 0 }}
-{{ range (reverse $blog_section.Children) }}
-    {{ if and (ne .Permalink $currentPermalink) (lt $foundCount 3) }}
-        {{ if .Config.tags }}
-            {{ $hasMatch := false }}
-            {{ range .Config.tags }}
-                {{ $postTag := . }}
-                {{ range $currentTags }}
-                    {{ if eq . $postTag }}
-                        {{ $hasMatch = true }}
-                    {{ end }}
-                {{ end }}
-            {{ end }}
-            {{ if $hasMatch }}
-                {{ $foundCount = add $foundCount 1 }}
-            {{ end }}
-        {{ end }}
-    {{ end }}
-{{ end }}
-
-<!-- Only show section if we found related posts -->
-{{ if gt $foundCount 0 }}
+{{ if $related }}
 <section id="related-posts">
     <h3>Related Posts</h3>
     <div class="related-posts-grid">
-        {{ $rendered := 0 }}
-        {{ range (reverse $blog_section.Children) }}
-            {{ if and (ne .Permalink $currentPermalink) (lt $rendered 3) }}
-                {{ if .Config.tags }}
-                    {{ $hasMatch := false }}
-                    {{ range .Config.tags }}
-                        {{ $postTag := . }}
-                        {{ range $currentTags }}
-                            {{ if eq . $postTag }}
-                                {{ $hasMatch = true }}
-                            {{ end }}
-                        {{ end }}
-                    {{ end }}
-                    {{ if $hasMatch }}
-                        {{ $rendered = add $rendered 1 }}
-                        {{ $post_image := "/img/post-cover.webp" }}
-                        {{ if .Config.extra.img }}
-                            {{ $img_path := .Config.extra.img }}
-                            {{ $first_char := index (split $img_path "") 0 }}
-                            {{ if eq $first_char "/" }}
-                                {{ $post_image = $img_path }}
-                            {{ else }}
-                                {{ $post_image = printf "%s%s" .Permalink $img_path }}
-                            {{ end }}
-                        {{ end }}
-                        
-                        <article class="related-post-card">
-                            <a class="instant" href="{{ .Permalink }}">
-                                <div class="post-card-image">
-                                    <img src="{{ $post_image }}" alt="{{ .Config.title }}" width="1200" height="630" loading="lazy" decoding="async" onerror="this.src='/img/post-cover.webp'" />
-                                </div>
-                                <h4>{{ .Config.title }}</h4>
-                                {{ if .Config.description }}
-                                <p class="description">{{ .Config.description }}</p>
-                                {{ end }}
-                                <div class="related-tags">
-                                    {{ range .Config.tags }}
-                                        <span class="tag">#{{ . }}</span>
-                                    {{ end }}
-                                </div>
-                                <span class="read-more">Read more →</span>
-                            </a>
-                        </article>
-                    {{ end }}
+        {{ range $related }}
+            {{ $post_image := "/img/post-cover.webp" }}
+            {{ if .Config.extra.img }}
+                {{ $img_path := .Config.extra.img }}
+                {{ $first_char := index (split $img_path "") 0 }}
+                {{ if eq $first_char "/" }}
+                    {{ $post_image = $img_path }}
+                {{ else }}
+                    {{ $post_image = printf "%s%s" .Permalink $img_path }}
                 {{ end }}
             {{ end }}
+            
+            <article class="related-post-card">
+                <a class="instant" href="{{ .Permalink }}">
+                    <div class="post-card-image">
+                        <img src="{{ $post_image }}" alt="{{ .Config.title }}" width="1200" height="630" loading="lazy" decoding="async" onerror="this.src='/img/post-cover.webp'" />
+                    </div>
+                    <h4>{{ .Config.title }}</h4>
+                    {{ if .Config.description }}
+                    <p class="description">{{ .Config.description }}</p>
+                    {{ end }}
+                    <div class="related-tags">
+                        {{ range .Config.tags }}
+                            <span class="tag">#{{ . }}</span>
+                        {{ end }}
+                    </div>
+                    <span class="read-more">Read more →</span>
+                </a>
+            </article>
         {{ end }}
     </div>
 </section>
+
+<script>
+(function() {
+    const relatedSection = document.getElementById('related-posts');
+    if (!relatedSection) return;
+
+    const articles = Array.from(relatedSection.querySelectorAll('.related-post-card'));
+    if (articles.length === 0) return;
+
+    // Shuffle using Fisher-Yates algorithm
+    for (let i = articles.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [articles[i], articles[j]] = [articles[j], articles[i]];
+    }
+
+    // Show only first 3, hide the rest
+    const toShow = Math.min(3, articles.length);
+    articles.forEach((article, index) => {
+        if (index < toShow) {
+            article.style.display = '';
+        } else {
+            article.style.display = 'none';
+        }
+    });
+})();
+</script>
 {{ end }}
 {{ end }}
