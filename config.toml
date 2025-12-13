@@ -1,7 +1,7 @@
 base_url = "https://tduyng.com"
 feed_url = "https://tduyng.com/atom.xml"
 title = "Duy NG"
-description = "Software Engineer"
+description = "Backend Engineer. Building fast, reliable systems. Always learning."
 language = "en"
 output_dir = "public"
 
@@ -9,7 +9,7 @@ output_dir = "public"
 [extra]
 name = "Duy NG"
 id = "tduyng"
-bio = "Software Engineer"
+bio = "Backend Engineer • Always learning, never stop exploring"
 avatar = "/img/avatar.webp"
 img = "/img/feed.webp"
 links = [
@@ -61,8 +61,8 @@ icon = "⏰"
 title = "Now"
 lines = [
   { prompt = "$", text = "building", link = "https://github.com/tduyng/gozzi", link_text = "gozzi" },
-  { prompt = ">", text = "neovim series" },
-  { prompt = ">", text = "terminal tools" }
+  { prompt = ">", text = "writing neovim series" },
+  { prompt = ">", text = "exploring terminal tools" }
 ]
 
 [[extra.bento_cards]]

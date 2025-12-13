@@ -7,7 +7,7 @@ generate_feed = false
 lang = 'en'
 +++
 
-Welcome! I'm **Duy NG**, a Backend Engineer based in France.
+Hey! I'm **Duy NG**, a Backend Engineer based in France.
 
 I love building fast, reliable systems. My workflow is simple: stay in the terminal, keep my hands on the keyboard, and focus on what matters.
 
