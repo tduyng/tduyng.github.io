@@ -1,9 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
-# Build the site with the specified environment
+# Build the site
 echo "Building site with Gozzi..."
-gozzi build --config config/config.prod.toml
+gozzi build
 
 # Generate search index
 echo "Generating search index..."

@@ -3,7 +3,7 @@
 set -euo pipefail
 
 echo "🔨 Building site..."
-gozzi build --config config/config.dev.toml
+gozzi build 
 
 echo "🔍 Generating search index..."
 python3 generate-search-index.py
