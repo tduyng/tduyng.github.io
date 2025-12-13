@@ -5,37 +5,66 @@
     <body class="homepage">
         <div id="wrapper">
             <main>
+                <!-- Info Section with Enhanced Design -->
+                <!-- Info Section with Enhanced Design -->
                 <section id="info">
-                    <img src="{{ .Site.Config.extra.avatar }}" width="120" height="120" loading="eager" decoding="async" fetchpriority="high" alt="{{ .Site.Config.extra.name }} avatar" />
+                    <div class="avatar-wrapper">
+                        <div class="avatar-ring"></div>
+                        <img
+                            src="{{ .Site.Config.extra.avatar }}"
+                            width="80"
+                            height="80"
+                            loading="eager"
+                            decoding="async"
+                            fetchpriority="high"
+                            alt="{{ .Site.Config.extra.name }} avatar"
+                            class="avatar-img"
+                        />
+                        <div class="status-indicator" title="Available"></div>
+                    </div>
                     <div id="text">
-                        <div>
-                            <span id="name">{{ .Site.Config.extra.name }}</span>
+                        <div class="name-section">
+                            <h1 id="name">{{ .Site.Config.extra.name }}</h1>
+                            {{ if .Site.Config.extra.currently_status }}
+                            <a href="{{ .Site.Config.extra.currently_status_link }}" target="_blank" rel="noreferrer noopener" class="currently-badge">
+                                <span class="badge-dot">●</span>
+                                <span class="badge-text">{{ .Site.Config.extra.currently_status }}</span>
+                            </a>
+                            {{ end }}
                             {{ if .Site.Config.extra.display_id }}
                             <span id="id">@{{ .Site.Config.extra.id }}</span>
                             {{ end }}
                         </div>
-                        <div id="bio">{{ .Site.Config.extra.bio }}</div>
+                        <div id="bio">
+                            {{ .Site.Config.extra.bio }}
+                            <span class="location">📍 France</span>
+                        </div>
+                        {{ $blog := get_section "blog" }} {{ $notes := get_section "notes" }}
                     </div>
                 </section>
+
+                <!-- Links Section -->
                 <section id="links">
                     <div id="left">
-                        {{ range .Site.Config.extra.sections }}
-                        <a
-                            href="{{ .path }}"
-                            {{
-                            if
-                            .is_external
-                            }}target="_blank"
-                            rel="noreferrer noopener"
-                            {{
-                            else
-                            }}class="instant"
-                            {{
-                            end
-                            }}
-                            >{{ .name }}</a
-                        >
-                        {{ end }}
+                        {{ $blog := get_section "blog" }} {{ $notes := get_section "notes" }}
+                        <a href="/blog" class="instant nav-link">
+                            <span class="link-icon">📝</span>
+                            <span class="link-text">blog</span>
+                            <span class="link-count">{{ len $blog.Children }}</span>
+                        </a>
+                        <a href="/notes" class="instant nav-link">
+                            <span class="link-icon">💡</span>
+                            <span class="link-text">notes</span>
+                            <span class="link-count">{{ len $notes.Children }}</span>
+                        </a>
+                        <a href="/uses" class="instant nav-link">
+                            <span class="link-icon">⚙️</span>
+                            <span class="link-text">uses</span>
+                        </a>
+                        <a href="/about" class="instant nav-link">
+                            <span class="link-icon">👤</span>
+                            <span class="link-text">about</span>
+                        </a>
                     </div>
                     <div id="right">
                         {{ range .Site.Config.extra.links }}
@@ -44,62 +73,136 @@
                             aria-label="{{ .name }}"
                             target="_blank"
                             rel="noreferrer noopener"
+                            class="social-link"
                         >
                             {{ $icon := printf "static/icon/%s.svg" .icon }} {{ load $icon }}
                         </a>
                         {{ end }}
                     </div>
                 </section>
-                <section id="brief" class="prose">
-                    {{ .Page.Content }}
-                    <hr />
-                    <section class="home-layout-list scroll-reveal">
-                        <h2>Here are the latest posts:</h2>
-                        {{ $blog_section := get_section "blog" }}
-                        <div class="post-list">
-                            {{ range limit 10 (reverse $blog_section.Children) }}
-                            <div class="post instant scroll-reveal-stagger">
-                                {{ $post_image := "/img/post-cover.webp" }}
-                                {{ if .Config.extra.img }}
-                                    {{ $img_path := .Config.extra.img }}
-                                    {{ $first_char := index (split $img_path "") 0 }}
-                                    {{ if eq $first_char "/" }}
-                                        {{ $post_image = $img_path }}
-                                    {{ else }}
-                                        {{ $post_image = printf "%s%s" .Permalink $img_path }}
+
+                <!-- Brief Section -->
+                <section id="brief" class="prose">{{ .Page.Content }}</section>
+
+
+                <!-- Bento Grid Highlights -->
+                <section id="highlights">
+                    <div class="bento-grid">
+                        {{ range .Site.Config.extra.bento_cards }}
+                        <div class="bento-item {{ .type }}">
+                            <div class="bento-header">
+                                <span class="bento-icon">{{ .icon }}</span>
+                                <h3>{{ .title }}</h3>
+                            </div>
+                            <div class="bento-content">
+                                {{ if eq .type "stack" }}
+                                <div class="tech-tags">
+                                    {{ range .tags }}
+                                    <span class="tech-tag">{{ . }}</span>
                                     {{ end }}
-                                {{ end }}
-                                
-                        <div class="post-card-image">
-                            <img src="{{ $post_image }}" alt="{{ .Config.title }}" width="1200" height="630" loading="lazy" decoding="async" onerror="this.src='/img/post-cover.webp'" />
-                        </div>
-                        
-                        <div class="post-content">
-                            <div class="post-header">
-                                <div class="title">
-                                    <a href="{{ .Permalink }}">{{ .Config.title }}</a>
                                 </div>
-                                <time class="date" datetime="{{ .Config.date }}"
+                                {{ else if eq .type "now" }}
+                                <div class="terminal-output">
+                                    {{ range .lines }}
+                                    <div class="terminal-line">
+                                        <span class="prompt">{{ .prompt }}</span> {{ .text }}{{ if
+                                        .link }}&nbsp;<a
+                                            href="{{ .link }}"
+                                            target="_blank"
+                                            rel="noreferrer noopener"
+                                            >{{ .link_text }}</a
+                                        >{{ end }}
+                                    </div>
+                                    {{ end }}
+                                    <div class="terminal-line cursor">
+                                        <span class="prompt">$</span
+                                        ><span class="cursor-block">█</span>
+                                    </div>
+                                </div>
+                                {{ else if eq .type "focus" }}
+                                <div class="terminal-output">
+                                    {{ range .lines }}
+                                    <div class="terminal-line">
+                                        <span class="prompt">{{ .prompt }}</span> {{ .text }}
+                                    </div>
+                                    {{ end }}
+                                    <div class="terminal-line cursor">
+                                        <span class="prompt">$</span
+                                        ><span class="cursor-block">█</span>
+                                    </div>
+                                </div>
+                                {{ end }}
+                            </div>
+                        </div>
+                        {{ end }}
+                    </div>
+                </section>
+
+
+                <!-- Featured Posts -->
+                <section id="featured-posts">
+                    <div class="section-header">
+                        <h2>Latest Posts</h2>
+                        <p class="section-subtitle">
+                            Recent writings about tools, code, and terminal life
+                        </p>
+                    </div>
+                    {{ $blog_section := get_section "blog" }}
+                    <div class="post-grid">
+                        {{ range limit 9 (reverse $blog_section.Children) }}
+                        <article class="post-card instant">
+                            {{ $post_image := "/img/post-cover.webp" }} {{ if .Config.extra.img }}
+                            {{ $img_path := .Config.extra.img }} {{ $first_char := index (split
+                            $img_path "") 0 }} {{ if eq $first_char "/" }} {{ $post_image =
+                            $img_path }} {{ else }} {{ $post_image = printf "%s%s" .Permalink
+                            $img_path }} {{ end }} {{ end }}
+
+                            <div class="post-card-image">
+                                <img
+                                    src="{{ $post_image }}"
+                                    alt="{{ .Config.title }}"
+                                    width="400"
+                                    height="210"
+                                    loading="lazy"
+                                    decoding="async"
+                                    onerror="this.src='/img/post-cover.webp'"
+                                />
+                            </div>
+
+                            <div class="post-card-content">
+                                <time class="post-date" datetime="{{ .Config.date }}"
                                     >{{ date .Config.date "Jan 2, 2006" }}</time
                                 >
-                                    </div>
-                                    <p class="description">{{ .Config.description }}</p>
+                                <h3 class="post-title">
+                                    <a href="{{ .Permalink }}">{{ .Config.title }}</a>
+                                </h3>
+                                <p class="post-description">{{ .Config.description }}</p>
+                                <div class="post-tags">
+                                    {{ range .Config.tags }}
+                                    <span class="post-tag">#{{ . }}</span>
+                                    {{ end }}
                                 </div>
                             </div>
-                            {{ end }}
-                        </div>
-                        <div class="read-more scroll-reveal">
-                            <a class="instant" href="/blog"
-                                >{{ .Site.Config.extra.recent_more_text }}</a
-                            >
-                        </div>
-                    </section>
-                    <hr />
-                    <p class="scroll-reveal">
-                        Want to get in touch? <a href="/contact">Contact me</a> or check out my
-                        <a href="https://github.com/tduyng">GitHub</a>.
-                    </p>
+                        </article>
+                        {{ end }}
+                    </div>
+                    <div class="view-all">
+                        <a class="view-all-btn instant" href="/blog">
+                            {{ .Site.Config.extra.recent_more_text }} →
+                        </a>
+                    </div>
                 </section>
+
+                <!-- <!-- Footer Contact -->
+                <!-- <section id="contact-section"> -->
+                <!--     <div class="contact-content"> -->
+                <!--         <p> -->
+                <!--             Want to get in touch? <a href="/contact">Contact me</a> or check out my -->
+                <!--             <a href="https://github.com/tduyng" target="_blank" rel="noreferrer noopener">GitHub</a>. -->
+                <!--         </p> -->
+                <!--     </div> -->
+                <!-- </section> -->
+
                 {{ template "partials/_footer.html" . }}
             </main>
         </div>

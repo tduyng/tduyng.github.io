@@ -14,7 +14,7 @@ avatar = "/img/avatar.webp"
 img = "/img/feed.webp"
 links = [
   { name = "GitHub", icon = "github", url = "https://github.com/tduyng" },
-  { name = "Twitter", icon = "twitter", url = "https://x.com/tduyng" },
+  { name = "X", icon = "x", url = "https://x.com/tduyng" },
   { name = "Email", icon = "email", url = "mailto:hi@tduyng.com" },
 ]
 sections = [
@@ -36,6 +36,9 @@ nav_separator = "☰"
 nav_wrapper_left = ""
 nav_wrapper_right = ""
 nav_wrapper_separator = ""
+# Currently working on status badge (shown next to name)
+currently_status = "building gozzi"
+currently_status_link = "https://github.com/tduyng/gozzi"
 ended_words = "Thanks for reading! If you notice anything outdated or have suggestions for improvements, you can suggest edits below or leave a comment."
 reaction_align = "right" # "left" | "center" | "right"
 reaction_endpoint = "https://reaction.tienduy-nguyen-dev.workers.dev"
@@ -44,3 +47,30 @@ outdate_alert_text_before = "This article was last updated "
 outdate_alert_text_after = " days ago and may be out of date."
 recent_more_text = "View All Posts"
 enable_analytics = true
+
+# Homepage bento cards configuration
+[[extra.bento_cards]]
+type = "stack"
+icon = "🛠️"
+title = "Stack"
+tags = ["TypeScript", "Go", "Rust", "Node.js", "Docker", "Kubernetes", "AWS"]
+
+[[extra.bento_cards]]
+type = "now"
+icon = "⏰"
+title = "Now"
+lines = [
+  { prompt = "$", text = "building", link = "https://github.com/tduyng/gozzi", link_text = "gozzi" },
+  { prompt = ">", text = "neovim series" },
+  { prompt = ">", text = "terminal tools" }
+]
+
+[[extra.bento_cards]]
+type = "focus"
+icon = "🎯"
+title = "Focus"
+lines = [
+  { prompt = ">", text = "neovim + nix" },
+  { prompt = ">", text = "terminal first" },
+  { prompt = ">", text = "keyboard centric" }
+]
