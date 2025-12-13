@@ -10,9 +10,17 @@ comment = false
 reaction = true
 +++
 
-# Hello, I'm Duy!
+# Hey, I'm Duy!
 
-I'm a Software Engineer in France. You'll find me online as "tduyng", where I code, learn, and occasionally contribute to open source.
+I'm a Backend Engineer in France. You'll find me online as "tduyng", where I code, learn, and never stop exploring.
+
+I love building fast, reliable systems. My approach is simple: stay in the terminal, keep my hands on the keyboard, and focus on what matters.
+
+## Workflow & Philosophy
+
+I'm a terminal-first developer. My setup revolves around **Neovim**, **Nix**, and keyboard-centric tools that keep me productive. I believe in learning by building, documenting what I discover, and sharing it with others.
+
+**Always learning, never stop exploring** — that's how I approach both code and life.
 
 ## Work
 

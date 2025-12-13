@@ -12,11 +12,11 @@ copy = false
 comment = false
 +++
 
-# Contact
+# Let's Connect
 
-I'm always open to professional inquiries, technical discussions, or just connecting with fellow developers.
+Hey! I'm always open to chat about tech, share ideas, or just connect with fellow developers.
 
-Reach me on:
+Feel free to reach out:
 
 - **Email:** [hi@tduyng.com](mailto:hi@tduyng.com)
 - **GitHub:** [tduyng](https://github.com/tduyng)
