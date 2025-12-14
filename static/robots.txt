@@ -10,14 +10,14 @@ User-agent: ChatGPT-User
 Disallow: /
 
 User-agent: OAI-SearchBot
-Disallow: /
+Allow: /
 
 # Anthropic (Claude)
 User-agent: ClaudeBot
 Disallow: /
 
 User-agent: Claude-SearchBot
-Disallow: /
+Allow: /
 
 User-agent: Claude-User
 Disallow: /
@@ -41,7 +41,7 @@ Disallow: /
 
 # Perplexity
 User-agent: PerplexityBot
-Disallow: /
+Allow: /
 
 User-agent: Perplexity-User
 Disallow: /
@@ -56,21 +56,21 @@ Disallow: /
 
 # Apple AI
 User-agent: Applebot
-Disallow: /
+Allow: /
 
 User-agent: Applebot-Extended
 Disallow: /
 
 # Google AI
 User-agent: Google-Extended
-Disallow: /
+Allow: /
 
 User-agent: Google-CloudVertexBot
 Disallow: /
 
 # DuckDuckGo AI
 User-agent: DuckAssistBot
-Disallow: /
+Allow: /
 
 # Common Crawl
 User-agent: CCBot
