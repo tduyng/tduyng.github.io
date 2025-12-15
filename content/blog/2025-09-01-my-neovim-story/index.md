@@ -13,7 +13,7 @@ toc = true
 copy = true
 outdate_alert = true
 outdate_alert_days = 365
-img = "/img/dashboard.png"
+img = "/img/dashboard.webp"
 
 +++
 
@@ -158,7 +158,7 @@ nvim/
 ```
 
 <br/>
-<img src="img/neovim-config-folder.png" alt="Neovim config folder" loading="lazy">
+<img src="img/neovim-config-folder.webp" alt="Neovim config folder" loading="lazy">
 <figcaption style="font-size: 0.8em; color: gray; margin-top: 4px; text-align: center;">My Neovim config folder</figcaption>
 <br/>
 

@@ -13,7 +13,7 @@ toc = true
 copy = true
 outdate_alert = true
 outdate_alert_days = 365
-img = "/img/dashboard.png"
+img = "/img/dashboard.webp"
 +++
 
 This is part 6 of my Neovim series. Today we setup auto-completion.

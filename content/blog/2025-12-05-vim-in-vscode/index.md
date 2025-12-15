@@ -13,7 +13,7 @@ toc = true
 copy = true
 outdate_alert = true
 outdate_alert_days = 365
-img = "img/vscodevim.png"
+img = "img/vscodevim.webp"
 +++
 
 I talked about [my Neovim journey](https://tduyng.com/blog/my-neovim-story/) before. How I tried Vim in 2019. Failed. Gave up. Then tried again in 2024 and succeeded.

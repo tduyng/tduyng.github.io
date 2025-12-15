@@ -13,7 +13,7 @@ toc = true
 copy = true
 outdate_alert = true
 outdate_alert_days = 365
-img = "/img/dashboard.png"
+img = "/img/dashboard.webp"
 +++
 
 This is part 5 of my Neovim series. Today we talk about syntax highlighting and Tree-sitter. But this is not just about Neovim. Tree-sitter is important for many tools.

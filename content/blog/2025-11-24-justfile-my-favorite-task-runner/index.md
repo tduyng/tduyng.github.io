@@ -11,7 +11,7 @@ comment = true
 reaction = true
 toc = true
 copy = true
-img = "img/just.png"
+img = "img/just.webp"
 outdate_alert = true
 outdate_alert_days = 365
 +++

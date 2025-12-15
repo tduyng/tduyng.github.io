@@ -13,7 +13,7 @@ toc = true
 copy = true
 outdate_alert = true
 outdate_alert_days = 365
-img = "/img/dashboard.png"
+img = "/img/dashboard.webp"
 +++
 
 In the previous articles, we set up native LSP. Now let's add plugins. I used to love lazy.nvim, it's an amazing plugin manager. But Neovim 0.12+ added `vim.pack`, a built-in package manager. I tried it and decided to switch.
@@ -182,11 +182,11 @@ I use Neovim every single day. I still use which-key every single day. It's not 
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; max-width: 800px;">
   <div style="display: flex; flex-direction: column; align-items: center;">
-    <img src="img/which-key.png" alt="which-key popup menu" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px; image-rendering: crisp-edges;">
+    <img src="img/which-key.webp" alt="which-key popup menu" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px; image-rendering: crisp-edges;">
     <figcaption style="font-size: 0.8em; color: gray; margin-top: 8px; text-align: center;">which-key showing available shortcuts</figcaption>
   </div>
   <div style="display: flex; flex-direction: column; align-items: center;">
-    <img src="img/search.png" alt="which-key search functionality" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px; image-rendering: crisp-edges;">
+    <img src="img/search.webp" alt="which-key search functionality" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px; image-rendering: crisp-edges;">
     <figcaption style="font-size: 0.8em; color: gray; margin-top: 8px; text-align: center;">Search through all keymaps with which-key</figcaption>
   </div>
 </div>

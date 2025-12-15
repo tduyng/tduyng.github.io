@@ -14,7 +14,7 @@ toc = true
 copy = true
 outdate_alert = true
 outdate_alert_days = 365
-img = "img/gozzi.png"
+img = "img/gozzi.webp"
 +++
 
 There are so many static site generators: Jekyll, Gatsby, Hexo, Hugo, Zola, Eleventy, and many more. So why did I build another one?

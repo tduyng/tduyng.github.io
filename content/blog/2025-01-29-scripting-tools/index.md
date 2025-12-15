@@ -136,7 +136,7 @@ Here's an overview of some tools we've explored:
 | **Ease of use**    | User-friendly, support syntax with `$` as shorthand for executing commands | User-friendly and powerful, support shorthand syntax `$`                       | Easy to use, support `$` shorthand, some features still maturing         | Familiar UNIX-like syntax, lacks `$` shorthand, suitable for cross-platform scripts |
 
 <br/>
-<img src="img/execa-zx-dax-shelljs.png" alt="execa-zx-dax-shelljs" loading="lazy">
+<img src="img/execa-zx-dax-shelljs.webp" alt="execa-zx-dax-shelljs" loading="lazy">
 <figcaption style="font-size: 0.8em; color: gray; margin-top: 4px; text-align: center;">Image from npmtrends.com</figcaption>
 <br/>
 
@@ -340,7 +340,7 @@ Here's a summary of the tools we checked out:
 | **Install size** | ![Install Size](https://packagephobia.now.sh/badge?p=commander)             | ![Install Size](https://packagephobia.now.sh/badge?p=yargs)             | ![Install Size](https://packagephobia.now.sh/badge?p=minimist)                  | ![Install Size](https://packagephobia.now.sh/badge?p=oclif)             |
 
 <br/>
-<img src="img/commander-yargs-minimist-oclif.png" alt="commander-yargs-minimist-oclif" loading="lazy">
+<img src="img/commander-yargs-minimist-oclif.webp" alt="commander-yargs-minimist-oclif" loading="lazy">
 <figcaption style="font-size: 0.8em; color: gray; margin-top: 4px; text-align: center;">Image from npmtrends.com</figcaption>
 <br/>
 
