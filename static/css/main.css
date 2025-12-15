@@ -1152,24 +1152,24 @@ body.homepage {
         padding: 0 15px 1.5em;
         font-size: 1em;
         line-height: var(--homepage-line-height);
-        
+
         p {
             margin: 0.8em 0;
         }
-        
+
         code {
             background: rgba(111, 143, 209, 0.1);
             padding: 0.2em 0.4em;
             border-radius: 3px;
             font-size: 0.9em;
         }
-        
+
         a {
             color: var(--primary-color);
             text-decoration: none;
             border-bottom: 1px solid var(--primary-color);
             transition: var(--transition-color);
-            
+
             &:hover {
                 color: var(--text-bold-color);
                 border-bottom-color: var(--text-bold-color);
@@ -1312,7 +1312,11 @@ body.homepage {
 
     .focus-item {
         padding: 0.8em 1em;
-        background: linear-gradient(135deg, rgba(111, 143, 209, 0.04) 0%, rgba(111, 143, 209, 0.08) 100%);
+        background: linear-gradient(
+            135deg,
+            rgba(111, 143, 209, 0.04) 0%,
+            rgba(111, 143, 209, 0.08) 100%
+        );
         border-left: 3px solid var(--primary-color);
         border-radius: 6px;
         font-size: 0.95em;
@@ -1336,7 +1340,11 @@ body.homepage {
     }
 
     .focus-item:hover {
-        background: linear-gradient(135deg, rgba(111, 143, 209, 0.08) 0%, rgba(111, 143, 209, 0.14) 100%);
+        background: linear-gradient(
+            135deg,
+            rgba(111, 143, 209, 0.08) 0%,
+            rgba(111, 143, 209, 0.14) 100%
+        );
         border-left-width: 4px;
         transform: translateX(8px);
         box-shadow: 0 4px 12px rgba(111, 143, 209, 0.2);
@@ -5435,4 +5443,310 @@ body.blog .layout-list h2 {
     .blog-card-title {
         font-size: 1.05em;
     }
+}
+
+/* Featured Posts Styling 
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* Featured badge on blog cards */
+.featured-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+    background: linear-gradient(135deg, var(--primary-color), #8fa3d8);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(111, 143, 209, 0.4);
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.featured-star {
+    color: var(--bg-color);
+    font-size: 1.1em;
+    font-weight: bold;
+    animation: rotate-star 20s linear infinite;
+}
+
+@keyframes pulse-glow {
+    0%,
+    100% {
+        box-shadow: 0 4px 12px rgba(111, 143, 209, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 20px rgba(111, 143, 209, 0.6);
+    }
+}
+
+@keyframes rotate-star {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Enhanced featured card styling on blog page */
+body.blog .layout-list .blog-card.featured {
+    border: 1.5px solid var(--primary-color);
+    background: linear-gradient(
+        135deg,
+        rgba(111, 143, 209, 0.06) 0%,
+        rgba(143, 163, 216, 0.03) 100%
+    );
+    box-shadow: 0 4px 16px rgba(111, 143, 209, 0.2);
+}
+
+body.blog .layout-list .blog-card.featured::before {
+    transform: scaleX(1);
+    height: 4px;
+}
+
+body.blog .layout-list .blog-card.featured:hover {
+    border-color: #8fa3d8;
+    box-shadow: 0 8px 32px rgba(111, 143, 209, 0.3);
+}
+
+/* Archive page featured indicator */
+.timeline-item.featured {
+    position: relative;
+    padding-left: 2.5em;
+}
+
+.featured-indicator {
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    font-size: 1.1em;
+    animation: sparkle 3s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: translateY(-50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-50%) scale(1.2);
+    }
+}
+
+/* Homepage Featured Posts Section */
+#featured-posts-section {
+    padding: 3em 15px 2em;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+}
+
+#featured-posts-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary-pale-color), transparent);
+}
+
+#featured-posts-section .section-header h2 {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.featured-star-icon {
+    color: var(--primary-color);
+    font-size: 0.9em;
+    animation: twinkle 2s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.15);
+    }
+}
+
+/* Featured posts grid */
+.featured-grid {
+    gap: 2em;
+}
+
+.featured-post-card {
+    position: relative;
+    background: linear-gradient(
+        135deg,
+        rgba(111, 143, 209, 0.05) 0%,
+        rgba(143, 163, 216, 0.02) 100%
+    );
+    border: 1.5px solid var(--primary-pale-color);
+}
+
+.featured-post-card:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 32px rgba(111, 143, 209, 0.25);
+}
+
+/* Featured ribbon */
+.featured-ribbon {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    background: linear-gradient(135deg, var(--primary-color), #8fa3d8);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+    z-index: 10;
+}
+
+.featured-ribbon span {
+    color: var(--bg-color);
+    font-size: 1em;
+    font-weight: bold;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    animation: ribbon-star-glow 3s ease-in-out infinite;
+}
+
+@keyframes ribbon-star-glow {
+    0%,
+    100% {
+        filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+    }
+    50% {
+        filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+    }
+}
+
+/* Latest Posts Section - adjust spacing */
+#latest-posts-section {
+    padding: 2em 15px 1.5em;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .featured-badge {
+        width: 28px;
+        height: 28px;
+    }
+
+    .featured-star {
+        font-size: 1em;
+    }
+
+    .featured-ribbon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .featured-ribbon span {
+        font-size: 0.9em;
+        top: 6px;
+        right: 6px;
+    }
+
+    #featured-posts-section,
+    #latest-posts-section {
+        padding: 2em 15px 1.5em;
+    }
+}
+
+@media (max-width: 600px) {
+    .featured-badge {
+        width: 26px;
+        height: 26px;
+        top: 8px;
+        right: 8px;
+    }
+
+    .featured-star {
+        font-size: 0.9em;
+    }
+
+    .featured-grid {
+        gap: 1.5em;
+    }
+}
+
+/* Smooth scroll reveal animations */
+.featured-post-card {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.featured-post-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+.featured-post-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.featured-post-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+.featured-post-card:nth-child(4) {
+    animation-delay: 0.4s;
+}
+.featured-post-card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+.featured-post-card:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover effect enhancements for featured cards */
+.featured-post-card .post-card-image img {
+    transition: transform 0.4s ease;
+}
+
+.featured-post-card:hover .post-card-image img {
+    transform: scale(1.05);
+}
+
+.featured-post-card .post-title a {
+    background: linear-gradient(135deg, var(--text-bold-color), var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.3s ease;
+}
+
+.featured-post-card:hover .post-title a {
+    background: linear-gradient(135deg, var(--primary-color), #8fa3d8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }

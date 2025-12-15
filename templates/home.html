@@ -26,12 +26,18 @@
                         <div class="name-section">
                             <h1 id="name">{{ .Site.Config.extra.name }}</h1>
                             {{ if .Site.Config.extra.currently_status }}
-                            <a href="{{ .Site.Config.extra.currently_status_link }}" target="_blank" rel="noreferrer noopener" class="currently-badge">
+                            <a
+                                href="{{ .Site.Config.extra.currently_status_link }}"
+                                target="_blank"
+                                rel="noreferrer noopener"
+                                class="currently-badge"
+                            >
                                 <span class="badge-dot">●</span>
-                                <span class="badge-text">{{ .Site.Config.extra.currently_status }}</span>
+                                <span class="badge-text"
+                                    >{{ .Site.Config.extra.currently_status }}</span
+                                >
                             </a>
-                            {{ end }}
-                            {{ if .Site.Config.extra.display_id }}
+                            {{ end }} {{ if .Site.Config.extra.display_id }}
                             <span id="id">@{{ .Site.Config.extra.id }}</span>
                             {{ end }}
                         </div>
@@ -83,7 +89,6 @@
 
                 <!-- Brief Section -->
                 <section id="brief" class="prose">{{ .Page.Content }}</section>
-
 
                 <!-- Bento Grid Highlights -->
                 <section id="highlights">
@@ -138,16 +143,72 @@
                     </div>
                 </section>
 
+                <!-- Featured Posts Section -->
+                {{ $blog_section := get_section "blog" }} {{ $has_featured := false }} {{ range
+                $blog_section.Children }} {{ if .Config.extra.featured }} {{ $has_featured = true }}
+                {{ end }} {{ end }} {{ if $has_featured }}
+                <section id="featured-posts-section">
+                    <div class="section-header">
+                        <h2>
+                            <span class="featured-star-icon">★</span>
+                            Featured Posts
+                        </h2>
+                        <p class="section-subtitle">Most viewed posts by readers</p>
+                    </div>
+                    <div class="post-grid featured-grid">
+                        {{ $count := 0 }} {{ range (reverse $blog_section.Children) }} {{ if and
+                        .Config.extra.featured (lt $count 6) }} {{ $count = add $count 1 }}
+                        <article class="post-card featured-post-card instant">
+                            {{ $post_image := "/img/post-cover.webp" }} {{ if .Config.extra.img }}
+                            {{ $img_path := .Config.extra.img }} {{ $first_char := index (split
+                            $img_path "") 0 }} {{ if eq $first_char "/" }} {{ $post_image =
+                            $img_path }} {{ else }} {{ $post_image = printf "%s%s" .Permalink
+                            $img_path }} {{ end }} {{ end }}
 
-                <!-- Featured Posts -->
-                <section id="featured-posts">
+                            <div class="featured-ribbon">
+                                <span>★</span>
+                            </div>
+
+                            <div class="post-card-image">
+                                <img
+                                    src="{{ $post_image }}"
+                                    alt="{{ .Config.title }}"
+                                    width="400"
+                                    height="210"
+                                    loading="lazy"
+                                    decoding="async"
+                                    onerror="this.src='/img/post-cover.webp'"
+                                />
+                            </div>
+
+                            <div class="post-card-content">
+                                <time class="post-date" datetime="{{ .Config.date }}"
+                                    >{{ date .Config.date "Jan 2, 2006" }}</time
+                                >
+                                <h3 class="post-title">
+                                    <a href="{{ .Permalink }}">{{ .Config.title }}</a>
+                                </h3>
+                                <p class="post-description">{{ .Config.description }}</p>
+                                <div class="post-tags">
+                                    {{ range .Config.tags }}
+                                    <span class="post-tag">#{{ . }}</span>
+                                    {{ end }}
+                                </div>
+                            </div>
+                        </article>
+                        {{ end }} {{ end }}
+                    </div>
+                </section>
+                {{ end }}
+
+                <!-- Latest Posts -->
+                <section id="latest-posts-section">
                     <div class="section-header">
                         <h2>Latest Posts</h2>
                         <p class="section-subtitle">
                             Recent writings about tools, code, and terminal life
                         </p>
                     </div>
-                    {{ $blog_section := get_section "blog" }}
                     <div class="post-grid">
                         {{ range limit 9 (reverse $blog_section.Children) }}
                         <article class="post-card instant">

@@ -32,6 +32,11 @@
                         class="blog-card instant scroll-reveal-stagger {{ if .Config.extra.featured }}featured{{end}}"
                         href="{{ .Permalink }}"
                     >
+                        {{ if .Config.extra.featured }}
+                        <div class="featured-badge">
+                            <span class="featured-star">★</span>
+                        </div>
+                        {{ end }}
                         <div class="post-card-image">
                             <img src="{{ $post_image }}" alt="{{ .Config.title }}" width="1200" height="630" loading="lazy" decoding="async" onerror="this.src='/img/post-cover.webp'" />
                         </div>
