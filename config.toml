@@ -4,6 +4,8 @@ title = "Duy NG"
 description = "Backend Engineer. Building fast, reliable systems. Always learning."
 language = "en"
 output_dir = "public"
+minify_css = true
+minify_html = true
 
 #=========================================================================================
 [extra]
