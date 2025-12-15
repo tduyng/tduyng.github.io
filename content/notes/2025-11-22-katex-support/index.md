@@ -7,6 +7,7 @@ generate_feed = true
 [extra]
 comment = true
 copy = true
+math = true
 +++
 
 # [Gozzi] Native KaTeX support

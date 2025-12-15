@@ -12,9 +12,11 @@
     <meta name="msapplication-TileColor" content="#000000" />
     <meta name="robots" content="index, follow" />
     
-    <!-- Preconnect to external domains -->
+    <!-- Preconnect to external domains (only if using KaTeX/Mermaid) -->
+    {{ if or .Page.Config.extra.math .Page.Config.extra.mermaid .Section.Config.extra.math .Section.Config.extra.mermaid }}
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    {{ end }}
     
     <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
@@ -89,9 +91,13 @@
     {{ end }}
     
     <!-- Stylesheets -->
+    
+    <!-- KaTeX CSS (only load if math is enabled) -->
+    {{ if or .Page.Config.extra.math .Section.Config.extra.math }}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous" />
+    {{ end }}
     <link rel="preload" href="/css/main.css" as="style" />
     <link rel="stylesheet" href="/css/main.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous" media="print" onload="this.media='all'" />
     
     <!-- JSON-LD Structured Data -->
     {{ template "partials/_json_ld.html" . }}

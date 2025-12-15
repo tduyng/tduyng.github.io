@@ -7,6 +7,7 @@ generate_feed = true
 [extra]
 comment = true
 copy = true
+mermaid = true
 +++
 
 # [Gozzi] Native mermaid support

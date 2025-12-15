@@ -1,12 +1,12 @@
 +++
 title = "Notes"
-description = "Short-form notes about tools, tips, and interesting findings I want to remember"
+description = "Short notes about tech, tools, and interesting discoveries"
 template = "notes.html"
 generate_feed = true
+sort_by = "date"
 
 [extra]
-lang = "en"
-comment = true
-copy = true
 reaction = true
+math = true
+mermaid = true
 +++
