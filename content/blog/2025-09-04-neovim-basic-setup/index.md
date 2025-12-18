@@ -11,6 +11,7 @@ comment = true
 reaction = true
 toc = true
 copy = true
+featured = true
 outdate_alert = true
 outdate_alert_days = 365
 img = "/img/dashboard.webp"
