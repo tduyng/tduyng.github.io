@@ -5,6 +5,7 @@ template = "post.html"
 date = 2025-12-24
 generate_feed = true
 tags = ["neovim", "flash", "yanky", "grug-far", "noice"]
+draft = true
 
 [extra]
 comment = true

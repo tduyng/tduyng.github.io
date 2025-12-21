@@ -2,7 +2,7 @@
 title = "Part 9: Neovim debugging for Node.js/TypeScript"
 description = "My journey setting up debugging in Neovim. The struggle, the breakthrough, and what finally worked"
 template = "post.html"
-date = 2025-12-22
+date = 2025-12-21
 generate_feed = true
 tags = ["neovim", "debug", "vim-dap", "nodejs", "typescript"]
 
@@ -16,17 +16,9 @@ outdate_alert_days = 365
 img = "/img/dashboard.webp"
 +++
 
-This is part 9 of my Neovim series. Today I share how I finally got debugging to work for Node.js and TypeScript.
+This is part 9 of my Neovim series. Today I share how to debug Node.js and TypeScript projects in Neovim.
 
-Setting up debugging was the hardest part of my Neovim journey. I spent weeks on this. I read the `nvim-dap` documentation multiple times. I tried LazyVim’s configuration. I copied configs from GitHub. Nothing worked right.
-
-I kept switching back to VSCode just to debug my projects. It felt frustrating. What was the point of moving to Neovim if I still needed VSCode?
-
-VSCode makes debugging feel simple. Click “Debug” and it just works. I never really thought about what happens behind the scenes.
-
-Then I finally understood what I was missing: **installing `nvim-dap` isn’t enough. I also needed the debug adapter tool.**
-
-This was the piece of documentation that didn’t explain things clearly.
+Debugging was the hardest part for me. I often had to switch back to VSCode just to debug, because it “just works” there. I never really thought about what happens behind the scenes. The key thing I was missing is simple: installing `nvim-dap` is not enough. You also need a debug adapter.
 
 I think about it like this:
 
@@ -34,21 +26,27 @@ I think about it like this:
 Neovim (nvim-dap) ←→ Debug Adapter (vscode-js-debug) ←→ My Node.js code
 ```
 
-`nvim-dap` talks to the debug adapter. The debug adapter talks to my code. I need both installed and configured.
-
-Once I understood this, everything clicked. Now debugging works great for me.
+`nvim-dap` talks to the debug adapter, and the debug adapter talks to your code. To debug properly, both need to be installed and configured.
 
 ## The plugins I use
 
-I use 4 plugins for debugging. I don’t like having so many, but this setup is needed for `nvim-dap`. `nvim-dap` is the core plugin that implements the Debug Adapter Protocol. `nvim-dap-ui` provides the visual interface with breakpoints, variables, call stack, and the console. `nvim-nio` is the async I/O library required by `nvim-dap-ui`. And `nvim-dap-virtual-text` shows variable values inline in my code, like VSCode does.
+For debugging, I use 4 plugins. I usually keep my setup minimal, but these are the ones `nvim-dap` actually needs.
 
-## Installing vscode-js-debug (the missing piece)
+`nvim-dap` is the core plugin. It implements the Debug Adapter Protocol and does the actual debugging work.
 
-This was the step I kept missing. I needed to install the actual debug adapter tool.
+`nvim-dap-ui` adds a UI on top of it: breakpoints, variables, call stack, and the console.
 
-For Node.js/TypeScript, I use vscode-js-debug. It's the same debugger VSCode uses. Microsoft made it open source.
+`nvim-nio` is a small async library required by `nvim-dap-ui`.
 
-Here's how I installed it:
+`nvim-dap-virtual-text` shows variable values inline in the code, similar to VSCode.
+
+Together, they give a better debugging experience inside Neovim.
+
+## Installing `vscode-js-debug`
+
+For Node.js and TypeScript, I use `vscode-js-debug`. It’s the same debugger used by VSCode, and it’s open source.
+
+### Option 1: Build from source
 
 ```bash
 cd ~
@@ -58,9 +56,23 @@ npm install --legacy-peer-deps
 npx gulp dapDebugServer
 ```
 
-This builds the debug adapter from source. Takes a few minutes. After this, I have the debugger at `~/vscode-js-debug/dist/src/dapDebugServer.js`.
+After a few minutes, the debug adapter is available at:
 
-I had to build from source because the npm package doesn't include the DAP server file I need. Yeah, it's annoying. But I only did it once.
+```
+~/vscode-js-debug/dist/src/dapDebugServer.js
+```
+
+### Option 2: Download a release
+
+- Download `js-debug-dap-${version}.tar.gz` from the releases page
+- Version **1.77.0 or newer** is required
+- Extract it with:
+
+```bash
+tar xvzf path/to/js-debug-dap-${version}.tar.gz
+```
+
+Then use the extracted `dapDebugServer.js` in your `nvim-dap` config.
 
 ## My complete setup
 
@@ -238,9 +250,7 @@ vim.keymap.set("n", "<leader>du", function() init_dap(); require("dapui").toggle
 
 That's my complete debugging setup. Let me explain the important parts.
 
-## Understanding the adapter setup
-
-This part confused me for a long time:
+### Understanding the adapter setup
 
 ```lua
 local js_debug_path = vim.fn.expand("$HOME/vscode-js-debug/out/src/dapDebugServer.js")
@@ -260,13 +270,7 @@ This tells nvim-dap how to start the debug adapter. I point to where I installed
 
 The name "pwa-node" is what vscode-js-debug calls its Node.js adapter internally. "pwa" stands for "progressive web app" but it works for regular Node.js too. I'm using the same naming convention as VSCode uses.
 
-I also create an alias so I can use `type = "node"` in my debug configs if I want.
-
-## My debug configurations
-
-I set up 3 different scenarios based on what I debug most.
-
-### Attaching to a running process
+### Node.js debug
 
 ```lua
 {
@@ -287,9 +291,7 @@ I use this when my Node.js app is already running with debugging enabled. Like w
 
 The `localRoot` and `remoteRoot` settings are really useful for Docker debugging. localRoot is where my code is on my machine, remoteRoot is where the code is inside Docker. This maps the file paths so breakpoints work correctly. When I set a breakpoint in my local file, DAP knows where that corresponds to inside the container.
 
-I had to adjust remoteRoot to match my Docker setup. Usually I check my Dockerfile to see where the code gets copied.
-
-### Launching Mocha tests
+### Tests debug
 
 ```lua
 {
@@ -308,31 +310,7 @@ I had to adjust remoteRoot to match my Docker setup. Usually I check my Dockerfi
 }
 ```
 
-This is for debugging my Mocha tests with TypeScript. The `request = "launch"` means it starts the test runner with debugging enabled. I had to adjust the args to match my test setup, the paths depend on where I keep my tests.
-
-### Launching Jest tests
-
-Similar setup for Jest. The `--runInBand` flag runs tests one at a time, which makes debugging easier.
-
-I learned that these configs use the same format as VSCode's launch.json. So when I found working configs in VSCode, I could copy them directly to Neovim. That saved me a lot of trial and error.
-
-## Auto-opening the UI
-
-I set up the UI to open and close automatically:
-
-```lua
-dap.listeners.after.event_initialized["dapui_config"] = function()
-	dapui.open({})
-end
-
-dap.listeners.before.event_terminated["dapui_config"] = function()
-	dapui.close({})
-end
-```
-
-When I start debugging, the UI appears showing variables, call stack, breakpoints, and console. When I stop, it closes. Keeps my workspace clean.
-
-The virtual text plugin shows variable values right in my code, like VSCode does. Really helpful because I can see what's happening without switching to the variables panel.
+This configuration is for debugging my Mocha tests written in TypeScript. The `request = "launch"` option means it starts the test runner with debugging enabled. I had to adjust the arguments to match my test setup, since the paths depend on where the tests live. The same idea applies to Vitest, Jest, and other test runners.
 
 ## How I use it
 
@@ -340,7 +318,7 @@ Here's my typical debugging workflow.
 
 I open a file and press `<leader>db` on lines where I want to stop. Red dots appear showing my breakpoints.
 
-Then I press `<leader>dc` to start debugging. I select which configuration to use, Attach, Mocha, or Jest.
+Then I press `<leader>dc` to start debugging. I select which configuration to use, Attach, Vitest, Jest ....
 
 The debug UI opens and my code runs until it hits a breakpoint.
 
@@ -348,52 +326,15 @@ From there I use `<leader>dO` to step over the current line, `<leader>di` to ste
 
 When I'm done, I press `<leader>dt` to stop debugging. The UI closes automatically.
 
-## Debugging my Docker containers
+Here is example of nvim-dap debug UI:
 
-This is one of my favorite features. Here's how I debug code running in Docker.
-
-I start my container with debugging enabled:
-
-```bash
-docker run -p 9229:9229 -p 3000:3000 my-image \
-  node --inspect=0.0.0.0:9229 dist/server.js
-```
-
-In Neovim, I set breakpoints in my TypeScript source files. Then I press `<leader>dc` and select "Attach to Node.js".
-
-When I hit my API endpoint with curl, the debugger stops at my breakpoint. I can step through my TypeScript code even though it's running compiled JavaScript inside Docker.
-
-This works because of the localRoot/remoteRoot mapping. DAP translates the paths between my machine and the container.
-
-## My keymaps
-
-All my debug keymaps start with `<leader>d`.
-
-For breakpoints I use `<leader>db` to toggle and `<leader>dB` to list all of them.
-
-For navigation, `<leader>dc` continues or starts debugging, `<leader>dC` runs to cursor, `<leader>di` steps into, `<leader>do` steps out, and `<leader>dO` steps over.
-
-For control, `<leader>dP` pauses, `<leader>dt` terminates, and `<leader>dl` runs the last configuration again.
-
-For UI, `<leader>du` toggles the debug UI, `<leader>dr` toggles REPL, and `<leader>dw` shows hover widgets.
-
-My though:
-
-The debugging works well for me, but it's not exactly like VSCode.
-
-I miss the inline "Run | Debug" links above my functions. I can't expand object properties directly in the editor buffer, I have to use the UI panel. And hovering over variables feels less smooth than VSCode.
-
-But what works great is setting breakpoints and stepping through code, the variables panel shows everything I need, Docker debugging works perfectly, I can have multiple debug configurations, and virtual text shows values inline.
-
-For me, this covers about 90% of what I need. The other 10% is polish. I'm okay with that to stay in Neovim.
+<img src="img/nvim-debug.webp" alt="Neovim debug UI" loading="lazy">
+<figcaption style="font-size: 0.8em; color: gray; margin-top: 4px; text-align: center;">Nvim-dap debug UI</figcaption>
+<br/>
 
 ## Debugging other languages
 
-This article is about Node.js/TypeScript because that's what I use most. But I learned the pattern is the same for other languages.
-
-For each language, I need to find the right debug adapter (like debugpy for Python, delve for Go, lldb for Rust), install it, and configure it using the same pattern as I did for Node.js.
-
-The [nvim-dap wiki](https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation) has instructions for many languages.
+This article focuses on Node.js and TypeScript because that’s what I use most. For other languages, the idea is the same: you need to find the appropriate debug adapter (like `debugpy` for Python, `delve` for Go, or `lldb` / `cpptools` for Rust), install it, and configure it by following the [nvim-dap wiki](https://codeberg.org/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation).
 
 If anyone wants to set up debugging for another language, or if something doesn't work for you, feel free to drop a comment. We can figure it out together.
 
