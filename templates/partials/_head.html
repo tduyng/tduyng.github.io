@@ -51,7 +51,7 @@
     <meta property="og:site_name" content="{{ .Site.Config.title }}" />
     <meta property="og:locale" content="en_US" />
     
-    {{ if .Page.Config.img }}
+    {{ if .Page.Config.extra.img }}
     <meta property="og:image" content="{{ .Page.Config.img_url }}" />
     <meta property="og:image:secure_url" content="{{ .Page.Config.img_url }}" />
     <meta property="og:image:width" content="1500" />
@@ -78,12 +78,12 @@
     {{ end }}
     
     <!-- Twitter Card meta tags -->
-    <meta name="twitter:card" content="{{ if .Page.Config.img }}summary_large_image{{ else }}summary{{ end }}" />
+    <meta name="twitter:card" content="{{ if .Page.Config.extra.img }}summary_large_image{{ else }}summary{{ end }}" />
     <meta name="twitter:site" content="@tduyng" />
     <meta name="twitter:creator" content="@tduyng" />
     <meta name="twitter:title" content="{{ priority .Page.Config.title .Section.Config.title .Site.Config.title }}" />
     <meta name="twitter:description" content="{{ $description }}" />
-    {{ if .Page.Config.img }}
+    {{ if .Page.Config.extra.img }}
     <meta name="twitter:image" content="{{ .Page.Config.img_url }}" />
     <meta name="twitter:image:alt" content="{{ .Page.Config.title }}" />
     {{ else }}
