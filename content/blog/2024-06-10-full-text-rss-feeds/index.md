@@ -11,7 +11,7 @@ comment = false
 reaction = true
 toc = true
 copy = true
-img = "/img/post-cover.webp"
+img = "/img/feed.webp"
 +++
 
 Guess what? My blog now offers full-text RSS feeds!
