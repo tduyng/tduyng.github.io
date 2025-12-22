@@ -17,7 +17,7 @@ name = "Duy NG"
 id = "tduyng"
 bio = "Backend Engineer • Always learning, never stop exploring"
 avatar = "/img/avatar.webp"
-img = "/img/feed.webp"
+img = "/img/post-cover.webp"
 links = [
   { name = "GitHub", icon = "github", url = "https://github.com/tduyng" },
   { name = "X", icon = "x", url = "https://x.com/tduyng" },
