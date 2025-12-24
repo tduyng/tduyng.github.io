@@ -180,15 +180,9 @@ which-key.nvim solved this completely.
 
 I use Neovim every single day. I still use which-key every single day. It's not just for beginners, it's for everyone who wants to code instead of memorizing shortcuts.
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; max-width: 800px;">
-  <div style="display: flex; flex-direction: column; align-items: center;">
-    <img src="img/which-key.webp" alt="which-key popup menu" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px; image-rendering: crisp-edges;">
-    <figcaption style="font-size: 0.8em; color: gray; margin-top: 8px; text-align: center;">which-key showing available shortcuts</figcaption>
-  </div>
-  <div style="display: flex; flex-direction: column; align-items: center;">
-    <img src="img/search.webp" alt="which-key search functionality" loading="lazy" style="max-width: 100%; height: auto; border-radius: 8px; image-rendering: crisp-edges;">
-    <figcaption style="font-size: 0.8em; color: gray; margin-top: 8px; text-align: center;">Search through all keymaps with which-key</figcaption>
-  </div>
+<div style="display: flex; gap: 16px; flex-wrap: wrap;">
+  {{< figure src="img/which-key.webp" alt="which-key popup menu" caption="which-key showing available shortcuts" >}}
+  {{< figure src="img/search.webp" alt="which-key search functionality" caption="Search through all keymaps with which-key" >}}
 </div>
 
 Here is my setup for which-key.nvim (That I learn a lot from Lazyvim)

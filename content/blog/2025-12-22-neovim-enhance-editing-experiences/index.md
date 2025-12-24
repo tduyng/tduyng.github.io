@@ -94,11 +94,7 @@ vim.keymap.set("c", "<c-s>", function() flash.toggle() end, { desc = "Toggle Fla
 
 > The aim of yanky.nvim is to improve yank and put functionalities for Neovim.
 
-<img src="img/nvim-yank-history.webp" alt="Neovim yank history" loading="lazy">
-
-<p style="font-size: 0.8em; color: gray; text-align: center;">
-  Nvim yank history
-</p>
+{{< figure src="img/nvim-yank-history.webp" alt="Neovim yank history" caption="Nvim yank history" >}}
 
 The second big annoyance was the clipboard.
 
@@ -171,11 +167,7 @@ Yanky removes a whole category of small frustrations. Once you get used to it, g
 
 > Find And Replace plugin for neovim
 
-<img src="img/nvim-grug-far.webp" alt="Neovim grug-far plugin" loading="lazy">
-
-<p style="font-size: 0.8em; color: gray; text-align: center;">
-  Nvim grug-far
-</p>
+{{< figure src="img/nvim-grug-far.webp" alt="Neovim grug-far plugin" caption="Nvim grug-far" >}}
 
 Search and replace is easy in a single file. In Neovim, I can do:
 
@@ -247,11 +239,7 @@ end, { desc = "Search and Replace" })
 
 > Highly experimental plugin that completely replaces the UI for messages, cmdline and the popupmenu.
 
-<img src="img/nvim-noice.webp" alt="noice.nvim plugin" loading="lazy">
-
-<p style="font-size: 0.8em; color: gray; text-align: center;">
-  noice.nvim plugin
-</p>
+{{< figure src="img/nvim-noice.webp" alt="noice.nvim plugin" caption="noice.nvim plugin" >}}
 
 This plugin is a bit different. It’s not about fixing annoyances or boosting productivity. It’s about polish.
 
