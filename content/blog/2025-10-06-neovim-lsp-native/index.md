@@ -1,5 +1,5 @@
 +++
-title = "Part 3: Setting up Neovim native lsp"
+title = "Setting up Neovim native lsp"
 description = "Getting real IDE intelligence with Neovim's built-in language server support"
 template = "post.html"
 date = 2025-10-06

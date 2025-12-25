@@ -1,5 +1,5 @@
 +++
-title = "Part 7: Neovim formatter with conform.nvim"
+title = "Neovim formatter with conform.nvim"
 description = "Setup code formatter with conform.nvim. Format your code automatically on save"
 template = "post.html"
 date = 2025-11-29
@@ -18,7 +18,7 @@ outdate_alert_days = 365
 img = "/img/dashboard.webp"
 +++
 
-This is part 7 of my Neovim series. Today we setup code formatter. Format on save.
+Today we setup code formatter. Format on save.
 
 Code formatters keep your code clean. No arguing about spaces vs tabs. No manual indentation. Save the file, it formats.
 

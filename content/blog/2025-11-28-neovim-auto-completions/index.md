@@ -1,5 +1,5 @@
 +++
-title = "Part 6: Neovim auto-completion with blink.cmp"
+title = "Neovim auto-completion with blink.cmp"
 description = "Setup auto-completion like VSCode. Fast suggestions from LSP with blink.cmp"
 template = "post.html"
 date = 2025-11-28
@@ -18,7 +18,7 @@ outdate_alert_days = 365
 img = "/img/dashboard.webp"
 +++
 
-This is part 6 of my Neovim series. Today we setup auto-completion.
+Today we setup auto-completion.
 
 Auto-completion helps you code faster. Type a few letters, it suggests the rest. Hit Tab, it completes.
 

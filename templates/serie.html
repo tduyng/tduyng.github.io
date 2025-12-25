@@ -16,7 +16,13 @@
                 <div class="post-list series-list">
                     {{ range .Page.Pages }}
                     <div class="series-post {{ if .Config.extra.featured }}featured{{ end }}">
-                        <div class="series-position">Part {{ .Position }}{{ if .Order }} ({{ .Order }}){{ end }}</div>
+                        <div class="series-position">
+                            {{ if ne .Position .Order }}
+                                Part {{ .Position }} (series order: {{ .Order }})
+                            {{ else }}
+                                Part {{ .Position }}
+                            {{ end }}
+                        </div>
                         <a class="post instant" href="{{ .Permalink }}">
                             <span>{{ .Config.title }}</span>
                             <time class="date" datetime="{{ .Config.date }}">{{ .Config.date | date }}</time>

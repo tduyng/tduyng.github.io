@@ -1,5 +1,5 @@
 +++
-title = "Part 2: Setting up neovim 0.12 (the core configuration before plugins)"
+title = "Setting up neovim 0.12 (the core configuration before plugins)"
 description = "My complete basic setup keymaps, options, autocmds and diagnostics with Neovim 0.12 without installed plugins yet"
 template = "post.html"
 date = 2025-09-04

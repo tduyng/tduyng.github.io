@@ -1,12 +1,12 @@
 +++
-title = "Part 10: Neovim enhanced editing experience"
+title = "Neovim enhanced editing experience"
 description = "Making editing feel magical with flash.nvim, yanky.nvim, grug-far.nvim, and noice.nvim"
 template = "post.html"
 date = 2025-12-22
 generate_feed = true
 tags = ["neovim", "flash", "yanky", "grug-far", "noice"]
 series = "neovim"
-series_order = 10
+series_order = 11
 
 [extra]
 comment = true
@@ -18,7 +18,7 @@ outdate_alert_days = 365
 img = "/img/dashboard.webp"
 +++
 
-Part 10 of my Neovim series. Today I’ll show a few plugins that make editing way smoother.
+Today I’ll show a few plugins that make editing way smoother.
 
 Even with LSP, completion, formatting, and debugging, some things just get in the way: jumping around code is slow, copy-pasting feels clunky, search and replace across files is annoying, and the UI looks boring.
 

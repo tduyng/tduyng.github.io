@@ -1,5 +1,5 @@
 +++
-title = "Part 8: Neovim git integration"
+title = "Neovim git integration"
 description = "Setup git tools with gitsigns and diffview. See changes, blame, diff in Neovim"
 template = "post.html"
 date = 2025-12-02
@@ -18,7 +18,7 @@ outdate_alert_days = 365
 img = "/img/dashboard.webp"
 +++
 
-This is part 8 of my Neovim series. Today we setup git tools. See git changes in your editor.
+Today we setup git tools. See git changes in your editor.
 
 Git integration shows you what changed. Which lines you added. Which you deleted. Who wrote this line. When it was changed. All without leaving Neovim.
 

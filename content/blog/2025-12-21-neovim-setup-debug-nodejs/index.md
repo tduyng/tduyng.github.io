@@ -1,12 +1,12 @@
 +++
-title = "Part 9: Neovim debugging for Node.js/TypeScript"
+title = "Neovim debugging for Node.js/TypeScript"
 description = "My journey setting up debugging in Neovim. The struggle, the breakthrough, and what finally worked"
 template = "post.html"
 date = 2025-12-21
 generate_feed = true
 tags = ["neovim", "debug", "vim-dap", "nodejs", "typescript"]
 series = "neovim"
-series_order = 9
+series_order = 10
 
 [extra]
 comment = true
@@ -18,7 +18,7 @@ outdate_alert_days = 365
 img = "/img/dashboard.webp"
 +++
 
-This is part 9 of my Neovim series. Today I share how to debug Node.js and TypeScript projects in Neovim.
+Today I share how to debug Node.js and TypeScript projects in Neovim.
 
 Debugging was the hardest part for me. I often had to switch back to VSCode just to debug, because it “just works” there. I never really thought about what happens behind the scenes. The key thing I was missing is simple: installing `nvim-dap` is not enough. You also need a debug adapter.
 

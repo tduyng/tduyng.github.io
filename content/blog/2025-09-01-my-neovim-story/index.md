@@ -1,5 +1,5 @@
 +++
-title = "Part 1: My Journey from IDEs to Neovim"
+title = "My Journey from IDEs to Neovim"
 description = "Just sharing my story with Neovim and why I finally made the switch"
 template = "post.html"
 date = 2025-09-01

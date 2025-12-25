@@ -1,5 +1,5 @@
 +++
-title = "Part 5: Neovim syntax highlighting with Tree-sitter"
+title = "Neovim syntax highlighting with Tree-sitter"
 description = "Learn about Tree-sitter. The modern parser that changed how we understand code, not just in Neovim but everywhere"
 template = "post.html"
 date = 2025-11-26
@@ -18,7 +18,7 @@ outdate_alert_days = 365
 img = "/img/dashboard.webp"
 +++
 
-This is part 5 of my Neovim series. Today we talk about syntax highlighting and Tree-sitter. But this is not just about Neovim. Tree-sitter is important for many tools.
+Today we talk about syntax highlighting and Tree-sitter. But this is not just about Neovim. Tree-sitter is important for many tools.
 
 ## Why syntax highlighting?
 
