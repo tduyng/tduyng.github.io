@@ -40,10 +40,13 @@
                             {{ end }}
                         </div>
 
+                        {{ template "partials/_series_nav.html" . }}
+
                         {{ template "partials/_outdate.html" . }} {{ .Page.Content }} {{ pagination
                         .}}
                     </article>
                     
+                    {{ template "partials/_series_nav.html" . }}
                     {{ template "partials/_suggest_edit.html" . }}
                     {{ template "partials/_related_posts.html" . }}
                     {{ template "partials/_sharing.html" . }}

@@ -1,17 +1,36 @@
 {{/* Series navigation partial - displays series info and prev/next links on post pages */}}
-{{ if .Page.Config.series }}
+{{ if .Series }}
 <div class="series-navigation">
-    <div class="series-header">
-        <span class="series-label">Part of Series:</span>
-        <a class="series-link instant" href="/series/{{ .Page.Config.series | urlize }}/">
-            {{ .Page.Config.series }}
-        </a>
-        {{ if .Page.Config.series_order }}
-        <span class="series-position">(Part {{ .Page.Config.series_order }})</span>
-        {{ end }}
+    <div class="series-badge">
+        <span class="series-icon">📚</span>
+        <span class="series-text">
+            Part <strong>{{ .Series.CurrentPart }}</strong> of <strong>{{ .Series.TotalPosts }}</strong> in
+            <a class="series-link instant" href="{{ .Series.Permalink }}">{{ .Series.Name }}</a>
+        </span>
     </div>
     
-    {{/* This would need to be populated by the builder with actual prev/next data */}}
-    {{/* For now, just show the series link */}}
+    {{ if or .Series.PreviousPost .Series.NextPost }}
+    <div class="series-nav-links">
+        {{ if .Series.PreviousPost }}
+        <a class="series-prev instant" href="{{ .Series.PreviousPost.Permalink }}">
+            <span class="nav-arrow">←</span>
+            <span class="nav-text">
+                <span class="nav-label">Previous</span>
+                <span class="nav-title">{{ .Series.PreviousPost.Title }}</span>
+            </span>
+        </a>
+        {{ end }}
+        
+        {{ if .Series.NextPost }}
+        <a class="series-next instant" href="{{ .Series.NextPost.Permalink }}">
+            <span class="nav-text">
+                <span class="nav-label">Next</span>
+                <span class="nav-title">{{ .Series.NextPost.Title }}</span>
+            </span>
+            <span class="nav-arrow">→</span>
+        </a>
+        {{ end }}
+    </div>
+    {{ end }}
 </div>
 {{ end }}

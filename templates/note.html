@@ -10,6 +10,7 @@
       <div>
       {{ template "partials/_copy_code.html" . }}
       <article class="prose notes">
+        {{ template "partials/_series_nav.html" . }}
         <div class="notes-entry lazy-entry">
             <div class="thought-content">
                 {{ .Page.Content }}
@@ -19,6 +20,7 @@
                 </p>
             </div>
         </div>
+        {{ template "partials/_series_nav.html" . }}
         <article>
       </div>
     {{ template "partials/_comment.html" . }}
