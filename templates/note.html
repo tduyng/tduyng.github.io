@@ -10,7 +10,10 @@
       <div>
       {{ template "partials/_copy_code.html" . }}
       <article class="prose notes">
-        {{ template "partials/_series_nav.html" . }}
+        {{ with .Series }}
+        {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "badge") }}
+        {{ end }}
+        
         <div class="notes-entry lazy-entry">
             <div class="thought-content">
                 {{ .Page.Content }}
@@ -20,7 +23,10 @@
                 </p>
             </div>
         </div>
-        {{ template "partials/_series_nav.html" . }}
+        
+        {{ with .Series }}
+        {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "navigation") }}
+        {{ end }}
         <article>
       </div>
     {{ template "partials/_comment.html" . }}

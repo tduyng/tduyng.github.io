@@ -1,36 +1,60 @@
-{{/* Series navigation partial - displays series info and prev/next links on post pages */}}
+{{/* Series badge - compact indicator shown at top of content */}}
 {{ if .Series }}
-<div class="series-navigation">
-    <div class="series-badge">
-        <span class="series-icon">📚</span>
-        <span class="series-text">
-            Part <strong>{{ .Series.CurrentPart }}</strong> of <strong>{{ .Series.TotalPosts }}</strong> in
-            <a class="series-link instant" href="{{ .Series.Permalink }}">{{ .Series.Name }}</a>
-        </span>
+{{ if eq .PartialContext "badge" }}
+<div class="series-badge">
+    <svg class="series-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+    </svg>
+    <span class="series-text">
+        Part <strong>{{ .Series.CurrentPart }}</strong> of <strong>{{ .Series.TotalPosts }}</strong> in
+        <a class="series-link instant" href="{{ .Series.Permalink }}">{{ .Series.Name }}</a>
+    </span>
+</div>
+{{ end }}
+
+{{/* Series navigation - prev/next links shown at bottom of content */}}
+{{ if eq .PartialContext "navigation" }}
+{{ if or .Series.PreviousPost .Series.NextPost }}
+<nav class="series-navigation" aria-label="Series navigation">
+    <div class="series-nav-header">
+        <svg class="series-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        </svg>
+        <span>Continue reading <a class="instant" href="{{ .Series.Permalink }}">{{ .Series.Name }}</a> series</span>
     </div>
     
-    {{ if or .Series.PreviousPost .Series.NextPost }}
-    <div class="series-nav-links">
+    <div class="series-nav-buttons">
         {{ if .Series.PreviousPost }}
-        <a class="series-prev instant" href="{{ .Series.PreviousPost.Permalink }}">
-            <span class="nav-arrow">←</span>
-            <span class="nav-text">
+        <a class="series-nav-btn series-prev instant" href="{{ .Series.PreviousPost.Permalink }}">
+            <span class="nav-direction">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M11.9997 10.8284 7.04996 15.7782 5.63574 14.364 11.9997 8l6.364 6.364-1.4142 1.4142-4.9498-4.9498z" transform="rotate(-90 12 12)"/>
+                </svg>
                 <span class="nav-label">Previous</span>
-                <span class="nav-title">{{ .Series.PreviousPost.Title }}</span>
             </span>
+            <span class="nav-title">{{ .Series.PreviousPost.Title }}</span>
         </a>
+        {{ else }}
+        <div class="series-nav-spacer"></div>
         {{ end }}
         
         {{ if .Series.NextPost }}
-        <a class="series-next instant" href="{{ .Series.NextPost.Permalink }}">
-            <span class="nav-text">
+        <a class="series-nav-btn series-next instant" href="{{ .Series.NextPost.Permalink }}">
+            <span class="nav-direction">
                 <span class="nav-label">Next</span>
-                <span class="nav-title">{{ .Series.NextPost.Title }}</span>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    <path d="M11.9997 10.8284 7.04996 15.7782 5.63574 14.364 11.9997 8l6.364 6.364-1.4142 1.4142-4.9498-4.9498z" transform="rotate(90 12 12)"/>
+                </svg>
             </span>
-            <span class="nav-arrow">→</span>
+            <span class="nav-title">{{ .Series.NextPost.Title }}</span>
         </a>
+        {{ else }}
+        <div class="series-nav-spacer"></div>
         {{ end }}
     </div>
-    {{ end }}
-</div>
+</nav>
+{{ end }}
+{{ end }}
 {{ end }}

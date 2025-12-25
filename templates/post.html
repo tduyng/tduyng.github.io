@@ -33,20 +33,24 @@
                             {{ template "partials/_word_count.html" . }}
                         </div>
 
-                        <div id="tags">
-                            {{ range .Page.Config.tags }} {{ $tag_slugify := . | urlize }} {{
-                            $tag_url := printf "/tags/%s" $tag_slugify }}
-                            <a class="instant" href="{{ $tag_url }}"><span>#</span>{{ . }}</a>
-                            {{ end }}
-                        </div>
+                    <div id="tags">
+                        {{ range .Page.Config.tags }} {{ $tag_slugify := . | urlize }} {{
+                        $tag_url := printf "/tags/%s" $tag_slugify }}
+                        <a class="instant" href="{{ $tag_url }}"><span>#</span>{{ . }}</a>
+                        {{ end }}
+                    </div>
 
-                        {{ template "partials/_series_nav.html" . }}
+                    {{ with .Series }}
+                    {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "badge") }}
+                    {{ end }}
 
-                        {{ template "partials/_outdate.html" . }} {{ .Page.Content }} {{ pagination
-                        .}}
-                    </article>
-                    
-                    {{ template "partials/_series_nav.html" . }}
+                    {{ template "partials/_outdate.html" . }} {{ .Page.Content }} {{ pagination
+                    .}}
+                </article>
+                
+                {{ with .Series }}
+                {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "navigation") }}
+                {{ end }}
                     {{ template "partials/_suggest_edit.html" . }}
                     {{ template "partials/_related_posts.html" . }}
                     {{ template "partials/_sharing.html" . }}
