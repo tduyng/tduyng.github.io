@@ -1,0 +1,17 @@
+{{/* Series navigation partial - displays series info and prev/next links on post pages */}}
+{{ if .Page.Config.series }}
+<div class="series-navigation">
+    <div class="series-header">
+        <span class="series-label">Part of Series:</span>
+        <a class="series-link instant" href="/series/{{ .Page.Config.series | urlize }}/">
+            {{ .Page.Config.series }}
+        </a>
+        {{ if .Page.Config.series_order }}
+        <span class="series-position">(Part {{ .Page.Config.series_order }})</span>
+        {{ end }}
+    </div>
+    
+    {{/* This would need to be populated by the builder with actual prev/next data */}}
+    {{/* For now, just show the series link */}}
+</div>
+{{ end }}

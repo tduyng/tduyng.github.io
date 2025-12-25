@@ -1,0 +1,42 @@
+<!doctype html>
+
+<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
+    {{ template "partials/_head.html" . }}
+    <body class="series-single">
+        {{ template "partials/_header.html" . }}
+        <div id="wrapper">
+            <main class="layout-list">
+                <div class="title">
+                    <span>Series: {{ .Page.Term }}</span>
+                    <a class="instant" href="/series">All Series</a>
+                </div>
+                <div class="series-info">
+                    <p>{{ .Page.Count }} {{ if eq .Page.Count 1 }}post{{ else }}posts{{ end }} in this series</p>
+                </div>
+                <div class="post-list series-list">
+                    {{ range .Page.Pages }}
+                    <div class="series-post {{ if .Config.extra.featured }}featured{{ end }}">
+                        <div class="series-position">Part {{ .Position }}{{ if .Order }} ({{ .Order }}){{ end }}</div>
+                        <a class="post instant" href="{{ .Permalink }}">
+                            <span>{{ .Config.title }}</span>
+                            <time class="date" datetime="{{ .Config.date }}">{{ .Config.date | date }}</time>
+                        </a>
+                        {{ if .Prev }}
+                        <div class="series-nav prev">
+                            ← Previous: <a class="instant" href="{{ .Prev.Permalink }}">{{ .Prev.Config.title }}</a>
+                        </div>
+                        {{ end }}
+                        {{ if .Next }}
+                        <div class="series-nav next">
+                            → Next: <a class="instant" href="{{ .Next.Permalink }}">{{ .Next.Config.title }}</a>
+                        </div>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
+            </main>
+            {{ template "partials/_footer.html" . }}
+        </div>
+        {{ template "partials/_scripts.html" . }}
+    </body>
+</html>

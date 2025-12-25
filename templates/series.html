@@ -1,0 +1,23 @@
+<!doctype html>
+
+<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
+    {{ template "partials/_head.html" . }}
+    <body class="series-list">
+        {{ template "partials/_header.html" . }}
+        <div id="wrapper">
+            <main>
+                <div class="title">Series</div>
+                <div class="series">
+                    {{ range .Page.Terms }}
+                    <a class="instant series-item" href="{{ .Permalink }}" data-count="{{ .Count }}">
+                        <span class="series-name">{{ .Name }}</span>
+                        <span class="series-count">{{ .Count }} {{ if eq .Count 1 }}post{{ else }}posts{{ end }}</span>
+                    </a>
+                    {{ end }}
+                </div>
+            </main>
+            {{ template "partials/_footer.html" . }}
+        </div>
+        {{ template "partials/_scripts.html" . }}
+    </body>
+</html>
