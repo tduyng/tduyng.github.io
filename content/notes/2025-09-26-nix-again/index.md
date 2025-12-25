@@ -1,8 +1,10 @@
 +++
-title = "[Note] managing everything with nix-darwin + home manager"
+title = "[Note] Revisiting Nix: Reflecting on My Second Attempt"
 date = 2025-09-26
 template = "note.html"
 generate_feed = true
+series = "nix"
+series_order = 2
 
 [extra]
 comment = true

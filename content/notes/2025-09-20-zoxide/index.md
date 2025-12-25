@@ -3,6 +3,8 @@ title = "[Note] everyone should use zoxide"
 date = 2025-09-20
 template = "note.html"
 generate_feed = true
+series = "terminal"
+series_order = 6
 
 [extra]
 comment = true

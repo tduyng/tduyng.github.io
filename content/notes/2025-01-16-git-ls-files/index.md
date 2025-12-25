@@ -3,6 +3,8 @@ title = "[Note] List all files tracked by Git"
 date = 2025-01-16
 template = "note.html"
 generate_feed = true
+series = "git"
+series_order = 3
 
 [extra]
 comment = true

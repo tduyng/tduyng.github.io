@@ -3,6 +3,8 @@ title = "[Note] Git aliases"
 date = 2025-01-18
 template = "note.html"
 generate_feed = true
+series = "git"
+series_order = 5
 
 [extra]
 comment = true

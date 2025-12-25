@@ -3,6 +3,8 @@ title = "[Note] Git Reset vs. Git Restore"
 date = 2025-01-15
 template = "note.html"
 generate_feed = true
+series = "git"
+series_order = 2
 
 [extra]
 comment = true

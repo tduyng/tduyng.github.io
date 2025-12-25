@@ -3,6 +3,8 @@ title = "[Note] make your shell magical with Atuin"
 date = 2025-09-25
 template = "note.html"
 generate_feed = true
+series = "terminal"
+series_order = 7
 
 [extra]
 comment = true

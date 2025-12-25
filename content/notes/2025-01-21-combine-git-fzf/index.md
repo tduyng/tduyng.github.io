@@ -3,6 +3,8 @@ title = "[Note] Supercharge Git with fzf"
 date = 2025-01-21
 template = "note.html"
 generate_feed = true
+series = "git"
+series_order = 8
 
 [extra]
 comment = true

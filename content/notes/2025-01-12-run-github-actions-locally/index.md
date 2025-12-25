@@ -3,6 +3,8 @@ title = "[Note] Run Github actions locally"
 date = 2025-01-12
 template = "note.html"
 generate_feed = true
+series = "git"
+series_order = 9
 
 [extra]
 comment = true

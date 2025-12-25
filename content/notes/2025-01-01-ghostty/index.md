@@ -3,6 +3,8 @@ title = "[Note] Ghostty?"
 date = 2025-01-01T21:00:00
 template = "note.html"
 generate_feed = true
+series = "terminal"
+series_order = 1
 
 [extra]
 comment = true

@@ -3,6 +3,8 @@ title = "[Note] Better Git log"
 date = 2025-01-20
 template = "note.html"
 generate_feed = true
+series = "git"
+series_order = 7
 
 [extra]
 comment = true

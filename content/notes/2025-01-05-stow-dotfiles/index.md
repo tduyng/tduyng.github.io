@@ -3,6 +3,8 @@ title = "[Note] Manage better for my dotfiles."
 date = 2025-01-05T12:01:00
 template = "note.html"
 generate_feed = true
+series = "terminal"
+series_order = 4
 
 [extra]
 comment = true

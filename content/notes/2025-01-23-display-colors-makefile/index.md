@@ -3,6 +3,8 @@ title = "[Note] Display colors in Makefile"
 date = 2025-01-23
 template = "note.html"
 generate_feed = true
+series = "makefile"
+series_order = 2
 
 [extra]
 comment = true
