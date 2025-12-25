@@ -5,6 +5,8 @@ template = "post.html"
 date = 2025-12-02
 generate_feed = true
 tags = ["neovim", "git", "gitsigns", "diffview"]
+series = "neovim"
+series_order = 8
 
 [extra]
 comment = true

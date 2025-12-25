@@ -5,6 +5,8 @@ template = "post.html"
 date = 2025-11-26
 generate_feed = true
 tags = ["neovim", "theme", "treesitter", "syntax-highlighting"]
+series = "neovim"
+series_order = 5
 
 [extra]
 comment = true
