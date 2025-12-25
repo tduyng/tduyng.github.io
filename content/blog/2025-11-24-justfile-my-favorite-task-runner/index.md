@@ -5,6 +5,8 @@ template = "post.html"
 date = 2025-11-24
 tags = ["justfile", "makefile", "scripting", "task-runner"]
 generate_feed = true
+series = "makefile"
+series_order = 3
 
 [extra]
 comment = true

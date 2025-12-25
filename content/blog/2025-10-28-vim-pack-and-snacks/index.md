@@ -5,6 +5,8 @@ template = "post.html"
 date = 2025-10-28
 generate_feed = true
 tags = ["neovim", "vim-pack", "snacks"]
+series = "neovim"
+series_order = 4
 
 [extra]
 comment = true

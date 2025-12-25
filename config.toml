@@ -33,6 +33,7 @@ footer_menu = [
   { name = "archive", path = "/archive", is_external = false },
   { name = "uses", path = "/uses", is_external = false },
   { name = "tags", path = "/tags", is_external = false },
+  { name = "series", path = "/series", is_external = false },
   { name = "subscribe", path = "/subscribe", is_external = false },
   { name = "contact", path = "/contact", is_external = false },
   { name = "privacy", path = "/privacy", is_external = false },

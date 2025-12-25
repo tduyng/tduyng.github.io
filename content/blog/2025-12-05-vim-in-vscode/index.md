@@ -5,6 +5,8 @@ template = "post.html"
 date = 2025-12-05
 generate_feed = true
 tags = ["vim", "vscode"]
+series = "neovim"
+series_order = 9
 
 [extra]
 comment = true
