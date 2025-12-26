@@ -6133,7 +6133,11 @@ body.series-single {
         span {
             font-size: 1.8em;
             font-weight: bold;
-            background: linear-gradient(135deg, var(--text-bold-color) 0%, var(--primary-color) 100%);
+            background: linear-gradient(
+                135deg,
+                var(--text-bold-color) 0%,
+                var(--primary-color) 100%
+            );
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -6161,7 +6165,7 @@ body.series-single {
     .series-info {
         text-align: center;
         margin-bottom: 40px;
-        
+
         p {
             color: var(--text-pale-color);
             font-size: 0.95em;
