@@ -10,7 +10,7 @@
       <div>
       {{ template "partials/_copy_code.html" . }}
       <article class="prose notes">
-        {{ with .Series }}
+        {{ with .Page.Series }}
         {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "badge") }}
         {{ end }}
         
@@ -24,7 +24,7 @@
             </div>
         </div>
         
-        {{ with .Series }}
+        {{ with .Page.Series }}
         {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "navigation") }}
         {{ end }}
         <article>
