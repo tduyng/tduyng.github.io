@@ -24,8 +24,9 @@
                         <img src="{{ $post_image }}" alt="{{ .Config.title }}" width="1200" height="630" loading="lazy" decoding="async" onerror="this.src='/img/post-cover.webp'" />
                     </div>
                     <h4>{{ .Config.title }}</h4>
-                    {{ if .Config.description }}
-                    <p class="description">{{ .Config.description }}</p>
+                    {{ $summary := .Summary }}
+                    {{ if $summary }}
+                    <p class="description">{{ $summary }}</p>
                     {{ end }}
                     <div class="related-tags">
                         {{ range .Config.tags }}
