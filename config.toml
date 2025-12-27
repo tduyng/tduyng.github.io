@@ -14,6 +14,11 @@ minify_js = true
 # Auto-generate summaries from first N sentences (when description is not provided)
 summary_length = 2
 
+# Sections to include in homepage cache key (for incremental builds)
+# Only these sections will trigger homepage rebuild when their content changes
+# If not specified, all sections are included (safe but potentially slower)
+homepage_cache_sections = ["blog", "notes"]
+
 #=========================================================================================
 [extra]
 name = "Duy NG"
