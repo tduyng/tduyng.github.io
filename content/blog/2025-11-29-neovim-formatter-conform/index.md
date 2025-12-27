@@ -7,6 +7,7 @@ generate_feed = true
 tags = ["neovim", "formatter", "conform"]
 series = "neovim"
 series_order = 7
+aliases = ["/blog/neovim-formatter", "/blog/conform-nvim"]
 
 [extra]
 comment = true

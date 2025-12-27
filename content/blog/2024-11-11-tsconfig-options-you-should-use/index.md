@@ -4,6 +4,7 @@ description = "A guide to essential tsconfig.json options for boosting TypeScrip
 template = "post.html"
 date = 2024-11-11
 generate_feed = true
+aliases = ["/blog/tsconfig-options", "/blog/typescript-config"]
 tags = ["typescript", "tsconfig", "best-practices"]
 
 [extra]

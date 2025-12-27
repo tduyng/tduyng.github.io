@@ -3,6 +3,7 @@ title = "[Note] Managing multiple Git accounts"
 date = 2025-01-19
 template = "note.html"
 generate_feed = true
+aliases = ["/notes/git-accounts", "/notes/multiple-git-accounts"]
 series = "git"
 series_order = 6
 

@@ -5,6 +5,7 @@ template = "post.html"
 date = 2024-06-10
 generate_feed = true
 tags = ["blog", "full-text", "rss"]
+aliases = ["/blog/rss-feeds", "/blog/full-text-rss"]
 
 [extra]
 comment = false

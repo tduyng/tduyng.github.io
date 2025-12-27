@@ -7,6 +7,7 @@ generate_feed = true
 tags = ["neovim", "debug", "vim-dap", "nodejs", "typescript"]
 series = "neovim"
 series_order = 10
+aliases = ["/blog/neovim-debug", "/blog/nvim-dap-nodejs"]
 
 [extra]
 comment = true

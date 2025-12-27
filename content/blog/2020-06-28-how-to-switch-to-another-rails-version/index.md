@@ -5,6 +5,7 @@ template = "post.html"
 date = 2020-06-28
 tags = ["ruby", "rails"]
 generate_feed = false
+aliases = ["/blog/switch-rails-version", "/blog/rails-version-management"]
 
 [extra]
 comment = false

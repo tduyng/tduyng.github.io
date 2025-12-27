@@ -5,6 +5,7 @@ template = "post.html"
 date = 2020-08-01
 tags = ["ruby"]
 generate_feed = false
+aliases = ["/blog/ruby-tips-01", "/blog/better-ruby-01"]
 
 [extra]
 comment = false

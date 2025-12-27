@@ -3,6 +3,7 @@ title = "[Note] Ingore all .DS_store files globally"
 date = 2025-01-14
 template = "note.html"
 generate_feed = true
+aliases = ["/notes/global-gitignore", "/notes/ignore-ds-store"]
 series = "git"
 series_order = 11
 

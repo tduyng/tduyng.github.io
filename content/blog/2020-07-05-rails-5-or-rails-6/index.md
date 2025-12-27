@@ -5,6 +5,7 @@ template = "post.html"
 date = 2020-07-05
 tags = ["ruby", "rails"]
 generate_feed = false
+aliases = ["/blog/rails-5-vs-6", "/blog/rails-comparison"]
 
 [extra]
 comment = false

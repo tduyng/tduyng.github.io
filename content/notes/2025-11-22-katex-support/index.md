@@ -3,6 +3,7 @@ title = "[Gozzi] Native KaTeX support"
 date = 2025-11-22
 template = "note.html"
 generate_feed = true
+aliases = ["/notes/katex", "/notes/math-support"]
 
 [extra]
 comment = true

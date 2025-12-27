@@ -5,6 +5,7 @@ template = "post.html"
 date = 2020-11-03
 tags = ["webpack"]
 generate_feed = false
+aliases = ["/blog/webpack-setup", "/blog/basic-webpack"]
 
 [extra]
 comment = false

@@ -3,6 +3,7 @@ title = "[Gozzi] Native mermaid support"
 date = 2025-11-23
 template = "note.html"
 generate_feed = true
+aliases = ["/notes/mermaid", "/notes/diagram-support"]
 
 [extra]
 comment = true

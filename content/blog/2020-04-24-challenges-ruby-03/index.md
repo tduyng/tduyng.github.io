@@ -5,6 +5,7 @@ template = "post.html"
 date = 2020-04-24
 tags = ["ruby", "algorithms"]
 generate_feed = false
+aliases = ["/blog/ruby-challenges-03", "/blog/challenges-ruby-03"]
 
 [extra]
 comment = false

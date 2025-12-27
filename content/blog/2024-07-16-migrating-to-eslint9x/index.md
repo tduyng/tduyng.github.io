@@ -5,6 +5,7 @@ template = "post.html"
 date = 2024-07-16
 updated = 2025-03-11
 generate_feed = true
+aliases = ["/blog/eslint-9", "/blog/eslint-migration"]
 tags = ["eslint", "typescript", "migration", "nodejs"]
 
 [extra]

@@ -5,6 +5,7 @@ template = "note.html"
 generate_feed = true
 series = "terminal"
 series_order = 6
+aliases = ["/notes/zoxide", "/notes/smart-cd"]
 
 [extra]
 comment = true

@@ -5,6 +5,7 @@ template = "post.html"
 date = 2021-01-25
 tags = ["docker", "compose"]
 generate_feed = false
+aliases = ["/blog/docker-compose", "/blog/why-docker-compose"]
 
 [extra]
 comment = false

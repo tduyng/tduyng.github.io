@@ -4,6 +4,7 @@ description = "Getting real IDE intelligence with Neovim's built-in language ser
 template = "post.html"
 date = 2025-10-06
 generate_feed = true
+aliases = ["/blog/neovim-lsp", "/blog/nvim-lsp"]
 tags = ["neovim", "lsp", "ide"]
 series = "neovim"
 series_order = 3

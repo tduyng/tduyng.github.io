@@ -6,6 +6,7 @@ date = 2024-05-13
 updated = 2024-05-21
 tags = ["github-action", "profile", "readme", "dynamic", "python"]
 generate_feed = true
+aliases = ["/blog/dynamic-github-profile", "/blog/github-readme-automation"]
 
 [extra]
 comment = true

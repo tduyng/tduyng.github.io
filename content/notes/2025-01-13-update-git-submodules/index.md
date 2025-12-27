@@ -3,6 +3,7 @@ title = "[Note] Update all Git submodules to latest commit"
 date = 2025-01-13
 template = "note.html"
 generate_feed = true
+aliases = ["/notes/git-submodules", "/notes/update-submodules"]
 series = "git"
 series_order = 10
 

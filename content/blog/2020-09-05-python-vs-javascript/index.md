@@ -5,6 +5,7 @@ template = "post.html"
 date = 2020-09-05
 tags = ["python", "javascript"]
 generate_feed = false
+aliases = ["/blog/python-vs-javascript", "/blog/python-js-comparison"]
 
 [extra]
 comment = false

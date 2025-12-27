@@ -3,6 +3,7 @@ title = "[Note] Revisiting Nix: Reflecting on My Second Attempt"
 date = 2025-09-26
 template = "note.html"
 generate_feed = true
+aliases = ["/notes/nix-darwin", "/notes/nix-second-attempt"]
 series = "nix"
 series_order = 2
 

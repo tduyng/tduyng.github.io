@@ -5,6 +5,7 @@ template = "note.html"
 generate_feed = true
 series = "git"
 series_order = 8
+aliases = ["/notes/git-fzf", "/notes/fzf-git"]
 
 [extra]
 comment = true

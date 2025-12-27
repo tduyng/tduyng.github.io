@@ -3,6 +3,7 @@ title = "[Note] Tilting window management on macOS with aerospace"
 date = 2025-01-08T22:00:00
 template = "note.html"
 generate_feed = true
+aliases = ["/notes/aerospace", "/notes/macos-tiling"]
 series = "terminal"
 series_order = 5
 

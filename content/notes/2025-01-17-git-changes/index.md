@@ -3,6 +3,7 @@ title = "[Note] Run a command if there are unstaged changes"
 date = 2025-01-17
 template = "note.html"
 generate_feed = true
+aliases = ["/notes/git-unstaged", "/notes/check-changes"]
 series = "git"
 series_order = 4
 

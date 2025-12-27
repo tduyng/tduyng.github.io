@@ -5,6 +5,7 @@ template = "post.html"
 date = 2020-12-22
 tags = ["docker", "nodejs", "javascript"]
 generate_feed = false
+aliases = ["/blog/nodejs-docker", "/blog/docker-nodejs-app"]
 
 [extra]
 comment = false

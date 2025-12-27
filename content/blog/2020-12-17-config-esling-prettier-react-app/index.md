@@ -5,6 +5,7 @@ template = "post.html"
 date = 2020-12-17
 tags = ["eslint", "prettier"]
 generate_feed = false
+aliases = ["/blog/eslint-prettier-react", "/blog/eslint-prettier-vscode"]
 
 [extra]
 comment = false

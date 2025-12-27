@@ -5,6 +5,7 @@ template = "post.html"
 date = 2025-11-22
 tags = ["blog", "static-site-generator", "go", "learning"]
 generate_feed = true
+aliases = ["/blog/gozzi", "/blog/build-ssg"]
 
 [extra]
 featured = true

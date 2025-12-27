@@ -5,6 +5,7 @@ template = "post.html"
 date = 2024-05-15
 tags = ["github", "readme", "typescript"]
 generate_feed = true
+aliases = ["/blog/github-profile-bun", "/blog/bun-typescript-github"]
 
 [extra]
 comment = true

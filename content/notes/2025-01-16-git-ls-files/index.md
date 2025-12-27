@@ -3,6 +3,7 @@ title = "[Note] List all files tracked by Git"
 date = 2025-01-16
 template = "note.html"
 generate_feed = true
+aliases = ["/notes/git-ls-files", "/notes/list-tracked-files"]
 series = "git"
 series_order = 3
 

@@ -5,6 +5,7 @@ template = "post.html"
 date = 2020-05-25
 tags = ["blog", "static-site-generator", "free", "web-development"]
 generate_feed = true
+aliases = ["/blog/free-website-jekyll", "/blog/jekyll-github-pages"]
 
 [extra]
 comment = false

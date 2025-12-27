@@ -3,6 +3,7 @@ title = "[Note] Display all Makefile commands"
 date = 2025-01-22
 template = "note.html"
 generate_feed = true
+aliases = ["/notes/makefile-help", "/notes/make-commands"]
 series = "makefile"
 series_order = 1
 

@@ -5,6 +5,7 @@ template = "post.html"
 date = 2024-05-11
 tags = ["blog", "static-site-generator"]
 generate_feed = true
+aliases = ["/blog/jekyll-to-zola", "/blog/new-website"]
 
 [extra]
 comment = false

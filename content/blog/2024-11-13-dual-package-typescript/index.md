@@ -5,6 +5,7 @@ template = "post.html"
 date = 2024-11-13
 updated = 2024-11-19
 generate_feed = true
+aliases = ["/blog/dual-package", "/blog/typescript-dual-package"]
 tags = ["esm", "dual-package", "typescript", "commonjs"]
 
 [extra]

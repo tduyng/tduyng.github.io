@@ -7,6 +7,7 @@ generate_feed = true
 tags = ["neovim", "git", "gitsigns", "diffview"]
 series = "neovim"
 series_order = 8
+aliases = ["/blog/neovim-git", "/blog/neovim-git-tools"]
 
 [extra]
 comment = true

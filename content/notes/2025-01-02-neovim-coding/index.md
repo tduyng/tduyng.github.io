@@ -3,6 +3,7 @@ title = "[Note] Returning to Neovim for Coding"
 date = 2025-01-03T15:00:00
 template = "note.html"
 generate_feed = true
+aliases = ["/notes/neovim-coding", "/notes/back-to-neovim"]
 series = "terminal"
 series_order = 2
 

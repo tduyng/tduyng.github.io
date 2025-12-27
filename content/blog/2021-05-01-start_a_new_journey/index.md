@@ -5,6 +5,7 @@ template = "post.html"
 date = 2021-05-01
 tags = ["career", "journey"]
 generate_feed = true
+aliases = ["/blog/career-change", "/blog/new-journey"]
 
 [extra]
 comment = false

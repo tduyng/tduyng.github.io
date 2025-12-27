@@ -3,6 +3,7 @@ title = "[Note] CLI tools I love using"
 date = 2025-01-03T15:00:00
 template = "note.html"
 generate_feed = true
+aliases = ["/notes/cli-tools", "/notes/favorite-cli"]
 series = "terminal"
 series_order = 3
 

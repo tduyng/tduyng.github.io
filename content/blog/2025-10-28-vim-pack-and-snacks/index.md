@@ -4,6 +4,7 @@ description = "Using Neovim's built-in package manager with snacks.nvim and whic
 template = "post.html"
 date = 2025-10-28
 generate_feed = true
+aliases = ["/blog/vim-pack", "/blog/snacks-nvim"]
 tags = ["neovim", "vim-pack", "snacks"]
 series = "neovim"
 series_order = 4

@@ -4,6 +4,7 @@ description = "How I learned Vim motions in VSCode before switching to Neovim"
 template = "post.html"
 date = 2025-12-05
 generate_feed = true
+aliases = ["/blog/vim-vscode", "/blog/vscode-vim"]
 tags = ["vim", "vscode"]
 series = "neovim"
 series_order = 9

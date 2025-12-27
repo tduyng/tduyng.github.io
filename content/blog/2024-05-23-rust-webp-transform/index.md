@@ -6,6 +6,7 @@ date = 2024-05-23
 updated = 2024-05-23
 tags = ["performance", "rust", "webp", "image-conversion", "cli"]
 generate_feed = true
+aliases = ["/blog/rust-webp", "/blog/image-optimization-rust"]
 
 [extra]
 comment = true

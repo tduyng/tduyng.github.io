@@ -3,6 +3,7 @@ title = "[Note] Better Git log"
 date = 2025-01-20
 template = "note.html"
 generate_feed = true
+aliases = ["/notes/git-log", "/notes/better-log"]
 series = "git"
 series_order = 7
 

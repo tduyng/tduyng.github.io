@@ -5,6 +5,7 @@ template = "note.html"
 generate_feed = true
 series = "git"
 series_order = 9
+aliases = ["/notes/github-actions-locally", "/notes/run-gh-actions"]
 
 [extra]
 comment = true

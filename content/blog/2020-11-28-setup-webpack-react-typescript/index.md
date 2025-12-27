@@ -5,6 +5,7 @@ template = "post.html"
 date = 2020-11-28
 tags = ["webpack", "react", "typescript"]
 generate_feed = false
+aliases = ["/blog/webpack-react-typescript", "/blog/react-webpack-ts"]
 
 [extra]
 comment = false

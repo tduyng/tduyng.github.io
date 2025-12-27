@@ -3,6 +3,7 @@ title = "[Note] The fastest way to rewrite Git history"
 date = 2025-02-06
 template = "note.html"
 generate_feed = true
+aliases = ["/notes/git-filter-repo", "/notes/rewrite-history"]
 series = "git"
 series_order = 12
 

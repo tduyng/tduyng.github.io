@@ -4,6 +4,7 @@ description = "Using execa and commander is an alternative that can be considere
 template = "post.html"
 date = 2025-01-29
 generate_feed = true
+aliases = ["/blog/scripting-tools", "/blog/makefile-alternative"]
 tags = ["scripting", "makefile", "nodejs", "typescript", "shell"]
 
 [extra]
