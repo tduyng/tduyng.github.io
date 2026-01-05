@@ -2020,17 +2020,6 @@ footer {
     border-top: 1px solid rgba(111, 143, 209, 0.1);
     position: relative;
 
-    &::before {
-        content: '';
-        position: absolute;
-        top: -1px;
-        left: 0;
-        width: 100px;
-        height: 2px;
-        background: linear-gradient(90deg, var(--primary-color), transparent);
-        animation: shimmer 3s ease-in-out infinite;
-    }
-
     .copyright {
         padding-left: 8px;
         font-size: 0.85em;
@@ -3994,21 +3983,6 @@ template {
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-@keyframes shimmer {
-    0% {
-        left: 0;
-        opacity: 0.5;
-    }
-    50% {
-        left: calc(100% - 100px);
-        opacity: 1;
-    }
-    100% {
-        left: 0;
-        opacity: 0.5;
     }
 }
 
