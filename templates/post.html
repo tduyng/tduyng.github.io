@@ -44,10 +44,13 @@
                     {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "badge") }}
                     {{ end }}
 
-                    {{ template "partials/_outdate.html" . }} {{ .Page.Content }} {{ pagination
-                    .}}
+                    {{ template "partials/_outdate.html" . }} {{ .Page.Content }}
+                    
+                    {{/* Always show chronological pagination */}}
+                    {{ pagination . }}
                 </article>
                 
+                {{/* Show series navigation if post is part of a series */}}
                 {{ with .Page.Series }}
                 {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "navigation") }}
                 {{ end }}
