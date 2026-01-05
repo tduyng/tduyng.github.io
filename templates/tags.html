@@ -8,7 +8,7 @@
             <main>
                 <div class="title">Tags</div>
                 <div class="tags">
-                    {{ range .Page.Tags }}
+                    {{ range .Page.Terms }}
                     <a class="instant" href="{{ .Permalink }}" data-count="{{ .Count }}"
                         ># {{ .Name }}</a
                     >
