@@ -4,7 +4,6 @@ description = "My complete basic setup keymaps, options, autocmds and diagnostic
 template = "post.html"
 date = 2025-09-04
 generate_feed = true
-aliases = ["/blog/neovim-setup", "/blog/neovim-config"]
 tags = ["neovim", "vim", "keymaps"]
 series = "neovim"
 series_order = 2

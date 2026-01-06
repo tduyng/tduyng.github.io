@@ -5,13 +5,14 @@ template = "note.html"
 generate_feed = true
 series = "vim-tricks"
 series_order = 1
+draft = true
 
 [extra]
 comment = true
 copy = true
 +++
 
-# Vim tricks (vanilla mode)
+# Vim tricks
 
 ## Shell Filter: ! and !!
 
