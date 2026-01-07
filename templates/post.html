@@ -46,8 +46,10 @@
 
                     {{ template "partials/_outdate.html" . }} {{ .Page.Content }}
                     
-                    {{/* Always show chronological pagination */}}
+                    {{/* Show chronological pagination only for non-series posts */}}
+                    {{ if not .Page.Series }}
                     {{ pagination . }}
+                    {{ end }}
                 </article>
                 
                 {{/* Show series navigation if post is part of a series */}}
@@ -55,7 +57,7 @@
                 {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "navigation") }}
                 {{ end }}
                     {{ template "partials/_suggest_edit.html" . }}
-                    {{ template "partials/_related_posts.html" . }}
+                    {{ template "partials/_related_posts_compact.html" . }}
                     {{ template "partials/_sharing.html" . }}
                     {{ template "partials/_reaction.html" . }}
                     {{ template "partials/_giscus_script.html" . }}

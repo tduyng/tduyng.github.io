@@ -27,6 +27,8 @@
         {{ with .Page.Series }}
         {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "navigation") }}
         {{ end }}
+        
+        {{ template "partials/_related_posts_compact.html" . }}
         <article>
       </div>
     {{ template "partials/_comment.html" . }}
