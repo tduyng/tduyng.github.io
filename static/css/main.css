@@ -4972,6 +4972,172 @@ article:has(.prose) p:last-child em {
     }
 }
 
+/* Compact Related Posts (arp242 style)
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+.related-compact {
+    margin: 4em 0 2em 0;
+    padding: 2em;
+    background: rgba(111, 143, 209, 0.02);
+    border-radius: 8px;
+    border: 1px solid rgba(111, 143, 209, 0.1);
+    position: relative;
+}
+
+.related-compact h3 {
+    font-size: 1.4em;
+    margin-bottom: 1.5em;
+    color: var(--text-bold-color);
+    background: linear-gradient(135deg, var(--text-bold-color), var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.related-group {
+    margin-top: 2em;
+}
+
+.related-group:first-child {
+    margin-top: 0;
+}
+
+.related-group h4 {
+    font-size: 0.9em;
+    color: var(--text-pale-color);
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid rgba(111, 143, 209, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.related-group h4 a {
+    color: var(--primary-color);
+    text-decoration: none;
+    border-bottom: 1px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.related-group h4 a:hover {
+    color: var(--text-bold-color);
+    border-bottom-color: var(--text-bold-color);
+}
+
+.related-group .tag-highlight {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.series-icon-inline {
+    flex-shrink: 0;
+    color: var(--primary-color);
+}
+
+.related-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.related-list li {
+    margin: 0;
+}
+
+.related-list a {
+    display: flex;
+    align-items: baseline;
+    gap: 1em;
+    padding: 0.6em 0.9em;
+    border-radius: 6px;
+    border: 1px solid rgba(111, 143, 209, 0.08);
+    background: rgba(111, 143, 209, 0.02);
+    text-decoration: none;
+    color: var(--text-color);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.related-list a::before {
+    content: '›';
+    position: absolute;
+    left: 0.5em;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.2em;
+    opacity: 0;
+    transition: all 0.3s ease;
+    transform: translateX(-5px);
+}
+
+.related-list a:hover {
+    background: rgba(111, 143, 209, 0.08);
+    border-color: var(--primary-color);
+    transform: translateX(8px);
+    box-shadow: 0 2px 8px rgba(111, 143, 209, 0.15);
+}
+
+.related-list a:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.related-list .date {
+    font-size: 0.85em;
+    color: var(--text-pale-color);
+    white-space: nowrap;
+    min-width: 90px;
+    flex-shrink: 0;
+}
+
+.related-list .title {
+    flex: 1;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.related-list a:hover .title {
+    color: var(--primary-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .related-compact {
+        padding: 1.5em;
+        margin: 3em 0 1.5em 0;
+    }
+    
+    .related-list a {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3em;
+    }
+    
+    .related-list .date {
+        font-size: 0.8em;
+        min-width: auto;
+    }
+    
+    .related-list a::before {
+        top: 0.6em;
+    }
+}
+
+@media (max-width: 600px) {
+    .related-compact h3 {
+        font-size: 1.2em;
+    }
+    
+    .related-group h4 {
+        font-size: 0.85em;
+    }
+}
+
 /* Modern Blog Post Cards with Image Previews
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
