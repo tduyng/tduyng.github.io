@@ -8,6 +8,7 @@
     {{/* First pass: Display posts grouped by each unique tag */}}
     {{ $group_count := 0 }}
     {{ $shown_tags := "" }}
+    {{ $shown_posts_global := "" }}
     
     {{ range $current_page.Config.tags }}
         {{ $current_tag := . }}
@@ -24,13 +25,18 @@
             
             {{ if not $already_shown }}
                 {{ if lt $group_count $max_groups }}
-                    {{/* Count posts for this tag (excluding current page) */}}
+                    {{/* Count posts for this tag (excluding current page and globally shown posts) */}}
                     {{ $posts_with_tag_count := 0 }}
                     {{ range $related_posts }}
                         {{ if ne .Permalink $current_page.Permalink }}
-                            {{ range .Config.tags }}
-                                {{ if eq . $current_tag }}
-                                    {{ $posts_with_tag_count = add $posts_with_tag_count 1 }}
+                            {{ $post_marker := printf ",%s," .Permalink }}
+                            {{ $shown_posts_padded := printf ",%s," $shown_posts_global }}
+                            {{ $already_shown_globally := contains $shown_posts_padded $post_marker }}
+                            {{ if not $already_shown_globally }}
+                                {{ range .Config.tags }}
+                                    {{ if eq . $current_tag }}
+                                        {{ $posts_with_tag_count = add $posts_with_tag_count 1 }}
+                                    {{ end }}
                                 {{ end }}
                             {{ end }}
                         {{ end }}
@@ -51,15 +57,25 @@
                                 {{ range $related_posts }}
                                     {{ $post := . }}
                                     {{ if and (ne $post.Permalink $current_page.Permalink) (lt $shown_in_group $max_per_group) }}
-                                        {{ range $post.Config.tags }}
-                                            {{ if eq . $current_tag }}
-                                                {{ $shown_in_group = add $shown_in_group 1 }}
-                                                <li>
-                                                    <a href="{{ $post.Permalink }}" class="instant">
-                                                        <span class="date">{{ date $post.Config.date "2 Jan 2006" }}</span>
-                                                        <span class="title">{{ $post.Config.title }}</span>
-                                                    </a>
-                                                </li>
+                                        {{ $post_marker := printf ",%s," $post.Permalink }}
+                                        {{ $shown_posts_padded := printf ",%s," $shown_posts_global }}
+                                        {{ $already_shown_globally := contains $shown_posts_padded $post_marker }}
+                                        {{ if not $already_shown_globally }}
+                                            {{ range $post.Config.tags }}
+                                                {{ if eq . $current_tag }}
+                                                    {{ $shown_in_group = add $shown_in_group 1 }}
+                                                    {{ if $shown_posts_global }}
+                                                        {{ $shown_posts_global = printf "%s,%s" $shown_posts_global $post.Permalink }}
+                                                    {{ else }}
+                                                        {{ $shown_posts_global = $post.Permalink }}
+                                                    {{ end }}
+                                                    <li>
+                                                        <a href="{{ $post.Permalink }}" class="instant">
+                                                            <span class="date">{{ date $post.Config.date "2 Jan 2006" }}</span>
+                                                            <span class="title">{{ $post.Config.title }}</span>
+                                                        </a>
+                                                    </li>
+                                                {{ end }}
                                             {{ end }}
                                         {{ end }}
                                     {{ end }}
