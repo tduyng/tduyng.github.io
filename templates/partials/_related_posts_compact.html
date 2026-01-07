@@ -1,59 +1,41 @@
 {{ if .Page.Config.tags }}
-{{ $blog_section := get_section "blog" }}
-{{ $notes_section := get_section "notes" }}
-{{ $all_posts := concat $blog_section.Children $notes_section.Children }}
 {{ $current_page := .Page }}
 {{ $current_series := .Page.Series }}
 
-{{/* Collect related posts by tags */}}
-{{ $related := related_posts .Page $all_posts }}
-
-{{/* Count how many related posts we have (excluding current page) */}}
-{{ $related_count := 0 }}
-{{ if $related }}
-    {{ range $related }}
-        {{ if ne .Permalink $current_page.Permalink }}
-            {{ $related_count = add $related_count 1 }}
+{{/* Only show related posts for non-series posts */}}
+{{/* Series posts already have series navigation */}}
+{{ if not $current_series }}
+    {{ $blog_section := get_section "blog" }}
+    {{ $notes_section := get_section "notes" }}
+    {{ $all_posts := concat $blog_section.Children $notes_section.Children }}
+    
+    {{/* Collect related posts by tags */}}
+    {{ $related := related_posts .Page $all_posts }}
+    
+    {{/* Count how many related posts we have (excluding current page) */}}
+    {{ $related_count := 0 }}
+    {{ if $related }}
+        {{ range $related }}
+            {{ if ne .Permalink $current_page.Permalink }}
+                {{ $related_count = add $related_count 1 }}
+            {{ end }}
         {{ end }}
     {{ end }}
-{{ end }}
-
-{{/* Determine what to show based on available data */}}
-{{ $has_series := $current_series }}
-{{ $has_related := gt $related_count 0 }}
-{{ $should_show := or $has_series $has_related }}
-
-{{ if $should_show }}
-<section id="related-posts-compact" class="related-compact">
-    <h3>Related Posts</h3>
     
-    {{/* CASE 1: Post is in a series - show series posts first */}}
-    {{ if $has_series }}
-        {{ template "partials/_related_series.html" (dict "CurrentPage" $current_page "Series" $current_series) }}
-    {{ end }}
-    
-    {{/* CASE 2: Show tag-based related posts */}}
-    {{ if $has_related }}
-        {{/* Render tag-based groups with smart configuration */}}
-        {{ $max_groups := 2 }}
-        {{ if not $has_series }}
-            {{/* Show more groups if no series */}}
-            {{ $max_groups = 3 }}
-        {{ end }}
+    {{/* Only show if we have related posts */}}
+    {{ if gt $related_count 0 }}
+    <section id="related-posts-compact" class="related-compact">
+        <h3>Related Posts</h3>
         
-        {{ $series_name_to_pass := "" }}
-        {{ if $has_series }}
-            {{ $series_name_to_pass = $current_series.Name }}
-        {{ end }}
-        
+        {{/* Show up to 3 tag groups for non-series posts */}}
         {{ template "partials/_related_by_tags.html" (dict 
             "RelatedPosts" $related 
             "CurrentPage" $current_page 
-            "SeriesName" $series_name_to_pass
-            "MaxGroups" $max_groups
+            "SeriesName" ""
+            "MaxGroups" 3
             "MaxPerGroup" 6
         ) }}
+    </section>
     {{ end }}
-</section>
 {{ end }}
 {{ end }}
