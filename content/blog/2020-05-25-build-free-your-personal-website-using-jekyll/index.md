@@ -3,7 +3,7 @@ title = "Build your personal website without spending any money"
 description = "Learn how to build your own personal website using Jekyll and GitHub Pages without spending a dime. Dive into the step-by-step process and get your website up and running in no time."
 template = "post.html"
 date = 2020-05-25
-tags = ["blog", "static-site-generator", "free", "web-development"]
+tags = ["blog", "static-site-generator"]
 generate_feed = true
 aliases = ["/blog/free-website-jekyll", "/blog/jekyll-github-pages"]
 

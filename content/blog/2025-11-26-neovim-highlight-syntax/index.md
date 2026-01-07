@@ -4,7 +4,7 @@ description = "Learn about Tree-sitter. The modern parser that changed how we un
 template = "post.html"
 date = 2025-11-26
 generate_feed = true
-tags = ["neovim", "theme", "treesitter", "syntax-highlighting"]
+tags = ["neovim"]
 series = "neovim"
 series_order = 5
 

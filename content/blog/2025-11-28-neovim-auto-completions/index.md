@@ -4,7 +4,7 @@ description = "Setup auto-completion like VSCode. Fast suggestions from LSP with
 template = "post.html"
 date = 2025-11-28
 generate_feed = true
-tags = ["neovim", "completion", "lsp", "snippets"]
+tags = ["neovim", "development"]
 series = "neovim"
 series_order = 6
 

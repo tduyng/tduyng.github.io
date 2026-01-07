@@ -4,7 +4,7 @@ description = "Setup git tools with gitsigns and diffview. See changes, blame, d
 template = "post.html"
 date = 2025-12-02
 generate_feed = true
-tags = ["neovim", "git", "gitsigns", "diffview"]
+tags = ["neovim", "git"]
 series = "neovim"
 series_order = 8
 

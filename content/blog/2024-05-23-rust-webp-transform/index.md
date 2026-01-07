@@ -4,7 +4,7 @@ description = "Explore the process of enhancing website speed through image conv
 template = "post.html"
 date = 2024-05-23
 updated = 2024-05-23
-tags = ["performance", "rust", "webp", "image-conversion", "cli"]
+tags = ["rust", "performance"]
 generate_feed = true
 aliases = ["/blog/rust-webp", "/blog/image-optimization-rust"]
 

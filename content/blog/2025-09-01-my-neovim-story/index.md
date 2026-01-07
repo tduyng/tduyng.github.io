@@ -4,7 +4,7 @@ description = "Just sharing my story with Neovim and why I finally made the swit
 template = "post.html"
 date = 2025-09-01
 generate_feed = true
-tags = ["neovim", "vim", "ide", "vscode"]
+tags = ["neovim"]
 series = "neovim"
 series_order = 1
 

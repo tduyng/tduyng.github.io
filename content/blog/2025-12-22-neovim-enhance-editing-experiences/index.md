@@ -4,7 +4,7 @@ description = "Making editing feel magical with flash.nvim, yanky.nvim, grug-far
 template = "post.html"
 date = 2025-12-22
 generate_feed = true
-tags = ["neovim", "flash", "yanky", "grug-far", "noice"]
+tags = ["neovim"]
 series = "neovim"
 series_order = 11
 

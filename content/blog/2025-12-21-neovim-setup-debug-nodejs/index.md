@@ -4,7 +4,7 @@ description = "My journey setting up debugging in Neovim. The struggle, the brea
 template = "post.html"
 date = 2025-12-21
 generate_feed = true
-tags = ["neovim", "debug", "vim-dap", "nodejs", "typescript"]
+tags = ["neovim", "development"]
 series = "neovim"
 series_order = 10
 

@@ -4,7 +4,7 @@ description = "Explore the process of making your GitHub profile README dynamic 
 template = "post.html"
 date = 2024-05-13
 updated = 2024-05-21
-tags = ["github-action", "profile", "readme", "dynamic", "python"]
+tags = ["github", "python"]
 generate_feed = true
 aliases = ["/blog/dynamic-github-profile", "/blog/github-readme-automation"]
 
