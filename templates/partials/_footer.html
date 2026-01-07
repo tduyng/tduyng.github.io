@@ -1,23 +1,58 @@
 <footer>
-    <div class="footer-menu">
-        {{ range .Site.Config.extra.footer_menu }}
-        <a class="instant fold" href="{{.path}}">{{.name}}</a>
-        {{ end }}
-    </div>
-    <div class="copyright">
-        <span class="copyright-text">©{{ date now "2006" }} Duy NG</span>
-        <span class="separator">•</span>
-        <span class="built-with">
-            Built with
-            <a href="https://github.com/tduyng/gozzi" rel="noopener noreferrer" target="_blank">
-                <span class="gozzi-icon">⚡</span>
-                gozzi
-            </a>
-        </span>
-        <span class="separator">•</span>
-        <span class="last-deployed" style="opacity: 0.5; font-size: 0.85em"
-            >last deployed {{ date .Site.Config.build_time "2006-01-02 15:04" }} (Europe/Paris,
-            GMT+01)</span
-        >
+    <div class="footer-content">
+        <div class="footer-nav">
+            <div class="footer-group">
+                <h4 class="footer-group-title">Browse</h4>
+                <nav class="footer-group-links">
+                    {{ range .Site.Config.extra.footer_browse }}
+                    <a class="instant" href="{{.path}}">{{.name}}</a>
+                    {{ end }}
+                </nav>
+            </div>
+
+            <div class="footer-group">
+                <h4 class="footer-group-title">Connect</h4>
+                <nav class="footer-group-links">
+                    {{ range .Site.Config.extra.footer_connect }}
+                    <a class="instant" href="{{.path}}">{{.name}}</a>
+                    {{ end }}
+                </nav>
+            </div>
+
+            <div class="footer-group">
+                <h4 class="footer-group-title">Legal</h4>
+                <nav class="footer-group-links">
+                    {{ range .Site.Config.extra.footer_legal }}
+                    <a class="instant" href="{{.path}}">{{.name}}</a>
+                    {{ end }}
+                </nav>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="copyright">
+                <span class="copyright-text">© {{ date now "2006" }} Duy NG</span>
+                <span class="separator">•</span>
+                <span class="built-with">
+                    Built with
+                    <a href="https://github.com/tduyng/gozzi" rel="noopener noreferrer" target="_blank">
+                        <span class="gozzi-icon">⚡</span>
+                        gozzi
+                    </a>
+                </span>
+                <span class="separator">•</span>
+                <span class="last-deployed" style="opacity: 0.5; font-size: 0.85em"
+                    >last deployed {{ date .Site.Config.build_time "2006-01-02 15:04" }} (Europe/Paris,
+                    GMT+01)</span
+                >
+            </div>
+            
+            <button id="footer-back-to-top" class="back-to-top-link" aria-label="Back to top">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M18 15l-6-6-6 6"/>
+                </svg>
+                Back to top
+            </button>
+        </div>
     </div>
 </footer>
