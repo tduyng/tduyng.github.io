@@ -2,34 +2,43 @@
 <header class="blur" data-pagefind-ignore>
     <div id="header-wrapper">
         <nav>
-            <a class="instant" href="/">{{ .Site.Config.extra.id }}</a>
+            {{ if ne .Page.Path "" }}
+            <button id="toggler" class="hamburger" aria-label="toggle menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            {{ end }}
+            
+            <a class="instant logo" href="/">{{ .Site.Config.extra.id }}</a>
 
             {{ if ne .Page.Path "" }}
-            <button id="toggler" class="separator" aria-label="toggle expand">
-                {{ .Site.Config.extra.nav_separator }}
-            </button>
             <span class="wrap left fold">{{ .Site.Config.extra.nav_wrapper_left }}</span>
 
-            {{ $sections := .Site.config.extra.sections }} {{ $currentPath := .Page.Path }} {{ range
-            $index, $section := .Site.Config.extra.sections }} {{ $shouldShow := contains
-            $currentPath $section.path }}
-            <a class="instant {{ if not $shouldShow }}fold{{ end }}" href="{{ $section.path }}">
+            {{ $sections := .Site.config.extra.sections }} 
+            {{ $currentPath := .Page.Path }} 
+            {{ range $index, $section := .Site.Config.extra.sections }} 
+            {{ $shouldShow := contains $currentPath $section.path }}
+            {{ $isActive := contains $currentPath $section.path }}
+            <a class="instant nav-link {{ if not $shouldShow }}fold{{ end }} {{ if $isActive }}active{{ end }}" href="{{ $section.path }}">
                 {{ $section.name }}
             </a>
 
             {{ if lt $index (sub (len $.Site.Config.extra.sections) 1) }}
             <span class="wrap-separator fold">{{ $.Site.Config.extra.nav_wrapper_separator }}</span>
-            {{ end }} {{ end }}
+            {{ end }} 
+            {{ end }}
 
             <span class="wrap right fold">{{ .Site.Config.extra.nav_wrapper_right }}</span>
             {{ end }}
         </nav>
         
-        <button id="search-toggle" aria-label="Open search" title="Search (⌘K or Ctrl+K)">
+        <button id="search-toggle" aria-label="Open search" title="Search">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="11" cy="11" r="8"></circle>
                 <path d="m21 21-4.35-4.35"></path>
             </svg>
+            <kbd class="search-kbd">⌘K</kbd>
         </button>
     </div>
     <div id="reading-progress"></div>
