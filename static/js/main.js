@@ -33,9 +33,26 @@ function enableNavFold() {
     const toggler = nav && nav.querySelector('#toggler')
     const foldItems = nav && nav.querySelectorAll('.fold')
     if (!nav || !toggler || !foldItems.length) return
+    
     toggler.addEventListener('click', () => {
+        const isExpanded = toggler.getAttribute('aria-expanded') === 'true'
+        toggler.setAttribute('aria-expanded', !isExpanded)
         foldItems.forEach((item) => item.classList.toggle('shown'))
     })
+}
+
+function enableFooterBackToTop() {
+    const backBtn = document.querySelector('#footer-back-to-top')
+    if (!backBtn) return
+    
+    const toTop = () => {
+        window.scrollTo({ 
+            top: 0, 
+            behavior: 'smooth' 
+        })
+    }
+    
+    backBtn.addEventListener('click', toTop)
 }
 
 function enableRssMask() {
@@ -333,3 +350,4 @@ if (document.querySelector('.prose')) {
     enableImgLightense()
     enableReaction()
 }
+enableFooterBackToTop()
