@@ -13,47 +13,39 @@
 </div>
 {{ end }}
 
-{{/* Series navigation - prev/next links shown at bottom of content */}}
+{{/* Series list - all posts in the series shown at bottom of content */}}
 {{ if eq .PartialContext "navigation" }}
-{{ if or .Series.PreviousPost .Series.NextPost }}
-<nav class="series-navigation" aria-label="Series navigation">
+{{ if .Series.AllPosts }}
+<nav class="series-navigation" aria-label="Series posts">
     <div class="series-nav-header">
         <svg class="series-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
             <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
         </svg>
-        <span>Continue reading <a class="instant" href="{{ .Series.Permalink }}">{{ .Series.Name }}</a> series</span>
+        <span>All posts in <a class="instant" href="{{ .Series.Permalink }}">{{ .Series.Name }}</a> series</span>
     </div>
     
-    <div class="series-nav-buttons">
-        {{ if .Series.PreviousPost }}
-        <a class="series-nav-btn series-prev instant" href="{{ .Series.PreviousPost.Permalink }}">
-            <span class="nav-direction">
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                    <path d="M11.9997 10.8284 7.04996 15.7782 5.63574 14.364 11.9997 8l6.364 6.364-1.4142 1.4142-4.9498-4.9498z" transform="rotate(-90 12 12)"/>
-                </svg>
-                <span class="nav-label">Previous</span>
-            </span>
-            <span class="nav-title">{{ .Series.PreviousPost.Title }}</span>
-        </a>
-        {{ else }}
-        <div class="series-nav-spacer"></div>
+    <ol class="series-posts-list">
+        {{ range .Series.AllPosts }}
+        <li class="series-post-item {{ if eq .Position $.Series.CurrentPart }}current{{ end }}">
+            {{ if eq .Position $.Series.CurrentPart }}
+            <span class="series-current-marker">→</span>
+            <div class="series-post-content">
+                <span class="series-part">Part {{ .Position }}</span>
+                <span class="series-date">{{ date .Date "Jan 2, 2006" }}</span>
+                <strong class="series-title-current">{{ .Title }}</strong>
+                <span class="series-reading-tag">(You are here)</span>
+            </div>
+            {{ else }}
+            <a class="series-post-link instant" href="{{ .Permalink }}">
+                <span class="series-part">Part {{ .Position }}</span>
+                <span class="series-date">{{ date .Date "Jan 2, 2006" }}</span>
+                <span class="series-title">{{ .Title }}</span>
+            </a>
+            {{ end }}
+        </li>
         {{ end }}
-        
-        {{ if .Series.NextPost }}
-        <a class="series-nav-btn series-next instant" href="{{ .Series.NextPost.Permalink }}">
-            <span class="nav-direction">
-                <span class="nav-label">Next</span>
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                    <path d="M11.9997 10.8284 7.04996 15.7782 5.63574 14.364 11.9997 8l6.364 6.364-1.4142 1.4142-4.9498-4.9498z" transform="rotate(90 12 12)"/>
-                </svg>
-            </span>
-            <span class="nav-title">{{ .Series.NextPost.Title }}</span>
-        </a>
-        {{ else }}
-        <div class="series-nav-spacer"></div>
-        {{ end }}
-    </div>
+    </ol>
 </nav>
 {{ end }}
 {{ end }}
