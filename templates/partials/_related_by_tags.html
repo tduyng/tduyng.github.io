@@ -51,7 +51,7 @@
                         {{ end }}
                         
                         <div class="related-group">
-                            <h4>More posts about <span class="tag-highlight">#{{ $current_tag }}</span></h4>
+                            <h4>More posts about <a href="/tags/{{ $current_tag }}" class="tag-highlight instant">#{{ $current_tag }}</a></h4>
                             <ul class="related-list">
                                 {{ $shown_in_group := 0 }}
                                 {{ range $related_posts }}

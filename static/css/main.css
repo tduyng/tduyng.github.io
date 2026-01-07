@@ -5028,6 +5028,14 @@ article:has(.prose) p:last-child em {
 .related-group .tag-highlight {
     color: var(--primary-color);
     font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.related-group .tag-highlight:hover {
+    color: var(--text-bold-color);
+    border-bottom-color: var(--text-bold-color);
 }
 
 .series-icon-inline {
