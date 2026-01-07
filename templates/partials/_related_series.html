@@ -1,0 +1,26 @@
+{{ $current_page := .CurrentPage }}
+{{ $series := .Series }}
+
+{{ if $series }}
+<div class="related-group">
+    <h4>
+        <svg class="series-icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        </svg>
+        More from the <a href="{{ $series.Permalink }}" class="instant">{{ $series.Name }}</a> series
+    </h4>
+    <ul class="related-list">
+        {{ range $series.AllPosts }}
+            {{ if ne .Permalink $current_page.Permalink }}
+            <li>
+                <a href="{{ .Permalink }}" class="instant">
+                    <span class="date">{{ date .Date "2 Jan 2006" }}</span>
+                    <span class="title">{{ .Title }}</span>
+                </a>
+            </li>
+            {{ end }}
+        {{ end }}
+    </ul>
+</div>
+{{ end }}

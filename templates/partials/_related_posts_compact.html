@@ -1,0 +1,56 @@
+{{ if .Page.Config.tags }}
+{{ $blog_section := get_section "blog" }}
+{{ $notes_section := get_section "notes" }}
+{{ $all_posts := concat $blog_section.Children $notes_section.Children }}
+{{ $current_page := .Page }}
+{{ $current_series := .Page.Series }}
+
+{{/* Collect related posts by tags, excluding current post */}}
+{{ $related := related_posts .Page $all_posts }}
+{{ $filtered_related := slice }}
+{{ range $related }}
+    {{ if ne .Permalink $current_page.Permalink }}
+        {{ $filtered_related = concat $filtered_related (slice .) }}
+    {{ end }}
+{{ end }}
+
+{{/* Determine what to show based on available data */}}
+{{ $has_series := $current_series }}
+{{ $has_related := gt (len $filtered_related) 0 }}
+{{ $should_show := or $has_series $has_related }}
+
+{{ if $should_show }}
+<section id="related-posts-compact" class="related-compact">
+    <h3>Related Posts</h3>
+    
+    {{/* CASE 1: Post is in a series - show series posts first */}}
+    {{ if $has_series }}
+        {{ template "partials/_related_series.html" (dict "CurrentPage" $current_page "Series" $current_series) }}
+    {{ end }}
+    
+    {{/* CASE 2: Show tag-based related posts */}}
+    {{ if $has_related }}
+        {{/* Build exclude tags list (series name if exists) */}}
+        {{ $exclude_tags := slice }}
+        {{ if $has_series }}
+            {{ $exclude_tags = concat $exclude_tags (slice $current_series.Name) }}
+        {{ end }}
+        
+        {{/* Render tag-based groups with smart configuration */}}
+        {{ $max_groups := 2 }}
+        {{ if not $has_series }}
+            {{/* Show more groups if no series */}}
+            {{ $max_groups = 3 }}
+        {{ end }}
+        
+        {{ template "partials/_related_by_tags.html" (dict 
+            "RelatedPosts" $filtered_related 
+            "CurrentPage" $current_page 
+            "ExcludeTags" $exclude_tags
+            "MaxGroups" $max_groups
+            "MaxPerGroup" 6
+        ) }}
+    {{ end }}
+</section>
+{{ end }}
+{{ end }}
