@@ -26,9 +26,10 @@
         
         {{ with .Page.Series }}
         {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "navigation") }}
-        {{ end }}
-        
+        {{ else }}
+        {{/* Only show tag-based related posts if NOT part of a series */}}
         {{ template "partials/_related_posts_compact.html" . }}
+        {{ end }}
         <article>
       </div>
     {{ template "partials/_comment.html" . }}
