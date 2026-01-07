@@ -11,17 +11,13 @@
                     <a class="instant" href="/series">All Series</a>
                 </div>
                 <div class="series-info">
-                    <p>{{ .Page.Count }} {{ if eq .Page.Count 1 }}post{{ else }}posts{{ end }} in this series</p>
+                    <p>{{ .Page.Count }} {{ pluralize "post" .Page.Count }} in this series</p>
                 </div>
                 <div class="post-list series-list">
                     {{ range .Page.Pages }}
                     <div class="series-post {{ if .Config.extra.featured }}featured{{ end }}">
                         <div class="series-position">
-                            {{ if ne .Position .Order }}
-                                Part {{ .Position }} (series order: {{ .Order }})
-                            {{ else }}
-                                Part {{ .Position }}
-                            {{ end }}
+                            {{ cond (ne .Position .Order) (printf "Part %d (series order: %d)" .Position .Order) (printf "Part %d" .Position) }}
                         </div>
                         <a class="post instant" href="{{ .Permalink }}">
                             <span>{{ .Config.title }}</span>

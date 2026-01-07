@@ -11,7 +11,7 @@
                     {{ range .Page.Terms }}
                     <a class="instant series-item" href="{{ .Permalink }}" data-count="{{ .Count }}">
                         <span class="series-name">{{ .Name }}</span>
-                        <span class="series-count">{{ .Count }} {{ if eq .Count 1 }}post{{ else }}posts{{ end }}</span>
+                        <span class="series-count">{{ .Count }} {{ pluralize "post" .Count }}</span>
                     </a>
                     {{ end }}
                 </div>
