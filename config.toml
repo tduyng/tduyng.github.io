@@ -31,22 +31,35 @@ links = [
   { name = "X", icon = "x", url = "https://x.com/tduyng" },
   { name = "Email", icon = "email", url = "mailto:hi@tduyng.com" },
 ]
+
+# Primary navigation (header) - core content only
 sections = [
   { name = "blog", path = "/blog", is_external = false },
   { name = "notes", path = "/notes", is_external = false },
-  { name = "uses", path = "/uses", is_external = false },
   { name = "about", path = "/about", is_external = false },
-]
-footer_menu = [
-  { name = "archive", path = "/archive", is_external = false },
   { name = "uses", path = "/uses", is_external = false },
+]
+
+# Secondary navigation (footer) - grouped by function
+# Browse group: content discovery
+footer_browse = [
+  { name = "archive", path = "/archive", is_external = false },
   { name = "tags", path = "/tags", is_external = false },
   { name = "series", path = "/series", is_external = false },
-  { name = "subscribe", path = "/subscribe", is_external = false },
+]
+
+# Connect group: contact and subscription
+footer_connect = [
   { name = "contact", path = "/contact", is_external = false },
-  { name = "privacy", path = "/privacy", is_external = false },
+  { name = "subscribe", path = "/subscribe", is_external = false },
   { name = "rss", path = "/atom.xml", is_external = false },
 ]
+
+# Legal group: policies
+footer_legal = [
+  { name = "privacy", path = "/privacy", is_external = false },
+]
+
 nav_separator = "☰"
 nav_wrapper_left = ""
 nav_wrapper_right = ""
