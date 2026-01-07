@@ -46,10 +46,8 @@
 
                     {{ template "partials/_outdate.html" . }} {{ .Page.Content }}
                     
-                    {{/* Show chronological pagination only for non-series posts */}}
-                    {{ if not .Page.Series }}
+                    {{/* Show chronological pagination (prev/next by date) for all posts */}}
                     {{ pagination . }}
-                    {{ end }}
                 </article>
                 
                 {{/* Show series navigation if post is part of a series */}}

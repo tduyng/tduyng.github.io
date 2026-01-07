@@ -1,5 +1,5 @@
 +++
-title = "Part 4: Managing snacks.nvim with native vim.pack"
+title = "Managing snacks.nvim with native vim.pack"
 description = "Using Neovim's built-in package manager with snacks.nvim and which-key.nvim"
 template = "post.html"
 date = 2025-10-28
