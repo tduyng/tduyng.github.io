@@ -15,8 +15,8 @@
             {{ if ne .Permalink $current_page.Permalink }}
             <li>
                 <a href="{{ .Permalink }}" class="instant">
-                    <span class="date">{{ date .Date "2 Jan 2006" }}</span>
-                    <span class="title">{{ .Title }}</span>
+                    <span class="date">{{ date .Config.date "2 Jan 2006" }}</span>
+                    <span class="title">{{ .Config.title }}</span>
                 </a>
             </li>
             {{ end }}
