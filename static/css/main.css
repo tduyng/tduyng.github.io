@@ -4576,40 +4576,55 @@ template {
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 #search-toggle {
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: rgba(111, 143, 209, 0.05);
-    border: 1.5px solid rgba(111, 143, 209, 0.15);
+    gap: 0.5em;
+    background: transparent;
+    border: 1px solid rgba(111, 143, 209, 0.2);
     border-radius: 8px;
+    padding: 0.5em 0.75em;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     color: var(--text-color);
-    padding: 0;
+    transition: all 0.3s ease;
 
     svg {
         width: 18px;
         height: 18px;
-        transition: transform 0.3s ease;
+    }
+
+    .search-kbd {
+        font-family: var(--code-font);
+        font-size: 0.75em;
+        padding: 0.2em 0.5em;
+        background: rgba(111, 143, 209, 0.1);
+        border: 1px solid rgba(111, 143, 209, 0.2);
+        border-radius: 4px;
+        color: var(--text-pale-color);
+        font-weight: 600;
     }
 
     &:hover {
-        background: rgba(111, 143, 209, 0.15);
+        background: rgba(111, 143, 209, 0.1);
         border-color: var(--primary-color);
         color: var(--primary-color);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(111, 143, 209, 0.2);
-    }
-
-    &:hover svg {
-        transform: scale(1.1);
-    }
-
-    &:active {
         transform: translateY(-1px);
+
+        .search-kbd {
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+    }
+}
+
+/* Hide keyboard hint on mobile */
+@media (max-width: 768px) {
+    #search-toggle {
+        .search-kbd {
+            display: none;
+        }
+        
+        padding: 0.5em;
+        border: none;
     }
 }
 
