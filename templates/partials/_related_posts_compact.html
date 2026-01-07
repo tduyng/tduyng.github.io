@@ -5,18 +5,22 @@
 {{ $current_page := .Page }}
 {{ $current_series := .Page.Series }}
 
-{{/* Collect related posts by tags, excluding current post */}}
+{{/* Collect related posts by tags */}}
 {{ $related := related_posts .Page $all_posts }}
-{{ $filtered_related := slice }}
-{{ range $related }}
-    {{ if ne .Permalink $current_page.Permalink }}
-        {{ $filtered_related = concat $filtered_related (slice .) }}
+
+{{/* Count how many related posts we have (excluding current page) */}}
+{{ $related_count := 0 }}
+{{ if $related }}
+    {{ range $related }}
+        {{ if ne .Permalink $current_page.Permalink }}
+            {{ $related_count = add $related_count 1 }}
+        {{ end }}
     {{ end }}
 {{ end }}
 
 {{/* Determine what to show based on available data */}}
 {{ $has_series := $current_series }}
-{{ $has_related := gt (len $filtered_related) 0 }}
+{{ $has_related := gt $related_count 0 }}
 {{ $should_show := or $has_series $has_related }}
 
 {{ if $should_show }}
@@ -30,12 +34,6 @@
     
     {{/* CASE 2: Show tag-based related posts */}}
     {{ if $has_related }}
-        {{/* Build exclude tags list (series name if exists) */}}
-        {{ $exclude_tags := slice }}
-        {{ if $has_series }}
-            {{ $exclude_tags = concat $exclude_tags (slice $current_series.Name) }}
-        {{ end }}
-        
         {{/* Render tag-based groups with smart configuration */}}
         {{ $max_groups := 2 }}
         {{ if not $has_series }}
@@ -43,10 +41,15 @@
             {{ $max_groups = 3 }}
         {{ end }}
         
+        {{ $series_name_to_pass := "" }}
+        {{ if $has_series }}
+            {{ $series_name_to_pass = $current_series.Name }}
+        {{ end }}
+        
         {{ template "partials/_related_by_tags.html" (dict 
-            "RelatedPosts" $filtered_related 
+            "RelatedPosts" $related 
             "CurrentPage" $current_page 
-            "ExcludeTags" $exclude_tags
+            "SeriesName" $series_name_to_pass
             "MaxGroups" $max_groups
             "MaxPerGroup" 6
         ) }}

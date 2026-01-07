@@ -1,65 +1,74 @@
 {{ $related_posts := .RelatedPosts }}
 {{ $current_page := .CurrentPage }}
-{{ $exclude_tags := .ExcludeTags }}
-{{ $max_groups := default 2 .MaxGroups }}
-{{ $max_per_group := default 6 .MaxPerGroup }}
+{{ $series_name := .SeriesName }}
+{{ $max_groups := .MaxGroups }}
+{{ $max_per_group := .MaxPerGroup }}
 
 {{ if $related_posts }}
-    {{ $tags_map := dict }}
-    {{ $seen_posts := dict }}
+    {{/* First pass: Display posts grouped by each unique tag */}}
+    {{ $group_count := 0 }}
+    {{ $shown_tags := "" }}
     
-    {{ range $related_posts }}
-        {{ $post := . }}
-        {{ $post_key := .Permalink }}
+    {{ range $current_page.Config.tags }}
+        {{ $current_tag := . }}
         
-        {{ if not (index $seen_posts $post_key) }}
-            {{ range .Config.tags }}
-                {{ $tag := . }}
-                {{ $skip_tag := false }}
-                
-                {{ range $exclude_tags }}
-                    {{ if eq $tag . }}
-                        {{ $skip_tag = true }}
+        {{/* Skip series tag to avoid duplication */}}
+        {{ if ne $current_tag $series_name }}
+            {{/* Check if we already showed this tag using string contains */}}
+            {{ $already_shown := false }}
+            {{ $tag_marker := printf ",%s," $current_tag }}
+            {{ $shown_tags_padded := printf ",%s," $shown_tags }}
+            {{ if contains $shown_tags_padded $tag_marker }}
+                {{ $already_shown = true }}
+            {{ end }}
+            
+            {{ if not $already_shown }}
+                {{ if lt $group_count $max_groups }}
+                    {{/* Count posts for this tag (excluding current page) */}}
+                    {{ $posts_with_tag_count := 0 }}
+                    {{ range $related_posts }}
+                        {{ if ne .Permalink $current_page.Permalink }}
+                            {{ range .Config.tags }}
+                                {{ if eq . $current_tag }}
+                                    {{ $posts_with_tag_count = add $posts_with_tag_count 1 }}
+                                {{ end }}
+                            {{ end }}
+                        {{ end }}
                     {{ end }}
-                {{ end }}
-                
-                {{ if not $skip_tag }}
-                    {{ $existing := index $tags_map $tag }}
-                    {{ if $existing }}
-                        {{ $tags_map = merge $tags_map (dict $tag (concat $existing (slice $post))) }}
-                    {{ else }}
-                        {{ $tags_map = merge $tags_map (dict $tag (slice $post)) }}
+                    
+                    {{ if gt $posts_with_tag_count 0 }}
+                        {{ $group_count = add $group_count 1 }}
+                        {{ if $shown_tags }}
+                            {{ $shown_tags = printf "%s,%s" $shown_tags $current_tag }}
+                        {{ else }}
+                            {{ $shown_tags = $current_tag }}
+                        {{ end }}
+                        
+                        <div class="related-group">
+                            <h4>More posts about <span class="tag-highlight">#{{ $current_tag }}</span></h4>
+                            <ul class="related-list">
+                                {{ $shown_in_group := 0 }}
+                                {{ range $related_posts }}
+                                    {{ $post := . }}
+                                    {{ if and (ne $post.Permalink $current_page.Permalink) (lt $shown_in_group $max_per_group) }}
+                                        {{ range $post.Config.tags }}
+                                            {{ if eq . $current_tag }}
+                                                {{ $shown_in_group = add $shown_in_group 1 }}
+                                                <li>
+                                                    <a href="{{ $post.Permalink }}" class="instant">
+                                                        <span class="date">{{ date $post.Config.date "2 Jan 2006" }}</span>
+                                                        <span class="title">{{ $post.Config.title }}</span>
+                                                    </a>
+                                                </li>
+                                            {{ end }}
+                                        {{ end }}
+                                    {{ end }}
+                                {{ end }}
+                            </ul>
+                        </div>
                     {{ end }}
                 {{ end }}
             {{ end }}
-            {{ $seen_posts = merge $seen_posts (dict $post_key true) }}
-        {{ end }}
-    {{ end }}
-    
-    {{ $sorted_tags := slice }}
-    {{ range $tag, $posts := $tags_map }}
-        {{ $sorted_tags = concat $sorted_tags (slice (dict "tag" $tag "posts" $posts "count" (len $posts))) }}
-    {{ end }}
-    
-    {{ $group_count := 0 }}
-    {{ range $sorted_tags }}
-        {{ if lt $group_count $max_groups }}
-            {{ $group_count = add $group_count 1 }}
-            <div class="related-group">
-                <h4>More posts about <span class="tag-highlight">#{{ .tag }}</span></h4>
-                <ul class="related-list">
-                    {{ range first $max_per_group .posts }}
-                        {{ if ne .Permalink $current_page.Permalink }}
-                        <li>
-                            <a href="{{ .Permalink }}" class="instant">
-                                <span class="date">{{ date .Config.date "2 Jan 2006" }}</span>
-                                <span class="title">{{ .Config.title }}</span>
-                            </a>
-                        </li>
-                        {{ end }}
-                    {{ end }}
-                </ul>
-            </div>
         {{ end }}
     {{ end }}
 {{ end }}
