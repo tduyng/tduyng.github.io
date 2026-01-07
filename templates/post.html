@@ -50,12 +50,9 @@
                     {{ pagination . }}
                 </article>
                 
-                {{/* Show series navigation if post is part of a series */}}
-                {{ with .Page.Series }}
-                {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "navigation") }}
-                {{ end }}
-                    {{ template "partials/_suggest_edit.html" . }}
-                    {{ template "partials/_related_posts_compact.html" . }}
+                {{/* Related posts section handles both series and non-series posts */}}
+                {{ template "partials/_suggest_edit.html" . }}
+                {{ template "partials/_related_posts_compact.html" . }}
                     {{ template "partials/_sharing.html" . }}
                     {{ template "partials/_reaction.html" . }}
                     {{ template "partials/_giscus_script.html" . }}

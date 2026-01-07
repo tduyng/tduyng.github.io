@@ -4,7 +4,7 @@ description = "This article highlights key reasons for the change, explores Deno
 template = "post.html"
 date = 2024-06-15
 generate_feed = true
-tags = ["deno", "nodejs", "production"]
+tags = ["deno", "nodejs"]
 aliases = ["/blog/switch-to-deno", "/blog/deno-production"]
 
 [extra]

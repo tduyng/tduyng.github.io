@@ -1,10 +1,16 @@
-{{ if .Page.Config.tags }}
 {{ $current_page := .Page }}
 {{ $current_series := .Page.Series }}
 
-{{/* Only show related posts for non-series posts */}}
-{{/* Series posts already have series navigation */}}
-{{ if not $current_series }}
+{{/* Show series navigation for series posts, tag-based related posts for others */}}
+{{ if $current_series }}
+    {{/* Series posts: show complete series list */}}
+    <section id="related-posts-compact" class="related-compact">
+        <h3>Related Posts</h3>
+        
+        {{ template "partials/_series_nav.html" (dict "Series" $current_series "PartialContext" "navigation") }}
+    </section>
+{{ else if .Page.Config.tags }}
+    {{/* Non-series posts: show tag-based related posts */}}
     {{ $blog_section := get_section "blog" }}
     {{ $notes_section := get_section "notes" }}
     {{ $all_posts := concat $blog_section.Children $notes_section.Children }}
@@ -37,5 +43,4 @@
         ) }}
     </section>
     {{ end }}
-{{ end }}
 {{ end }}
