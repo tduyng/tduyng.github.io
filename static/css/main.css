@@ -2998,8 +2998,11 @@ body.not-found {
 /* Pagination
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .pagination {
-    margin-top: 2.5em;
-    padding: 0;
+    margin: 2.5em 0;
+    padding: 1.5em;
+    background: rgba(111, 143, 209, 0.02);
+    border: 1px solid rgba(111, 143, 209, 0.1);
+    border-radius: 8px;
 
     hr {
         border: none;
@@ -4975,8 +4978,8 @@ article:has(.prose) p:last-child em {
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 .related-compact {
-    margin: 4em 0 2em 0;
-    padding: 2em;
+    margin: 2.5em 0;
+    padding: 1.5em;
     background: rgba(111, 143, 209, 0.02);
     border-radius: 8px;
     border: 1px solid rgba(111, 143, 209, 0.1);

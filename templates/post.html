@@ -50,11 +50,11 @@
                     {{ pagination . }}
                 </article>
                 
-                {{/* Related posts section handles both series and non-series posts */}}
+                {{/* Optimized engagement flow: content discovery → quick reactions → social sharing → deep engagement */}}
                 {{ template "partials/_suggest_edit.html" . }}
                 {{ template "partials/_related_posts_compact.html" . }}
-                    {{ template "partials/_sharing.html" . }}
                     {{ template "partials/_reaction.html" . }}
+                    {{ template "partials/_sharing.html" . }}
                     {{ template "partials/_giscus_script.html" . }}
                     {{ template "partials/_comment.html" . }}
                 </div>
