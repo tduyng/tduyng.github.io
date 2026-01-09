@@ -7,7 +7,7 @@
         <div id="wrapper">
             <main class="layout-list">
                 <div class="title">
-                    <span># {{ .Page.Tag }}</span>
+                    <span># {{ .Page.Term }}</span>
                     <a class="instant" href="/tags">All Tags</a>
                 </div>
                 <div class="post-list">
@@ -17,7 +17,9 @@
                         href="{{ .Permalink }}"
                     >
                         <span>{{ .Config.title }}</span>
-                        <time class="date" datetime="{{ .Config.date }}">{{ .Config.date | date }}</time>
+                        <time class="date" datetime="{{ .Config.date }}"
+                            >{{ .Config.date | date }}</time
+                        >
                     </a>
                     {{ end }}
                 </div>
