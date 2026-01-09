@@ -33,7 +33,7 @@ The first challenge today is still handle string. There are too many string algo
 
 Now, we will go to solve the challenge.
 
-:bell: Task: [Rot13](https://www.codewars.com/kata/530e15517bc88ac656000716/train/ruby)
+🔔 Task: [Rot13](https://www.codewars.com/kata/530e15517bc88ac656000716/train/ruby)
 
 > ROT13 is a simple letter substitution cipher that replaces a letter with the letter 13 letters after it in the alphabet. ROT13 is an example of the Caesar cipher.
 
@@ -48,7 +48,7 @@ For example
 
 ---
 
-:arrow_right: My solution:
+➡️ My solution:
 
 - It becomes more complicated with the 5kyu level. I take me more time to reach the best solution what I can.
 - To do this challenge
@@ -72,7 +72,7 @@ end
 
 ---
 
-:heavy_check_mark: Best solution on codewars
+✅ Best solution on codewars
 
 ```ruby
 def rot13(string)
@@ -93,7 +93,7 @@ I don't think the people can have a lot of super clever idea to resolve this cha
 
 ### 2. Greed is Good (5kyu)
 
-:bell: Task: [Greed is Good](https://www.codewars.com/kata/5270d0d18625160ada0000e4/train/ruby)
+🔔 Task: [Greed is Good](https://www.codewars.com/kata/5270d0d18625160ada0000e4/train/ruby)
 
 > Greed is a dice game played with five six-sided dice. Your mission, should you choose to accept it, is to score a throw according to these rules. You will always be given an array with five six-sided dice values.
 
@@ -122,7 +122,7 @@ Throw       Score
 
 ---
 
-:arrow_right: My solution:
+➡️ My solution:
 
 - I struggled to find an short and better solution for this challenge.
 - Finally I did a quite long solution.
@@ -180,7 +180,7 @@ end
 
 ---
 
-:heavy_check_mark: Best solution on codewars
+✅ Best solution on codewars
 
 ```ruby
 SCORE_MAP = {
@@ -229,7 +229,7 @@ I love the first solution because it is the same idea as I thought. But they use
 
 ### 3. String incrementer (5kyu)
 
-:bell: Task: [String incrementer](https://www.codewars.com/kata/54a91a4883a7de5d7800009c/train/ruby)
+🔔 Task: [String incrementer](https://www.codewars.com/kata/54a91a4883a7de5d7800009c/train/ruby)
 
 > Your job is to write a function which increments a string, to create a new string. If the string already ends with a number, the number should be incremented by 1. If the string does not end with a number. the number 1 should be appended to the new string.
 
@@ -249,7 +249,7 @@ foo099 -> foo100
 
 ---
 
-:arrow_right: My solution:
+➡️ My solution:
 
 - Return "1" if input string is empty
 - Split array to two parts: only last numbers and the first part
@@ -270,7 +270,7 @@ end
 
 ---
 
-:heavy_check_mark: Best solution on codewars
+✅ Best solution on codewars
 
 ```ruby
 def increment_string(input)

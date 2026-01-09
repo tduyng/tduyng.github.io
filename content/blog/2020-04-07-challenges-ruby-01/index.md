@@ -56,13 +56,13 @@ If you have already familiarized with Ruby, this first chapter may be not intere
 
 For the first challenge, we will count the number of vowel in a given string.
 
-:bell: Task: [Vowel count](https://www.codewars.com/kata/54ff3102c1bad923760001f3)
+🔔 Task: [Vowel count](https://www.codewars.com/kata/54ff3102c1bad923760001f3)
 
 > Return the number (count) of vowels in the given string. We will consider a, e, i, o, u as vowels for this Kata (but not y). The input string will only consist of lower case letters and/or spaces.
 
 ---
 
-:arrow_right: My solution:
+➡️ My solution:
 
 I use the method **scan** of String. It allows us to interate through a string, and matching with a given pattern of regular expression. If you don't know regular expression yet, you can take a look on [Regular Expression Ruby](https://ruby-doc.org/core-2.5.1/Regexp.html).
 
@@ -78,7 +78,7 @@ end
 
 ---
 
-:heavy_check_mark: Best solution on codewars
+✅ Best solution on codewars
 
 ```ruby
 def getCount(inputStr)
@@ -90,14 +90,14 @@ Another big advantage of codewars is learning to solve the problem from each oth
 
 ### 2. Remove the minimum (7kyu)
 
-:bell: Task: [Remove the minimum](https://www.codewars.com/kata/563cf89eb4747c5fb100001b)
+🔔 Task: [Remove the minimum](https://www.codewars.com/kata/563cf89eb4747c5fb100001b)
 
 > Given an array of integers, remove the smallest value. **Do not mutate the original array/list**. If there are multiple elements with the same value, remove the one with a lower index. If you get an empty array/list, return an empty array/list.
 > ex: remove_smallest([1,2,3,4,5]) = [2,3,4,5]
 
 ---
 
-:arrow_right: My solution:
+➡️ My solution:
 
 - If the input array is empty, I will return an empty array
 - We can't mutate the original array/list, so I create a clone array with the method ".dup" to keep the original.
@@ -116,7 +116,7 @@ end
 
 ---
 
-:heavy_check_mark: Best solution on codewars
+✅ Best solution on codewars
 
 ```ruby
 def remove_smallest(numbers)
@@ -128,7 +128,7 @@ Method "reject" is a reverse method of "select", we remove the items of array by
 
 ### 3. Get the middle caracter (7kyu)
 
-:bell: Task: [Get the middle caracter](https://www.codewars.com/kata/56747fd5cb988479af000028)
+🔔 Task: [Get the middle caracter](https://www.codewars.com/kata/56747fd5cb988479af000028)
 
 > You are going to be given a word. Your job is to return the middle character of the word. If the word's length is odd, return the middle character. If the word's length is even, return the middle 2 characters.
 > ex: Kata.getMiddle("test") should return "es"
@@ -136,7 +136,7 @@ Method "reject" is a reverse method of "select", we remove the items of array by
 
 ---
 
-:arrow_right: My solution:
+➡️ My solution:
 
 ```ruby
 def get_middle(s)
@@ -154,7 +154,7 @@ end
 
 ---
 
-:heavy_check_mark: Best solution on codewars
+✅ Best solution on codewars
 
 ```ruby
 def get_middle(s)
@@ -173,7 +173,7 @@ end
 
 ### 4. Jade casing strings (7kyu)
 
-:bell: Task: [Jade casing strings](https://www.codewars.com/kata/56747fd5cb988479af000028)
+🔔 Task: [Jade casing strings](https://www.codewars.com/kata/56747fd5cb988479af000028)
 
 > Your task is to convert strings to how they would be written by Jaden Smith. The strings are actual quotes from Jaden Smith, but they are not capitalized in the same way he originally typed them.
 > ex: Not Jaden-Cased: "How can mirrors be real if our eyes aren't real"
@@ -181,7 +181,7 @@ end
 
 ---
 
-:arrow_right: My solution:
+➡️ My solution:
 
 This kata is quite simple, I just use the ".map" method and convert each word with "capitalize" method.
 
@@ -191,11 +191,11 @@ def to_jade_case(str)
 end
 ```
 
-Finally, I got a first success on codewars, because I have the same solution with the best solution on codewars :blush:
+Finally, I got a first success on codewars, because I have the same solution with the best solution on codewars 😊
 
 ### 5. Disemvowel trolls (7kyu)
 
-:bell: Task: [Disemvowel trolls](https://www.codewars.com/kata/52fba66badcd10859f00097e)
+🔔 Task: [Disemvowel trolls](https://www.codewars.com/kata/52fba66badcd10859f00097e)
 
 > Your task is to write a function that takes a string and return a new string with all vowels removed.
 
@@ -203,7 +203,7 @@ Finally, I got a first success on codewars, because I have the same solution wit
 
 ---
 
-:arrow_right: My solution:
+➡️ My solution:
 
 - The regular expression is very strong with string. So I will use it for this solution.
 - gsub: is a method to replace all caracters in string which match with the given text or pattern.
@@ -216,7 +216,7 @@ end
 
 ---
 
-:heavy_check_mark: Best solution on codewars
+✅ Best solution on codewars
 
 ```ruby
 def disemvowel(str)
@@ -228,7 +228,7 @@ So they use a method "delete" more simple that I don't know yet. So cool!
 
 ### 6. Square every digit (7kyu)
 
-:bell: Task: [Square every digit](https://www.codewars.com/kata/546e2562b03326a88e000020)
+🔔 Task: [Square every digit](https://www.codewars.com/kata/546e2562b03326a88e000020)
 
 > YWelcome. In this kata, you are asked to square every digit of a number.
 
@@ -236,7 +236,7 @@ So they use a method "delete" more simple that I don't know yet. So cool!
 
 ---
 
-:arrow_right: My solution:
+➡️ My solution:
 
 - Using ".map" method to solve this problem
 
@@ -248,7 +248,7 @@ end
 
 ---
 
-:heavy_check_mark: Best solution on codewars
+✅ Best solution on codewars
 
 ```ruby
 def square_digits num
@@ -266,7 +266,7 @@ I see that there are many ways to solve this problem. With Codewars, I can learn
 
 ### 7. Shortest word (7kyu)
 
-:bell: Task: [Shortest word](https://www.codewars.com/kata/57cebe1dc6fdc20c57000ac9)
+🔔 Task: [Shortest word](https://www.codewars.com/kata/57cebe1dc6fdc20c57000ac9)
 
 > Welcome. In this kata, you are asked to square every digit of a number.
 
@@ -274,7 +274,7 @@ I see that there are many ways to solve this problem. With Codewars, I can learn
 
 ---
 
-:arrow_right: My solution:
+➡️ My solution:
 
 - Using ".min_by" method
 
@@ -286,7 +286,7 @@ end
 
 ---
 
-:heavy_check_mark: Best solution on codewars
+✅ Best solution on codewars
 
 ```ruby
 def find_short(s)
@@ -298,7 +298,7 @@ An alternative better way to solve it!
 
 ### 8. List filtering (7kyu)
 
-:bell: Task: [List filtering](https://www.codewars.com/kata/53dbd5315a3c69eed20002dd)
+🔔 Task: [List filtering](https://www.codewars.com/kata/53dbd5315a3c69eed20002dd)
 
 > In this kata you will create a function that takes a list of non-negative integers and strings and returns a new list with the strings filtered out.
 
@@ -312,7 +312,7 @@ filter_list([1,2,'aasf','1','123',123]) == [1,2,123]
 
 ---
 
-:arrow_right: My solution:
+➡️ My solution:
 
 ```ruby
 def filter_list(l)
@@ -322,7 +322,7 @@ end
 
 ---
 
-:heavy_check_mark: Best solution on codewars
+✅ Best solution on codewars
 
 ```ruby
 def filter_list(l)
@@ -332,7 +332,7 @@ end
 
 ### 9. Credit card mark (7kyu)
 
-:bell: Task: [Credit card mark](https://www.codewars.com/kata/53dbd5315a3c69eed20002dd)
+🔔 Task: [Credit card mark](https://www.codewars.com/kata/53dbd5315a3c69eed20002dd)
 
 > Usually when you buy something, you're asked whether your credit card number, phone number or answer to your most secret question is still correct. However, since someone could look over your shoulder, you don't want that shown on your screen. Instead, we mask it. Your task is to write a function maskify, which changes all but the last four characters into '#'.
 
@@ -352,7 +352,7 @@ maskify('Nananananananananananananananana Batman!') # should return '###########
 
 ---
 
-:arrow_right: My solution:
+➡️ My solution:
 
 - I keep only 4 last caracters of string, and add the "#" (string.length-4) times in the first.
 
@@ -364,7 +364,7 @@ end
 
 ---
 
-:heavy_check_mark: Best solution on codewars
+✅ Best solution on codewars
 
 ```ruby
 def maskify(cc)
@@ -382,7 +382,7 @@ Very easy to read the code with the best solutions on codewars.
 
 ### 10. Categorize new member (7kyu)
 
-:bell: Task: [Categorize new member](https://www.codewars.com/kata/53dbd5315a3c69eed20002dd)
+🔔 Task: [Categorize new member](https://www.codewars.com/kata/53dbd5315a3c69eed20002dd)
 
 > The Western Suburbs Croquet Club has two categories of membership, Senior and Open. They would like your help with an application form that will tell prospective members which category they will be placed.
 
@@ -402,7 +402,7 @@ Very easy to read the code with the best solutions on codewars.
 
 ---
 
-:arrow_right: My solution:
+➡️ My solution:
 
 - The method ".map" is again take the job done
 
@@ -414,7 +414,7 @@ end
 
 ---
 
-:heavy_check_mark: Best solution on codewars
+✅ Best solution on codewars
 
 ```ruby
 def openOrSenior1(data)
@@ -427,7 +427,7 @@ end
 For the last challenge, i will take an kata of 6kyu.
 It will be a little more complex of the previous challenges.
 
-:bell: Task: [Find The Parity Outlier](https://www.codewars.com/kata/5526fc09a1bbd946250002dc)
+🔔 Task: [Find The Parity Outlier](https://www.codewars.com/kata/5526fc09a1bbd946250002dc)
 
 > You are given an array (which will have a length of at least 3, but could be very large) containing integers. The array is either entirely comprised of odd integers or entirely comprised of even integers except for a single integer N. Write a method that takes the array as an argument and returns this "outlier" N..
 
@@ -444,7 +444,7 @@ Should return: 160 (the only even number)
 
 ---
 
-:arrow_right: My solution:
+➡️ My solution:
 
 - Because our array contains an unique even number or odd number. So I will check 3 first items in array. If it contains 2 and more even number, so the number that we need to find is a odd number, and vice versa.
 - After checking, we can easily find the result with the method ".select"
@@ -458,7 +458,7 @@ end
 
 ---
 
-:heavy_check_mark: Best solution on codewars
+✅ Best solution on codewars
 
 ```ruby
 def find_outlier(integers)

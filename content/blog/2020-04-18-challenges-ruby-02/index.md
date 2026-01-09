@@ -29,7 +29,7 @@ In [the last article](/blog/challenges-ruby-01/), we have done the very simple c
 
 All the next challenges have distributed random by codewars.
 
-:bell: Task: [Replace with alphabet position](https://www.codewars.com/kata/546f922b54af40e1e90001da/train/ruby)
+🔔 Task: [Replace with alphabet position](https://www.codewars.com/kata/546f922b54af40e1e90001da/train/ruby)
 
 > In this kata you are required to, given a string, replace every letter with its position in the alphabet. If anything in the text isn't a letter, ignore it and don't return it.
 > "a" = 1, "b" = 2, etc
@@ -48,34 +48,34 @@ Should return "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 1
 
 ---
 
-:arrow_right: My solution:
+➡️ My solution:
 
 - This challenge is always handle with the string
 - One thing that we need pay attention here is how to convert a character to the ascii caracter.
 
-{% highlight ruby %}
+```ruby
 def alphabet_position(text)
 text=text.downcase.gsub(/[^a-z]/,'')
 text.bytes.map{|x| x-96}.join(' ')
 end
-{% endhighlight %}
+```
 
 ---
 
-:heavy_check_mark: Best solution on codewars
+✅ Best solution on codewars
 
-{% highlight ruby %}
+```ruby
 def alphabet_position(text)
 text.gsub(/[^a-z]/i, '').chars.map{ |c| c.downcase.ord - 96 }.join(' ')
 end
-{% endhighlight %}
+```
 
 This challenge is still not difficult for you, is it?
 We will see the next one.
 
 ### 2. Array.diff (6kyu)
 
-:bell: Task: [Replace with alphabet position](https://www.codewars.com/kata/546f922b54af40e1e90001da/train/ruby)
+🔔 Task: [Replace with alphabet position](https://www.codewars.com/kata/546f922b54af40e1e90001da/train/ruby)
 
 > Your goal in this kata is to implement a difference function, which subtracts one list from another and returns the result. It should remove all values from list a, which are present in list b.
 
@@ -88,7 +88,7 @@ array_diff([1,2],[1]) == [2]
 
 ---
 
-:arrow_right: My solution:
+➡️ My solution:
 
 - Very simple here if we know already the set operation method of array in ruby
 
@@ -112,7 +112,7 @@ Wow Ruby !!!
 
 The last challenge today.
 
-:bell: Task: [Replace with alphabet position](https://www.codewars.com/kata/546f922b54af40e1e90001da/train/ruby)
+🔔 Task: [Replace with alphabet position](https://www.codewars.com/kata/546f922b54af40e1e90001da/train/ruby)
 
 > Write a function toWeirdCase (weirdcase in Ruby) that accepts a string, and returns the same string with all even indexed characters in each word upper cased, and all odd indexed characters in each word lower cased. The indexing just explained is zero based, so the zero-ith index is even, therefore that character should be upper cased.
 
@@ -127,7 +127,7 @@ weirdcase( "Weird string case" );#=> returns "WeIrD StRiNg CaSe"
 
 ---
 
-:arrow_right: My solution:
+➡️ My solution:
 
 - The key to resolve this kata is just detect the even index and odd index of caracter.
 - The method "each_with_index" will help us to do it.
@@ -145,7 +145,7 @@ end
 
 ---
 
-:heavy_check_mark: Best solution on codewars
+✅ Best solution on codewars
 
 ```ruby
 def weirdcase string
