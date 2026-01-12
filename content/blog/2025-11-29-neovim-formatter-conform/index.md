@@ -38,7 +38,8 @@ vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
-		go = { "goimports", "gofmt" },
+		-- go = { "goimports", "gofmt" }, fixed below as suggested by JudgeGregg (https://github.com/tduyng/tduyng.github.io/issues/18)
+		go = { "goimports", "gofmt", stop_after_first = true },
 		python = { "ruff_format", "black", stop_after_first = true },
 		json = { "biome", "prettier", stop_after_first = true },
 		markdown = { "prettier" },
