@@ -38,7 +38,7 @@ vim.pack.add({ "https://github.com/stevearc/conform.nvim" })
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
-		-- go = { "goimports", "gofmt" }, fixed below as suggested by JudgeGregg (https://github.com/tduyng/tduyng.github.io/issues/18)
+		-- go = { "goimports", "gofmt" }, fixed below as suggested by JudgeGregg (https://github.com/tduyng/tduyng.github.io/issues/18) - see more #formatters-by-filetype
 		go = { "goimports", "gofmt", stop_after_first = true },
 		python = { "ruff_format", "black", stop_after_first = true },
 		json = { "biome", "prettier", stop_after_first = true },
@@ -123,7 +123,7 @@ Restart Neovim. Save a file. It formats automatically.
 ```lua
 formatters_by_ft = {
 	lua = { "stylua" },
-	go = { "goimports", "gofmt" },
+	go = { "goimports", "gofmt", stop_after_first = true },
 	python = { "ruff_format", "black", stop_after_first = true },
 	javascript = { "biome", "prettier", stop_after_first = true },
 	-- more languages...
@@ -140,17 +140,19 @@ lua = { "stylua" },
 
 For Lua files, use stylua. Simple.
 
-**Multiple formatters in sequence:**
+**stop_after_first (fallback pattern):**
 
 ```lua
-go = { "goimports", "gofmt" },
+go = { "goimports", "gofmt", stop_after_first = true },
 ```
 
-For Go files, run goimports first, then gofmt. Both run in order.
+Try formatters in order. Use the first one that's installed. Stop after that.
 
-Why both? goimports organizes imports and removes unused ones. gofmt formats the code. They work together.
+For Go files: try goimports first. If not installed, fall back to gofmt.
 
-**stop_after_first:**
+Note: `goimports` already includes all `gofmt` functionality (formatting + import organization), so you only need one. We list both with `stop_after_first = true` as a fallback in case goimports is not installed.
+
+Same pattern for other languages:
 
 ```lua
 javascript = { "biome", "prettier", stop_after_first = true },
