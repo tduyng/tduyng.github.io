@@ -5,7 +5,6 @@ template = "note.html"
 generate_feed = true
 series = "vim-tricks"
 series_order = 1
-draft = true
 
 [extra]
 comment = true
