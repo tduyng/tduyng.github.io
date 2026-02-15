@@ -1,13 +1,12 @@
 +++
-title = "My Note taking Setup in Neovim"
+title = "My Note Taking Setup in Neovim"
 description = "I tried many markdown plugins. Here's the combination that finally works: clean, fast, and just the right features."
 template = "post.html"
 date = 2026-02-15
 generate_feed = true
-tags = ["neovim", "productivity", "markdown"]
+tags = ["neovim", "note-taking", "markdown"]
 series = "neovim"
 series_order = 15
-draft = true
 
 [extra]
 comment = true

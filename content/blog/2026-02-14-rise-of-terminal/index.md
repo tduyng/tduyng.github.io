@@ -142,10 +142,10 @@ All these trends converged at the right moment:
 5. Community configs made setup trivial
 6. Skills made terminal tools AI-ready
 
-The terminal never left. It just got better while we were not looking.
+Think about your workflow. How many apps do you have open? Heavy IDEs, terminal, browser, git and other GUI apps? When you do not have so much time, switching between all those windows becomes a mess. Now imagine one tool that does it all. Modern terminals handle multiple windows and tabs easily, even without tmux. Your code, tests, commands, AI assistant, all in one place. No switching between different apps, that is really efficient.
 
-If you are still using heavy GUI editors, ask yourself: what does your workflow look like on a remote server at 2am?
+If you have not tried Neovim yet, now is the best time. You will not regret it.
 
-The terminal represents something simple: your tools work everywhere. Your AI works everywhere. Your skills are portable.
+The terminal never left. It just got better while we were not looking. Your tools work everywhere. Your AI works everywhere. Your skills are portable.
 
 That is freedom. And that is why developers are returning.

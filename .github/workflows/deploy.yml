@@ -44,6 +44,7 @@ jobs:
         run: go install github.com/tduyng/gozzi@latest
         env:
           GOPROXY: direct
+          GOSUMDB: off
 
       - name: Show Gozzi version
         run: gozzi version
