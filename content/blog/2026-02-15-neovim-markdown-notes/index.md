@@ -4,10 +4,9 @@ description = "I tried many markdown plugins. Here's the combination that finall
 template = "post.html"
 date = 2026-02-15
 generate_feed = true
-tags = ["neovim", "productivity", "markdown"]
+tags = ["neovim", "note-taking", "markdown"]
 series = "neovim"
 series_order = 15
-draft = true
 
 [extra]
 comment = true
