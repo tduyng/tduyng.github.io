@@ -1,5 +1,5 @@
 +++
-title = "I built a WakaTime alternative that lives inside Neovim"
+title = "Codeme.nvim private coding activity tracking in Neovim"
 description = "Local-first coding tracker with beautiful dashboard. All data stays on your machine."
 template = "post.html"
 date = 2026-02-28
@@ -15,66 +15,67 @@ toc = true
 copy = true
 outdate_alert = true
 outdate_alert_days = 365
-img = "img/codeme-dashboard.webp"
+img = "img/overview.png"
 +++
 
-I used WakaTime in the past. It was great at first - seeing exactly how much I coded, which languages I used, which projects took most of my time. But slowly, something started bothering me.
+I used to love WakaTime. It felt like a fitness tracker for coding. I could see how long I coded, which languages I used, and which projects took my time. Pretty nice.
 
-Every keystroke, every file I opened, every project I worked on - all sent to WakaTime's cloud. Stored on their servers. Forever.
+But later, something bothered me. Every key I typed, every file I opened, every project I worked on was sent to WakaTime’s cloud and stored on their servers.
 
-That didn't feel right for client projects or proprietary code. And honestly, I wanted something cleaner - no account, no cloud, just tracking.
+That felt a bit uncomfortable. Especially for client work or private code. I didn’t like the idea of my coding habits sitting in someone else’s database.
 
-I also looked for a Neovim-native solution with a dashboard built right into the editor. Something that shows your coding stats directly in Neovim, not in a browser. I couldn't find anything like that. Most trackers either send data to the cloud or just don't have a good visual dashboard.
+I also wanted a tool that works directly inside **Neovim**. No browser, no extra dashboard. Just my stats inside my editor. But I couldn’t find a good tool like that. Most trackers send data to the cloud or don’t show the stats in a clear way.
 
-So I built [codeme](https://github.com/tduyng/codeme).
+So I create [codeme](https://github.com/tduyng/codeme). It’s like WakaTime, but simpler, fully private, and runs locally inside Neovim, with a clean and easy-to-read dashboard.
 
-## Why track your coding?
+## Why track your coding at all?
 
-People track their coding for different reasons. Some find it motivating - streaks, goals, and seeing progress feels good. Others use it to understand their patterns: which languages they use most, what time of day they're most productive, which projects consume their time. Freelancers bill clients. Developers reflect on their growth.
+People track their coding for many simple reasons:
 
-But tracking can also feel like surveillance. You might obsess over metrics instead of doing actual work. And cloud-based trackers raise privacy concerns - your code patterns, project names, file paths all leave your machine.
+- It can be motivating: seeing progress and streaks feels good
+- It helps you understand your habits: which languages you use most, when you work best, which projects take your time
+- Freelancers can track hours for clients
+- Developers can see how they improve
+- Or just for fun 🙂
 
-Codeme's approach: it's there when you want it, invisible when you don't. No pressure, no external eyes. Just your data, on your machine.
+But tracking can also feel uncomfortable. You might focus too much on numbers instead of real work. And cloud tools based trackers can raise privacy worries — project names, file paths, and coding habits leave your computer.
 
-## What is codeme?
+**Codeme’s idea:** it’s there when you need it, quiet when you don’t. No pressure, no cloud, no outside tracking. Just your data, stored locally inside Neovim.
 
-A private coding tracker with two parts:
+<br/>
+<img src="img/overview.png" alt="codeme dashboard overview showing goals and streaks" loading="lazy">
+<figcaption style="font-size: 0.8em; color: gray; margin-top: 4px; text-align: center;">Dashboard overview with goals and streaks</figcaption>
+<br/>
 
-1. **codeme** - Go CLI with SQLite (the backend)
-2. **codeme.nvim** - Lua plugin for Neovim (the dashboard)
+## What is Codeme?
 
-The key difference: everything stays on your machine. No cloud, no account, no third parties.
+Codeme is a private coding tracker with two simple parts:
 
-## Zero config - it just works
+1. [codeme](https://github.com/tduyng/codeme) – a small Go CLI with SQLite (the backend)
+2. [codeme.nvim](https://github.com/tduyng/codeme.nvim) – a Lua plugin for Neovim (the dashboard)
 
-This was my main goal: no configuration needed.
+Everything stays on your computer. No cloud, no account, no third parties. Just your own data, stored locally.
 
-WakaTime requires:
+## Zero config (it just works)
 
-- Creating an account
-- Generating an API key
-- Adding the key to your editor config
-- Configuring which projects to track
-- Setting up the dashboard online
+My goal was simple: minimal or zero config, fast for setup
 
-Codeme requires:
+To use Codeme:
 
 - Install the binary
 - Add the plugin
 - Start coding
 
-That's it.
-
-No API keys. No accounts. No config files. No options to tweak. It works out of the box.
+That’s all. No API keys. No accounts. No config files. No options to tweak. It works right away, out of the box. 🙂
 
 ## Auto-detection
 
 Codeme figures things out automatically:
 
-- **Project** - Detected from git root. Open any file in a repo, it knows which project you're working on.
-- **Language** - Detected from file extension. `.py` → Python, `.ts` → TypeScript, `.rs` → Rust. No manual selection.
-- **Branch** - Automatically tracks which git branch you're on.
-- **Lines** - Counts what you actually wrote, not total file size.
+- Project - Detected from git root. Open any file in a repo, it knows which project you're working on.
+- Language - Detected from file extension. `.py` → Python, `.ts` → TypeScript, `.rs` → Rust. No manual selection.
+- Time
+- Lines - Counts what you actually wrote, not total file size.
 
 You don't tell codeme anything. It just knows.
 
@@ -82,9 +83,9 @@ You don't tell codeme anything. It just knows.
 
 Most trackers require manual start/stop. Codeme tracks automatically:
 
-- **On save** - Every time you write a file, it records the session
-- **On buffer enter** - Lightweight presence when you switch files
-- **Idle detection** - 15-minute timeout groups your work into sessions
+- On save
+- On buffer enter
+- Idle detection - 15-minute timeout groups your work into sessions
 
 You open Neovim → you code → you close Neovim. That's the entire workflow. No `codeme start`, no `codeme stop`. Nothing to remember.
 
@@ -98,57 +99,46 @@ The dashboard opens with `:CodeMe`. Five tabs:
 - 📁 Work - projects and languages breakdown
 - 🏆 Records - achievements and personal bests
 
-Here's the thing: it auto-detects your colorscheme. Dark theme, light theme, any theme - the dashboard just matches. No config needed, no theme files to create.
+The dashboard auto-detects your colorscheme but more suite for dark theme.
 
 <br/>
-<img src="img/dashboard-overview.webp" alt="codeme dashboard overview showing goals and streaks" loading="lazy">
-<figcaption style="font-size: 0.8em; color: gray; margin-top: 4px; text-align: center;">Dashboard overview with goals and streaks</figcaption>
+<img src="img/weekly.png" alt="activity tab showing weekly coding sessions and languages" loading="lazy">
+<figcaption style="font-size: 0.8em; color: gray; margin-top: 4px; text-align: center;">Weekly tab - see what you worked on this week</figcaption>
 <br/>
 
 ## Fun & motivating dashboard
 
 The dashboard doesn't just show numbers - it celebrates your coding journey.
 
-**Career level:** Based on total hours, you level up from 🌱 Rising to 👑 Legendary. Shows your current level and hours to next with a progress bar.
+Career level: Based on total hours, you level up from 🌱 Rising to 👑 Legendary. Shows your current level and hours to next with a progress bar.
 
-**Personal records:** Your best day, longest session, most lines, and best streak. See when they happened.
+Personal records: Your best day, longest session, most lines, and best streak. See when they happened.
 
-**Fun facts:** Your earliest start time, latest end time, and your most polyglot day. Surprise yourself.
+Fun facts: Your earliest start time, latest end time, and your most polyglot day. Surprise yourself.
 
-**Challenges:** Personalized goals based on your stats:
+Challenges: Personalized goals based on your stats:
 
 - "2 hours more to beat your best day"
 - "5 more days to beat your streak record"
 - "Can you beat 6 hours in one session?"
 
-**Achievements:** Over 30 badges across categories:
+Achievements: Over 30 badges across categories:
 
-- **Streaks** from 🔥 5 days to 🌞 365 days
-- **Lines** from 🌧️ 1K to 🌊 100K
-- **Hours** from ⚡ 50h to 💡 20K hours
-- **Languages** from 🚀 2 to 🎓 15 languages
-- **Sessions** from ☕ 2h to 👑 12h
-- **Time habits** like 🌅 Dawn Coder and 🌌 Night Coder
+- Streaks from 🔥 5 days to 🌞 365 days
+- Lines from 🌧️ 1K to 🌊 100K
+- Hours from ⚡ 50h to 💡 20K hours
+- Languages from 🚀 2 to 🎓 15 languages
+- Sessions from ☕ 2h to 👑 12h
+- Time habits like 🌅 Dawn Coder and 🌙 Night Coder
 
 The Records tab shows unlocked badges, locked ones, and your completion percentage.
 
 This makes tracking feel like a game. You're chasing milestones, breaking records, leveling up.
 
 <br/>
-<img src="img/achievements.webp" alt="achievements tab showing unlocked badges and progress" loading="lazy">
-<figcaption style="font-size: 0.8em; color: gray; margin-top: 4px; text-align: center;">Achievements tab - track your unlocked badges</figcaption>
+<img src="img/record.png" alt="record tab showing unlocked badges and progress" loading="lazy">
+<figcaption style="font-size: 0.8em; color: gray; margin-top: 4px; text-align: center;">Records tab - track your unlocked badges</figcaption>
 <br/>
-
-## Why Go?
-
-I chose Go for the backend because:
-
-- **Fast** - Compiled language, starts instantly
-- **Small binaries** - Single file, easy to distribute
-- **Great for CLI** - Standard library has everything needed
-- **SQLite support** - `mattn/go-sqlite3` works perfectly
-
-Why not Rust? I just found Go easier to work with. Both are valid - Go fit my brain better.
 
 ## One file. Your data.
 
@@ -178,11 +168,6 @@ Since everything is local:
 - No external dependencies
 
 Your data never leaves your machine. Ever.
-
-<br/>
-<img src="img/activity.webp" alt="activity tab showing today's coding sessions and languages" loading="lazy">
-<figcaption style="font-size: 0.8em; color: gray; margin-top: 4px; text-align: center;">Activity tab - see what you worked on today</figcaption>
-<br/>
 
 ## What does it track?
 
@@ -251,13 +236,8 @@ That's it. Start coding. It tracks automatically.
 Add a keybinding:
 
 ```lua
-vim.keymap.set("n", "<leader>cm", "<cmd>CodeMe<cr>")
+vim.keymap.set("n", "<leader>cm", "<cmd>CodeMe</cr>")
 ```
-
-<br/>
-<img src="img/neovim-with-codeme.webp" alt="Neovim with codeme dashboard open" loading="lazy">
-<figcaption style="font-size: 0.8em; color: gray; margin-top: 4px; text-align: center;">The codeme dashboard open inside Neovim</figcaption>
-<br/>
 
 ## Try it
 
@@ -272,3 +252,4 @@ Your coding history should stay yours.
 - codeme CLI: [github.com/tduyng/codeme](https://github.com/tduyng/codeme)
 - codeme.nvim: [github.com/tduyng/codeme.nvim](https://github.com/tduyng/codeme.nvim)
 - My Neovim config: [github.com/tduyng/nvim](https://github.com/tduyng/nvim)
+
