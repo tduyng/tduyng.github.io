@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Load FlexSearch library
     const script = document.createElement('script')
-    script.src = 'https://cdn.jsdelivr.net/npm/flexsearch@0.7.43/dist/flexsearch.bundle.min.js'
+    script.src = '/js/flexsearch.bundle.min.js'
     script.onload = initializeSearch
     script.onerror = () => {
         console.error('Failed to load FlexSearch library')
