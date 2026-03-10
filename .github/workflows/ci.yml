@@ -40,7 +40,7 @@ jobs:
           python-version: '3.13'
 
       - name: Build site
-        run: ./deploy.sh
+        run: gozzi build
 
       - name: Validate build output
         run: |
