@@ -1,5 +1,5 @@
-{{ $page_type := .Page.Path }}
-{{ if eq $page_type "" }}
+{{ $page_path := default "" .Page.Path }}
+{{ if eq $page_path "" }}
 <!-- Home/Person Schema -->
 <script type="application/ld+json">
 {
@@ -34,7 +34,7 @@
   }
 }
 </script>
-{{ else if has_prefix .Page.Path "blog/" }}
+{{ else if has_prefix $page_path "blog/" }}
 {{ if .Page.Config.title }}
 <!-- BlogPosting Schema -->
 <script type="application/ld+json">
@@ -44,7 +44,7 @@
   "headline": "{{ .Page.Config.title }}",
   "description": "{{ .Page.Config.description }}",
   "image": "{{ if .Page.Config.img }}{{ .Page.Config.img_url }}{{ else }}{{ .Site.Config.base_url }}{{ .Site.Config.extra.img }}{{ end }}",
-  "url": "{{ .Site.Config.base_url }}{{ .Page.Permalink }}",
+  "url": "{{ .Site.Config.base_url }}{{ default "" .Page.Permalink }}",
   "datePublished": "{{ .Page.Config.date }}",
   {{ if not .Page.Config.updated.IsZero }}
   "dateModified": "{{ .Page.Config.updated }}",
@@ -69,12 +69,12 @@
   {{ end }}
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "{{ .Site.Config.base_url }}{{ .Page.Permalink }}"
+    "@id": "{{ .Site.Config.base_url }}{{ default "" .Page.Permalink }}"
   }
 }
 </script>
 {{ end }}
-{{ else if has_prefix .Page.Path "notes/" }}
+{{ else if has_prefix $page_path "notes/" }}
 {{ if .Page.Config.title }}
 <!-- Article Schema for Notes -->
 <script type="application/ld+json">
@@ -82,7 +82,7 @@
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "{{ .Page.Config.title }}",
-  "url": "{{ .Site.Config.base_url }}{{ .Page.Permalink }}",
+  "url": "{{ .Site.Config.base_url }}{{ default "" .Page.Permalink }}",
   "datePublished": "{{ .Page.Config.date }}",
   {{ if not .Page.Config.updated.IsZero }}
   "dateModified": "{{ .Page.Config.updated }}",
@@ -108,7 +108,7 @@
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "{{ priority .Page.Config.title .Section.Config.title .Site.Config.title }}",
-  "url": "{{ .Site.Config.base_url }}{{ .Page.Permalink }}",
+  "url": "{{ .Site.Config.base_url }}{{ default "" .Page.Permalink }}",
   "description": "{{ priority .Page.Config.description .Section.Config.description .Site.Config.description }}",
   "publisher": {
     "@type": "Person",
@@ -119,7 +119,7 @@
 {{ end }}
 
 <!-- BreadcrumbList Schema -->
-{{ if ne .Page.Path "" }}
+{{ if ne $page_path "" }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -131,7 +131,7 @@
       "name": "Home",
       "item": "{{ .Site.Config.base_url }}"
     }
-    {{ if has_prefix .Page.Path "blog/" }}
+    {{ if has_prefix $page_path "blog/" }}
     ,{
       "@type": "ListItem",
       "position": 2,
@@ -143,10 +143,10 @@
       "@type": "ListItem",
       "position": 3,
       "name": "{{ .Page.Config.title }}",
-      "item": "{{ .Site.Config.base_url }}{{ .Page.Permalink }}"
+      "item": "{{ .Site.Config.base_url }}{{ default "" .Page.Permalink }}"
     }
     {{ end }}
-    {{ else if has_prefix .Page.Path "notes/" }}
+    {{ else if has_prefix $page_path "notes/" }}
     ,{
       "@type": "ListItem",
       "position": 2,
@@ -158,10 +158,10 @@
       "@type": "ListItem",
       "position": 3,
       "name": "{{ .Page.Config.title }}",
-      "item": "{{ .Site.Config.base_url }}{{ .Page.Permalink }}"
+      "item": "{{ .Site.Config.base_url }}{{ default "" .Page.Permalink }}"
     }
     {{ end }}
-    {{ else if has_prefix .Page.Path "tags/" }}
+    {{ else if has_prefix $page_path "tags/" }}
     ,{
       "@type": "ListItem",
       "position": 2,

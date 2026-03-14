@@ -1,80 +1,80 @@
 <!doctype html>
-
 <html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
     {{ template "partials/_head.html" . }}
     <body class="blog">
-        {{ template "partials/_header.html" . }}
+        {{ template "partials/_sidebar.html" . }}
+        
+        <div id="main-wrapper">
+            
+            <main id="main-content">
+                <div class="main-header">
+                    <button type="button" id="sidebar-trigger" aria-label="Sidebar">
+                        <i class="fas fa-bars fa-fw"></i>
+                    </button>
+                    <div id="breadcrumb">
+                        <a href="/">Home</a>
+                        {{ if .Page.Config.title }}
+                        <span>{{ .Page.Config.title }}</span>
+                        {{ else if .Section.Config.title }}
+                        <span>{{ .Section.Config.title }}</span>
+                        {{ end }}
+                    </div>
+                    <div id="search-wrapper">
+                        <i class="fas fa-search fa-fw"></i>
+                        <input id="search-input" type="search" placeholder="Search...">
+                        <div id="search-results"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <article class="prose">
+                        <h1>{{ .Section.Config.title }}</h1>
+                        {{ if .Section.Config.description }}
+                        <p>{{ .Section.Config.description }}</p>
+                        {{ end }}
+                    </article>
 
-        <div id="wrapper">
-            <main class="layout-list">
-                <article class="prose blog">
-                    <h1>{{ .Section.Config.title }}</h1>
-                    {{ if .Section.Config.description }}
-                    <p>{{ .Section.Config.description }}</p>
-                    {{ end }}
-                </article>
-                {{ range $group := group_by "year" .Section.Children }}
-                <h2 class="scroll-reveal">{{ $group.Key }}</h2>
-                <div class="post-list">
-                    {{ range (reverse $group.Items) }}
-                    {{ $post_image := "/img/post-cover.webp" }}
-                    {{ if .Config.extra.img }}
-                        {{ $img_path := .Config.extra.img }}
-                        {{ $first_char := index (split $img_path "") 0 }}
-                        {{ if eq $first_char "/" }}
-                            {{ $post_image = $img_path }}
-                        {{ else }}
-                            {{ $post_image = printf "%s%s" .Permalink $img_path }}
-                        {{ end }}
-                    {{ end }}
-                    
-                    <a
-                        class="blog-card instant scroll-reveal-stagger {{ if .Config.extra.featured }}featured{{end}}"
-                        href="{{ .Permalink }}"
-                    >
-                        {{ if .Config.extra.featured }}
-                        <div class="featured-badge">
-                            <span class="featured-star">★</span>
-                        </div>
-                        {{ end }}
-                        <div class="post-card-image">
-                            <img src="{{ $post_image }}" alt="{{ .Config.title }}" width="1200" height="630" loading="lazy" decoding="async" onerror="this.src='/img/post-cover.webp'" />
-                        </div>
-                        
-                        <div class="blog-card-content">
-                            <div class="blog-card-header">
-                                <h3 class="blog-card-title">{{ .Config.title }}</h3>
-                                <time class="blog-card-date" datetime="{{ .Config.date }}">{{ date .Config.date "Jan 2, 2006" }}</time>
+                    {{ range $group := group_by "year" .Section.Children }}
+                    <h2 class="scroll-reveal">{{ $group.Key }}</h2>
+                    <div class="post-grid">
+                        {{ range (reverse $group.Items) }}
+                        <article class="post-card">
+                            {{ if .Config.extra.img }}
+                            <div class="post-card-image">
+                                <a href="{{ .Permalink }}">
+                                    <img src="{{ if has_prefix .Config.extra.img "http" }}{{ .Config.extra.img }}{{ else if has_prefix .Config.extra.img "/" }}{{ .Config.extra.img }}{{ else }}{{ .Permalink }}{{ .Config.extra.img }}{{ end }}" alt="{{ .Config.title }}">
+                                </a>
                             </div>
-                            
-                            {{ $summary := .Summary }}
-                            {{ if $summary }}
-                            <p class="blog-card-description">{{ $summary }}</p>
                             {{ end }}
-                            
-                            <div class="blog-card-footer">
-                                {{ if .Config.tags }}
-                                <div class="blog-card-tags">
-                                    {{ $tag_count := 0 }}
+                            <div class="post-card-content">
+                                <time class="post-date" datetime="{{ .Config.date }}">{{ date .Config.date "Jan 2, 2006" }}</time>
+                                <h3 class="post-title">
+                                    <a href="{{ .Permalink }}">{{ .Config.title }}</a>
+                                </h3>
+                                {{ if .Summary }}
+                                <p class="post-description">{{ .Summary }}</p>
+                                {{ end }}
+                                <div class="post-tags">
                                     {{ range .Config.tags }}
-                                        {{ if lt $tag_count 2 }}
-                                        <span class="blog-card-tag">#{{ . }}</span>
-                                        {{ $tag_count = add $tag_count 1 }}
-                                        {{ end }}
+                                    <span class="post-tag">#{{ . }}</span>
                                     {{ end }}
                                 </div>
-                                {{ end }}
-                                <span class="blog-card-read-more">Read</span>
                             </div>
-                        </div>
-                    </a>
+                        </article>
+                        {{ end }}
+                    </div>
                     {{ end }}
                 </div>
-
-                {{ end }} {{ template "partials/_footer.html" . }}
             </main>
+            
+            <aside id="right-panel">
+                <div class="panel-wrapper">
+                    {{ template "partials/_panel.html" . }}
+                </div>
+            </aside>
         </div>
 
+        {{ template "partials/_footer.html" . }}
+        <div id="mask"></div>
         {{ template "partials/_scripts.html" . }}
     </body>
 </html>

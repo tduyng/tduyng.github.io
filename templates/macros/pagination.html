@@ -1,25 +1,19 @@
 <div class="pagination">
-    <div class="pagination__buttons">
-        {{ with .Page.Higher }}
-        <div class="previous">
-            <span class="button__label">Previous</span>
-            <span class="button">
-                <a href="{{ .Permalink }}">
-                    <span class="button__icon">←</span>
-                    <span class="button__text">{{ .Config.title }}</span>
-                </a>
-            </span>
-        </div>
-        {{ end }} {{ with .Page.Lower }}
-        <div class="next">
-            <span class="button__label">Next</span>
-            <span class="button">
-                <a href="{{ .Permalink }}">
-                    <span class="button__text">{{ .Config.title }}</span>
-                    <span class="button__icon">→</span>
-                </a>
-            </span>
-        </div>
-        {{ end }}
-    </div>
+    {{ with .Page.Higher }}
+    <a href="{{ .Permalink }}" class="pagination-item previous">
+        <span class="pagination-label">
+            <i class="fas fa-chevron-left"></i> PREVIOUS
+        </span>
+        <span class="pagination-title">{{ .Config.title }}</span>
+    </a>
+    {{ end }}
+    
+    {{ with .Page.Lower }}
+    <a href="{{ .Permalink }}" class="pagination-item next">
+        <span class="pagination-label">
+            NEXT <i class="fas fa-chevron-right"></i>
+        </span>
+        <span class="pagination-title">{{ .Config.title }}</span>
+    </a>
+    {{ end }}
 </div>

@@ -5,6 +5,7 @@ template = "post.html"
 date = 2024-07-16
 updated = 2025-03-11
 generate_feed = true
+featured = true
 aliases = ["/blog/eslint-9", "/blog/eslint-migration"]
 tags = ["typescript", "nodejs"]
 
@@ -13,7 +14,6 @@ comment = true
 reaction = true
 toc = true
 copy = true
-featured = true
 outdate_alert = true
 outdate_alert_days = 365
 img = "img/eslint9x.webp"

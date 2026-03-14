@@ -1,67 +1,116 @@
 <!doctype html>
-
 <html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
     {{ template "partials/_head.html" . }}
     <body class="post">
-        {{ template "partials/_header.html" . }}
-
-        <div id="wrapper">
-            <div id="blank"></div>
-            <aside>
-                {{ template "partials/_toc.html" . }}
-                <button id="back-to-top" aria-label="back to top">
-                    {{ $icon := load "static/icon/arrow-up.svg" }} {{ $icon }}
-                </button>
-            </aside>
-            <main>
-                <div>
-                    {{ template "partials/_copy_code.html" . }} {{ $backlink_icon := load
-                    "static/icon/backlink.svg" }}
-                    <article class="prose" data-backlink-icon="{{ $backlink_icon }}">
-                        <h1>{{ .Page.Config.title }}</h1>
-                        <div id="post-info">
-                            <div id="date">
-                                <time id="publish" datetime="{{ .Page.Config.date }}">{{ date .Page.Config.date "Jan 2, 2006" }}</time>
-                                {{ if not .Page.Config.updated.IsZero }}
-                                <span>Last update:</span>
-                                <time id="updated" datetime="{{ .Page.Config.updated }}"
-                                    >{{ date .Page.Config.updated "Jan 2, 2006" }}</time
-                                >
-                                {{ end }}
-                            </div>
-
-                            {{ template "partials/_word_count.html" . }}
-                        </div>
-
-                    <div id="tags">
-                        {{ range .Page.Config.tags }} {{ $tag_slugify := . | urlize }} {{
-                        $tag_url := printf "/tags/%s" $tag_slugify }}
-                        <a class="instant" href="{{ $tag_url }}"><span>#</span>{{ . }}</a>
-                        {{ end }}
+        {{ template "partials/_sidebar.html" . }}
+        
+        <div id="main-wrapper">
+            <main id="main-content">
+                <div class="main-header">
+                    <button type="button" id="sidebar-trigger" aria-label="Sidebar">
+                        <i class="fas fa-bars fa-fw"></i>
+                    </button>
+                    <div id="breadcrumb">
+                        <a href="/">Home</a>
+                        <span>{{ .Page.Config.title }}</span>
                     </div>
-
-                    {{ with .Page.Series }}
-                    {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "badge") }}
-                    {{ end }}
-
-                    {{ template "partials/_outdate.html" . }} {{ .Page.Content }}
-                    
-                    {{/* Show chronological pagination (prev/next by date) for all posts */}}
-                    {{ pagination . }}
-                </article>
-                
-                {{/* Optimized engagement flow: content discovery → quick reactions → social sharing → deep engagement */}}
-                {{ template "partials/_suggest_edit.html" . }}
-                {{ template "partials/_related_posts_compact.html" . }}
-                    {{ template "partials/_reaction.html" . }}
-                    {{ template "partials/_sharing.html" . }}
-                    {{ template "partials/_giscus_script.html" . }}
-                    {{ template "partials/_comment.html" . }}
+                    <div id="search-wrapper">
+                        <i class="fas fa-search fa-fw"></i>
+                        <input id="search-input" type="search" placeholder="Search...">
+                        <div id="search-results"></div>
+                    </div>
                 </div>
 
-                {{ template "partials/_footer.html" . }}
+                <div class="container">
+                    <article class="prose">
+                        <header>
+                            <h1 class="post-title">{{ .Page.Config.title }}</h1>
+                            <div class="post-meta">
+                                <div class="meta-item">
+                                    <i class="far fa-calendar-alt fa-fw"></i>
+                                    <time datetime="{{ .Page.Config.date }}">{{ date .Page.Config.date "Jan 2, 2006" }}</time>
+                                </div>
+                                <span class="meta-dot">•</span>
+                                <div class="meta-item">
+                                    <i class="far fa-file-alt fa-fw"></i>
+                                    {{ template "partials/_word_count.html" . }}
+                                </div>
+                                {{ if not .Page.Config.updated.IsZero }}
+                                <span class="meta-dot">•</span>
+                                <div class="meta-item">
+                                    <i class="fas fa-history fa-fw"></i>
+                                    <span>Updated: {{ date .Page.Config.updated "Jan 2, 2006" }}</span>
+                                </div>
+                                {{ end }}
+                            </div>
+                            
+                            {{ with .Page.Series }}
+                            {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "badge") }}
+                            {{ end }}
+
+                            {{ template "partials/_outdate.html" . }}
+                        </header>
+
+                        <div class="post-content">
+                            {{ .Page.Content }}
+                        </div>
+
+                        {{ template "partials/_reaction.html" . }}
+
+                        <footer class="post-footer">
+                            <div class="post-tags">
+                                {{ range .Page.Config.tags }}
+                                <a class="post-tag" href="/tags/{{ . | urlize }}">#{{ . }}</a>
+                                {{ end }}
+                            </div>
+                            
+                            {{ template "partials/_sharing.html" . }}
+
+                            {{ with .Page.Series }}
+                            {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "navigation") }}
+                            {{ end }}
+                        </footer>
+                    </article>
+
+                    {{ if not .Page.Series }}
+                    {{ template "partials/_related_posts_compact.html" . }}
+                    {{ end }}
+
+                    {{ pagination . }}
+
+                    {{ template "partials/_giscus_script.html" . }}
+                </div>
             </main>
+            
+            <aside id="right-panel">
+                <div class="panel-wrapper">
+                    {{ if .Page.Config.extra.toc }}
+                    <div class="panel-section">
+                        <div class="panel-heading">Table of Contents</div>
+                        <div class="toc-wrapper">
+                            {{ template "partials/_toc.html" . }}
+                        </div>
+                    </div>
+                    {{ end }}
+                    
+                    <div class="panel-section">
+                        <div class="panel-heading">Recently Updated</div>
+                        <div class="recently-updated">
+                            {{ $blog := get_section "blog" }}
+                            {{ range limit 5 (reverse $blog.Children) }}
+                            <div class="recent-post-item">
+                                <a href="{{ .Permalink }}">{{ .Config.title }}</a>
+                                <div class="recent-post-date">{{ date .Config.date "Jan 2, 2006" }}</div>
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </aside>
         </div>
+
+        {{ template "partials/_footer.html" . }}
+        <div id="mask"></div>
         {{ template "partials/_scripts.html" . }}
     </body>
 </html>

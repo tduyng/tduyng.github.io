@@ -1,0 +1,30 @@
+<aside id="sidebar">
+  <div class="profile-wrapper">
+    <a href="/" class="profile-avatar">
+      <img src="{{ .Site.Config.extra.avatar }}" alt="Avatar">
+    </a>
+    <div class="site-title">
+      <a href="/">{{ .Site.Config.title }}</a>
+    </div>
+    <div class="site-subtitle">{{ .Site.Config.description }}</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    {{ $currentPath := default "" .Page.Path }}
+    {{ $permalink := .Page.Permalink }}
+    {{ range .Site.Config.extra.sidebar }}
+    <a href="{{ .path }}" class="nav-item {{ if or (eq $permalink .path) (and (ne .path "/") (has_prefix $currentPath (replace .path "/" ""))) (and (eq .path "/") (eq $currentPath "")) }}active{{ end }}">
+      <i class="fas fa-{{ .icon }} fa-fw"></i>
+      <span class="nav-text">{{ .text }}</span>
+    </a>
+    {{ end }}
+  </nav>
+
+  <div class="sidebar-bottom">
+    {{ range .Site.Config.extra.links }}
+    <a href="{{ .url }}" title="{{ .name }}" target="_blank" rel="noopener">
+      <i class="fab fa-{{ .icon }}"></i>
+    </a>
+    {{ end }}
+  </div>
+</aside>

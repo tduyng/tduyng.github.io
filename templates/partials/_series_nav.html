@@ -1,49 +1,35 @@
-{{/* Series badge - compact indicator shown at top of content */}}
 {{ if .Series }}
 {{ if eq .PartialContext "badge" }}
 <div class="series-badge">
-    <svg class="series-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-    </svg>
-    <span class="series-text">
+    <div class="series-badge-title">SERIES</div>
+    <div class="series-badge-info">
         Part <strong>{{ .Series.CurrentPart }}</strong> of <strong>{{ .Series.TotalPosts }}</strong> in
         <a class="series-link instant" href="{{ .Series.Permalink }}">{{ .Series.Name }}</a>
-    </span>
+    </div>
 </div>
 {{ end }}
 
-{{/* Series list - content only (no wrapper) for inclusion in Related Posts section */}}
 {{ if eq .PartialContext "navigation" }}
 {{ if .Series.AllPosts }}
-<div class="related-group">
-    <h4>
-        <svg class="series-icon-inline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-        </svg>
+<div class="related-group" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
+    <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-pale-color); margin-bottom: 1.5rem;">
         All posts in the <a href="{{ .Series.Permalink }}" class="instant">{{ .Series.Name }}</a> series
     </h4>
-    <ul class="related-list">
+    <div class="series-navigation-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
         {{ range .Series.AllPosts }}
-        <li>
+        <div class="series-nav-item">
             {{ if eq .Position $.Series.CurrentPart }}
-            {{/* Current post - not clickable, highlighted */}}
-            <span class="current-series-post" style="display: flex; align-items: baseline; gap: 1em; padding: 0.6em 0.9em 0.6em 2em; border-radius: 6px; background: rgba(111, 143, 209, 0.12); border: 1px solid rgba(111, 143, 209, 0.25); position: relative;">
-                <span style="content: '→'; position: absolute; left: 0.7em; top: 50%; transform: translateY(-50%); font-size: 1.2em; color: var(--primary-color); font-weight: bold;">→</span>
-                <span class="date">{{ date .Date "2 Jan 2006" }}</span>
-                <span class="title" style="color: var(--primary-color); font-weight: 600;">{{ .Title }} <em style="font-size: 0.85em; opacity: 0.8;">(You are here)</em></span>
-            </span>
+            <div style="padding: 0.75rem 1rem; border-radius: 8px; background: rgba(111, 143, 209, 0.1); border: 1px solid var(--primary-color); color: var(--primary-color); font-weight: 600;">
+                {{ .Title }} <span style="font-size: 0.75rem; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">(Current)</span>
+            </div>
             {{ else }}
-            {{/* Other posts - clickable */}}
-            <a href="{{ .Permalink }}" class="instant">
-                <span class="date">{{ date .Date "2 Jan 2006" }}</span>
-                <span class="title">{{ .Title }}</span>
+            <a href="{{ .Permalink }}" class="instant" style="display: block; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none; color: var(--text-color); transition: all 0.2s;">
+                {{ .Title }}
             </a>
             {{ end }}
-        </li>
+        </div>
         {{ end }}
-    </ul>
+    </div>
 </div>
 {{ end }}
 {{ end }}

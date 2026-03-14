@@ -1,52 +1,45 @@
 <!doctype html>
-
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="color-scheme" content="dark" />
-        <meta name="theme-color" content="#000000" />
-        <meta http-equiv="x-ua-compatible" content="ie=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="base" content="{{.Site.Config.base_url}}" />
-        <meta name="HandheldFriendly" content="True" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="msapplication-TileColor" content="#000000" />
-        <meta name="robots" content="noindex, follow" />
-        
-        <!-- Favicons -->
-        <link rel="icon" type="image/webp" sizes="32x32" href="/img/favicon-32x32.webp" />
-        <link rel="icon" type="image/webp" sizes="16x16" href="/img/favicon-16x16.webp" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.webp" />
-        
-        <!-- Title and Description -->
-        <title>404 - Page Not Found | {{.Site.Config.title}}</title>
-        <meta name="description" content="The page you're looking for doesn't exist. It might have been moved or deleted." />
-        
-        <!-- Open Graph -->
-        <meta property="og:title" content="404 - Page Not Found" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="{{.Site.Config.title}}" />
-        <meta property="og:description" content="The page you're looking for doesn't exist." />
-        <meta property="og:locale" content="en_US" />
-        
-        <!-- Twitter Card -->
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@tduyng" />
-        <meta name="twitter:title" content="404 - Page Not Found" />
-        <meta name="twitter:description" content="The page you're looking for doesn't exist." />
-        
-        <link rel="stylesheet" href="/css/main.css" />
-    </head>
+    {{ template "partials/_head.html" . }}
     <body class="not-found">
-        <main class="wrapper" role="main">
-            <div class="error">
-                <span aria-label="Error code">404</span>
-                <span>Page Not Found</span>
-            </div>
-            <p>Oops! The page you're looking for doesn't exist. It might have been moved or deleted.</p>
-            <a class="instant" href="/" aria-label="Return to homepage">← Back to Home</a>
-        </main>
+        {{ template "partials/_sidebar.html" . }}
+        
+        <div id="main-wrapper">
+            
+            <main id="main-content">
+                <div class="main-header">
+                    <button type="button" id="sidebar-trigger" aria-label="Sidebar">
+                        <i class="fas fa-bars fa-fw"></i>
+                    </button>
+                    <div id="breadcrumb">
+                        <a href="/">Home</a>
+                        <span>404</span>
+                    </div>
+                    <div id="search-wrapper">
+                        <i class="fas fa-search fa-fw"></i>
+                        <input id="search-input" type="search" placeholder="Search...">
+                        <div id="search-results"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="error">
+                        <h1>404</h1>
+                        <p>Page Not Found</p>
+                    </div>
+                    <p>Oops! The page you're looking for doesn't exist. It might have been moved or deleted.</p>
+                    <a class="instant" href="/" aria-label="Return to homepage">← Back to Home</a>
+                </div>
+            </main>
+            
+            <aside id="right-panel">
+                <div class="panel-wrapper">
+                    {{ template "partials/_panel.html" . }}
+                </div>
+            </aside>
+        </div>
+
+        {{ template "partials/_footer.html" . }}
+        <div id="mask"></div>
+        {{ template "partials/_scripts.html" . }}
     </body>
 </html>

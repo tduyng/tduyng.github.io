@@ -1,23 +1,49 @@
 <!doctype html>
-
 <html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
     {{ template "partials/_head.html" . }}
     <body class="series-list">
-        {{ template "partials/_header.html" . }}
-        <div id="wrapper">
-            <main>
-                <div class="title">Series</div>
-                <div class="series">
-                    {{ range .Page.Terms }}
-                    <a class="instant series-item" href="{{ .Permalink }}" data-count="{{ .Count }}">
-                        <span class="series-name">{{ .Name }}</span>
-                        <span class="series-count">{{ .Count }} {{ pluralize "post" .Count }}</span>
-                    </a>
-                    {{ end }}
+        {{ template "partials/_sidebar.html" . }}
+        
+        <div id="main-wrapper">
+            <main id="main-content">
+                <div class="main-header">
+                    <button type="button" id="sidebar-trigger" aria-label="Sidebar">
+                        <i class="fas fa-bars fa-fw"></i>
+                    </button>
+                    <div id="breadcrumb">
+                        <a href="/">Home</a>
+                        <span>Series</span>
+                    </div>
+                    <div id="search-wrapper">
+                        <i class="fas fa-search fa-fw"></i>
+                        <input id="search-input" type="search" placeholder="Search...">
+                        <div id="search-results"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="title">
+                        <h1>Series</h1>
+                    </div>
+                    <div class="series-grid">
+                        {{ range .Page.Terms }}
+                        <a class="instant series-item-card" href="{{ .Permalink }}">
+                            <div class="series-name">{{ .Name }}</div>
+                            <div class="series-count">{{ .Count }} {{ pluralize "post" .Count }}</div>
+                        </a>
+                        {{ end }}
+                    </div>
                 </div>
             </main>
-            {{ template "partials/_footer.html" . }}
+            
+            <aside id="right-panel">
+                <div class="panel-wrapper">
+                    {{ template "partials/_panel.html" . }}
+                </div>
+            </aside>
         </div>
+
+        {{ template "partials/_footer.html" . }}
+        <div id="mask"></div>
         {{ template "partials/_scripts.html" . }}
     </body>
 </html>

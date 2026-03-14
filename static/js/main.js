@@ -1,353 +1,207 @@
-function enablePrerender() {
-    const prerender = (a) => {
-        if (!a.classList.contains('instant')) return
-        const script = document.createElement('script')
-        script.type = 'speculationrules'
-        script.textContent = JSON.stringify({ prerender: [{ source: 'list', urls: [a.href] }] })
-        document.body.append(script)
-        a.classList.remove('instant')
-    }
-    const prefetch = (a) => {
-        if (!a.classList.contains('instant')) return
-        const link = document.createElement('link')
-        link.rel = 'prefetch'
-        link.href = a.href
-        document.head.append(link)
-        a.classList.remove('instant')
-    }
-    const support = HTMLScriptElement.supports && HTMLScriptElement.supports('speculationrules')
-    const handle = support ? prerender : prefetch
-    document.querySelectorAll('a.instant').forEach((a) => {
-        if (a.href.endsWith(window.location.pathname)) return
-        let timer
-        a.addEventListener('mouseenter', () => {
-            timer = setTimeout(() => handle(a), 50)
-        })
-        a.addEventListener('mouseleave', () => clearTimeout(timer))
-        a.addEventListener('touchstart', () => handle(a), { passive: true })
-    })
-}
-
-function enableNavFold() {
-    const nav = document.querySelector('header nav')
-    const toggler = nav && nav.querySelector('#toggler')
-    const foldItems = nav && nav.querySelectorAll('.fold')
-    if (!nav || !toggler || !foldItems.length) return
+function enableSidebar() {
+    const triggers = document.querySelectorAll('#sidebar-trigger');
+    const sidebar = document.querySelector('#sidebar');
+    const mask = document.querySelector('#mask');
     
-    toggler.addEventListener('click', () => {
-        const isExpanded = toggler.getAttribute('aria-expanded') === 'true'
-        toggler.setAttribute('aria-expanded', !isExpanded)
-        foldItems.forEach((item) => item.classList.toggle('shown'))
-    })
-}
-
-function enableFooterBackToTop() {
-    const backBtn = document.querySelector('#footer-back-to-top')
-    if (!backBtn) return
+    if (!triggers.length || !sidebar || !mask) return;
     
-    const toTop = () => {
-        window.scrollTo({ 
-            top: 0, 
-            behavior: 'smooth' 
-        })
-    }
+    triggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            sidebar.classList.toggle('show');
+            document.body.classList.toggle('sidebar-active');
+        });
+    });
     
-    backBtn.addEventListener('click', toTop)
+    mask.addEventListener('click', () => {
+        sidebar.classList.remove('show');
+        document.body.classList.remove('sidebar-active');
+        document.body.classList.remove('search-active');
+    });
 }
 
-function enableRssMask() {
-    const rssBtn = document.querySelector('#rss-btn')
-    const mask = document.querySelector('#rss-mask')
-    const copyBtn = document.querySelector('#rss-mask button')
-    if (!rssBtn || !mask) return
-    rssBtn.addEventListener('click', (e) => {
-        e.preventDefault()
-        mask.showModal()
-    })
-    const close = (e) => {
-        if (e.target == mask) mask.close()
+function enableSearch() {
+    const input = document.querySelector('#search-input');
+    const wrapper = document.querySelector('#search-wrapper');
+    
+    if (!input || !wrapper) return;
+    
+    function openSearch() {
+        document.body.classList.add('search-active');
+        input.focus();
     }
-    mask.addEventListener('click', close)
-    const copy = () => {
-        navigator.clipboard.writeText(copyBtn.dataset.link).then(() => {
-            copyBtn.innerHTML = copyBtn.dataset.checkIcon
-            copyBtn.classList.add('copied')
-            copyBtn.removeEventListener('click', copy)
-            setTimeout(() => {
-                mask.close()
-                copyBtn.innerHTML = copyBtn.dataset.copyIcon
-                copyBtn.classList.remove('copied')
-                copyBtn.addEventListener('click', copy)
-            }, 400)
-        })
+
+    function closeSearch() {
+        document.body.classList.remove('search-active');
+        input.blur();
     }
-    copyBtn.addEventListener('click', copy)
+
+    input.addEventListener('focus', openSearch);
+    
+    // Add keyboard shortcut cmd+k or ctrl+k
+    document.addEventListener('keydown', (e) => {
+        const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+        const key = isMac ? e.metaKey : e.ctrlKey;
+        
+        if (key && e.key === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        
+        if (e.key === 'Escape') {
+            closeSearch();
+        }
+    });
 }
 
-function enableOutdateAlert() {
-    const alert = document.querySelector('#outdate_alert')
-    if (!alert) return
-    const publish = document.querySelector('#publish')
-    const updated = document.querySelector('#updated')
-    const updateDate = new Date(updated ? updated.textContent : publish.textContent)
-    const intervalDays = Math.floor((Date.now() - updateDate.getTime()) / (24 * 60 * 60 * 1000))
-    const alertDays = parseInt(alert.dataset.days)
-    if (intervalDays >= alertDays) {
-        const msg = alert.dataset.alertTextBefore + intervalDays + alert.dataset.alertTextAfter
-        alert.querySelector('.content').textContent = msg
-        alert.classList.remove('hidden')
-    }
-}
-
-function enableTocToggle() {
-    const tocToggle = document.querySelector('#toc-toggle')
-    if (!tocToggle) return
-    const header = document.querySelector('header')
-    const blurred = header.classList.contains('blur')
-    const aside = document.querySelector('aside')
-    const anchors = aside.querySelectorAll('a')
-    const toggle = () => {
-        tocToggle.classList.toggle('active')
-        aside.classList.toggle('shown')
-        if (blurred) header.classList.toggle('blur')
-    }
-    tocToggle.addEventListener('click', toggle)
-    anchors.forEach((header) => header.addEventListener('click', toggle))
-}
-
-function enableTocIndicate() {
-    const toc = document.querySelector('aside nav')
-    if (!toc) return
-    const headers = document.querySelectorAll('h2, h3')
-    const tocMap = new Map()
-    headers.forEach((header) => tocMap.set(header, toc.querySelector(`a[href="#${header.id}"]`)))
-    let activated = null
-    const observer = new IntersectionObserver(
-        (entries) =>
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const target = tocMap.get(entry.target)
-                    if (target == activated) return
-                    if (activated) activated.classList.remove('active')
-                    target.classList.add('active')
-                    activated = target
-                }
-            }),
-        { rootMargin: '-9% 0px -90% 0px' },
-    )
-    headers.forEach((header) => observer.observe(header))
-}
-
-function enableTocTooltip() {
-    const anchors = document.querySelectorAll('aside nav a')
-    if (anchors.length == 0) return
-    const toggleTooltip = () => {
-        anchors.forEach((anchor) => {
-            if (anchor.offsetWidth < anchor.scrollWidth) {
-                anchor.setAttribute('title', anchor.textContent)
-            } else {
-                anchor.removeAttribute('title')
+function enableTocScrollspy() {
+    const tocLinks = document.querySelectorAll('.toc-wrapper nav a');
+    const headers = Array.from(document.querySelectorAll('.prose h2, .prose h3'));
+    
+    if (!tocLinks.length || !headers.length) return;
+    
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px 0px -80% 0px',
+        threshold: 0
+    };
+    
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                tocLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                });
             }
-        })
-    }
-    window.addEventListener('resize', toggleTooltip)
-    toggleTooltip()
+        });
+    }, observerOptions);
+    
+    headers.forEach(header => observer.observe(header));
+}
+
+function enableBackToTop() {
+    const btn = document.querySelector('#back-to-top');
+    if (!btn) return;
+    
+    btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 }
 
 function addCopyBtns() {
-    const cfg = document.querySelector('#copy-cfg')
-    if (!cfg) return
-    const copyIcon = cfg.dataset.copyIcon
-    const checkIcon = cfg.dataset.checkIcon
-    document.querySelectorAll('pre').forEach((block) => {
-        if (block.classList.contains('mermaid')) return
-        const wrapper = document.createElement('div')
-        wrapper.className = 'codeblock'
-        const btn = document.createElement('button')
-        btn.className = 'copy'
-        btn.ariaLabel = 'copy'
-        btn.innerHTML = copyIcon
-        const copy = () => {
-            navigator.clipboard.writeText(block.textContent).then(() => {
-                btn.innerHTML = checkIcon
-                btn.classList.add('copied')
-                btn.removeEventListener('click', copy)
-                setTimeout(() => {
-                    btn.innerHTML = copyIcon
-                    btn.classList.remove('copied')
-                    btn.addEventListener('click', copy)
-                }, 1500)
-            })
-        }
-        btn.addEventListener('click', copy)
-        wrapper.appendChild(block.cloneNode(true))
-        wrapper.appendChild(btn)
-        block.replaceWith(wrapper)
-    })
-}
-
-function addBackToTopBtn() {
-    const backBtn = document.querySelector('#back-to-top')
-    if (!backBtn) return
-    const toTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
-    const toggle = () => {
-        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-        if (scrollTop > 200 && !backBtn.classList.contains('shown')) {
-            backBtn.classList.add('shown')
-            backBtn.addEventListener('click', toTop)
-        } else if (scrollTop <= 200 && backBtn.classList.contains('shown')) {
-            backBtn.classList.remove('shown')
-            backBtn.removeEventListener('click', toTop)
-        }
-    }
-    window.addEventListener('scroll', toggle)
-    toggle()
-}
-
-function addFootnoteBacklink() {
-    const backlinkIcon = document.querySelector('.prose').dataset.backlinkIcon
-    const footnotes = document.querySelectorAll('.footnote-definition')
-    footnotes.forEach((footnote) => {
-        const backlink = document.createElement('button')
-        backlink.className = 'backlink'
-        backlink.ariaLabel = 'backlink'
-        backlink.innerHTML = backlinkIcon
-        backlink.addEventListener('click', () =>
-            window.scrollTo({
-                top:
-                    document
-                        .querySelector(`.footnote-reference a[href="#${footnote.id}"]`)
-                        .getBoundingClientRect().top +
-                    window.scrollY -
-                    50,
-            }),
-        )
-        footnote.appendChild(backlink)
-    })
+    const codeBlocks = document.querySelectorAll('.prose pre');
+    codeBlocks.forEach(block => {
+        if (block.querySelector('.code-copy-btn')) return;
+        
+        const button = document.createElement('button');
+        button.className = 'code-copy-btn';
+        button.type = 'button';
+        button.innerText = 'Copy';
+        
+        button.addEventListener('click', () => {
+            const code = block.querySelector('code').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                button.innerText = 'Copied!';
+                setTimeout(() => button.innerText = 'Copy', 2000);
+            });
+        });
+        
+        block.appendChild(button);
+    });
 }
 
 function enableImgLightense() {
-    window.addEventListener('load', () =>
-        Lightense('.prose img', { background: 'rgba(43, 43, 43, 0.19)' }),
-    )
-}
-
-function enableReadingProgress() {
-    const progressBar = document.querySelector('#reading-progress')
-    if (!progressBar) return
-
-    const updateProgress = () => {
-        const windowHeight = window.innerHeight
-        const documentHeight = document.documentElement.scrollHeight
-        const scrollTop = window.scrollY || document.documentElement.scrollTop
-        const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100
-        progressBar.style.width = Math.min(scrollPercent, 100) + '%'
+    if (window.Lightense) {
+        Lightense('.prose img:not(.no-lightense)');
     }
-
-    window.addEventListener('scroll', updateProgress, { passive: true })
-    updateProgress()
-}
-
-function enableScrollReveal() {
-    // Setup IntersectionObserver - optimized for faster reveal
-    const observer = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed')
-                    observer.unobserve(entry.target)
-                }
-            })
-        },
-        {
-            threshold: 0.1, // Reveal when 10% visible (faster)
-            rootMargin: '50px 0px -100px 0px', // Start revealing earlier
-        },
-    )
-
-    // Handle stagger elements first - smaller delay for snappier feel
-    const staggerElements = document.querySelectorAll('.scroll-reveal-stagger')
-    staggerElements.forEach((el, index) => {
-        el.style.transitionDelay = `${index * 0.01}s` // 0.01s
-        el.classList.add('scroll-reveal')
-    })
-
-    // Now observe all scroll-reveal elements (including converted stagger elements)
-    const revealElements = document.querySelectorAll('.scroll-reveal')
-    revealElements.forEach((el) => observer.observe(el))
 }
 
 function enableReaction() {
-    const container = document.querySelector('.reaction')
-    if (!container) return
-    const endpoint = container.dataset.endpoint
-    const slug = location.pathname.split('/').filter(Boolean).pop()
-    let state = { error: false, reaction: {} }
-    const render = () => {
-        const btns = Object.entries(state.reaction).map(([emoji, [count, reacted]]) => {
-            const span = document.createElement('span')
-            span.textContent = count
-            const btn = document.createElement('button')
-            if (reacted) btn.classList.add('reacted')
-            btn.append(emoji, span)
-            btn.onclick = () => toggle(emoji)
-            return btn
-        })
-        if (state.error) {
-            container.classList.add('error')
-        } else {
-            container.classList.remove('error')
-        }
-        container.replaceChildren(...btns)
-    }
-    const toggle = async (target) => {
-        const [count, reacted] = state.reaction[target]
-        state.reaction[target] = reacted ? [count - 1, false] : [count + 1, true]
-        render()
+    const reactionDiv = document.querySelector('.reaction');
+    if (!reactionDiv) return;
+
+    const endpoint = reactionDiv.dataset.endpoint;
+    const pageId = window.location.pathname;
+    const types = ['like', 'love', 'fire', 'rocket', 'party'];
+    const icons = { like: '👍', love: '❤️', fire: '🔥', rocket: '🚀', party: '🎉' };
+
+    async function getReactions() {
         try {
-            const resp = await fetch(endpoint, {
+            const res = await fetch(`${endpoint}/reactions?id=${pageId}`);
+            const data = await res.json();
+            renderReactions(data);
+        } catch (e) { console.error('Failed to fetch reactions', e); }
+    }
+
+    async function toggleReaction(type) {
+        try {
+            const res = await fetch(`${endpoint}/toggle`, {
                 method: 'POST',
-                body: JSON.stringify({ slug, target, reacted: !reacted }),
-            })
-            if (resp.status === 200) {
-                error = false
-            } else {
-                throw new Error()
-            }
-        } catch (err) {
-            state.error = true
-            state.reaction[target] = [count, reacted]
-            render()
-        }
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: pageId, type }),
+            });
+            const data = await res.json();
+            renderReactions(data);
+        } catch (e) { console.error('Failed to toggle reaction', e); }
     }
-    const init = async () => {
-        const resp = await fetch(`${endpoint}?slug=${slug}`)
-        if (resp.status === 200) {
-            state.reaction = await resp.json()
-            render()
-        }
+
+    function renderReactions(data) {
+        reactionDiv.innerHTML = '';
+        types.forEach(type => {
+            const count = data[type] || 0;
+            const btn = document.createElement('button');
+            btn.className = 'reaction-btn';
+            if (localStorage.getItem(`reaction-${pageId}-${type}`)) btn.classList.add('active');
+            
+            btn.innerHTML = `<span class="reaction-icon">${icons[type]}</span> <span class="reaction-count">${count}</span>`;
+            btn.onclick = () => {
+                const active = btn.classList.contains('active');
+                if (active) {
+                    localStorage.removeItem(`reaction-${pageId}-${type}`);
+                } else {
+                    localStorage.setItem(`reaction-${pageId}-${type}`, 'true');
+                }
+                toggleReaction(type);
+            };
+            reactionDiv.appendChild(btn);
+        });
     }
-    init()
+
+    getReactions();
+}
+
+function enableOutdateAlert() {
+    const alert = document.getElementById('outdate_alert');
+    if (!alert) return;
+
+    const publishDate = document.querySelector('time[datetime]').getAttribute('datetime');
+    if (!publishDate) return;
+
+    const daysLimit = parseInt(alert.dataset.days) || 365;
+    const diffTime = Math.abs(new Date() - new Date(publishDate));
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays > daysLimit) {
+        const beforeText = alert.dataset.alertTextBefore || 'This article was last updated';
+        const afterText = alert.dataset.alertTextAfter || 'ago and may be out of date.';
+        alert.querySelector('.content').innerText = `${beforeText} ${diffDays} days ${afterText}`;
+        alert.classList.remove('hidden');
+    }
 }
 
 //--------------------------------------------
 
-enablePrerender()
-enableNavFold()
-enableRssMask()
-enableScrollReveal()
-if (document.body.classList.contains('post')) {
-    enableOutdateAlert()
-    enableTocToggle()
-    enableTocIndicate()
-    addBackToTopBtn()
-    enableTocTooltip()
-    enableReadingProgress()
-}
-if (document.querySelector('.prose')) {
-    addCopyBtns()
-    addFootnoteBacklink()
-    enableImgLightense()
-    enableReaction()
-}
-enableFooterBackToTop()
+document.addEventListener('DOMContentLoaded', () => {
+    enableSidebar();
+    enableSearch();
+    enableTocScrollspy();
+    enableBackToTop();
+    
+    if (document.querySelector('.prose')) {
+        addCopyBtns();
+        enableImgLightense();
+        enableReaction();
+        enableOutdateAlert();
+    }
+});

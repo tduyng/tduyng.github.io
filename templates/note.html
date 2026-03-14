@@ -1,47 +1,88 @@
 <!doctype html>
-
 <html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
     {{ template "partials/_head.html" . }}
     <body class="prose-page">
-        {{ template "partials/_header.html" . }}
-
-    <div id="wrapper-notes">
-    <main>
-      <div>
-      {{ template "partials/_copy_code.html" . }}
-      <article class="prose notes">
-        {{ with .Page.Series }}
-        {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "badge") }}
-        {{ end }}
+        {{ template "partials/_sidebar.html" . }}
         
-        <div class="notes-entry lazy-entry">
-            <div class="thought-content">
-                {{ .Page.Content }}
-                {{ template "partials/_suggest_edit.html" . }}
-                <p class="timestamp">
-                    <a href="/notes/">← Back to Notes</a>
-                </p>
-            </div>
+        <div id="main-wrapper">
+            <main id="main-content">
+                <div class="main-header">
+                    <button type="button" id="sidebar-trigger" aria-label="Sidebar">
+                        <i class="fas fa-bars fa-fw"></i>
+                    </button>
+                    <div id="breadcrumb">
+                        <a href="/">Home</a>
+                        <span><a href="/notes">Notes</a></span>
+                        <span>{{ .Page.Config.title }}</span>
+                    </div>
+                    <div id="search-wrapper">
+                        <i class="fas fa-search fa-fw"></i>
+                        <input id="search-input" type="search" placeholder="Search...">
+                        <div id="search-results"></div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <article class="prose">
+                        <header>
+                            <h1 class="post-title">{{ .Page.Config.title }}</h1>
+                            <div class="post-meta">
+                                <div class="meta-item">
+                                    <i class="far fa-calendar-alt fa-fw"></i>
+                                    <time datetime="{{ .Page.Config.date }}">{{ date .Page.Config.date "Jan 2, 2006" }}</time>
+                                </div>
+                            </div>
+                            
+                            {{ with .Page.Series }}
+                            {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "badge") }}
+                            {{ end }}
+
+                            {{ template "partials/_outdate.html" . }}
+                        </header>
+
+                        <div class="post-content">
+                            {{ .Page.Content }}
+                        </div>
+
+                        {{ template "partials/_reaction.html" . }}
+                    </article>
+
+                    <div class="post-footer">
+                        {{ with .Page.Series }}
+                        {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "navigation") }}
+                        {{ else }}
+                        {{ template "partials/_related_posts_compact.html" . }}
+                        {{ end }}
+                        
+                        <div class="navigation" style="margin-top: 2rem;">
+                            <a href="/notes/">← Back to Notes</a>
+                        </div>
+                    </div>
+
+                    {{ pagination . }}
+                </div>
+            </main>
+            
+            <aside id="right-panel">
+                <div class="panel-wrapper">
+                    <div class="panel-section">
+                        <div class="panel-heading">Recently Updated</div>
+                        <div class="recently-updated">
+                            {{ $blog := get_section "blog" }}
+                            {{ range limit 5 (reverse $blog.Children) }}
+                            <div class="recent-post-item">
+                                <a href="{{ .Permalink }}">{{ .Config.title }}</a>
+                                <div class="recent-post-date">{{ date .Config.date "Jan 2, 2006" }}</div>
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </aside>
         </div>
-        
-        {{ with .Page.Series }}
-        {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "navigation") }}
-        {{ else }}
-        {{/* Only show tag-based related posts if NOT part of a series */}}
-        {{ template "partials/_related_posts_compact.html" . }}
-        {{ end }}
-        <article>
-      </div>
-    {{ template "partials/_comment.html" . }}
-    {{ template "partials/_footer.html" . }}
-    </main>
-</div>
 
-        <script>
-            // No need to save scroll on this page - the notes list page handles restoration
-            // But we could add analytics or other single-note specific scripts here
-        </script>
-
+        {{ template "partials/_footer.html" . }}
+        <div id="mask"></div>
         {{ template "partials/_scripts.html" . }}
     </body>
 </html>

@@ -1,108 +1,60 @@
 <!doctype html>
-
 <html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
     {{ template "partials/_head.html" . }}
     <body class="blog">
-        {{ template "partials/_header.html" . }}
-
-        <div id="wrapper-notes">
-            <main>
-                <div>
-                    {{ template "partials/_copy_code.html" . }} {{ $backlink_icon := load
-                    "static/icon/backlink.svg" }}
-                    <article class="prose notes" data-backlink-icon="{{ $backlink_icon }}">
+        {{ template "partials/_sidebar.html" . }}
+        
+        <div id="main-wrapper">
+            
+            <main id="main-content">
+                <div class="main-header">
+                    <button type="button" id="sidebar-trigger" aria-label="Sidebar">
+                        <i class="fas fa-bars fa-fw"></i>
+                    </button>
+                    <div id="breadcrumb">
+                        <a href="/">Home</a>
+                        {{ if .Page.Config.title }}
+                        <span>{{ .Page.Config.title }}</span>
+                        {{ else if .Section.Config.title }}
+                        <span>{{ .Section.Config.title }}</span>
+                        {{ end }}
+                    </div>
+                    <div id="search-wrapper">
+                        <i class="fas fa-search fa-fw"></i>
+                        <input id="search-input" type="search" placeholder="Search...">
+                        <div id="search-results"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <article class="prose">
                         <h1>{{ .Section.Config.title }}</h1>
                         <p>{{ .Section.Config.description }}</p>
+                        
                         <div class="notes-entries">
                             {{ range (reverse .Section.Children) }}
-                            <div class="notes-entry lazy-entry">
+                            <div class="notes-entry">
                                 <div class="thought-content">
                                     {{ .Content }}
                                     <p class="timestamp">
-                                        <a href="{{ .Permalink }}"
-                                            >→ <time datetime="{{ .Config.date }}">{{ date .Config.date "Jan 2, 2006" }}</time></a
-                                        >
+                                        <a href="{{ .Permalink }}">→ <time datetime="{{ .Config.date }}">{{ date .Config.date "Jan 2, 2006" }}</time></a>
                                     </p>
                                 </div>
                             </div>
                             {{ end }}
                         </div>
                     </article>
-                    {{ if .Section.Config.extra.reaction }}
-                    <div
-                        class="reaction {{ .Site.Config.extra.reaction_align }}"
-                        data-endpoint="{{ .Site.Config.extra.reaction_endpoint }}"
-                    ></div>
-                    {{ end }}
                 </div>
-                {{ template "partials/_footer.html" . }}
             </main>
             
-            <!-- Back to top button -->
-            <button id="back-to-top" aria-label="back to top">
-                {{ $icon := load "static/icon/arrow-up.svg" }} {{ $icon }}
-            </button>
+            <aside id="right-panel">
+                <div class="panel-wrapper">
+                    {{ template "partials/_panel.html" . }}
+                </div>
+            </aside>
         </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                // Lazy loading for entries
-                const entries = document.querySelectorAll('.lazy-entry')
-                const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 }
 
-                const observer = new IntersectionObserver((entries, observer) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible')
-                            observer.unobserve(entry.target)
-                        }
-                    })
-                }, observerOptions)
-
-                entries.forEach((entry) => observer.observe(entry))
-
-                // Restore scroll position when returning from a note
-                const savedScrollPos = sessionStorage.getItem('notesScrollPosition')
-                if (savedScrollPos) {
-                    window.scrollTo(0, parseInt(savedScrollPos, 10))
-                    sessionStorage.removeItem('notesScrollPosition')
-                }
-
-                // Save scroll position when clicking a note link
-                const noteLinks = document.querySelectorAll('.timestamp a')
-                noteLinks.forEach((link) => {
-                    link.addEventListener('click', () => {
-                        sessionStorage.setItem('notesScrollPosition', window.scrollY)
-                    })
-                })
-
-                // Reading progress bar
-                const readingProgress = document.getElementById('reading-progress')
-                if (readingProgress) {
-                    window.addEventListener('scroll', () => {
-                        const docHeight = document.documentElement.scrollHeight - window.innerHeight
-                        const scrolled = (window.scrollY / docHeight) * 100
-                        readingProgress.style.width = `${scrolled}%`
-                    })
-                }
-
-                // Back to top button
-                const backToTop = document.getElementById('back-to-top')
-                if (backToTop) {
-                    window.addEventListener('scroll', () => {
-                        if (window.scrollY > 300) {
-                            backToTop.classList.add('shown')
-                        } else {
-                            backToTop.classList.remove('shown')
-                        }
-                    })
-
-                    backToTop.addEventListener('click', () => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' })
-                    })
-                }
-            })
-        </script>
-
+        {{ template "partials/_footer.html" . }}
+        <div id="mask"></div>
         {{ template "partials/_scripts.html" . }}
     </body>
 </html>

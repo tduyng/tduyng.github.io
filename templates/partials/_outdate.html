@@ -1,4 +1,4 @@
-{{ if .Page.Config.extra.outdate_alert }} {{ $icon := load "static/icon/warning.svg" }}
+{{ if .Page.Config.extra.outdate_alert }}
 <blockquote
     id="outdate_alert"
     class="callout caution no-title hidden"
@@ -6,7 +6,7 @@
     data-alert-text-before="{{ .Site.Config.extra.outdate_alert_text_before }}"
     data-alert-text-after="{{ .Site.Config.extra.outdate_alert_text_after }}"
 >
-    <div class="icon">{{ $icon }}</div>
+    <div class="icon"><i class="fas fa-exclamation-triangle"></i></div>
     <div class="content"></div>
 </blockquote>
 {{ end }}

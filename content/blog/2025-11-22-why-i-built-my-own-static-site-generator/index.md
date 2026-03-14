@@ -5,9 +5,9 @@ template = "post.html"
 date = 2025-11-22
 tags = ["blog", "go"]
 generate_feed = true
+featured = true
 
 [extra]
-featured = true
 comment = true
 reaction = true
 toc = true

@@ -6,6 +6,7 @@ date = 2024-05-13
 updated = 2024-05-21
 tags = ["github", "python"]
 generate_feed = true
+featured = true
 aliases = ["/blog/dynamic-github-profile", "/blog/github-readme-automation"]
 
 [extra]
@@ -13,7 +14,6 @@ comment = true
 reaction = true
 toc = true
 copy = true
-featured = true
 outdate_alert = true
 outdate_alert_days = 500
 img = "img/tduyng.webp"

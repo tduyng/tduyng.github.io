@@ -1,0 +1,12 @@
+<div id="panel-wrapper">
+  <div class="panel-heading">Recently Updated</div>
+  <div class="recently-updated">
+    {{ $blog := get_section "blog" }}
+    {{ range limit 5 (reverse $blog.Children) }}
+    <div class="recent-post-item">
+      <a href="{{ .Permalink }}">{{ .Config.title }}</a>
+      <div class="recent-post-date">{{ date .Config.date "Jan 2, 2006" }}</div>
+    </div>
+    {{ end }}
+  </div>
+</div>

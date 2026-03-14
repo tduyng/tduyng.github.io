@@ -5,6 +5,7 @@ template = "post.html"
 date = 2024-05-15
 tags = ["github", "readme", "typescript"]
 generate_feed = true
+featured = true
 aliases = ["/blog/github-profile-bun", "/blog/bun-typescript-github"]
 
 [extra]
@@ -12,7 +13,6 @@ comment = true
 reaction = true
 toc = true
 copy = true
-featured = true
 outdate_alert = true
 outdate_alert_days = 500
 img = "img/tduyng.webp"

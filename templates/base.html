@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="{{ priority .Page.Config.lang .Section.Config.lang .Site.Config.lang }}">
+    {{ template "partials/_head.html" . }}
+    <body>
+        {{ template "partials/_sidebar.html" . }}
+        
+        <div id="main-wrapper">
+            
+            <main id="main-content">
+                <div class="container">
+                    {{ block "main" . }}{{ end }}
+                </div>
+            </main>
+            
+            <aside id="right-panel">
+                <div class="panel-wrapper">
+                    {{ block "panel" . }}
+                        {{ template "partials/_panel.html" . }}
+                    {{ end }}
+                </div>
+            </aside>
+        </div>
+
+        {{ template "partials/_footer.html" . }}
+        <div id="mask"></div>
+        {{ template "partials/_scripts.html" . }}
+    </body>
+</html>

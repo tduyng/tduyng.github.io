@@ -5,6 +5,7 @@ template = "post.html"
 date = 2020-05-25
 tags = ["blog", "static-site-generator"]
 generate_feed = true
+featured = true
 aliases = ["/blog/free-website-jekyll", "/blog/jekyll-github-pages"]
 
 [extra]
@@ -12,7 +13,6 @@ comment = false
 reaction = true
 toc = true
 copy = true
-featured = true
 outdate_alert = true
 outdate_alert_days = 365
 img = "/img/post-cover.webp"

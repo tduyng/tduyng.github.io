@@ -6,6 +6,7 @@ date = 2024-05-23
 updated = 2024-05-23
 tags = ["rust", "performance"]
 generate_feed = true
+featured = true
 aliases = ["/blog/rust-webp", "/blog/image-optimization-rust"]
 
 [extra]
@@ -13,7 +14,6 @@ comment = true
 reaction = true
 toc = true
 copy = true
-featured = true
 outdate_alert = true
 outdate_alert_days = 500
 img = "img/page_speed.webp"
