@@ -1,6 +1,6 @@
 +++
 title = "About"
-description = "Duy NG blog's website about"
+description = "Duy NG - About me"
 template = "prose.html"
 generate_feed = false
 
@@ -12,58 +12,59 @@ reaction = true
 
 # Hey, I'm Duy!
 
-I'm a Backend Engineer in France. You'll find me online as "tduyng", where I code, learn, and never stop exploring.
-
-I love building fast, reliable systems. My approach is simple: stay in the terminal, keep my hands on the keyboard, and focus on what matters.
-
-## Workflow & Philosophy
-
-I'm a terminal-first developer. My setup revolves around **Neovim**, **Nix**, and keyboard-centric tools that keep me productive. I believe in learning by building, documenting what I discover, and sharing it with others.
-
-**Always learning, never stop exploring** — that's how I approach both code and life.
+I'm a Backend Engineer in France, originally from Vietnam. I came here in 2015 to study engineering. After a few years working in construction (BIM Engineer at VINCI), I switched to software development and never looked back.
 
 ## Work
 
-At [ekino](https://www.ekino.fr), I build and maintain backend projects using Node.js, TypeScript, Docker, Kubernetes and AWS. Since 2021, I've been working on making applications that can handle heavy workloads reliably.
+At ekino, I build and maintain backend projects using Node.js, TypeScript, Docker, Kubernetes, and AWS. Since 2021, I've been working on applications that handle heavy workloads reliably.
 
-Before backend development, I worked as a BIM Engineer (Building Information Modeling) at [VINCI Group](https://www.vinci.com/vinci.nsf/fr/index.htm), France's leading construction company. I built software, plugins and scripting tools with C#, [Dynamo](https://dynamobim.org/), and Excel/VBA that helped teams work faster and better.
+Before backend development, I built software, plugins, and scripting tools at VINCI with C#, Dynamo, and Excel VBA that helped teams work faster.
+
+## What drives me
+
+I like to understand how things work. Every day I try to learn something new: new articles, new features, a new tool, a language, a concept, a better way to solve problems, or just something interesting I stumbled upon. I'm that person who reads the code just to see how it works, who asks "why?" until they get it.
+
+I read a lot. I follow tech news from daily.dev and RSS feeds. I also work on open source projects when I can. It helps me learn and grow in ways that work projects don't.
+
+I love low-level languages. Rust and Zig give you control and speed. Rust tools are amazing. Go is simple and nice to work with. I haven't mastered any of them yet. It's not easy and takes time. But I keep learning because they teach me things I never would have learned from Python, C#, or JavaScript, like pointers, memory, how computers really work. They also make you think differently. And they're fast for building tools. That's why I keep pushing myself to work more with them, even if it's a challenge.
+
+C is on my list too. I dream of working with C one day, better understanding systems programming, memory management, and how things work at a deeper level. It takes time, but that's the goal.
+
+## My workflow
+
+Terminal is where I work. I prefer CLI tools and keyboard shortcuts over heavy GUI apps. Neovim and Nix help me stay productive without leaving the terminal.
+
+I love fast, modern tools. Rust has some of the best CLI tools I've seen.
+
+I automate when I can. If something will help me next time, I try to build a script for it, even if it takes more time now. It's not about being fancy, it's about getting things done. makefile, justfile, sometimes custom scripts with bash or fish. When it works, it's so cool.
 
 ## Tech stack
 
 Here's what I work with:
 
-- **Languages**: JavaScript/TypeScript, Go, Rust, C#, Python, Ruby, VBA
-- **Frameworks**: Node.js/Deno/Bun/Nest.js, React/HTML/CSS
-- **DevOps**: AWS, CI/CD, Docker, Kubernetes, ArgoCD
-- **Databases**: SQL/NoSQL (Postgresql, MySql, MongoDB, Redis, Elastic search)
-- **Version control**: Git/GitLab/GitHub
-- **Scripting & automation**: Bash scripts, makefile, justfile, JS scripting
+- Languages: JavaScript, TypeScript, Go, Rust, Lua, Python, C#
+- Frameworks: Node.js, Deno, Bun, Nest.js, React
+- DevOps: AWS, CI/CD, Docker, Kubernetes, ArgoCD
+- Databases: SQlite, PostgreSQL, MongoDB, Redis, Elasticsearch
+- Tools: Git, makefile, justfile
 
-## Writing
+## What I write
 
-Writing helps me think and learn. I document what I discover, the problems I solve, and the tools I explore. It's not about being prescriptive, it's about sharing the journey.
+Writing helps me think and learn. I document what I discover, the problems I solve, and the tools I explore. It's not about having all the answers, it's about sharing the journey.
 
 I keep two types of content here:
 
-- [Blog posts](/blog) for deeper technical stories and tutorials
-- [Quick notes](/notes) for things I want to remember and share
+- [Blog posts](/blog): deeper dives and tutorials
+- [Quick notes](/notes): things I want to remember and share
 
-You'll also find some of my writing on [tduyng.medium.com](https://tduyng.medium.com).
-
-I'm always open to feedback, corrections, or discussions. Reach me at [hi@tduyng.com](mailto:hi@tduyng.com).
+You can also find some of my writing on medium.com.
 
 ## This site
 
-This site is built with [gozzi](https://github.com/tduyng/gozzi), a static site generator I created in Go.
+This site is built with [gozzi](https://github.com/tduyng/gozzi), a static site generator I created in Go. I wanted something I fully understand and can customize. I write in markdown, no dealing with HTML for every page, fast builds, complete control over the build process.
 
-**Why build my own?** I wanted something simple that I could fully understand and customize. Static site generators like Hugo and Zola are excellent, but building `gozzi` helped me learn how they work under the hood.
+Plus, it's fun to use.
 
-**Why I love it:**
+## Let's connect
 
-- Write in Markdown (my favorite format for technical content)
-- No dealing with HTML/CSS for every page
-- Fast builds and easy to scale
-- Complete control over the build process
-- Actually fun to write with
-
-The site is intentionally minimal. Just content and a focus on what matters, sharing ideas and learning together.
+Reach me at [tduyng.dev@gmail.com](mailto:tduyng.dev@gmail.com) or find me on [GitHub](https://github.com/tduyng).

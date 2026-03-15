@@ -18,7 +18,7 @@ Hey! I'm always open to chat about tech, share ideas, or just connect with fello
 
 Feel free to reach out:
 
-- **Email:** [hi@tduyng.com](mailto:hi@tduyng.com)
+- **Email:** [tduyng.dev@gmail.com](mailto:tduyng.dev@gmail.com)
 - **GitHub:** [tduyng](https://github.com/tduyng)
 - **Linkedin:** [tduyng](https://www.linkedin.com/in/tienduy-nguyen/)
 - **X (formerly Twitter):** [tduyng](https://x.com/tduyng)

@@ -23,7 +23,11 @@
   <div class="sidebar-bottom">
     {{ range .Site.Config.extra.links }}
     <a href="{{ .url }}" title="{{ .name }}" target="_blank" rel="noopener">
-      <i class="fab fa-{{ .icon }}"></i>
+      {{ if .faicon }}
+      <i class="{{ if .fas }}fas{{ else }}fab{{ end }} fa-{{ .faicon }}"></i>
+      {{ else if .icon }}
+      <img src="/icon/{{ .icon }}.svg" alt="{{ .name }}" class="social-icon">
+      {{ end }}
     </a>
     {{ end }}
   </div>

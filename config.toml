@@ -1,7 +1,7 @@
 base_url = "https://tduyng.com"
 feed_url = "https://tduyng.com/atom.xml"
 title = "Duy NG"
-description = "Backend Engineer. Building fast, reliable systems. Always learning."
+description = "Backend Engineer. Likes to understand how things work. Learning something new every day."
 language = "en"
 output_dir = "public"
 generate_feed = true
@@ -17,13 +17,15 @@ summary_length = 2
 [extra]
 name = "Duy NG"
 id = "tduyng"
-bio = "Backend Engineer • Always learning, never stop exploring"
+bio = "Backend Engineer"
 avatar = "/img/avatar.webp"
 img = "/img/post-cover.webp"
 links = [
-  { name = "GitHub", icon = "github", url = "https://github.com/tduyng" },
-  { name = "X", icon = "x", url = "https://x.com/tduyng" },
-  { name = "Email", icon = "email", url = "mailto:hi@tduyng.com" },
+  { name = "GitHub", faicon = "github", url = "https://github.com/tduyng" },
+  { name = "LinkedIn", faicon = "linkedin", url = "https://linkedin.com/in/tienduy-nguyen" },
+  { name = "X", faicon = "x", url = "https://x.com/tduyng" },
+  { name = "Daily.dev", icon = "dailydev", url = "https://app.daily.dev/tduyng" },
+  { name = "Email", faicon = "envelope", url = "mailto:tduyng.dev@gmail.com", fas = true },
 ]
 
 # Sidebar navigation - defines all links shown in sidebar
@@ -32,7 +34,7 @@ sidebar = [
   { name = "blog", path = "/blog", icon = "pencil-alt", text = "BLOG" },
   { name = "notes", path = "/notes", icon = "sticky-note", text = "NOTES" },
   { name = "uses", path = "/uses", icon = "laptop-code", text = "USES" },
-  { name = "archive", path = "/archive", icon = "archive", text = "ARCHIVES" },
+  { name = "archive", path = "/archive", icon = "archive", text = "ARCHIVE" },
   { name = "tags", path = "/tags", icon = "tags", text = "TAGS" },
   { name = "series", path = "/series", icon = "stream", text = "SERIES" },
   { name = "about", path = "/about", icon = "user", text = "ABOUT" },

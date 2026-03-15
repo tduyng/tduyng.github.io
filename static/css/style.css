@@ -231,6 +231,7 @@ body.homepage #main-wrapper::before {
 
 .sidebar-bottom a { color: var(--text-pale-color); font-size: 1rem; transition: color 0.2s; }
 .sidebar-bottom a:hover { color: var(--primary-color); }
+.sidebar-bottom .social-icon { width: 1.1rem; height: 1.1rem; vertical-align: middle; filter: invert(1) opacity(0.8); }
 
 /* Header Elements */
 #sidebar-trigger {
@@ -406,9 +407,16 @@ body.homepage #main-wrapper::before {
   flex: 1;
 }
 
-/* Homepage Hero */
-#info .profile-wrapper { padding-bottom: 2.5rem; text-align: left; }
+.sidebar-bottom .fab.fa-dailydev:before { content: "D"; font-family: var(--font-family-base); font-weight: 900; font-size: 1.1em; }
+#info .profile-wrapper { padding-bottom: 1.5rem; padding-top: 1rem; }
 #name { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-bold-color); letter-spacing: -0.02em; }
+#bio { font-size: 1.1rem; color: var(--text-pale-color); line-height: 1.6; }
+#bio .location { color: var(--text-pale-color); }
+
+#brief { margin: 1.5rem 0; }
+#brief p { margin-bottom: 1rem; font-size: 1.05rem; line-height: 1.75; color: var(--text-color); }
+#brief a { color: var(--primary-color); text-decoration: underline; }
+#brief a:hover { opacity: 0.8; }
 
 /* Bento Grid */
 .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin: 2.5rem 0; }
