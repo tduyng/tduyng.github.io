@@ -21,12 +21,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             const response = await fetch('/search-index.json')
             searchData = await response.json()
             
-            // Gozzi search index format: [{"Title": "...", "Description": "...", "Content": "...", "Permalink": "...", "Tags": [...]}, ...]
+            // Gozzi search index format: {"id": "...", "title": "...", "description": "...", "content": "...", "tags": [...], "url": "...", "date": "..."}
             searchIndex = new FlexSearch.Document({
                 document: {
-                    id: 'Permalink',
-                    index: ['Title', 'Description', 'Content', 'Tags'],
-                    store: ['Title', 'Description', 'Permalink', 'Date', 'Tags'],
+                    id: 'id',
+                    index: ['title', 'description', 'content', 'tags'],
+                    store: ['title', 'description', 'url', 'date', 'tags'],
                 },
                 tokenize: 'forward',
                 context: true,
@@ -63,9 +63,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         } else {
             searchResults.innerHTML = uniqueResults
                 .map(result => `
-                <a href="${result.Permalink}" class="search-result">
-                    <div class="result-title">${result.Title}</div>
-                    <div class="result-date">${result.Date || ''}</div>
+                <a href="${result.url}" class="search-result">
+                    <div class="result-title">${result.title}</div>
+                    <div class="result-date">${result.date || ''}</div>
                 </a>
             `).join('')
         }
