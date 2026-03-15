@@ -55,7 +55,16 @@ enable_analytics = true
 type = "stack"
 icon = "🛠️"
 title = "Stack"
-tags = ["TypeScript", "Go", "Rust", "Node.js", "Docker", "Kubernetes", "AWS"]
+tags = [
+  "Javascript",
+  "TypeScript",
+  "Go",
+  "Rust",
+  "Node.js",
+  "Docker",
+  "Kubernetes",
+  "AWS",
+]
 
 [[extra.bento_cards]]
 type = "now"
