@@ -11,25 +11,19 @@
 
 {{ if eq .PartialContext "navigation" }}
 {{ if .Series.AllPosts }}
-<div class="related-group" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color);">
-    <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-pale-color); margin-bottom: 1.5rem;">
-        All posts in the <a href="{{ .Series.Permalink }}" class="instant">{{ .Series.Name }}</a> series
-    </h4>
-    <div class="series-navigation-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+<div class="series-nav-compact">
+    <h4>All posts in the <a href="{{ .Series.Permalink }}">{{ .Series.Name }}</a> series</h4>
+    <ul class="series-nav-list">
         {{ range .Series.AllPosts }}
-        <div class="series-nav-item">
+        <li class="{{ if eq .Position $.Series.CurrentPart }}current{{ end }}">
             {{ if eq .Position $.Series.CurrentPart }}
-            <div style="padding: 0.75rem 1rem; border-radius: 8px; background: rgba(111, 143, 209, 0.1); border: 1px solid var(--primary-color); color: var(--primary-color); font-weight: 600;">
-                {{ .Title }} <span style="font-size: 0.75rem; opacity: 0.7; font-weight: normal; margin-left: 0.5rem;">(Current)</span>
-            </div>
+            <span>{{ .Title }} <small>(current)</small></span>
             {{ else }}
-            <a href="{{ .Permalink }}" class="instant" style="display: block; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid var(--border-color); text-decoration: none; color: var(--text-color); transition: all 0.2s;">
-                {{ .Title }}
-            </a>
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
             {{ end }}
-        </div>
+        </li>
         {{ end }}
-    </div>
+    </ul>
 </div>
 {{ end }}
 {{ end }}
