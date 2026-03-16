@@ -63,6 +63,15 @@ a {
     font-size: 0.9rem;
 }
 
+.prose pre.mermaid {
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    overflow-x: auto;
+    font-size: 1rem;
+    text-align: center;
+}
+
 .prose code {
     background: rgba(111, 143, 209, 0.1);
     padding: 0.2rem 0.4rem;

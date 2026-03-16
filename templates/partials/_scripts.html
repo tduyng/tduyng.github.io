@@ -12,7 +12,36 @@
 {{ if or .Page.Config.extra.mermaid .Section.Config.extra.mermaid }}
 <script type="module">
     import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true });
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark',
+        themeVariables: {
+            background: '#1c1c1c',
+            primaryColor: '#3b5fa0',
+            primaryTextColor: '#e8eaf6',
+            primaryBorderColor: '#7c9fe8',
+            lineColor: '#7c9fe8',
+            secondaryColor: '#2a3a5c',
+            tertiaryColor: '#1e2d47',
+            edgeLabelBackground: '#2a3a5c',
+            textColor: '#e8eaf6',
+            titleColor: '#ffffff',
+            nodeBorder: '#7c9fe8',
+            clusterBkg: '#1e2d47',
+            clusterBorder: '#7c9fe8',
+            labelTextColor: '#e8eaf6',
+            loopTextColor: '#e8eaf6',
+            noteBkgColor: '#2a3a5c',
+            noteTextColor: '#e8eaf6',
+            activationBkgColor: '#3b5fa0',
+            activationBorderColor: '#7c9fe8',
+            sequenceNumberColor: '#ffffff',
+            actorBkg: '#3b5fa0',
+            actorBorder: '#7c9fe8',
+            actorTextColor: '#ffffff',
+            actorLineColor: '#7c9fe8',
+        },
+    });
 </script>
 {{ end }}
 

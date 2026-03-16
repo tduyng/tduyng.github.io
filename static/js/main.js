@@ -90,7 +90,7 @@ function enableBackToTop() {
 }
 
 function addCopyBtns() {
-    const codeBlocks = document.querySelectorAll('.prose pre');
+    const codeBlocks = document.querySelectorAll('.prose pre:not(.mermaid)');
     codeBlocks.forEach(block => {
         if (block.querySelector('.code-copy-btn')) return;
         
