@@ -480,6 +480,19 @@ body.homepage #main-wrapper::before {
     .post-grid {
         grid-template-columns: 1fr;
     }
+
+    .prose pre {
+        padding: 1rem 0.75rem;
+    }
+
+    .prose pre code {
+        font-size: 0.6rem;
+        line-height: 1.4;
+    }
+
+    .prose code {
+        font-size: 0.8em;
+    }
 }
 
 .post-card {
