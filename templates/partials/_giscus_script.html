@@ -1,4 +1,4 @@
-{{ if .Section.Config.extra.comment }}
+{{ if or .Page.Config.extra.comment .Section.Config.extra.comment }}
 <div class="giscus"></div>
 
 <script
