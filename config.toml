@@ -1,7 +1,7 @@
 base_url = "https://tduyng.com"
 feed_url = "https://tduyng.com/atom.xml"
 title = "Duy NG"
-description = "Backend Engineer. Likes to understand how things work. Learning something new every day."
+description = "Backend Engineer · Open source · Terminal"
 language = "en"
 output_dir = "public"
 generate_feed = true
