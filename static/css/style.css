@@ -1,5 +1,9 @@
 /* Chirpy-inspired Layout for Gozzi - Expert Implementation */
 
+html {
+    font-size: 100%;
+}
+
 :root {
     --sidebar-width: 260px;
     --right-panel-width: 300px;
@@ -185,6 +189,10 @@ body.homepage #main-wrapper::before {
         width: 100% !important;
     }
 
+    footer {
+        margin-left: 0;
+    }
+
     #sidebar.show {
         transform: translateX(0);
         box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
@@ -342,8 +350,13 @@ body.homepage #main-wrapper::before {
 #breadcrumb {
     font-size: 0.8rem;
     color: var(--text-pale-color);
-    display: flex;
-    align-items: center;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    min-width: 0;
+    margin: 0 1rem;
 }
 #breadcrumb a {
     color: var(--text-pale-color);
@@ -485,20 +498,6 @@ body.homepage #main-wrapper::before {
 @media (max-width: 768px) {
     .post-grid {
         grid-template-columns: 1fr;
-    }
-
-    .prose pre {
-        padding: 1rem 0.75rem;
-        font-size: 0.6rem !important;
-    }
-
-    .prose pre code {
-        font-size: inherit !important;
-        line-height: 1.5;
-    }
-
-    .prose code {
-        font-size: 0.6rem !important;
     }
 }
 
@@ -749,7 +748,7 @@ body.homepage #main-wrapper::before {
 
 /* Series Navigation - Compact List */
 .series-nav-compact {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--border-color);
 }
@@ -1121,10 +1120,24 @@ body.homepage #main-wrapper::before {
     transition: color 0.2s;
 }
 
+/* Post Footer */
+.post-footer {
+    margin: 3rem 0 0;
+    padding: 2rem 0 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.post-footer .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0;
+}
+
 /* Sharing */
 .post-sharing {
-    margin-top: 3rem;
-    padding: 2.5rem 0;
+    margin-top: 2rem;
+    padding: 2rem 0;
     border-top: 1px solid var(--border-color);
     text-align: center;
 }
@@ -1263,7 +1276,7 @@ body.homepage #main-wrapper::before {
     background: rgba(111, 143, 209, 0.1);
     padding: 0.15rem 0.35rem;
     border-radius: 4px;
-    font-size: 0.85em;
+    font-size: 0.75em;
     color: var(--primary-color);
 }
 
@@ -1280,7 +1293,7 @@ body.homepage #main-wrapper::before {
     border: 1px solid var(--border-color);
     overflow-x: auto;
     position: relative;
-    font-size: 0.9em;
+    font-size: 0.75em;
 }
 
 .prose pre code {
@@ -1375,30 +1388,6 @@ body.homepage #main-wrapper::before {
     opacity: 0.8;
 }
 
-/* Copy Button */
-.code-copy-btn {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    padding: 0.25rem 0.5rem;
-    font-size: 0.75rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--text-pale-color);
-    border-radius: 4px;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.2s;
-}
-
-.prose pre:hover .code-copy-btn {
-    opacity: 1;
-}
-.code-copy-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
-    color: var(--text-bold-color);
-}
-
 .prose img {
     max-width: 100%;
     height: auto;
@@ -1423,7 +1412,7 @@ body.homepage #main-wrapper::before {
     width: 100%;
     margin: 2rem 0;
     border-collapse: collapse;
-    font-size: 0.9rem;
+    font-size: 0.9em;
     display: block;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -1533,6 +1522,7 @@ footer {
     padding: 3rem 1.5rem 2rem;
     color: var(--text-pale-color);
     margin-top: 4rem;
+    margin-left: var(--sidebar-width);
     border-top: 1px solid var(--border-color);
     position: relative;
     background: linear-gradient(180deg, transparent, rgba(111, 143, 209, 0.02));
@@ -1554,10 +1544,7 @@ footer::before {
 }
 .footer-bottom {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 1.25rem;
 }
 .footer-info p {
     margin: 0;
@@ -1625,7 +1612,7 @@ body.search-active {
     overflow: hidden;
 }
 
-/* Mobile Typography Overrides */
+/* Mobile Layout & Typography Overrides */
 @media (max-width: 768px) {
     #name {
         font-size: 2rem;
@@ -1658,19 +1645,53 @@ body.search-active {
         font-size: 1.2rem;
     }
     .prose {
-        font-size: 0.85rem !important;
+        font-size: 0.9rem !important;
     }
-}
-
-@media (max-width: 768px) {
+    .thought-content {
+        font-size: 0.9rem;
+    }
     .prose pre {
-        font-size: 0.6rem !important;
+        font-size: 0.6em !important;
         padding: 1rem 0.75rem !important;
-    }
-    .prose code {
-        font-size: 0.6rem !important;
     }
     .prose pre code {
         font-size: inherit !important;
+        line-height: 1.5;
+    }
+    .prose code {
+        font-size: 0.6em !important;
+    }
+
+    /* Layout padding adjustments */
+    #main-content .container {
+        padding: 0 1rem;
+    }
+    .main-header {
+        padding: 0 1rem;
+    }
+    
+    /* Pagination vertical stacking */
+    .pagination {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .pagination-item.next {
+        text-align: left;
+        align-items: flex-start;
+    }
+    .pagination-item.next .pagination-label {
+        flex-direction: row-reverse;
+    }
+    
+    /* Blockquote adjustments */
+    .prose blockquote {
+        padding: 0.75rem 1rem;
+        margin: 1.5rem 0;
+    }
+    
+    footer {
+        padding: 2rem 1rem 1.5rem;
     }
 }
+
+

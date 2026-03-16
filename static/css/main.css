@@ -27,7 +27,6 @@ a {
 
 /* Prose / Markdown Styling */
 .prose {
-    font-size: 1.05rem;
     line-height: 1.7;
 }
 
@@ -60,7 +59,7 @@ a {
     padding: 1.25rem;
     border-radius: 8px;
     overflow-x: auto;
-    font-size: 0.9rem;
+    font-size: 0.75em;
 }
 
 .prose pre.mermaid {
@@ -76,7 +75,7 @@ a {
     background: rgba(111, 143, 209, 0.1);
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
-    font-size: 0.9em;
+    font-size: 0.75em;
 }
 
 /* Post Meta & Tags Utilities */

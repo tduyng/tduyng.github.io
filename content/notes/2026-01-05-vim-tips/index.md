@@ -1,9 +1,9 @@
 +++
-title = "[Notes] Vim tricks"
+title = "[Notes] Vim tips"
 date = 2026-01-05
 template = "note.html"
 generate_feed = true
-series = "vim-tricks"
+series = "vim-tips"
 series_order = 1
 
 [extra]
@@ -11,7 +11,7 @@ comment = true
 copy = true
 +++
 
-# Vim tricks
+# Vim tips
 
 ## Shell Filter: ! and !!
 
