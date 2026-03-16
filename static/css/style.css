@@ -29,6 +29,12 @@ body {
     color: var(--text-color);
 }
 
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+}
+
 /* Base Layout Structure */
 #sidebar {
     width: var(--sidebar-width);
@@ -483,15 +489,16 @@ body.homepage #main-wrapper::before {
 
     .prose pre {
         padding: 1rem 0.75rem;
+        font-size: 0.6rem !important;
     }
 
     .prose pre code {
-        font-size: 0.6rem;
-        line-height: 1.4;
+        font-size: inherit !important;
+        line-height: 1.5;
     }
 
     .prose code {
-        font-size: 0.8em;
+        font-size: 0.6rem !important;
     }
 }
 
@@ -1273,11 +1280,12 @@ body.homepage #main-wrapper::before {
     border: 1px solid var(--border-color);
     overflow-x: auto;
     position: relative;
+    font-size: 0.9em;
 }
 
 .prose pre code {
     font-family: var(--code-font, 'Fira Code', monospace);
-    font-size: 0.7rem;
+    font-size: inherit;
     line-height: 1.6;
     background: transparent !important;
     padding: 0;
@@ -1416,6 +1424,9 @@ body.homepage #main-wrapper::before {
     margin: 2rem 0;
     border-collapse: collapse;
     font-size: 0.9rem;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .prose th,
@@ -1612,4 +1623,54 @@ body.search-active #mask {
 body.sidebar-active,
 body.search-active {
     overflow: hidden;
+}
+
+/* Mobile Typography Overrides */
+@media (max-width: 768px) {
+    #name {
+        font-size: 2rem;
+    }
+    .archive-title {
+        font-size: 1.6rem;
+    }
+    .stat-number {
+        font-size: 1.6rem;
+    }
+    .year-marker {
+        font-size: 1.25rem;
+    }
+    .prose h1.post-title {
+        font-size: 1.75rem;
+    }
+    .site-title {
+        font-size: 1.2rem;
+    }
+    .post-card .post-title {
+        font-size: 1.05rem;
+    }
+    .series-name {
+        font-size: 1rem;
+    }
+    .prose h2 {
+        font-size: 1.4rem;
+    }
+    .prose h3 {
+        font-size: 1.2rem;
+    }
+    .prose {
+        font-size: 0.85rem !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .prose pre {
+        font-size: 0.6rem !important;
+        padding: 1rem 0.75rem !important;
+    }
+    .prose code {
+        font-size: 0.6rem !important;
+    }
+    .prose pre code {
+        font-size: inherit !important;
+    }
 }

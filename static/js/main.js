@@ -143,7 +143,9 @@ function enableReaction() {
             if (!res.ok) return;
             const data = await res.json();
             renderReactions(data);
-        } catch (e) { console.error('Failed to fetch reactions', e); }
+        } catch (e) {
+            console.warn('Reactions disabled: backend unavailable.');
+        }
     }
 
     async function toggleReaction(emoji, currentlyReacted) {
@@ -154,7 +156,9 @@ function enableReaction() {
                 body: JSON.stringify({ slug, target: emoji, reacted: !currentlyReacted }),
             });
             await getReactions();
-        } catch (e) { console.error('Failed to toggle reaction', e); }
+        } catch (e) {
+            console.warn('Failed to toggle reaction: backend unavailable.');
+        }
     }
 
     function renderReactions(data) {
