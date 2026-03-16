@@ -171,6 +171,7 @@ body.homepage #main-wrapper::before {
 @media (max-width: 991px) {
     #sidebar {
         transform: translateX(calc(-1 * var(--sidebar-width)));
+        z-index: 1800;
     }
 
     #main-wrapper {
@@ -185,6 +186,24 @@ body.homepage #main-wrapper::before {
 
     #sidebar-trigger {
         display: block !important;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Ensure main-header is above mask on mobile */
+    .main-header {
+        z-index: 1750 !important;
+    }
+
+    /* Sidebar nav items - ensure clickable */
+    .sidebar-nav {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-item {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
     }
 }
 
@@ -402,6 +421,9 @@ body.homepage #main-wrapper::before {
         width: 40px;
         padding: 0.25rem 0.5rem;
         justify-content: center;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
     }
     #search-wrapper i {
         margin-right: 0;
@@ -416,14 +438,27 @@ body.homepage #main-wrapper::before {
         left: 0;
         width: 100%;
         height: var(--header-height);
-        z-index: 1600;
+        z-index: 1800;
         border-radius: 0;
         background: var(--bg-color);
         padding: 0 1rem;
+        cursor: default;
     }
 
     body.search-active #search-input {
         display: block;
+    }
+
+    /* Mobile search results - ensure visible above content */
+    body.search-active #search-results {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        right: 0;
+        max-height: calc(100vh - var(--header-height) - 20px);
+        border-radius: 0;
+        border: 1px solid var(--border-color);
+        z-index: 1800;
     }
 }
 
@@ -1546,17 +1581,19 @@ footer::before {
     width: 100%;
     height: 100%;
     background: var(--mask-bg);
-    z-index: 1500;
+    z-index: 1600;
 }
 
 body.sidebar-active #mask {
     display: block;
     backdrop-filter: blur(4px);
+    z-index: 1700;
 }
 
 body.search-active #mask {
     display: block;
     background: transparent;
+    z-index: 1700;
 }
 
 body.sidebar-active,

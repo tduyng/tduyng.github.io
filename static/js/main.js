@@ -36,6 +36,17 @@ function enableSearch() {
         input.blur();
     }
 
+    // Open search on wrapper click (for mobile)
+    wrapper.addEventListener('click', (e) => {
+        // If search is not active, open it
+        if (!document.body.classList.contains('search-active')) {
+            e.stopPropagation();
+            openSearch();
+        }
+    });
+
+    // Close search when clicking on results (handled in search.js)
+    
     input.addEventListener('focus', openSearch);
     
     // Add keyboard shortcut cmd+k or ctrl+k
