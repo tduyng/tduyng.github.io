@@ -122,48 +122,37 @@ function enableReaction() {
     if (!reactionDiv) return;
 
     const endpoint = reactionDiv.dataset.endpoint;
-    const pageId = window.location.pathname;
-    const types = ['like', 'love', 'fire', 'rocket', 'party'];
-    const icons = { like: '👍', love: '❤️', fire: '🔥', rocket: '🚀', party: '🎉' };
+    // Extract slug: last non-empty path segment, e.g. /blog/rise-of-terminal/ → rise-of-terminal
+    const slug = window.location.pathname.replace(/\/$/, '').split('/').pop();
+    if (!slug) return;
 
     async function getReactions() {
         try {
-            const res = await fetch(`${endpoint}/reactions?id=${pageId}`);
+            const res = await fetch(`${endpoint}/?slug=${slug}`);
+            if (!res.ok) return;
             const data = await res.json();
             renderReactions(data);
         } catch (e) { console.error('Failed to fetch reactions', e); }
     }
 
-    async function toggleReaction(type) {
+    async function toggleReaction(emoji, currentlyReacted) {
         try {
-            const res = await fetch(`${endpoint}/toggle`, {
+            await fetch(`${endpoint}/`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id: pageId, type }),
+                body: JSON.stringify({ slug, target: emoji, reacted: !currentlyReacted }),
             });
-            const data = await res.json();
-            renderReactions(data);
+            await getReactions();
         } catch (e) { console.error('Failed to toggle reaction', e); }
     }
 
     function renderReactions(data) {
         reactionDiv.innerHTML = '';
-        types.forEach(type => {
-            const count = data[type] || 0;
+        Object.entries(data).forEach(([emoji, [count, reacted]]) => {
             const btn = document.createElement('button');
-            btn.className = 'reaction-btn';
-            if (localStorage.getItem(`reaction-${pageId}-${type}`)) btn.classList.add('active');
-            
-            btn.innerHTML = `<span class="reaction-icon">${icons[type]}</span> <span class="reaction-count">${count}</span>`;
-            btn.onclick = () => {
-                const active = btn.classList.contains('active');
-                if (active) {
-                    localStorage.removeItem(`reaction-${pageId}-${type}`);
-                } else {
-                    localStorage.setItem(`reaction-${pageId}-${type}`, 'true');
-                }
-                toggleReaction(type);
-            };
+            btn.className = 'reaction-btn' + (reacted ? ' active' : '');
+            btn.innerHTML = `<span class="reaction-icon">${emoji}</span> <span class="reaction-count">${count}</span>`;
+            btn.onclick = () => toggleReaction(emoji, reacted);
             reactionDiv.appendChild(btn);
         });
     }
