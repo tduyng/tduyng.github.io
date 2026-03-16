@@ -12,13 +12,13 @@ reaction = true
 
 # Hey, I'm Duy!
 
-I'm a Backend Engineer in France, originally from Vietnam. I came here in 2015 to study engineering. After a few years working in construction (BIM Engineer at VINCI), I switched to software development and never looked back.
+I'm a Backend Engineer in France, originally from Vietnam. I came here in 2015 to study engineering. After a few years working in construction (BIM Engineer at VINCI), I switched to full-time software development and never looked back.
 
 ## Work
 
-At ekino, I build and maintain backend projects using Node.js, TypeScript, Docker, Kubernetes, and AWS. Since 2021, I've been working on applications that handle heavy workloads reliably.
+At ekino, I build and maintain backend projects using Node.js, TypeScript, Docker, Kubernetes, and AWS. Since 2021, I've been working on applications that handle heavy workloads reliably on CANAL+ projects.
 
-Before backend development, I built software, plugins, and scripting tools at VINCI with C#, Dynamo, and Excel VBA that helped teams work faster.
+Before backend development, I built software, plugins, and scripting tools at VINCI with C#, Python, Dynamo, and Excel VBA that helped teams work faster.
 
 ## What drives me
 

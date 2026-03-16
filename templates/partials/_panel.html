@@ -1,12 +1,26 @@
 <div id="panel-wrapper">
-  <div class="panel-heading">Recently Updated</div>
-  <div class="recently-updated">
-    {{ $blog := get_section "blog" }}
-    {{ range limit 5 (reverse $blog.Children) }}
-    <div class="recent-post-item">
-      <a href="{{ .Permalink }}">{{ .Config.title }}</a>
-      <div class="recent-post-date">{{ date .Config.date "Jan 2, 2006" }}</div>
+  <div class="panel-section">
+    <div class="panel-heading">Recently Updated</div>
+    <div class="recently-updated">
+      {{ $blog := get_section "blog" }}
+      {{ range limit 5 (reverse $blog.Children) }}
+      <div class="recent-post-item">
+        <a href="{{ .Permalink }}">{{ .Config.title }}</a>
+        <div class="recent-post-date">{{ date .Config.date "Jan 2, 2006" }}</div>
+      </div>
+      {{ end }}
     </div>
-    {{ end }}
   </div>
+
+  {{ with .Site.Config.extra.trending_tags }}
+  <div class="panel-section">
+    <div class="panel-heading">Trending Tags</div>
+    <div class="trending-tags">
+      {{ range . }}
+      {{ $tag := . }}
+      <a href="/tags/{{ $tag | urlize }}" class="trending-tag">{{ $tag }}</a>
+      {{ end }}
+    </div>
+  </div>
+  {{ end }}
 </div>

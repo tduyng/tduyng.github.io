@@ -105,6 +105,17 @@
                             {{ end }}
                         </div>
                     </div>
+
+                    {{ with .Site.Config.extra.trending_tags }}
+                    <div class="panel-section">
+                        <div class="panel-heading">Trending Tags</div>
+                        <div class="trending-tags">
+                            {{ range . }}
+                            <a href="/tags/{{ . | urlize }}" class="trending-tag">{{ . }}</a>
+                            {{ end }}
+                        </div>
+                    </div>
+                    {{ end }}
                 </div>
             </aside>
         </div>

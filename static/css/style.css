@@ -793,22 +793,35 @@ body.homepage #main-wrapper::before {
 }
 
 .panel-section {
-    margin-bottom: 3.5rem;
-    padding-bottom: 1rem;
+    margin-bottom: 1.75rem;
+    padding: 1.25rem;
+    background: rgba(111, 143, 209, 0.03);
+    border: 1px solid rgba(111, 143, 209, 0.08);
+    border-radius: 12px;
 }
 
-.panel-section:not(:last-child) {
-    border-bottom: 1px solid rgba(111, 143, 209, 0.05);
+.panel-section:last-child {
+    margin-bottom: 0;
+}
+
+.panel-section + .panel-section {
+    margin-top: 1.5rem;
 }
 
 .recently-updated .recent-post-item {
-    margin-bottom: 0.85rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.75rem;
 }
 .recently-updated .recent-post-item a {
     font-size: 0.85rem;
     color: var(--text-color);
     text-decoration: none;
     display: block;
+    flex: 1;
+    line-height: 1.4;
 }
 .recently-updated .recent-post-item a:hover {
     color: var(--primary-color);
@@ -816,7 +829,8 @@ body.homepage #main-wrapper::before {
 .recently-updated .recent-post-date {
     font-size: 0.7rem;
     color: var(--text-pale-color);
-    margin-top: 0.2rem;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .post-tag {
@@ -834,6 +848,35 @@ body.homepage #main-wrapper::before {
     color: var(--primary-color);
     border-color: var(--primary-color);
     background: rgba(111, 143, 209, 0.1);
+}
+
+/* Trending Tags */
+.trending-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-top: 0.25rem;
+}
+
+.trending-tag {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    background: linear-gradient(135deg, rgba(111, 143, 209, 0.12) 0%, rgba(111, 143, 209, 0.06) 100%);
+    border: 1px solid rgba(111, 143, 209, 0.2);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.trending-tag:hover {
+    color: #fff;
+    border-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color) 0%, rgba(111, 143, 209, 0.8) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(111, 143, 209, 0.25);
 }
 
 /* Post Meta & Typography */
