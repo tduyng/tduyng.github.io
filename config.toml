@@ -26,6 +26,7 @@ links = [
   { name = "X", faicon = "x", url = "https://x.com/tduyng" },
   { name = "Daily.dev", icon = "dailydev", url = "https://app.daily.dev/tduyng" },
   { name = "Email", faicon = "envelope", url = "mailto:tduyng.dev@gmail.com", fas = true },
+  { name = "RSS", faicon = "rss", url = "/atom.xml", fas = true },
 ]
 
 # Sidebar navigation - defines all links shown in sidebar
@@ -39,6 +40,7 @@ sidebar = [
   { name = "series", path = "/series", icon = "stream", text = "SERIES" },
   { name = "about", path = "/about", icon = "user", text = "ABOUT" },
   { name = "contact", path = "/contact", icon = "envelope", text = "CONTACT" },
+  { name = "subcribe", path = "/subscribe", icon = "bell", text = "SUBSCRIBE" },
   { name = "privacy", path = "/privacy", icon = "shield-alt", text = "PRIVACY" },
 ]
 
