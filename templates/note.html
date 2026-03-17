@@ -69,7 +69,10 @@
                         <div class="panel-heading">Recently Updated</div>
                         <div class="recently-updated">
                             {{ $blog := get_section "blog" }}
-                            {{ range limit 5 (reverse $blog.Children) }}
+                            {{ $notes := get_section "notes" }}
+                            {{ $all := concat $blog.Children $notes.Children }}
+                            {{ $sorted := sort_by "date" $all }}
+                            {{ range limit 6 $sorted }}
                             <div class="recent-post-item">
                                 <a href="{{ .Permalink }}">{{ .Config.title }}</a>
                                 <div class="recent-post-date">{{ date .Config.date "Jan 2, 2006" }}</div>
