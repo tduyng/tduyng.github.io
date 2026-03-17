@@ -43,9 +43,9 @@
                         <div class="post-content">
                             {{ .Page.Content }}
                         </div>
-
-                        {{ template "partials/_reaction.html" . }}
                     </article>
+
+                    {{ template "partials/_reaction.html" . }}
 
                     <div class="post-footer">
                         {{ with .Page.Series }}

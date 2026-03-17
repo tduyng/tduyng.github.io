@@ -166,7 +166,7 @@ function enableReaction() {
         Object.entries(data).forEach(([emoji, [count, reacted]]) => {
             const btn = document.createElement('button');
             btn.className = 'reaction-btn' + (reacted ? ' active' : '');
-            btn.innerHTML = `<span class="reaction-icon">${emoji}</span> <span class="reaction-count">${count}</span>`;
+            btn.innerHTML = `<span class="reaction-icon">${emoji}</span><span class="reaction-count">${count}</span>`;
             btn.onclick = () => toggleReaction(emoji, reacted);
             reactionDiv.appendChild(btn);
         });

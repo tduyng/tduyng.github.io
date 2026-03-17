@@ -55,10 +55,11 @@
                         <div class="post-content">
                             {{ .Page.Content }}
                         </div>
+                    </article>
 
-                        {{ template "partials/_reaction.html" . }}
+                    {{ template "partials/_reaction.html" . }}
 
-                        <footer class="post-footer">
+                    <footer class="post-footer">
                             <div class="post-tags">
                                 {{ range .Page.Config.tags }}
                                 <a class="post-tag" href="/tags/{{ . | urlize }}">#{{ . }}</a>
@@ -71,7 +72,6 @@
                             {{ template "partials/_series_nav.html" (dict "Series" . "PartialContext" "navigation") }}
                             {{ end }}
                         </footer>
-                    </article>
 
                     {{ if not .Page.Series }}
                     {{ template "partials/_related_posts_compact.html" . }}

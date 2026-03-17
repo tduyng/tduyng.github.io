@@ -70,25 +70,25 @@ body {
 }
 
 #right-panel {
-  width: var(--right-panel-width);
-  padding: 2rem 1.5rem;
-  flex-shrink: 0;
-  position: sticky;
-  top: 2rem;
-  align-self: flex-start;
-  height: calc(100vh - 4rem);
-  overflow-y: auto;
-  scrollbar-width: thin;
+    width: var(--right-panel-width);
+    padding: 2rem 1.5rem;
+    flex-shrink: 0;
+    position: sticky;
+    top: 2rem;
+    align-self: flex-start;
+    height: calc(100vh - 4rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
 }
 
 @media (max-width: 1199px) {
-  #main-wrapper {
-    flex-direction: column;
-  }
-  
-  #right-panel {
-    display: none;
-  }
+    #main-wrapper {
+        flex-direction: column;
+    }
+
+    #right-panel {
+        display: none;
+    }
 }
 
 body.homepage #main-wrapper::before {
@@ -748,9 +748,11 @@ body.homepage #main-wrapper::before {
 
 /* Series Navigation - Compact List */
 .series-nav-compact {
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border-color);
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-color-alt);
 }
 .series-nav-compact h4 {
     font-size: 0.8rem;
@@ -758,7 +760,7 @@ body.homepage #main-wrapper::before {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--text-pale-color);
-    margin-bottom: 0.5rem;
+    margin: 0 0 1rem 0;
 }
 .series-nav-compact h4 a {
     color: var(--primary-color);
@@ -769,19 +771,33 @@ body.homepage #main-wrapper::before {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 0;
 }
 .series-nav-list li {
-    font-size: 0.85rem;
-    line-height: 1.4;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    padding: 0.45rem 0.75rem;
+    border-left: 2px solid var(--border-color);
+    transition: border-color 0.2s;
+}
+.series-nav-list li + li {
+    margin-top: 0.25rem;
 }
 .series-nav-list li a {
     color: var(--text-color);
     text-decoration: none;
     transition: color 0.2s;
 }
+.series-nav-list li:hover {
+    border-left-color: var(--primary-color);
+}
 .series-nav-list li a:hover {
     color: var(--primary-color);
+}
+.series-nav-list li.current {
+    border-left-color: var(--primary-color);
+    background: rgba(111, 143, 209, 0.06);
+    border-radius: 0 4px 4px 0;
 }
 .series-nav-list li.current span {
     color: var(--primary-color);
@@ -915,7 +931,11 @@ body.homepage #main-wrapper::before {
 .trending-tag {
     display: inline-block;
     padding: 0.3rem 0.7rem;
-    background: linear-gradient(135deg, rgba(111, 143, 209, 0.12) 0%, rgba(111, 143, 209, 0.06) 100%);
+    background: linear-gradient(
+        135deg,
+        rgba(111, 143, 209, 0.12) 0%,
+        rgba(111, 143, 209, 0.06) 100%
+    );
     border: 1px solid rgba(111, 143, 209, 0.2);
     border-radius: 20px;
     font-size: 0.75rem;
@@ -1343,7 +1363,7 @@ body.homepage #main-wrapper::before {
 
 /* Reaction Block */
 .reaction {
-    margin: 2.5rem 0 1.5rem;
+    margin: 1.5rem 0 1rem;
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
@@ -1360,38 +1380,45 @@ body.homepage #main-wrapper::before {
 .reaction-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.3rem;
-    padding: 0.3rem 0.7rem;
+    gap: 6px;
+    padding: 4px 12px;
     background: rgba(111, 143, 209, 0.05);
     border: 1px solid var(--border-color);
-    border-radius: 20px;
+    border-radius: 999px;
     cursor: pointer;
-    transition: all 0.2s;
-    font-size: 0.8rem;
-    line-height: 1;
+    transition:
+        background 0.2s,
+        border-color 0.2s;
     color: var(--text-color);
+    white-space: nowrap;
+    font-size: 11px;
+    line-height: 1;
+    min-height: 28px;
 }
 
 .reaction-btn:hover {
     border-color: var(--primary-color);
-    background: rgba(111, 143, 209, 0.1);
+    background: rgba(111, 143, 209, 0.12);
 }
 
 .reaction-btn.active {
     background: var(--primary-color);
-    color: white;
     border-color: var(--primary-color);
+    color: white;
 }
 
 .reaction-icon {
-    font-size: 1rem;
+    font-size: 12px;
     line-height: 1;
+    flex-shrink: 0;
 }
 
 .reaction-count {
+    font-size: 10px;
     font-weight: 600;
-    font-size: 0.78rem;
-    opacity: 0.8;
+    line-height: 1;
+    opacity: 0.85;
+    flex-shrink: 0;
 }
 
 .prose img {
@@ -1675,7 +1702,7 @@ body.search-active {
     .main-header {
         padding: 0 1rem;
     }
-    
+
     /* Pagination vertical stacking */
     .pagination {
         flex-direction: column;
@@ -1688,31 +1715,30 @@ body.search-active {
     .pagination-item.next .pagination-label {
         flex-direction: row-reverse;
     }
-    
+
     /* Blockquote adjustments */
     .prose blockquote {
         padding: 0.75rem 1rem;
         margin: 1.5rem 0;
     }
-    
+
     footer {
         padding: 2rem 1rem 1.5rem;
     }
 
     .reaction {
         gap: 0.4rem;
-        margin: 1.5rem 0 1rem;
+        margin: 1rem 0 0.75rem;
     }
     .reaction-btn {
-        font-size: 0.72rem;
-        padding: 0.25rem 0.55rem;
+        padding: 5px 14px;
+        gap: 6px;
+        min-height: 28px;
     }
     .reaction-icon {
-        font-size: 0.9rem;
+        font-size: 14px;
     }
     .reaction-count {
-        font-size: 0.7rem;
+        font-size: 10px;
     }
 }
-
-
