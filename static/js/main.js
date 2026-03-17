@@ -23,12 +23,13 @@ function enableSidebar() {
 function enableSearch() {
     const input = document.querySelector('#search-input');
     const wrapper = document.querySelector('#search-wrapper');
-    
+
     if (!input || !wrapper) return;
-    
+
     function openSearch() {
         document.body.classList.add('search-active');
         input.focus();
+        input.select();
     }
 
     function closeSearch() {
@@ -36,30 +37,29 @@ function enableSearch() {
         input.blur();
     }
 
-    // Open search on wrapper click (for mobile)
+    // Mobile: tap the icon area to expand
     wrapper.addEventListener('click', (e) => {
-        // If search is not active, open it
         if (!document.body.classList.contains('search-active')) {
             e.stopPropagation();
             openSearch();
         }
     });
 
-    // Close search when clicking on results (handled in search.js)
-    
-    input.addEventListener('focus', openSearch);
-    
-    // Add keyboard shortcut cmd+k or ctrl+k
+    // Cmd+K / Ctrl+K
     document.addEventListener('keydown', (e) => {
         const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-        const key = isMac ? e.metaKey : e.ctrlKey;
-        
-        if (key && e.key === 'k') {
+        if ((isMac ? e.metaKey : e.ctrlKey) && e.key === 'k') {
             e.preventDefault();
             openSearch();
         }
-        
         if (e.key === 'Escape') {
+            closeSearch();
+        }
+    });
+
+    // Click outside closes on mobile
+    document.addEventListener('click', (e) => {
+        if (document.body.classList.contains('search-active') && !wrapper.contains(e.target)) {
             closeSearch();
         }
     });
