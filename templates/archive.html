@@ -48,7 +48,7 @@
                         <div class="timeline-year">
                             <h2 class="year-marker scroll-reveal">{{ $group.Key }}</h2>
                             <div class="timeline-items">
-                                {{ range (reverse $group.Items) }}
+                                {{ range $group.Items }}
                                 <a class="timeline-item" href="{{ .Permalink }}">
                                     <time class="item-date" datetime="{{ .Config.date }}">{{ date .Config.date "Jan 02" }}</time>
                                     <span class="item-title">{{ .Config.title }}</span>

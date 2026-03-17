@@ -1552,10 +1552,11 @@ body.homepage #main-wrapper::before {
 /* Footer */
 footer {
     font-size: 0.85rem;
-    padding: 3rem 1.5rem 2rem;
+    padding: 3rem 0 2rem;
     color: var(--text-pale-color);
     margin-top: 4rem;
     margin-left: var(--sidebar-width);
+    width: calc(100% - var(--sidebar-width));
     border-top: 1px solid var(--border-color);
     position: relative;
     background: linear-gradient(180deg, transparent, rgba(111, 143, 209, 0.02));
@@ -1572,8 +1573,7 @@ footer::before {
 }
 
 .footer-content {
-    max-width: var(--main-content-max-width);
-    margin: 0 auto;
+    padding: 0 2rem;
 }
 .footer-bottom {
     display: flex;
@@ -1723,7 +1723,9 @@ body.search-active {
     }
 
     footer {
-        padding: 2rem 1rem 1.5rem;
+        padding: 2rem 0 1.5rem;
+        margin-left: 0;
+        width: 100%;
     }
 
     .reaction {
