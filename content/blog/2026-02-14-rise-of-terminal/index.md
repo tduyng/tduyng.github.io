@@ -5,6 +5,7 @@ template = "post.html"
 date = 2026-02-14
 generate_feed = true
 tags = ["neovim", "cli", "terminal", "ai"]
+featured = true
 
 [extra]
 comment = true
