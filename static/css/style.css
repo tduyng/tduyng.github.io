@@ -2,6 +2,8 @@
 
 html {
     font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 :root {
@@ -382,7 +384,9 @@ body.homepage #main-wrapper::before {
     gap: 0.4rem;
     width: 200px;
     position: relative;
-    transition: border-color 0.2s, width 0.25s;
+    transition:
+        border-color 0.2s,
+        width 0.25s;
 }
 #search-wrapper:focus-within {
     border-color: var(--primary-color);
@@ -1700,21 +1704,25 @@ body.sidebar-active {
         font-size: 1.2rem;
     }
     .prose {
-        font-size: 0.9rem !important;
+        font-size: 1rem !important;
     }
     .thought-content {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
     .prose pre {
-        font-size: 0.6em !important;
+        font-size: 0.85rem !important;
         padding: 1rem 0.75rem !important;
     }
     .prose pre code {
-        font-size: inherit !important;
+        font-size: 0.7em !important;
         line-height: 1.5;
     }
     .prose code {
-        font-size: 0.6em !important;
+        font-size: 0.7em !important;
+    }
+
+    code {
+        font-size: 0.7em !important;
     }
 
     /* Layout padding adjustments */
